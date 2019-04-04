@@ -1,0 +1,77 @@
+package com.codxplore.quranulkarim.adapter;
+
+import android.content.Context;
+import android.graphics.Typeface;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.codxplore.quranulkarim.R;
+import com.codxplore.quranulkarim.model.Sura;
+
+import java.util.ArrayList;
+
+/**
+ * Created by akram on 3/30/2019.
+ */
+
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+
+    Context c;
+    ArrayList<Sura> suras;
+
+    public RecyclerViewAdapter(Context c, ArrayList<Sura> suras) {
+        this.c = c;
+        this.suras = suras;
+    }
+
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v= LayoutInflater.from(c).inflate(R.layout.all_sura,parent,false);
+        RecyclerViewHolder rvHolder = new RecyclerViewHolder(v);
+        return rvHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        RecyclerViewHolder rvHolder= (RecyclerViewHolder) holder;
+        Sura sura = suras.get(position);
+        rvHolder.suraId.setText(sura.getSurah_id());
+        rvHolder.nameArabicTxt.setText(sura.getName_arabic());
+        rvHolder.nameSimpleTxt.setText(sura.getName_simple());
+        rvHolder.nameEnglishTxt.setText(sura.getName_english());
+        rvHolder.revelationPlaceTxt.setText("Revelation place: "+sura.getRevelation_place());
+        rvHolder.ayatTxt.setText("Ayah: "+sura.getAyat());
+        rvHolder.revelationOrderTxt.setText("Revelation order: "+sura.getRevelation_order());
+    }
+
+    @Override
+    public int getItemCount() {
+        return suras.size();
+    }
+
+    class RecyclerViewHolder extends RecyclerView.ViewHolder {
+
+        TextView suraId;
+        TextView nameArabicTxt;
+        TextView nameSimpleTxt;
+        TextView nameEnglishTxt;
+        TextView revelationPlaceTxt;
+        TextView ayatTxt;
+        TextView revelationOrderTxt;
+
+        public RecyclerViewHolder(View itemView) {
+            super(itemView);
+
+            suraId = (TextView) itemView.findViewById(R.id.sura_id);
+            nameArabicTxt = (TextView) itemView.findViewById(R.id.name_arabic);
+            nameSimpleTxt = (TextView) itemView.findViewById(R.id.name_simple);
+            nameEnglishTxt = (TextView) itemView.findViewById(R.id.name_english);
+            revelationPlaceTxt = (TextView) itemView.findViewById(R.id.revelation_place);
+            ayatTxt = (TextView) itemView.findViewById(R.id.ayat);
+            revelationOrderTxt = (TextView) itemView.findViewById(R.id.revelation_order);
+        }
+    }
+}

@@ -1,0 +1,76 @@
+package com.codxplore.quranulkarim.model;
+
+public class Word {
+    private String code_dec;
+    private String code_hex;
+    private String code;
+    private String translation;
+    private String transliteration;
+    private String arabic;
+    private String ayah_index;
+    private String word_id;
+
+    public String getCode_dec() {
+        return code_dec;
+    }
+
+    public void setCode_dec(String code_dec) {
+        this.code_dec = code_dec;
+    }
+
+    public String getCode_hex() {
+        return code_hex;
+    }
+
+    public void setCode_hex(String code_hex) {
+        this.code_hex = code_hex;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getTranslation() {
+        return translation;
+    }
+
+    public void setTranslation(String translation) {
+        this.translation = translation;
+    }
+
+    public String getTransliteration() {
+        return transliteration;
+    }
+
+    public void setTransliteration(String transliteration) {
+        this.transliteration = transliteration;
+    }
+
+    public String getArabic() {
+        return arabic;
+    }
+
+    public void setArabic(String arabic) {
+        this.arabic = arabic;
+    }
+
+    public String getAyah_index() {
+        return ayah_index;
+    }
+
+    public void setAyah_index(String ayah_index) {
+        this.ayah_index = ayah_index;
+    }
+
+    public String getWord_id() {
+        return word_id;
+    }
+
+    public void setWord_id(String word_id) {
+        this.word_id = word_id;
+    }
+}
