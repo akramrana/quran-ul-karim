@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Quran ul karim</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item>Quran ul karim</item>
+    </string-array>
+
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_home</item>
+    </array>
+
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
+
+    <string name="name_title_ar">وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِن مُّدَّكِرٍ</string>
+    <string name="name_title_en">Indeed, We have made the Qur’an easy to remember. Is there any who will remember?</string>
+    <string name="sura_list_title_ar">رَبَّنَا ظَلَمْنَآ اَنْفُسَنَا وَإِنْ لَمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخٰسِرِينٍَ</string>
+    <string name="sura_list_title_en">Our Lord ! we have sinned against ourselves and unless You grant us forgiveness and bestow Your mercy upon us ,we shall most certainly be lost</string>
+    <string name="title_activity_sura_list_v2">All Sura</string>
+    <string name="title_activity_word_meaning">WordMeaningActivity</string>
+    <string name="title_activity_dictionary">DictionaryActivity</string>
+</resources>
