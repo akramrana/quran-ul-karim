@@ -26,4 +26,18 @@
     <string name="title_activity_sura_list_v2">All Sura</string>
     <string name="title_activity_word_meaning">WordMeaningActivity</string>
     <string name="title_activity_dictionary">DictionaryActivity</string>
+    <string name="title_activity_bookmark">BookmarkActivity</string>
+    <string name="string_bookmark">Bookmark List</string>
+    <string name="string_bookmark_subtitle">List of all saved bookmark</string>
+    <string name="string_sura_list">All Sura</string>
+    <string name="string_sura_list_subtitle">List of 114 sura</string>
+    <string name="string_dictionary">Dictionary</string>
+    <string name="string_dictionary_subtitle">Quran words dictionary</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="string_about">Quran ul Karim</string>
+    <string name="string_about_subtitle">About</string>
+    <string name="string_about_description">Quran ul karim is the free App provided to you by Akram Hossain.\nIf you spot any error then please \nreport it to akram_cse@yahoo.com\n\nIf you like this app then you can thank by making dua for my parents and me,that Allah (swt) ease the hardships that we are going through.Thank you.\n\nQuran data was obtained from \nhttps://github.com/quran/.\nIf you see any discrepancies then please report them to akram_cse@yahoo.com.\n\n**Verse by Verse recitations use the internet to download audio files.</string>
+    <string name="text_warning">Warning</string>
+    <string name="text_enable_internet">Please enable internet connection</string>
+    <string name="text_ok">OK</string>
 </resources>
