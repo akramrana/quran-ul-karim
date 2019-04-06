@@ -40,4 +40,6 @@
     <string name="text_warning">Warning</string>
     <string name="text_enable_internet">Please enable internet connection</string>
     <string name="text_ok">OK</string>
+    <string name="string_quick_link">Quick Links</string>
+    <string name="string_quick_link_subtitle">List of saved sura</string>
 </resources>

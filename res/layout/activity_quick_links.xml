@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.codxplore.quranulkarim.SuraListV2Activity">
+    tools:context=".BookmarkActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:background="@color/bg_color"
-            android:id="@+id/topBarSlist">
+            android:id="@+id/topBar">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -24,6 +24,7 @@
                 android:orientation="vertical" >
 
                 <TextView
+                    android:id="@+id/quick_link_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
@@ -32,9 +33,10 @@
                     android:paddingRight="5dp"
                     android:textColor="#FFFFFF"
                     android:textSize="18dp"
-                    android:text="@string/string_sura_list"/>
+                    android:text="@string/string_quick_link"/>
 
                 <TextView
+                    android:id="@+id/quick_link_sub_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
@@ -43,7 +45,7 @@
                     android:paddingRight="5dp"
                     android:textColor="#FFFFFF"
                     android:textSize="15dp"
-                    android:text="@string/string_sura_list_subtitle"/>
+                    android:text="@string/string_quick_link_subtitle"/>
 
             </LinearLayout>
 
@@ -51,10 +53,10 @@
         </RelativeLayout>
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/all_sura_list"
+            android:id="@+id/quick_link_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/topBarSlist"/>
+            android:layout_below="@id/topBar"/>
 
         <ProgressBar
             android:id="@+id/progressBar"
