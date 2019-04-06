@@ -1,6 +1,8 @@
 package com.codxplore.quranulkarim;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,7 +11,9 @@ import android.util.Log;
 import android.view.View;
 
 import com.codxplore.quranulkarim.adapter.RecyclerViewAdapter;
+import com.codxplore.quranulkarim.helper.DatabaseHelper;
 import com.codxplore.quranulkarim.listener.RecyclerTouchListener;
+import com.codxplore.quranulkarim.model.Ayah;
 import com.codxplore.quranulkarim.model.Sura;
 import com.codxplore.quranulkarim.task.BrowseJsonFromFileTask;
 
@@ -26,6 +30,7 @@ public class SuraListV2Activity extends Activity {
     LinearLayoutManager mLayoutManager;
     private ArrayList<Sura> suras;
     private static final String TAG = SuraListV2Activity.class.getSimpleName();
+    DatabaseHelper dbhelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +59,43 @@ public class SuraListV2Activity extends Activity {
             }
         }));
 
-        getSuraListFromFile();
+        dbhelper = new DatabaseHelper(getApplicationContext());
+
+        //getSuraListFromFile();
+        getDataFromLocalDb();
     }
 
-    private void getSuraListFromFile() {
-        new BrowseJsonFromFileTask(this).execute();
+    private void getDataFromLocalDb() {
+        SQLiteDatabase db = dbhelper.getWritableDatabase();
+        String sql = "SELECT * FROM sura order by surah_id ASC";
+        Log.i(TAG, sql);
+        Cursor cursor = db.rawQuery(sql, null);
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    Sura sura = new Sura();
+                    sura.setSurah_id(cursor.getString(cursor.getColumnIndex("surah_id")));
+                    sura.setName_arabic(cursor.getString(cursor.getColumnIndex("name_arabic")));
+                    sura.setName_english(cursor.getString(cursor.getColumnIndex("name_english")));
+                    sura.setName_simple(cursor.getString(cursor.getColumnIndex("name_simple")));
+                    sura.setRevelation_place(cursor.getString(cursor.getColumnIndex("revelation_place")));
+                    sura.setAyat(cursor.getString(cursor.getColumnIndex("ayat")));
+                    sura.setRevelation_order(cursor.getString(cursor.getColumnIndex("revelation_order")));
+                    suras.add(sura);
+                } while (cursor.moveToNext());
+            }
+        }catch (Exception e){
+            Log.i(TAG, e.getMessage());
+        }
+        finally {
+            db.close();
+        }
+        rvAdapter.notifyDataSetChanged();
     }
+
+    /*private void getSuraListFromFile() {
+        new BrowseJsonFromFileTask(this).execute();
+    }*/
 
     private void setRecyclerViewAdapter() {
         suras = new ArrayList<Sura>();

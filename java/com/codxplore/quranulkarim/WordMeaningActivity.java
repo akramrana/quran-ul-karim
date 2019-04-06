@@ -76,6 +76,8 @@ public class WordMeaningActivity extends Activity {
                     word.setCode(cursor.getString(cursor.getColumnIndex("code")));
                     word.setCode_hex(cursor.getString(cursor.getColumnIndex("code_hex")));
                     word.setCode_dec(cursor.getString(cursor.getColumnIndex("code_dec")));
+                    word.setAyah_key(cursor.getString(cursor.getColumnIndex("ayah_key")));
+                    word.setPosition(cursor.getString(cursor.getColumnIndex("position")));
                     words.add(word);
                 } while (cursor.moveToNext());
             }

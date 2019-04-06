@@ -1,5 +1,6 @@
 package com.codxplore.quranulkarim.adapter;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
@@ -18,6 +19,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.codxplore.quranulkarim.ConnectionDetector;
 import com.codxplore.quranulkarim.R;
 import com.codxplore.quranulkarim.SuraDetailsActivity;
 import com.codxplore.quranulkarim.WordMeaningActivity;
@@ -41,6 +43,8 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     ProgressDialog pd;
     DatabaseHelper dbhelper;
     SQLiteDatabase db;
+    ConnectionDetector cd;
+    Boolean isInternetPresent = false;
 
     public SuraDetailsViewAdapter(Context c, ArrayList<Ayah> ayahs) {
         this.c = c;
@@ -48,6 +52,9 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         font = Typeface.createFromAsset(c.getAssets(),"fonts/Siyamrupali.ttf");
         dbhelper = new DatabaseHelper(c);
         db = dbhelper.getWritableDatabase();
+
+        cd = new ConnectionDetector(c);
+        isInternetPresent = cd.isConnectingToInternet();
     }
 
     @Override
@@ -77,29 +84,36 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         rvHolder.playBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-
-                new AsyncTask<Void, Void, Void>() {
-                    protected void onPreExecute() {
-                        pd = new ProgressDialog(c);
-                        pd.setTitle("Processing...");
-                        pd.setMessage("Please wait.");
-                        pd.setCancelable(false);
-                        pd.setIndeterminate(true);
-                        pd.show();
-                    }
-
-                    protected Void doInBackground(Void... params) {
-                        AudioPlay.stopAudio();
-                        AudioPlay.playAudio(c, ayah.getAudio_url());
-                        return null;
-                    }
-
-                    protected void onPostExecute(Void result) {
-                        if (pd!=null) {
-                            pd.dismiss();
+                if (isInternetPresent) {
+                    new AsyncTask<Void, Void, Void>() {
+                        protected void onPreExecute() {
+                            pd = new ProgressDialog(c);
+                            pd.setTitle("Processing...");
+                            pd.setMessage("Please wait.");
+                            pd.setCancelable(true);
+                            pd.setIndeterminate(true);
+                            pd.show();
                         }
-                    }
-                }.execute();
+
+                        protected Void doInBackground(Void... params) {
+                            AudioPlay.stopAudio();
+                            AudioPlay.playAudio(c, ayah.getAudio_url());
+                            return null;
+                        }
+
+                        protected void onPostExecute(Void result) {
+                            if (pd != null) {
+                                pd.dismiss();
+                            }
+                        }
+                    }.execute();
+                }else{
+                    AlertDialog.Builder alert = new AlertDialog.Builder(c);
+                    alert.setTitle(R.string.text_warning);
+                    alert.setMessage(R.string.text_enable_internet);
+                    alert.setPositiveButton(R.string.text_ok,null);
+                    alert.show();
+                }
             }
         });
 
@@ -112,16 +126,20 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     String sql = "SELECT * FROM bookmark WHERE ayah_id = "+ayah.getAyah_index();
                     //Log.i("BOOKMARK_SQL", sql);
                     Cursor cursor = db.rawQuery(sql,null);
-                    if (cursor.moveToFirst()) {
-                        db.execSQL("DELETE FROM bookmark WHERE ayah_id = "+ayah.getAyah_index());
-                        Toast.makeText(c, "Deleted from bookmark.", Toast.LENGTH_LONG).show();
-                        bookmark.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.btn_star, 0, 0, 0);
-                    }else{
-                        ContentValues values = new ContentValues();
-                        values.put("ayah_id",ayah.getAyah_index());
-                        dbhelper.getWritableDatabase().insertOrThrow("bookmark", "", values);
-                        Toast.makeText(c, "Added to bookmark.", Toast.LENGTH_LONG).show();
-                        bookmark.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.btn_star_big_on, 0, 0, 0);
+                    try {
+                        if (cursor.moveToFirst()) {
+                            db.execSQL("DELETE FROM bookmark WHERE ayah_id = " + ayah.getAyah_index());
+                            Toast.makeText(c, "Deleted from bookmark.", Toast.LENGTH_LONG).show();
+                            bookmark.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.btn_star, 0, 0, 0);
+                        } else {
+                            ContentValues values = new ContentValues();
+                            values.put("ayah_id", ayah.getAyah_index());
+                            dbhelper.getWritableDatabase().insertOrThrow("bookmark", "", values);
+                            Toast.makeText(c, "Added to bookmark.", Toast.LENGTH_LONG).show();
+                            bookmark.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.btn_star_big_on, 0, 0, 0);
+                        }
+                    }catch (Exception e){
+                        Log.i("Bookmark Button", e.getMessage());
                     }
 
                 }catch (Exception e) {
@@ -134,10 +152,14 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         //Log.i("CHECK_BOOKMARK_SQL", checksql);
         Cursor cursor = db.rawQuery(checksql,null);
 
-        if (cursor.moveToFirst()) {
-            rvHolder.bookmarkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.btn_star_big_on, 0, 0, 0);
-        }else{
-            rvHolder.bookmarkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.btn_star, 0, 0, 0);
+        try {
+            if (cursor.moveToFirst()) {
+                rvHolder.bookmarkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.btn_star_big_on, 0, 0, 0);
+            } else {
+                rvHolder.bookmarkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.btn_star, 0, 0, 0);
+            }
+        }catch (Exception e){
+            Log.i("Bookmark Check", e.getMessage());
         }
 
         rvHolder.wordMeaningButton.setOnClickListener(new View.OnClickListener(){

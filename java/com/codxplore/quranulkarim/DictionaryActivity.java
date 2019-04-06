@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.app.Activity;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -30,6 +31,7 @@ public class DictionaryActivity extends Activity implements SearchView.OnQueryTe
     Integer counter = 0;
     SearchView editsearch;
     String searchTxt = "";
+    Handler mHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,14 +62,20 @@ public class DictionaryActivity extends Activity implements SearchView.OnQueryTe
                             SQLiteDatabase db = dbhelper.getWritableDatabase();
                             String sql = "SELECT COUNT(*) FROM words";
                             Cursor countHistory = db.rawQuery(sql,null);
-                            countHistory.moveToFirst();
-                            int maxHistoryCount = countHistory.getInt(0);
-                            countHistory.close();
-                            int maxPageCount = (int) Math.ceil(maxHistoryCount/limit);
-                            if(counter < maxPageCount) {
-                                counter = (counter + 1);
-                                offset = offset+limit;
-                                getDataFromLocalDb();
+                            try {
+                                countHistory.moveToFirst();
+                                int maxHistoryCount = countHistory.getInt(0);
+                                countHistory.close();
+                                int maxPageCount = (int) Math.ceil(maxHistoryCount / limit);
+                                if (counter < maxPageCount) {
+                                    counter = (counter + 1);
+                                    offset = offset + limit;
+                                    getDataFromLocalDb();
+                                }
+                            }catch (Exception e){
+                                Log.i("On Scroll Count Check", e.getMessage());
+                            }finally {
+                                db.close();
                             }
                         }
                     }
@@ -92,7 +100,7 @@ public class DictionaryActivity extends Activity implements SearchView.OnQueryTe
         }else{
              sql = "SELECT * " +
                      "FROM words " +
-                     "WHERE translation LIKE '"+searchTxt+"%' OR transliteration LIKE '"+searchTxt+"%' OR arabic LIKE '"+searchTxt+"%' " +
+                     "WHERE translation LIKE '%"+searchTxt+"%' OR transliteration LIKE '%"+searchTxt+"%' OR arabic LIKE '%"+searchTxt+"%' " +
                      "Order by word_id ASC " +
                      "limit " + offset + "," + limit;
         }
@@ -110,6 +118,8 @@ public class DictionaryActivity extends Activity implements SearchView.OnQueryTe
                     word.setCode(cursor.getString(cursor.getColumnIndex("code")));
                     word.setCode_hex(cursor.getString(cursor.getColumnIndex("code_hex")));
                     word.setCode_dec(cursor.getString(cursor.getColumnIndex("code_dec")));
+                    word.setAyah_key(cursor.getString(cursor.getColumnIndex("ayah_key")));
+                    word.setPosition(cursor.getString(cursor.getColumnIndex("position")));
                     words.add(word);
                 } while (cursor.moveToNext());
             }
@@ -136,15 +146,31 @@ public class DictionaryActivity extends Activity implements SearchView.OnQueryTe
 
     @Override
     public boolean onQueryTextChange(String query) {
-        words = new ArrayList<Word>();
-        rvAdapter = new WordListViewAdapter(DictionaryActivity.this, words);
-        recyclerview.setAdapter(rvAdapter);
         searchTxt = query;
-        if(searchTxt.equals("")){
-            offset = 0;
-        }
-        getDataFromLocalDb();
-        return false;
+        mHandler.removeCallbacksAndMessages(null);
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                int length = searchTxt.length();
+                if(length > 0) {
+                    words = new ArrayList<Word>();
+                    rvAdapter = new WordListViewAdapter(DictionaryActivity.this, words);
+                    recyclerview.setAdapter(rvAdapter);
+                    offset = 0;
+                    getDataFromLocalDb();
+                }
+                else{
+                    words = new ArrayList<Word>();
+                    rvAdapter = new WordListViewAdapter(DictionaryActivity.this, words);
+                    recyclerview.setAdapter(rvAdapter);
+                    offset = 0;
+                    getDataFromLocalDb();
+                }
+            }
+        }, 500);
+
+
+        return true;
     }
 
 }

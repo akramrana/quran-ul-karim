@@ -55,10 +55,20 @@ public class MainActivity extends Activity {
 								SuraListV2Activity.class);
 						startActivity(i);
 						break;
+					case 1:
+						Intent b = new Intent(getApplicationContext(),
+								BookmarkActivity.class);
+						startActivity(b);
+						break;
 					case 4:
 						Intent d = new Intent(getApplicationContext(),
                                 DictionaryActivity.class);
 						startActivity(d);
+						break;
+					case 5:
+						Intent a = new Intent(getApplicationContext(),
+								AboutActivity.class);
+						startActivity(a);
 						break;
 					default:
 						break;

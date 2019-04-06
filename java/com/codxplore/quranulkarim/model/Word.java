@@ -9,6 +9,8 @@ public class Word {
     private String arabic;
     private String ayah_index;
     private String word_id;
+    private String ayah_key;
+    private String position;
 
     public String getCode_dec() {
         return code_dec;
@@ -72,5 +74,21 @@ public class Word {
 
     public void setWord_id(String word_id) {
         this.word_id = word_id;
+    }
+
+    public String getAyah_key() {
+        return ayah_key;
+    }
+
+    public void setAyah_key(String ayah_key) {
+        this.ayah_key = ayah_key;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 }
