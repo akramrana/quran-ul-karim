@@ -59,6 +59,7 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         rvHolder.text_tashkeel.setText(ayah.getText_tashkeel());
         rvHolder.content_en.setText(ayah.getContent_en());
         rvHolder.content_bn.setText(ayah.getContent_bn());
+        rvHolder.ayah_num.setText(ayah.getAyah_key());
         String sajdahText = "";
         if(ayah.getSajdah().equals("0")){
             sajdahText = "No";
@@ -146,6 +147,7 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         Button playBtn;
         Button wordMeaningButton;
         Button removeBookmarkButton;
+        TextView ayah_num;
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
@@ -159,6 +161,7 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             playBtn = (Button) itemView.findViewById(R.id.playBtn);
             wordMeaningButton = (Button) itemView.findViewById(R.id.wordMeaningButton);
             removeBookmarkButton = (Button) itemView.findViewById(R.id.removeBookmarkButton);
+            ayah_num = (TextView) itemView.findViewById(R.id.ayah_num);
         }
     }
 }

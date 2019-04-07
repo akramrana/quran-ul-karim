@@ -60,6 +60,11 @@ public class MainActivity extends Activity {
 								BookmarkActivity.class);
 						startActivity(b);
 						break;
+					case 2:
+						Intent s = new Intent(getApplicationContext(),
+								SearchActivity.class);
+						startActivity(s);
+						break;
 					case 3:
 						Intent q = new Intent(getApplicationContext(),
 								QuickLinksActivity.class);

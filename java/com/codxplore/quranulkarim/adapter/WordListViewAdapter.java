@@ -25,8 +25,8 @@ import java.util.ArrayList;
 public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     Context c;
     ArrayList<Word> words;
-    DatabaseHelper dbhelper;
-    SQLiteDatabase db;
+    //DatabaseHelper dbhelper;
+    //SQLiteDatabase db;
     ProgressDialog pd;
     ConnectionDetector cd;
     Boolean isInternetPresent = false;
@@ -34,8 +34,8 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public WordListViewAdapter(Context c, ArrayList<Word> words) {
         this.c = c;
         this.words = words;
-        dbhelper = new DatabaseHelper(c);
-        db = dbhelper.getWritableDatabase();
+        //dbhelper = new DatabaseHelper(c);
+        //db = dbhelper.getWritableDatabase();
         cd = new ConnectionDetector(c);
         isInternetPresent = cd.isConnectingToInternet();
     }

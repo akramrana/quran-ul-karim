@@ -153,9 +153,6 @@ public class SuraDetailsActivity extends Activity {
                         suraName = prevSuraNameEn;
                         suraNameArabic = prevSuraNameAr;
 
-                        setRecyclerViewAdapter();
-                        getDataFromLocalDb();
-
                         titleEn.setText(suraName);
                         titleAr.setText(suraNameArabic);
 
@@ -191,6 +188,9 @@ public class SuraDetailsActivity extends Activity {
                         cursor.close();
                     }
                     db.close();
+
+                    setRecyclerViewAdapter();
+                    getDataFromLocalDb();
                 }
 
             }
@@ -211,9 +211,6 @@ public class SuraDetailsActivity extends Activity {
                         suraName = prevSuraNameEn;
                         suraNameArabic = prevSuraNameAr;
 
-                        setRecyclerViewAdapter();
-                        getDataFromLocalDb();
-
                         titleEn.setText(suraName);
                         titleAr.setText(suraNameArabic);
 
@@ -249,6 +246,8 @@ public class SuraDetailsActivity extends Activity {
                         cursor.close();
                     }
                     db.close();
+                    setRecyclerViewAdapter();
+                    getDataFromLocalDb();
                 }
 
             }

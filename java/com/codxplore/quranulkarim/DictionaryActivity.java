@@ -46,6 +46,8 @@ public class DictionaryActivity extends Activity implements SearchView.OnQueryTe
 
         setRecyclerViewAdapter();
 
+        dbhelper = new DatabaseHelper(getApplicationContext());
+
         recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -75,6 +77,9 @@ public class DictionaryActivity extends Activity implements SearchView.OnQueryTe
                             }catch (Exception e){
                                 Log.i("On Scroll Count Check", e.getMessage());
                             }finally {
+                                if (countHistory != null && !countHistory.isClosed()){
+                                    countHistory.close();
+                                }
                                 db.close();
                             }
                         }
@@ -83,8 +88,6 @@ public class DictionaryActivity extends Activity implements SearchView.OnQueryTe
             }
 
         });
-
-        dbhelper = new DatabaseHelper(getApplicationContext());
 
         getDataFromLocalDb();
 
@@ -127,6 +130,9 @@ public class DictionaryActivity extends Activity implements SearchView.OnQueryTe
             Log.i(TAG, e.getMessage());
         }
         finally {
+            if (cursor != null && !cursor.isClosed()){
+                cursor.close();
+            }
             db.close();
         }
         rvAdapter.notifyDataSetChanged();
@@ -167,7 +173,7 @@ public class DictionaryActivity extends Activity implements SearchView.OnQueryTe
                     getDataFromLocalDb();
                 }
             }
-        }, 500);
+        }, 100);
 
 
         return true;
