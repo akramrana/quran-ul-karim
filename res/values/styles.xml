@@ -27,4 +27,14 @@
 
     <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="suraLabel">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">#333333</item>
+    </style>
+
+    <style name="ayatLabel">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">#333333</item>
+    </style>
+
 </resources>
