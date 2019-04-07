@@ -45,6 +45,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         rvHolder.revelationPlaceTxt.setText("Revelation place: "+sura.getRevelation_place());
         rvHolder.ayatTxt.setText("Ayah: "+sura.getAyat());
         rvHolder.revelationOrderTxt.setText("Revelation order: "+sura.getRevelation_order());
+        rvHolder.sid.setText(sura.getId());
     }
 
     @Override
@@ -61,6 +62,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         TextView revelationPlaceTxt;
         TextView ayatTxt;
         TextView revelationOrderTxt;
+        TextView sid;
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
@@ -72,6 +74,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             revelationPlaceTxt = (TextView) itemView.findViewById(R.id.revelation_place);
             ayatTxt = (TextView) itemView.findViewById(R.id.ayat);
             revelationOrderTxt = (TextView) itemView.findViewById(R.id.revelation_order);
+            sid = (TextView) itemView.findViewById(R.id.sid);
         }
     }
 }

@@ -76,6 +76,7 @@ public class QuickLinksActivity extends Activity {
                     sura.setRevelation_place(cursor.getString(cursor.getColumnIndex("revelation_place")));
                     sura.setAyat(cursor.getString(cursor.getColumnIndex("ayat")));
                     sura.setRevelation_order(cursor.getString(cursor.getColumnIndex("revelation_order")));
+                    sura.setId(cursor.getString(cursor.getColumnIndex("sid")));
                     suras.add(sura);
                 } while (cursor.moveToNext());
             }

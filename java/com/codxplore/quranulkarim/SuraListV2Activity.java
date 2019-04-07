@@ -81,6 +81,7 @@ public class SuraListV2Activity extends Activity {
                     sura.setRevelation_place(cursor.getString(cursor.getColumnIndex("revelation_place")));
                     sura.setAyat(cursor.getString(cursor.getColumnIndex("ayat")));
                     sura.setRevelation_order(cursor.getString(cursor.getColumnIndex("revelation_order")));
+                    sura.setId(cursor.getString(cursor.getColumnIndex("sid")));
                     suras.add(sura);
                 } while (cursor.moveToNext());
             }
@@ -88,6 +89,9 @@ public class SuraListV2Activity extends Activity {
             Log.i(TAG, e.getMessage());
         }
         finally {
+            if (cursor != null && !cursor.isClosed()){
+                cursor.close();
+            }
             db.close();
         }
         rvAdapter.notifyDataSetChanged();
@@ -118,6 +122,7 @@ public class SuraListV2Activity extends Activity {
                 sura.setRevelation_place(jObject.getString("revelation_place"));
                 sura.setAyat(jObject.getString("ayat"));
                 sura.setRevelation_order(jObject.getString("revelation_order"));
+                sura.setId(jObject.getString("sid"));
                 suras.add(sura);
             }
             rvAdapter.notifyDataSetChanged();

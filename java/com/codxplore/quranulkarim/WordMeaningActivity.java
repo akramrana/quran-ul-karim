@@ -85,6 +85,9 @@ public class WordMeaningActivity extends Activity {
             Log.i(TAG, e.getMessage());
         }
         finally {
+            if (cursor != null && !cursor.isClosed()){
+                cursor.close();
+            }
             db.close();
         }
         rvAdapter.notifyDataSetChanged();
