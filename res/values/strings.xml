@@ -46,4 +46,5 @@
     <string name="string_search_subtitle">Search sura and ayah</string>
     <string name="spinner_title">Enter sura name</string>
     <string name="spinner_ayat_title">Enter ayah number comma separated</string>
+    <string name="string_website_name">www.codxplore.com</string>
 </resources>
