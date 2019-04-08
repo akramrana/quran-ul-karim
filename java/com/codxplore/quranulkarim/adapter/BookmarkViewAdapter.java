@@ -33,14 +33,14 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     MediaPlayer mp;
     ProgressDialog pd;
     DatabaseHelper dbhelper;
-    SQLiteDatabase db;
+    //SQLiteDatabase db;
 
     public BookmarkViewAdapter(Context c, ArrayList<Ayah> ayahs) {
         this.c = c;
         this.ayahs = ayahs;
         font = Typeface.createFromAsset(c.getAssets(),"fonts/Siyamrupali.ttf");
         dbhelper = new DatabaseHelper(c);
-        db = dbhelper.getWritableDatabase();
+        //db = dbhelper.getWritableDatabase();
     }
 
     @Override
@@ -117,6 +117,7 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             @Override
             public void onClick(View view) {
                 try {
+                    SQLiteDatabase db = dbhelper.getWritableDatabase();
                     String sql = "SELECT * FROM bookmark WHERE ayah_id = "+ayah.getAyah_index();
                     Cursor cursor = db.rawQuery(sql,null);
                     if (cursor.moveToFirst()) {

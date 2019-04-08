@@ -156,9 +156,9 @@ public class SuraDetailsActivity extends Activity {
                         titleEn.setText(suraName);
                         titleAr.setText(suraNameArabic);
 
-                        SQLiteDatabase db1 = dbhelper.getWritableDatabase();
+                        //SQLiteDatabase db1 = dbhelper.getWritableDatabase();
                         String checksql = "SELECT * FROM quick_link WHERE sura_id = "+suraId;
-                        Cursor cursor1 = db1.rawQuery(checksql,null);
+                        Cursor cursor1 = db.rawQuery(checksql,null);
 
                         Log.i("Quick Link Check Inner", checksql);
 
@@ -172,12 +172,10 @@ public class SuraDetailsActivity extends Activity {
                             }
                         }catch (Exception e){
                             Log.i(TAG, e.getMessage());
-                        }
-                        finally {
+                        }finally {
                             if (cursor1 != null && !cursor1.isClosed()){
                                 cursor1.close();
                             }
-                            db1.close();
                         }
                     }
                 }catch (Exception e){
@@ -214,9 +212,9 @@ public class SuraDetailsActivity extends Activity {
                         titleEn.setText(suraName);
                         titleAr.setText(suraNameArabic);
 
-                        SQLiteDatabase db1 = dbhelper.getWritableDatabase();
+                        //SQLiteDatabase db1 = dbhelper.getWritableDatabase();
                         String checksql = "SELECT * FROM quick_link WHERE sura_id = "+suraId;
-                        Cursor cursor1 = db1.rawQuery(checksql,null);
+                        Cursor cursor1 = db.rawQuery(checksql,null);
 
                         Log.i("Quick Link Check Inner", checksql);
 
@@ -235,7 +233,6 @@ public class SuraDetailsActivity extends Activity {
                             if (cursor1 != null && !cursor1.isClosed()){
                                 cursor1.close();
                             }
-                            db1.close();
                         }
                     }
                 }catch (Exception e){
