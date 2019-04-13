@@ -57,14 +57,23 @@ public class BookmarkActivity extends Activity {
                             SQLiteDatabase db = dbhelper.getWritableDatabase();
                             String sql = "SELECT COUNT(*) FROM bookmark";
                             Cursor countHistory = db.rawQuery(sql,null);
-                            countHistory.moveToFirst();
-                            int maxHistoryCount = countHistory.getInt(0);
-                            countHistory.close();
-                            int maxPageCount = (int) Math.ceil(maxHistoryCount/limit);
-                            if(counter < maxPageCount) {
-                                counter = (counter + 1);
-                                offset = offset+limit;
-                                getDataFromLocalDb();
+                            try {
+                                countHistory.moveToFirst();
+                                int maxHistoryCount = countHistory.getInt(0);
+                                countHistory.close();
+                                int maxPageCount = (int) Math.ceil(maxHistoryCount / limit);
+                                if (counter < maxPageCount) {
+                                    counter = (counter + 1);
+                                    offset = offset + limit;
+                                    getDataFromLocalDb();
+                                }
+                            }catch (Exception e){
+                                Log.i("On Scroll Count Check", e.getMessage());
+                            }finally {
+                                if (countHistory != null && !countHistory.isClosed()){
+                                    countHistory.close();
+                                }
+                                db.close();
                             }
                         }
                     }
@@ -111,6 +120,9 @@ public class BookmarkActivity extends Activity {
             Log.i(TAG, e.getMessage());
         }
         finally {
+            if (cursor != null && !cursor.isClosed()){
+                cursor.close();
+            }
             db.close();
         }
         rvAdapter.notifyDataSetChanged();

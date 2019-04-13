@@ -27,6 +27,7 @@ public class SuraDetailsActivity extends Activity {
     public static String suraId;
     public static String suraName;
     public static String suraNameArabic;
+    public static String suraLastPosition="";
 
     private RecyclerView recyclerview;
     private SuraDetailsViewAdapter rvAdapter;
@@ -50,6 +51,7 @@ public class SuraDetailsActivity extends Activity {
             suraId = extras.getString("sura_id");
             suraName = extras.getString("sura_name");
             suraNameArabic = extras.getString("sura_name_arabic");
+            suraLastPosition = extras.getString("position");
         }
 
         setTitle(suraNameArabic+"-"+suraName);
@@ -72,6 +74,35 @@ public class SuraDetailsActivity extends Activity {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
+
+                SQLiteDatabase db = dbhelper.getWritableDatabase();
+                String sql = "DELETE FROM last_position";
+                try {
+                    db.execSQL(sql);
+                    int firstVisiblePosition = mLayoutManager.findLastVisibleItemPosition();
+                    ContentValues values = new ContentValues();
+                    values.put("sura_id", suraId);
+                    values.put("position", firstVisiblePosition);
+                    dbhelper.getWritableDatabase().insertOrThrow("last_position", "", values);
+                }
+                catch (Exception e){
+                    Log.i("Last Position", e.getMessage());
+                }
+                finally {
+                    db.close();
+                }
+                //
+                if (!recyclerView.canScrollVertically(1) && newState==RecyclerView.SCROLL_STATE_IDLE) {
+                    SQLiteDatabase db1 = dbhelper.getWritableDatabase();
+                    String sql1 = "DELETE FROM last_position";
+                    try {
+                        db1.execSQL(sql1);
+                    }catch (Exception e){
+                        Log.i("Last Position Deleted", e.getMessage());
+                    }finally {
+                        db1.close();
+                    }
+                }
             }
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -108,6 +139,10 @@ public class SuraDetailsActivity extends Activity {
             }
 
         });
+
+        if (suraLastPosition != null && !suraLastPosition.isEmpty()) {
+            recyclerview.scrollToPosition(Integer.parseInt(suraLastPosition));
+        }
 
         dbhelper = new DatabaseHelper(getApplicationContext());
 

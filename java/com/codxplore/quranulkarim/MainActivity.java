@@ -2,20 +2,29 @@ package com.codxplore.quranulkarim;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.SystemClock;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.TextView;
 
 import com.codxplore.quranulkarim.helper.DatabaseHelper;
+import com.codxplore.quranulkarim.notification.NotificationHelper;
 
 public class MainActivity extends Activity {
 
@@ -27,14 +36,22 @@ public class MainActivity extends Activity {
 
 	private DatabaseHelper mDBHelper;
 	private SQLiteDatabase mDb;
+	TextView start_from_last;
+	View horizontal_line;
+    DatabaseHelper dbhelper;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
+		Bundle extras = getIntent().getExtras();
 		setContentView(R.layout.activity_main);
 
 		prepareList();
+
+        start_from_last = (TextView) findViewById(R.id.start_from_last);
+        horizontal_line = (View) findViewById(R.id.horizontal_line);
+
 
 		// prepared arraylist and passed it to the Adapter class
 		mAdapter = new GridviewAdapter(this, listText, listImage);
@@ -99,6 +116,47 @@ public class MainActivity extends Activity {
 		} catch (SQLException mSQLException) {
 			throw mSQLException;
 		}
+
+
+        NotificationHelper.scheduleRepeatingRTCNotification(getApplicationContext(), "21", "21");
+        NotificationHelper.enableBootReceiver(getApplicationContext());
+
+        dbhelper = new DatabaseHelper(getApplicationContext());
+
+        start_from_last.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SQLiteDatabase db = dbhelper.getWritableDatabase();
+                String sql = "SELECT last_position.sura_id,position,name_english,name_arabic " +
+                        "FROM last_position " +
+                        "LEFT JOIN sura ON last_position.sura_id = sura.surah_id " +
+                        "LIMIT 1";
+                Log.d("Last Position SQL", sql);
+                Cursor cursor = db.rawQuery(sql,null);
+                try {
+                    if (cursor.moveToFirst()) {
+                        String sura_id = cursor.getString(cursor.getColumnIndex("sura_id")).toString();
+                        String position = cursor.getString(cursor.getColumnIndex("position")).toString();
+                        String sura_name = cursor.getString(cursor.getColumnIndex("name_english")).toString();
+                        String sura_name_arabic = cursor.getString(cursor.getColumnIndex("name_arabic")).toString();
+
+                        Log.d("Last Position Sura", sura_id);
+                        Log.d("Last Position Sura POS", position);
+                        //
+                        Intent in = new Intent(getApplicationContext(),SuraDetailsActivity.class);
+                        in.putExtra("sura_id", sura_id);
+                        in.putExtra("sura_name", sura_name);
+                        in.putExtra("sura_name_arabic", sura_name_arabic);
+                        in.putExtra("position", position);
+                        startActivityForResult(in, 100);
+                    }
+                }catch (Exception e){
+                    Log.i("Last Position Select", e.getMessage());
+                }finally {
+                    db.close();
+                }
+            }
+        });
 	}
 
 	@Override
@@ -127,4 +185,29 @@ public class MainActivity extends Activity {
 		listImage.add(R.drawable.about);
 	}
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        //Log.d("ACTIVTY","RESUME");
+        SQLiteDatabase db = dbhelper.getWritableDatabase();
+        String sql = "SELECT last_position.sura_id,position,name_english,name_arabic " +
+                "FROM last_position " +
+                "LEFT JOIN sura ON last_position.sura_id = sura.surah_id " +
+                "LIMIT 1";
+        Log.d("Last Position SQL", sql);
+        Cursor cursor = db.rawQuery(sql,null);
+        try {
+            if (cursor.moveToFirst()) {
+                start_from_last.setVisibility(View.VISIBLE);
+                horizontal_line.setVisibility(View.VISIBLE);
+            }else{
+                start_from_last.setVisibility(View.GONE);
+                horizontal_line.setVisibility(View.GONE);
+            }
+        }catch (Exception e){
+            Log.i("Last Position Select", e.getMessage());
+        }finally {
+            db.close();
+        }
+    }
 }

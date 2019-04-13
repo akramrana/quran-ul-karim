@@ -120,11 +120,20 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     SQLiteDatabase db = dbhelper.getWritableDatabase();
                     String sql = "SELECT * FROM bookmark WHERE ayah_id = "+ayah.getAyah_index();
                     Cursor cursor = db.rawQuery(sql,null);
-                    if (cursor.moveToFirst()) {
-                        db.execSQL("DELETE FROM bookmark WHERE ayah_id = "+ayah.getAyah_index());
-                        Toast.makeText(c, "Bookmark Deleted.", Toast.LENGTH_LONG).show();
-                        ayahs.remove(rvHolder.getAdapterPosition());
-                        notifyItemRemoved(rvHolder.getAdapterPosition());
+                    try {
+                        if (cursor.moveToFirst()) {
+                            db.execSQL("DELETE FROM bookmark WHERE ayah_id = " + ayah.getAyah_index());
+                            Toast.makeText(c, "Bookmark Deleted.", Toast.LENGTH_LONG).show();
+                            ayahs.remove(rvHolder.getAdapterPosition());
+                            notifyItemRemoved(rvHolder.getAdapterPosition());
+                        }
+                    }catch (Exception e){
+                        Log.i("bookmark Check", e.getMessage());
+                    }finally {
+                        if (cursor != null && !cursor.isClosed()){
+                            cursor.close();
+                        }
+                        db.close();
                     }
                 }catch (Exception e) {
                     Log.e("Delete Favorite", e.getMessage());
