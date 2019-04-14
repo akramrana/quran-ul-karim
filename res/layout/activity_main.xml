@@ -49,25 +49,223 @@
                 android:textSize="15dp" />
         </LinearLayout>
 
-        <GridView
-            android:id="@+id/gridView1"
+        <!--<GridView-->
+        <!--android:id="@+id/gridView1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:focusable="false"-->
+        <!--android:focusableInTouchMode="false"-->
+        <!--android:horizontalSpacing="10dp"-->
+        <!--android:numColumns="auto_fit"-->
+        <!--android:verticalSpacing="10dp">-->
+
+        <!--</GridView>-->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:horizontalSpacing="10dp"
-            android:numColumns="auto_fit"
-            android:verticalSpacing="10dp">
+            android:orientation="horizontal"
+            android:paddingTop="25.0dip">
 
-        </GridView>
+            <LinearLayout
+                android:id="@+id/sura_link"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="@drawable/linear_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="64.0dip"
+                    android:layout_height="64.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/menu_icon" />
+
+                <TextView
+                    android:id="@id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageView1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2.0dip"
+                    android:ellipsize="marquee"
+                    android:text="Sura List"
+                    android:textSize="18.0sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bookmark_link"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="@drawable/linear_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="64.0dip"
+                    android:layout_height="64.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/bookmark" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageView2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2.0dip"
+                    android:ellipsize="marquee"
+                    android:text="Bookmarks"
+                    android:textSize="18.0sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="25.0dip">
+
+            <LinearLayout
+                android:id="@+id/search_link"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="@drawable/linear_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="64.0dip"
+                    android:layout_height="64.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/search" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageView3"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2.0dip"
+                    android:ellipsize="marquee"
+                    android:text="Search"
+                    android:textSize="18.0sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/quick_links_link"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="@drawable/linear_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="64.0dip"
+                    android:layout_height="64.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/links" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageView4"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2.0dip"
+                    android:ellipsize="marquee"
+                    android:text="Quick Links"
+                    android:textSize="18.0sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="25.0dip">
+
+            <LinearLayout
+                android:id="@+id/word_collection_link"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="@drawable/linear_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="64.0dip"
+                    android:layout_height="64.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/collection" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageView5"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2.0dip"
+                    android:ellipsize="marquee"
+                    android:text="Dictionary"
+                    android:textSize="18.0sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/about_link"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="@drawable/linear_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="64.0dip"
+                    android:layout_height="64.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/about" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageView6"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2.0dip"
+                    android:ellipsize="marquee"
+                    android:text="About"
+                    android:textSize="18.0sp" />
+            </LinearLayout>
+
+        </LinearLayout>
 
         <View
             android:id="@+id/horizontal_line"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-            android:background="#3B5998"
             android:layout_below="@id/gridView1"
-            android:visibility="gone"/>
+            android:background="#3B5998"
+            android:visibility="gone"
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:id="@+id/start_from_last"
@@ -78,10 +276,10 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:text="@string/start_from_last"
+            android:textAllCaps="true"
             android:textColor="#3B5998"
             android:textSize="15dp"
-            android:textAllCaps="true"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
     </LinearLayout>
 </ScrollView>
