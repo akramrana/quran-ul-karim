@@ -56,7 +56,7 @@
             android:id="@+id/horizon-line"
             android:layout_width="fill_parent"
             android:layout_height="0.1dp"
-            android:background="#999"
+            android:background="#eeeeee"
             android:layout_below="@id/word_translation"/>
 
         <RelativeLayout
@@ -71,9 +71,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12dp"
-                android:drawableRight="@android:drawable/ic_media_play"
+                android:drawableLeft="@android:drawable/ic_media_play"
                 android:background="@android:color/transparent"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:text="Play"/>
 
         </RelativeLayout>
 

@@ -24,7 +24,7 @@
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/name_title_ar"
+                    android:id="@+id/title_word_meaning"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
@@ -33,18 +33,52 @@
                     android:paddingRight="5dp"
                     android:textColor="#FFFFFF"
                     android:textSize="18dp"
-                    android:layout_marginBottom="15dp"/>
+                    android:text="@string/title_word_meaning"/>
+
+                <TextView
+                    android:id="@+id/bookmark_sub_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="center"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15dp"
+                    android:text="@string/string_word_meaning_subtitle"/>
 
             </LinearLayout>
 
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/ayahSection"
+            android:layout_below="@id/wordTopBar">
+
+            <TextView
+                android:id="@+id/name_title_ar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textColor="#333"
+                android:textSize="28dp"
+                android:layout_marginBottom="15dp"/>
+
+        </RelativeLayout>
+
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/word_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/wordTopBar"/>
+            android:layout_below="@id/ayahSection"/>
 
         <ProgressBar
             android:id="@+id/progressBar"
