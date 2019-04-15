@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.codxplore.quranulkarim"
+    package="com.akramhossain.quranulkarim"
     android:versionCode="6"
     android:versionName="2.0">
     <!-- Allow to connect with internet -->
@@ -17,29 +17,29 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat.Light">
-        <activity android:name=".SplashScreenActivity" android:theme="@style/SplashScreenTheme">
+        <activity android:name="com.akramhossain.quranulkarim.SplashScreenActivity" android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>>
 
         </activity>
-        <activity android:name=".SearchActivity" />
-        <activity android:name=".QuickLinksActivity" />
+        <activity android:name="com.akramhossain.quranulkarim.SearchActivity" />
+        <activity android:name="com.akramhossain.quranulkarim.QuickLinksActivity" />
         <activity
-            android:name=".AboutActivity"
+            android:name="com.akramhossain.quranulkarim.AboutActivity"
             android:label="@string/title_activity_about"
             android:theme="@style/NoActionBar" />
         <activity
-            android:name=".BookmarkActivity"
+            android:name="com.akramhossain.quranulkarim.BookmarkActivity"
             android:label="@string/title_activity_bookmark" />
         <activity
-            android:name=".DictionaryActivity"
+            android:name="com.akramhossain.quranulkarim.DictionaryActivity"
             android:label="@string/title_activity_dictionary" />
         <activity
-            android:name=".WordMeaningActivity"
+            android:name="com.akramhossain.quranulkarim.WordMeaningActivity"
             android:label="@string/title_activity_word_meaning" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.akramhossain.quranulkarim.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,24 +48,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SuraListActivity"
+            android:name="com.akramhossain.quranulkarim.SuraListActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName="com.akramhossain.quranulkarim.MainActivity" />
         <activity
-            android:name=".SuraActivity"
+            android:name="com.akramhossain.quranulkarim.SuraActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".SuraListActivity" />
+            android:parentActivityName="com.akramhossain.quranulkarim.SuraListActivity" />
         <activity
-            android:name=".MoreActivity"
+            android:name="com.akramhossain.quranulkarim.MoreActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".SuraListActivity" />
+            android:parentActivityName="com.akramhossain.quranulkarim.SuraListActivity" />
         <activity
-            android:name=".SuraListV2Activity"
+            android:name="com.akramhossain.quranulkarim.SuraListV2Activity"
             android:label="@string/title_activity_sura_list_v2" />
-        <activity android:name=".SuraDetailsActivity" />
+        <activity android:name="com.akramhossain.quranulkarim.SuraDetailsActivity" />
 
-        <receiver android:name=".notification.AlarmReceiver"/>
-        <receiver android:name=".notification.AlarmBootReceiver"
+        <receiver android:name="com.akramhossain.quranulkarim.notification.AlarmReceiver"/>
+        <receiver android:name="com.akramhossain.quranulkarim.notification.AlarmBootReceiver"
             android:enabled="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"></action>
