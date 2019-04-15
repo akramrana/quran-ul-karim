@@ -1,4 +1,4 @@
-package com.codxplore.quranulkarim.notification;
+package com.akramhossain.quranulkarim.notification;
 
 import android.app.AlarmManager;
 import android.app.NotificationManager;

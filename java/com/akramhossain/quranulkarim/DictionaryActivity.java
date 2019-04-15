@@ -1,4 +1,4 @@
-package com.codxplore.quranulkarim;
+package com.akramhossain.quranulkarim;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,9 +10,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.SearchView;
 
-import com.codxplore.quranulkarim.adapter.WordListViewAdapter;
-import com.codxplore.quranulkarim.helper.DatabaseHelper;
-import com.codxplore.quranulkarim.model.Word;
+import com.akramhossain.quranulkarim.adapter.WordListViewAdapter;
+import com.akramhossain.quranulkarim.helper.DatabaseHelper;
+import com.akramhossain.quranulkarim.model.Word;
 
 import java.util.ArrayList;
 

@@ -1,15 +1,13 @@
-package com.codxplore.quranulkarim.task;
+package com.akramhossain.quranulkarim.task;
 
 import android.app.Activity;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.codxplore.quranulkarim.R;
-import com.codxplore.quranulkarim.SuraListV2Activity;
+import com.akramhossain.quranulkarim.R;
+import com.akramhossain.quranulkarim.SuraListV2Activity;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;

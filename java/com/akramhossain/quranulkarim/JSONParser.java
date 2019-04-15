@@ -1,4 +1,4 @@
-package com.codxplore.quranulkarim;
+package com.akramhossain.quranulkarim;
 
 import java.io.BufferedReader;
 import java.io.IOException;

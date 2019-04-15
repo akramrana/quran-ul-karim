@@ -1,15 +1,14 @@
-package com.codxplore.quranulkarim.adapter;
+package com.akramhossain.quranulkarim.adapter;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.codxplore.quranulkarim.R;
-import com.codxplore.quranulkarim.model.Sura;
+import com.akramhossain.quranulkarim.R;
+import com.akramhossain.quranulkarim.model.Sura;
 
 import java.util.ArrayList;
 

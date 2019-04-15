@@ -1,31 +1,23 @@
-package com.codxplore.quranulkarim;
+package com.akramhossain.quranulkarim;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.codxplore.quranulkarim.helper.DatabaseHelper;
-import com.codxplore.quranulkarim.notification.NotificationHelper;
+import com.akramhossain.quranulkarim.helper.DatabaseHelper;
+import com.akramhossain.quranulkarim.notification.NotificationHelper;
 
 public class MainActivity extends Activity {
 

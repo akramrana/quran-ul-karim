@@ -1,4 +1,4 @@
-package com.codxplore.quranulkarim.notification;
+package com.akramhossain.quranulkarim.notification;
 
 import android.app.ActivityManager;
 import android.app.Notification;
@@ -18,10 +18,9 @@ import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.codxplore.quranulkarim.MainActivity;
-import com.codxplore.quranulkarim.R;
-import com.codxplore.quranulkarim.SuraDetailsActivity;
-import com.codxplore.quranulkarim.helper.DatabaseHelper;
+import com.akramhossain.quranulkarim.R;
+import com.akramhossain.quranulkarim.SuraDetailsActivity;
+import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.codxplore.quranulkarim.listener;
+package com.akramhossain.quranulkarim.listener;
 
 /**
  * Created by akram on 3/31/2019.

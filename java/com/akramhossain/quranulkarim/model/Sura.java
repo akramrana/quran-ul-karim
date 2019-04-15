@@ -1,4 +1,4 @@
-package com.codxplore.quranulkarim.model;
+package com.akramhossain.quranulkarim.model;
 
 /**
  * Created by akram on 3/30/2019.

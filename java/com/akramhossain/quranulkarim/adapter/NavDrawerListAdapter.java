@@ -1,9 +1,9 @@
-package com.codxplore.quranulkarim.adapter;
+package com.akramhossain.quranulkarim.adapter;
 
 import java.util.ArrayList;
 
-import com.codxplore.quranulkarim.R;
-import com.codxplore.quranulkarim.model.NavDrawerItem;
+import com.akramhossain.quranulkarim.R;
+import com.akramhossain.quranulkarim.model.NavDrawerItem;
 
 import android.app.Activity;
 import android.content.Context;

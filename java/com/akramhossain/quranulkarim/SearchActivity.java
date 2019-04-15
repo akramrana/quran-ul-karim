@@ -1,4 +1,4 @@
-package com.codxplore.quranulkarim;
+package com.akramhossain.quranulkarim;
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -12,16 +12,14 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 
-import com.codxplore.quranulkarim.adapter.SuraDetailsViewAdapter;
-import com.codxplore.quranulkarim.helper.AudioPlay;
-import com.codxplore.quranulkarim.helper.DatabaseHelper;
-import com.codxplore.quranulkarim.model.Ayah;
-import com.codxplore.quranulkarim.model.SpinnerObject;
+import com.akramhossain.quranulkarim.adapter.SuraDetailsViewAdapter;
+import com.akramhossain.quranulkarim.helper.AudioPlay;
+import com.akramhossain.quranulkarim.helper.DatabaseHelper;
+import com.akramhossain.quranulkarim.model.Ayah;
+import com.akramhossain.quranulkarim.model.SpinnerObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SearchActivity extends Activity {
 
@@ -94,8 +92,9 @@ public class SearchActivity extends Activity {
                     String nameAr = data[1];
 
                     SQLiteDatabase db = dbhelper.getWritableDatabase();
-                    String sql = "select * from sura where name_english LIKE \"%" + nameEn + "%\" OR name_arabic LIKE \"%" + nameAr + "%\" limit 1";
+                    String sql = "select * from sura where name_english LIKE \"%" + nameEn + "%\" OR name_simple LIKE \"%"+nameEn+"%\" OR name_arabic LIKE \"%" + nameAr + "%\" limit 1";
                     Cursor cursor = db.rawQuery(sql, null);
+                    Log.i(TAG, sql);
                     try {
                         if (cursor.moveToFirst()) {
                             suraId = cursor.getString(cursor.getColumnIndex("surah_id")).toString();

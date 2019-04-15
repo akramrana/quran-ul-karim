@@ -1,4 +1,4 @@
-package com.codxplore.quranulkarim;
+package com.akramhossain.quranulkarim;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,14 +10,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.R.integer;
-import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListAdapter;

@@ -1,4 +1,4 @@
-package com.codxplore.quranulkarim;
+package com.akramhossain.quranulkarim;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

@@ -1,4 +1,4 @@
-package com.codxplore.quranulkarim;
+package com.akramhossain.quranulkarim;
 
 import java.util.ArrayList;
 import android.app.Activity;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.codxplore.quranulkarim.R;
+import com.akramhossain.quranulkarim.R;
 
 public class GridviewAdapter extends BaseAdapter {
 	private ArrayList<String> listText;

@@ -1,4 +1,4 @@
-package com.codxplore.quranulkarim;
+package com.akramhossain.quranulkarim;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,12 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
-import com.codxplore.quranulkarim.adapter.RecyclerViewAdapter;
-import com.codxplore.quranulkarim.helper.DatabaseHelper;
-import com.codxplore.quranulkarim.listener.RecyclerTouchListener;
-import com.codxplore.quranulkarim.model.Ayah;
-import com.codxplore.quranulkarim.model.Sura;
-import com.codxplore.quranulkarim.task.BrowseJsonFromFileTask;
+import com.akramhossain.quranulkarim.adapter.RecyclerViewAdapter;
+import com.akramhossain.quranulkarim.helper.DatabaseHelper;
+import com.akramhossain.quranulkarim.listener.RecyclerTouchListener;
+import com.akramhossain.quranulkarim.model.Sura;
 
 import org.json.JSONArray;
 import org.json.JSONException;

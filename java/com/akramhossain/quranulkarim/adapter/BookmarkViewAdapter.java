@@ -1,7 +1,6 @@
-package com.codxplore.quranulkarim.adapter;
+package com.akramhossain.quranulkarim.adapter;
 
 import android.app.ProgressDialog;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -18,11 +17,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.codxplore.quranulkarim.R;
-import com.codxplore.quranulkarim.WordMeaningActivity;
-import com.codxplore.quranulkarim.helper.AudioPlay;
-import com.codxplore.quranulkarim.helper.DatabaseHelper;
-import com.codxplore.quranulkarim.model.Ayah;
+import com.akramhossain.quranulkarim.R;
+import com.akramhossain.quranulkarim.WordMeaningActivity;
+import com.akramhossain.quranulkarim.helper.AudioPlay;
+import com.akramhossain.quranulkarim.helper.DatabaseHelper;
+import com.akramhossain.quranulkarim.model.Ayah;
 
 import java.util.ArrayList;
 

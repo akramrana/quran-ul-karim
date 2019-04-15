@@ -1,10 +1,9 @@
-package com.codxplore.quranulkarim;
+package com.akramhossain.quranulkarim;
 
 import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,11 +13,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.codxplore.quranulkarim.adapter.RecyclerViewAdapter;
-import com.codxplore.quranulkarim.adapter.SuraDetailsViewAdapter;
-import com.codxplore.quranulkarim.helper.AudioPlay;
-import com.codxplore.quranulkarim.helper.DatabaseHelper;
-import com.codxplore.quranulkarim.model.Ayah;
+import com.akramhossain.quranulkarim.adapter.SuraDetailsViewAdapter;
+import com.akramhossain.quranulkarim.helper.AudioPlay;
+import com.akramhossain.quranulkarim.helper.DatabaseHelper;
+import com.akramhossain.quranulkarim.model.Ayah;
 
 import java.util.ArrayList;
 

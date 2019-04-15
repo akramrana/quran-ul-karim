@@ -1,4 +1,4 @@
-package com.codxplore.quranulkarim.helper;
+package com.akramhossain.quranulkarim.helper;
 
 import android.content.Context;
 import android.database.SQLException;

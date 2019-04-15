@@ -1,10 +1,8 @@
-package com.codxplore.quranulkarim.adapter;
+package com.akramhossain.quranulkarim.adapter;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.nfc.Tag;
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,11 +12,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.codxplore.quranulkarim.ConnectionDetector;
-import com.codxplore.quranulkarim.R;
-import com.codxplore.quranulkarim.helper.AudioPlay;
-import com.codxplore.quranulkarim.helper.DatabaseHelper;
-import com.codxplore.quranulkarim.model.Word;
+import com.akramhossain.quranulkarim.ConnectionDetector;
+import com.akramhossain.quranulkarim.R;
+import com.akramhossain.quranulkarim.helper.AudioPlay;
+import com.akramhossain.quranulkarim.model.Word;
 
 import java.util.ArrayList;
 

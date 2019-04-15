@@ -1,4 +1,4 @@
-package com.codxplore.quranulkarim.model;
+package com.akramhossain.quranulkarim.model;
 
 public class SpinnerObject {
 

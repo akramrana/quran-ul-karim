@@ -1,10 +1,8 @@
-package com.codxplore.quranulkarim.helper;
+package com.akramhossain.quranulkarim.helper;
 
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.util.Log;
-
-import java.io.IOException;
 
 public class AudioPlay {
     public static boolean isAudioPlaying = false;
@@ -15,9 +13,11 @@ public class AudioPlay {
         mp = new MediaPlayer();
         try
         {
-            if (mp.isPlaying())
+            if (mp != null && mp.isPlaying())
             {
                 mp.stop();
+                mp.release();
+                mp = null;
                 return;
             }
             mp.setDataSource(audioUri);

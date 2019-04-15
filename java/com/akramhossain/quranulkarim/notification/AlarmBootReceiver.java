@@ -1,4 +1,4 @@
-package com.codxplore.quranulkarim.notification;
+package com.akramhossain.quranulkarim.notification;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
