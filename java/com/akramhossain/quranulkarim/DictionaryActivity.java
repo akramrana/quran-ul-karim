@@ -27,7 +27,7 @@ public class DictionaryActivity extends Activity implements SearchView.OnQueryTe
 
     private boolean itShouldLoadMore = true;
     Integer offset = 0;
-    Integer limit = 50;
+    Integer limit = 100;
     Integer counter = 0;
     SearchView editsearch;
     String searchTxt = "";

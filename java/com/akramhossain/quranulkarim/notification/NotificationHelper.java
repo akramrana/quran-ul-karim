@@ -32,8 +32,8 @@ public class NotificationHelper {
         calendar.setTimeInMillis(System.currentTimeMillis());
         //Setting time of the day (8am here) when notification will be sent every day (default)
         calendar.set(Calendar.HOUR_OF_DAY,
-                Integer.getInteger(hour, 8),
-                Integer.getInteger(min, 0));
+                Integer.getInteger(hour, 21),
+                Integer.getInteger(min, 21));
 
         //Setting intent to class where Alarm broadcast message will be handled
         Intent intent = new Intent(context, AlarmReceiver.class);

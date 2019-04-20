@@ -86,10 +86,18 @@ public class SearchActivity extends Activity {
 
                     offset = 0;
 
-                    String[] data = suraName.split("-");
+                    String[] data = suraName.split(" ");
 
                     String nameEn = data[0];
-                    String nameAr = data[1];
+                    String nameAr = nameEn;
+                    try{
+                        nameAr = data[1];
+                    }catch (ArrayIndexOutOfBoundsException e)
+                    {
+                        e.printStackTrace();
+                        System.out.println("The index used is out of the bounds of array.\n"
+                                + "Deal with it.");
+                    }
 
                     SQLiteDatabase db = dbhelper.getWritableDatabase();
                     String sql = "select * from sura where name_english LIKE \"%" + nameEn + "%\" OR name_simple LIKE \"%"+nameEn+"%\" OR name_arabic LIKE \"%" + nameAr + "%\" limit 1";
@@ -216,7 +224,7 @@ public class SearchActivity extends Activity {
         try {
             if (cursor.moveToFirst()) {
                 do {
-                    String suraName = cursor.getString(cursor.getColumnIndex("name_english"))+"-"+cursor.getString(cursor.getColumnIndex("name_arabic"));
+                    String suraName = cursor.getString(cursor.getColumnIndex("name_simple"))+" "+cursor.getString(cursor.getColumnIndex("name_arabic"));
                     suras.add(new SpinnerObject(cursor.getInt(cursor.getColumnIndex("surah_id")), suraName));
                 } while (cursor.moveToNext());
             }

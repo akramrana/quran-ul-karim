@@ -36,7 +36,7 @@ public class SuraDetailsActivity extends Activity {
 
     private boolean itShouldLoadMore = true;
     Integer offset = 0;
-    Integer limit = 10;
+    Integer limit = 100;
     Integer counter = 0;
     TextView titleEn,titleAr;
 
