@@ -55,7 +55,7 @@
             android:id="@+id/name_simple"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#3B5998"
+            android:textColor="#333"
             android:textSize="15dip" />
 
         <TextView
@@ -63,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/name_arabic"
-            android:textColor="#777777"
+            android:textColor="#333"
             android:textSize="11dip"
             android:textAllCaps="true"/>
 
@@ -78,13 +78,13 @@
                 android:id="@+id/revelation_place"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#777777" />
+                android:textColor="#333" />
 
             <TextView
                 android:id="@+id/ayat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#777777"
+                android:textColor="#333"
                 android:gravity="right"/>
 
         </RelativeLayout>
@@ -93,7 +93,7 @@
             android:id="@+id/revelation_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#777777"
+            android:textColor="#333"
             android:layout_below="@id/middle-section"/>
 
     </RelativeLayout>

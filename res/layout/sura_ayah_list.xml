@@ -40,6 +40,7 @@
             android:textStyle="bold"
             android:textSize="30dp"
             android:gravity="right"
+            android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/ayah_num"
             android:textIsSelectable="true"/>
 
@@ -49,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/text_tashkeel"
             android:textIsSelectable="true"
-            android:textColor="#777777"
+            android:textColor="#333"
             android:layout_marginTop="12dip"
             android:textSize="15dip" />
 
@@ -59,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/content_en"
             android:layout_marginTop="12dip"
-            android:textColor="#777777"
+            android:textColor="#333"
             android:textSize="15dip"
             android:textIsSelectable="true"/>
 
