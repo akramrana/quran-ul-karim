@@ -73,22 +73,6 @@ public class SuraDetailsActivity extends Activity {
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
 
-                SQLiteDatabase db = dbhelper.getWritableDatabase();
-                String sql = "DELETE FROM last_position";
-                try {
-                    db.execSQL(sql);
-                    int firstVisiblePosition = mLayoutManager.findLastVisibleItemPosition();
-                    ContentValues values = new ContentValues();
-                    values.put("sura_id", suraId);
-                    values.put("position", firstVisiblePosition);
-                    dbhelper.getWritableDatabase().insertOrThrow("last_position", "", values);
-                }
-                catch (Exception e){
-                    Log.i("Last Position", e.getMessage());
-                }
-                finally {
-                    db.close();
-                }
                 //
                 if (!recyclerView.canScrollVertically(1) && newState==RecyclerView.SCROLL_STATE_IDLE) {
                     SQLiteDatabase db1 = dbhelper.getWritableDatabase();
@@ -106,6 +90,25 @@ public class SuraDetailsActivity extends Activity {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (dy > 0) {
+                    int firstVisiblePosition = mLayoutManager.findLastVisibleItemPosition();
+                    //Log.i("Last Position Visible", Integer.toString(firstVisiblePosition));
+                    //int firstVisiblePosition = mLayoutManager.findLastVisibleItemPosition();
+                    SQLiteDatabase db1 = dbhelper.getWritableDatabase();
+                    String sql1 = "DELETE FROM last_position";
+                    try {
+                        db1.execSQL(sql1);
+                        ContentValues values = new ContentValues();
+                        values.put("sura_id", suraId);
+                        values.put("position", firstVisiblePosition);
+                        dbhelper.getWritableDatabase().insertOrThrow("last_position", "", values);
+                    }
+                    catch (Exception e){
+                        Log.i("Last Position", e.getMessage());
+                    }
+                    finally {
+                        db1.close();
+                    }
+
                     // Recycle view scrolling downwards...
                     // this if statement detects when user reaches the end of recyclerView, this is only time we should load more
                     if (!recyclerView.canScrollVertically(RecyclerView.FOCUS_DOWN)) {

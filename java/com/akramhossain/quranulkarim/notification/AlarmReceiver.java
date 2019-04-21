@@ -34,7 +34,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         //Get notification manager to manage/send notifications
 
-        if(isAppIsInBackground(context)) {
+        if(!isAppRunning(context,"com.akramhossain.quranulkarim")) {
 
 
             dbhelper = new DatabaseHelper(context);
@@ -155,5 +155,19 @@ public class AlarmReceiver extends BroadcastReceiver {
             }
         }
         return isInBackground;
+    }
+
+    private  boolean isAppRunning(final Context context, final String packageName) {
+        final ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        final List<ActivityManager.RunningAppProcessInfo> procInfos = activityManager.getRunningAppProcesses();
+        if (procInfos != null)
+        {
+            for (final ActivityManager.RunningAppProcessInfo processInfo : procInfos) {
+                if (processInfo.processName.equals(packageName)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
