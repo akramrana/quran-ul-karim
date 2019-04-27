@@ -28,16 +28,16 @@ import java.util.List;
 public class AlarmReceiver extends BroadcastReceiver {
 
     private static final String CHANNEL_ID = "quranulkarim";
-    DatabaseHelper dbhelper;
+    //DatabaseHelper dbhelper;
 
     @Override
     public void onReceive(Context context, Intent intent) {
         //Get notification manager to manage/send notifications
 
-        if(!isAppRunning(context,"com.akramhossain.quranulkarim")) {
+        if(isAppIsInBackground(context)) {
 
 
-            dbhelper = new DatabaseHelper(context);
+            DatabaseHelper dbhelper = new DatabaseHelper(context);
 
             SQLiteDatabase db = dbhelper.getWritableDatabase();
             String sql = "SELECT sura.surah_id,sura.name_english,sura.name_arabic,sura.name_simple,ayah.ayah_num,ayah.text_tashkeel,ayah.content_en \n" +
@@ -70,7 +70,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                     intentToRepeat.putExtra("sura_name",name_english);
                     intentToRepeat.putExtra("sura_name_arabic",name_arabic);
                     //set flag to restart/relaunch the app
-                    intentToRepeat.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intentToRepeat.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                     //Pending intent to handle launch of Activity in intent above
                     PendingIntent pendingIntent =
@@ -166,6 +166,22 @@ public class AlarmReceiver extends BroadcastReceiver {
                 if (processInfo.processName.equals(packageName)) {
                     return true;
                 }
+            }
+        }
+        return false;
+    }
+
+    private boolean isAppOnForeground(Context context,String appPackageName) {
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> appProcesses = activityManager.getRunningAppProcesses();
+        if (appProcesses == null) {
+            return false;
+        }
+        final String packageName = appPackageName;
+        for (ActivityManager.RunningAppProcessInfo appProcess : appProcesses) {
+            if (appProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND && appProcess.processName.equals(packageName)) {
+                Log.e("app",appPackageName);
+                return true;
             }
         }
         return false;

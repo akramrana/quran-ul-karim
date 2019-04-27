@@ -166,7 +166,7 @@ public class MainActivity extends Activity {
         }
 
 
-        NotificationHelper.scheduleRepeatingRTCNotification(getApplicationContext(), "21", "21");
+        NotificationHelper.scheduleRepeatingRTCNotification(getApplicationContext(), "22", "10");
         NotificationHelper.enableBootReceiver(getApplicationContext());
 
         dbhelper = new DatabaseHelper(getApplicationContext());

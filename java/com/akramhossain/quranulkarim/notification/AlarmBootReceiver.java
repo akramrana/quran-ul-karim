@@ -10,7 +10,7 @@ public class AlarmBootReceiver extends BroadcastReceiver {
         if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
             //only enabling one type of notifications for demo purposes
             //NotificationHelper.scheduleRepeatingElapsedNotification(context);
-            NotificationHelper.scheduleRepeatingRTCNotification(context,"21","21");
+            NotificationHelper.scheduleRepeatingRTCNotification(context,"22","10");
         }
     }
 }
