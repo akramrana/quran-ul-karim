@@ -50,4 +50,16 @@
     <string name="start_from_last">Start from last reading position</string>
     <string name="title_word_meaning">Word Meaning</string>
     <string name="string_word_meaning_subtitle">Word meaning and transliteration </string>
+    <string name="title_share_verse">Share Ayah</string>
+    <string name="string_shar_verse_subtitle">You can share ayah with your loved ones</string>
+    <string name="label_change_color">Choose Color</string>
+    <string name="title_activity_prayer_times">PrayerTimesActivity</string>
+    <string name="title_prayer_time">Prayer Times</string>
+    <string name="string_prayer_times">Today\'s Prayer Times</string>
+    <string name="string_fajr">Fajr</string>
+    <string name="string_sunrise">Sunrise</string>
+    <string name="string_dhuhr">Dhuhr</string>
+    <string name="string_asr">Asr</string>
+    <string name="string_magrib">Magrib</string>
+    <string name="string_isha">Isha</string>
 </resources>

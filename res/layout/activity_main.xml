@@ -270,14 +270,32 @@
 
         </LinearLayout>
 
+<!--        <View-->
+<!--            android:id="@+id/horizontal_line_top"-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:layout_below="@id/gridView1"-->
+<!--            android:background="#3B5998"-->
+<!--            android:layout_marginTop="10dp"/>-->
+
+        <Button
+            android:id="@+id/btnPrayerTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_color"
+            android:text="Today's Prayer Times"
+            android:layout_margin="10dp"
+            android:textColor="#fff"
+            android:layout_below="@id/gridView1">
+        </Button>
+
         <View
             android:id="@+id/horizontal_line"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/gridView1"
+            android:layout_below="@id/btnPrayerTime"
             android:background="#3B5998"
-            android:visibility="gone"
-            android:layout_marginTop="10dp"/>
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/start_from_last"
