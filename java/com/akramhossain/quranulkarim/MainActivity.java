@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -33,6 +34,7 @@ public class MainActivity extends Activity {
     View horizontal_line;
     DatabaseHelper dbhelper;
     LinearLayout sura_link,bookmark_link,search_link,quick_links_link,word_collection_link,about_link;
+    Button btnPrayerTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -205,6 +207,15 @@ public class MainActivity extends Activity {
                 }
             }
         });
+
+        btnPrayerTime = (Button) findViewById(R.id.btnPrayerTime);
+        btnPrayerTime.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),PrayerTimesActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 
     @Override
