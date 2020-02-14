@@ -25,6 +25,9 @@ public class PrayerTimesActivity extends Activity {
     private static final int PERMISSION_REQUEST_CODE = 101;
 
     TextView ftime,stime,ztime,atime,mtime,itime;
+
+    boolean gps_enabled=false;
+    boolean network_enabled=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +47,34 @@ public class PrayerTimesActivity extends Activity {
         if (Build.VERSION.SDK_INT >= 23) {
             if (checkPermission()) {
                 LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
-                Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
+                try{
+                    gps_enabled=lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+                }catch(Exception ex){
+                }
+                try{
+                    network_enabled=lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+                }catch(Exception ex){
+                }
+                Location networkLoacation = null, gpsLocation = null, location = null;
+                if(gps_enabled){
+                    gpsLocation = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                }
+                if(network_enabled){
+                    networkLoacation = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                }
+                if (gpsLocation != null && networkLoacation != null) {
+                    if (gpsLocation.getAccuracy() > networkLoacation.getAccuracy()) {
+                        location = networkLoacation;
+                    }else {
+                        location = gpsLocation;
+                    }
+                } else {
+                    if (gpsLocation != null) {
+                        location = gpsLocation;
+                    } else if (networkLoacation != null) {
+                        location = networkLoacation;
+                    }
+                }
                 double latitude = location.getLatitude();
                 double longitude = location.getLongitude();
                 double timezone = hourDiff;
@@ -58,7 +87,35 @@ public class PrayerTimesActivity extends Activity {
             }
         }else{
             LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
-            Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            //Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            try{
+                gps_enabled=lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+            }catch(Exception ex){
+            }
+            try{
+                network_enabled=lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+            }catch(Exception ex){
+            }
+            Location networkLoacation = null, gpsLocation = null, location = null;
+            if(gps_enabled){
+                gpsLocation = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            }
+            if(network_enabled){
+                networkLoacation = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            }
+            if (gpsLocation != null && networkLoacation != null) {
+                if (gpsLocation.getAccuracy() > networkLoacation.getAccuracy()) {
+                    location = networkLoacation;
+                }else {
+                    location = gpsLocation;
+                }
+            } else {
+                if (gpsLocation != null) {
+                    location = gpsLocation;
+                } else if (networkLoacation != null) {
+                    location = networkLoacation;
+                }
+            }
 
             double latitude = location.getLatitude();
             double longitude = location.getLongitude();
@@ -138,7 +195,35 @@ public class PrayerTimesActivity extends Activity {
 
                     if (checkPermission()) {
                         LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
-                        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                        //Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                        try{
+                            gps_enabled=lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+                        }catch(Exception ex){
+                        }
+                        try{
+                            network_enabled=lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+                        }catch(Exception ex){
+                        }
+                        Location networkLoacation = null, gpsLocation = null, location = null;
+                        if(gps_enabled){
+                            gpsLocation = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                        }
+                        if(network_enabled){
+                            networkLoacation = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                        }
+                        if (gpsLocation != null && networkLoacation != null) {
+                            if (gpsLocation.getAccuracy() > networkLoacation.getAccuracy()) {
+                                location = networkLoacation;
+                            }else {
+                                location = gpsLocation;
+                            }
+                        } else {
+                            if (gpsLocation != null) {
+                                location = gpsLocation;
+                            } else if (networkLoacation != null) {
+                                location = networkLoacation;
+                            }
+                        }
 
                         double latitude = location.getLatitude();
                         double longitude = location.getLongitude();
