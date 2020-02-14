@@ -246,7 +246,31 @@ public class ShareVerseActivity extends Activity {
         switch (requestCode) {
             case PERMISSION_REQUEST_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Log.e("value", "Permission Granted, Now you can use local drive .");
+                    RelativeLayout layout = (RelativeLayout)findViewById(R.id.shareSection);
+                    layout.setDrawingCacheEnabled(true);
+                    bitmap = loadBitmapFromView(layout, layout.getWidth(), layout.getHeight());
+                    layout.setDrawingCacheEnabled(false);
+                    String mPath = Environment.getExternalStorageDirectory().toString() + "/" + "share-ayah.jpg";
+                    OutputStream fout = null;
+                    File imageFile = new File(mPath);
+                    try {
+                        fout = new FileOutputStream(imageFile);
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fout);
+                        fout.flush();
+                        fout.close();
+                        Uri uri = FileProvider.getUriForFile(getApplicationContext(),"com.akramhossain.quranulkarim.provider", imageFile);
+                        Intent shareIntent = new Intent();
+                        shareIntent.setAction(Intent.ACTION_SEND);
+                        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+                        shareIntent.setType("image/*");
+                        startActivity(Intent.createChooser(shareIntent, "Share Ayah"));
+
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
             } else {
                 Log.e("value", "Permission Denied, You cannot use local drive .");
             }
