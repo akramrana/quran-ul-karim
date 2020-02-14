@@ -78,8 +78,9 @@
             android:id="@+id/horizon-line"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-            android:background="#fff"
-            android:layout_below="@id/sajdah"/>
+            android:background="#ddd"
+            android:layout_below="@id/sajdah"
+            android:layout_marginTop="5dp"/>
 
         <RelativeLayout
             android:id="@+id/button-section"
@@ -90,32 +91,39 @@
 
             <Button
                 android:id="@+id/playBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:text="Play"
-                android:textSize="12dp"
+                android:textSize="9dp"
                 android:drawableLeft="@android:drawable/ic_media_play"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical|center"
+                android:layout_margin="4dp"/>
 
             <Button
                 android:id="@+id/bookmarkBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:text="Bookmark"
+                android:text="Favorite"
                 android:layout_toRightOf="@id/playBtn"
-                android:textSize="12dp"
+                android:textSize="9dp"
                 android:drawableLeft="@android:drawable/btn_star"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical|center"
+                android:layout_margin="4dp"/>
 
             <Button
                 android:id="@+id/wordMeaningButton"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:text="Word meaning"
+                android:text="Word Meaning"
                 android:layout_toRightOf="@id/bookmarkBtn"
-                android:textSize="12dp"
+                android:textSize="9dp"
                 android:drawableLeft="@android:drawable/ic_menu_directions"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical|center"
+                android:layout_margin="4dp"/>
+
 
             <Button
                 android:id="@+id/shareButton"
@@ -124,7 +132,9 @@
                 android:layout_toRightOf="@id/wordMeaningButton"
                 android:textSize="12dp"
                 android:drawableRight="@android:drawable/ic_menu_share"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent"
+                android:layout_alignParentRight="true"
+                android:layout_margin="4dp"/>
 
         </RelativeLayout>
 
