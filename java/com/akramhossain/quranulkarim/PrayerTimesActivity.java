@@ -51,46 +51,8 @@ public class PrayerTimesActivity extends Activity {
                 double timezone = hourDiff;
                 //double latitude = 23.810331;
                 //double longitude = 90.412521;
+                getPrayerTimes(latitude,longitude,timezone);
 
-                PrayTime prayers = new PrayTime();
-
-                prayers.setTimeFormat(prayers.Time12);
-                prayers.setCalcMethod(prayers.Makkah);
-                prayers.setAsrJuristic(prayers.Hanafi);
-                prayers.setAdjustHighLats(prayers.AngleBased);
-                int[] offsets = {0, 0, 0, 0, 0, 0, 0}; // {Fajr,Sunrise,Dhuhr,Asr,Sunset,Maghrib,Isha}
-                prayers.tune(offsets);
-
-                Date now = new Date();
-                Calendar cal = Calendar.getInstance();
-                cal.setTime(now);
-
-                ArrayList<String> prayerTimes = prayers.getPrayerTimes(cal,
-                        latitude, longitude, timezone);
-                ArrayList<String> prayerNames = prayers.getTimeNames();
-
-                for (int i = 0; i < prayerTimes.size(); i++) {
-                    Log.d("Prayer Time", prayerNames.get(i) + " - " + prayerTimes.get(i));
-                    //Log.d("i", String.valueOf(i));
-                    if(i==0){
-                        ftime.setText(prayerTimes.get(i));
-                    }
-                    if(i==1){
-                        stime.setText(prayerTimes.get(i));
-                    }
-                    if(i==2){
-                        ztime.setText(prayerTimes.get(i));
-                    }
-                    if(i==3){
-                        atime.setText(prayerTimes.get(i));
-                    }
-                    if(i==4){
-                        mtime.setText(prayerTimes.get(i));
-                    }
-                    if(i==6){
-                        itime.setText(prayerTimes.get(i));
-                    }
-                }
             }else{
                 requestPermission();
             }
@@ -101,46 +63,48 @@ public class PrayerTimesActivity extends Activity {
             double latitude = location.getLatitude();
             double longitude = location.getLongitude();
             double timezone = hourDiff;
-            //double latitude = 23.810331;
-            //double longitude = 90.412521;
+            getPrayerTimes(latitude,longitude,timezone);
+        }
+    }
 
-            PrayTime prayers = new PrayTime();
+    public void getPrayerTimes(double latitude,double longitude,double timezone){
+        PrayTime prayers = new PrayTime();
 
-            prayers.setTimeFormat(prayers.Time12);
-            prayers.setCalcMethod(prayers.Makkah);
-            prayers.setAsrJuristic(prayers.Hanafi);
-            prayers.setAdjustHighLats(prayers.AngleBased);
-            int[] offsets = {0, 0, 0, 0, 0, 0, 0}; // {Fajr,Sunrise,Dhuhr,Asr,Sunset,Maghrib,Isha}
-            prayers.tune(offsets);
+        prayers.setTimeFormat(prayers.Time12);
+        prayers.setCalcMethod(prayers.Makkah);
+        prayers.setAsrJuristic(prayers.Hanafi);
+        prayers.setAdjustHighLats(prayers.AngleBased);
+        int[] offsets = {0, 0, 0, 0, 0, 0, 0}; // {Fajr,Sunrise,Dhuhr,Asr,Sunset,Maghrib,Isha}
+        prayers.tune(offsets);
 
-            Date now = new Date();
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(now);
+        Date now = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(now);
 
-            ArrayList<String> prayerTimes = prayers.getPrayerTimes(cal,
-                    latitude, longitude, timezone);
-            ArrayList<String> prayerNames = prayers.getTimeNames();
+        ArrayList<String> prayerTimes = prayers.getPrayerTimes(cal,
+                latitude, longitude, timezone);
+        ArrayList<String> prayerNames = prayers.getTimeNames();
 
-            for (int i = 0; i < prayerTimes.size(); i++) {
-                //Log.d("Prayer Time", prayerNames.get(i) + " - " + prayerTimes.get(i));
-                if(i==0){
-                    ftime.setText(prayerTimes.get(i));
-                }
-                if(i==1){
-                    stime.setText(prayerTimes.get(i));
-                }
-                if(i==2){
-                    ztime.setText(prayerTimes.get(i));
-                }
-                if(i==3){
-                    atime.setText(prayerTimes.get(i));
-                }
-                if(i==4){
-                    mtime.setText(prayerTimes.get(i));
-                }
-                if(i==6){
-                    itime.setText(prayerTimes.get(i));
-                }
+        for (int i = 0; i < prayerTimes.size(); i++) {
+            Log.d("Prayer Time", prayerNames.get(i) + " - " + prayerTimes.get(i));
+            //Log.d("i", String.valueOf(i));
+            if(i==0){
+                ftime.setText(prayerTimes.get(i));
+            }
+            if(i==1){
+                stime.setText(prayerTimes.get(i));
+            }
+            if(i==2){
+                ztime.setText(prayerTimes.get(i));
+            }
+            if(i==3){
+                atime.setText(prayerTimes.get(i));
+            }
+            if(i==4){
+                mtime.setText(prayerTimes.get(i));
+            }
+            if(i==6){
+                itime.setText(prayerTimes.get(i));
             }
         }
     }
@@ -167,7 +131,20 @@ public class PrayerTimesActivity extends Activity {
         switch (requestCode) {
             case PERMISSION_REQUEST_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Log.e("value", "Permission Granted.");
+                    //Log.e("value", "Permission Granted.");
+                    TimeZone tmzone = TimeZone.getDefault();
+
+                    double hourDiff = (tmzone.getRawOffset()/ 1000)/3600;
+
+                    if (checkPermission()) {
+                        LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
+                        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+                        double latitude = location.getLatitude();
+                        double longitude = location.getLongitude();
+                        double timezone = hourDiff;
+                        getPrayerTimes(latitude, longitude, timezone);
+                    }
                 } else {
                     Log.e("value", "Permission Denied.");
                 }
