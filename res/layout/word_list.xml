@@ -3,11 +3,12 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="1dp"
+    android:layout_margin="10dp"
     android:layout_height="wrap_content"
     android:clickable="false"
     app:cardElevation="0.5dp"
     app:cardCornerRadius="0.5dp"
+    android:foreground="?android:attr/selectableItemBackground"
     app:cardPreventCornerOverlap="false">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -55,9 +56,10 @@
         <View
             android:id="@+id/horizon-line"
             android:layout_width="fill_parent"
-            android:layout_height="0.1dp"
-            android:background="#eeeeee"
-            android:layout_below="@id/word_translation"/>
+            android:layout_height="0.5dp"
+            android:background="#ddd"
+            android:layout_below="@id/word_translation"
+            android:layout_marginTop="5dp"/>
 
         <RelativeLayout
             android:id="@+id/button-section"
@@ -68,13 +70,15 @@
 
             <Button
                 android:id="@+id/playWordBtn"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:textSize="12dp"
+                android:textSize="9dp"
                 android:drawableLeft="@android:drawable/ic_media_play"
                 android:background="@android:color/transparent"
-                android:layout_alignParentRight="true"
-                android:text="Play"/>
+                android:layout_alignParentLeft="true"
+                android:text="Play"
+                android:gravity="center_vertical|center"
+                android:layout_margin="4dp"/>
 
         </RelativeLayout>
 
