@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.R;
+import com.akramhossain.quranulkarim.ShareVerseActivity;
 import com.akramhossain.quranulkarim.WordMeaningActivity;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
@@ -139,6 +140,25 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 }
             }
         });
+
+        rvHolder.shareButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                try {
+                    Intent in = new Intent(c, ShareVerseActivity.class);
+                    in.putExtra("ayah_index", ayah.getAyah_index());
+                    in.putExtra("text_tashkeel", ayah.getText_tashkeel());
+                    in.putExtra("content_en", ayah.getContent_en());
+                    in.putExtra("content_bn", ayah.getContent_bn());
+                    in.putExtra("ayah_num", ayah.getAyah_num());
+                    in.putExtra("surah_id", ayah.getSurah_id());
+                    in.putExtra("ayah_key", ayah.getAyah_key());
+                    c.startActivity(in);
+                }catch (Exception e) {
+                    Log.e("Share", e.getMessage());
+                }
+            }
+        });
     }
 
     @Override
@@ -156,6 +176,7 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         Button playBtn;
         Button wordMeaningButton;
         Button removeBookmarkButton;
+        Button shareButton;
         TextView ayah_num;
 
         public RecyclerViewHolder(View itemView) {
@@ -170,6 +191,7 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             playBtn = (Button) itemView.findViewById(R.id.playBtn);
             wordMeaningButton = (Button) itemView.findViewById(R.id.wordMeaningButton);
             removeBookmarkButton = (Button) itemView.findViewById(R.id.removeBookmarkButton);
+            shareButton = (Button) itemView.findViewById(R.id.shareButton);
             ayah_num = (TextView) itemView.findViewById(R.id.ayah_num);
         }
     }
