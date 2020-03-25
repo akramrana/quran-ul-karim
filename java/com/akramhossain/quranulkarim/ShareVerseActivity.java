@@ -140,7 +140,7 @@ public class ShareVerseActivity extends Activity {
                         File imageFile = new File(mPath);
                         try {
                             fout = new FileOutputStream(imageFile);
-                            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fout);
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fout);
                             fout.flush();
                             fout.close();
                             Uri uri = FileProvider.getUriForFile(getApplicationContext(),"com.akramhossain.quranulkarim.provider", imageFile);
@@ -164,7 +164,7 @@ public class ShareVerseActivity extends Activity {
                     File imageFile = new File(mPath);
                     try {
                         fout = new FileOutputStream(imageFile);
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fout);
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fout);
                         fout.flush();
                         fout.close();
                         Uri uri = FileProvider.getUriForFile(getApplicationContext(),"com.akramhossain.quranulkarim.provider", imageFile);
@@ -255,7 +255,7 @@ public class ShareVerseActivity extends Activity {
                     File imageFile = new File(mPath);
                     try {
                         fout = new FileOutputStream(imageFile);
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fout);
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fout);
                         fout.flush();
                         fout.close();
                         Uri uri = FileProvider.getUriForFile(getApplicationContext(),"com.akramhossain.quranulkarim.provider", imageFile);

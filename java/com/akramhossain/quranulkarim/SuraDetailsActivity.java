@@ -17,6 +17,12 @@ import com.akramhossain.quranulkarim.adapter.SuraDetailsViewAdapter;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.Ayah;
+import com.akramhossain.quranulkarim.util.ConnectionDetector;
+import com.akramhossain.quranulkarim.task.GetJsonFromUrlTask;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -40,6 +46,11 @@ public class SuraDetailsActivity extends Activity {
     Integer counter = 0;
     TextView titleEn,titleAr;
 
+    ConnectionDetector cd;
+    Boolean isInternetPresent = false;
+
+    public String url;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +62,9 @@ public class SuraDetailsActivity extends Activity {
             suraNameArabic = extras.getString("sura_name_arabic");
             suraLastPosition = extras.getString("position");
         }
+
+        url = "http://websites.codxplore.com/islamicvideo/api/patch?sura_id="+suraId;
+        //url = "http://10.0.2.2/islamicvideo/api/patch?sura_id="+suraId;
 
         setTitle(suraNameArabic+"-"+suraName);
 
@@ -319,6 +333,17 @@ public class SuraDetailsActivity extends Activity {
 
             }
         });
+
+        cd = new ConnectionDetector(getApplicationContext());
+        isInternetPresent = cd.isConnectingToInternet();
+        //FETCH DATA FROM REMOTE SERVER
+        getPatchFromInternet();
+    }
+
+    private void getPatchFromInternet() {
+        if (isInternetPresent) {
+            new GetJsonFromUrlTask(this, url).execute();
+        }
     }
 
     private void getDataFromLocalDb() {
@@ -370,5 +395,59 @@ public class SuraDetailsActivity extends Activity {
     {
         super.onPause();
         AudioPlay.stopAudio();
+    }
+
+    public void parseJsonResponse(String result) {
+        //Log.i(TAG, result);
+        try {
+            JSONObject res = new JSONObject(result);
+            JSONArray jarray = new JSONArray(res.getString("data"));
+
+            for (int i = 0; i < jarray.length(); i++) {
+                JSONObject jObject = jarray.getJSONObject(i);
+                //Log.i(TAG, jObject.toString());
+                String where_column = jObject.getString("where_column");
+                String where_value = jObject.getString("where_value");
+                String table_name = jObject.getString("table_name");
+                //
+                JSONArray jarrayColumn = new JSONArray(jObject.getString("columns"));
+                for (int j = 0; j < jarrayColumn.length(); i++) {
+                    JSONObject jObjectColumn = jarrayColumn.getJSONObject(i);
+                    String update_column = jObjectColumn.getString("update_column");
+                    String update_value = jObjectColumn.getString("update_value");
+
+                    //Log.i(TAG, update_column+"="+update_value);
+
+                    SQLiteDatabase db = dbhelper.getWritableDatabase();
+                    try {
+                        ContentValues cv = new ContentValues();
+                        cv.put(update_column, update_value);
+                        String selection = (where_column + " = ?");
+                        String[] selectionArgs = {String.valueOf(where_value)};
+                        db.update(table_name, cv, selection, selectionArgs);
+
+                    }catch (Exception e){
+                        Log.i(TAG, e.getMessage());
+                    }
+                    finally {
+                        db.close();
+                    }
+                }
+//                String sql = jObject.toString();
+//                SQLiteDatabase db = dbhelper.getReadableDatabase();
+//                try {
+//                    db.execSQL(sql);
+//                    //Log.i(TAG, sql);
+//                }catch (Exception e){
+//                    Log.i(TAG, e.getMessage());
+//                }finally {
+//                    db.close();
+//                }
+            }
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
