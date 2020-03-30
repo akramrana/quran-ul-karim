@@ -43,7 +43,12 @@ public class GetJsonFromUrlTask extends AsyncTask<Void, Void, String>{
     @Override
     protected String doInBackground(Void... params) {
         // call load JSON from url method
-        return loadJSON(this.url).toString();
+        JSONObject json = loadJSON(this.url);
+        if(json.length()==0){
+            return null;
+        }else {
+            return json.toString();
+        }
     }
 
     @Override
