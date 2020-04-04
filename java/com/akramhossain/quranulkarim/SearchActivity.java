@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.akramhossain.quranulkarim.adapter.SuraDetailsViewAdapter;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
@@ -37,6 +38,7 @@ public class SearchActivity extends Activity {
     Integer counter = 0;
     public static String suraId;
     public static String ayahNumber="";
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,22 +47,24 @@ public class SearchActivity extends Activity {
         setTitle("Search");
 
         dbhelper = new DatabaseHelper(getApplicationContext());
-
-        text=(AutoCompleteTextView)findViewById(R.id.autoCompleteTextView1);
         ayat_number=(EditText) findViewById(R.id.ayat_number);
-
         ArrayList suras = this.getAllSura();
 
-        ArrayAdapter<SpinnerObject> dataAdapter = new ArrayAdapter<SpinnerObject>(this,android.R.layout.simple_spinner_item, suras);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        text.setAdapter(dataAdapter);
-        text.setThreshold(1);
+
+//        text=(AutoCompleteTextView)findViewById(R.id.autoCompleteTextView1);
+//        ArrayAdapter<SpinnerObject> dataAdapter = new ArrayAdapter<SpinnerObject>(this,android.R.layout.simple_spinner_item, suras);
+//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        text.setAdapter(dataAdapter);
+//        text.setThreshold(1);
+        spinner = (Spinner) findViewById( R.id.surah_spinner);
+        ArrayAdapter<SpinnerObject> spinnerAdapter = new ArrayAdapter<SpinnerObject>(this,android.R.layout.simple_spinner_item, suras);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerAdapter);
 
         recyclerview = (RecyclerView) findViewById(R.id.ayah_list);
         mLayoutManager = new LinearLayoutManager(this);
         recyclerview.setLayoutManager(mLayoutManager);
-
 
 
         Button btnSubmit = (Button) findViewById(R.id.search_sura_btn);
@@ -68,7 +72,13 @@ public class SearchActivity extends Activity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String suraName = text.getText().toString();
+                //String suraName = text.getText().toString();
+                SpinnerObject sb = (SpinnerObject) spinner.getSelectedItem();
+                Integer selectedSuraId = sb.getId();
+                //
+                Log.i("ID", Integer.toString(selectedSuraId));
+                //
+                String suraName = spinner.getSelectedItem().toString();
                 String verseNum = ayat_number.getText().toString();
 
                 String regex = "[0-9, /,]+";
@@ -79,28 +89,9 @@ public class SearchActivity extends Activity {
                 }else{
                     ayahNumber = "";
                 }
-
-                if (suraName != null && !suraName.equals("")) {
-
-                    Log.i("SURA", suraName);
-
-                    offset = 0;
-
-                    String[] data = suraName.split(" ");
-
-                    String nameEn = data[0];
-                    String nameAr = nameEn;
-                    try{
-                        nameAr = data[1];
-                    }catch (ArrayIndexOutOfBoundsException e)
-                    {
-                        e.printStackTrace();
-                        System.out.println("The index used is out of the bounds of array.\n"
-                                + "Deal with it.");
-                    }
-
+                if (selectedSuraId != null && !selectedSuraId.equals("")) {
                     SQLiteDatabase db = dbhelper.getWritableDatabase();
-                    String sql = "select * from sura where name_english LIKE \"%" + nameEn + "%\" OR name_simple LIKE \"%"+nameEn+"%\" OR name_arabic LIKE \"%" + nameAr + "%\" limit 1";
+                    String sql = "select * from sura where surah_id = "+selectedSuraId;
                     Cursor cursor = db.rawQuery(sql, null);
                     Log.i(TAG, sql);
                     try {

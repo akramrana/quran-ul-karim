@@ -53,6 +53,7 @@
 
         </RelativeLayout>
 
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -62,13 +63,21 @@
             app:hintTextAppearance="@style/suraLabel"
             android:id="@+id/textLabel1">
 
-            <AutoCompleteTextView
-                android:id="@+id/autoCompleteTextView1"
+            <Spinner
+                android:id="@+id/surah_spinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/spinner_title"
-                android:textStyle="italic">
-            </AutoCompleteTextView>
+                android:layout_height="60dp"
+                android:prompt="@string/spinner_title_v1"
+                android:textStyle="italic"
+                style="@android:style/Widget.Holo.Light.Spinner"/>
+
+<!--            <AutoCompleteTextView-->
+<!--                android:id="@+id/autoCompleteTextView1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="@string/spinner_title"-->
+<!--                android:textStyle="italic">-->
+<!--            </AutoCompleteTextView>-->
 
         </android.support.design.widget.TextInputLayout>
 

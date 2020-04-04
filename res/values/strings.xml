@@ -62,4 +62,5 @@
     <string name="string_asr">Asr</string>
     <string name="string_magrib">Magrib</string>
     <string name="string_isha">Isha</string>
+    <string name="spinner_title_v1">Select sura</string>
 </resources>
