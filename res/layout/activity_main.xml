@@ -98,7 +98,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/bookmark_link"
+                android:id="@+id/juz_link"
                 android:layout_width="0.0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
@@ -107,22 +107,94 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/juzImageView"
                     android:layout_width="64.0dip"
                     android:layout_height="64.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/bookmark" />
+                    android:src="@drawable/juz" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/juzTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/imageView2"
+                    android:layout_below="@id/juzImageView"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2.0dip"
                     android:ellipsize="marquee"
-                    android:text="Bookmarks"
+                    android:text="JUZ'"
+                    android:textSize="18.0sp"
+                    android:textColor="#333"
+                    android:textAllCaps="true"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="25.0dip">
+
+
+            <LinearLayout
+                android:id="@+id/hizb_link"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="@drawable/linear_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/hizbImageView"
+                    android:layout_width="64.0dip"
+                    android:layout_height="64.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/hizb" />
+
+                <TextView
+                    android:id="@+id/hizbTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/hizbImageView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2.0dip"
+                    android:ellipsize="marquee"
+                    android:text="Hizb"
+                    android:textSize="18.0sp"
+                    android:textColor="#333"
+                    android:textAllCaps="true"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rub_link"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="@drawable/linear_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/rubImageView"
+                    android:layout_width="64.0dip"
+                    android:layout_height="64.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/rub" />
+
+                <TextView
+                    android:id="@+id/rubTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rubImageView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2.0dip"
+                    android:ellipsize="marquee"
+                    android:text="RUB'"
                     android:textSize="18.0sp"
                     android:textColor="#333"
                     android:textAllCaps="true"/>
@@ -168,6 +240,47 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/bookmark_link"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="@drawable/linear_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="64.0dip"
+                    android:layout_height="64.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/bookmark" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageView2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2.0dip"
+                    android:ellipsize="marquee"
+                    android:text="Bookmarks"
+                    android:textSize="18.0sp"
+                    android:textColor="#333"
+                    android:textAllCaps="true"/>
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="25.0dip">
+
+            <LinearLayout
                 android:id="@+id/quick_links_link"
                 android:layout_width="0.0dip"
                 android:layout_height="wrap_content"
@@ -198,14 +311,6 @@
                     android:textAllCaps="true"/>
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="25.0dip">
-
             <LinearLayout
                 android:id="@+id/word_collection_link"
                 android:layout_width="0.0dip"
@@ -232,6 +337,47 @@
                     android:layout_marginTop="2.0dip"
                     android:ellipsize="marquee"
                     android:text="Dictionary"
+                    android:textSize="18.0sp"
+                    android:textColor="#333"
+                    android:textAllCaps="true"/>
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="25.0dip">
+
+            <LinearLayout
+                android:id="@+id/time_link"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="@drawable/linear_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/timeImageView"
+                    android:layout_width="64.0dip"
+                    android:layout_height="64.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/time" />
+
+                <TextView
+                    android:id="@+id/timeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/timeImageView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2.0dip"
+                    android:ellipsize="marquee"
+                    android:text="PRAYER TIME"
                     android:textSize="18.0sp"
                     android:textColor="#333"
                     android:textAllCaps="true"/>
@@ -278,24 +424,24 @@
 <!--            android:background="#3B5998"-->
 <!--            android:layout_marginTop="10dp"/>-->
 
-        <Button
-            android:id="@+id/btnPrayerTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/bg_color"
-            android:text="Today's Prayer Times"
-            android:layout_margin="10dp"
-            android:textColor="#fff"
-            android:layout_below="@id/gridView1">
-        </Button>
+<!--        <Button-->
+<!--            android:id="@+id/btnPrayerTime"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/bg_color"-->
+<!--            android:text="Today's Prayer Times"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:textColor="#fff"-->
+<!--            android:layout_below="@id/gridView1">-->
+<!--        </Button>-->
 
         <View
             android:id="@+id/horizontal_line"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/btnPrayerTime"
             android:background="#3B5998"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:id="@+id/start_from_last"

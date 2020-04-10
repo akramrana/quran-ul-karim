@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
     TextView start_from_last;
     View horizontal_line;
     DatabaseHelper dbhelper;
-    LinearLayout sura_link,bookmark_link,search_link,quick_links_link,word_collection_link,about_link;
+    LinearLayout sura_link,bookmark_link,search_link,quick_links_link,word_collection_link,about_link,juz_link,hizb_link,rub_link,time_link;
     Button btnPrayerTime;
 
     @Override
@@ -98,6 +98,42 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(),AboutActivity.class);
+                startActivity(i);
+            }
+        });
+
+        time_link = (LinearLayout) findViewById(R.id.time_link);
+        time_link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),PrayerTimesActivity.class);
+                startActivity(i);
+            }
+        });
+
+        juz_link = (LinearLayout) findViewById(R.id.juz_link);
+        juz_link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),JuzActivity.class);
+                startActivity(i);
+            }
+        });
+
+        hizb_link = (LinearLayout) findViewById(R.id.hizb_link);
+        hizb_link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),HizbActivity.class);
+                startActivity(i);
+            }
+        });
+
+        rub_link = (LinearLayout) findViewById(R.id.rub_link);
+        rub_link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),RubActivity.class);
                 startActivity(i);
             }
         });
@@ -208,13 +244,13 @@ public class MainActivity extends Activity {
             }
         });
 
-        btnPrayerTime = (Button) findViewById(R.id.btnPrayerTime);
-        btnPrayerTime.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),PrayerTimesActivity.class);
-                startActivity(i);
-            }
-        });
+//        btnPrayerTime = (Button) findViewById(R.id.btnPrayerTime);
+//        btnPrayerTime.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                Intent i = new Intent(getApplicationContext(),PrayerTimesActivity.class);
+//                startActivity(i);
+//            }
+//        });
 
     }
 

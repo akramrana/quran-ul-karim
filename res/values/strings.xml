@@ -63,4 +63,10 @@
     <string name="string_magrib">Magrib</string>
     <string name="string_isha">Isha</string>
     <string name="spinner_title_v1">Select sura</string>
+    <string name="string_juz">Juz\'</string>
+    <string name="string_juz_subtitle">list of 30 Juz\' </string>
+    <string name="string_hizb">Hizb</string>
+    <string name="string_hizb_subtitle">list of 60 Hizb</string>
+    <string name="string_rub">Rub\'</string>
+    <string name="string_rub_subtitle">list of 240 Rub\'</string>
 </resources>

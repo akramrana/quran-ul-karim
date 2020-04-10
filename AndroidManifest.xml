@@ -67,8 +67,16 @@
             android:name=".SuraListV2Activity"
             android:label="@string/title_activity_sura_list_v2" />
         <activity android:name=".SuraDetailsActivity" />
+
         <activity android:name=".ShareVerseActivity" />
+
         <activity android:name=".PrayerTimesActivity"/>
+
+        <activity android:name=".JuzActivity"/>
+
+        <activity android:name=".RubActivity"/>
+
+        <activity android:name=".HizbActivity"/>
 
         <receiver android:name=".notification.AlarmReceiver" />
         <receiver
