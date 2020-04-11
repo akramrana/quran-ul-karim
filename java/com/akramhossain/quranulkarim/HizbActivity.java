@@ -1,15 +1,18 @@
 package com.akramhossain.quranulkarim;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import com.akramhossain.quranulkarim.adapter.HizbViewAdapter;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
+import com.akramhossain.quranulkarim.listener.RecyclerTouchListener;
 import com.akramhossain.quranulkarim.model.Hizb;
 
 import java.util.ArrayList;
@@ -33,6 +36,26 @@ public class HizbActivity extends Activity {
         recyclerview.setLayoutManager(mLayoutManager);
 
         setRecyclerViewAdapter();
+
+        recyclerview.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerview, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Hizb vd = hizbs.get(position);
+                //Toast.makeText(getApplicationContext(), vd.getVideo_id() + " is selected!", Toast.LENGTH_SHORT).show();
+                Intent in = new Intent(getApplicationContext(),JuzHizbRubDetailsActivity.class);
+                in.putExtra("juz_num", "");
+                in.putExtra("hizb_num", vd.getHizb_num());
+                in.putExtra("rub_num", "");
+                in.putExtra("sura_id", vd.getSurah_id());
+                in.putExtra("sura_name", vd.getName_english());
+                in.putExtra("sura_name_arabic", vd.getName_arabic());
+                startActivityForResult(in, 100);
+            }
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
 
         dbhelper = new DatabaseHelper(getApplicationContext());
         getDataFromLocalDb();
