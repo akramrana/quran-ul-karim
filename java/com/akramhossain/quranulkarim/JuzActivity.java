@@ -49,6 +49,7 @@ public class JuzActivity extends Activity {
                 in.putExtra("sura_id", vd.getSurah_id());
                 in.putExtra("sura_name", vd.getName_english());
                 in.putExtra("sura_name_arabic", vd.getName_arabic());
+                in.putExtra("activity_title", "Juz\' "+vd.getJuz_num());
                 startActivityForResult(in, 100);
             }
             @Override

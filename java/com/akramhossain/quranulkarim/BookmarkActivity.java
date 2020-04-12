@@ -89,8 +89,10 @@ public class BookmarkActivity extends Activity {
 
     private void getDataFromLocalDb() {
         SQLiteDatabase db = dbhelper.getWritableDatabase();
-        String sql = "SELECT ayah.*,bookmark.bookmark_id FROM bookmark " +
+        String sql = "SELECT ayah.*,bookmark.bookmark_id,sura.name_simple,sura.name_complex,sura.name_english,sura.name_arabic " +
+                "FROM bookmark " +
                 "LEFT JOIN ayah ON bookmark.ayah_id = ayah.ayah_index " +
+                "LEFT JOIN sura ON ayah.surah_id = sura.surah_id " +
                 "order by bookmark_id DESC limit " + offset + "," + limit;
         Log.i(TAG, sql);
         Cursor cursor = db.rawQuery(sql, null);
@@ -113,6 +115,10 @@ public class BookmarkActivity extends Activity {
                     ayah.setContent_bn(cursor.getString(cursor.getColumnIndex("content_bn")));
                     ayah.setAudio_duration(cursor.getString(cursor.getColumnIndex("audio_duration")));
                     ayah.setAudio_url(cursor.getString(cursor.getColumnIndex("audio_url")));
+                    ayah.setName_simple(cursor.getString(cursor.getColumnIndex("name_simple")));
+                    ayah.setName_complex(cursor.getString(cursor.getColumnIndex("name_complex")));
+                    ayah.setName_english(cursor.getString(cursor.getColumnIndex("name_english")));
+                    ayah.setName_arabic(cursor.getString(cursor.getColumnIndex("name_arabic")));
                     ayahs.add(ayah);
                 } while (cursor.moveToNext());
             }
