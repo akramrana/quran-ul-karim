@@ -63,21 +63,21 @@
             app:hintTextAppearance="@style/suraLabel"
             android:id="@+id/textLabel1">
 
-            <Spinner
-                android:id="@+id/surah_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:prompt="@string/spinner_title_v1"
-                android:textStyle="italic"
-                style="@android:style/Widget.Holo.Light.Spinner"/>
-
-<!--            <AutoCompleteTextView-->
-<!--                android:id="@+id/autoCompleteTextView1"-->
+<!--            <Spinner-->
+<!--                android:id="@+id/surah_spinner"-->
 <!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:hint="@string/spinner_title"-->
-<!--                android:textStyle="italic">-->
-<!--            </AutoCompleteTextView>-->
+<!--                android:layout_height="60dp"-->
+<!--                android:prompt="@string/spinner_title_v1"-->
+<!--                android:textStyle="italic"-->
+<!--                style="@android:style/Widget.Holo.Light.Spinner"/>-->
+
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteTextView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/spinner_title"
+                android:textStyle="italic">
+            </AutoCompleteTextView>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -118,11 +118,23 @@
             android:background="#fff"
             android:layout_below="@id/search_sura_btn"/>
 
+        <Button
+            android:id="@+id/quickLinkBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add to quick links"
+            android:textSize="12dp"
+            android:drawableLeft="@android:drawable/ic_menu_upload"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent"
+            android:layout_below="@id/horizon-line"
+            android:visibility="gone"/>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/ayah_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/horizon-line"/>
+            android:layout_below="@id/quickLinkBtn"/>
 
         <ProgressBar
             android:id="@+id/progressBar"
