@@ -87,7 +87,10 @@ public class SearchActivity extends Activity {
                 if (suraName != null && !suraName.isEmpty()) {
                     String[] parts = suraName.split("\\(");
                     SQLiteDatabase db1 = dbhelper.getWritableDatabase();
-                    String sql1 = "select * from sura where name_simple = '"+parts[0]+"'";
+                    String term = parts[0];
+                    term = term.replaceAll("'","''");
+                    String sql1 = "select * from sura where name_simple = '"+term+"'";
+                    //Log.i(TAG, sql1);
                     Cursor cursor1 = db1.rawQuery(sql1, null);
                     try {
                         if (cursor1.moveToFirst()) {
