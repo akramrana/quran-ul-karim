@@ -1,6 +1,5 @@
 package com.akramhossain.quranulkarim.adapter;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
@@ -19,7 +18,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.akramhossain.quranulkarim.ConnectionDetector;
 import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.ShareVerseActivity;
 import com.akramhossain.quranulkarim.WordMeaningActivity;
@@ -29,11 +27,7 @@ import com.akramhossain.quranulkarim.model.Ayah;
 
 import java.util.ArrayList;
 
-/**
- * Created by akram on 3/31/2019.
- */
-
-public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class JuzHizbRubViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     Context c;
     ArrayList<Ayah> ayahs;
@@ -41,24 +35,17 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     MediaPlayer mp;
     ProgressDialog pd;
     DatabaseHelper dbhelper;
-    //SQLiteDatabase db;
-    ConnectionDetector cd;
-    Boolean isInternetPresent = false;
 
-    public SuraDetailsViewAdapter(Context c, ArrayList<Ayah> ayahs) {
+    public JuzHizbRubViewAdapter(Context c, ArrayList<Ayah> ayahs) {
         this.c = c;
         this.ayahs = ayahs;
         font = Typeface.createFromAsset(c.getAssets(),"fonts/Siyamrupali.ttf");
         dbhelper = new DatabaseHelper(c);
-        //db = dbhelper.getWritableDatabase();
-
-        cd = new ConnectionDetector(c);
-        isInternetPresent = cd.isConnectingToInternet();
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(c).inflate(R.layout.sura_ayah_list,parent,false);
+        View v= LayoutInflater.from(c).inflate(R.layout.juz_hiz_rub_list,parent,false);
         RecyclerViewHolder rvHolder = new RecyclerViewHolder(v);
         rvHolder.content_bn.setTypeface(font);
         return rvHolder;
@@ -66,13 +53,13 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        RecyclerViewHolder rvHolder= (RecyclerViewHolder) holder;
+        final RecyclerViewHolder rvHolder= (RecyclerViewHolder) holder;
         final Ayah ayah = ayahs.get(position);
         rvHolder.ayah_index.setText(ayah.getAyah_index());
         rvHolder.text_tashkeel.setText(ayah.getText_tashkeel());
         rvHolder.content_en.setText(ayah.getContent_en());
         rvHolder.content_bn.setText(ayah.getContent_bn());
-        rvHolder.ayah_num.setText(ayah.getAyah_num());
+        rvHolder.ayah_num.setText(ayah.getAyah_key());
         String sajdahText = "";
         if(ayah.getSajdah().equals("0")){
             sajdahText = "No";
@@ -84,39 +71,47 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         rvHolder.playBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                if (isInternetPresent) {
-                    new AsyncTask<Void, Void, Void>() {
-                        protected void onPreExecute() {
-                            pd = new ProgressDialog(c);
-                            pd.setTitle("Processing...");
-                            pd.setMessage("Please wait.");
-                            pd.setCancelable(true);
-                            pd.setIndeterminate(true);
-                            pd.show();
-                        }
 
-                        protected Void doInBackground(Void... params) {
-                            AudioPlay.stopAudio();
-                            AudioPlay.playAudio(c, ayah.getAudio_url());
-                            return null;
-                        }
+                new AsyncTask<Void, Void, Void>() {
+                    protected void onPreExecute() {
+                        pd = new ProgressDialog(c);
+                        pd.setTitle("Processing...");
+                        pd.setMessage("Please wait.");
+                        pd.setCancelable(false);
+                        pd.setIndeterminate(true);
+                        pd.show();
+                    }
 
-                        protected void onPostExecute(Void result) {
-                            if (pd != null) {
-                                pd.dismiss();
-                            }
+                    protected Void doInBackground(Void... params) {
+                        AudioPlay.stopAudio();
+                        AudioPlay.playAudio(c, ayah.getAudio_url());
+                        return null;
+                    }
+
+                    protected void onPostExecute(Void result) {
+                        if (pd!=null) {
+                            pd.dismiss();
                         }
-                    }.execute();
-                }else{
-                    AlertDialog.Builder alert = new AlertDialog.Builder(c);
-                    alert.setTitle(R.string.text_warning);
-                    alert.setMessage(R.string.text_enable_internet);
-                    alert.setPositiveButton(R.string.text_ok,null);
-                    alert.show();
-                }
+                    }
+                }.execute();
             }
         });
 
+        rvHolder.wordMeaningButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                try {
+                    Intent in = new Intent(c, WordMeaningActivity.class);
+                    in.putExtra("ayah_index", ayah.getAyah_index());
+                    in.putExtra("text_tashkeel", ayah.getText_tashkeel());
+                    in.putExtra("content_en", ayah.getContent_en());
+                    in.putExtra("content_bn", ayah.getContent_bn());
+                    c.startActivity(in);
+                }catch (Exception e) {
+                    Log.e("Favorite", e.getMessage());
+                }
+            }
+        });
 
         rvHolder.bookmarkBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -176,22 +171,6 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             db.close();
         }
 
-        rvHolder.wordMeaningButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                try {
-                    Intent in = new Intent(c, WordMeaningActivity.class);
-                    in.putExtra("ayah_index", ayah.getAyah_index());
-                    in.putExtra("text_tashkeel", ayah.getText_tashkeel());
-                    in.putExtra("content_en", ayah.getContent_en());
-                    in.putExtra("content_bn", ayah.getContent_bn());
-                    c.startActivity(in);
-                }catch (Exception e) {
-                    Log.e("Favorite", e.getMessage());
-                }
-            }
-        });
-
         rvHolder.shareButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -210,8 +189,7 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 }
             }
         });
-
-
+        rvHolder.surah_name.setText("Sura "+ayah.getName_simple()+", Ayah "+ayah.getAyah_num());
     }
 
     @Override
@@ -227,25 +205,29 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         TextView content_bn;
         TextView sajdah;
         Button playBtn;
-        Button bookmarkBtn;
         Button wordMeaningButton;
-        TextView ayah_num;
+        Button removeBookmarkButton;
         Button shareButton;
+        TextView ayah_num;
+        TextView surah_name;
+        Button bookmarkBtn;
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
 
             ayah_index = (TextView) itemView.findViewById(R.id.ayah_index);
-            ayah_num = (TextView) itemView.findViewById(R.id.ayah_num);
             text_tashkeel = (TextView) itemView.findViewById(R.id.text_tashkeel);
             content_en = (TextView) itemView.findViewById(R.id.content_en);
             content_bn = (TextView) itemView.findViewById(R.id.content_bn);
             content_bn.setTypeface(font);
             sajdah = (TextView) itemView.findViewById(R.id.sajdah);
             playBtn = (Button) itemView.findViewById(R.id.playBtn);
-            bookmarkBtn = (Button) itemView.findViewById(R.id.bookmarkBtn);
             wordMeaningButton = (Button) itemView.findViewById(R.id.wordMeaningButton);
+            removeBookmarkButton = (Button) itemView.findViewById(R.id.removeBookmarkButton);
             shareButton = (Button) itemView.findViewById(R.id.shareButton);
+            ayah_num = (TextView) itemView.findViewById(R.id.ayah_num);
+            bookmarkBtn = (Button) itemView.findViewById(R.id.bookmarkBtn);
+            surah_name = (TextView) itemView.findViewById(R.id.surah_name);
         }
     }
 }

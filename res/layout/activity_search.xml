@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -33,7 +33,7 @@
                     android:gravity="center"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/colorWhite"
                     android:textSize="18dp"
                     android:text="@string/string_search"/>
 
@@ -45,7 +45,7 @@
                     android:gravity="center"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/colorWhite"
                     android:textSize="15dp"
                     android:text="@string/string_search_subtitle"/>
 
@@ -54,7 +54,7 @@
         </RelativeLayout>
 
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dip"
@@ -79,9 +79,9 @@
                 android:textStyle="italic">
             </AutoCompleteTextView>
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dip"
@@ -98,7 +98,7 @@
                 android:hint="@string/spinner_ayat_title"
                 android:textStyle="italic"/>
 
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/search_sura_btn"
@@ -106,8 +106,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textLabel2"
             android:layout_centerHorizontal="true"
-            android:background="#3B5998"
-            android:textColor="#fff"
+            android:background="@color/cardview_dark_background"
+            android:textColor="@color/colorWhite"
             android:text="Search"
             android:layout_marginBottom="10dp"/>
 
@@ -115,7 +115,7 @@
             android:id="@+id/horizon-line"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-            android:background="#fff"
+            android:background="@color/colorWhite"
             android:layout_below="@id/search_sura_btn"/>
 
         <Button
@@ -130,7 +130,7 @@
             android:layout_below="@id/horizon-line"
             android:visibility="gone"/>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ayah_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -146,4 +146,4 @@
 
     </RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

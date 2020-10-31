@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -159,6 +159,8 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 }
             }
         });
+
+        rvHolder.surah_name.setText("Sura "+ayah.getName_simple()+", Ayah "+ayah.getAyah_num());
     }
 
     @Override
@@ -177,7 +179,7 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         Button wordMeaningButton;
         Button removeBookmarkButton;
         Button shareButton;
-        TextView ayah_num;
+        TextView ayah_num,surah_name;
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
@@ -193,6 +195,7 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             removeBookmarkButton = (Button) itemView.findViewById(R.id.removeBookmarkButton);
             shareButton = (Button) itemView.findViewById(R.id.shareButton);
             ayah_num = (TextView) itemView.findViewById(R.id.ayah_num);
+            surah_name = (TextView) itemView.findViewById(R.id.surah_name);
         }
     }
 }

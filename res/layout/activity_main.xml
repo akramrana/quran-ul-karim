@@ -33,7 +33,7 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:text="@string/name_title_ar"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/colorWhite"
                 android:textSize="21dp" />
 
             <TextView
@@ -45,7 +45,7 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:text="@string/name_title_en"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/colorWhite"
                 android:textSize="15dp" />
         </LinearLayout>
 
@@ -93,7 +93,7 @@
                     android:ellipsize="marquee"
                     android:text="Sura List"
                     android:textSize="18.0sp"
-                    android:textColor="#333"
+                    android:textColor="@color/colorWhite"
                     android:textAllCaps="true"/>
             </LinearLayout>
 
@@ -124,7 +124,7 @@
                     android:ellipsize="marquee"
                     android:text="JUZ'"
                     android:textSize="18.0sp"
-                    android:textColor="#333"
+                    android:textColor="@color/colorWhite"
                     android:textAllCaps="true"/>
             </LinearLayout>
 
@@ -165,7 +165,7 @@
                     android:ellipsize="marquee"
                     android:text="Hizb"
                     android:textSize="18.0sp"
-                    android:textColor="#333"
+                    android:textColor="@color/colorWhite"
                     android:textAllCaps="true"/>
             </LinearLayout>
 
@@ -196,7 +196,7 @@
                     android:ellipsize="marquee"
                     android:text="RUB'"
                     android:textSize="18.0sp"
-                    android:textColor="#333"
+                    android:textColor="@color/colorWhite"
                     android:textAllCaps="true"/>
             </LinearLayout>
 
@@ -235,7 +235,7 @@
                     android:ellipsize="marquee"
                     android:text="Search"
                     android:textSize="18.0sp"
-                    android:textColor="#333"
+                    android:textColor="@color/colorWhite"
                     android:textAllCaps="true"/>
             </LinearLayout>
 
@@ -266,7 +266,7 @@
                     android:ellipsize="marquee"
                     android:text="Bookmarks"
                     android:textSize="18.0sp"
-                    android:textColor="#333"
+                    android:textColor="@color/colorWhite"
                     android:textAllCaps="true"/>
             </LinearLayout>
 
@@ -307,7 +307,7 @@
                     android:ellipsize="marquee"
                     android:text="Quick Links"
                     android:textSize="18.0sp"
-                    android:textColor="#333"
+                    android:textColor="@color/colorWhite"
                     android:textAllCaps="true"/>
             </LinearLayout>
 
@@ -338,7 +338,7 @@
                     android:ellipsize="marquee"
                     android:text="Dictionary"
                     android:textSize="18.0sp"
-                    android:textColor="#333"
+                    android:textColor="@color/colorWhite"
                     android:textAllCaps="true"/>
             </LinearLayout>
 
@@ -379,7 +379,7 @@
                     android:ellipsize="marquee"
                     android:text="PRAYER TIME"
                     android:textSize="18.0sp"
-                    android:textColor="#333"
+                    android:textColor="@color/colorWhite"
                     android:textAllCaps="true"/>
             </LinearLayout>
 
@@ -410,7 +410,7 @@
                     android:ellipsize="marquee"
                     android:text="About"
                     android:textSize="18.0sp"
-                    android:textColor="#333"
+                    android:textColor="@color/colorWhite"
                     android:textAllCaps="true"/>
             </LinearLayout>
 
@@ -439,7 +439,7 @@
             android:id="@+id/horizontal_line"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-            android:background="#3B5998"
+            android:background="@color/colorWhite"
             android:visibility="gone"
             android:layout_marginTop="10dp"/>
 
@@ -456,7 +456,7 @@
             android:paddingBottom="13dp"
             android:text="@string/start_from_last"
             android:textAllCaps="true"
-            android:textColor="#fff"
+            android:textColor="@color/colorWhite"
             android:background="@color/bg_color"
             android:textSize="15dp"
             android:visibility="gone" />

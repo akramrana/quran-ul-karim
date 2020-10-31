@@ -20,6 +20,11 @@ public class Ayah {
     private String content_bn;
     private String audio_duration;
     private String audio_url;
+    //
+    private String name_simple;
+    private String name_complex;
+    private String name_english;
+    private String name_arabic;
 
     public String getAyah_index() {
         return ayah_index;
@@ -139,5 +144,37 @@ public class Ayah {
 
     public void setAudio_url(String audio_url) {
         this.audio_url = audio_url;
+    }
+
+    public String getName_simple() {
+        return name_simple;
+    }
+
+    public void setName_simple(String name_simple) {
+        this.name_simple = name_simple;
+    }
+
+    public String getName_complex() {
+        return name_complex;
+    }
+
+    public void setName_complex(String name_complex) {
+        this.name_complex = name_complex;
+    }
+
+    public String getName_english() {
+        return name_english;
+    }
+
+    public void setName_english(String name_english) {
+        this.name_english = name_english;
+    }
+
+    public String getName_arabic() {
+        return name_arabic;
+    }
+
+    public void setName_arabic(String name_arabic) {
+        this.name_arabic = name_arabic;
     }
 }

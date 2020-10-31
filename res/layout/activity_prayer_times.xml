@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -33,7 +33,7 @@
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:text="@string/title_prayer_time"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/colorWhite"
                     android:textSize="18dp" />
 
                 <TextView
@@ -45,7 +45,7 @@
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:text="@string/string_prayer_times"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/colorWhite"
                     android:textSize="15dp" />
 
             </LinearLayout>
@@ -74,7 +74,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:background="@android:drawable/dialog_holo_light_frame"
+                    android:background="@color/cardview_dark_background"
                     android:padding="10dp">
 
                     <ImageView
@@ -90,7 +90,7 @@
                         android:text="@string/string_fajr"
                         android:layout_toRightOf="@+id/fimg"
                         android:layout_margin="18dp"
-                        android:textColor="@color/list_background"/>
+                        android:textColor="@color/colorWhite"/>
 
                     <TextView
                         android:id="@+id/ftime"
@@ -101,7 +101,7 @@
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical|right"
                         android:layout_margin="18dp"
-                        android:textColor="@color/list_background"/>
+                        android:textColor="@color/colorWhite"/>
 
                 </RelativeLayout>
 
@@ -114,7 +114,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_below="@+id/fajrSection"
-                    android:background="@android:drawable/dialog_holo_light_frame"
+                    android:background="@color/cardview_dark_background"
                     android:padding="10dp">
 
                     <ImageView
@@ -130,7 +130,7 @@
                         android:text="@string/string_sunrise"
                         android:layout_toRightOf="@+id/simg"
                         android:layout_margin="18dp"
-                        android:textColor="@color/list_background"/>
+                        android:textColor="@color/colorWhite"/>
 
                     <TextView
                         android:id="@+id/stime"
@@ -141,7 +141,7 @@
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical|right"
                         android:layout_margin="18dp"
-                        android:textColor="@color/list_background"/>
+                        android:textColor="@color/colorWhite"/>
 
                 </RelativeLayout>
 
@@ -154,7 +154,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_below="@+id/sunriseSection"
-                    android:background="@android:drawable/dialog_holo_light_frame"
+                    android:background="@color/cardview_dark_background"
                     android:padding="10dp">
 
                     <ImageView
@@ -170,7 +170,7 @@
                         android:text="@string/string_dhuhr"
                         android:layout_toRightOf="@+id/zimg"
                         android:layout_margin="18dp"
-                        android:textColor="@color/list_background"/>
+                        android:textColor="@color/colorWhite"/>
 
                     <TextView
                         android:id="@+id/ztime"
@@ -181,7 +181,7 @@
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical|right"
                         android:layout_margin="18dp"
-                        android:textColor="@color/list_background"/>
+                        android:textColor="@color/colorWhite"/>
 
                 </RelativeLayout>
 
@@ -194,7 +194,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_below="@+id/zohorSection"
-                    android:background="@android:drawable/dialog_holo_light_frame"
+                    android:background="@color/cardview_dark_background"
                     android:padding="10dp">
 
                     <ImageView
@@ -210,7 +210,7 @@
                         android:text="@string/string_asr"
                         android:layout_toRightOf="@+id/aimg"
                         android:layout_margin="18dp"
-                        android:textColor="@color/list_background"/>
+                        android:textColor="@color/colorWhite"/>
 
                     <TextView
                         android:id="@+id/atime"
@@ -221,7 +221,7 @@
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical|right"
                         android:layout_margin="18dp"
-                        android:textColor="@color/list_background"/>
+                        android:textColor="@color/colorWhite"/>
 
                 </RelativeLayout>
 
@@ -234,7 +234,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_below="@+id/asrSection"
-                    android:background="@android:drawable/dialog_holo_light_frame"
+                    android:background="@color/cardview_dark_background"
                     android:padding="10dp">
 
                     <ImageView
@@ -250,7 +250,7 @@
                         android:text="@string/string_magrib"
                         android:layout_toRightOf="@+id/mimg"
                         android:layout_margin="18dp"
-                        android:textColor="@color/list_background"/>
+                        android:textColor="@color/colorWhite"/>
 
                     <TextView
                         android:id="@+id/mtime"
@@ -261,7 +261,7 @@
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical|right"
                         android:layout_margin="18dp"
-                        android:textColor="@color/list_background"/>
+                        android:textColor="@color/colorWhite"/>
 
                 </RelativeLayout>
 
@@ -274,7 +274,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_below="@+id/magSection"
-                    android:background="@android:drawable/dialog_holo_light_frame"
+                    android:background="@color/cardview_dark_background"
                     android:padding="10dp">
 
                     <ImageView
@@ -290,7 +290,7 @@
                         android:text="@string/string_isha"
                         android:layout_toRightOf="@+id/iimg"
                         android:layout_margin="18dp"
-                        android:textColor="@color/list_background"/>
+                        android:textColor="@color/colorWhite"/>
 
                     <TextView
                         android:id="@+id/itime"
@@ -301,7 +301,7 @@
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical|right"
                         android:layout_margin="18dp"
-                        android:textColor="@color/list_background"/>
+                        android:textColor="@color/colorWhite"/>
 
                 </RelativeLayout>
 
@@ -311,4 +311,4 @@
 
     </RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

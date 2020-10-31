@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -24,7 +24,7 @@
             android:id="@+id/ayah_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FFF"
+            android:textColor="@color/colorWhite"
             android:textSize="10dp"
             android:textIsSelectable="true"
             android:layout_marginLeft="2dp"
@@ -36,7 +36,7 @@
             android:id="@+id/text_tashkeel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#3B5998"
+            android:textColor="@color/colorWhite"
             android:textStyle="bold"
             android:textSize="30dp"
             android:gravity="right"
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/text_tashkeel"
             android:textIsSelectable="true"
-            android:textColor="#333"
+            android:textColor="@color/colorWhite"
             android:layout_marginTop="12dip"
             android:textSize="15dip" />
 
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/content_en"
             android:layout_marginTop="12dip"
-            android:textColor="#333"
+            android:textColor="@color/colorWhite"
             android:textSize="15dip"
             android:textIsSelectable="true"/>
 
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/content_bn"
             android:layout_marginTop="5dip"
-            android:textColor="#333"/>
+            android:textColor="@color/colorWhite"/>
 
 
 
@@ -78,7 +78,7 @@
             android:id="@+id/horizon-line"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-            android:background="#ddd"
+            android:background="@color/colorWhite"
             android:layout_below="@id/sajdah"
             android:layout_marginTop="5dp"/>
 
@@ -144,4 +144,4 @@
 
 
 
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

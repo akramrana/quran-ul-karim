@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -18,7 +18,7 @@
             android:id="@+id/sid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FFF"
+            android:textColor="@color/colorWhite"
             android:textSize="10dp"
             android:textIsSelectable="true"
             android:textStyle="bold"
@@ -44,7 +44,7 @@
             android:id="@+id/name_arabic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#3B5998"
+            android:textColor="@color/colorWhite"
             android:textStyle="bold"
             android:textSize="22dp"
             android:gravity="right"/>
@@ -53,7 +53,7 @@
             android:id="@+id/name_simple"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#333"
+            android:textColor="@color/colorWhite"
             android:textSize="15dip" />
 
         <TextView
@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/name_arabic"
-            android:textColor="#333"
+            android:textColor="@color/colorWhite"
             android:textSize="11dip"
             android:textAllCaps="true"/>
 
@@ -76,13 +76,13 @@
                 android:id="@+id/revelation_place"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#333" />
+                android:textColor="@color/colorWhite" />
 
             <TextView
                 android:id="@+id/ayat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#333"
+                android:textColor="@color/colorWhite"
                 android:gravity="right"/>
 
         </RelativeLayout>
@@ -91,9 +91,9 @@
             android:id="@+id/revelation_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#333"
+            android:textColor="@color/colorWhite"
             android:layout_below="@id/middle-section"/>
 
     </RelativeLayout>
 
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

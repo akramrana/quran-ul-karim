@@ -4,7 +4,7 @@ package com.akramhossain.quranulkarim.listener;
  * Created by akram on 3/31/2019.
  */
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
