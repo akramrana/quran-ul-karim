@@ -337,7 +337,7 @@ public class SuraDetailsActivity extends Activity {
         cd = new ConnectionDetector(getApplicationContext());
         isInternetPresent = cd.isConnectingToInternet();
         //FETCH DATA FROM REMOTE SERVER
-        getPatchFromInternet();
+        //getPatchFromInternet();
     }
 
     private void getPatchFromInternet() {

@@ -74,12 +74,16 @@ public class PrayerTimesActivity extends Activity {
                         location = networkLoacation;
                     }
                 }
-                double latitude = location.getLatitude();
-                double longitude = location.getLongitude();
-                double timezone = hourDiff;
-                //double latitude = 23.810331;
-                //double longitude = 90.412521;
-                getPrayerTimes(latitude,longitude,timezone);
+                if(location!= null) {
+                    double latitude = location.getLatitude();
+                    double longitude = location.getLongitude();
+                    double timezone = hourDiff;
+                    //double latitude = 23.810331;
+                    //double longitude = 90.412521;
+                    getPrayerTimes(latitude, longitude, timezone);
+                }else{
+                    Toast.makeText(PrayerTimesActivity.this, "Sorry! We could not retrive your current location.", Toast.LENGTH_LONG).show();
+                }
 
             }else{
                 requestPermission();
@@ -115,11 +119,14 @@ public class PrayerTimesActivity extends Activity {
                     location = networkLoacation;
                 }
             }
-
-            double latitude = location.getLatitude();
-            double longitude = location.getLongitude();
-            double timezone = hourDiff;
-            getPrayerTimes(latitude,longitude,timezone);
+            if(location!= null) {
+                double latitude = location.getLatitude();
+                double longitude = location.getLongitude();
+                double timezone = hourDiff;
+                getPrayerTimes(latitude, longitude, timezone);
+            }else{
+                Toast.makeText(PrayerTimesActivity.this, "Sorry! We could not retrive your current location.", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -223,11 +230,14 @@ public class PrayerTimesActivity extends Activity {
                                 location = networkLoacation;
                             }
                         }
-
-                        double latitude = location.getLatitude();
-                        double longitude = location.getLongitude();
-                        double timezone = hourDiff;
-                        getPrayerTimes(latitude, longitude, timezone);
+                        if(location!= null) {
+                            double latitude = location.getLatitude();
+                            double longitude = location.getLongitude();
+                            double timezone = hourDiff;
+                            getPrayerTimes(latitude, longitude, timezone);
+                        }else{
+                            Toast.makeText(PrayerTimesActivity.this, "Sorry! We could not retrive your current location.", Toast.LENGTH_LONG).show();
+                        }
                     }
                 } else {
                     Log.e("value", "Permission Denied.");
