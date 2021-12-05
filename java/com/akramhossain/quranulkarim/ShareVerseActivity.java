@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import androidx.core.content.FileProvider;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,12 +51,14 @@ public class ShareVerseActivity extends Activity {
     Typeface font;
 
     TextView tv_surah_name,tv_ayah_arabic,tv_ayah_english,tv_ayah_bangla,tv_ayah_num;
-    Button shareBtn,colorBtn;
+    Button shareBtn,colorBtn, imgBtn;
     Bitmap bitmap;
+    int randomNumber;
 
     private static final int PERMISSION_REQUEST_CODE = 100;
 
     int[] androidColors;
+    String[] androidStringColors;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -186,9 +190,7 @@ public class ShareVerseActivity extends Activity {
 
         androidColors = getResources().getIntArray(R.array.androidcolors);
         int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
-
         colorBtn.setBackgroundColor(randomAndroidColor);
-
         colorBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 RelativeLayout layout = (RelativeLayout)findViewById(R.id.shareSection);
@@ -202,6 +204,33 @@ public class ShareVerseActivity extends Activity {
                 colorBtn.setBackgroundColor(nextAndroidColor);
             }
         });
+
+        imgBtn =  (Button) findViewById(R.id.imgBtn);
+        androidStringColors = getResources().getStringArray(R.array.stringcolors);
+        int arrayLength = androidStringColors.length;
+        Random random = new Random();
+        int randomNumber = random.nextInt(arrayLength);
+        int randomNumber1 = random.nextInt(arrayLength);
+        //Log.d("Color",androidStringColors[randomNumber]);
+        int[] colors = {Color.parseColor(androidStringColors[randomNumber]),Color.parseColor(androidStringColors[randomNumber1])};
+        GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,colors);
+        gd.setCornerRadius(0f);
+        imgBtn.setBackground(gd);
+        imgBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int arrayLength = androidStringColors.length;
+                Random random = new Random();
+                int randomNumber = random.nextInt(arrayLength);
+                int randomNumber1 = random.nextInt(arrayLength);
+                int[] colors = {Color.parseColor(androidStringColors[randomNumber]),Color.parseColor(androidStringColors[randomNumber1])};
+                GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,colors);
+                gd.setCornerRadius(0f);
+
+                RelativeLayout layout = (RelativeLayout)findViewById(R.id.shareSection);
+                layout.setBackground(gd);
+                imgBtn.setBackground(gd);
+            }
+        });
     }
 
     public static Bitmap loadBitmapFromView(View v, int width, int height) {
@@ -209,10 +238,17 @@ public class ShareVerseActivity extends Activity {
         Canvas c = new Canvas(b);
         v.layout(0, 0, width, height);
         //Get the view’s background
-        Drawable bgDrawable =v.getBackground();
+        Drawable bgDrawable = v.getBackground();
+
         if (bgDrawable!=null) {
             //has background drawable, then draw it on the canvas
-            bgDrawable.draw(c);
+            if(bgDrawable instanceof GradientDrawable){
+                GradientDrawable gradientDrawable = (GradientDrawable) bgDrawable;
+                gradientDrawable.setBounds(0, 0, c.getWidth(), c.getHeight());
+                gradientDrawable.draw(c);
+            }else {
+                bgDrawable.draw(c);
+            }
         }
         else {
             //does not have background drawable, then draw white background on the canvas
@@ -253,7 +289,7 @@ public class ShareVerseActivity extends Activity {
                     File imageFile = new File(mPath);
                     try {
                         fout = new FileOutputStream(imageFile);
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, fout);
                         fout.flush();
                         fout.close();
                         Uri uri = FileProvider.getUriForFile(getApplicationContext(),"com.akramhossain.quranulkarim.provider", imageFile);
@@ -261,6 +297,7 @@ public class ShareVerseActivity extends Activity {
                         shareIntent.setAction(Intent.ACTION_SEND);
                         shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
                         shareIntent.setType("image/*");
+                        shareIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                         startActivity(Intent.createChooser(shareIntent, "Share Ayah"));
 
                     } catch (FileNotFoundException e) {

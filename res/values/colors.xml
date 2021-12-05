@@ -35,4 +35,33 @@
         <item>@color/darkred</item>
     </integer-array>
 
+    <string-array name="stringcolors">
+        <item>#FF33B5E5</item>
+        <item>#FFAA66CC</item>
+        <item>#FF99CC00</item>
+        <item>#FFFFBB33</item>
+        <item>#FFFF4444</item>
+        <item>#FF0099CC</item>
+        <item>#FF9933CC</item>
+        <item>#FF669900</item>
+        <item>#FFFF8800</item>
+        <item>#FFCC0000</item>
+        <item>#C6FFDD</item>
+        <item>#FBD786</item>
+        <item>#f7797d</item>
+        <item>#0F2027</item>
+        <item>#203A43</item>
+        <item>#2C5364</item>
+        <item>#12c2e9</item>
+        <item>#c471ed</item>
+        <item>#2C5364</item>
+        <item>#00F260</item>
+        <item>#0575E6</item>
+        <item>#667db6</item>
+        <item>#0082c8</item>
+        <item>#fdbb2d</item>
+        <item>#642B73</item>
+        <item>#000000</item>
+    </string-array>
+
 </resources>
