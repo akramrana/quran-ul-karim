@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchActivity">
+    tools:context=".SearchAyatActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                     android:paddingRight="5dp"
                     android:textColor="@color/colorWhite"
                     android:textSize="18dp"
-                    android:text="@string/string_search"/>
+                    android:text="@string/string_search_term"/>
 
                 <TextView
                     android:id="@+id/search_sub_title"
@@ -47,12 +47,11 @@
                     android:paddingRight="5dp"
                     android:textColor="@color/colorWhite"
                     android:textSize="15dp"
-                    android:text="@string/string_search_subtitle"/>
+                    android:text="@string/string_search_term_subtitle"/>
 
             </LinearLayout>
 
         </RelativeLayout>
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="fill_parent"
@@ -60,94 +59,42 @@
             android:layout_marginLeft="8dip"
             android:layout_marginRight="8dip"
             android:layout_below="@+id/topSearchBar"
-            app:hintTextAppearance="@style/suraLabel"
-            android:id="@+id/textLabel1">
-
-<!--            <Spinner-->
-<!--                android:id="@+id/surah_spinner"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="60dp"-->
-<!--                android:prompt="@string/spinner_title_v1"-->
-<!--                android:textStyle="italic"-->
-<!--                style="@android:style/Widget.Holo.Light.Spinner"/>-->
-
-            <AutoCompleteTextView
-                android:id="@+id/autoCompleteTextView1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/spinner_title"
-                android:textSize="14dp"
-                android:textStyle="italic">
-            </AutoCompleteTextView>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dip"
-            android:layout_marginRight="8dip"
-            android:layout_below="@+id/textLabel1"
             app:hintTextAppearance="@style/ayatLabel"
             android:id="@+id/textLabel2">
 
             <EditText
-                android:id="@+id/ayat_number"
+                android:id="@+id/ayat_term"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14dp"
-                android:hint="@string/spinner_ayat_title"
+                android:hint="@string/spinner_ayat_term"
                 android:textStyle="italic"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/search_sura_btn"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/textLabel2"
             android:layout_centerHorizontal="true"
             android:background="@color/cardview_dark_background"
             android:textColor="@color/colorWhite"
             android:text="Search"
-            android:textSize="14dp"
-            android:layout_marginBottom="10dp"/>
-
-        <TextView
-            android:id="@+id/search_by_term"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/search_sura_btn"
-            android:layout_centerHorizontal="true"
-            android:text="@string/string_search_by_term"
-            android:textColor="@color/darkblue"
-            android:layout_marginBottom="10dp">
-        </TextView>
+            android:layout_marginBottom="15dp"/>
 
         <View
             android:id="@+id/horizon-line"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="@color/colorWhite"
-            android:layout_below="@id/search_by_term"/>
-
-        <Button
-            android:id="@+id/quickLinkBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add to quick links"
-            android:textSize="12dp"
-            android:drawableLeft="@android:drawable/ic_menu_upload"
-            android:layout_centerHorizontal="true"
-            android:background="@android:color/transparent"
-            android:layout_below="@id/horizon-line"
-            android:visibility="gone"/>
+            android:layout_below="@id/search_sura_btn"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/ayah_list"
+            android:id="@+id/bookmark_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/quickLinkBtn"/>
+            android:layout_below="@id/search_sura_btn"/>
 
         <ProgressBar
             android:id="@+id/progressBar"

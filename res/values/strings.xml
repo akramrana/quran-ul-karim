@@ -43,9 +43,12 @@
     <string name="string_quick_link">Quick Links</string>
     <string name="string_quick_link_subtitle">List of saved sura</string>
     <string name="string_search">Search</string>
+    <string name="string_search_term">Search by Term</string>
     <string name="string_search_subtitle">Search sura and ayah</string>
+    <string name="string_search_term_subtitle">Search any ayah</string>
     <string name="spinner_title">Enter sura name</string>
     <string name="spinner_ayat_title">Enter ayah number comma separated</string>
+    <string name="spinner_ayat_term">Enter any term eg: allah, الرَّحِيمِ, জান্নাত</string>
     <string name="string_website_name">www.codxplore.com</string>
     <string name="start_from_last">Recently viewed surah</string>
     <string name="title_word_meaning">Word Meaning</string>
@@ -69,4 +72,5 @@
     <string name="string_hizb_subtitle">list of 60 Hizb</string>
     <string name="string_rub">Rub\'</string>
     <string name="string_rub_subtitle">list of 240 Rub\'</string>
+    <string name="string_search_by_term"><u>Search by Term</u></string>
 </resources>

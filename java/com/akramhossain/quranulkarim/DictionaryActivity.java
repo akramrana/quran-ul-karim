@@ -62,7 +62,7 @@ public class DictionaryActivity extends Activity implements SearchView.OnQueryTe
                     if (!recyclerView.canScrollVertically(RecyclerView.FOCUS_DOWN)) {
                         if (itShouldLoadMore) {
                             SQLiteDatabase db = dbhelper.getWritableDatabase();
-                            String sql = "SELECT COUNT(*) FROM words";
+                            String sql = "SELECT count(*) from(SELECT * FROM words GROUP BY arabic) as words";
                             Cursor countHistory = db.rawQuery(sql,null);
                             try {
                                 countHistory.moveToFirst();
@@ -99,12 +99,12 @@ public class DictionaryActivity extends Activity implements SearchView.OnQueryTe
         SQLiteDatabase db = dbhelper.getWritableDatabase();
         String sql = "";
         if(searchTxt.equals("")) {
-             sql = "SELECT * FROM words order by word_id ASC limit " + offset + "," + limit;
+             sql = "SELECT * FROM words group by arabic  order by word_id ASC limit " + offset + "," + limit;
         }else{
              sql = "SELECT * " +
                      "FROM words " +
                      "WHERE translation LIKE '%"+searchTxt+"%' OR transliteration LIKE '%"+searchTxt+"%' OR arabic LIKE '%"+searchTxt+"%' " +
-                     "Order by word_id ASC " +
+                     "group by arabic  Order by word_id ASC " +
                      "limit " + offset + "," + limit;
         }
         Log.i(TAG, sql);

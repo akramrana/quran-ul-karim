@@ -2,6 +2,7 @@ package com.akramhossain.quranulkarim;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.adapter.SuraDetailsViewAdapter;
@@ -42,6 +44,7 @@ public class SearchActivity extends Activity {
     public static String ayahNumber="";
     Spinner spinner;
     Button quickLinkBtn;
+    TextView search_by_term;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -223,6 +226,15 @@ public class SearchActivity extends Activity {
                     db.close();
                 }
 
+            }
+        });
+
+        search_by_term = (TextView) findViewById(R.id.search_by_term);
+        search_by_term.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),SearchAyatActivity.class);
+                startActivity(i);
             }
         });
 
