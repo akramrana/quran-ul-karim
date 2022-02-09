@@ -161,6 +161,23 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         });
 
         rvHolder.surah_name.setText("Sura "+ayah.getName_simple()+", Ayah "+ayah.getAyah_num());
+
+        rvHolder.copyButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                try {
+                    String fullAyat = ayah.getText_tashkeel()+"\n\n"+ayah.getContent_en()+"\n\n"+ayah.getContent_bn()+"\n\nSura "+ayah.getName_simple()+", Ayah "+ayah.getAyah_num();
+                    String label = ayah.getName_simple()+", Ayah "+ayah.getAyah_num();
+                    Log.d(label,fullAyat);
+                    android.content.ClipboardManager clipboard = (android.content.ClipboardManager) c.getSystemService(Context.CLIPBOARD_SERVICE);
+                    android.content.ClipData clip = android.content.ClipData.newPlainText(label,fullAyat);
+                    clipboard.setPrimaryClip(clip);
+                    Toast.makeText(c, "Ayah Copied.", Toast.LENGTH_LONG).show();
+                }catch (Exception e) {
+                    Log.e("Copied", e.getMessage());
+                }
+            }
+        });
     }
 
     @Override
@@ -180,6 +197,7 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         Button removeBookmarkButton;
         Button shareButton;
         TextView ayah_num,surah_name;
+        Button copyButton;
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
@@ -196,6 +214,7 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             shareButton = (Button) itemView.findViewById(R.id.shareButton);
             ayah_num = (TextView) itemView.findViewById(R.id.ayah_num);
             surah_name = (TextView) itemView.findViewById(R.id.surah_name);
+            copyButton = (Button) itemView.findViewById(R.id.copyButton);
         }
     }
 }

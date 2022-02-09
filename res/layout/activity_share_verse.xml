@@ -219,7 +219,9 @@
                             <Button
                                 android:id="@+id/colorBtn"
                                 android:layout_margin="10dp"
-                                android:layout_width="wrap_content"
+                                android:text="Change Color"
+                                android:textSize="9dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:background="@drawable/rounded_button"/>
@@ -235,7 +237,9 @@
                             <Button
                                 android:id="@+id/imgBtn"
                                 android:layout_margin="10dp"
-                                android:layout_width="wrap_content"
+                                android:text="Change Color"
+                                android:textSize="9dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:background="@drawable/rounded_button"/>

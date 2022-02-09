@@ -114,13 +114,13 @@ public class SearchTermViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                         if (cursor.moveToFirst()) {
                             db.execSQL("DELETE FROM bookmark WHERE ayah_id = " + ayah.getAyah_index());
                             Toast.makeText(c, "Deleted from bookmark.", Toast.LENGTH_LONG).show();
-                            bookmark.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.btn_star, 0, 0, 0);
+                            bookmark.setCompoundDrawablesWithIntrinsicBounds(0, android.R.drawable.btn_star, 0, 0);
                         } else {
                             ContentValues values = new ContentValues();
                             values.put("ayah_id", ayah.getAyah_index());
                             dbhelper.getWritableDatabase().insertOrThrow("bookmark", "", values);
                             Toast.makeText(c, "Added to bookmark.", Toast.LENGTH_LONG).show();
-                            bookmark.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.btn_star_big_on, 0, 0, 0);
+                            bookmark.setCompoundDrawablesWithIntrinsicBounds(0, android.R.drawable.btn_star_big_on, 0, 0);
                         }
                     }
                     catch (Exception e){
@@ -182,9 +182,9 @@ public class SearchTermViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         try {
             if (cursor.moveToFirst()) {
-                rvHolder.bookmarkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.btn_star_big_on, 0, 0, 0);
+                rvHolder.bookmarkBtn.setCompoundDrawablesWithIntrinsicBounds(0, android.R.drawable.btn_star_big_on, 0, 0);
             } else {
-                rvHolder.bookmarkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.btn_star, 0, 0, 0);
+                rvHolder.bookmarkBtn.setCompoundDrawablesWithIntrinsicBounds(0, android.R.drawable.btn_star, 0, 0);
             }
         }catch (Exception e){
             Log.i("Bookmark Check", e.getMessage());
@@ -196,6 +196,23 @@ public class SearchTermViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         }
 
         rvHolder.surah_name.setText("Sura "+ayah.getName_simple()+", Ayah "+ayah.getAyah_num());
+
+        rvHolder.copyButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                try {
+                    String fullAyat = ayah.getText_tashkeel()+"\n\n"+ayah.getContent_en()+"\n\n"+ayah.getContent_bn()+"\n\nSura "+ayah.getName_simple()+", Ayah "+ayah.getAyah_num();
+                    String label = ayah.getName_simple()+", Ayah "+ayah.getAyah_num();
+                    Log.d(label,fullAyat);
+                    android.content.ClipboardManager clipboard = (android.content.ClipboardManager) c.getSystemService(Context.CLIPBOARD_SERVICE);
+                    android.content.ClipData clip = android.content.ClipData.newPlainText(label,fullAyat);
+                    clipboard.setPrimaryClip(clip);
+                    Toast.makeText(c, "Ayah Copied.", Toast.LENGTH_LONG).show();
+                }catch (Exception e) {
+                    Log.e("Copied", e.getMessage());
+                }
+            }
+        });
     }
 
     @Override
@@ -215,6 +232,7 @@ public class SearchTermViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         Button shareButton;
         TextView ayah_num,surah_name;
         Button bookmarkBtn;
+        Button copyButton;
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
@@ -231,6 +249,7 @@ public class SearchTermViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             ayah_num = (TextView) itemView.findViewById(R.id.ayah_num);
             surah_name = (TextView) itemView.findViewById(R.id.surah_name);
             bookmarkBtn = (Button) itemView.findViewById(R.id.bookmarkBtn);
+            copyButton = (Button) itemView.findViewById(R.id.copyButton);
         }
     }
 
