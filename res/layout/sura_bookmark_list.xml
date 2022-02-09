@@ -99,7 +99,7 @@
 
             <Button
                 android:id="@+id/playBtn"
-                android:layout_width="60dp"
+                android:layout_width="45dp"
                 android:layout_height="wrap_content"
                 android:text="Play"
                 android:textSize="9dp"
@@ -122,7 +122,7 @@
 
             <Button
                 android:id="@+id/removeBookmarkButton"
-                android:layout_width="70dp"
+                android:layout_width="55dp"
                 android:layout_height="wrap_content"
                 android:text="Delete"
                 android:layout_toRightOf="@id/wordMeaningButton"
@@ -135,7 +135,7 @@
 
             <Button
                 android:id="@+id/copyButton"
-                android:layout_width="80dp"
+                android:layout_width="45dp"
                 android:layout_height="wrap_content"
                 android:text="Copy"
                 android:layout_toRightOf="@id/removeBookmarkButton"
