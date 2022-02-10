@@ -99,8 +99,8 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
 
-            CharSequence name = "quranulkarim";
-            String Description = "Quran ul karim";
+            CharSequence name = "quranulenglishandbangla";
+            String Description = "Quran English and Bangla";
             int importance = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
             mChannel.setDescription(Description);
@@ -118,7 +118,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 (NotificationCompat.Builder) new NotificationCompat.Builder(context,CHANNEL_ID)
                         .setContentIntent(pendingIntent)
                         .setSmallIcon(R.drawable.ic_quran_radio)
-                        .setContentTitle("Quran ul karim reminder for you!")
+                        .setContentTitle("Quran English and Bangla reminder for you!")
                         .setContentText(text_tashkeel)
                         .setStyle(new NotificationCompat.InboxStyle().addLine(text_tashkeel).addLine(ayahDescription).addLine(suraName+":"+ayah_num))
                         .setLargeIcon(licon)
