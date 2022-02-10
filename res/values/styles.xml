@@ -13,7 +13,7 @@
     </style>
 
     <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
         <item name="android:fontFamily">@font/roboto_regular</item>
 
@@ -41,6 +41,10 @@
     <!--Style for Splash Screen-->
     <style name="SplashScreenTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:windowBackground">@drawable/splash_screen_background</item>
+    </style>
+
+    <style name="MySwitch">
+        <item name="colorControlActivated">@color/switchColor</item>
     </style>
 
 </resources>

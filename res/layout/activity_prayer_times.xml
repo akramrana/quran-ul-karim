@@ -33,7 +33,7 @@
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:text="@string/title_prayer_time"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/colorWhiteDN"
                     android:textSize="18dp" />
 
                 <TextView
@@ -45,7 +45,7 @@
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:text="@string/string_prayer_times"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/colorWhiteDN"
                     android:textSize="15dp" />
 
             </LinearLayout>
@@ -74,7 +74,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:background="@color/cardview_dark_background"
+                    android:background="@color/colorPrayerTimeRowBg"
                     android:padding="10dp">
 
                     <ImageView
@@ -114,7 +114,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_below="@+id/fajrSection"
-                    android:background="@color/cardview_dark_background"
+                    android:background="@color/colorPrayerTimeRowBg"
                     android:padding="10dp">
 
                     <ImageView
@@ -154,7 +154,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_below="@+id/sunriseSection"
-                    android:background="@color/cardview_dark_background"
+                    android:background="@color/colorPrayerTimeRowBg"
                     android:padding="10dp">
 
                     <ImageView
@@ -194,7 +194,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_below="@+id/zohorSection"
-                    android:background="@color/cardview_dark_background"
+                    android:background="@color/colorPrayerTimeRowBg"
                     android:padding="10dp">
 
                     <ImageView
@@ -234,7 +234,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_below="@+id/asrSection"
-                    android:background="@color/cardview_dark_background"
+                    android:background="@color/colorPrayerTimeRowBg"
                     android:padding="10dp">
 
                     <ImageView
@@ -274,7 +274,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_below="@+id/magSection"
-                    android:background="@color/cardview_dark_background"
+                    android:background="@color/colorPrayerTimeRowBg"
                     android:padding="10dp">
 
                     <ImageView

@@ -3,16 +3,19 @@ package com.akramhossain.quranulkarim;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,7 +23,13 @@ import android.widget.TextView;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.notification.NotificationHelper;
 
-public class MainActivity extends Activity {
+import org.w3c.dom.Text;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
+
+public class MainActivity extends AppCompatActivity {
 
     private GridviewAdapter mAdapter;
     private ArrayList<String> listText;
@@ -31,10 +40,15 @@ public class MainActivity extends Activity {
     private DatabaseHelper mDBHelper;
     private SQLiteDatabase mDb;
     TextView start_from_last;
+    TextView txtNightMode;
     View horizontal_line;
     DatabaseHelper dbhelper;
     LinearLayout sura_link,bookmark_link,search_link,quick_links_link,word_collection_link,about_link,juz_link,hizb_link,rub_link,time_link;
     Button btnPrayerTime;
+
+    public static final String NIGHT_MODE = "APP_NIGHT_MODE";
+    SharedPreferences mPrefs;
+    String appTheme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +56,54 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         Bundle extras = getIntent().getExtras();
         setContentView(R.layout.activity_main);
+
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        appTheme = mPrefs.getString(NIGHT_MODE,"-1");
+
+        SwitchCompat switchCompat = findViewById(R.id.switchCompat);
+        txtNightMode = findViewById(R.id.txtNightMode);
+
+        Log.d("APP THEME", String.valueOf(appTheme));
+
+        if (appTheme.equals("1")){
+            switchCompat.setChecked(true);
+            txtNightMode.setText("Dark Mode");
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+        else if (appTheme.equals("0")){
+            switchCompat.setChecked(false);
+            txtNightMode.setText("Light Mode");
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+        else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            switchCompat.setChecked(true);
+            txtNightMode.setText("Dark Mode");
+        }
+        switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    SharedPreferences.Editor editor = mPrefs.edit();
+                    editor.putString(NIGHT_MODE, "1");
+                    editor.apply();
+                    //
+                    Intent intent = getIntent();
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    finish();
+                    startActivity(intent);
+                } else {
+                    SharedPreferences.Editor editor = mPrefs.edit();
+                    editor.putString(NIGHT_MODE, "0");
+                    editor.apply();
+                    //
+                    Intent intent = getIntent();
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    finish();
+                    startActivity(intent);
+                }
+            }
+        });
 
         //prepareList();
 

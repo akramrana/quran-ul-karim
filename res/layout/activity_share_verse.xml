@@ -34,7 +34,7 @@
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:text="@string/title_share_verse"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/colorWhiteDN"
                     android:textSize="18dp" />
 
                 <TextView
@@ -46,7 +46,7 @@
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:text="@string/string_shar_verse_subtitle"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/colorWhiteDN"
                     android:textSize="15dp" />
 
             </LinearLayout>
@@ -224,6 +224,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
+                                android:textColor="@color/colorWhiteDN"
                                 android:background="@drawable/rounded_button"/>
 
                         </LinearLayout>
@@ -242,6 +243,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
+                                android:textColor="@color/colorWhiteDN"
                                 android:background="@drawable/rounded_button"/>
 
                         </LinearLayout>

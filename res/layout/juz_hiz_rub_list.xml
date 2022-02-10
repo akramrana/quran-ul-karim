@@ -6,7 +6,8 @@
     android:layout_margin="10dp"
     android:layout_height="wrap_content"
     android:foreground="?android:attr/selectableItemBackground"
-    android:clickable="true">
+    android:clickable="false"
+    android:focusable="true">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -148,7 +149,6 @@
                 android:id="@+id/shareButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/copyButton"
                 android:textSize="9dp"
                 android:drawableTop="@android:drawable/ic_menu_share"
                 android:background="@android:color/transparent"

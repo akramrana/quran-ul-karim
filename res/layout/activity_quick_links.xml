@@ -31,7 +31,7 @@
                     android:gravity="center"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/colorWhiteDN"
                     android:textSize="18dp"
                     android:text="@string/string_quick_link"/>
 
@@ -43,7 +43,7 @@
                     android:gravity="center"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/colorWhiteDN"
                     android:textSize="15dp"
                     android:text="@string/string_quick_link_subtitle"/>
 

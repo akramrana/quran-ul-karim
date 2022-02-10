@@ -33,7 +33,7 @@
                     android:gravity="center"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/colorWhiteDN"
                     android:textSize="18dp"
                     android:text="@string/string_search"/>
 
@@ -45,7 +45,7 @@
                     android:gravity="center"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/colorWhiteDN"
                     android:textSize="15dp"
                     android:text="@string/string_search_subtitle"/>
 
@@ -108,7 +108,7 @@
             android:layout_below="@+id/textLabel2"
             android:layout_centerHorizontal="true"
             android:background="@color/cardview_dark_background"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorWhiteDN"
             android:text="Search"
             android:textSize="14dp"
             android:layout_marginBottom="10dp"/>

@@ -252,8 +252,10 @@ public class SearchActivity extends Activity {
         if (ayahNumber != null && !ayahNumber.equals("")) {
             conSql = " AND ayah_num IN ("+ayahNumber+") ";
         }
-        String sql = "SELECT * FROM ayah " +
-                "WHERE surah_id = "+suraId+conSql+
+        String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple " +
+                "FROM ayah " +
+                "LEFT join sura ON ayah.surah_id = sura.surah_id " +
+                "WHERE ayah.surah_id = "+suraId+conSql+
                 "order by ayah_index ASC limit " + offset + "," + limit;
         Log.i(TAG, sql);
         Cursor cursor = db.rawQuery(sql, null);
@@ -276,6 +278,11 @@ public class SearchActivity extends Activity {
                     ayah.setContent_bn(cursor.getString(cursor.getColumnIndex("content_bn")));
                     ayah.setAudio_duration(cursor.getString(cursor.getColumnIndex("audio_duration")));
                     ayah.setAudio_url(cursor.getString(cursor.getColumnIndex("audio_url")));
+                    //
+                    ayah.setName_simple(cursor.getString(cursor.getColumnIndex("name_simple")));
+                    ayah.setName_complex(cursor.getString(cursor.getColumnIndex("name_complex")));
+                    ayah.setName_english(cursor.getString(cursor.getColumnIndex("name_english")));
+                    ayah.setName_arabic(cursor.getString(cursor.getColumnIndex("name_arabic")));
                     ayahs.add(ayah);
                 } while (cursor.moveToNext());
             }

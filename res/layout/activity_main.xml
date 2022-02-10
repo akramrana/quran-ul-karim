@@ -33,7 +33,7 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:text="@string/name_title_ar"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorWhiteDN"
                 android:textSize="21dp" />
 
             <TextView
@@ -45,8 +45,32 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:text="@string/name_title_en"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorWhiteDN"
                 android:textSize="15dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/txtNightMode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/daynight_textColor" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switchCompat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/MySwitch"
+                    android:layout_marginBottom="@android:dimen/app_icon_size"
+                    android:layout_toRightOf="@+id/txtNightMode"
+                    android:checked="false"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <!--<GridView-->
@@ -456,7 +480,7 @@
             android:paddingBottom="13dp"
             android:text="@string/start_from_last"
             android:textAllCaps="true"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorWhiteDN"
             android:background="@color/bg_color"
             android:textSize="15dp"
             android:visibility="gone" />
