@@ -26,35 +26,44 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
-        if (android.os.Build.VERSION.SDK_INT >= 17)
+        if (android.os.Build.VERSION.SDK_INT >= 17) {
             DB_PATH = context.getApplicationInfo().dataDir + "/databases/";
-        else
+        } else {
             DB_PATH = "/data/data/" + context.getPackageName() + "/databases/";
+        }
         this.mContext = context;
-
         copyDataBase();
-
         this.getReadableDatabase();
     }
 
     public void updateDataBase() throws IOException {
         if (mNeedUpdate) {
             File dbFile = new File(DB_PATH + DB_NAME);
-            if (dbFile.exists())
+            if (dbFile.exists()) {
                 dbFile.delete();
-
+            }
             copyDataBase();
-
             mNeedUpdate = false;
         }
     }
 
     private boolean checkDataBase() {
-        File dbFile = new File(DB_PATH + DB_NAME);
-        return dbFile.exists();
+        //File dbFile = new File(DB_PATH + DB_NAME);
+        //return dbFile.exists();
+        SQLiteDatabase checkDb = null;
+        try {
+            String mypath = DB_PATH + DB_NAME;
+            checkDb = SQLiteDatabase.openDatabase(mypath, null, SQLiteDatabase.OPEN_READONLY);
+        }
+        catch (Exception e) {
+        }
+        if (checkDb != null) {
+            checkDb.close();
+        }
+        return checkDb != null? true : false;
     }
 
-    private void copyDataBase() {
+    private void copyDataBase() throws Error {
         if (!checkDataBase()) {
             this.getReadableDatabase();
             this.close();
@@ -72,8 +81,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         OutputStream mOutput = new FileOutputStream(DB_PATH + DB_NAME);
         byte[] mBuffer = new byte[1024];
         int mLength;
-        while ((mLength = mInput.read(mBuffer)) > 0)
+        while ((mLength = mInput.read(mBuffer)) > 0) {
             mOutput.write(mBuffer, 0, mLength);
+        }
         mOutput.flush();
         mOutput.close();
         mInput.close();
@@ -86,8 +96,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public synchronized void close() {
-        if (mDataBase != null)
+        if (mDataBase != null) {
             mDataBase.close();
+        }
         super.close();
     }
 
@@ -98,7 +109,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (newVersion > oldVersion)
+        if (newVersion > oldVersion) {
             mNeedUpdate = true;
+        }
     }
 }

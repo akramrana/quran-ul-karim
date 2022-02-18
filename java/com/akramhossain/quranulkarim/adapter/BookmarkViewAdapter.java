@@ -89,7 +89,7 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     }
 
                     protected void onPostExecute(Void result) {
-                        if (pd!=null) {
+                        if (pd!=null && pd.isShowing()) {
                             pd.dismiss();
                         }
                     }
