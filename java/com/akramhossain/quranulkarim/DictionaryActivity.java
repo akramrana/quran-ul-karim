@@ -98,6 +98,7 @@ public class DictionaryActivity extends Activity implements SearchView.OnQueryTe
     private void getDataFromLocalDb() {
         SQLiteDatabase db = dbhelper.getWritableDatabase();
         String sql = "";
+        searchTxt = searchTxt.replaceAll("\'","");
         if(searchTxt.equals("")) {
              sql = "SELECT * FROM words group by arabic  order by word_id ASC limit " + offset + "," + limit;
         }else{

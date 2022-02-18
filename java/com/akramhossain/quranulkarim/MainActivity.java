@@ -20,7 +20,10 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.akramhossain.quranulkarim.adapter.PopularRecyclerViewAdapter;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
+import com.akramhossain.quranulkarim.listener.RecyclerTouchListener;
+import com.akramhossain.quranulkarim.model.Sura;
 import com.akramhossain.quranulkarim.notification.NotificationHelper;
 
 import org.w3c.dom.Text;
@@ -28,8 +31,12 @@ import org.w3c.dom.Text;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     private GridviewAdapter mAdapter;
     private ArrayList<String> listText;
@@ -49,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
     public static final String NIGHT_MODE = "APP_NIGHT_MODE";
     SharedPreferences mPrefs;
     String appTheme;
+
+    private RecyclerView popularSearchView;
+    private ArrayList<Sura> popularSearches;
+    private PopularRecyclerViewAdapter rvAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -313,7 +324,67 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(i);
 //            }
 //        });
+        //popular searches
+        popularSearchView = (RecyclerView) findViewById(R.id.popularSearchView);
+        LinearLayoutManager rLinearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false);
+        popularSearchView.setLayoutManager(rLinearLayoutManager);
+        setPopularSearchViewAdapter();
+        popularSearchView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), popularSearchView, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Sura vd = popularSearches.get(position);
+                //Toast.makeText(getApplicationContext(), vd.getVideo_id() + " is selected!", Toast.LENGTH_SHORT).show();
+                Intent in = new Intent(getApplicationContext(),SuraDetailsActivity.class);
+                in.putExtra("sura_id", vd.getSurah_id());
+                in.putExtra("sura_name", vd.getName_english());
+                in.putExtra("sura_name_arabic", vd.getName_arabic());
+                startActivityForResult(in, 100);
+            }
+            @Override
+            public void onLongClick(View view, int position) {
 
+            }
+        }));
+
+        getPopularSearchFromLocalDb();
+    }
+
+    private void getPopularSearchFromLocalDb() {
+        SQLiteDatabase db = dbhelper.getWritableDatabase();
+        String sql = "SELECT * FROM sura WHERE surah_id IN(18,36,55,56,67,71,73,78,85,112) order by RANDOM() ASC LIMIT 10";
+        Log.i(TAG, sql);
+        Cursor cursor = db.rawQuery(sql, null);
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    Sura sura = new Sura();
+                    sura.setSurah_id(cursor.getString(cursor.getColumnIndex("surah_id")));
+                    sura.setName_arabic(cursor.getString(cursor.getColumnIndex("name_arabic")));
+                    sura.setName_english(cursor.getString(cursor.getColumnIndex("name_english")));
+                    sura.setName_simple(cursor.getString(cursor.getColumnIndex("name_simple")));
+                    sura.setRevelation_place(cursor.getString(cursor.getColumnIndex("revelation_place")));
+                    sura.setAyat(cursor.getString(cursor.getColumnIndex("ayat")));
+                    sura.setRevelation_order(cursor.getString(cursor.getColumnIndex("revelation_order")));
+                    sura.setId(cursor.getString(cursor.getColumnIndex("sid")));
+                    popularSearches.add(sura);
+                } while (cursor.moveToNext());
+            }
+        }catch (Exception e){
+            Log.i(TAG, e.getMessage());
+        }
+        finally {
+            if (cursor != null && !cursor.isClosed()){
+                cursor.close();
+            }
+            db.close();
+        }
+        rvAdapter.notifyDataSetChanged();
+    }
+
+    private void setPopularSearchViewAdapter() {
+        popularSearches = new ArrayList<Sura>();
+        rvAdapter = new PopularRecyclerViewAdapter(MainActivity.this, popularSearches);
+        popularSearchView.setAdapter(rvAdapter);
     }
 
     @Override

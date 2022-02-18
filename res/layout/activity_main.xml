@@ -73,6 +73,32 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/popular_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/popular_searched_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="5dp"
+                android:text="@string/ppl_search"
+                android:textSize="21dp"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/popularSearchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/popular_searched_title" />
+
+        </LinearLayout>
+
         <!--<GridView-->
         <!--android:id="@+id/gridView1"-->
         <!--android:layout_width="match_parent"-->

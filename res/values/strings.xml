@@ -73,4 +73,5 @@
     <string name="string_rub">Rub\'</string>
     <string name="string_rub_subtitle">list of 240 Rub\'</string>
     <string name="string_search_by_term"><u>Search by Term</u></string>
+    <string name="ppl_search">Popular Searches</string>
 </resources>
