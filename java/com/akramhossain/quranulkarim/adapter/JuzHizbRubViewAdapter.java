@@ -1,15 +1,22 @@
 package com.akramhossain.quranulkarim.adapter;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +25,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.akramhossain.quranulkarim.ConnectionDetector;
 import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.ShareVerseActivity;
 import com.akramhossain.quranulkarim.WordMeaningActivity;
@@ -25,6 +33,13 @@ import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.Ayah;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class JuzHizbRubViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
@@ -35,12 +50,19 @@ public class JuzHizbRubViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     MediaPlayer mp;
     ProgressDialog pd;
     DatabaseHelper dbhelper;
+    private Activity activity;
+    private static final int PERMISSION_REQUEST_CODE = 100;
+    ConnectionDetector cd;
+    Boolean isInternetPresent = false;
 
-    public JuzHizbRubViewAdapter(Context c, ArrayList<Ayah> ayahs) {
+    public JuzHizbRubViewAdapter(Context c, ArrayList<Ayah> ayahs, Activity activity) {
         this.c = c;
         this.ayahs = ayahs;
         font = Typeface.createFromAsset(c.getAssets(),"fonts/Siyamrupali.ttf");
         dbhelper = new DatabaseHelper(c);
+        this.activity = activity;
+        cd = new ConnectionDetector(c);
+        isInternetPresent = cd.isConnectingToInternet();
     }
 
     @Override
@@ -71,29 +93,59 @@ public class JuzHizbRubViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         rvHolder.playBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                if (isInternetPresent) {
+                    if (checkPermission()) {
+                        new AsyncTask<Void, Void, Void>() {
+                            protected void onPreExecute() {
+                                pd = new ProgressDialog(c);
+                                pd.setTitle("Processing...");
+                                pd.setMessage("Please wait.");
+                                pd.setCancelable(false);
+                                pd.setIndeterminate(true);
+                                pd.show();
+                            }
 
-                new AsyncTask<Void, Void, Void>() {
-                    protected void onPreExecute() {
-                        pd = new ProgressDialog(c);
-                        pd.setTitle("Processing...");
-                        pd.setMessage("Please wait.");
-                        pd.setCancelable(false);
-                        pd.setIndeterminate(true);
-                        pd.show();
-                    }
+                            protected Void doInBackground(Void... params) {
+                                /*AudioPlay.stopAudio();
+                                AudioPlay.playAudio(c, ayah.getAudio_url());
+                                return null;*/
+                                try {
+                                    URL url = new URL(ayah.getAudio_url());
+                                    String fileName = url.getFile().replaceAll("/", "_").toLowerCase();
+                                    Log.d("File Name:", fileName);
+                                    //
+                                    String mPath = c.getExternalFilesDir(Environment.DIRECTORY_MUSIC) + "/";
+                                    String fullPath = mPath + fileName;
+                                    Log.d("File Path:", mPath);
+                                    Log.d("Full File Path:", fullPath);
+                                    File file = new File(fullPath);
+                                    if (file.exists()) {
+                                        Log.d("File Path:", "Exist!");
+                                        AudioPlay.stopAudio();
+                                        AudioPlay.playAudio(c, fullPath);
+                                    } else {
+                                        Log.d("File Path:", "Not Exist Downloading!");
+                                        downloadFile(ayah.getAudio_url(), fileName, mPath);
+                                        AudioPlay.stopAudio();
+                                        AudioPlay.playAudio(c, fullPath);
+                                    }
+                                    //
+                                } catch (MalformedURLException e) {
+                                    e.printStackTrace();
+                                }
+                                return null;
+                            }
 
-                    protected Void doInBackground(Void... params) {
-                        AudioPlay.stopAudio();
-                        AudioPlay.playAudio(c, ayah.getAudio_url());
-                        return null;
+                            protected void onPostExecute(Void result) {
+                                if (pd!=null && pd.isShowing()) {
+                                    pd.dismiss();
+                                }
+                            }
+                        }.execute();
+                    }else{
+                        requestPermission(); // Code for permission
                     }
-
-                    protected void onPostExecute(Void result) {
-                        if (pd!=null && pd.isShowing()) {
-                            pd.dismiss();
-                        }
-                    }
-                }.execute();
+                }
             }
         });
 
@@ -212,6 +264,65 @@ public class JuzHizbRubViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public int getItemCount() {
         return ayahs.size();
+    }
+
+    static void downloadFile(String dwnload_file_path, String fileName, String pathToSave) {
+        int downloadedSize = 0;
+        int totalSize = 0;
+        try {
+            URL url = new URL(dwnload_file_path);
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("GET");
+            //urlConnection.setDoOutput(true);
+            // connect
+            urlConnection.connect();
+            File myDir;
+            myDir = new File(pathToSave);
+            myDir.mkdirs();
+            // create a new file, to save the downloaded file
+            String mFileName = fileName;
+            File file = new File(myDir, mFileName);
+            FileOutputStream fileOutput = new FileOutputStream(file);
+            // Stream used for reading the data from the internet
+            InputStream inputStream = urlConnection.getInputStream();
+            // this is the total size of the file which we are downloading
+            totalSize = urlConnection.getContentLength();
+            byte[] buffer = new byte[1024];
+            int bufferLength = 0;
+
+            while ((bufferLength = inputStream.read(buffer)) > 0) {
+                fileOutput.write(buffer, 0, bufferLength);
+                downloadedSize += bufferLength;
+            }
+            // close the output stream when complete //
+            fileOutput.close();
+
+        } catch (final MalformedURLException e) {
+            // showError("Error : MalformedURLException " + e);
+            e.printStackTrace();
+        } catch (final IOException e) {
+            // showError("Error : IOException " + e);
+            e.printStackTrace();
+        } catch (final Exception e) {
+            // showError("Error : Please check your internet connection " + e);
+        }
+    }
+
+    private boolean checkPermission() {
+        int result = ContextCompat.checkSelfPermission(c, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (result == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void requestPermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(activity, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            Toast.makeText(c, "Write External Storage permission allows us to save files. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
+        } else {
+            ActivityCompat.requestPermissions(activity, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+        }
     }
 
     class RecyclerViewHolder extends RecyclerView.ViewHolder {

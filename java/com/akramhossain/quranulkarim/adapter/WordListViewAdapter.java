@@ -1,22 +1,37 @@
 package com.akramhossain.quranulkarim.adapter;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.ConnectionDetector;
 import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.model.Word;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
@@ -27,14 +42,17 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     ProgressDialog pd;
     ConnectionDetector cd;
     Boolean isInternetPresent = false;
+    private Activity activity;
+    private static final int PERMISSION_REQUEST_CODE = 100;
 
-    public WordListViewAdapter(Context c, ArrayList<Word> words) {
+    public WordListViewAdapter(Context c, ArrayList<Word> words, Activity activity) {
         this.c = c;
         this.words = words;
         //dbhelper = new DatabaseHelper(c);
         //db = dbhelper.getWritableDatabase();
         cd = new ConnectionDetector(c);
         isInternetPresent = cd.isConnectingToInternet();
+        this.activity = activity;
     }
 
     @Override
@@ -57,56 +75,76 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             @Override
             public void onClick(View view) {
                 if (isInternetPresent) {
-                    new AsyncTask<Void, Void, Void>() {
-                        protected void onPreExecute() {
-                            pd = new ProgressDialog(c);
-                            pd.setTitle("Processing...");
-                            pd.setMessage("Please wait.");
-                            pd.setCancelable(true);
-                            pd.setIndeterminate(true);
-                            pd.show();
-                        }
-
-                        protected Void doInBackground(Void... params) {
-                            String[] data = word.getAyah_key().split(":", 2);
-                            String sura = data[0];
-                            String ayat = data[1];
-                            String position = word.getPosition();
-                            int slen = sura.length();
-                            int alen = ayat.length();
-                            int plen = position.length();
-                            //
-                            if (slen == 2) {
-                                sura = "0" + sura;
-                            } else if (slen == 1) {
-                                sura = "00" + sura;
+                    if (checkPermission()) {
+                        new AsyncTask<Void, Void, Void>() {
+                            protected void onPreExecute() {
+                                pd = new ProgressDialog(c);
+                                pd.setTitle("Processing...");
+                                pd.setMessage("Please wait.");
+                                pd.setCancelable(true);
+                                pd.setIndeterminate(true);
+                                pd.show();
                             }
 
-                            if (alen == 2) {
-                                ayat = "0" + ayat;
-                            } else if (alen == 1) {
-                                ayat = "00" + ayat;
+                            protected Void doInBackground(Void... params) {
+                                String[] data = word.getAyah_key().split(":", 2);
+                                String sura = data[0];
+                                String ayat = data[1];
+                                String position = word.getPosition();
+                                int slen = sura.length();
+                                int alen = ayat.length();
+                                int plen = position.length();
+                                //
+                                if (slen == 2) {
+                                    sura = "0" + sura;
+                                } else if (slen == 1) {
+                                    sura = "00" + sura;
+                                }
+
+                                if (alen == 2) {
+                                    ayat = "0" + ayat;
+                                } else if (alen == 1) {
+                                    ayat = "00" + ayat;
+                                }
+
+                                if (plen == 2) {
+                                    position = "0" + position;
+                                } else if (plen == 1) {
+                                    position = "00" + position;
+                                }
+                                String mp3name = sura + "_" + ayat + "_" + position + ".mp3";
+                                Log.d("MP3 Name", mp3name);
+                                String mp3Url = "https://verses.quran.com/wbw/" + mp3name;
+                                //
+                                String mPath = c.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) + "/";
+                                String fullPath = mPath + mp3name;
+                                Log.d("File Path:", mPath);
+                                Log.d("Full File Path:", fullPath);
+                                File file = new File(fullPath);
+                                if (file.exists()) {
+                                    Log.d("File Path:", "Exist!");
+                                    AudioPlay.stopAudio();
+                                    AudioPlay.playAudio(c, fullPath);
+                                } else {
+                                    Log.d("File Path:", "Not Exist Downloading!");
+                                    downloadFile(mp3Url, mp3name, mPath);
+                                    AudioPlay.stopAudio();
+                                    AudioPlay.playAudio(c, fullPath);
+                                }
+                                //AudioPlay.stopAudio();
+                                //AudioPlay.playAudio(c, mp3Url);
+                                return null;
                             }
 
-                            if (plen == 2) {
-                                position = "0" + position;
-                            } else if (plen == 1) {
-                                position = "00" + position;
+                            protected void onPostExecute(Void result) {
+                                if (pd != null && pd.isShowing()) {
+                                    pd.dismiss();
+                                }
                             }
-                            String mp3name = sura + "_" + ayat + "_" + position + ".mp3";
-                            Log.d("MP3 Name", mp3name);
-                            String mp3Url = "https://verses.quran.com/wbw/" + mp3name;
-                            AudioPlay.stopAudio();
-                            AudioPlay.playAudio(c, mp3Url);
-                            return null;
-                        }
-
-                        protected void onPostExecute(Void result) {
-                            if (pd != null && pd.isShowing()) {
-                                pd.dismiss();
-                            }
-                        }
-                    }.execute();
+                        }.execute();
+                    }else{
+                        requestPermission(); // Code for permission
+                    }
                 }else{
                     AlertDialog.Builder alert = new AlertDialog.Builder(c);
                     alert.setTitle(R.string.text_warning);
@@ -121,6 +159,65 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public int getItemCount() {
         return words.size();
+    }
+
+    static void downloadFile(String dwnload_file_path, String fileName, String pathToSave) {
+        int downloadedSize = 0;
+        int totalSize = 0;
+        try {
+            URL url = new URL(dwnload_file_path);
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("GET");
+            //urlConnection.setDoOutput(true);
+            // connect
+            urlConnection.connect();
+            File myDir;
+            myDir = new File(pathToSave);
+            myDir.mkdirs();
+            // create a new file, to save the downloaded file
+            String mFileName = fileName;
+            File file = new File(myDir, mFileName);
+            FileOutputStream fileOutput = new FileOutputStream(file);
+            // Stream used for reading the data from the internet
+            InputStream inputStream = urlConnection.getInputStream();
+            // this is the total size of the file which we are downloading
+            totalSize = urlConnection.getContentLength();
+            byte[] buffer = new byte[1024];
+            int bufferLength = 0;
+
+            while ((bufferLength = inputStream.read(buffer)) > 0) {
+                fileOutput.write(buffer, 0, bufferLength);
+                downloadedSize += bufferLength;
+            }
+            // close the output stream when complete //
+            fileOutput.close();
+
+        } catch (final MalformedURLException e) {
+            // showError("Error : MalformedURLException " + e);
+            e.printStackTrace();
+        } catch (final IOException e) {
+            // showError("Error : IOException " + e);
+            e.printStackTrace();
+        } catch (final Exception e) {
+            // showError("Error : Please check your internet connection " + e);
+        }
+    }
+
+    private boolean checkPermission() {
+        int result = ContextCompat.checkSelfPermission(c, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (result == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void requestPermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(activity, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            Toast.makeText(c, "Write External Storage permission allows us to save files. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
+        } else {
+            ActivityCompat.requestPermissions(activity, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+        }
     }
 
     class RecyclerViewHolder extends RecyclerView.ViewHolder {

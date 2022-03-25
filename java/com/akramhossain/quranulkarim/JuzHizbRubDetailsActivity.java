@@ -324,7 +324,7 @@ public class JuzHizbRubDetailsActivity extends Activity {
 
     private void setRecyclerViewAdapter() {
         ayahs = new ArrayList<Ayah>();
-        rvAdapter = new JuzHizbRubViewAdapter(JuzHizbRubDetailsActivity.this, ayahs);
+        rvAdapter = new JuzHizbRubViewAdapter(JuzHizbRubDetailsActivity.this, ayahs, this);
         recyclerview.setAdapter(rvAdapter);
     }
 

@@ -136,7 +136,7 @@ public class BookmarkActivity extends Activity {
 
     private void setRecyclerViewAdapter() {
         ayahs = new ArrayList<Ayah>();
-        rvAdapter = new BookmarkViewAdapter(BookmarkActivity.this, ayahs);
+        rvAdapter = new BookmarkViewAdapter(BookmarkActivity.this, ayahs, this);
         recyclerview.setAdapter(rvAdapter);
     }
 

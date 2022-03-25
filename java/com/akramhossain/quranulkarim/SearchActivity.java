@@ -242,7 +242,7 @@ public class SearchActivity extends Activity {
 
     private void setRecyclerViewAdapter() {
         ayahs = new ArrayList<Ayah>();
-        rvAdapter = new SuraDetailsViewAdapter(SearchActivity.this, ayahs);
+        rvAdapter = new SuraDetailsViewAdapter(SearchActivity.this, ayahs, this);
         recyclerview.setAdapter(rvAdapter);
     }
 

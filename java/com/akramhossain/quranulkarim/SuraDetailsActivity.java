@@ -2,9 +2,13 @@ package com.akramhossain.quranulkarim;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
@@ -50,6 +54,8 @@ public class SuraDetailsActivity extends Activity {
     Boolean isInternetPresent = false;
 
     public String url;
+
+    private static final int PERMISSION_REQUEST_CODE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -338,6 +344,11 @@ public class SuraDetailsActivity extends Activity {
         isInternetPresent = cd.isConnectingToInternet();
         //FETCH DATA FROM REMOTE SERVER
         //getPatchFromInternet();
+        if (checkPermission()) {
+
+        }else{
+            requestPermission();
+        }
     }
 
     private void getPatchFromInternet() {
@@ -397,7 +408,7 @@ public class SuraDetailsActivity extends Activity {
 
     private void setRecyclerViewAdapter() {
         ayahs = new ArrayList<Ayah>();
-        rvAdapter = new SuraDetailsViewAdapter(SuraDetailsActivity.this, ayahs);
+        rvAdapter = new SuraDetailsViewAdapter(SuraDetailsActivity.this, ayahs, this);
         recyclerview.setAdapter(rvAdapter);
     }
 
@@ -458,6 +469,36 @@ public class SuraDetailsActivity extends Activity {
 
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+    }
+
+    private boolean checkPermission() {
+        int result = ContextCompat.checkSelfPermission(SuraDetailsActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (result == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void requestPermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(SuraDetailsActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            Toast.makeText(SuraDetailsActivity.this, "Write External Storage permission allows us to save files. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
+        } else {
+            ActivityCompat.requestPermissions(SuraDetailsActivity.this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_REQUEST_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                } else {
+                    Log.e("value", "Permission Denied, You cannot use local drive .");
+                }
+                break;
         }
     }
 }

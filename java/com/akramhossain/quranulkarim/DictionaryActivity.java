@@ -1,14 +1,19 @@
 package com.akramhossain.quranulkarim;
 
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.Handler;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.adapter.WordListViewAdapter;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
@@ -32,6 +37,7 @@ public class DictionaryActivity extends Activity implements SearchView.OnQueryTe
     SearchView editsearch;
     String searchTxt = "";
     Handler mHandler = new Handler();
+    private static final int PERMISSION_REQUEST_CODE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +99,12 @@ public class DictionaryActivity extends Activity implements SearchView.OnQueryTe
 
         editsearch = (SearchView) findViewById(R.id.search);
         editsearch.setOnQueryTextListener(this);
+
+        if (checkPermission()) {
+
+        }else{
+            requestPermission();
+        }
     }
 
     private void getDataFromLocalDb() {
@@ -141,7 +153,7 @@ public class DictionaryActivity extends Activity implements SearchView.OnQueryTe
 
     private void setRecyclerViewAdapter() {
         words = new ArrayList<Word>();
-        rvAdapter = new WordListViewAdapter(DictionaryActivity.this, words);
+        rvAdapter = new WordListViewAdapter(DictionaryActivity.this, words, this);
         recyclerview.setAdapter(rvAdapter);
     }
 
@@ -161,14 +173,14 @@ public class DictionaryActivity extends Activity implements SearchView.OnQueryTe
                 int length = searchTxt.length();
                 if(length > 0) {
                     words = new ArrayList<Word>();
-                    rvAdapter = new WordListViewAdapter(DictionaryActivity.this, words);
+                    rvAdapter = new WordListViewAdapter(DictionaryActivity.this, words, DictionaryActivity.this);
                     recyclerview.setAdapter(rvAdapter);
                     offset = 0;
                     getDataFromLocalDb();
                 }
                 else{
                     words = new ArrayList<Word>();
-                    rvAdapter = new WordListViewAdapter(DictionaryActivity.this, words);
+                    rvAdapter = new WordListViewAdapter(DictionaryActivity.this, words, DictionaryActivity.this);
                     recyclerview.setAdapter(rvAdapter);
                     offset = 0;
                     getDataFromLocalDb();
@@ -178,6 +190,36 @@ public class DictionaryActivity extends Activity implements SearchView.OnQueryTe
 
 
         return true;
+    }
+
+    private boolean checkPermission() {
+        int result = ContextCompat.checkSelfPermission(DictionaryActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (result == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void requestPermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(DictionaryActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            Toast.makeText(DictionaryActivity.this, "Write External Storage permission allows us to save files. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
+        } else {
+            ActivityCompat.requestPermissions(DictionaryActivity.this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_REQUEST_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                } else {
+                    Log.e("value", "Permission Denied, You cannot use local drive .");
+                }
+                break;
+        }
     }
 
 }

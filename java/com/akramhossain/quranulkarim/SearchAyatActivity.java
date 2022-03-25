@@ -78,7 +78,7 @@ public class SearchAyatActivity extends AppCompatActivity {
 
     private void setRecyclerViewAdapter() {
         ayahs = new ArrayList<Ayah>();
-        rvAdapter = new SearchTermViewAdapter(SearchAyatActivity.this, ayahs);
+        rvAdapter = new SearchTermViewAdapter(SearchAyatActivity.this, ayahs, this);
         recyclerview.setAdapter(rvAdapter);
     }
 
