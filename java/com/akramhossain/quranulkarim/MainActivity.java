@@ -351,7 +351,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getPopularSearchFromLocalDb() {
         SQLiteDatabase db = dbhelper.getWritableDatabase();
-        String sql = "SELECT * FROM sura WHERE surah_id IN(18,36,55,56,67,71,73,78,85,112) order by RANDOM() ASC LIMIT 10";
+        String sql = "SELECT * FROM sura WHERE surah_id IN(18,36,55,56,67,71,73,78,85,112) order by RANDOM() LIMIT 10";
         Log.i(TAG, sql);
         Cursor cursor = db.rawQuery(sql, null);
         try {

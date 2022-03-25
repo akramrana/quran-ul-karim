@@ -1,8 +1,11 @@
 package com.akramhossain.quranulkarim;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -35,6 +38,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
 import java.util.Random;
 
 public class ShareVerseActivity extends Activity {
@@ -137,7 +141,12 @@ public class ShareVerseActivity extends Activity {
 
                 if (Build.VERSION.SDK_INT >= 23){
                     if (checkPermission()) {
-                        String mPath = Environment.getExternalStorageDirectory().toString() + "/" + "share-ayah.jpg";
+                        String mPath = getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DCIM) + "/" + "share-ayah.jpg";
+                        //ContextWrapper cw = new ContextWrapper(getApplicationContext());
+                        //File directory = cw.getDir(Environment.DIRECTORY_DCIM, Context.MODE_PRIVATE);
+                        //File file = new File(Environment.DIRECTORY_DCIM, "share-ayah" + ".jpg");
+                        //String mPath = file.toString();
+                        //
                         OutputStream fout = null;
                         File imageFile = new File(mPath);
                         try {
@@ -148,9 +157,18 @@ public class ShareVerseActivity extends Activity {
                             Uri uri = FileProvider.getUriForFile(getApplicationContext(),"com.akramhossain.quranulkarim.provider", imageFile);
                             Intent shareIntent = new Intent();
                             shareIntent.setAction(Intent.ACTION_SEND);
-                            shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+                            shareIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                            shareIntent.setFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
                             shareIntent.setType("image/*");
-                            startActivity(Intent.createChooser(shareIntent, "Share Ayah"));
+                            shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+                            //
+                            Intent chooser = Intent.createChooser(shareIntent, "Share Ayah");
+                            List<ResolveInfo> resInfoList = getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
+                            for (ResolveInfo resolveInfo : resInfoList) {
+                                String packageName = resolveInfo.activityInfo.packageName;
+                                getApplicationContext().grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                            }
+                            startActivity(chooser);
 
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
