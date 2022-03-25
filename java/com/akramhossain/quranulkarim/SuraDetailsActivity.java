@@ -57,6 +57,11 @@ public class SuraDetailsActivity extends Activity {
 
     private static final int PERMISSION_REQUEST_CODE = 100;
 
+    TextView play_audio;
+    TextView pause_audio;
+    TextView stop_audio;
+    TextView resume_audio;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -349,6 +354,60 @@ public class SuraDetailsActivity extends Activity {
         }else{
             requestPermission();
         }
+
+        play_audio = (TextView) findViewById(R.id.play_audio);
+        pause_audio = (TextView) findViewById(R.id.pause_audio);
+        resume_audio = (TextView) findViewById(R.id.resume_audio);
+        stop_audio = (TextView) findViewById(R.id.stop_audio);
+
+        if (isInternetPresent) {
+            play_audio.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AudioPlay.stopAudio();
+                    AudioPlay.playAudio(getApplicationContext(), "https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/" + suraId + ".mp3");
+
+                    play_audio.setVisibility(View.GONE);
+                    pause_audio.setVisibility(View.VISIBLE);
+                    resume_audio.setVisibility(View.GONE);
+                    stop_audio.setVisibility(View.VISIBLE);
+                }
+            });
+
+            pause_audio.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AudioPlay.pauseAudio();
+                    play_audio.setVisibility(View.GONE);
+                    pause_audio.setVisibility(View.GONE);
+                    resume_audio.setVisibility(View.VISIBLE);
+                    stop_audio.setVisibility(View.VISIBLE);
+                }
+            });
+
+            resume_audio.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AudioPlay.resumeAudio();
+                    play_audio.setVisibility(View.GONE);
+                    pause_audio.setVisibility(View.VISIBLE);
+                    resume_audio.setVisibility(View.GONE);
+                    stop_audio.setVisibility(View.VISIBLE);
+                }
+            });
+
+            stop_audio.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AudioPlay.stopAudio();
+                    play_audio.setVisibility(View.VISIBLE);
+                    pause_audio.setVisibility(View.GONE);
+                    resume_audio.setVisibility(View.GONE);
+                    stop_audio.setVisibility(View.GONE);
+                }
+            });
+        }
+
     }
 
     private void getPatchFromInternet() {
