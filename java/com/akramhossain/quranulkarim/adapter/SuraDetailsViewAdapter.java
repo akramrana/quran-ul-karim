@@ -105,15 +105,17 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         rvHolder.playBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                TextView play_audio = (TextView) activity.findViewById(R.id.play_audio);
-                play_audio.setVisibility(View.VISIBLE);
-                TextView pause_audio = (TextView) activity.findViewById(R.id.pause_audio);
-                pause_audio.setVisibility(View.GONE);
-                TextView resume_audio = (TextView) activity.findViewById(R.id.resume_audio);
-                resume_audio.setVisibility(View.GONE);
-                TextView stop_audio = (TextView) activity.findViewById(R.id.stop_audio);
-                stop_audio.setVisibility(View.GONE);
-
+                String activityName = activity.getClass().getSimpleName();
+                if(activityName.equals("SuraDetailsActivity")){
+                    TextView play_audio = (TextView) activity.findViewById(R.id.play_audio);
+                    play_audio.setVisibility(View.VISIBLE);
+                    TextView pause_audio = (TextView) activity.findViewById(R.id.pause_audio);
+                    pause_audio.setVisibility(View.GONE);
+                    TextView resume_audio = (TextView) activity.findViewById(R.id.resume_audio);
+                    resume_audio.setVisibility(View.GONE);
+                    TextView stop_audio = (TextView) activity.findViewById(R.id.stop_audio);
+                    stop_audio.setVisibility(View.GONE);
+                }
                 if (isInternetPresent) {
                     if (checkPermission()) {
                         new AsyncTask<Void, Void, Void>() {
