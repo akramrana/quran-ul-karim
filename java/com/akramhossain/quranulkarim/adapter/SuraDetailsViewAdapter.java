@@ -31,6 +31,7 @@ import android.widget.Toast;
 import com.akramhossain.quranulkarim.ConnectionDetector;
 import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.ShareVerseActivity;
+import com.akramhossain.quranulkarim.TafsirActivity;
 import com.akramhossain.quranulkarim.WordMeaningActivity;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
@@ -287,6 +288,24 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             }
         });
 
+        rvHolder.tafsirs.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                try {
+                    Intent in = new Intent(c, TafsirActivity.class);
+                    in.putExtra("ayah_index", ayah.getAyah_index());
+                    in.putExtra("text_tashkeel", ayah.getText_tashkeel());
+                    in.putExtra("content_en", ayah.getContent_en());
+                    in.putExtra("content_bn", ayah.getContent_bn());
+                    in.putExtra("ayah_num", ayah.getAyah_num());
+                    in.putExtra("surah_id", ayah.getSurah_id());
+                    in.putExtra("ayah_key", ayah.getAyah_key());
+                    c.startActivity(in);
+                }catch (Exception e) {
+                    Log.e("Tafsirs", e.getMessage());
+                }
+            }
+        });
 
     }
 
@@ -361,6 +380,7 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         TextView content_en;
         TextView content_bn;
         TextView sajdah;
+        TextView tafsirs;
         Button playBtn;
         Button bookmarkBtn;
         Button wordMeaningButton;
@@ -383,6 +403,7 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             wordMeaningButton = (Button) itemView.findViewById(R.id.wordMeaningButton);
             shareButton = (Button) itemView.findViewById(R.id.shareButton);
             copyButton = (Button) itemView.findViewById(R.id.copyButton);
+            tafsirs = (TextView) itemView.findViewById(R.id.tafsirs);
         }
     }
 }

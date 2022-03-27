@@ -1,0 +1,156 @@
+package com.akramhossain.quranulkarim;
+
+import android.app.Activity;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
+import android.os.Bundle;
+import android.text.Html;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import com.akramhossain.quranulkarim.helper.DatabaseHelper;
+
+import androidx.core.content.ContextCompat;
+
+public class TafsirActivity extends Activity {
+
+    public static String ayah_index;
+    public static String text_tashkeel;
+    public static String content_en;
+    public static String content_bn;
+    public static String ayah_num;
+    public static String surah_id;
+    public static String ayah_key;
+    public static String surah_name;
+    DatabaseHelper dbhelper;
+    Typeface font;
+
+    TextView bayaan_content,zakaria_content,jalalayn_content;
+
+    String bayaan_text, zakaria_text, jalalayn_text;
+
+    TextView tv_surah_name,tv_ayah_arabic,tv_ayah_english,tv_ayah_bangla,tv_ayah_num;
+
+    Button btn_bayaan, btn_zakaria, btn_jalalayn;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null) {
+            ayah_index = extras.getString("ayah_index");
+            text_tashkeel = extras.getString("text_tashkeel");
+            content_en = extras.getString("content_en");
+            content_bn = extras.getString("content_bn");
+            ayah_num = extras.getString("ayah_num");
+            surah_id = extras.getString("surah_id");
+            ayah_key = extras.getString("ayah_key");
+        }
+        font = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/Siyamrupali.ttf");
+        dbhelper = new DatabaseHelper(getApplicationContext());
+
+        setContentView(R.layout.activity_tafsir);
+        setTitle("Tafsir");
+
+        this.setFinishOnTouchOutside(true);
+
+        SQLiteDatabase db = dbhelper.getWritableDatabase();
+
+        String bayaanSql = "select ayah.surah_id,ayah.ayah_num,\n" +
+                "(select c2text from verses_content_tafsir_bayaan where verses_content_tafsir_bayaan.c0sura = ayah.surah_id and verses_content_tafsir_bayaan.c1ayah = ayah.ayah_num) tafsir_bayaan,\n" +
+                "(select c2text from verses_content_tafsir_zakaria where verses_content_tafsir_zakaria.c0sura = ayah.surah_id and verses_content_tafsir_zakaria.c1ayah = ayah.ayah_num) tafsir_zakaria,\n" +
+                "(select c2text from verses_content_tafsir_jalalayn where verses_content_tafsir_jalalayn.c0sura = ayah.surah_id and verses_content_tafsir_jalalayn.c1ayah = ayah.ayah_num) tafsir_jalalayn,\n" +
+                "(select name_simple from sura where surah_id = ayah.surah_id) surah_name\n" +
+                "from ayah\n" +
+                "where ayah.surah_id = "+surah_id+" and ayah.ayah_num = "+ayah_num;
+        Cursor cursor = db.rawQuery(bayaanSql,null);
+
+        try {
+            if (cursor.moveToFirst()) {
+                bayaan_text = cursor.getString(2);
+                zakaria_text = cursor.getString(3);
+                jalalayn_text = cursor.getString(4);
+                surah_name = cursor.getString(5);
+                Log.d("Tafsir Bayaan", bayaan_text);
+                Log.d("Tafsir Zakariya", zakaria_text);
+                Log.d("Tafsir Jalalayn", jalalayn_text);
+            }
+        }catch (Exception e){
+            Log.i("Tafsir", e.getMessage());
+        }finally {
+            if (cursor != null && !cursor.isClosed()){
+                cursor.close();
+            }
+            db.close();
+        }
+
+        bayaan_content = (TextView) findViewById(R.id.bayaan_content);
+        bayaan_content.setText(Html.fromHtml(bayaan_text));
+
+        zakaria_content = (TextView) findViewById(R.id.zakaria_content);
+        zakaria_content.setText(Html.fromHtml(zakaria_text));
+
+        jalalayn_content = (TextView) findViewById(R.id.jalalayn_content);
+        jalalayn_content.setText(Html.fromHtml(jalalayn_text));
+
+        tv_surah_name = (TextView) findViewById(R.id.surah_name);
+        tv_surah_name.setText("Surah "+surah_name+": "+ayah_num);
+
+        tv_ayah_arabic = (TextView) findViewById(R.id.ayah_arabic);
+        tv_ayah_arabic.setText(text_tashkeel);
+
+        tv_ayah_english = (TextView) findViewById(R.id.ayah_english);
+        tv_ayah_english.setText(content_en);
+
+        tv_ayah_bangla = (TextView) findViewById(R.id.ayah_bangla);
+        tv_ayah_bangla.setTypeface(font);
+        tv_ayah_bangla.setText(content_bn);
+
+        tv_ayah_num = (TextView) findViewById(R.id.ayah_num);
+        tv_ayah_num.setText(surah_name+" "+ayah_key);
+
+        btn_bayaan = (Button) findViewById(R.id.bayaan);
+        btn_bayaan.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.playColor));
+
+        btn_zakaria = (Button) findViewById(R.id.zakaria);
+        btn_jalalayn = (Button) findViewById(R.id.jalalayn);
+
+        btn_bayaan.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                bayaan_content.setVisibility(View.VISIBLE);
+                zakaria_content.setVisibility(View.GONE);
+                jalalayn_content.setVisibility(View.GONE);
+                btn_bayaan.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.playColor));
+                btn_zakaria.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.counter_text_bg));
+                btn_jalalayn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.counter_text_bg));
+            }
+        });
+
+        btn_zakaria.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                bayaan_content.setVisibility(View.GONE);
+                zakaria_content.setVisibility(View.VISIBLE);
+                jalalayn_content.setVisibility(View.GONE);
+                btn_zakaria.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.playColor));
+                btn_bayaan.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.counter_text_bg));
+                btn_jalalayn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.counter_text_bg));
+            }
+        });
+
+        btn_jalalayn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                bayaan_content.setVisibility(View.GONE);
+                zakaria_content.setVisibility(View.GONE);
+                jalalayn_content.setVisibility(View.VISIBLE);
+                btn_jalalayn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.playColor));
+                btn_zakaria.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.counter_text_bg));
+                btn_bayaan.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.counter_text_bg));
+            }
+        });
+
+    }
+}
