@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.akramhossain.quranulkarim"
-    android:versionCode="31"
-    android:versionName="25.03.2022">
+    android:versionCode="32"
+    android:versionName="28.03.2022">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
@@ -22,9 +22,7 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".TafsirActivity"
-            android:excludeFromRecents="true"></activity>
+        <activity android:name=".TafsirActivity"></activity>
         <activity android:name=".SearchAyatActivity" />
         <activity android:name=".JuzHizbRubDetailsActivity" />
         <activity
