@@ -15,6 +15,7 @@
     <color name="colorPrayerTimeRowBg">#FFFFFF</color>
     <color name="switchColor">#911DEE</color>
     <color name="daynight_textColor">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
 
 
     <item name="blue" type="color">#FF33B5E5</item>

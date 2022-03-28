@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.adapter.WordListViewAdapter;
+import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.Word;
 
@@ -118,6 +119,12 @@ public class WordMeaningActivity extends Activity {
         } else {
             return false;
         }
+    }
+
+    public void onPause()
+    {
+        super.onPause();
+        AudioPlay.stopAudio();
     }
 
     private void requestPermission() {

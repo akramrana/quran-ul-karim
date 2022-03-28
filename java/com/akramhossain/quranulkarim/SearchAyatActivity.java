@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.akramhossain.quranulkarim.adapter.SearchTermViewAdapter;
+import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.Ayah;
 import com.akramhossain.quranulkarim.util.ConnectionDetector;
@@ -129,5 +130,11 @@ public class SearchAyatActivity extends AppCompatActivity {
             db.close();
         }
         rvAdapter.notifyDataSetChanged();
+    }
+
+    public void onPause()
+    {
+        super.onPause();
+        AudioPlay.stopAudio();
     }
 }

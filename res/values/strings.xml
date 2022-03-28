@@ -74,7 +74,7 @@
     <string name="string_rub_subtitle">list of 240 Rub\'</string>
     <string name="string_search_by_term"><u>Search by Term</u></string>
     <string name="ppl_search">Popular Searches</string>
-    <string name="text_tafsirs"><u>View Tafsirs</u></string>
+    <string name="text_tafsirs">View Tafsirs</string>
     <string name="title_activity_tafsir">Tafsirs</string>
     <string name="string_tafsir">Tafsir</string>
     <string name="string_tafsir_subtitle">Ahsanul Bayaan, Abu Bakr Zakaria, Jalalayn</string>
