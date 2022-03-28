@@ -125,8 +125,8 @@ public class TafsirActivity extends Activity {
                 zakaria_content.setVisibility(View.GONE);
                 jalalayn_content.setVisibility(View.GONE);
                 btn_bayaan.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
-                btn_zakaria.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorWhite));
-                btn_jalalayn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorWhite));
+                btn_zakaria.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
+                btn_jalalayn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
             }
         });
 
@@ -136,8 +136,8 @@ public class TafsirActivity extends Activity {
                 zakaria_content.setVisibility(View.VISIBLE);
                 jalalayn_content.setVisibility(View.GONE);
                 btn_zakaria.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
-                btn_bayaan.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorWhite));
-                btn_jalalayn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorWhite));
+                btn_bayaan.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
+                btn_jalalayn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
             }
         });
 
@@ -147,8 +147,8 @@ public class TafsirActivity extends Activity {
                 zakaria_content.setVisibility(View.GONE);
                 jalalayn_content.setVisibility(View.VISIBLE);
                 btn_jalalayn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
-                btn_zakaria.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorWhite));
-                btn_bayaan.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorWhite));
+                btn_zakaria.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
+                btn_bayaan.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
             }
         });
 
