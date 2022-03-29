@@ -81,10 +81,11 @@
             android:layout_marginTop="10dip"
             android:layout_marginBottom="10dip"
             android:textColor="@color/colorWhiteDN"
-            android:textSize="13dp"
+            android:textSize="12dp"
             android:textStyle="bold"
             android:text="@string/text_tafsirs"
-            android:background="@drawable/rounded_border"/>
+            android:background="@drawable/rounded_border"
+            android:layout_alignParentRight="true"/>
 
         <View
             android:id="@+id/horizon-line"
