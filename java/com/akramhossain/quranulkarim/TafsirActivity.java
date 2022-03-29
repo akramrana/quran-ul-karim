@@ -89,13 +89,13 @@ public class TafsirActivity extends Activity {
         }
 
         bayaan_content = (TextView) findViewById(R.id.bayaan_content);
-        bayaan_content.setText(Html.fromHtml(bayaan_text));
+        bayaan_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/>"+bayaan_text));
 
         zakaria_content = (TextView) findViewById(R.id.zakaria_content);
-        zakaria_content.setText(Html.fromHtml(zakaria_text));
+        zakaria_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/>"+zakaria_text));
 
         jalalayn_content = (TextView) findViewById(R.id.jalalayn_content);
-        jalalayn_content.setText(Html.fromHtml(jalalayn_text));
+        jalalayn_content.setText(Html.fromHtml("<b>Tafsir:</b><br/><br/>"+jalalayn_text));
 
         tv_surah_name = (TextView) findViewById(R.id.surah_name);
         tv_surah_name.setText("Surah "+surah_name+": "+ayah_num);
