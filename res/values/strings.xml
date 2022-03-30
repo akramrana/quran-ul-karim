@@ -77,8 +77,9 @@
     <string name="text_tafsirs">তাফসির | Tafsir</string>
     <string name="title_activity_tafsir">Tafsirs</string>
     <string name="string_tafsir">Tafsir</string>
-    <string name="string_tafsir_subtitle">Ahsanul Bayaan, Abu Bakr Zakaria, Jalalayn</string>
+    <string name="string_tafsir_subtitle">Ibn Kathir, Ahsanul Bayaan, Abu Bakr Zakaria, Jalalayn</string>
     <string name="string_bayaan">Tafsir Ahsanul Bayaan</string>
     <string name="string_zakaria">Tafsir Abu Bakr Zakaria</string>
     <string name="string_jalalayn">Tafsir Jalalayn</string>
+    <string name="string_ibnkathir">Tafsir ibn Kathir</string>
 </resources>

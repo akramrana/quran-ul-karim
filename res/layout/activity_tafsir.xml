@@ -46,9 +46,40 @@
                     android:paddingRight="5dp"
                     android:textColor="@color/colorWhiteDN"
                     android:textSize="15dp"
-                    android:text="@string/string_tafsir_subtitle"/>
+                    android:text="@string/string_tafsir_subtitle"
+                    android:visibility="gone"/>
 
             </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/nextPrevSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/topTafsirBar">
+
+            <Button
+                android:id="@+id/previousBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Prev"
+                android:textSize="12dp"
+                android:drawableLeft="@android:drawable/ic_media_previous"
+                android:layout_alignParentLeft="true"
+                android:background="@android:color/transparent"/>
+
+
+            <Button
+                android:id="@+id/nextBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next"
+                android:textSize="12dp"
+                android:drawableRight="@android:drawable/ic_media_next"
+                android:layout_alignParentRight="true"
+                android:background="@android:color/transparent"/>
 
         </RelativeLayout>
 
@@ -57,7 +88,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:id="@+id/tafsirButtonSection"
-            android:layout_below="@id/topTafsirBar">
+            android:layout_below="@id/nextPrevSection">
 
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView1"
@@ -71,6 +102,18 @@
                     android:gravity="center">
 
                     <Button
+                        android:id="@+id/ibnkathir"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/string_ibnkathir"
+                        android:textSize="12dp"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="6dp"
+                        android:paddingRight="6dp"
+                        android:textColor="@color/colorWhiteDN"
+                        android:background="@color/bg_color"/>
+
+                    <Button
                         android:id="@+id/bayaan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -80,7 +123,7 @@
                         android:paddingLeft="6dp"
                         android:paddingRight="6dp"
                         android:textColor="@color/colorWhiteDN"
-                        android:background="@color/bg_color"/>
+                        android:background="@color/colorBlack"/>
 
                     <Button
                         android:id="@+id/zakaria"
@@ -215,7 +258,7 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/bayaan_content"
+                        android:id="@+id/ibn_kathir_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textIsSelectable="true"
@@ -224,6 +267,19 @@
                         android:paddingRight="5dp"
                         android:textSize="15dip"
                         android:layout_gravity="center_vertical|end"/>
+
+                    <TextView
+                        android:id="@+id/bayaan_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textIsSelectable="true"
+                        android:layout_below="@id/ibn_kathir_content"
+                        android:textColor="@color/colorWhite"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textSize="15dip"
+                        android:layout_gravity="center_vertical|end"
+                        android:visibility="gone"/>
 
                     <TextView
                         android:id="@+id/zakaria_content"
