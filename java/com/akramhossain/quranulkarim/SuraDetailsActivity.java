@@ -420,8 +420,8 @@ public class SuraDetailsActivity extends Activity {
         SQLiteDatabase db = dbhelper.getWritableDatabase();
         String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple " +
                 "FROM ayah " +
-                "LEFT join sura ON ayah.surah_id = sura.surah_id W" +
-                "HERE ayah.surah_id = "+suraId+" " +
+                "LEFT join sura ON ayah.surah_id = sura.surah_id " +
+                "WHERE ayah.surah_id = "+suraId+" " +
                 "order by ayah.ayah_index ASC " +
                 "limit " + offset + "," + limit;
         //Log.i(TAG, sql);

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
+import com.akramhossain.quranulkarim.model.Ayah;
 
 import androidx.core.content.ContextCompat;
 
@@ -36,6 +37,8 @@ public class TafsirActivity extends Activity {
 
     Button btn_bayaan, btn_zakaria, btn_jalalayn, btn_ibnkathir;
 
+    private static final String TAG = TafsirActivity.class.getSimpleName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,35 +59,19 @@ public class TafsirActivity extends Activity {
         setContentView(R.layout.activity_tafsir);
         setTitle("Tafsir");
 
-        getDataFromLocalDb();
-
         bayaan_content = (TextView) findViewById(R.id.bayaan_content);
-        bayaan_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/>"+bayaan_text));
-
         zakaria_content = (TextView) findViewById(R.id.zakaria_content);
-        zakaria_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/>"+zakaria_text));
-
         jalalayn_content = (TextView) findViewById(R.id.jalalayn_content);
-        jalalayn_content.setText(Html.fromHtml("<b>Tafsir:</b><br/><br/>"+jalalayn_text));
-
         ibn_kathir_content = (TextView) findViewById(R.id.ibn_kathir_content);
-        ibn_kathir_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/>"+ibn_kasir_text));
 
         tv_surah_name = (TextView) findViewById(R.id.surah_name);
-        tv_surah_name.setText(surah_name+" "+ayah_key);
-
         tv_ayah_arabic = (TextView) findViewById(R.id.ayah_arabic);
-        tv_ayah_arabic.setText(text_tashkeel);
-
         tv_ayah_english = (TextView) findViewById(R.id.ayah_english);
-        tv_ayah_english.setText(content_en);
-
         tv_ayah_bangla = (TextView) findViewById(R.id.ayah_bangla);
         tv_ayah_bangla.setTypeface(font);
-        tv_ayah_bangla.setText(content_bn);
-
         tv_ayah_num = (TextView) findViewById(R.id.ayah_num);
-        tv_ayah_num.setText(surah_name+" "+ayah_key);
+
+        getDataFromLocalDb();
 
         btn_ibnkathir = (Button) findViewById(R.id.ibnkathir);
         btn_ibnkathir.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
@@ -145,6 +132,79 @@ public class TafsirActivity extends Activity {
             }
         });
 
+        Button previousBtn = (Button) findViewById(R.id.previousBtn);
+        Button nextBtn = (Button) findViewById(R.id.nextBtn);
+
+        previousBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                SQLiteDatabase db = dbhelper.getWritableDatabase();
+                String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple " +
+                        "FROM ayah " +
+                        "LEFT join sura ON ayah.surah_id = sura.surah_id " +
+                        "WHERE ayah.surah_id = "+surah_id+" and ayah.ayah_num < "+ayah_num+" " +
+                        "order by ayah.ayah_index DESC " +
+                        "limit 1";
+                //Log.i(TAG, sql);
+                Cursor cursor = db.rawQuery(sql, null);
+                try {
+                    if (cursor.moveToFirst()) {
+                        ayah_index = cursor.getString(0);
+                        text_tashkeel = cursor.getString(10);
+                        content_en = cursor.getString(11);
+                        content_bn = cursor.getString(12);
+                        ayah_num = cursor.getString(2);
+                        surah_id = cursor.getString(1);
+                        ayah_key = cursor.getString(8);
+
+                        getDataFromLocalDb();
+                    }
+                }catch (Exception e){
+                    Log.i(TAG, e.getMessage());
+                }
+                finally {
+                    if (cursor != null && !cursor.isClosed()){
+                        cursor.close();
+                    }
+                    db.close();
+                }
+            }
+        });
+
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                SQLiteDatabase db = dbhelper.getWritableDatabase();
+                String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple " +
+                        "FROM ayah " +
+                        "LEFT join sura ON ayah.surah_id = sura.surah_id " +
+                        "WHERE ayah.surah_id = "+surah_id+" and ayah.ayah_num > "+ayah_num+" " +
+                        "order by ayah.ayah_index ASC " +
+                        "limit 1";
+                //Log.i(TAG, sql);
+                Cursor cursor = db.rawQuery(sql, null);
+                try {
+                    if (cursor.moveToFirst()) {
+                        ayah_index = cursor.getString(0);
+                        text_tashkeel = cursor.getString(10);
+                        content_en = cursor.getString(11);
+                        content_bn = cursor.getString(12);
+                        ayah_num = cursor.getString(2);
+                        surah_id = cursor.getString(1);
+                        ayah_key = cursor.getString(8);
+
+                        getDataFromLocalDb();
+                    }
+                }catch (Exception e){
+                    Log.i(TAG, e.getMessage());
+                }
+                finally {
+                    if (cursor != null && !cursor.isClosed()){
+                        cursor.close();
+                    }
+                    db.close();
+                }
+            }
+        });
+
     }
 
     private void getDataFromLocalDb() {
@@ -171,6 +231,17 @@ public class TafsirActivity extends Activity {
                 Log.d("Tafsir Zakariya", zakaria_text);
                 Log.d("Tafsir Jalalayn", jalalayn_text);
                 Log.d("Tafsir IBN Kathir", ibn_kasir_text);
+
+                bayaan_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/>"+bayaan_text));
+                zakaria_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/>"+zakaria_text));
+                jalalayn_content.setText(Html.fromHtml("<b>Tafsir:</b><br/><br/>"+jalalayn_text));
+                ibn_kathir_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/>"+ibn_kasir_text));
+
+                tv_surah_name.setText(surah_name+" "+ayah_key);
+                tv_ayah_arabic.setText(text_tashkeel);
+                tv_ayah_english.setText(content_en);
+                tv_ayah_bangla.setText(content_bn);
+                tv_ayah_num.setText(surah_name+" "+ayah_key);
             }
         }catch (Exception e){
             Log.i("Tafsir", e.getMessage());
