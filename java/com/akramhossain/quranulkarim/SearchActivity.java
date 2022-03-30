@@ -165,28 +165,30 @@ public class SearchActivity extends Activity {
                 if (dy > 0) {
                     // Recycle view scrolling downwards...
                     // this if statement detects when user reaches the end of recyclerView, this is only time we should load more
-                    if (!recyclerView.canScrollVertically(RecyclerView.FOCUS_DOWN)) {
-                        if (itShouldLoadMore) {
-                            SQLiteDatabase db = dbhelper.getWritableDatabase();
-                            String sql = "SELECT COUNT(*) FROM ayah WHERE surah_id = "+suraId;
-                            Cursor countHistory = db.rawQuery(sql,null);
-                            try {
-                                countHistory.moveToFirst();
-                                int maxHistoryCount = countHistory.getInt(0);
-                                countHistory.close();
-                                int maxPageCount = (int) Math.ceil(maxHistoryCount / limit);
-                                if (counter < maxPageCount) {
-                                    counter = (counter + 1);
-                                    offset = offset + limit;
-                                    getDataFromLocalDb();
-                                }
-                            }catch (Exception e){
-                                Log.i("On Scroll Count Check", e.getMessage());
-                            }finally {
-                                if (countHistory != null && !countHistory.isClosed()){
+                    if(ayahNumber.equals("")) {
+                        if (!recyclerView.canScrollVertically(RecyclerView.FOCUS_DOWN)) {
+                            if (itShouldLoadMore) {
+                                SQLiteDatabase db = dbhelper.getWritableDatabase();
+                                String sql = "SELECT COUNT(*) FROM ayah WHERE surah_id = " + suraId;
+                                Cursor countHistory = db.rawQuery(sql, null);
+                                try {
+                                    countHistory.moveToFirst();
+                                    int maxHistoryCount = countHistory.getInt(0);
                                     countHistory.close();
+                                    int maxPageCount = (int) Math.ceil(maxHistoryCount / limit);
+                                    if (counter < maxPageCount) {
+                                        counter = (counter + 1);
+                                        offset = offset + limit;
+                                        getDataFromLocalDb();
+                                    }
+                                } catch (Exception e) {
+                                    Log.i("On Scroll Count Check", e.getMessage());
+                                } finally {
+                                    if (countHistory != null && !countHistory.isClosed()) {
+                                        countHistory.close();
+                                    }
+                                    db.close();
                                 }
-                                db.close();
                             }
                         }
                     }
