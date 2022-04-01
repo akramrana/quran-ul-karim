@@ -50,7 +50,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private boolean checkDataBase() {
         //File dbFile = new File(DB_PATH + DB_NAME);
         //return dbFile.exists();
-        SQLiteDatabase checkDb = null;
+        /*SQLiteDatabase checkDb = null;
         try {
             String mypath = DB_PATH + DB_NAME;
             checkDb = SQLiteDatabase.openDatabase(mypath, null, SQLiteDatabase.OPEN_READONLY);
@@ -60,7 +60,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (checkDb != null) {
             checkDb.close();
         }
-        return checkDb != null? true : false;
+        return checkDb != null? true : false;*/
+        File db = new File(DB_PATH);
+        if(db.exists()) return true;
+        File dir = new File(db.getParent());
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        return false;
     }
 
     private void copyDataBase() throws Error {
