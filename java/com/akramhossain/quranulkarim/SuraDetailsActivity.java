@@ -199,8 +199,19 @@ public class SuraDetailsActivity extends Activity {
             chkdb.close();
         }
 
+        play_audio = (TextView) findViewById(R.id.play_audio);
+        pause_audio = (TextView) findViewById(R.id.pause_audio);
+        resume_audio = (TextView) findViewById(R.id.resume_audio);
+        stop_audio = (TextView) findViewById(R.id.stop_audio);
+
         previousBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                AudioPlay.stopAudio();
+                play_audio.setVisibility(View.VISIBLE);
+                pause_audio.setVisibility(View.GONE);
+                resume_audio.setVisibility(View.GONE);
+                stop_audio.setVisibility(View.GONE);
+                //
                 SQLiteDatabase db = dbhelper.getWritableDatabase();
                 String sql = "SELECT * FROM sura WHERE surah_id < "+suraId+" order by surah_id DESC limit 1";
                 Cursor cursor = db.rawQuery(sql, null);
@@ -257,6 +268,12 @@ public class SuraDetailsActivity extends Activity {
 
         nextBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                AudioPlay.stopAudio();
+                play_audio.setVisibility(View.VISIBLE);
+                pause_audio.setVisibility(View.GONE);
+                resume_audio.setVisibility(View.GONE);
+                stop_audio.setVisibility(View.GONE);
+                //
                 SQLiteDatabase db = dbhelper.getWritableDatabase();
                 String sql = "SELECT * FROM sura WHERE surah_id > "+suraId+" order by surah_id ASC limit 1";
                 Cursor cursor = db.rawQuery(sql, null);
@@ -354,11 +371,6 @@ public class SuraDetailsActivity extends Activity {
         }else{
             requestPermission();
         }
-
-        play_audio = (TextView) findViewById(R.id.play_audio);
-        pause_audio = (TextView) findViewById(R.id.pause_audio);
-        resume_audio = (TextView) findViewById(R.id.resume_audio);
-        stop_audio = (TextView) findViewById(R.id.stop_audio);
 
         if (isInternetPresent) {
             play_audio.setOnClickListener(new View.OnClickListener() {

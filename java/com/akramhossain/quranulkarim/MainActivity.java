@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
     private GridView gridView;
 
-    private DatabaseHelper mDBHelper;
-    private SQLiteDatabase mDb;
+    //private DatabaseHelper mDBHelper;
+    //private SQLiteDatabase mDb;
     TextView start_from_last;
     TextView txtNightMode;
     View horizontal_line;
@@ -262,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
 //			}
 //		});
 
-        mDBHelper = new DatabaseHelper(this);
+        /*mDBHelper = new DatabaseHelper(this);
 
         try {
             mDBHelper.updateDataBase();
@@ -274,7 +274,7 @@ public class MainActivity extends AppCompatActivity {
             mDb = mDBHelper.getWritableDatabase();
         } catch (SQLException mSQLException) {
             throw mSQLException;
-        }
+        }*/
 
 
         //NotificationHelper.scheduleRepeatingRTCNotification(getApplicationContext(), "22", "10");

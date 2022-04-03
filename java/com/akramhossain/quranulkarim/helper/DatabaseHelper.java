@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -34,6 +35,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         this.mContext = context;
         copyDataBase();
         this.getReadableDatabase();
+        Log.d("Database Helper","DatabaseHelper Invoked");
     }
 
     public void updateDataBase() throws IOException {
@@ -80,6 +82,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 throw new Error("ErrorCopyingDataBase");
             }
         }
+        Log.d("Database Helper","copyDataBase() Invoked");
     }
 
     private void copyDBFile() throws IOException {
@@ -94,6 +97,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         mOutput.flush();
         mOutput.close();
         mInput.close();
+
+        Log.d("Database Helper","copyDBFile() Invoked");
     }
 
     public boolean openDataBase() throws SQLException {
