@@ -2,6 +2,7 @@ package com.akramhossain.quranulkarim;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -26,6 +27,9 @@ import com.akramhossain.quranulkarim.listener.RecyclerTouchListener;
 import com.akramhossain.quranulkarim.model.Sura;
 import com.akramhossain.quranulkarim.notification.NotificationHelper;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -345,8 +349,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }));
-
-        getPopularSearchFromLocalDb();
     }
 
     private void getPopularSearchFromLocalDb() {
@@ -437,5 +439,7 @@ public class MainActivity extends AppCompatActivity {
         } finally {
             db.close();
         }
+
+        getPopularSearchFromLocalDb();
     }
 }
