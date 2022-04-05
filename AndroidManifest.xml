@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.akramhossain.quranulkarim"
     android:versionCode="38"
-    android:versionName="04.04.2022">
+    android:versionName="38.05.04.2022">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
