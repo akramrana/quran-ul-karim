@@ -82,4 +82,7 @@
     <string name="string_zakaria">Tafsir Abu Bakr Zakaria</string>
     <string name="string_jalalayn">Tafsir Jalalayn</string>
     <string name="string_ibnkathir">Tafsir ibn Kathir</string>
+    <string name="mosque_near_me"><b>Masjid near me</b></string>
+    <string name="string_mn_term">Masjid near me</string>
+    <string name="string_search_mn_subtitle">See nearby masjid</string>
 </resources>

@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.akramhossain.quranulkarim"
-    android:versionCode="38"
-    android:versionName="38.05.04.2022">
+    android:versionCode="39"
+    android:versionName="39.04.24.2022">
 
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-    <!-- Allow to connect with internet -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Allow to connect with internet -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Network State Permissions -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -22,7 +20,8 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TafsirActivity"></activity>
+        <activity android:name=".MosqueNearActivity"></activity>
+        <activity android:name=".TafsirActivity" />
         <activity android:name=".SearchAyatActivity" />
         <activity android:name=".JuzHizbRubDetailsActivity" />
         <activity

@@ -60,9 +60,12 @@ public class TafsirActivity extends Activity {
         setTitle("Tafsir");
 
         bayaan_content = (TextView) findViewById(R.id.bayaan_content);
+        bayaan_content.setTypeface(font);
         zakaria_content = (TextView) findViewById(R.id.zakaria_content);
+        zakaria_content.setTypeface(font);
         jalalayn_content = (TextView) findViewById(R.id.jalalayn_content);
         ibn_kathir_content = (TextView) findViewById(R.id.ibn_kathir_content);
+        ibn_kathir_content.setTypeface(font);
 
         tv_surah_name = (TextView) findViewById(R.id.surah_name);
         tv_ayah_arabic = (TextView) findViewById(R.id.ayah_arabic);

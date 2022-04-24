@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -20,12 +21,14 @@ import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.adapter.PopularRecyclerViewAdapter;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.listener.RecyclerTouchListener;
 import com.akramhossain.quranulkarim.model.Sura;
 import com.akramhossain.quranulkarim.notification.NotificationHelper;
+import com.akramhossain.quranulkarim.util.ConnectionDetector;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     TextView txtNightMode;
     View horizontal_line;
     DatabaseHelper dbhelper;
-    LinearLayout sura_link,bookmark_link,search_link,quick_links_link,word_collection_link,about_link,juz_link,hizb_link,rub_link,time_link;
+    LinearLayout sura_link, bookmark_link, search_link, quick_links_link, word_collection_link, about_link, juz_link, hizb_link, rub_link, time_link;
     Button btnPrayerTime;
 
     public static final String NIGHT_MODE = "APP_NIGHT_MODE";
@@ -65,6 +68,11 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Sura> popularSearches;
     private PopularRecyclerViewAdapter rvAdapter;
 
+    TextView mosque_near_me;
+
+    ConnectionDetector cd;
+    Boolean isInternetPresent = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -73,24 +81,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        appTheme = mPrefs.getString(NIGHT_MODE,"-1");
+        appTheme = mPrefs.getString(NIGHT_MODE, "-1");
 
         SwitchCompat switchCompat = findViewById(R.id.switchCompat);
         txtNightMode = findViewById(R.id.txtNightMode);
 
         Log.d("APP THEME", String.valueOf(appTheme));
 
-        if (appTheme.equals("1")){
+        if (appTheme.equals("1")) {
             switchCompat.setChecked(true);
             txtNightMode.setText("Dark Mode");
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }
-        else if (appTheme.equals("0")){
+        } else if (appTheme.equals("0")) {
             switchCompat.setChecked(false);
             txtNightMode.setText("Light Mode");
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
-        else{
+        } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             switchCompat.setChecked(true);
             txtNightMode.setText("Dark Mode");
@@ -129,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         sura_link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),SuraListV2Activity.class);
+                Intent i = new Intent(getApplicationContext(), SuraListV2Activity.class);
                 startActivity(i);
             }
         });
@@ -138,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         bookmark_link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),BookmarkActivity.class);
+                Intent i = new Intent(getApplicationContext(), BookmarkActivity.class);
                 startActivity(i);
             }
         });
@@ -147,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         search_link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),SearchActivity.class);
+                Intent i = new Intent(getApplicationContext(), SearchActivity.class);
                 startActivity(i);
             }
         });
@@ -156,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
         quick_links_link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),QuickLinksActivity.class);
+                Intent i = new Intent(getApplicationContext(), QuickLinksActivity.class);
                 startActivity(i);
             }
         });
@@ -165,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
         word_collection_link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),DictionaryActivity.class);
+                Intent i = new Intent(getApplicationContext(), DictionaryActivity.class);
                 startActivity(i);
             }
         });
@@ -174,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
         about_link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),AboutActivity.class);
+                Intent i = new Intent(getApplicationContext(), AboutActivity.class);
                 startActivity(i);
             }
         });
@@ -183,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
         time_link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),PrayerTimesActivity.class);
+                Intent i = new Intent(getApplicationContext(), PrayerTimesActivity.class);
                 startActivity(i);
             }
         });
@@ -192,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
         juz_link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),JuzActivity.class);
+                Intent i = new Intent(getApplicationContext(), JuzActivity.class);
                 startActivity(i);
             }
         });
@@ -201,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
         hizb_link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),HizbActivity.class);
+                Intent i = new Intent(getApplicationContext(), HizbActivity.class);
                 startActivity(i);
             }
         });
@@ -210,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
         rub_link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),RubActivity.class);
+                Intent i = new Intent(getApplicationContext(), RubActivity.class);
                 startActivity(i);
             }
         });
@@ -330,7 +336,7 @@ public class MainActivity extends AppCompatActivity {
 //        });
         //popular searches
         popularSearchView = (RecyclerView) findViewById(R.id.popularSearchView);
-        LinearLayoutManager rLinearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager rLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         popularSearchView.setLayoutManager(rLinearLayoutManager);
         setPopularSearchViewAdapter();
         popularSearchView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), popularSearchView, new RecyclerTouchListener.ClickListener() {
@@ -338,17 +344,37 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view, int position) {
                 Sura vd = popularSearches.get(position);
                 //Toast.makeText(getApplicationContext(), vd.getVideo_id() + " is selected!", Toast.LENGTH_SHORT).show();
-                Intent in = new Intent(getApplicationContext(),SuraDetailsActivity.class);
+                Intent in = new Intent(getApplicationContext(), SuraDetailsActivity.class);
                 in.putExtra("sura_id", vd.getSurah_id());
                 in.putExtra("sura_name", vd.getName_english());
                 in.putExtra("sura_name_arabic", vd.getName_arabic());
                 startActivityForResult(in, 100);
             }
+
             @Override
             public void onLongClick(View view, int position) {
 
             }
         }));
+
+        cd = new ConnectionDetector(getApplicationContext());
+        isInternetPresent = cd.isConnectingToInternet();
+
+
+        mosque_near_me = (TextView) findViewById(R.id.mosque_near_me);
+        mosque_near_me.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isInternetPresent) {
+                    Intent in = new Intent(getApplicationContext(), MosqueNearActivity.class);
+                    startActivityForResult(in, 100);
+                } else {
+                    Toast.makeText(MainActivity.this, R.string.text_enable_internet, Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+
     }
 
     private void getPopularSearchFromLocalDb() {
@@ -371,11 +397,10 @@ public class MainActivity extends AppCompatActivity {
                     popularSearches.add(sura);
                 } while (cursor.moveToNext());
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-        }
-        finally {
-            if (cursor != null && !cursor.isClosed()){
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
             }
             db.close();

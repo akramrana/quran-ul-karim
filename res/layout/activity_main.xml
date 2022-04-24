@@ -64,10 +64,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:theme="@style/MySwitch"
-                    android:layout_marginBottom="@android:dimen/app_icon_size"
                     android:layout_toRightOf="@+id/txtNightMode"
                     android:checked="false"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/mosque_near_me"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mosque_near_me"
+                    android:textColor="@color/googleGreen"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/rounded_border"
+                    android:textSize="15dp"/>
 
             </LinearLayout>
 
