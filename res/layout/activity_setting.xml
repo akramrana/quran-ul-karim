@@ -67,10 +67,10 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/fontSettingForAyah"
+                    android:id="@+id/fontSettingForArabic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Font Setting For Ayah"
+                    android:text="Font Setting For Arabic"
                     android:textColor="@color/colorWhite"
                     android:textSize="16dip"
                     android:textStyle="bold"
@@ -112,6 +112,24 @@
 
 
                 </LinearLayout>
+
+                <View
+                    android:id="@+id/horizontal_line_0"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorWhite"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:id="@+id/fontSettingForAyah"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Font Setting For Ayah"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16dip"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="20dp"/>
 
                 <LinearLayout
                     android:id="@+id/fontSizeSection"

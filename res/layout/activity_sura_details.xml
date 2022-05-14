@@ -175,7 +175,7 @@
                 android:paddingLeft="6dip"
                 android:paddingRight="6dip"
                 android:textColor="@color/colorWhite"
-                android:textSize="23dip"
+                android:textSize="25dip"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:text="@string/bismillah"/>
