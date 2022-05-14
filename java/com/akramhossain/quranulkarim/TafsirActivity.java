@@ -1,12 +1,15 @@
 package com.akramhossain.quranulkarim;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Html;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -27,7 +30,8 @@ public class TafsirActivity extends Activity {
     public static String ayah_key;
     public static String surah_name;
     DatabaseHelper dbhelper;
-    Typeface font;
+    Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
+    SharedPreferences mPrefs;
 
     TextView bayaan_content,zakaria_content,jalalayn_content, ibn_kathir_content;
 
@@ -53,7 +57,16 @@ public class TafsirActivity extends Activity {
             surah_id = extras.getString("surah_id");
             ayah_key = extras.getString("ayah_key");
         }
+
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
         font = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/Siyamrupali.ttf");
+        fontUthmani = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf");
+        fontAlmajeed = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/AlMajeedQuranicFont_shiped.ttf");
+        fontAlQalam = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/AlQalamQuran.ttf");
+        fontNooreHidayat = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/noorehidayat.ttf");
+        fontSaleem = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
+
         dbhelper = new DatabaseHelper(getApplicationContext());
 
         setContentView(R.layout.activity_tafsir);
@@ -208,6 +221,48 @@ public class TafsirActivity extends Activity {
             }
         });
 
+        String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
+        String mp_arFz = mPrefs.getString("arFontSize", "30");
+        String mp_enFz = mPrefs.getString("enFontSize", "15");
+        String mp_bnFz = mPrefs.getString("bnFontSize", "15");
+
+        if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
+            tv_ayah_arabic.setTypeface(fontAlmajeed);
+        }
+        if(mp_arabicFontFamily.equals("Al Qalam Quran")){
+            tv_ayah_arabic.setTypeface(fontAlQalam);
+        }
+        if(mp_arabicFontFamily.equals("Uthmanic Script")){
+            tv_ayah_arabic.setTypeface(fontUthmani);
+        }
+        if(mp_arabicFontFamily.equals("Noore Hidayat")){
+            tv_ayah_arabic.setTypeface(fontNooreHidayat);
+        }
+        if(mp_arabicFontFamily.equals("Saleem Quran")){
+            tv_ayah_arabic.setTypeface(fontSaleem);
+        }
+        if(!mp_arFz.equals("")){
+            tv_ayah_arabic.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
+        }
+        if(!mp_enFz.equals("")){
+            tv_ayah_english.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+        }
+        if(!mp_bnFz.equals("")){
+            tv_ayah_bangla.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+        }
+
+        String mp_enFzTs = mPrefs.getString("enFontSizeTafsir", "15");
+        if(!mp_enFzTs.equals("")){
+            jalalayn_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFzTs));
+        }
+
+        String mp_bnFzTs = mPrefs.getString("bnFontSizeTafsir", "15");
+        if(!mp_bnFzTs.equals("")){
+            bayaan_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
+            zakaria_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
+            ibn_kathir_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
+        }
+
     }
 
     private void getDataFromLocalDb() {
@@ -230,10 +285,10 @@ public class TafsirActivity extends Activity {
                 jalalayn_text = cursor.getString(4);
                 ibn_kasir_text = cursor.getString(5);
                 surah_name = cursor.getString(6);
-                Log.d("Tafsir Bayaan", bayaan_text);
+                /*Log.d("Tafsir Bayaan", bayaan_text);
                 Log.d("Tafsir Zakariya", zakaria_text);
                 Log.d("Tafsir Jalalayn", jalalayn_text);
-                Log.d("Tafsir IBN Kathir", ibn_kasir_text);
+                Log.d("Tafsir IBN Kathir", ibn_kasir_text);*/
 
                 bayaan_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/>"+bayaan_text));
                 zakaria_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/>"+zakaria_text));
