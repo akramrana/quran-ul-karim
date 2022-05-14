@@ -1,8 +1,10 @@
 package com.akramhossain.quranulkarim;
 
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.app.Activity;
 
@@ -10,6 +12,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +40,9 @@ public class WordMeaningActivity extends Activity {
     private WordListViewAdapter rvAdapter;
     private static final int PERMISSION_REQUEST_CODE = 100;
 
+    Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
+    SharedPreferences mPrefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +54,13 @@ public class WordMeaningActivity extends Activity {
             content_en = extras.getString("content_en");
             content_bn = extras.getString("content_bn");
         }
+
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        fontUthmani = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf");
+        fontAlmajeed = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/AlMajeedQuranicFont_shiped.ttf");
+        fontAlQalam = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/AlQalamQuran.ttf");
+        fontNooreHidayat = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/noorehidayat.ttf");
+        fontSaleem = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
 
         setTitle("Word Meaning");
 
@@ -69,6 +83,23 @@ public class WordMeaningActivity extends Activity {
 
         }else{
             requestPermission();
+        }
+
+        String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
+        if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
+            titleAr.setTypeface(fontAlmajeed);
+        }
+        if(mp_arabicFontFamily.equals("Al Qalam Quran")){
+            titleAr.setTypeface(fontAlQalam);
+        }
+        if(mp_arabicFontFamily.equals("Uthmanic Script")){
+            titleAr.setTypeface(fontUthmani);
+        }
+        if(mp_arabicFontFamily.equals("Noore Hidayat")){
+            titleAr.setTypeface(fontNooreHidayat);
+        }
+        if(mp_arabicFontFamily.equals("Saleem Quran")){
+            titleAr.setTypeface(fontSaleem);
         }
     }
 

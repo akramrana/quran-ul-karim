@@ -34,7 +34,7 @@
                 android:paddingRight="5dp"
                 android:text="@string/name_title_ar"
                 android:textColor="@color/colorWhiteDN"
-                android:textSize="21dp" />
+                android:textSize="22dp" />
 
             <TextView
                 android:id="@+id/name_title_en"

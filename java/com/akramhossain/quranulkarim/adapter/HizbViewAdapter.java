@@ -1,8 +1,13 @@
 package com.akramhossain.quranulkarim.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +22,20 @@ public class HizbViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     Context c;
     ArrayList<Hizb> hizbs;
     String cutTT;
+    private Activity activity;
+    Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
+    SharedPreferences mPrefs;
 
-    public HizbViewAdapter(Context c, ArrayList<Hizb> hizbs) {
+    public HizbViewAdapter(Context c, ArrayList<Hizb> hizbs, Activity activity) {
         this.c = c;
         this.hizbs = hizbs;
+        this.activity = activity;
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        fontUthmani = Typeface.createFromAsset(c.getAssets(),"fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf");
+        fontAlmajeed = Typeface.createFromAsset(c.getAssets(),"fonts/AlMajeedQuranicFont_shiped.ttf");
+        fontAlQalam = Typeface.createFromAsset(c.getAssets(),"fonts/AlQalamQuran.ttf");
+        fontNooreHidayat = Typeface.createFromAsset(c.getAssets(),"fonts/noorehidayat.ttf");
+        fontSaleem = Typeface.createFromAsset(c.getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
     }
 
     @Override
@@ -84,6 +99,28 @@ public class HizbViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             name_complex = (TextView) itemView.findViewById(R.id.name_complex);
             name_english = (TextView) itemView.findViewById(R.id.name_english);
             name_arabic = (TextView) itemView.findViewById(R.id.name_arabic);
+
+            String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
+            if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
+                text_tashkeel.setTypeface(fontAlmajeed);
+                name_arabic.setTypeface(fontAlmajeed);
+            }
+            if(mp_arabicFontFamily.equals("Al Qalam Quran")){
+                text_tashkeel.setTypeface(fontAlQalam);
+                name_arabic.setTypeface(fontAlQalam);
+            }
+            if(mp_arabicFontFamily.equals("Uthmanic Script")){
+                text_tashkeel.setTypeface(fontUthmani);
+                name_arabic.setTypeface(fontUthmani);
+            }
+            if(mp_arabicFontFamily.equals("Noore Hidayat")){
+                text_tashkeel.setTypeface(fontNooreHidayat);
+                name_arabic.setTypeface(fontNooreHidayat);
+            }
+            if(mp_arabicFontFamily.equals("Saleem Quran")){
+                text_tashkeel.setTypeface(fontSaleem);
+                name_arabic.setTypeface(fontSaleem);
+            }
         }
 
     }

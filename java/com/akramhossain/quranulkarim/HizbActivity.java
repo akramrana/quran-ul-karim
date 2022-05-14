@@ -104,7 +104,7 @@ public class HizbActivity extends Activity {
 
     private void setRecyclerViewAdapter() {
         hizbs = new ArrayList<Hizb>();
-        rvAdapter = new HizbViewAdapter(HizbActivity.this, hizbs);
+        rvAdapter = new HizbViewAdapter(HizbActivity.this, hizbs, this);
         recyclerview.setAdapter(rvAdapter);
     }
 }

@@ -2,15 +2,19 @@ package com.akramhossain.quranulkarim;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -49,7 +53,7 @@ public class SuraDetailsActivity extends Activity {
     Integer offset = 0;
     Integer limit = 100;
     Integer counter = 0;
-    TextView titleEn,titleAr;
+    TextView titleEn,titleAr, text_bismillah;
 
     ConnectionDetector cd;
     Boolean isInternetPresent = false;
@@ -65,6 +69,9 @@ public class SuraDetailsActivity extends Activity {
 
     RelativeLayout rl;
 
+    Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
+    SharedPreferences mPrefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +83,15 @@ public class SuraDetailsActivity extends Activity {
             suraNameArabic = extras.getString("sura_name_arabic");
             suraLastPosition = extras.getString("position");
         }
+
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        font = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/Siyamrupali.ttf");
+        fontUthmani = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf");
+        fontAlmajeed = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/AlMajeedQuranicFont_shiped.ttf");
+        fontAlQalam = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/AlQalamQuran.ttf");
+        fontNooreHidayat = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/noorehidayat.ttf");
+        fontSaleem = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
 
         url = "http://websites.codxplore.com/islamicvideo/api/patch?sura_id="+suraId;
         //url = "http://10.0.2.2/islamicvideo/api/patch?sura_id="+suraId;
@@ -89,6 +105,8 @@ public class SuraDetailsActivity extends Activity {
 
         titleAr = (TextView) findViewById(R.id.name_title_ar);
         titleAr.setText(suraNameArabic);
+
+        text_bismillah = (TextView) findViewById(R.id.text_bismillah);
 
         recyclerview = (RecyclerView) findViewById(R.id.ayah_list);
         mLayoutManager = new LinearLayoutManager(this);
@@ -436,6 +454,28 @@ public class SuraDetailsActivity extends Activity {
                     stop_audio.setVisibility(View.GONE);
                 }
             });
+        }
+
+        String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
+        if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
+            titleAr.setTypeface(fontAlmajeed);
+            text_bismillah.setTypeface(fontAlmajeed);
+        }
+        if(mp_arabicFontFamily.equals("Al Qalam Quran")){
+            titleAr.setTypeface(fontAlQalam);
+            text_bismillah.setTypeface(fontAlQalam);
+        }
+        if(mp_arabicFontFamily.equals("Uthmanic Script")){
+            titleAr.setTypeface(fontUthmani);
+            text_bismillah.setTypeface(fontUthmani);
+        }
+        if(mp_arabicFontFamily.equals("Noore Hidayat")){
+            titleAr.setTypeface(fontNooreHidayat);
+            text_bismillah.setTypeface(fontNooreHidayat);
+        }
+        if(mp_arabicFontFamily.equals("Saleem Quran")){
+            titleAr.setTypeface(fontSaleem);
+            text_bismillah.setTypeface(fontSaleem);
         }
 
     }

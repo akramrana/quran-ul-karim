@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,7 +18,9 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +50,7 @@ public class JuzHizbRubViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     Context c;
     ArrayList<Ayah> ayahs;
-    Typeface font;
+    Typeface font,fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
     MediaPlayer mp;
     ProgressDialog pd;
     DatabaseHelper dbhelper;
@@ -55,15 +58,22 @@ public class JuzHizbRubViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     private static final int PERMISSION_REQUEST_CODE = 100;
     ConnectionDetector cd;
     Boolean isInternetPresent = false;
+    SharedPreferences mPrefs;
 
     public JuzHizbRubViewAdapter(Context c, ArrayList<Ayah> ayahs, Activity activity) {
         this.c = c;
         this.ayahs = ayahs;
         font = Typeface.createFromAsset(c.getAssets(),"fonts/Siyamrupali.ttf");
+        fontUthmani = Typeface.createFromAsset(c.getAssets(),"fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf");
+        fontAlmajeed = Typeface.createFromAsset(c.getAssets(),"fonts/AlMajeedQuranicFont_shiped.ttf");
+        fontAlQalam = Typeface.createFromAsset(c.getAssets(),"fonts/AlQalamQuran.ttf");
+        fontNooreHidayat = Typeface.createFromAsset(c.getAssets(),"fonts/noorehidayat.ttf");
+        fontSaleem = Typeface.createFromAsset(c.getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
         dbhelper = new DatabaseHelper(c);
         this.activity = activity;
         cd = new ConnectionDetector(c);
         isInternetPresent = cd.isConnectingToInternet();
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
     }
 
     @Override
@@ -364,7 +374,6 @@ public class JuzHizbRubViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
-
             ayah_index = (TextView) itemView.findViewById(R.id.ayah_index);
             text_tashkeel = (TextView) itemView.findViewById(R.id.text_tashkeel);
             content_en = (TextView) itemView.findViewById(R.id.content_en);
@@ -380,6 +389,35 @@ public class JuzHizbRubViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             surah_name = (TextView) itemView.findViewById(R.id.surah_name);
             copyButton = (Button) itemView.findViewById(R.id.copyButton);
             tafsirs = (TextView) itemView.findViewById(R.id.tafsirs);
+            //
+            String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
+            String mp_arFz = mPrefs.getString("arFontSize", "30");
+            String mp_enFz = mPrefs.getString("enFontSize", "15");
+            String mp_bnFz = mPrefs.getString("bnFontSize", "15");
+            if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
+                text_tashkeel.setTypeface(fontAlmajeed);
+            }
+            if(mp_arabicFontFamily.equals("Al Qalam Quran")){
+                text_tashkeel.setTypeface(fontAlQalam);
+            }
+            if(mp_arabicFontFamily.equals("Uthmanic Script")){
+                text_tashkeel.setTypeface(fontUthmani);
+            }
+            if(mp_arabicFontFamily.equals("Noore Hidayat")){
+                text_tashkeel.setTypeface(fontNooreHidayat);
+            }
+            if(mp_arabicFontFamily.equals("Saleem Quran")){
+                text_tashkeel.setTypeface(fontSaleem);
+            }
+            if(!mp_arFz.equals("")){
+                text_tashkeel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
+            }
+            if(!mp_enFz.equals("")){
+                content_en.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+            }
+            if(!mp_bnFz.equals("")){
+                content_bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+            }
         }
     }
 }

@@ -104,7 +104,7 @@ public class RubActivity extends Activity{
 
     private void setRecyclerViewAdapter() {
         rubs = new ArrayList<Rub>();
-        rvAdapter = new RubVViewAdapter(RubActivity.this, rubs);
+        rvAdapter = new RubVViewAdapter(RubActivity.this, rubs, this);
         recyclerview.setAdapter(rvAdapter);
     }
 }

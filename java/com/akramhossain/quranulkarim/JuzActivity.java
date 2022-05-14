@@ -105,7 +105,7 @@ public class JuzActivity extends Activity {
 
     private void setRecyclerViewAdapter() {
         juzs = new ArrayList<Juz>();
-        rvAdapter = new JuzViewAdapter(JuzActivity.this, juzs);
+        rvAdapter = new JuzViewAdapter(JuzActivity.this, juzs, this);
         recyclerview.setAdapter(rvAdapter);
     }
 }

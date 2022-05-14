@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 
 import androidx.core.app.ActivityCompat;
@@ -12,6 +14,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +47,8 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     Boolean isInternetPresent = false;
     private Activity activity;
     private static final int PERMISSION_REQUEST_CODE = 100;
+    SharedPreferences mPrefs;
+    Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
 
     public WordListViewAdapter(Context c, ArrayList<Word> words, Activity activity) {
         this.c = c;
@@ -53,6 +58,13 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         cd = new ConnectionDetector(c);
         isInternetPresent = cd.isConnectingToInternet();
         this.activity = activity;
+
+        fontUthmani = Typeface.createFromAsset(c.getAssets(),"fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf");
+        fontAlmajeed = Typeface.createFromAsset(c.getAssets(),"fonts/AlMajeedQuranicFont_shiped.ttf");
+        fontAlQalam = Typeface.createFromAsset(c.getAssets(),"fonts/AlQalamQuran.ttf");
+        fontNooreHidayat = Typeface.createFromAsset(c.getAssets(),"fonts/noorehidayat.ttf");
+        fontSaleem = Typeface.createFromAsset(c.getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
     }
 
     @Override
@@ -235,6 +247,23 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             word_transliteration = (TextView) itemView.findViewById(R.id.word_transliteration);
             word_translation = (TextView) itemView.findViewById(R.id.word_translation);
             playWordBtn = (Button) itemView.findViewById(R.id.playWordBtn);
+
+            String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
+            if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
+                word_arabic.setTypeface(fontAlmajeed);
+            }
+            if(mp_arabicFontFamily.equals("Al Qalam Quran")){
+                word_arabic.setTypeface(fontAlQalam);
+            }
+            if(mp_arabicFontFamily.equals("Uthmanic Script")){
+                word_arabic.setTypeface(fontUthmani);
+            }
+            if(mp_arabicFontFamily.equals("Noore Hidayat")){
+                word_arabic.setTypeface(fontNooreHidayat);
+            }
+            if(mp_arabicFontFamily.equals("Saleem Quran")){
+                word_arabic.setTypeface(fontSaleem);
+            }
         }
     }
 }

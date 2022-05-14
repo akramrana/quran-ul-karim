@@ -101,7 +101,7 @@ public class SuraListV2Activity extends Activity {
 
     private void setRecyclerViewAdapter() {
         suras = new ArrayList<Sura>();
-        rvAdapter = new RecyclerViewAdapter(SuraListV2Activity.this, suras);
+        rvAdapter = new RecyclerViewAdapter(SuraListV2Activity.this, suras, this);
         recyclerview.setAdapter(rvAdapter);
     }
 

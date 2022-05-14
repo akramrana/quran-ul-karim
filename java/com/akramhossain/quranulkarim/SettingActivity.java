@@ -43,7 +43,7 @@ public class SettingActivity extends Activity {
         fontFamily.add("Uthmanic Script");
         fontFamily.add("Noore Hidayat");
         fontFamily.add("Saleem Quran");
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, fontFamily);
+        final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, fontFamily);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
         //
@@ -53,12 +53,12 @@ public class SettingActivity extends Activity {
         enFontSizeTafsir = (EditText)findViewById(R.id.enFontSizeTafsir);
         bnFontSizeTafsir = (EditText)findViewById(R.id.bnFontSizeTafsir);
         //
-        String mp_arabicFontFamily = mPrefs.getString(sp_arabicFontFamily, "");
-        String mp_arFz = mPrefs.getString(sp_arFontSize, "");
-        String mp_enFz = mPrefs.getString(sp_enFontSize, "");
-        String mp_bnFz = mPrefs.getString(sp_bnFontSize, "");
-        String mp_enFzTs = mPrefs.getString(sp_enFontSizeTafsir, "");
-        String mp_bnFzTs = mPrefs.getString(sp_bnFontSizeTafsir, "");
+        String mp_arabicFontFamily = mPrefs.getString(sp_arabicFontFamily, "Arabic Regular");
+        String mp_arFz = mPrefs.getString(sp_arFontSize, "30");
+        String mp_enFz = mPrefs.getString(sp_enFontSize, "15");
+        String mp_bnFz = mPrefs.getString(sp_bnFontSize, "15");
+        String mp_enFzTs = mPrefs.getString(sp_enFontSizeTafsir, "15");
+        String mp_bnFzTs = mPrefs.getString(sp_bnFontSizeTafsir, "15");
         //
         arFontSize.setText(mp_arFz);
         enFontSize.setText(mp_enFz);
@@ -77,12 +77,12 @@ public class SettingActivity extends Activity {
                 String enFzTs = enFontSizeTafsir.getText().toString();
                 String bnFzTs = bnFontSizeTafsir.getText().toString();
                 //
-                Log.i("arabicFontFamily", arabicFontFamily);
+                /*Log.i("arabicFontFamily", arabicFontFamily);
                 Log.i("arFontSize", arFz);
                 Log.i("enFontSize", enFz);
                 Log.i("bnFontSize", bnFz);
                 Log.i("enFontSizeTafsir", enFzTs);
-                Log.i("bnFontSizeTafsir", bnFzTs);
+                Log.i("bnFontSizeTafsir", bnFzTs);*/
                 //
                 SharedPreferences.Editor editor = mPrefs.edit();
                 editor.putString(sp_arabicFontFamily, arabicFontFamily);
@@ -101,19 +101,20 @@ public class SettingActivity extends Activity {
         button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                arFontSize.setText("");
-                enFontSize.setText("");
-                bnFontSize.setText("");
-                enFontSizeTafsir.setText("");
-                bnFontSizeTafsir.setText("");
+                arFontSize.setText("30");
+                enFontSize.setText("15");
+                bnFontSize.setText("15");
+                enFontSizeTafsir.setText("15");
+                bnFontSizeTafsir.setText("15");
 
-                String arabicFontFamily = "";
-                String arFz = "";
-                String enFz = "";
-                String bnFz = "";
-                String enFzTs ="";
-                String bnFzTs = "";
+                String arabicFontFamily = "Arabic Regular";
+                String arFz = "30";
+                String enFz = "15";
+                String bnFz = "15";
+                String enFzTs ="15";
+                String bnFzTs = "15";
                 //
+                spinner.setSelection(dataAdapter.getPosition(arabicFontFamily));
                 SharedPreferences.Editor editor = mPrefs.edit();
                 editor.putString(sp_arabicFontFamily, arabicFontFamily);
                 editor.putString(sp_arFontSize, arFz);

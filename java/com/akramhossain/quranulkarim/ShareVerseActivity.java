@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
@@ -23,7 +24,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
+import android.preference.PreferenceManager;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -52,7 +55,7 @@ public class ShareVerseActivity extends Activity {
     public static String ayah_key;
     public static String surah_name;
     DatabaseHelper dbhelper;
-    Typeface font;
+    Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
 
     TextView tv_surah_name,tv_ayah_arabic,tv_ayah_english,tv_ayah_bangla,tv_ayah_num;
     Button shareBtn,colorBtn, imgBtn;
@@ -63,6 +66,8 @@ public class ShareVerseActivity extends Activity {
 
     int[] androidColors;
     String[] androidStringColors;
+
+    SharedPreferences mPrefs;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +83,14 @@ public class ShareVerseActivity extends Activity {
             ayah_key = extras.getString("ayah_key");
         }
 
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
         font = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/Siyamrupali.ttf");
+        fontUthmani = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf");
+        fontAlmajeed = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/AlMajeedQuranicFont_shiped.ttf");
+        fontAlQalam = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/AlQalamQuran.ttf");
+        fontNooreHidayat = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/noorehidayat.ttf");
+        fontSaleem = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
 
         dbhelper = new DatabaseHelper(getApplicationContext());
 
@@ -119,14 +131,43 @@ public class ShareVerseActivity extends Activity {
         tv_ayah_num = (TextView) findViewById(R.id.ayah_num);
         tv_ayah_num.setText(surah_name+" "+ayah_key);
 
-        Log.d("arabic",text_tashkeel);
+        String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
+        String mp_arFz = mPrefs.getString("arFontSize", "30");
+        String mp_enFz = mPrefs.getString("enFontSize", "15");
+        String mp_bnFz = mPrefs.getString("bnFontSize", "15");
+        if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
+            tv_ayah_arabic.setTypeface(fontAlmajeed);
+        }
+        if(mp_arabicFontFamily.equals("Al Qalam Quran")){
+            tv_ayah_arabic.setTypeface(fontAlQalam);
+        }
+        if(mp_arabicFontFamily.equals("Uthmanic Script")){
+            tv_ayah_arabic.setTypeface(fontUthmani);
+        }
+        if(mp_arabicFontFamily.equals("Noore Hidayat")){
+            tv_ayah_arabic.setTypeface(fontNooreHidayat);
+        }
+        if(mp_arabicFontFamily.equals("Saleem Quran")){
+            tv_ayah_arabic.setTypeface(fontSaleem);
+        }
+        if(!mp_arFz.equals("")){
+            tv_ayah_arabic.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
+        }
+        if(!mp_enFz.equals("")){
+            tv_ayah_english.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+        }
+        if(!mp_bnFz.equals("")){
+            tv_ayah_bangla.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+        }
+
+        /*Log.d("arabic",text_tashkeel);
         Log.d("index",ayah_index);
         Log.d("BN",content_bn);
         Log.d("EN",content_en);
         Log.d("id",surah_id);
         Log.d("ayah",ayah_num);
         Log.d("key",ayah_key);
-        Log.d("surah",surah_name);
+        Log.d("surah",surah_name);*/
 
         shareBtn = (Button) findViewById(R.id.shareBtn);
 

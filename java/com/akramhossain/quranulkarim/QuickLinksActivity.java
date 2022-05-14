@@ -91,7 +91,7 @@ public class QuickLinksActivity extends Activity {
 
     private void setRecyclerViewAdapter() {
         suras = new ArrayList<Sura>();
-        rvAdapter = new RecyclerViewAdapter(QuickLinksActivity.this, suras);
+        rvAdapter = new RecyclerViewAdapter(QuickLinksActivity.this, suras, this);
         recyclerview.setAdapter(rvAdapter);
     }
 }

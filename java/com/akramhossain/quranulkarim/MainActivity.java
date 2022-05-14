@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -56,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
     //private SQLiteDatabase mDb;
     TextView start_from_last;
     TextView txtNightMode;
+    TextView name_title_ar;
+
     View horizontal_line;
     DatabaseHelper dbhelper;
     LinearLayout sura_link, bookmark_link, search_link, quick_links_link, word_collection_link, about_link, juz_link, hizb_link, rub_link, time_link;
@@ -73,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
 
     ConnectionDetector cd;
     Boolean isInternetPresent = false;
+
+    Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
         start_from_last = (TextView) findViewById(R.id.start_from_last);
         horizontal_line = (View) findViewById(R.id.horizontal_line);
+        name_title_ar = (TextView) findViewById(R.id.name_title_ar);
 
         sura_link = (LinearLayout) findViewById(R.id.sura_link);
         sura_link.setOnClickListener(new View.OnClickListener() {
@@ -386,6 +392,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        fontUthmani = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf");
+        fontAlmajeed = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/AlMajeedQuranicFont_shiped.ttf");
+        fontAlQalam = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/AlQalamQuran.ttf");
+        fontNooreHidayat = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/noorehidayat.ttf");
+        fontSaleem = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
+
+        String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
+        if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
+            name_title_ar.setTypeface(fontAlmajeed);
+        }
+        if(mp_arabicFontFamily.equals("Al Qalam Quran")){
+            name_title_ar.setTypeface(fontAlQalam);
+        }
+        if(mp_arabicFontFamily.equals("Uthmanic Script")){
+            name_title_ar.setTypeface(fontUthmani);
+        }
+        if(mp_arabicFontFamily.equals("Noore Hidayat")){
+            name_title_ar.setTypeface(fontNooreHidayat);
+        }
+        if(mp_arabicFontFamily.equals("Saleem Quran")){
+            name_title_ar.setTypeface(fontSaleem);
+        }
+
     }
 
     private void getPopularSearchFromLocalDb() {
@@ -421,7 +450,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setPopularSearchViewAdapter() {
         popularSearches = new ArrayList<Sura>();
-        rvAdapter = new PopularRecyclerViewAdapter(MainActivity.this, popularSearches);
+        rvAdapter = new PopularRecyclerViewAdapter(MainActivity.this, popularSearches, this);
         popularSearchView.setAdapter(rvAdapter);
     }
 
