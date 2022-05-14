@@ -162,11 +162,31 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/bismillah_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button-section">
+
+            <TextView
+                android:id="@+id/text_bismillah"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="6dip"
+                android:paddingRight="6dip"
+                android:textColor="@color/colorWhite"
+                android:textSize="23dip"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="@string/bismillah"/>
+
+        </RelativeLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ayah_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/button-section"/>
+            android:layout_below="@id/bismillah_section"/>
 
         <ProgressBar
             android:id="@+id/progressBar"

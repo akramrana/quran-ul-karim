@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.akramhossain.quranulkarim"
-    android:versionCode="39"
-    android:versionName="39.04.24.2022">
+    android:versionCode="40"
+    android:versionName="40.05.14.2022">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Allow to connect with internet -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Network State Permissions -->
@@ -20,7 +20,8 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MosqueNearActivity"></activity>
+        <activity android:name=".SettingActivity"></activity>
+        <activity android:name=".MosqueNearActivity" />
         <activity android:name=".TafsirActivity" />
         <activity android:name=".SearchAyatActivity" />
         <activity android:name=".JuzHizbRubDetailsActivity" />

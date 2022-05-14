@@ -56,7 +56,7 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     Context c;
     ArrayList<Ayah> ayahs;
-    Typeface font;
+    Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
     MediaPlayer mp;
     ProgressDialog pd;
     DatabaseHelper dbhelper;
@@ -69,7 +69,14 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public SuraDetailsViewAdapter(Context c, ArrayList<Ayah> ayahs, Activity activity) {
         this.c = c;
         this.ayahs = ayahs;
+        //
         font = Typeface.createFromAsset(c.getAssets(),"fonts/Siyamrupali.ttf");
+        fontUthmani = Typeface.createFromAsset(c.getAssets(),"fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf");
+        fontAlmajeed = Typeface.createFromAsset(c.getAssets(),"fonts/AlMajeedQuranicFont_shiped.ttf");
+        fontAlQalam = Typeface.createFromAsset(c.getAssets(),"fonts/AlQalamQuran.ttf");
+        fontNooreHidayat = Typeface.createFromAsset(c.getAssets(),"fonts/noorehidayat.ttf");
+        fontSaleem = Typeface.createFromAsset(c.getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
+        //
         dbhelper = new DatabaseHelper(c);
         this.activity = activity;
         //db = dbhelper.getWritableDatabase();
@@ -394,9 +401,11 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             ayah_index = (TextView) itemView.findViewById(R.id.ayah_index);
             ayah_num = (TextView) itemView.findViewById(R.id.ayah_num);
             text_tashkeel = (TextView) itemView.findViewById(R.id.text_tashkeel);
+            //
             content_en = (TextView) itemView.findViewById(R.id.content_en);
             content_bn = (TextView) itemView.findViewById(R.id.content_bn);
             content_bn.setTypeface(font);
+            //
             sajdah = (TextView) itemView.findViewById(R.id.sajdah);
             playBtn = (Button) itemView.findViewById(R.id.playBtn);
             bookmarkBtn = (Button) itemView.findViewById(R.id.bookmarkBtn);

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,6 +63,8 @@ public class SuraDetailsActivity extends Activity {
     TextView stop_audio;
     TextView resume_audio;
 
+    RelativeLayout rl;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,11 +96,15 @@ public class SuraDetailsActivity extends Activity {
 
         setRecyclerViewAdapter();
 
+        rl = (RelativeLayout)findViewById(R.id.bismillah_section);
+        if(suraId.equals("1")){
+            rl.setVisibility(View.GONE);
+        }
+
         recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-
                 //
                 if (!recyclerView.canScrollVertically(1) && newState==RecyclerView.SCROLL_STATE_IDLE) {
                     SQLiteDatabase db1 = dbhelper.getWritableDatabase();
@@ -116,8 +123,12 @@ public class SuraDetailsActivity extends Activity {
                 super.onScrolled(recyclerView, dx, dy);
                 if (dy > 0) {
                     int firstVisiblePosition = mLayoutManager.findLastVisibleItemPosition();
+                    //Log.i("Top Position", Integer.toString(topPosition));
                     //Log.i("Last Position Visible", Integer.toString(firstVisiblePosition));
                     //int firstVisiblePosition = mLayoutManager.findLastVisibleItemPosition();
+                    if(firstVisiblePosition > 1) {
+                        rl.setVisibility(View.GONE);
+                    }
                     SQLiteDatabase db1 = dbhelper.getWritableDatabase();
                     String sql1 = "DELETE FROM last_position";
                     try {
@@ -159,6 +170,13 @@ public class SuraDetailsActivity extends Activity {
                                 }
                                 db.close();
                             }
+                        }
+                    }
+                }else{
+                    if(!recyclerView.canScrollVertically(-1)){
+                        //Toast.makeText(getApplicationContext(),"Top most item",Toast.LENGTH_SHORT).show();
+                        if(!suraId.equals("1")) {
+                            rl.setVisibility(View.VISIBLE);
                         }
                     }
                 }

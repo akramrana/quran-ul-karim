@@ -16,6 +16,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.GridView;
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Sura> popularSearches;
     private PopularRecyclerViewAdapter rvAdapter;
 
-    TextView mosque_near_me;
+    TextView mosque_near_me, settings;
 
     ConnectionDetector cd;
     Boolean isInternetPresent = false;
@@ -374,6 +375,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        settings = (TextView) findViewById(R.id.settings);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getApplicationContext(), SettingActivity.class);
+                startActivityForResult(in, 100);
+            }
+        });
 
     }
 
