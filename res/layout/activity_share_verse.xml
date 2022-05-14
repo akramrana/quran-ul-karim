@@ -87,22 +87,24 @@
                         android:paddingRight="5dp"
                         android:textColor="#fff"
                         android:textSize="18dp"
-                        android:textAllCaps="true"/>
+                        android:textAllCaps="true"
+                        android:visibility="gone"/>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.1dp"
                         android:background="#fff"
                         android:layout_below="@id/surah_name"
-                        android:id="@+id/hr_line1"/>
+                        android:id="@+id/hr_line1"
+                        android:visibility="gone"/>
 
                     <TextView
                         android:id="@+id/ayah_arabic"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/hr_line1"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
                         android:gravity="right"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
@@ -160,7 +162,8 @@
                         android:orientation="horizontal"
                         android:layout_marginTop="5dp"
                         android:layout_below="@+id/ayah_num"
-                        android:background="#33000000">
+                        android:background="#33000000"
+                        android:visibility="gone">
 
                         <ImageView
                             android:id="@+id/appLogo"
