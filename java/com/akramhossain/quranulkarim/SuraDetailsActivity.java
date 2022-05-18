@@ -114,8 +114,13 @@ public class SuraDetailsActivity extends Activity {
 
         setRecyclerViewAdapter();
 
+        suraId = suraId.trim();
+
+        Log.d("SURAH ID",suraId.trim());
+
         rl = (RelativeLayout)findViewById(R.id.bismillah_section);
-        if(suraId.equals("1")){
+
+        if(suraId.equals("1") || suraId.equals("9")){
             rl.setVisibility(View.GONE);
         }
 
@@ -193,7 +198,7 @@ public class SuraDetailsActivity extends Activity {
                 }else{
                     if(!recyclerView.canScrollVertically(-1)){
                         //Toast.makeText(getApplicationContext(),"Top most item",Toast.LENGTH_SHORT).show();
-                        if(!suraId.equals("1")) {
+                        if(!suraId.equals("1") && !suraId.equals("9")) {
                             rl.setVisibility(View.VISIBLE);
                         }
                     }
