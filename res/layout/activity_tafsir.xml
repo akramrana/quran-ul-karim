@@ -138,6 +138,42 @@
                         android:background="@color/colorBlack"/>
 
                     <Button
+                        android:id="@+id/tafhim"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/string_tafhim"
+                        android:textSize="12dp"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="6dp"
+                        android:paddingRight="6dp"
+                        android:textColor="@color/colorWhiteDN"
+                        android:background="@color/colorBlack"/>
+
+                    <Button
+                        android:id="@+id/fathul_mazid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/string_fathul_mazid"
+                        android:textSize="12dp"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="6dp"
+                        android:paddingRight="6dp"
+                        android:textColor="@color/colorWhiteDN"
+                        android:background="@color/colorBlack"/>
+
+                    <Button
+                        android:id="@+id/fezilalil_quran"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/string_fezilalil_quran"
+                        android:textSize="12dp"
+                        android:layout_margin="5dp"
+                        android:paddingLeft="6dp"
+                        android:paddingRight="6dp"
+                        android:textColor="@color/colorWhiteDN"
+                        android:background="@color/colorBlack"/>
+
+                    <Button
                         android:id="@+id/jalalayn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -286,6 +322,48 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/bayaan_content"
+                        android:textIsSelectable="true"
+                        android:textColor="@color/colorWhite"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textSize="15dip"
+                        android:visibility="gone"
+                        android:layout_gravity="center_vertical|end"/>
+
+
+                    <TextView
+                        android:id="@+id/tafhim_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/zakaria_content"
+                        android:textIsSelectable="true"
+                        android:textColor="@color/colorWhite"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textSize="15dip"
+                        android:visibility="gone"
+                        android:layout_gravity="center_vertical|end"/>
+
+
+                    <TextView
+                        android:id="@+id/fathul_mazid_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/zakaria_content"
+                        android:textIsSelectable="true"
+                        android:textColor="@color/colorWhite"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textSize="15dip"
+                        android:visibility="gone"
+                        android:layout_gravity="center_vertical|end"/>
+
+
+                    <TextView
+                        android:id="@+id/fezilalil_quran_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/zakaria_content"
                         android:textIsSelectable="true"
                         android:textColor="@color/colorWhite"
                         android:paddingLeft="5dp"

@@ -92,4 +92,7 @@
     <string name="spinner_prompt">Please Select</string>
     <string name="save">Update</string>
     <string name="reset">Reset</string>
+    <string name="string_tafhim">Tafhim ul Quran</string>
+    <string name="string_fathul_mazid">Tafsir Fathul Mazid</string>
+    <string name="string_fezilalil_quran">Tafsir Fi-Zilalil Quran</string>
 </resources>
