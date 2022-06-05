@@ -386,7 +386,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2.0dip"
                     android:ellipsize="marquee"
-                    android:text="Quick Links"
+                    android:text="Favourites"
                     android:textSize="18.0sp"
                     android:textColor="@color/colorWhite"
                     android:textAllCaps="true"/>

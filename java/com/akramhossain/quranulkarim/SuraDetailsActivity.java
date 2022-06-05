@@ -225,10 +225,10 @@ public class SuraDetailsActivity extends Activity {
 
         try {
             if (cursor1.moveToFirst()) {
-                quickLinkBtn.setText("Remove from quick links");
+                quickLinkBtn.setText("Remove from favourites");
                 quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_delete, 0, 0, 0);
             } else {
-                quickLinkBtn.setText("Add to quick links");
+                quickLinkBtn.setText("Add to favourites");
                 quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_upload, 0, 0, 0);
             }
         }catch (Exception e){
@@ -277,10 +277,10 @@ public class SuraDetailsActivity extends Activity {
 
                         try {
                             if (cursor1.moveToFirst()) {
-                                quickLinkBtn.setText("Remove from quick links");
+                                quickLinkBtn.setText("Remove from favourites");
                                 quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_delete, 0, 0, 0);
                             } else {
-                                quickLinkBtn.setText("Add to quick links");
+                                quickLinkBtn.setText("Add to favourites");
                                 quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_upload, 0, 0, 0);
                             }
                         }catch (Exception e){
@@ -339,10 +339,10 @@ public class SuraDetailsActivity extends Activity {
 
                         try {
                             if (cursor1.moveToFirst()) {
-                                quickLinkBtn.setText("Remove from quick links");
+                                quickLinkBtn.setText("Remove from favourites");
                                 quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_delete, 0, 0, 0);
                             } else {
-                                quickLinkBtn.setText("Add to quick links");
+                                quickLinkBtn.setText("Add to favourites");
                                 quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_upload, 0, 0, 0);
                             }
                         }catch (Exception e){
@@ -378,17 +378,17 @@ public class SuraDetailsActivity extends Activity {
                 try {
                     if (cursor.moveToFirst()) {
                         db.execSQL("DELETE FROM quick_link WHERE sura_id = " + suraId);
-                        Toast.makeText(getApplicationContext(), "Deleted from quick links.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Deleted from favourites.", Toast.LENGTH_LONG).show();
                         quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_upload, 0, 0, 0);
-                        quickLinkBtn.setText("Add to quick links");
+                        quickLinkBtn.setText("Add to favourites");
                     }
                     else {
                         ContentValues values = new ContentValues();
                         values.put("sura_id", suraId);
                         dbhelper.getWritableDatabase().insertOrThrow("quick_link", "", values);
-                        Toast.makeText(getApplicationContext(), "Added to quick links.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Added to favourites.", Toast.LENGTH_LONG).show();
                         quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_delete, 0, 0, 0);
-                        quickLinkBtn.setText("Remove from quick links");
+                        quickLinkBtn.setText("Remove from favourites");
                     }
                 }catch (Exception e){
                     Log.i(TAG, e.getMessage());

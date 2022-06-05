@@ -7,13 +7,18 @@ import android.os.Bundle;
 import android.app.Activity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.SearchView;
 
 import com.akramhossain.quranulkarim.adapter.RecyclerViewAdapter;
+import com.akramhossain.quranulkarim.adapter.WordListViewAdapter;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.listener.RecyclerTouchListener;
 import com.akramhossain.quranulkarim.model.Sura;
+import com.akramhossain.quranulkarim.model.Word;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,7 +26,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class SuraListV2Activity extends Activity {
+public class SuraListV2Activity extends Activity implements SearchView.OnQueryTextListener{
 
     private RecyclerView recyclerview;
     private RecyclerViewAdapter rvAdapter;
@@ -29,6 +34,9 @@ public class SuraListV2Activity extends Activity {
     private ArrayList<Sura> suras;
     private static final String TAG = SuraListV2Activity.class.getSimpleName();
     DatabaseHelper dbhelper;
+    SearchView editsearch;
+    String searchTxt = "";
+    Handler mHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,11 +69,22 @@ public class SuraListV2Activity extends Activity {
 
         //getSuraListFromFile();
         getDataFromLocalDb();
+
+        editsearch = (SearchView) findViewById(R.id.search);
+        editsearch.setOnQueryTextListener(this);
     }
 
     private void getDataFromLocalDb() {
         SQLiteDatabase db = dbhelper.getWritableDatabase();
-        String sql = "SELECT * FROM sura order by surah_id ASC";
+        String sql = "";
+        searchTxt = searchTxt.replaceAll("\'","");
+        if(searchTxt.equals("")) {
+            sql = "SELECT * FROM sura order by surah_id ASC";
+        }else{
+            sql = "SELECT * FROM sura " +
+                    "WHERE name_complex LIKE '%"+searchTxt+"%' OR name_simple LIKE '%"+searchTxt+"%' OR name_english LIKE '%"+searchTxt+"%' OR name_arabic LIKE '%"+searchTxt+"%' " +
+                    "order by surah_id ASC";
+        }
         Log.i(TAG, sql);
         Cursor cursor = db.rawQuery(sql, null);
         try {
@@ -129,4 +148,38 @@ public class SuraListV2Activity extends Activity {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String query) {
+        searchTxt = query;
+        mHandler.removeCallbacksAndMessages(null);
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                int length = searchTxt.length();
+                if(length > 0) {
+                    suras = new ArrayList<Sura>();
+                    rvAdapter = new RecyclerViewAdapter(SuraListV2Activity.this, suras, SuraListV2Activity.this);
+                    recyclerview.setAdapter(rvAdapter);
+                    getDataFromLocalDb();
+                }
+                else{
+                    suras = new ArrayList<Sura>();
+                    rvAdapter = new RecyclerViewAdapter(SuraListV2Activity.this, suras, SuraListV2Activity.this);
+                    recyclerview.setAdapter(rvAdapter);
+                    getDataFromLocalDb();
+                }
+            }
+        }, 100);
+
+
+        return true;
+    }
+
 }

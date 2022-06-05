@@ -88,7 +88,7 @@ public class SearchAyatActivity extends AppCompatActivity {
         String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple " +
                 "FROM ayah " +
                 "LEFT join sura ON ayah.surah_id = sura.surah_id " +
-                "WHERE (text LIKE \"%"+search_term+"%\" or text_tashkeel LIKE \"%"+search_term+"%\" or content_en LIKE \"%"+search_term+"%\" or content_bn LIKE \"%"+search_term+"%\") " +
+                "WHERE (text LIKE \"%"+search_term+"%\" or text_tashkeel LIKE \"%"+search_term+"%\" or content_en LIKE \"%"+search_term+"%\" or content_bn LIKE \"%"+search_term+"%\" or ayah_key LIKE \"%"+search_term+"%\") " +
                 "order by ayah_index ASC " +
                 "limit " + offset + "," + limit;
         Log.i(TAG, sql);

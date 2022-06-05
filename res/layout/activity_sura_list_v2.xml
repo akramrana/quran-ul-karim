@@ -50,11 +50,20 @@
 
         </RelativeLayout>
 
+        <SearchView
+            android:id="@+id/search"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:iconifiedByDefault="false"
+            android:queryHint="Enter keyword to search..."
+            android:layout_below="@+id/topBarSlist">
+        </SearchView>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/all_sura_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/topBarSlist"/>
+            android:layout_below="@id/search"/>
 
         <ProgressBar
             android:id="@+id/progressBar"
