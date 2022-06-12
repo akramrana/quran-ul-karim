@@ -95,4 +95,10 @@
     <string name="string_tafhim">তাফহীমুল কুরআন</string>
     <string name="string_fathul_mazid">তাফসীর ফাতহুল মাজীদ</string>
     <string name="string_fezilalil_quran">তাফসীর ফী যিলালিল কোরআন</string>
+    <string name="string_play">Play</string>
+    <string name="string_bkmark">Bookmark</string>
+    <string name="string_wrd_mni">Word Meaning</string>
+    <string name="string_cp">Copy</string>
+    <string name="string_share">Share</string>
+    <string name="string_del">Delete</string>
 </resources>

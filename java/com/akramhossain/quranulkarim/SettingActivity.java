@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -17,7 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SettingActivity extends Activity {
+public class SettingActivity extends Activity{
 
     EditText arFontSize, enFontSize, bnFontSize, enFontSizeTafsir, bnFontSizeTafsir;
     SharedPreferences mPrefs;
@@ -28,6 +29,16 @@ public class SettingActivity extends Activity {
     public static final String sp_bnFontSize = "bnFontSize";
     public static final String sp_enFontSizeTafsir = "enFontSizeTafsir";
     public static final String sp_bnFontSizeTafsir = "bnFontSizeTafsir";
+
+    public static final String is_tafsir_ibn_kasir_selected = "isTafsirIbnKasirSelected";
+    public static final String is_tafsir_bayaan_selected = "isTafsirBayaanSelected";
+    public static final String is_tafsir_zakaria_selected = "isTafsirZakariaSelected";
+    public static final String is_tafsir_tafhim_selected = "isTafsirTafhimSelected";
+    public static final String is_tafsir_fathul_mazid_selected = "isTafsirFathulMazidSelected";
+    public static final String is_tafsir_fezilalil_selected = "isTafsirFezilalilSelected";
+    public static final String is_tafsir_jalalayn_selected = "isTafsirJalalaynSelected";
+
+    CheckBox chk_ibnkasir, chk_bayaan, chk_zakaria, chk_tafhim, chk_fathul_mazid, chk_fezilalil, chk_jalalayn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +78,43 @@ public class SettingActivity extends Activity {
         bnFontSizeTafsir.setText(mp_bnFzTs);
         spinner.setSelection(dataAdapter.getPosition(mp_arabicFontFamily));
         //
+        String is_ibn_kasir = mPrefs.getString(is_tafsir_ibn_kasir_selected, "2");
+        String is_bayaan = mPrefs.getString(is_tafsir_bayaan_selected, "2");
+        String is_zakaria = mPrefs.getString(is_tafsir_zakaria_selected, "2");
+        String is_tafhim = mPrefs.getString(is_tafsir_tafhim_selected, "2");
+        String is_fathul = mPrefs.getString(is_tafsir_fathul_mazid_selected, "2");
+        String is_fezilalil = mPrefs.getString(is_tafsir_fezilalil_selected, "2");
+        String is_jalalayn = mPrefs.getString(is_tafsir_jalalayn_selected, "2");
+
+        chk_ibnkasir = (CheckBox) findViewById(R.id.tafsirIbnKasirCheckBox);
+        if(is_ibn_kasir.equals("1") || is_ibn_kasir.equals("2")){
+            chk_ibnkasir.setChecked(true);
+        }
+        chk_bayaan = (CheckBox) findViewById(R.id.tafsirBayaanCheckBox);
+        if(is_bayaan.equals("1") || is_bayaan.equals("2")){
+            chk_bayaan.setChecked(true);
+        }
+        chk_zakaria = (CheckBox) findViewById(R.id.tafsirZakariaCheckBox);
+        if(is_zakaria.equals("1") || is_zakaria.equals("2")){
+            chk_zakaria.setChecked(true);
+        }
+        chk_tafhim = (CheckBox) findViewById(R.id.tafsirTafhimCheckBox);
+        if(is_tafhim.equals("1") || is_tafhim.equals("2")){
+            chk_tafhim.setChecked(true);
+        }
+        chk_fathul_mazid = (CheckBox) findViewById(R.id.tafsirFathulCheckBox);
+        if(is_fathul.equals("1") || is_fathul.equals("2")){
+            chk_fathul_mazid.setChecked(true);
+        }
+        chk_fezilalil = (CheckBox) findViewById(R.id.tafsirFezilalilCheckBox);
+        if(is_fezilalil.equals("1") || is_fezilalil.equals("2")){
+            chk_fezilalil.setChecked(true);
+        }
+        chk_jalalayn = (CheckBox) findViewById(R.id.tafsirJalalaynCheckBox);
+        if(is_jalalayn.equals("1") || is_jalalayn.equals("2")){
+            chk_jalalayn.setChecked(true);
+        }
+        //
         final Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -91,6 +139,43 @@ public class SettingActivity extends Activity {
                 editor.putString(sp_bnFontSize, bnFz);
                 editor.putString(sp_enFontSizeTafsir, enFzTs);
                 editor.putString(sp_bnFontSizeTafsir, bnFzTs);
+                //
+                if(chk_ibnkasir.isChecked()){
+                    editor.putString(is_tafsir_ibn_kasir_selected, "1");
+                }else{
+                    editor.putString(is_tafsir_ibn_kasir_selected, "-1");
+                }
+                if(chk_bayaan.isChecked()){
+                    editor.putString(is_tafsir_bayaan_selected, "1");
+                }else{
+                    editor.putString(is_tafsir_bayaan_selected, "-1");
+                }
+                if(chk_zakaria.isChecked()){
+                    editor.putString(is_tafsir_zakaria_selected, "1");
+                }else{
+                    editor.putString(is_tafsir_zakaria_selected, "-1");
+                }
+                if(chk_tafhim.isChecked()){
+                    editor.putString(is_tafsir_tafhim_selected, "1");
+                }else{
+                    editor.putString(is_tafsir_tafhim_selected, "-1");
+                }
+                if(chk_fathul_mazid.isChecked()){
+                    editor.putString(is_tafsir_fathul_mazid_selected, "1");
+                }else{
+                    editor.putString(is_tafsir_fathul_mazid_selected, "-1");
+                }
+                if(chk_fezilalil.isChecked()){
+                    editor.putString(is_tafsir_fezilalil_selected, "1");
+                }else{
+                    editor.putString(is_tafsir_fezilalil_selected, "-1");
+                }
+                if(chk_jalalayn.isChecked()){
+                    editor.putString(is_tafsir_jalalayn_selected, "1");
+                }else{
+                    editor.putString(is_tafsir_jalalayn_selected, "-1");
+                }
+                //
                 editor.apply();
                 //
                 Toast.makeText(getApplicationContext(),"Settings saved",Toast.LENGTH_SHORT).show();
@@ -122,9 +207,26 @@ public class SettingActivity extends Activity {
                 editor.putString(sp_bnFontSize, bnFz);
                 editor.putString(sp_enFontSizeTafsir, enFzTs);
                 editor.putString(sp_bnFontSizeTafsir, bnFzTs);
+                //
+                editor.putString(is_tafsir_ibn_kasir_selected, "2");
+                editor.putString(is_tafsir_bayaan_selected, "2");
+                editor.putString(is_tafsir_zakaria_selected, "2");
+                editor.putString(is_tafsir_tafhim_selected, "2");
+                editor.putString(is_tafsir_fathul_mazid_selected, "2");
+                editor.putString(is_tafsir_fezilalil_selected, "2");
+                editor.putString(is_tafsir_jalalayn_selected, "2");
+                chk_ibnkasir.setChecked(true);
+                chk_bayaan.setChecked(true);
+                chk_zakaria.setChecked(true);
+                chk_tafhim.setChecked(true);
+                chk_fathul_mazid.setChecked(true);
+                chk_fezilalil.setChecked(true);
+                chk_jalalayn.setChecked(true);
+                //
                 editor.apply();
                 Toast.makeText(getApplicationContext(),"Settings saved",Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 }

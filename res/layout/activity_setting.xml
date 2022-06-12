@@ -337,6 +337,86 @@
                     android:background="@color/colorWhite"
                     android:layout_marginTop="10dp"/>
 
+
+                <TextView
+                    android:id="@+id/settingForTafsirSelection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Setting For Tafsir"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16dip"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="20dp"/>
+
+
+                <LinearLayout
+                    android:id="@+id/selectTafsirSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/tafsirIbnKasirCheckBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/string_ibnkathir"
+                            android:buttonTint="#d1d2d4"
+                            android:clickable="false"/>
+
+                        <CheckBox
+                            android:id="@+id/tafsirBayaanCheckBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/string_bayaan"/>
+
+                        <CheckBox
+                            android:id="@+id/tafsirZakariaCheckBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/string_zakaria"/>
+
+                        <CheckBox
+                            android:id="@+id/tafsirTafhimCheckBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/string_tafhim"/>
+
+                        <CheckBox
+                            android:id="@+id/tafsirFathulCheckBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/string_fathul_mazid"/>
+
+                        <CheckBox
+                            android:id="@+id/tafsirFezilalilCheckBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/string_fezilalil_quran"/>
+
+                        <CheckBox
+                            android:id="@+id/tafsirJalalaynCheckBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/string_jalalayn"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/horizontal_line_3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorWhite"
+                    android:layout_marginTop="10dp"/>
+
                 <LinearLayout
                     android:id="@+id/buttonSection"
                     android:layout_width="match_parent"

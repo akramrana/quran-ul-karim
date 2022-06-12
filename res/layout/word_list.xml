@@ -76,7 +76,7 @@
                 android:drawableLeft="@android:drawable/ic_media_play"
                 android:background="@android:color/transparent"
                 android:layout_alignParentLeft="true"
-                android:text="Play"
+                android:text="@string/string_play"
                 android:gravity="center_vertical|center"
                 android:layout_margin="4dp"/>
 

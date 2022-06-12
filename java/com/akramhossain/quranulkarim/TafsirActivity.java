@@ -43,6 +43,14 @@ public class TafsirActivity extends Activity {
 
     private static final String TAG = TafsirActivity.class.getSimpleName();
 
+    public static final String is_tafsir_ibn_kasir_selected = "isTafsirIbnKasirSelected";
+    public static final String is_tafsir_bayaan_selected = "isTafsirBayaanSelected";
+    public static final String is_tafsir_zakaria_selected = "isTafsirZakariaSelected";
+    public static final String is_tafsir_tafhim_selected = "isTafsirTafhimSelected";
+    public static final String is_tafsir_fathul_mazid_selected = "isTafsirFathulMazidSelected";
+    public static final String is_tafsir_fezilalil_selected = "isTafsirFezilalilSelected";
+    public static final String is_tafsir_jalalayn_selected = "isTafsirJalalaynSelected";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -397,6 +405,36 @@ public class TafsirActivity extends Activity {
             tafhim_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
             fathul_mazid_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
             fezilalil_quran_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
+        }
+
+        String is_ibn_kasir = mPrefs.getString(is_tafsir_ibn_kasir_selected, "2");
+        if(is_ibn_kasir.equals("-1")){
+            btn_ibnkathir.setVisibility(View.GONE);
+            ibn_kathir_content.setVisibility(View.GONE);
+        }
+        String is_bayaan = mPrefs.getString(is_tafsir_bayaan_selected, "2");
+        if(is_bayaan.equals("-1")){
+            btn_bayaan.setVisibility(View.GONE);
+        }
+        String is_zakaria = mPrefs.getString(is_tafsir_zakaria_selected, "2");
+        if(is_zakaria.equals("-1")){
+            btn_zakaria.setVisibility(View.GONE);
+        }
+        String is_tafhim = mPrefs.getString(is_tafsir_tafhim_selected, "2");
+        if(is_tafhim.equals("-1")){
+            btn_tafhim.setVisibility(View.GONE);
+        }
+        String is_fathul = mPrefs.getString(is_tafsir_fathul_mazid_selected, "2");
+        if(is_fathul.equals("-1")){
+            btn_fathul_mazid.setVisibility(View.GONE);
+        }
+        String is_fezilalil = mPrefs.getString(is_tafsir_fezilalil_selected, "2");
+        if(is_fezilalil.equals("-1")){
+            btn_fezilalil_quran.setVisibility(View.GONE);
+        }
+        String is_jalalayn = mPrefs.getString(is_tafsir_jalalayn_selected, "2");
+        if(is_jalalayn.equals("-1")){
+            btn_jalalayn.setVisibility(View.GONE);
         }
 
     }
