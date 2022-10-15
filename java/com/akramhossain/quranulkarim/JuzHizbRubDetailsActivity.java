@@ -19,7 +19,7 @@ import com.akramhossain.quranulkarim.model.Ayah;
 
 import java.util.ArrayList;
 
-public class JuzHizbRubDetailsActivity extends Activity {
+public class JuzHizbRubDetailsActivity extends AppCompatActivity {
 
     public static String suraId;
     public static String suraName;
@@ -152,13 +152,13 @@ public class JuzHizbRubDetailsActivity extends Activity {
                         String juz_num = "";
                         String hizb_num = "";
                         String rub_num = "";
-                        String next_sura_id = cursor.getString(cursor.getColumnIndex("surah_id")).toString();
-                        String next_sura_name = cursor.getString(cursor.getColumnIndex("name_english")).toString();
-                        String next_sura_name_arabic = cursor.getString(cursor.getColumnIndex("name_arabic")).toString();
+                        String next_sura_id = cursor.getString(cursor.getColumnIndexOrThrow("surah_id")).toString();
+                        String next_sura_name = cursor.getString(cursor.getColumnIndexOrThrow("name_english")).toString();
+                        String next_sura_name_arabic = cursor.getString(cursor.getColumnIndexOrThrow("name_arabic")).toString();
                         String next_activity_title = "";
                         //
                         if(suraJuzNum!=null && !suraJuzNum.isEmpty()){
-                            String str_juz_name = cursor.getString(cursor.getColumnIndex("juz_num")).toString();
+                            String str_juz_name = cursor.getString(cursor.getColumnIndexOrThrow("juz_num")).toString();
                             juz_num = str_juz_name;
                             next_activity_title = "Juz\' "+str_juz_name;
                             where_clause = "ayah.juz_num = "+str_juz_name;
@@ -166,7 +166,7 @@ public class JuzHizbRubDetailsActivity extends Activity {
                             btn_prev_where_clause = "ayah.juz_num < "+str_juz_name+" ORDER BY ayah.juz_num DESC limit 1";
                         }
                         if(suraHizbNum!=null && !suraHizbNum.isEmpty()){
-                            String str_hizb_num = cursor.getString(cursor.getColumnIndex("hizb_num")).toString();
+                            String str_hizb_num = cursor.getString(cursor.getColumnIndexOrThrow("hizb_num")).toString();
                             hizb_num = str_hizb_num;
                             next_activity_title = "Hizb "+str_hizb_num;
                             where_clause = "ayah.hizb_num = "+str_hizb_num;
@@ -174,7 +174,7 @@ public class JuzHizbRubDetailsActivity extends Activity {
                             btn_prev_where_clause = "ayah.hizb_num < "+str_hizb_num+" ORDER BY ayah.hizb_num DESC limit 1";
                         }
                         if(suraRubNum!=null && !suraRubNum.isEmpty()){
-                            String str_rub_num = cursor.getString(cursor.getColumnIndex("rub_num")).toString();
+                            String str_rub_num = cursor.getString(cursor.getColumnIndexOrThrow("rub_num")).toString();
                             rub_num = str_rub_num;
                             next_activity_title = "Rub\' "+str_rub_num;
                             where_clause = "ayah.rub_num = "+str_rub_num;
@@ -223,13 +223,13 @@ public class JuzHizbRubDetailsActivity extends Activity {
                         String juz_num = "";
                         String hizb_num = "";
                         String rub_num = "";
-                        String next_sura_id = cursor.getString(cursor.getColumnIndex("surah_id")).toString();
-                        String next_sura_name = cursor.getString(cursor.getColumnIndex("name_english")).toString();
-                        String next_sura_name_arabic = cursor.getString(cursor.getColumnIndex("name_arabic")).toString();
+                        String next_sura_id = cursor.getString(cursor.getColumnIndexOrThrow("surah_id")).toString();
+                        String next_sura_name = cursor.getString(cursor.getColumnIndexOrThrow("name_english")).toString();
+                        String next_sura_name_arabic = cursor.getString(cursor.getColumnIndexOrThrow("name_arabic")).toString();
                         String next_activity_title = "";
                         //
                         if(suraJuzNum!=null && !suraJuzNum.isEmpty()){
-                            String str_juz_name = cursor.getString(cursor.getColumnIndex("juz_num")).toString();
+                            String str_juz_name = cursor.getString(cursor.getColumnIndexOrThrow("juz_num")).toString();
                             juz_num = str_juz_name;
                             next_activity_title = "Juz\' "+str_juz_name;
                             where_clause = "ayah.juz_num = "+str_juz_name;
@@ -237,7 +237,7 @@ public class JuzHizbRubDetailsActivity extends Activity {
                             btn_prev_where_clause = "ayah.juz_num < "+str_juz_name+" ORDER BY ayah.juz_num DESC limit 1";
                         }
                         if(suraHizbNum!=null && !suraHizbNum.isEmpty()){
-                            String str_hizb_num = cursor.getString(cursor.getColumnIndex("hizb_num")).toString();
+                            String str_hizb_num = cursor.getString(cursor.getColumnIndexOrThrow("hizb_num")).toString();
                             hizb_num = str_hizb_num;
                             next_activity_title = "Hizb "+str_hizb_num;
                             where_clause = "ayah.hizb_num = "+str_hizb_num;
@@ -245,7 +245,7 @@ public class JuzHizbRubDetailsActivity extends Activity {
                             btn_prev_where_clause = "ayah.hizb_num < "+str_hizb_num+" ORDER BY ayah.hizb_num DESC limit 1";
                         }
                         if(suraRubNum!=null && !suraRubNum.isEmpty()){
-                            String str_rub_num = cursor.getString(cursor.getColumnIndex("rub_num")).toString();
+                            String str_rub_num = cursor.getString(cursor.getColumnIndexOrThrow("rub_num")).toString();
                             rub_num = str_rub_num;
                             next_activity_title = "Rub\' "+str_rub_num;
                             where_clause = "ayah.rub_num = "+str_rub_num;
@@ -288,25 +288,25 @@ public class JuzHizbRubDetailsActivity extends Activity {
             if (cursor.moveToFirst()) {
                 do {
                     Ayah ayah = new Ayah();
-                    ayah.setAyah_index(cursor.getString(cursor.getColumnIndex("ayah_index")));
-                    ayah.setSurah_id(cursor.getString(cursor.getColumnIndex("surah_id")));
-                    ayah.setAyah_num(cursor.getString(cursor.getColumnIndex("ayah_num")));
-                    ayah.setPage_num(cursor.getString(cursor.getColumnIndex("page_num")));
-                    ayah.setJuz_num(cursor.getString(cursor.getColumnIndex("juz_num")));
-                    ayah.setHizb_num(cursor.getString(cursor.getColumnIndex("hizb_num")));
-                    ayah.setRub_num(cursor.getString(cursor.getColumnIndex("rub_num")));
-                    ayah.setText(cursor.getString(cursor.getColumnIndex("text")));
-                    ayah.setAyah_key(cursor.getString(cursor.getColumnIndex("ayah_key")));
-                    ayah.setSajdah(cursor.getString(cursor.getColumnIndex("sajdah")));
-                    ayah.setText_tashkeel(cursor.getString(cursor.getColumnIndex("text_tashkeel")));
-                    ayah.setContent_en(cursor.getString(cursor.getColumnIndex("content_en")));
-                    ayah.setContent_bn(cursor.getString(cursor.getColumnIndex("content_bn")));
-                    ayah.setAudio_duration(cursor.getString(cursor.getColumnIndex("audio_duration")));
-                    ayah.setAudio_url(cursor.getString(cursor.getColumnIndex("audio_url")));
-                    ayah.setName_simple(cursor.getString(cursor.getColumnIndex("name_simple")));
-                    ayah.setName_complex(cursor.getString(cursor.getColumnIndex("name_complex")));
-                    ayah.setName_english(cursor.getString(cursor.getColumnIndex("name_english")));
-                    ayah.setName_arabic(cursor.getString(cursor.getColumnIndex("name_arabic")));
+                    ayah.setAyah_index(cursor.getString(cursor.getColumnIndexOrThrow("ayah_index")));
+                    ayah.setSurah_id(cursor.getString(cursor.getColumnIndexOrThrow("surah_id")));
+                    ayah.setAyah_num(cursor.getString(cursor.getColumnIndexOrThrow("ayah_num")));
+                    ayah.setPage_num(cursor.getString(cursor.getColumnIndexOrThrow("page_num")));
+                    ayah.setJuz_num(cursor.getString(cursor.getColumnIndexOrThrow("juz_num")));
+                    ayah.setHizb_num(cursor.getString(cursor.getColumnIndexOrThrow("hizb_num")));
+                    ayah.setRub_num(cursor.getString(cursor.getColumnIndexOrThrow("rub_num")));
+                    ayah.setText(cursor.getString(cursor.getColumnIndexOrThrow("text")));
+                    ayah.setAyah_key(cursor.getString(cursor.getColumnIndexOrThrow("ayah_key")));
+                    ayah.setSajdah(cursor.getString(cursor.getColumnIndexOrThrow("sajdah")));
+                    ayah.setText_tashkeel(cursor.getString(cursor.getColumnIndexOrThrow("text_tashkeel")));
+                    ayah.setContent_en(cursor.getString(cursor.getColumnIndexOrThrow("content_en")));
+                    ayah.setContent_bn(cursor.getString(cursor.getColumnIndexOrThrow("content_bn")));
+                    ayah.setAudio_duration(cursor.getString(cursor.getColumnIndexOrThrow("audio_duration")));
+                    ayah.setAudio_url(cursor.getString(cursor.getColumnIndexOrThrow("audio_url")));
+                    ayah.setName_simple(cursor.getString(cursor.getColumnIndexOrThrow("name_simple")));
+                    ayah.setName_complex(cursor.getString(cursor.getColumnIndexOrThrow("name_complex")));
+                    ayah.setName_english(cursor.getString(cursor.getColumnIndexOrThrow("name_english")));
+                    ayah.setName_arabic(cursor.getString(cursor.getColumnIndexOrThrow("name_arabic")));
                     ayahs.add(ayah);
                 } while (cursor.moveToNext());
             }

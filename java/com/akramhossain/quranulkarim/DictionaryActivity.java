@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.os.Handler;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,7 +23,7 @@ import com.akramhossain.quranulkarim.model.Word;
 
 import java.util.ArrayList;
 
-public class DictionaryActivity extends Activity implements SearchView.OnQueryTextListener{
+public class DictionaryActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
     private RecyclerView recyclerview;
     LinearLayoutManager mLayoutManager;
@@ -127,16 +128,16 @@ public class DictionaryActivity extends Activity implements SearchView.OnQueryTe
             if (cursor.moveToFirst()) {
                 do {
                     Word word = new Word();
-                    word.setAyah_index(cursor.getString(cursor.getColumnIndex("ayah_index")));
-                    word.setWord_id(cursor.getString(cursor.getColumnIndex("word_id")));
-                    word.setArabic(cursor.getString(cursor.getColumnIndex("arabic")));
-                    word.setTransliteration(cursor.getString(cursor.getColumnIndex("transliteration")));
-                    word.setTranslation(cursor.getString(cursor.getColumnIndex("translation")));
-                    word.setCode(cursor.getString(cursor.getColumnIndex("code")));
-                    word.setCode_hex(cursor.getString(cursor.getColumnIndex("code_hex")));
-                    word.setCode_dec(cursor.getString(cursor.getColumnIndex("code_dec")));
-                    word.setAyah_key(cursor.getString(cursor.getColumnIndex("ayah_key")));
-                    word.setPosition(cursor.getString(cursor.getColumnIndex("position")));
+                    word.setAyah_index(cursor.getString(cursor.getColumnIndexOrThrow("ayah_index")).toString());
+                    word.setWord_id(cursor.getString(cursor.getColumnIndexOrThrow("word_id")).toString());
+                    word.setArabic(cursor.getString(cursor.getColumnIndexOrThrow("arabic")).toString());
+                    word.setTransliteration(cursor.getString(cursor.getColumnIndexOrThrow("transliteration")).toString());
+                    word.setTranslation(cursor.getString(cursor.getColumnIndexOrThrow("translation")).toString());
+                    word.setCode(cursor.getString(cursor.getColumnIndexOrThrow("code")).toString());
+                    word.setCode_hex(cursor.getString(cursor.getColumnIndexOrThrow("code_hex")).toString());
+                    word.setCode_dec(cursor.getString(cursor.getColumnIndexOrThrow("code_dec")).toString());
+                    word.setAyah_key(cursor.getString(cursor.getColumnIndexOrThrow("ayah_key")).toString());
+                    word.setPosition(cursor.getString(cursor.getColumnIndexOrThrow("position")).toString());
                     words.add(word);
                 } while (cursor.moveToNext());
             }
@@ -218,6 +219,7 @@ public class DictionaryActivity extends Activity implements SearchView.OnQueryTe
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case PERMISSION_REQUEST_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {

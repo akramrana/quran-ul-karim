@@ -6,6 +6,8 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import android.util.Log;
@@ -19,7 +21,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-public class PrayerTimesActivity extends Activity {
+public class PrayerTimesActivity extends AppCompatActivity {
 
     private static final int PERMISSION_REQUEST_CODE = 101;
 
@@ -191,36 +193,37 @@ public class PrayerTimesActivity extends Activity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case PERMISSION_REQUEST_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     //Log.e("value", "Permission Granted.");
                     TimeZone tmzone = TimeZone.getDefault();
 
-                    double hourDiff = (tmzone.getRawOffset()/ 1000)/3600;
+                    double hourDiff = (tmzone.getRawOffset() / 1000) / 3600;
 
                     if (checkPermission()) {
                         LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
                         //Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                        try{
-                            gps_enabled=lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
-                        }catch(Exception ex){
+                        try {
+                            gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+                        } catch (Exception ex) {
                         }
-                        try{
-                            network_enabled=lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-                        }catch(Exception ex){
+                        try {
+                            network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+                        } catch (Exception ex) {
                         }
                         Location networkLoacation = null, gpsLocation = null, location = null;
-                        if(gps_enabled){
+                        if (gps_enabled) {
                             gpsLocation = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                         }
-                        if(network_enabled){
+                        if (network_enabled) {
                             networkLoacation = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                         }
                         if (gpsLocation != null && networkLoacation != null) {
                             if (gpsLocation.getAccuracy() > networkLoacation.getAccuracy()) {
                                 location = networkLoacation;
-                            }else {
+                            } else {
                                 location = gpsLocation;
                             }
                         } else {
@@ -230,12 +233,12 @@ public class PrayerTimesActivity extends Activity {
                                 location = networkLoacation;
                             }
                         }
-                        if(location!= null) {
+                        if (location != null) {
                             double latitude = location.getLatitude();
                             double longitude = location.getLongitude();
                             double timezone = hourDiff;
                             getPrayerTimes(latitude, longitude, timezone);
-                        }else{
+                        } else {
                             Toast.makeText(PrayerTimesActivity.this, "Sorry! We could not retrive your current location.", Toast.LENGTH_LONG).show();
                         }
                     }

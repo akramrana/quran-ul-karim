@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.akramhossain.quranulkarim"
-    android:versionCode="45"
-    android:versionName="45.06.12.2022">
+    android:versionCode="46"
+    android:versionName="46.15.10.2022">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Allow to connect with internet -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Network State Permissions -->
@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -27,10 +28,10 @@
         <activity android:name=".JuzHizbRubDetailsActivity" />
         <activity
             android:name=".SplashScreenActivity"
-            android:theme="@style/SplashScreenTheme">
+            android:theme="@style/SplashScreenTheme"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -51,6 +52,7 @@
             android:label="@string/title_activity_word_meaning" />
         <activity
             android:name=".MainActivity"
+            android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -76,7 +78,8 @@
         <activity android:name=".PrayerTimesActivity" />
         <activity android:name=".JuzActivity" />
         <activity android:name=".RubActivity" />
-        <activity android:name=".HizbActivity" /> <!-- <receiver android:name=".notification.AlarmReceiver" /> -->
+        <activity android:name=".HizbActivity" />
+        <!-- <receiver android:name=".notification.AlarmReceiver" /> -->
         <!-- <receiver -->
         <!-- android:name=".notification.AlarmBootReceiver" -->
         <!-- android:enabled="false"> -->

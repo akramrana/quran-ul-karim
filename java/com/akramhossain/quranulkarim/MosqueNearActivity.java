@@ -14,10 +14,11 @@ import android.widget.Toast;
 
 import java.util.TimeZone;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-public class MosqueNearActivity extends Activity {
+public class MosqueNearActivity extends AppCompatActivity {
 
     boolean gps_enabled=false;
     boolean network_enabled=false;
@@ -109,36 +110,37 @@ public class MosqueNearActivity extends Activity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case PERMISSION_REQUEST_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     //Log.e("value", "Permission Granted.");
                     TimeZone tmzone = TimeZone.getDefault();
 
-                    double hourDiff = (tmzone.getRawOffset()/ 1000)/3600;
+                    double hourDiff = (tmzone.getRawOffset() / 1000) / 3600;
 
                     if (checkPermission()) {
                         LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
                         //Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                        try{
-                            gps_enabled=lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
-                        }catch(Exception ex){
+                        try {
+                            gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+                        } catch (Exception ex) {
                         }
-                        try{
-                            network_enabled=lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-                        }catch(Exception ex){
+                        try {
+                            network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+                        } catch (Exception ex) {
                         }
                         Location networkLoacation = null, gpsLocation = null, location = null;
-                        if(gps_enabled){
+                        if (gps_enabled) {
                             gpsLocation = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                         }
-                        if(network_enabled){
+                        if (network_enabled) {
                             networkLoacation = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                         }
                         if (gpsLocation != null && networkLoacation != null) {
                             if (gpsLocation.getAccuracy() > networkLoacation.getAccuracy()) {
                                 location = networkLoacation;
-                            }else {
+                            } else {
                                 location = gpsLocation;
                             }
                         } else {
@@ -148,17 +150,17 @@ public class MosqueNearActivity extends Activity {
                                 location = networkLoacation;
                             }
                         }
-                        if(location!= null) {
+                        if (location != null) {
                             double latitude = location.getLatitude();
                             double longitude = location.getLongitude();
 
-                            mapPath = "http://websites.codxplore.com/heremap/index.php?lat="+latitude+"&lng="+longitude;
+                            mapPath = "http://websites.codxplore.com/heremap/index.php?lat=" + latitude + "&lng=" + longitude;
 
-                            Log.d("MAP ULR",mapPath);
+                            Log.d("MAP ULR", mapPath);
 
                             myWebView.loadUrl(mapPath);
 
-                        }else{
+                        } else {
                             Toast.makeText(MosqueNearActivity.this, "Sorry! We could not retrive your current location.", Toast.LENGTH_LONG).show();
                         }
                     }

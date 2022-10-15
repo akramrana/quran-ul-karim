@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -36,7 +37,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class SuraDetailsActivity extends Activity {
+public class SuraDetailsActivity extends AppCompatActivity {
 
     public static String suraId;
     public static String suraName;
@@ -261,9 +262,9 @@ public class SuraDetailsActivity extends Activity {
                 Cursor cursor = db.rawQuery(sql, null);
                 try {
                     if (cursor.moveToFirst()) {
-                        String prevSuraId = cursor.getString(cursor.getColumnIndex("surah_id")).toString();
-                        String prevSuraNameEn = cursor.getString(cursor.getColumnIndex("name_english")).toString();
-                        String prevSuraNameAr = cursor.getString(cursor.getColumnIndex("name_arabic")).toString();
+                        String prevSuraId = cursor.getString(cursor.getColumnIndexOrThrow("surah_id")).toString();
+                        String prevSuraNameEn = cursor.getString(cursor.getColumnIndexOrThrow("name_english")).toString();
+                        String prevSuraNameAr = cursor.getString(cursor.getColumnIndexOrThrow("name_arabic")).toString();
 
                         suraId = prevSuraId;
                         suraName = prevSuraNameEn;
@@ -323,9 +324,9 @@ public class SuraDetailsActivity extends Activity {
                 Cursor cursor = db.rawQuery(sql, null);
                 try {
                     if (cursor.moveToFirst()) {
-                        String prevSuraId = cursor.getString(cursor.getColumnIndex("surah_id")).toString();
-                        String prevSuraNameEn = cursor.getString(cursor.getColumnIndex("name_english")).toString();
-                        String prevSuraNameAr = cursor.getString(cursor.getColumnIndex("name_arabic")).toString();
+                        String prevSuraId = cursor.getString(cursor.getColumnIndexOrThrow("surah_id")).toString();
+                        String prevSuraNameEn = cursor.getString(cursor.getColumnIndexOrThrow("name_english")).toString();
+                        String prevSuraNameAr = cursor.getString(cursor.getColumnIndexOrThrow("name_arabic")).toString();
 
                         suraId = prevSuraId;
                         suraName = prevSuraNameEn;
@@ -508,26 +509,26 @@ public class SuraDetailsActivity extends Activity {
             if (cursor.moveToFirst()) {
                 do {
                     Ayah ayah = new Ayah();
-                    ayah.setAyah_index(cursor.getString(cursor.getColumnIndex("ayah_index")));
-                    ayah.setSurah_id(cursor.getString(cursor.getColumnIndex("surah_id")));
-                    ayah.setAyah_num(cursor.getString(cursor.getColumnIndex("ayah_num")));
-                    ayah.setPage_num(cursor.getString(cursor.getColumnIndex("page_num")));
-                    ayah.setJuz_num(cursor.getString(cursor.getColumnIndex("juz_num")));
-                    ayah.setHizb_num(cursor.getString(cursor.getColumnIndex("hizb_num")));
-                    ayah.setRub_num(cursor.getString(cursor.getColumnIndex("rub_num")));
-                    ayah.setText(cursor.getString(cursor.getColumnIndex("text")));
-                    ayah.setAyah_key(cursor.getString(cursor.getColumnIndex("ayah_key")));
-                    ayah.setSajdah(cursor.getString(cursor.getColumnIndex("sajdah")));
-                    ayah.setText_tashkeel(cursor.getString(cursor.getColumnIndex("text_tashkeel")));
-                    ayah.setContent_en(cursor.getString(cursor.getColumnIndex("content_en")));
-                    ayah.setContent_bn(cursor.getString(cursor.getColumnIndex("content_bn")));
-                    ayah.setAudio_duration(cursor.getString(cursor.getColumnIndex("audio_duration")));
-                    ayah.setAudio_url(cursor.getString(cursor.getColumnIndex("audio_url")));
+                    ayah.setAyah_index(cursor.getString(cursor.getColumnIndexOrThrow("ayah_index")));
+                    ayah.setSurah_id(cursor.getString(cursor.getColumnIndexOrThrow("surah_id")));
+                    ayah.setAyah_num(cursor.getString(cursor.getColumnIndexOrThrow("ayah_num")));
+                    ayah.setPage_num(cursor.getString(cursor.getColumnIndexOrThrow("page_num")));
+                    ayah.setJuz_num(cursor.getString(cursor.getColumnIndexOrThrow("juz_num")));
+                    ayah.setHizb_num(cursor.getString(cursor.getColumnIndexOrThrow("hizb_num")));
+                    ayah.setRub_num(cursor.getString(cursor.getColumnIndexOrThrow("rub_num")));
+                    ayah.setText(cursor.getString(cursor.getColumnIndexOrThrow("text")));
+                    ayah.setAyah_key(cursor.getString(cursor.getColumnIndexOrThrow("ayah_key")));
+                    ayah.setSajdah(cursor.getString(cursor.getColumnIndexOrThrow("sajdah")));
+                    ayah.setText_tashkeel(cursor.getString(cursor.getColumnIndexOrThrow("text_tashkeel")));
+                    ayah.setContent_en(cursor.getString(cursor.getColumnIndexOrThrow("content_en")));
+                    ayah.setContent_bn(cursor.getString(cursor.getColumnIndexOrThrow("content_bn")));
+                    ayah.setAudio_duration(cursor.getString(cursor.getColumnIndexOrThrow("audio_duration")));
+                    ayah.setAudio_url(cursor.getString(cursor.getColumnIndexOrThrow("audio_url")));
                     //
-                    ayah.setName_simple(cursor.getString(cursor.getColumnIndex("name_simple")));
-                    ayah.setName_complex(cursor.getString(cursor.getColumnIndex("name_complex")));
-                    ayah.setName_english(cursor.getString(cursor.getColumnIndex("name_english")));
-                    ayah.setName_arabic(cursor.getString(cursor.getColumnIndex("name_arabic")));
+                    ayah.setName_simple(cursor.getString(cursor.getColumnIndexOrThrow("name_simple")));
+                    ayah.setName_complex(cursor.getString(cursor.getColumnIndexOrThrow("name_complex")));
+                    ayah.setName_english(cursor.getString(cursor.getColumnIndexOrThrow("name_english")));
+                    ayah.setName_arabic(cursor.getString(cursor.getColumnIndexOrThrow("name_arabic")));
                     ayahs.add(ayah);
                 } while (cursor.moveToNext());
             }
@@ -628,6 +629,7 @@ public class SuraDetailsActivity extends Activity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case PERMISSION_REQUEST_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {

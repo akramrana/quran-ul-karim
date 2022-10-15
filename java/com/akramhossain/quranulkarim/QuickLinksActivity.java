@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
@@ -17,7 +19,7 @@ import com.akramhossain.quranulkarim.model.Sura;
 
 import java.util.ArrayList;
 
-public class QuickLinksActivity extends Activity {
+public class QuickLinksActivity extends AppCompatActivity {
 
     private RecyclerView recyclerview;
     private RecyclerViewAdapter rvAdapter;
@@ -69,14 +71,14 @@ public class QuickLinksActivity extends Activity {
             if (cursor.moveToFirst()) {
                 do {
                     Sura sura = new Sura();
-                    sura.setSurah_id(cursor.getString(cursor.getColumnIndex("surah_id")));
-                    sura.setName_arabic(cursor.getString(cursor.getColumnIndex("name_arabic")));
-                    sura.setName_english(cursor.getString(cursor.getColumnIndex("name_english")));
-                    sura.setName_simple(cursor.getString(cursor.getColumnIndex("name_simple")));
-                    sura.setRevelation_place(cursor.getString(cursor.getColumnIndex("revelation_place")));
-                    sura.setAyat(cursor.getString(cursor.getColumnIndex("ayat")));
-                    sura.setRevelation_order(cursor.getString(cursor.getColumnIndex("revelation_order")));
-                    sura.setId(cursor.getString(cursor.getColumnIndex("sid")));
+                    sura.setSurah_id(cursor.getString(cursor.getColumnIndexOrThrow("surah_id")));
+                    sura.setName_arabic(cursor.getString(cursor.getColumnIndexOrThrow("name_arabic")));
+                    sura.setName_english(cursor.getString(cursor.getColumnIndexOrThrow("name_english")));
+                    sura.setName_simple(cursor.getString(cursor.getColumnIndexOrThrow("name_simple")));
+                    sura.setRevelation_place(cursor.getString(cursor.getColumnIndexOrThrow("revelation_place")));
+                    sura.setAyat(cursor.getString(cursor.getColumnIndexOrThrow("ayat")));
+                    sura.setRevelation_order(cursor.getString(cursor.getColumnIndexOrThrow("revelation_order")));
+                    sura.setId(cursor.getString(cursor.getColumnIndexOrThrow("sid")));
                     suras.add(sura);
                 } while (cursor.moveToNext());
             }

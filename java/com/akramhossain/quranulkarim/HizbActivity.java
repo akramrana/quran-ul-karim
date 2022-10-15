@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
@@ -17,7 +19,7 @@ import com.akramhossain.quranulkarim.model.Hizb;
 
 import java.util.ArrayList;
 
-public class HizbActivity extends Activity {
+public class HizbActivity extends AppCompatActivity {
 
     private RecyclerView recyclerview;
     LinearLayoutManager mLayoutManager;
@@ -76,17 +78,17 @@ public class HizbActivity extends Activity {
             if (cursor.moveToFirst()) {
                 do {
                     Hizb hizb = new Hizb();
-                    hizb.setAyah_index(cursor.getString(cursor.getColumnIndex("ayah_index")));
-                    hizb.setSurah_id(cursor.getString(cursor.getColumnIndex("surah_id")));
-                    hizb.setPage_num(cursor.getString(cursor.getColumnIndex("page_num")));
-                    hizb.setHizb_num(cursor.getString(cursor.getColumnIndex("hizb_num")));
-                    hizb.setText_tashkeel(cursor.getString(cursor.getColumnIndex("text_tashkeel")));
-                    hizb.setAyah_key(cursor.getString(cursor.getColumnIndex("ayah_key")));
-                    hizb.setName_simple(cursor.getString(cursor.getColumnIndex("name_simple")));
-                    hizb.setName_complex(cursor.getString(cursor.getColumnIndex("name_complex")));
-                    hizb.setName_english(cursor.getString(cursor.getColumnIndex("name_english")));
-                    hizb.setName_arabic(cursor.getString(cursor.getColumnIndex("name_arabic")));
-                    hizb.setAyah_num(cursor.getString(cursor.getColumnIndex("ayah_num")));
+                    hizb.setAyah_index(cursor.getString(cursor.getColumnIndexOrThrow("ayah_index")).toString());
+                    hizb.setSurah_id(cursor.getString(cursor.getColumnIndexOrThrow("surah_id")).toString());
+                    hizb.setPage_num(cursor.getString(cursor.getColumnIndexOrThrow("page_num")).toString());
+                    hizb.setHizb_num(cursor.getString(cursor.getColumnIndexOrThrow("hizb_num")).toString());
+                    hizb.setText_tashkeel(cursor.getString(cursor.getColumnIndexOrThrow("text_tashkeel")).toString());
+                    hizb.setAyah_key(cursor.getString(cursor.getColumnIndexOrThrow("ayah_key")).toString());
+                    hizb.setName_simple(cursor.getString(cursor.getColumnIndexOrThrow("name_simple")).toString());
+                    hizb.setName_complex(cursor.getString(cursor.getColumnIndexOrThrow("name_complex")).toString());
+                    hizb.setName_english(cursor.getString(cursor.getColumnIndexOrThrow("name_english")).toString());
+                    hizb.setName_arabic(cursor.getString(cursor.getColumnIndexOrThrow("name_arabic")).toString());
+                    hizb.setAyah_num(cursor.getString(cursor.getColumnIndexOrThrow("ayah_num")).toString());
                     hizbs.add(hizb);
                 }while (cursor.moveToNext());
             }

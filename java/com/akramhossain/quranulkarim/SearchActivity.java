@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
@@ -26,7 +28,7 @@ import com.akramhossain.quranulkarim.model.SpinnerObject;
 
 import java.util.ArrayList;
 
-public class SearchActivity extends Activity {
+public class SearchActivity extends AppCompatActivity {
 
     DatabaseHelper dbhelper;
     AutoCompleteTextView text;
@@ -97,7 +99,7 @@ public class SearchActivity extends Activity {
                     Cursor cursor1 = db1.rawQuery(sql1, null);
                     try {
                         if (cursor1.moveToFirst()) {
-                            selectedSuraId = cursor1.getInt(cursor1.getColumnIndex("surah_id"));
+                            selectedSuraId = cursor1.getInt(cursor1.getColumnIndexOrThrow("surah_id"));
                             String checksql = "SELECT * FROM quick_link WHERE sura_id = "+selectedSuraId;
                             Cursor cursor2 = db1.rawQuery(checksql,null);
                             if (cursor2.moveToFirst()) {
@@ -138,7 +140,7 @@ public class SearchActivity extends Activity {
                     Log.i(TAG, sql);
                     try {
                         if (cursor.moveToFirst()) {
-                            suraId = cursor.getString(cursor.getColumnIndex("surah_id")).toString();
+                            suraId = cursor.getString(cursor.getColumnIndexOrThrow("surah_id")).toString();
                             setRecyclerViewAdapter();
                             getDataFromLocalDb();
                         }
@@ -265,26 +267,26 @@ public class SearchActivity extends Activity {
             if (cursor.moveToFirst()) {
                 do {
                     Ayah ayah = new Ayah();
-                    ayah.setAyah_index(cursor.getString(cursor.getColumnIndex("ayah_index")));
-                    ayah.setSurah_id(cursor.getString(cursor.getColumnIndex("surah_id")));
-                    ayah.setAyah_num(cursor.getString(cursor.getColumnIndex("ayah_num")));
-                    ayah.setPage_num(cursor.getString(cursor.getColumnIndex("page_num")));
-                    ayah.setJuz_num(cursor.getString(cursor.getColumnIndex("juz_num")));
-                    ayah.setHizb_num(cursor.getString(cursor.getColumnIndex("hizb_num")));
-                    ayah.setRub_num(cursor.getString(cursor.getColumnIndex("rub_num")));
-                    ayah.setText(cursor.getString(cursor.getColumnIndex("text")));
-                    ayah.setAyah_key(cursor.getString(cursor.getColumnIndex("ayah_key")));
-                    ayah.setSajdah(cursor.getString(cursor.getColumnIndex("sajdah")));
-                    ayah.setText_tashkeel(cursor.getString(cursor.getColumnIndex("text_tashkeel")));
-                    ayah.setContent_en(cursor.getString(cursor.getColumnIndex("content_en")));
-                    ayah.setContent_bn(cursor.getString(cursor.getColumnIndex("content_bn")));
-                    ayah.setAudio_duration(cursor.getString(cursor.getColumnIndex("audio_duration")));
-                    ayah.setAudio_url(cursor.getString(cursor.getColumnIndex("audio_url")));
+                    ayah.setAyah_index(cursor.getString(cursor.getColumnIndexOrThrow("ayah_index")));
+                    ayah.setSurah_id(cursor.getString(cursor.getColumnIndexOrThrow("surah_id")));
+                    ayah.setAyah_num(cursor.getString(cursor.getColumnIndexOrThrow("ayah_num")));
+                    ayah.setPage_num(cursor.getString(cursor.getColumnIndexOrThrow("page_num")));
+                    ayah.setJuz_num(cursor.getString(cursor.getColumnIndexOrThrow("juz_num")));
+                    ayah.setHizb_num(cursor.getString(cursor.getColumnIndexOrThrow("hizb_num")));
+                    ayah.setRub_num(cursor.getString(cursor.getColumnIndexOrThrow("rub_num")));
+                    ayah.setText(cursor.getString(cursor.getColumnIndexOrThrow("text")));
+                    ayah.setAyah_key(cursor.getString(cursor.getColumnIndexOrThrow("ayah_key")));
+                    ayah.setSajdah(cursor.getString(cursor.getColumnIndexOrThrow("sajdah")));
+                    ayah.setText_tashkeel(cursor.getString(cursor.getColumnIndexOrThrow("text_tashkeel")));
+                    ayah.setContent_en(cursor.getString(cursor.getColumnIndexOrThrow("content_en")));
+                    ayah.setContent_bn(cursor.getString(cursor.getColumnIndexOrThrow("content_bn")));
+                    ayah.setAudio_duration(cursor.getString(cursor.getColumnIndexOrThrow("audio_duration")));
+                    ayah.setAudio_url(cursor.getString(cursor.getColumnIndexOrThrow("audio_url")));
                     //
-                    ayah.setName_simple(cursor.getString(cursor.getColumnIndex("name_simple")));
-                    ayah.setName_complex(cursor.getString(cursor.getColumnIndex("name_complex")));
-                    ayah.setName_english(cursor.getString(cursor.getColumnIndex("name_english")));
-                    ayah.setName_arabic(cursor.getString(cursor.getColumnIndex("name_arabic")));
+                    ayah.setName_simple(cursor.getString(cursor.getColumnIndexOrThrow("name_simple")));
+                    ayah.setName_complex(cursor.getString(cursor.getColumnIndexOrThrow("name_complex")));
+                    ayah.setName_english(cursor.getString(cursor.getColumnIndexOrThrow("name_english")));
+                    ayah.setName_arabic(cursor.getString(cursor.getColumnIndexOrThrow("name_arabic")));
                     ayahs.add(ayah);
                 } while (cursor.moveToNext());
             }
@@ -309,8 +311,8 @@ public class SearchActivity extends Activity {
         try {
             if (cursor.moveToFirst()) {
                 do {
-                    String suraName = cursor.getString(cursor.getColumnIndex("name_simple"))+"("+cursor.getString(cursor.getColumnIndex("name_arabic"))+")";
-                    suras.add(new SpinnerObject(cursor.getInt(cursor.getColumnIndex("surah_id")), suraName));
+                    String suraName = cursor.getString(cursor.getColumnIndexOrThrow("name_simple"))+"("+cursor.getString(cursor.getColumnIndexOrThrow("name_arabic"))+")";
+                    suras.add(new SpinnerObject(cursor.getInt(cursor.getColumnIndexOrThrow("surah_id")), suraName));
                 } while (cursor.moveToNext());
             }
         }catch (Exception e){

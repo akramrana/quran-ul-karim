@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
@@ -17,7 +19,7 @@ import com.akramhossain.quranulkarim.model.Juz;
 
 import java.util.ArrayList;
 
-public class JuzActivity extends Activity {
+public class JuzActivity extends AppCompatActivity {
 
     private RecyclerView recyclerview;
     LinearLayoutManager mLayoutManager;
@@ -77,17 +79,17 @@ public class JuzActivity extends Activity {
             if (cursor.moveToFirst()) {
                 do {
                     Juz juz = new Juz();
-                    juz.setAyah_index(cursor.getString(cursor.getColumnIndex("ayah_index")));
-                    juz.setSurah_id(cursor.getString(cursor.getColumnIndex("surah_id")));
-                    juz.setPage_num(cursor.getString(cursor.getColumnIndex("page_num")));
-                    juz.setJuz_num(cursor.getString(cursor.getColumnIndex("juz_num")));
-                    juz.setText_tashkeel(cursor.getString(cursor.getColumnIndex("text_tashkeel")));
-                    juz.setAyah_key(cursor.getString(cursor.getColumnIndex("ayah_key")));
-                    juz.setName_simple(cursor.getString(cursor.getColumnIndex("name_simple")));
-                    juz.setName_complex(cursor.getString(cursor.getColumnIndex("name_complex")));
-                    juz.setName_english(cursor.getString(cursor.getColumnIndex("name_english")));
-                    juz.setName_arabic(cursor.getString(cursor.getColumnIndex("name_arabic")));
-                    juz.setAyah_num(cursor.getString(cursor.getColumnIndex("ayah_num")));
+                    juz.setAyah_index(cursor.getString(cursor.getColumnIndexOrThrow("ayah_index")));
+                    juz.setSurah_id(cursor.getString(cursor.getColumnIndexOrThrow("surah_id")));
+                    juz.setPage_num(cursor.getString(cursor.getColumnIndexOrThrow("page_num")));
+                    juz.setJuz_num(cursor.getString(cursor.getColumnIndexOrThrow("juz_num")));
+                    juz.setText_tashkeel(cursor.getString(cursor.getColumnIndexOrThrow("text_tashkeel")));
+                    juz.setAyah_key(cursor.getString(cursor.getColumnIndexOrThrow("ayah_key")));
+                    juz.setName_simple(cursor.getString(cursor.getColumnIndexOrThrow("name_simple")));
+                    juz.setName_complex(cursor.getString(cursor.getColumnIndexOrThrow("name_complex")));
+                    juz.setName_english(cursor.getString(cursor.getColumnIndexOrThrow("name_english")));
+                    juz.setName_arabic(cursor.getString(cursor.getColumnIndexOrThrow("name_arabic")));
+                    juz.setAyah_num(cursor.getString(cursor.getColumnIndexOrThrow("ayah_num")));
                     juzs.add(juz);
                 }while (cursor.moveToNext());
             }

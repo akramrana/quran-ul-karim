@@ -20,6 +20,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
@@ -44,7 +46,7 @@ import java.io.OutputStream;
 import java.util.List;
 import java.util.Random;
 
-public class ShareVerseActivity extends Activity {
+public class ShareVerseActivity extends AppCompatActivity {
 
     public static String ayah_index;
     public static String text_tashkeel;
@@ -343,10 +345,11 @@ public class ShareVerseActivity extends Activity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case PERMISSION_REQUEST_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    RelativeLayout layout = (RelativeLayout)findViewById(R.id.shareSection);
+                    RelativeLayout layout = (RelativeLayout) findViewById(R.id.shareSection);
                     layout.setDrawingCacheEnabled(true);
                     bitmap = loadBitmapFromView(layout, layout.getWidth(), layout.getHeight());
                     layout.setDrawingCacheEnabled(false);
@@ -359,7 +362,7 @@ public class ShareVerseActivity extends Activity {
                         bitmap.compress(Bitmap.CompressFormat.PNG, 100, fout);
                         fout.flush();
                         fout.close();
-                        Uri uri = FileProvider.getUriForFile(getApplicationContext(),"com.akramhossain.quranulkarim.provider", imageFile);
+                        Uri uri = FileProvider.getUriForFile(getApplicationContext(), "com.akramhossain.quranulkarim.provider", imageFile);
                         Intent shareIntent = new Intent();
                         shareIntent.setAction(Intent.ACTION_SEND);
                         shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
@@ -380,10 +383,10 @@ public class ShareVerseActivity extends Activity {
                         e.printStackTrace();
                     }
 
-            } else {
-                Log.e("value", "Permission Denied, You cannot use local drive .");
-            }
-            break;
+                } else {
+                    Log.e("value", "Permission Denied, You cannot use local drive .");
+                }
+                break;
         }
     }
 }

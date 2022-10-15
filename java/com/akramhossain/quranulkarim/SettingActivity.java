@@ -18,7 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SettingActivity extends Activity{
+public class SettingActivity extends AppCompatActivity{
 
     EditText arFontSize, enFontSize, bnFontSize, enFontSizeTafsir, bnFontSizeTafsir;
     SharedPreferences mPrefs;

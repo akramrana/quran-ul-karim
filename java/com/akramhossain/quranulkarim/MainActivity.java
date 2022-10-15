@@ -311,10 +311,10 @@ public class MainActivity extends AppCompatActivity {
                 Cursor cursor = db.rawQuery(sql, null);
                 try {
                     if (cursor.moveToFirst()) {
-                        String sura_id = cursor.getString(cursor.getColumnIndex("sura_id")).toString();
-                        String position = cursor.getString(cursor.getColumnIndex("position")).toString();
-                        String sura_name = cursor.getString(cursor.getColumnIndex("name_english")).toString();
-                        String sura_name_arabic = cursor.getString(cursor.getColumnIndex("name_arabic")).toString();
+                        String sura_id = cursor.getString(cursor.getColumnIndexOrThrow("sura_id")).toString();
+                        String position = cursor.getString(cursor.getColumnIndexOrThrow("position")).toString();
+                        String sura_name = cursor.getString(cursor.getColumnIndexOrThrow("name_english")).toString();
+                        String sura_name_arabic = cursor.getString(cursor.getColumnIndexOrThrow("name_arabic")).toString();
 
                         Log.d("Last Position Sura", sura_id);
                         Log.d("Last Position Sura POS", position);
@@ -426,14 +426,14 @@ public class MainActivity extends AppCompatActivity {
             if (cursor.moveToFirst()) {
                 do {
                     Sura sura = new Sura();
-                    sura.setSurah_id(cursor.getString(cursor.getColumnIndex("surah_id")));
-                    sura.setName_arabic(cursor.getString(cursor.getColumnIndex("name_arabic")));
-                    sura.setName_english(cursor.getString(cursor.getColumnIndex("name_english")));
-                    sura.setName_simple(cursor.getString(cursor.getColumnIndex("name_simple")));
-                    sura.setRevelation_place(cursor.getString(cursor.getColumnIndex("revelation_place")));
-                    sura.setAyat(cursor.getString(cursor.getColumnIndex("ayat")));
-                    sura.setRevelation_order(cursor.getString(cursor.getColumnIndex("revelation_order")));
-                    sura.setId(cursor.getString(cursor.getColumnIndex("sid")));
+                    sura.setSurah_id(cursor.getString(cursor.getColumnIndexOrThrow("surah_id")));
+                    sura.setName_arabic(cursor.getString(cursor.getColumnIndexOrThrow("name_arabic")));
+                    sura.setName_english(cursor.getString(cursor.getColumnIndexOrThrow("name_english")));
+                    sura.setName_simple(cursor.getString(cursor.getColumnIndexOrThrow("name_simple")));
+                    sura.setRevelation_place(cursor.getString(cursor.getColumnIndexOrThrow("revelation_place")));
+                    sura.setAyat(cursor.getString(cursor.getColumnIndexOrThrow("ayat")));
+                    sura.setRevelation_order(cursor.getString(cursor.getColumnIndexOrThrow("revelation_order")));
+                    sura.setId(cursor.getString(cursor.getColumnIndexOrThrow("sid")));
                     popularSearches.add(sura);
                 } while (cursor.moveToNext());
             }

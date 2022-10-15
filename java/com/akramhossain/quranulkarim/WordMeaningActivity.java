@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.app.Activity;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,7 +26,7 @@ import com.akramhossain.quranulkarim.model.Word;
 
 import java.util.ArrayList;
 
-public class WordMeaningActivity extends Activity {
+public class WordMeaningActivity extends AppCompatActivity {
 
     public static String ayah_index;
     public static String text_tashkeel;
@@ -112,16 +113,16 @@ public class WordMeaningActivity extends Activity {
             if (cursor.moveToFirst()) {
                 do {
                     Word word = new Word();
-                    word.setAyah_index(cursor.getString(cursor.getColumnIndex("ayah_index")));
-                    word.setWord_id(cursor.getString(cursor.getColumnIndex("word_id")));
-                    word.setArabic(cursor.getString(cursor.getColumnIndex("arabic")));
-                    word.setTransliteration(cursor.getString(cursor.getColumnIndex("transliteration")));
-                    word.setTranslation(cursor.getString(cursor.getColumnIndex("translation")));
-                    word.setCode(cursor.getString(cursor.getColumnIndex("code")));
-                    word.setCode_hex(cursor.getString(cursor.getColumnIndex("code_hex")));
-                    word.setCode_dec(cursor.getString(cursor.getColumnIndex("code_dec")));
-                    word.setAyah_key(cursor.getString(cursor.getColumnIndex("ayah_key")));
-                    word.setPosition(cursor.getString(cursor.getColumnIndex("position")));
+                    word.setAyah_index(cursor.getString(cursor.getColumnIndexOrThrow("ayah_index")));
+                    word.setWord_id(cursor.getString(cursor.getColumnIndexOrThrow("word_id")));
+                    word.setArabic(cursor.getString(cursor.getColumnIndexOrThrow("arabic")));
+                    word.setTransliteration(cursor.getString(cursor.getColumnIndexOrThrow("transliteration")));
+                    word.setTranslation(cursor.getString(cursor.getColumnIndexOrThrow("translation")));
+                    word.setCode(cursor.getString(cursor.getColumnIndexOrThrow("code")));
+                    word.setCode_hex(cursor.getString(cursor.getColumnIndexOrThrow("code_hex")));
+                    word.setCode_dec(cursor.getString(cursor.getColumnIndexOrThrow("code_dec")));
+                    word.setAyah_key(cursor.getString(cursor.getColumnIndexOrThrow("ayah_key")));
+                    word.setPosition(cursor.getString(cursor.getColumnIndexOrThrow("position")));
                     words.add(word);
                 } while (cursor.moveToNext());
             }
@@ -168,6 +169,7 @@ public class WordMeaningActivity extends Activity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case PERMISSION_REQUEST_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {

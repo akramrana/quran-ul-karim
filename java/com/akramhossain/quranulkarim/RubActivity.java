@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
@@ -17,7 +19,7 @@ import com.akramhossain.quranulkarim.model.Rub;
 
 import java.util.ArrayList;
 
-public class RubActivity extends Activity{
+public class RubActivity extends AppCompatActivity {
 
     private RecyclerView recyclerview;
     LinearLayoutManager mLayoutManager;
@@ -76,17 +78,17 @@ public class RubActivity extends Activity{
             if (cursor.moveToFirst()) {
                 do {
                     Rub rub = new Rub();
-                    rub.setAyah_index(cursor.getString(cursor.getColumnIndex("ayah_index")));
-                    rub.setSurah_id(cursor.getString(cursor.getColumnIndex("surah_id")));
-                    rub.setPage_num(cursor.getString(cursor.getColumnIndex("page_num")));
-                    rub.setRub_num(cursor.getString(cursor.getColumnIndex("rub_num")));
-                    rub.setText_tashkeel(cursor.getString(cursor.getColumnIndex("text_tashkeel")));
-                    rub.setAyah_key(cursor.getString(cursor.getColumnIndex("ayah_key")));
-                    rub.setName_simple(cursor.getString(cursor.getColumnIndex("name_simple")));
-                    rub.setName_complex(cursor.getString(cursor.getColumnIndex("name_complex")));
-                    rub.setName_english(cursor.getString(cursor.getColumnIndex("name_english")));
-                    rub.setName_arabic(cursor.getString(cursor.getColumnIndex("name_arabic")));
-                    rub.setAyah_num(cursor.getString(cursor.getColumnIndex("ayah_num")));
+                    rub.setAyah_index(cursor.getString(cursor.getColumnIndexOrThrow("ayah_index")));
+                    rub.setSurah_id(cursor.getString(cursor.getColumnIndexOrThrow("surah_id")));
+                    rub.setPage_num(cursor.getString(cursor.getColumnIndexOrThrow("page_num")));
+                    rub.setRub_num(cursor.getString(cursor.getColumnIndexOrThrow("rub_num")));
+                    rub.setText_tashkeel(cursor.getString(cursor.getColumnIndexOrThrow("text_tashkeel")));
+                    rub.setAyah_key(cursor.getString(cursor.getColumnIndexOrThrow("ayah_key")));
+                    rub.setName_simple(cursor.getString(cursor.getColumnIndexOrThrow("name_simple")));
+                    rub.setName_complex(cursor.getString(cursor.getColumnIndexOrThrow("name_complex")));
+                    rub.setName_english(cursor.getString(cursor.getColumnIndexOrThrow("name_english")));
+                    rub.setName_arabic(cursor.getString(cursor.getColumnIndexOrThrow("name_arabic")));
+                    rub.setAyah_num(cursor.getString(cursor.getColumnIndexOrThrow("ayah_num")));
                     rubs.add(rub);
                 }while (cursor.moveToNext());
             }

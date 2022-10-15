@@ -3,7 +3,9 @@ package com.akramhossain.quranulkarim;
 import android.app.Activity;
 import android.os.Bundle;
 
-public class AboutActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class AboutActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

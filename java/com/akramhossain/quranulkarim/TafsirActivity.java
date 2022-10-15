@@ -17,9 +17,10 @@ import android.widget.TextView;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.Ayah;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-public class TafsirActivity extends Activity {
+public class TafsirActivity extends AppCompatActivity {
 
     public static String ayah_index;
     public static String text_tashkeel;

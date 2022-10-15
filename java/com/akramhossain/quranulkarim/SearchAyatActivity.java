@@ -97,26 +97,26 @@ public class SearchAyatActivity extends AppCompatActivity {
             if (cursor.moveToFirst()) {
                 do {
                     Ayah ayah = new Ayah();
-                    ayah.setAyah_index(cursor.getString(cursor.getColumnIndex("ayah_index")));
-                    ayah.setSurah_id(cursor.getString(cursor.getColumnIndex("surah_id")));
-                    ayah.setAyah_num(cursor.getString(cursor.getColumnIndex("ayah_num")));
-                    ayah.setPage_num(cursor.getString(cursor.getColumnIndex("page_num")));
-                    ayah.setJuz_num(cursor.getString(cursor.getColumnIndex("juz_num")));
-                    ayah.setHizb_num(cursor.getString(cursor.getColumnIndex("hizb_num")));
-                    ayah.setRub_num(cursor.getString(cursor.getColumnIndex("rub_num")));
-                    ayah.setText(cursor.getString(cursor.getColumnIndex("text")));
-                    ayah.setAyah_key(cursor.getString(cursor.getColumnIndex("ayah_key")));
-                    ayah.setSajdah(cursor.getString(cursor.getColumnIndex("sajdah")));
-                    ayah.setText_tashkeel(cursor.getString(cursor.getColumnIndex("text_tashkeel")));
-                    ayah.setContent_en(cursor.getString(cursor.getColumnIndex("content_en")));
-                    ayah.setContent_bn(cursor.getString(cursor.getColumnIndex("content_bn")));
-                    ayah.setAudio_duration(cursor.getString(cursor.getColumnIndex("audio_duration")));
-                    ayah.setAudio_url(cursor.getString(cursor.getColumnIndex("audio_url")));
+                    ayah.setAyah_index(cursor.getString(cursor.getColumnIndexOrThrow("ayah_index")));
+                    ayah.setSurah_id(cursor.getString(cursor.getColumnIndexOrThrow("surah_id")));
+                    ayah.setAyah_num(cursor.getString(cursor.getColumnIndexOrThrow("ayah_num")));
+                    ayah.setPage_num(cursor.getString(cursor.getColumnIndexOrThrow("page_num")));
+                    ayah.setJuz_num(cursor.getString(cursor.getColumnIndexOrThrow("juz_num")));
+                    ayah.setHizb_num(cursor.getString(cursor.getColumnIndexOrThrow("hizb_num")));
+                    ayah.setRub_num(cursor.getString(cursor.getColumnIndexOrThrow("rub_num")));
+                    ayah.setText(cursor.getString(cursor.getColumnIndexOrThrow("text")));
+                    ayah.setAyah_key(cursor.getString(cursor.getColumnIndexOrThrow("ayah_key")));
+                    ayah.setSajdah(cursor.getString(cursor.getColumnIndexOrThrow("sajdah")));
+                    ayah.setText_tashkeel(cursor.getString(cursor.getColumnIndexOrThrow("text_tashkeel")));
+                    ayah.setContent_en(cursor.getString(cursor.getColumnIndexOrThrow("content_en")));
+                    ayah.setContent_bn(cursor.getString(cursor.getColumnIndexOrThrow("content_bn")));
+                    ayah.setAudio_duration(cursor.getString(cursor.getColumnIndexOrThrow("audio_duration")));
+                    ayah.setAudio_url(cursor.getString(cursor.getColumnIndexOrThrow("audio_url")));
                     //
-                    ayah.setName_simple(cursor.getString(cursor.getColumnIndex("name_simple")));
-                    ayah.setName_complex(cursor.getString(cursor.getColumnIndex("name_complex")));
-                    ayah.setName_english(cursor.getString(cursor.getColumnIndex("name_english")));
-                    ayah.setName_arabic(cursor.getString(cursor.getColumnIndex("name_arabic")));
+                    ayah.setName_simple(cursor.getString(cursor.getColumnIndexOrThrow("name_simple")));
+                    ayah.setName_complex(cursor.getString(cursor.getColumnIndexOrThrow("name_complex")));
+                    ayah.setName_english(cursor.getString(cursor.getColumnIndexOrThrow("name_english")));
+                    ayah.setName_arabic(cursor.getString(cursor.getColumnIndexOrThrow("name_arabic")));
                     ayahs.add(ayah);
                 } while (cursor.moveToNext());
             }
