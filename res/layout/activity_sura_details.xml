@@ -39,7 +39,7 @@
                     android:id="@+id/name_title_en"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
@@ -48,77 +48,78 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_below="@+id/top_title_setion"
-                android:layout_marginBottom="5dp">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_below="@+id/top_title_setion"-->
+<!--                android:layout_marginBottom="5dp"-->
+<!--                android:visibility="gone">-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:gravity="center">-->
 
-                    <TextView
-                        android:id="@+id/play_audio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:textColor="@color/playColor"
-                        android:textSize="16dp"
-                        android:paddingBottom="10dp"
-                        android:text="Play Audio"
-                        android:textStyle="bold"/>
+<!--                    <TextView-->
+<!--                        android:id="@+id/play_audio"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:gravity="center"-->
+<!--                        android:paddingLeft="8dp"-->
+<!--                        android:paddingRight="8dp"-->
+<!--                        android:textColor="@color/playColor"-->
+<!--                        android:textSize="16dp"-->
+<!--                        android:paddingBottom="10dp"-->
+<!--                        android:text="Play Audio"-->
+<!--                        android:textStyle="bold"/>-->
 
-                    <TextView
-                        android:id="@+id/pause_audio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:textColor="@color/orange"
-                        android:textSize="16dp"
-                        android:paddingBottom="10dp"
-                        android:text="Pause Audio"
-                        android:visibility="gone"
-                        android:textStyle="bold"/>
+<!--                    <TextView-->
+<!--                        android:id="@+id/pause_audio"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:gravity="center"-->
+<!--                        android:paddingLeft="8dp"-->
+<!--                        android:paddingRight="8dp"-->
+<!--                        android:textColor="@color/orange"-->
+<!--                        android:textSize="16dp"-->
+<!--                        android:paddingBottom="10dp"-->
+<!--                        android:text="Pause Audio"-->
+<!--                        android:visibility="gone"-->
+<!--                        android:textStyle="bold"/>-->
 
-                    <TextView
-                        android:id="@+id/resume_audio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:textColor="@color/darkblue"
-                        android:textSize="16dp"
-                        android:paddingBottom="10dp"
-                        android:text="Resume Audio"
-                        android:visibility="gone"
-                        android:textStyle="bold"/>
+<!--                    <TextView-->
+<!--                        android:id="@+id/resume_audio"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:gravity="center"-->
+<!--                        android:paddingLeft="8dp"-->
+<!--                        android:paddingRight="8dp"-->
+<!--                        android:textColor="@color/darkblue"-->
+<!--                        android:textSize="16dp"-->
+<!--                        android:paddingBottom="10dp"-->
+<!--                        android:text="Resume Audio"-->
+<!--                        android:visibility="gone"-->
+<!--                        android:textStyle="bold"/>-->
 
-                    <TextView
-                        android:id="@+id/stop_audio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:paddingBottom="10dp"
-                        android:textColor="@color/red"
-                        android:textSize="16dp"
-                        android:text="Stop Audio"
-                        android:visibility="gone"
-                        android:textStyle="bold"/>
+<!--                    <TextView-->
+<!--                        android:id="@+id/stop_audio"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:gravity="center"-->
+<!--                        android:paddingLeft="8dp"-->
+<!--                        android:paddingRight="8dp"-->
+<!--                        android:paddingBottom="10dp"-->
+<!--                        android:textColor="@color/red"-->
+<!--                        android:textSize="16dp"-->
+<!--                        android:text="Stop Audio"-->
+<!--                        android:visibility="gone"-->
+<!--                        android:textStyle="bold"/>-->
 
-                </LinearLayout>
+<!--                </LinearLayout>-->
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
 
         </RelativeLayout>
@@ -182,11 +183,119 @@
 
         </RelativeLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/ayah_list"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/bismillah_section"/>
+            android:orientation="vertical"
+            android:layout_below="@id/bismillah_section">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="8.5">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ayah_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:orientation="vertical"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2">
+
+                        <TextView
+                            android:id="@+id/txtStartTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/sBar"
+                            android:text="0 min, 0 sec" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6">
+
+                        <SeekBar
+                            android:id="@+id/sBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toLeftOf="@+id/txtSongTime"
+                            android:layout_toRightOf="@+id/txtStartTime" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2">
+
+                        <TextView
+                            android:id="@+id/txtSongTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/btnForward"
+                            android:layout_alignTop="@+id/sBar"
+                            android:text="0 min, 0 sec " />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageButton
+                        android:id="@+id/btnBackward"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@android:drawable/ic_media_rew" />
+
+                    <ImageButton
+                        android:id="@+id/btnPlay"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@android:drawable/ic_media_play" />
+
+                    <ImageButton
+                        android:id="@+id/btnPause"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@android:drawable/ic_media_pause" />
+
+                    <ImageButton
+                        android:id="@+id/btnForward"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@android:drawable/ic_media_ff" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
 
         <ProgressBar
             android:id="@+id/progressBar"

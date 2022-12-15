@@ -15,12 +15,15 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +39,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class SuraDetailsActivity extends AppCompatActivity {
 
@@ -73,6 +77,13 @@ public class SuraDetailsActivity extends AppCompatActivity {
 
     Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
     SharedPreferences mPrefs;
+
+    private TextView startTime, songTime;
+    private ImageButton forwardbtn, backwardbtn, pausebtn, playbtn;
+
+    private static int oTime =0, sTime =0, eTime =0, fTime = 5000, bTime = 5000;
+    private SeekBar songPrgs;
+    private Handler hdlr = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -244,18 +255,32 @@ public class SuraDetailsActivity extends AppCompatActivity {
             chkdb.close();
         }
 
-        play_audio = (TextView) findViewById(R.id.play_audio);
+        /*play_audio = (TextView) findViewById(R.id.play_audio);
         pause_audio = (TextView) findViewById(R.id.pause_audio);
         resume_audio = (TextView) findViewById(R.id.resume_audio);
-        stop_audio = (TextView) findViewById(R.id.stop_audio);
+        stop_audio = (TextView) findViewById(R.id.stop_audio);*/
+
+        startTime = (TextView)findViewById(R.id.txtStartTime);
+        songTime = (TextView)findViewById(R.id.txtSongTime);
 
         previousBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 AudioPlay.stopAudio();
-                play_audio.setVisibility(View.VISIBLE);
+                songTime.setText(String.format("%d min, %d sec", 0, 0));
+                startTime.setText(String.format("%d min, %d sec", 0, 0));
+                hdlr.removeCallbacksAndMessages(null);
+                pausebtn.setEnabled(false);
+                playbtn.setEnabled(true);
+                oTime = 0;
+                sTime =0;
+                eTime =0;
+                fTime = 5000;
+                bTime = 5000;
+                songPrgs.setProgress(oTime);
+                /*play_audio.setVisibility(View.VISIBLE);
                 pause_audio.setVisibility(View.GONE);
                 resume_audio.setVisibility(View.GONE);
-                stop_audio.setVisibility(View.GONE);
+                stop_audio.setVisibility(View.GONE);*/
                 //
                 SQLiteDatabase db = dbhelper.getWritableDatabase();
                 String sql = "SELECT * FROM sura WHERE surah_id < "+suraId+" order by surah_id DESC limit 1";
@@ -278,6 +303,8 @@ public class SuraDetailsActivity extends AppCompatActivity {
                         Cursor cursor1 = db.rawQuery(checksql,null);
 
                         Log.i("Quick Link Check Inner", checksql);
+
+                        Log.d("surah Id",suraId);
 
                         try {
                             if (cursor1.moveToFirst()) {
@@ -314,10 +341,21 @@ public class SuraDetailsActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 AudioPlay.stopAudio();
-                play_audio.setVisibility(View.VISIBLE);
+                songTime.setText(String.format("%d min, %d sec", 0, 0));
+                startTime.setText(String.format("%d min, %d sec", 0, 0));
+                hdlr.removeCallbacksAndMessages(null);
+                pausebtn.setEnabled(false);
+                playbtn.setEnabled(true);
+                oTime = 0;
+                sTime =0;
+                eTime =0;
+                fTime = 5000;
+                bTime = 5000;
+                songPrgs.setProgress(oTime);
+                /*play_audio.setVisibility(View.VISIBLE);
                 pause_audio.setVisibility(View.GONE);
                 resume_audio.setVisibility(View.GONE);
-                stop_audio.setVisibility(View.GONE);
+                stop_audio.setVisibility(View.GONE);*/
                 //
                 SQLiteDatabase db = dbhelper.getWritableDatabase();
                 String sql = "SELECT * FROM sura WHERE surah_id > "+suraId+" order by surah_id ASC limit 1";
@@ -331,6 +369,8 @@ public class SuraDetailsActivity extends AppCompatActivity {
                         suraId = prevSuraId;
                         suraName = prevSuraNameEn;
                         suraNameArabic = prevSuraNameAr;
+
+                        Log.d("surah Id",suraId);
 
                         titleEn.setText(suraName);
                         titleAr.setText(suraNameArabic);
@@ -417,52 +457,141 @@ public class SuraDetailsActivity extends AppCompatActivity {
             requestPermission();
         }
 
+
+
+        playbtn = (ImageButton)findViewById(R.id.btnPlay);
+        pausebtn = (ImageButton)findViewById(R.id.btnPause);
+        backwardbtn = (ImageButton)findViewById(R.id.btnBackward);
+        forwardbtn = (ImageButton)findViewById(R.id.btnForward);
+
+        songPrgs = (SeekBar)findViewById(R.id.sBar);
+        songPrgs.setClickable(false);
+        pausebtn.setEnabled(false);
+
+        songTime.setText(String.format("%d min, %d sec", 0, 0));
+        startTime.setText(String.format("%d min, %d sec", 0, 0));
+        songPrgs.setProgress(oTime);
+
         if (isInternetPresent) {
-            play_audio.setOnClickListener(new View.OnClickListener() {
+            playbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    AudioPlay.stopAudio();
-                    AudioPlay.playAudio(getApplicationContext(), "https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/" + suraId + ".mp3");
-
-                    play_audio.setVisibility(View.GONE);
-                    pause_audio.setVisibility(View.VISIBLE);
-                    resume_audio.setVisibility(View.GONE);
-                    stop_audio.setVisibility(View.VISIBLE);
+                    boolean isLoaded = AudioPlay.isLoadedAudio();
+                    String audioUri = "https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/" + suraId + ".mp3";
+                    if(isLoaded) {
+                        AudioPlay.resumeAudio();
+                    }else{
+                        AudioPlay.stopAudio();
+                        AudioPlay.playAudio(getApplicationContext(), audioUri);
+                    }
+                    Log.d("audioUri",audioUri);
+                    eTime = AudioPlay.getDuration();
+                    sTime = AudioPlay.getCurrentPosition();
+                    if (oTime == 0) {
+                        songPrgs.setMax(eTime);
+                        oTime = 1;
+                    }
+                    songTime.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes(eTime), TimeUnit.MILLISECONDS.toSeconds(eTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(eTime))));
+                    startTime.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes(sTime), TimeUnit.MILLISECONDS.toSeconds(sTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(sTime))));
+                    //songPrgs.setProgress(sTime);
+                    hdlr.postDelayed(UpdateSongTime, 100);
+                    pausebtn.setEnabled(true);
+                    playbtn.setEnabled(false);
+                    Toast.makeText(getApplicationContext(), "Playing Audio", Toast.LENGTH_SHORT).show();
                 }
             });
 
-            pause_audio.setOnClickListener(new View.OnClickListener() {
+            pausebtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     AudioPlay.pauseAudio();
-                    play_audio.setVisibility(View.GONE);
-                    pause_audio.setVisibility(View.GONE);
-                    resume_audio.setVisibility(View.VISIBLE);
-                    stop_audio.setVisibility(View.VISIBLE);
+                    pausebtn.setEnabled(false);
+                    playbtn.setEnabled(true);
+                    Toast.makeText(getApplicationContext(), "Playing Audio", Toast.LENGTH_SHORT).show();
                 }
             });
 
-            resume_audio.setOnClickListener(new View.OnClickListener() {
+            forwardbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    AudioPlay.resumeAudio();
-                    play_audio.setVisibility(View.GONE);
-                    pause_audio.setVisibility(View.VISIBLE);
-                    resume_audio.setVisibility(View.GONE);
-                    stop_audio.setVisibility(View.VISIBLE);
+                    if((sTime + fTime) <= eTime)
+                    {
+                        sTime = sTime + fTime;
+                        AudioPlay.seekTo(sTime);
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "Cannot jump forward 5 seconds", Toast.LENGTH_SHORT).show();
+                    }
+                    if(!playbtn.isEnabled()){
+                        playbtn.setEnabled(true);
+                    }
                 }
             });
 
-            stop_audio.setOnClickListener(new View.OnClickListener() {
+            backwardbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    AudioPlay.stopAudio();
-                    play_audio.setVisibility(View.VISIBLE);
-                    pause_audio.setVisibility(View.GONE);
-                    resume_audio.setVisibility(View.GONE);
-                    stop_audio.setVisibility(View.GONE);
+                    if((sTime - bTime) > 0)
+                    {
+                        sTime = sTime - bTime;
+                        AudioPlay.seekTo(sTime);
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "Cannot jump backward 5 seconds", Toast.LENGTH_SHORT).show();
+                    }
+                    if(!playbtn.isEnabled()){
+                        playbtn.setEnabled(true);
+                    }
                 }
             });
+
+//            play_audio.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    AudioPlay.stopAudio();
+//                    AudioPlay.playAudio(getApplicationContext(), "https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/" + suraId + ".mp3");
+//
+//                    play_audio.setVisibility(View.GONE);
+//                    pause_audio.setVisibility(View.VISIBLE);
+//                    resume_audio.setVisibility(View.GONE);
+//                    stop_audio.setVisibility(View.VISIBLE);
+//                }
+//            });
+//
+//            pause_audio.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    AudioPlay.pauseAudio();
+//                    play_audio.setVisibility(View.GONE);
+//                    pause_audio.setVisibility(View.GONE);
+//                    resume_audio.setVisibility(View.VISIBLE);
+//                    stop_audio.setVisibility(View.VISIBLE);
+//                }
+//            });
+//
+//            resume_audio.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    AudioPlay.resumeAudio();
+//                    play_audio.setVisibility(View.GONE);
+//                    pause_audio.setVisibility(View.VISIBLE);
+//                    resume_audio.setVisibility(View.GONE);
+//                    stop_audio.setVisibility(View.VISIBLE);
+//                }
+//            });
+//
+//            stop_audio.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    AudioPlay.stopAudio();
+//                    play_audio.setVisibility(View.VISIBLE);
+//                    pause_audio.setVisibility(View.GONE);
+//                    resume_audio.setVisibility(View.GONE);
+//                    stop_audio.setVisibility(View.GONE);
+//                }
+//            });
         }
 
         String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
@@ -640,4 +769,23 @@ public class SuraDetailsActivity extends AppCompatActivity {
                 break;
         }
     }
+
+    private Runnable UpdateSongTime = new Runnable() {
+        @Override
+        public void run() {
+            boolean isAudioStopped = AudioPlay.isStopped();
+            if(isAudioStopped){
+                hdlr.removeCallbacks(this);
+                pausebtn.setEnabled(false);
+                playbtn.setEnabled(true);
+
+            }else {
+                sTime = AudioPlay.getCurrentPosition();
+                Log.d("stopped", String.valueOf(isAudioStopped));
+                startTime.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes(sTime), TimeUnit.MILLISECONDS.toSeconds(sTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(sTime))));
+                songPrgs.setProgress(sTime);
+                hdlr.postDelayed(this, 100);
+            }
+        }
+    };
 }

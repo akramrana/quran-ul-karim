@@ -6,6 +6,8 @@ import android.util.Log;
 
 public class AudioPlay {
     public static boolean isAudioPlaying = false;
+    public static boolean isAudioLoaded = false;
+    public static boolean isAudioStopped = false;
     public static MediaPlayer mp;
 
     public static void playAudio(Context context, String audioUri)
@@ -26,6 +28,8 @@ public class AudioPlay {
             mp.seekTo(i);
             mp.start();
             isAudioPlaying = true;
+            isAudioLoaded = true;
+            isAudioStopped = false;
             return;
         }
         catch (Exception e)
@@ -58,8 +62,15 @@ public class AudioPlay {
     {
         if (isAudioPlaying)
         {
+
             isAudioPlaying = false;
+            isAudioLoaded = false;
+            isAudioStopped = true;
             mp.stop();
+            mp.reset();
+            mp.release();
+            mp = null;
+            return;
         }
     }
 
@@ -67,6 +78,7 @@ public class AudioPlay {
     {
         if (mp != null){
             isAudioPlaying = true;
+            isAudioStopped = false;
             mp.start();
         }
     }
@@ -76,6 +88,7 @@ public class AudioPlay {
         if (isAudioPlaying)
         {
             isAudioPlaying = false;
+            isAudioStopped = false;
             mp.pause();
         }
     }
@@ -87,6 +100,41 @@ public class AudioPlay {
             mp.seekTo(i);
             mp.start();
             isAudioPlaying = true;
+            isAudioStopped = false;
         }
     }
+
+    public static int getDuration(){
+        int duration = 0;
+        if (mp != null) {
+            duration = mp.getDuration();
+        }
+        return duration;
+    }
+
+    public static int getCurrentPosition(){
+        int position = 0;
+        if (mp != null) {
+            position = mp.getCurrentPosition();
+        }
+        return position;
+    }
+
+    public static void seekTo(int time){
+        if (mp != null) {
+            mp.seekTo(time);
+        }
+    }
+
+    public static boolean isLoadedAudio(){
+        return isAudioLoaded;
+    }
+
+    public static boolean isStopped(){
+        if (mp != null && !mp.isPlaying()) {
+            isAudioStopped = true;
+        }
+        return isAudioStopped;
+    }
+
 }

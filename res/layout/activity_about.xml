@@ -63,6 +63,7 @@
             android:textSize="18dp"
             android:textIsSelectable="true"
             android:paddingLeft="8dp"
+            android:gravity="center"
             android:text="@string/string_about_description"/>
 
     </RelativeLayout>
