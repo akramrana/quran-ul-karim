@@ -50,11 +50,10 @@ public class SuraListV2Activity extends AppCompatActivity implements SearchView.
         recyclerview.setLayoutManager(mLayoutManager);
         setRecyclerViewAdapter();
 
-        recyclerview.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerview, new RecyclerTouchListener.ClickListener() {
+        /*recyclerview.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerview, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
                 Sura vd = suras.get(position);
-                //Toast.makeText(getApplicationContext(), vd.getVideo_id() + " is selected!", Toast.LENGTH_SHORT).show();
                 Intent in = new Intent(getApplicationContext(),SuraDetailsActivity.class);
                 in.putExtra("sura_id", vd.getSurah_id());
                 in.putExtra("sura_name", vd.getName_english());
@@ -65,7 +64,7 @@ public class SuraListV2Activity extends AppCompatActivity implements SearchView.
             public void onLongClick(View view, int position) {
 
             }
-        }));
+        }));*/
 
         dbhelper = new DatabaseHelper(getApplicationContext());
 

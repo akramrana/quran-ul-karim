@@ -2,17 +2,24 @@ package com.akramhossain.quranulkarim.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.akramhossain.quranulkarim.PopUpClass;
 import com.akramhossain.quranulkarim.R;
+import com.akramhossain.quranulkarim.SuraDetailsActivity;
+import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.model.Sura;
 
 import java.util.ArrayList;
@@ -21,7 +28,7 @@ import java.util.ArrayList;
  * Created by akram on 3/30/2019.
  */
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     Context c;
     ArrayList<Sura> suras;
@@ -34,32 +41,63 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         this.suras = suras;
         this.activity = activity;
         mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
-        fontUthmani = Typeface.createFromAsset(c.getAssets(),"fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf");
-        fontAlmajeed = Typeface.createFromAsset(c.getAssets(),"fonts/AlMajeedQuranicFont_shiped.ttf");
-        fontAlQalam = Typeface.createFromAsset(c.getAssets(),"fonts/AlQalamQuran.ttf");
-        fontNooreHidayat = Typeface.createFromAsset(c.getAssets(),"fonts/noorehidayat.ttf");
-        fontSaleem = Typeface.createFromAsset(c.getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
+        fontUthmani = Typeface.createFromAsset(c.getAssets(), "fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf");
+        fontAlmajeed = Typeface.createFromAsset(c.getAssets(), "fonts/AlMajeedQuranicFont_shiped.ttf");
+        fontAlQalam = Typeface.createFromAsset(c.getAssets(), "fonts/AlQalamQuran.ttf");
+        fontNooreHidayat = Typeface.createFromAsset(c.getAssets(), "fonts/noorehidayat.ttf");
+        fontSaleem = Typeface.createFromAsset(c.getAssets(), "fonts/PDMS_Saleem_QuranFont.ttf");
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(c).inflate(R.layout.all_sura,parent,false);
+        View v = LayoutInflater.from(c).inflate(R.layout.all_sura, parent, false);
         RecyclerViewHolder rvHolder = new RecyclerViewHolder(v);
         return rvHolder;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        RecyclerViewHolder rvHolder= (RecyclerViewHolder) holder;
+        RecyclerViewHolder rvHolder = (RecyclerViewHolder) holder;
         Sura sura = suras.get(position);
         rvHolder.suraId.setText(sura.getSurah_id());
         rvHolder.nameArabicTxt.setText(sura.getName_arabic());
         rvHolder.nameSimpleTxt.setText(sura.getName_simple());
         rvHolder.nameEnglishTxt.setText(sura.getName_english());
-        rvHolder.revelationPlaceTxt.setText("Revelation place: "+sura.getRevelation_place());
-        rvHolder.ayatTxt.setText("Ayah: "+sura.getAyat());
-        rvHolder.revelationOrderTxt.setText("Revelation order: "+sura.getRevelation_order());
+        rvHolder.revelationPlaceTxt.setText("Revelation place: " + sura.getRevelation_place());
+        rvHolder.ayatTxt.setText("Ayah: " + sura.getAyat());
+        rvHolder.revelationOrderTxt.setText("Revelation order: " + sura.getRevelation_order());
         rvHolder.sid.setText(sura.getId());
+
+        rvHolder.playBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopUpClass popUpClass = new PopUpClass();
+                popUpClass.showPopupWindow(view);
+            }
+        });
+
+        rvHolder.middle_section.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(c, SuraDetailsActivity.class);
+                in.putExtra("sura_id", sura.getSurah_id());
+                in.putExtra("sura_name", sura.getName_english());
+                in.putExtra("sura_name_arabic", sura.getName_arabic());
+                c.startActivity(in);
+            }
+        });
+
+        rvHolder.right_section.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(c, SuraDetailsActivity.class);
+                in.putExtra("sura_id", sura.getSurah_id());
+                in.putExtra("sura_name", sura.getName_english());
+                in.putExtra("sura_name_arabic", sura.getName_arabic());
+                c.startActivity(in);
+            }
+        });
+
     }
 
     @Override
@@ -77,6 +115,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         TextView ayatTxt;
         TextView revelationOrderTxt;
         TextView sid;
+        ImageButton playBtn;
+        LinearLayout middle_section;
+        LinearLayout right_section;
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
@@ -89,21 +130,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             ayatTxt = (TextView) itemView.findViewById(R.id.ayat);
             revelationOrderTxt = (TextView) itemView.findViewById(R.id.revelation_order);
             sid = (TextView) itemView.findViewById(R.id.sid);
+            playBtn = (ImageButton) itemView.findViewById(R.id.btnPlay);
+
+            middle_section = (LinearLayout) itemView.findViewById(R.id.mid_section);
+            right_section = (LinearLayout) itemView.findViewById(R.id.right_section);
 
             String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
-            if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
+            if (mp_arabicFontFamily.equals("Al Majeed Quranic Font")) {
                 nameArabicTxt.setTypeface(fontAlmajeed);
             }
-            if(mp_arabicFontFamily.equals("Al Qalam Quran")){
+            if (mp_arabicFontFamily.equals("Al Qalam Quran")) {
                 nameArabicTxt.setTypeface(fontAlQalam);
             }
-            if(mp_arabicFontFamily.equals("Uthmanic Script")){
+            if (mp_arabicFontFamily.equals("Uthmanic Script")) {
                 nameArabicTxt.setTypeface(fontUthmani);
             }
-            if(mp_arabicFontFamily.equals("Noore Hidayat")){
+            if (mp_arabicFontFamily.equals("Noore Hidayat")) {
                 nameArabicTxt.setTypeface(fontNooreHidayat);
             }
-            if(mp_arabicFontFamily.equals("Saleem Quran")){
+            if (mp_arabicFontFamily.equals("Saleem Quran")) {
                 nameArabicTxt.setTypeface(fontSaleem);
             }
         }
