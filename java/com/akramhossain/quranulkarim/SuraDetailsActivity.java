@@ -524,7 +524,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
                     AudioPlay.pauseAudio();
                     pausebtn.setEnabled(false);
                     playbtn.setEnabled(true);
-                    Toast.makeText(getApplicationContext(), "Playing Audio", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Pausing Audio", Toast.LENGTH_SHORT).show();
                 }
             });
 
