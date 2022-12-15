@@ -106,7 +106,9 @@ public class WordMeaningActivity extends AppCompatActivity {
 
     private void getDataFromLocalDb() {
         SQLiteDatabase db = dbhelper.getWritableDatabase();
-        String sql = "SELECT * FROM words WHERE ayah_index = "+ayah_index+" order by word_id ASC";
+        String sql = "SELECT words.*,(select translate_bn from bywords b where b._id =  words.word_id) as bangla " +
+                "FROM words " +
+                "WHERE ayah_index = "+ayah_index+" order by word_id ASC";
         //Log.i(TAG, sql);
         Cursor cursor = db.rawQuery(sql, null);
         try {
@@ -123,6 +125,7 @@ public class WordMeaningActivity extends AppCompatActivity {
                     word.setCode_dec(cursor.getString(cursor.getColumnIndexOrThrow("code_dec")));
                     word.setAyah_key(cursor.getString(cursor.getColumnIndexOrThrow("ayah_key")));
                     word.setPosition(cursor.getString(cursor.getColumnIndexOrThrow("position")));
+                    word.setBangla(cursor.getString(cursor.getColumnIndexOrThrow("bangla")));
                     words.add(word);
                 } while (cursor.moveToNext());
             }

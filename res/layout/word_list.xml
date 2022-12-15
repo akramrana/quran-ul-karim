@@ -53,12 +53,23 @@
             android:layout_below="@+id/word_transliteration"
             android:textIsSelectable="true"/>
 
+        <TextView
+            android:id="@+id/word_bangla"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:layout_marginTop="12dip"
+            android:paddingLeft="4dip"
+            android:textSize="15dip"
+            android:layout_below="@+id/word_translation"
+            android:textIsSelectable="true"/>
+
         <View
             android:id="@+id/horizon-line"
             android:layout_width="fill_parent"
             android:layout_height="0.5dp"
             android:background="@color/colorWhite"
-            android:layout_below="@id/word_translation"
+            android:layout_below="@id/word_bangla"
             android:layout_marginTop="15dp"/>
 
         <RelativeLayout

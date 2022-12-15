@@ -11,6 +11,7 @@ public class Word {
     private String word_id;
     private String ayah_key;
     private String position;
+    private String bangla;
 
     public String getCode_dec() {
         return code_dec;
@@ -90,5 +91,13 @@ public class Word {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public String getBangla() {
+        return bangla;
+    }
+
+    public void setBangla(String bangla) {
+        this.bangla = bangla;
     }
 }

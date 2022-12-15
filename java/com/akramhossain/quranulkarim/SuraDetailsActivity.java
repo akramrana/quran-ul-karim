@@ -276,7 +276,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
                 eTime =0;
                 fTime = 5000;
                 bTime = 5000;
-                songPrgs.setProgress(oTime);
+                songPrgs.setProgress(0);
                 /*play_audio.setVisibility(View.VISIBLE);
                 pause_audio.setVisibility(View.GONE);
                 resume_audio.setVisibility(View.GONE);
@@ -351,7 +351,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
                 eTime =0;
                 fTime = 5000;
                 bTime = 5000;
-                songPrgs.setProgress(oTime);
+                songPrgs.setProgress(0);
                 /*play_audio.setVisibility(View.VISIBLE);
                 pause_audio.setVisibility(View.GONE);
                 resume_audio.setVisibility(View.GONE);
@@ -468,25 +468,42 @@ public class SuraDetailsActivity extends AppCompatActivity {
         songPrgs.setClickable(false);
         pausebtn.setEnabled(false);
 
+        AudioPlay.stopAudio();
         songTime.setText(String.format("%d min, %d sec", 0, 0));
         startTime.setText(String.format("%d min, %d sec", 0, 0));
-        songPrgs.setProgress(oTime);
+        songPrgs.setProgress(0);
+        hdlr.removeCallbacksAndMessages(null);
 
         if (isInternetPresent) {
             playbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     boolean isLoaded = AudioPlay.isLoadedAudio();
+                    String mp3Uri = AudioPlay.getAudioUri();
                     String audioUri = "https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/" + suraId + ".mp3";
+
                     if(isLoaded) {
-                        AudioPlay.resumeAudio();
+                        if(mp3Uri.equals(audioUri)) {
+                            AudioPlay.resumeAudio();
+                            eTime = AudioPlay.getDuration();
+                            sTime = AudioPlay.getCurrentPosition();
+                        }else{
+                            AudioPlay.stopAudio();
+                            AudioPlay.playAudio(getApplicationContext(), audioUri);
+                            eTime = AudioPlay.getDuration();
+                            sTime = AudioPlay.getCurrentPosition();
+                            oTime = 0;
+                        }
                     }else{
                         AudioPlay.stopAudio();
                         AudioPlay.playAudio(getApplicationContext(), audioUri);
+                        eTime = AudioPlay.getDuration();
+                        sTime = AudioPlay.getCurrentPosition();
+                        oTime = 0;
                     }
                     Log.d("audioUri",audioUri);
-                    eTime = AudioPlay.getDuration();
-                    sTime = AudioPlay.getCurrentPosition();
+                    Log.d("eTime",String.valueOf(eTime));
+
                     if (oTime == 0) {
                         songPrgs.setMax(eTime);
                         oTime = 1;
@@ -494,7 +511,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
                     songTime.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes(eTime), TimeUnit.MILLISECONDS.toSeconds(eTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(eTime))));
                     startTime.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes(sTime), TimeUnit.MILLISECONDS.toSeconds(sTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(sTime))));
                     //songPrgs.setProgress(sTime);
-                    hdlr.postDelayed(UpdateSongTime, 100);
+                    hdlr.postDelayed(UpdateSongTime, 1000);
                     pausebtn.setEnabled(true);
                     playbtn.setEnabled(false);
                     Toast.makeText(getApplicationContext(), "Playing Audio", Toast.LENGTH_SHORT).show();
@@ -784,7 +801,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
                 Log.d("stopped", String.valueOf(isAudioStopped));
                 startTime.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes(sTime), TimeUnit.MILLISECONDS.toSeconds(sTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(sTime))));
                 songPrgs.setProgress(sTime);
-                hdlr.postDelayed(this, 100);
+                hdlr.postDelayed(this, 1000);
             }
         }
     };

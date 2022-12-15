@@ -9,6 +9,7 @@ public class AudioPlay {
     public static boolean isAudioLoaded = false;
     public static boolean isAudioStopped = false;
     public static MediaPlayer mp;
+    public static String mp3Uri;
 
     public static void playAudio(Context context, String audioUri)
     {
@@ -30,6 +31,7 @@ public class AudioPlay {
             isAudioPlaying = true;
             isAudioLoaded = true;
             isAudioStopped = false;
+            mp3Uri = audioUri;
             return;
         }
         catch (Exception e)
@@ -60,18 +62,16 @@ public class AudioPlay {
 
     public static void stopAudio()
     {
-        if (isAudioPlaying)
-        {
-
-            isAudioPlaying = false;
-            isAudioLoaded = false;
-            isAudioStopped = true;
+        isAudioPlaying = false;
+        isAudioLoaded = false;
+        isAudioStopped = true;
+        if (mp != null) {
             mp.stop();
             mp.reset();
             mp.release();
             mp = null;
-            return;
         }
+        return;
     }
 
     public static void startAudio()
@@ -135,6 +135,10 @@ public class AudioPlay {
             isAudioStopped = true;
         }
         return isAudioStopped;
+    }
+
+    public static String getAudioUri(){
+        return mp3Uri;
     }
 
 }

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import com.akramhossain.quranulkarim.ConnectionDetector;
 import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.model.Word;
+import com.akramhossain.quranulkarim.task.BackgroundTask;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -48,7 +50,7 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private Activity activity;
     private static final int PERMISSION_REQUEST_CODE = 100;
     SharedPreferences mPrefs;
-    Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
+    Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
 
     public WordListViewAdapter(Context c, ArrayList<Word> words, Activity activity) {
         this.c = c;
@@ -59,6 +61,7 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         isInternetPresent = cd.isConnectingToInternet();
         this.activity = activity;
 
+        font = Typeface.createFromAsset(c.getAssets(),"fonts/Siyamrupali.ttf");
         fontUthmani = Typeface.createFromAsset(c.getAssets(),"fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf");
         fontAlmajeed = Typeface.createFromAsset(c.getAssets(),"fonts/AlMajeedQuranicFont_shiped.ttf");
         fontAlQalam = Typeface.createFromAsset(c.getAssets(),"fonts/AlQalamQuran.ttf");
@@ -82,13 +85,83 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         rvHolder.word_arabic.setText(word.getArabic());
         rvHolder.word_transliteration.setText(word.getTransliteration());
         rvHolder.word_translation.setText(word.getTranslation());
+        rvHolder.word_bangla.setText(word.getBangla());
 
         rvHolder.playWordBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 if (isInternetPresent) {
                     if (checkPermission()) {
-                        new AsyncTask<Void, Void, Void>() {
+                        new BackgroundTask(activity) {
+
+                            @Override
+                            public void onPreExecute(){
+                                pd = new ProgressDialog(c);
+                                pd.setTitle("Processing...");
+                                pd.setMessage("Please wait.");
+                                pd.setCancelable(true);
+                                pd.setIndeterminate(true);
+                                pd.show();
+                            }
+
+                            @Override
+                            public void doInBackground() {
+                                String[] data = word.getAyah_key().split(":", 2);
+                                String sura = data[0];
+                                String ayat = data[1];
+                                String position = word.getPosition();
+                                int slen = sura.length();
+                                int alen = ayat.length();
+                                int plen = position.length();
+                                //
+                                if (slen == 2) {
+                                    sura = "0" + sura;
+                                } else if (slen == 1) {
+                                    sura = "00" + sura;
+                                }
+
+                                if (alen == 2) {
+                                    ayat = "0" + ayat;
+                                } else if (alen == 1) {
+                                    ayat = "00" + ayat;
+                                }
+
+                                if (plen == 2) {
+                                    position = "0" + position;
+                                } else if (plen == 1) {
+                                    position = "00" + position;
+                                }
+                                String mp3name = sura + "_" + ayat + "_" + position + ".mp3";
+                                Log.d("MP3 Name", mp3name);
+                                String mp3Url = "https://verses.quran.com/wbw/" + mp3name;
+                                //
+                                String mPath = c.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) + "/";
+                                String fullPath = mPath + mp3name;
+                                Log.d("File Path:", mPath);
+                                Log.d("Full File Path:", fullPath);
+                                File file = new File(fullPath);
+                                if (file.exists()) {
+                                    Log.d("File Path:", "Exist!");
+                                    AudioPlay.stopAudio();
+                                    AudioPlay.playAudio(c, fullPath);
+                                } else {
+                                    Log.d("File Path:", "Not Exist Downloading!");
+                                    downloadFile(mp3Url, mp3name, mPath);
+                                    AudioPlay.stopAudio();
+                                    AudioPlay.playAudio(c, fullPath);
+                                }
+                                //AudioPlay.stopAudio();
+                                //AudioPlay.playAudio(c, mp3Url);
+                            }
+
+                            @Override
+                            public void onPostExecute() {
+                                if (pd != null && pd.isShowing()) {
+                                    pd.dismiss();
+                                }
+                            }
+                        }.execute();
+                        /*new AsyncTask<Void, Void, Void>() {
                             protected void onPreExecute() {
                                 pd = new ProgressDialog(c);
                                 pd.setTitle("Processing...");
@@ -153,7 +226,7 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                     pd.dismiss();
                                 }
                             }
-                        }.execute();
+                        }.execute();*/
                     }else{
                         requestPermission(); // Code for permission
                     }
@@ -238,6 +311,7 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         TextView word_arabic;
         TextView word_transliteration;
         TextView word_translation;
+        TextView word_bangla;
         Button playWordBtn;
 
         public RecyclerViewHolder(View itemView) {
@@ -247,8 +321,13 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             word_transliteration = (TextView) itemView.findViewById(R.id.word_transliteration);
             word_translation = (TextView) itemView.findViewById(R.id.word_translation);
             playWordBtn = (Button) itemView.findViewById(R.id.playWordBtn);
+            word_bangla = (TextView) itemView.findViewById(R.id.word_bangla);
 
             String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
+            String mp_arFz = mPrefs.getString("arFontSize", "30");
+            String mp_enFz = mPrefs.getString("enFontSize", "15");
+            String mp_bnFz = mPrefs.getString("bnFontSize", "15");
+
             if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
                 word_arabic.setTypeface(fontAlmajeed);
             }
@@ -263,6 +342,16 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
             if(mp_arabicFontFamily.equals("Saleem Quran")){
                 word_arabic.setTypeface(fontSaleem);
+            }
+            if(!mp_arFz.equals("")){
+                word_arabic.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
+            }
+            if(!mp_enFz.equals("")){
+                word_transliteration.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+                word_translation.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+            }
+            if(!mp_bnFz.equals("")){
+                word_bangla.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
             }
         }
     }

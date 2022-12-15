@@ -36,6 +36,7 @@ import com.akramhossain.quranulkarim.WordMeaningActivity;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.Ayah;
+import com.akramhossain.quranulkarim.task.BackgroundTask;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -106,7 +107,54 @@ public class JuzHizbRubViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             public void onClick(View view) {
                 if (isInternetPresent) {
                     if (checkPermission()) {
-                        new AsyncTask<Void, Void, Void>() {
+                        new BackgroundTask(activity) {
+
+                            @Override
+                            public void onPreExecute(){
+                                pd = new ProgressDialog(c);
+                                pd.setTitle("Processing...");
+                                pd.setMessage("Please wait.");
+                                pd.setCancelable(true);
+                                pd.setIndeterminate(true);
+                                pd.show();
+                            }
+
+                            @Override
+                            public void doInBackground() {
+                                try {
+                                    URL url = new URL(ayah.getAudio_url());
+                                    String fileName = url.getFile().replaceAll("/", "_").toLowerCase();
+                                    Log.d("File Name:", fileName);
+                                    //
+                                    String mPath = c.getExternalFilesDir(Environment.DIRECTORY_MUSIC) + "/";
+                                    String fullPath = mPath + fileName;
+                                    Log.d("File Path:", mPath);
+                                    Log.d("Full File Path:", fullPath);
+                                    File file = new File(fullPath);
+                                    if (file.exists()) {
+                                        Log.d("File Path:", "Exist!");
+                                        AudioPlay.stopAudio();
+                                        AudioPlay.playAudio(c, fullPath);
+                                    } else {
+                                        Log.d("File Path:", "Not Exist Downloading!");
+                                        downloadFile(ayah.getAudio_url(), fileName, mPath);
+                                        AudioPlay.stopAudio();
+                                        AudioPlay.playAudio(c, fullPath);
+                                    }
+                                    //
+                                } catch (MalformedURLException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+                            @Override
+                            public void onPostExecute() {
+                                if (pd != null && pd.isShowing()) {
+                                    pd.dismiss();
+                                }
+                            }
+                        }.execute();
+                        /*new AsyncTask<Void, Void, Void>() {
                             protected void onPreExecute() {
                                 pd = new ProgressDialog(c);
                                 pd.setTitle("Processing...");
@@ -117,9 +165,6 @@ public class JuzHizbRubViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                             }
 
                             protected Void doInBackground(Void... params) {
-                                /*AudioPlay.stopAudio();
-                                AudioPlay.playAudio(c, ayah.getAudio_url());
-                                return null;*/
                                 try {
                                     URL url = new URL(ayah.getAudio_url());
                                     String fileName = url.getFile().replaceAll("/", "_").toLowerCase();
@@ -152,7 +197,7 @@ public class JuzHizbRubViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                                     pd.dismiss();
                                 }
                             }
-                        }.execute();
+                        }.execute();*/
                     }else{
                         requestPermission(); // Code for permission
                     }
