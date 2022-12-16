@@ -52,9 +52,10 @@
 
         <SearchView
             android:id="@+id/search"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:iconifiedByDefault="false"
+            android:focusable="false"
             android:queryHint="Enter keyword to search..."
             android:layout_below="@+id/topBarSlist">
         </SearchView>
