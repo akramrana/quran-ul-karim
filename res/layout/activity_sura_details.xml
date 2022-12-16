@@ -11,200 +11,222 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <LinearLayout
+            android:id="@+id/topBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:background="@color/bg_color"
-            android:id="@+id/topBar">
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/top_title_setion">
+                android:layout_weight="2"
+                android:layout_gravity="bottom">
 
-                <TextView
-                    android:id="@+id/name_title_ar"
-                    android:layout_width="match_parent"
+                <Button
+                    android:id="@+id/previousBtn"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:gravity="center"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:textColor="@color/colorWhiteDN"
-                    android:textSize="18dp" />
-
-                <TextView
-                    android:id="@+id/name_title_en"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:textColor="@color/colorWhiteDN"
-                    android:textSize="15dp" />
+                    android:layout_alignParentLeft="true"
+                    android:background="@android:color/transparent"
+                    android:drawableLeft="@android:drawable/ic_media_previous"
+                    android:text="Prev"
+                    android:textSize="12dp" />
 
             </LinearLayout>
 
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="vertical"-->
-<!--                android:layout_below="@+id/top_title_setion"-->
-<!--                android:layout_marginBottom="5dp"-->
-<!--                android:visibility="gone">-->
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    android:gravity="center">-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/play_audio"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:gravity="center"-->
-<!--                        android:paddingLeft="8dp"-->
-<!--                        android:paddingRight="8dp"-->
-<!--                        android:textColor="@color/playColor"-->
-<!--                        android:textSize="16dp"-->
-<!--                        android:paddingBottom="10dp"-->
-<!--                        android:text="Play Audio"-->
-<!--                        android:textStyle="bold"/>-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/pause_audio"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:gravity="center"-->
-<!--                        android:paddingLeft="8dp"-->
-<!--                        android:paddingRight="8dp"-->
-<!--                        android:textColor="@color/orange"-->
-<!--                        android:textSize="16dp"-->
-<!--                        android:paddingBottom="10dp"-->
-<!--                        android:text="Pause Audio"-->
-<!--                        android:visibility="gone"-->
-<!--                        android:textStyle="bold"/>-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/resume_audio"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:gravity="center"-->
-<!--                        android:paddingLeft="8dp"-->
-<!--                        android:paddingRight="8dp"-->
-<!--                        android:textColor="@color/darkblue"-->
-<!--                        android:textSize="16dp"-->
-<!--                        android:paddingBottom="10dp"-->
-<!--                        android:text="Resume Audio"-->
-<!--                        android:visibility="gone"-->
-<!--                        android:textStyle="bold"/>-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/stop_audio"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:gravity="center"-->
-<!--                        android:paddingLeft="8dp"-->
-<!--                        android:paddingRight="8dp"-->
-<!--                        android:paddingBottom="10dp"-->
-<!--                        android:textColor="@color/red"-->
-<!--                        android:textSize="16dp"-->
-<!--                        android:text="Stop Audio"-->
-<!--                        android:visibility="gone"-->
-<!--                        android:textStyle="bold"/>-->
-
-<!--                </LinearLayout>-->
-
-<!--            </LinearLayout>-->
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/button-section"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@id/topBar">
-
-            <Button
-                android:id="@+id/previousBtn"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/top_title_setion"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Prev"
-                android:textSize="12dp"
-                android:drawableLeft="@android:drawable/ic_media_previous"
-                android:layout_alignParentLeft="true"
-                android:background="@android:color/transparent"/>
+                android:layout_weight="6"
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/quickLinkBtn"
-                android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/name_title_ar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/colorWhiteDN"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/name_title_en"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/colorWhiteDN"
+                        android:textSize="15dp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <Button
+                        android:id="@+id/quickLinkBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:background="@android:color/transparent"
+                        android:drawableLeft="@android:drawable/ic_menu_upload"
+                        android:text="Add to favourites"
+                        android:textSize="12dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Add to favourites"
-                android:textSize="12dp"
-                android:drawableLeft="@android:drawable/ic_menu_upload"
-                android:layout_centerHorizontal="true"
-                android:background="@android:color/transparent"/>
+                android:layout_weight="2"
+                android:layout_gravity="bottom">
 
-            <Button
-                android:id="@+id/nextBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Next"
-                android:textSize="12dp"
-                android:drawableRight="@android:drawable/ic_media_next"
-                android:layout_alignParentRight="true"
-                android:background="@android:color/transparent"/>
+                <Button
+                    android:id="@+id/nextBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@android:color/transparent"
+                    android:drawableRight="@android:drawable/ic_media_next"
+                    android:text="Next"
+                    android:textSize="12dp" />
 
-        </RelativeLayout>
+            </LinearLayout>
+
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:orientation="vertical"-->
+            <!--                android:layout_below="@+id/top_title_setion"-->
+            <!--                android:layout_marginBottom="5dp"-->
+            <!--                android:visibility="gone">-->
+
+            <!--                <LinearLayout-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:orientation="horizontal"-->
+            <!--                    android:gravity="center">-->
+
+            <!--                    <TextView-->
+            <!--                        android:id="@+id/play_audio"-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:gravity="center"-->
+            <!--                        android:paddingLeft="8dp"-->
+            <!--                        android:paddingRight="8dp"-->
+            <!--                        android:textColor="@color/playColor"-->
+            <!--                        android:textSize="16dp"-->
+            <!--                        android:paddingBottom="10dp"-->
+            <!--                        android:text="Play Audio"-->
+            <!--                        android:textStyle="bold"/>-->
+
+            <!--                    <TextView-->
+            <!--                        android:id="@+id/pause_audio"-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:gravity="center"-->
+            <!--                        android:paddingLeft="8dp"-->
+            <!--                        android:paddingRight="8dp"-->
+            <!--                        android:textColor="@color/orange"-->
+            <!--                        android:textSize="16dp"-->
+            <!--                        android:paddingBottom="10dp"-->
+            <!--                        android:text="Pause Audio"-->
+            <!--                        android:visibility="gone"-->
+            <!--                        android:textStyle="bold"/>-->
+
+            <!--                    <TextView-->
+            <!--                        android:id="@+id/resume_audio"-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:gravity="center"-->
+            <!--                        android:paddingLeft="8dp"-->
+            <!--                        android:paddingRight="8dp"-->
+            <!--                        android:textColor="@color/darkblue"-->
+            <!--                        android:textSize="16dp"-->
+            <!--                        android:paddingBottom="10dp"-->
+            <!--                        android:text="Resume Audio"-->
+            <!--                        android:visibility="gone"-->
+            <!--                        android:textStyle="bold"/>-->
+
+            <!--                    <TextView-->
+            <!--                        android:id="@+id/stop_audio"-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:gravity="center"-->
+            <!--                        android:paddingLeft="8dp"-->
+            <!--                        android:paddingRight="8dp"-->
+            <!--                        android:paddingBottom="10dp"-->
+            <!--                        android:textColor="@color/red"-->
+            <!--                        android:textSize="16dp"-->
+            <!--                        android:text="Stop Audio"-->
+            <!--                        android:visibility="gone"-->
+            <!--                        android:textStyle="bold"/>-->
+
+            <!--                </LinearLayout>-->
+
+            <!--            </LinearLayout>-->
+
+
+        </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/bismillah_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/button-section">
+            android:layout_below="@id/topBar">
 
             <TextView
                 android:id="@+id/text_bismillah"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:paddingLeft="6dip"
                 android:paddingRight="6dip"
+                android:text="@string/bismillah"
                 android:textColor="@color/colorWhite"
                 android:textSize="25dip"
                 android:textStyle="bold"
-                android:gravity="center"
-                android:text="@string/bismillah"/>
+                android:layout_marginTop="5dp"/>
 
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_below="@id/bismillah_section">
+            android:layout_below="@id/bismillah_section"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="8.5">
+                android:layout_weight="8">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/ayah_list"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1.5"
+                android:layout_weight="2"
                 android:orientation="vertical"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp">
@@ -212,8 +234,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -252,8 +274,8 @@
                             android:id="@+id/txtSongTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_toRightOf="@+id/btnForward"
                             android:layout_alignTop="@+id/sBar"
+                            android:layout_toRightOf="@+id/btnForward"
                             android:text="0 min, 0 sec " />
 
                     </LinearLayout>
@@ -263,8 +285,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                     <ImageButton
                         android:id="@+id/btnBackward"

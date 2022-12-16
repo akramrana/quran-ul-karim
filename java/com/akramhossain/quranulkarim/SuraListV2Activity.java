@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.SearchView;
 
 import com.akramhossain.quranulkarim.adapter.RecyclerViewAdapter;
@@ -43,6 +44,9 @@ public class SuraListV2Activity extends AppCompatActivity implements SearchView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
         setContentView(R.layout.activity_sura_list_v2);
 
         recyclerview = (RecyclerView) findViewById(R.id.all_sura_list);
