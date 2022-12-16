@@ -1,16 +1,21 @@
 package com.akramhossain.quranulkarim;
 
 import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.adapter.JuzHizbRubViewAdapter;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
@@ -44,6 +49,8 @@ public class JuzHizbRubDetailsActivity extends AppCompatActivity {
     String where_clause = "";
     String btn_next_where_clause = "";
     String btn_prev_where_clause = "";
+
+    private static final int PERMISSION_REQUEST_CODE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -277,6 +284,12 @@ public class JuzHizbRubDetailsActivity extends AppCompatActivity {
 
             }
         });
+
+        if (checkPermission()) {
+
+        }else{
+            requestPermission();
+        }
     }
 
     private void getDataFromLocalDb() {
@@ -332,5 +345,36 @@ public class JuzHizbRubDetailsActivity extends AppCompatActivity {
     {
         super.onPause();
         AudioPlay.stopAudio();
+    }
+
+    private boolean checkPermission() {
+        int result = ContextCompat.checkSelfPermission(JuzHizbRubDetailsActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (result == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void requestPermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(JuzHizbRubDetailsActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            Toast.makeText(JuzHizbRubDetailsActivity.this, "Write External Storage permission allows us to save files. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
+        } else {
+            ActivityCompat.requestPermissions(JuzHizbRubDetailsActivity.this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case PERMISSION_REQUEST_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                } else {
+                    Log.e("value", "Permission Denied, You cannot use local drive .");
+                }
+                break;
+        }
     }
 }

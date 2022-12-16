@@ -32,6 +32,7 @@
                     android:background="@android:color/transparent"
                     android:drawableLeft="@android:drawable/ic_media_previous"
                     android:text="Prev"
+                    android:textColor="@color/colorWhiteDN"
                     android:textSize="12dp" />
 
             </LinearLayout>
@@ -84,6 +85,7 @@
                         android:background="@android:color/transparent"
                         android:drawableLeft="@android:drawable/ic_menu_upload"
                         android:text="Add to favourites"
+                        android:textColor="@color/colorWhiteDN"
                         android:textSize="12dp" />
 
                 </LinearLayout>
@@ -104,6 +106,7 @@
                     android:background="@android:color/transparent"
                     android:drawableRight="@android:drawable/ic_media_next"
                     android:text="Next"
+                    android:textColor="@color/colorWhiteDN"
                     android:textSize="12dp" />
 
             </LinearLayout>
