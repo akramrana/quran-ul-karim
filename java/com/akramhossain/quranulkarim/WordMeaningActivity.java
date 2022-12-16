@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.preference.PreferenceManager;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -102,6 +103,8 @@ public class WordMeaningActivity extends AppCompatActivity {
         if(mp_arabicFontFamily.equals("Saleem Quran")){
             titleAr.setTypeface(fontSaleem);
         }
+
+        titleAr.setMovementMethod(new ScrollingMovementMethod());
     }
 
     private void getDataFromLocalDb() {
