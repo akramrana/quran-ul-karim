@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="46"
-    android:versionName="46.20.10.2022">
+    android:versionCode="47"
+    android:versionName="47.16.12.2022">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Allow to connect with internet -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Network State Permissions -->
