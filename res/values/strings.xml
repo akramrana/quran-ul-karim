@@ -101,4 +101,5 @@
     <string name="string_cp">Copy</string>
     <string name="string_share">Share</string>
     <string name="string_del">Delete</string>
+    <string name="string_cancel">Cancel</string>
 </resources>

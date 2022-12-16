@@ -32,7 +32,7 @@ public class PopUpClass {
     ConnectionDetector cd;
     Boolean isInternetPresent = false;
     ImageButton playbtn,pausebtn,backwardbtn,forwardbtn;
-    TextView startTime,songTime, txtSuraName;
+    TextView startTime,songTime, txtSuraName, cancelTxt;
     SeekBar songPrgs;
 
     public PopUpClass(){
@@ -62,6 +62,7 @@ public class PopUpClass {
         startTime = popupView.findViewById(R.id.txtStartTime);
         songTime = popupView.findViewById(R.id.txtSongTime);
         txtSuraName = popupView.findViewById(R.id.txtSuraName);
+        cancelTxt = popupView.findViewById(R.id.cancelTxt);
 
         txtSuraName.setText(sura.getName_simple());
 
@@ -169,19 +170,15 @@ public class PopUpClass {
             });
         }
 
+        cancelTxt.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               AudioPlay.stopAudio();
+               popupWindow.dismiss();
+           }
+        });
 
-//        TextView test2 = popupView.findViewById(R.id.titleText);
-//        test2.setText("Popup");
-//        Button buttonEdit = popupView.findViewById(R.id.messageButton);
-//        buttonEdit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //As an example, display the message
-//                Toast.makeText(view.getContext(), "Wow, popup action button", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
-        popupView.setOnTouchListener(new View.OnTouchListener() {
+        /*popupView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 //Close the window when clicked
@@ -189,7 +186,7 @@ public class PopUpClass {
                 popupWindow.dismiss();
                 return true;
             }
-        });
+        });*/
     }
 
     private Runnable UpdateSongTime = new Runnable() {
