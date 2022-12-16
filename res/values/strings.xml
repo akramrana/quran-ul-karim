@@ -31,8 +31,8 @@
     <string name="string_bookmark_subtitle">List of all saved ayah</string>
     <string name="string_sura_list">All Sura</string>
     <string name="string_sura_list_subtitle">List of 114 sura</string>
-    <string name="string_dictionary">Dictionary</string>
-    <string name="string_dictionary_subtitle">Quran words dictionary</string>
+    <string name="string_dictionary">Word By Word</string>
+    <string name="string_dictionary_subtitle">Quran word by word</string>
     <string name="title_activity_about">AboutActivity</string>
     <string name="string_about">Quran English and Bangla</string>
     <string name="string_about_subtitle">About App</string>

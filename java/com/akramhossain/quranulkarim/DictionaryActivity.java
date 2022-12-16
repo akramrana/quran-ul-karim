@@ -46,7 +46,7 @@ public class DictionaryActivity extends AppCompatActivity implements SearchView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dictionary);
 
-        setTitle("Dictionary");
+        setTitle("By Word");
 
         recyclerview = (RecyclerView) findViewById(R.id.dictionary_word_list);
         mLayoutManager = new LinearLayoutManager(this);
@@ -70,7 +70,7 @@ public class DictionaryActivity extends AppCompatActivity implements SearchView.
                     if (!recyclerView.canScrollVertically(RecyclerView.FOCUS_DOWN)) {
                         if (itShouldLoadMore) {
                             SQLiteDatabase db = dbhelper.getWritableDatabase();
-                            String sql = "SELECT count(*) from(SELECT * FROM words GROUP BY arabic) as words";
+                            String sql = "SELECT count(*) from words";
                             Cursor countHistory = db.rawQuery(sql,null);
                             try {
                                 countHistory.moveToFirst();
@@ -114,15 +114,18 @@ public class DictionaryActivity extends AppCompatActivity implements SearchView.
         String sql = "";
         searchTxt = searchTxt.replaceAll("\'","");
         if(searchTxt.equals("")) {
-             sql = "SELECT words.*,(select translate_bn from bywords b where b._id =  words.word_id) as bangla " +
+             sql = "SELECT words.*, b.translate_bn as bangla " +
                      "FROM words " +
-                     "group by arabic  " +
+                     "inner join bywords b on words.word_id = b._id " +
+                     //"group by arabic  " +
                      "order by word_id ASC limit " + offset + "," + limit;
         }else{
-             sql = "SELECT words.*,(select translate_bn from bywords b where b._id =  words.word_id) as bangla " +
+             sql = "SELECT words.*, b.translate_bn as bangla " +
                      "FROM words " +
+                     "inner join bywords b on words.word_id = b._id " +
                      "WHERE translation LIKE '%"+searchTxt+"%' OR transliteration LIKE '%"+searchTxt+"%' OR arabic LIKE '%"+searchTxt+"%' " +
-                     "group by arabic  Order by word_id ASC " +
+                     //"group by arabic  " +
+                     "Order by word_id ASC " +
                      "limit " + offset + "," + limit;
         }
         Log.i(TAG, sql);
