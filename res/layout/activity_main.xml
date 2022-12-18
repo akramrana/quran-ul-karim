@@ -53,20 +53,27 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal">
 
+                <CheckBox
+                    android:id="@+id/switchCompat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/daynight_textColor"
+                    android:text=""/>
+
                 <TextView
                     android:id="@+id/txtNightMode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/daynight_textColor" />
 
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/switchCompat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/MySwitch"
-                    android:layout_toRightOf="@+id/txtNightMode"
-                    android:checked="false"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+<!--                <androidx.appcompat.widget.SwitchCompat-->
+<!--                    android:id="@+id/switchCompat"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_toRightOf="@+id/txtNightMode"-->
+<!--                    android:checked="false"-->
+<!--                    android:textAppearance="?android:attr/textAppearanceMedium" />-->
+
 
             </LinearLayout>
 

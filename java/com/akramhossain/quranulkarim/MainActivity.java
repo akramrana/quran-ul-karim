@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.LinearLayout;
@@ -89,7 +90,8 @@ public class MainActivity extends AppCompatActivity {
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         appTheme = mPrefs.getString(NIGHT_MODE, "-1");
 
-        SwitchCompat switchCompat = findViewById(R.id.switchCompat);
+//        SwitchCompat switchCompat = findViewById(R.id.switchCompat);
+        CheckBox switchCompat = findViewById(R.id.switchCompat);
         txtNightMode = findViewById(R.id.txtNightMode);
 
         Log.d("APP THEME", String.valueOf(appTheme));
