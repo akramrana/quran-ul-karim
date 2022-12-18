@@ -76,7 +76,8 @@ public class TafsirActivity extends AppCompatActivity {
         fontNooreHidayat = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/noorehidayat.ttf");
         fontSaleem = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
 
-        dbhelper = new DatabaseHelper(getApplicationContext());
+        //dbhelper = new DatabaseHelper(getApplicationContext());
+        dbhelper = DatabaseHelper.getInstance(getApplicationContext());
 
         setContentView(R.layout.activity_tafsir);
         setTitle("Tafsir");
@@ -288,7 +289,7 @@ public class TafsirActivity extends AppCompatActivity {
 
         previousBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                SQLiteDatabase db = dbhelper.getWritableDatabase();
+                SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                 String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple " +
                         "FROM ayah " +
                         "LEFT join sura ON ayah.surah_id = sura.surah_id " +
@@ -326,7 +327,7 @@ public class TafsirActivity extends AppCompatActivity {
 
         nextBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                SQLiteDatabase db = dbhelper.getWritableDatabase();
+                SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                 String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple " +
                         "FROM ayah " +
                         "LEFT join sura ON ayah.surah_id = sura.surah_id " +
@@ -441,7 +442,7 @@ public class TafsirActivity extends AppCompatActivity {
     }
 
     private void getDataFromLocalDb() {
-        SQLiteDatabase db = dbhelper.getWritableDatabase();
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
 
         String bayaanSql = "select ayah.surah_id,ayah.ayah_num,\n" +
                 "(select c2text from verses_content_tafsir_bayaan where verses_content_tafsir_bayaan.c0sura = ayah.surah_id and verses_content_tafsir_bayaan.c1ayah = ayah.ayah_num) tafsir_bayaan,\n" +
@@ -487,7 +488,7 @@ public class TafsirActivity extends AppCompatActivity {
     }
 
     private void getTafhimTafsirFromLocalDB(){
-        SQLiteDatabase db = dbhelper.getWritableDatabase();
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
         String sql = "select case when gloss_expl = 'NULL' THEN trans_text when gloss_expl IS NULL THEN trans_text else group_concat(gloss_expl,'') end tafsir_text\n" +
                 "from tafsir_tafhimul_quran \n" +
                 "where verse_id = "+ayah_index+"\n" +
@@ -513,7 +514,7 @@ public class TafsirActivity extends AppCompatActivity {
     }
 
     private void getFathulMazidTafsirFromLocalDB(){
-        SQLiteDatabase db = dbhelper.getWritableDatabase();
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
         String sql = "select expl_text tafsir_text\n" +
                 "from tafsir_fathul_mazid \n" +
                 "where surah_id = "+surah_id+" and ayah_id = "+ayah_num;
@@ -539,7 +540,7 @@ public class TafsirActivity extends AppCompatActivity {
     }
 
     private void getFezilalilTafsirFromLocalDB(){
-        SQLiteDatabase db = dbhelper.getWritableDatabase();
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
         String banglaSuraId = getDigitBanglaFromEnglish(surah_id);
         String banglaVerseId = getDigitBanglaFromEnglish(ayah_num);
         String sql = "select tafsir_text\n" +

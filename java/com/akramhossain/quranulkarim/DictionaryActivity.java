@@ -54,7 +54,8 @@ public class DictionaryActivity extends AppCompatActivity implements SearchView.
 
         setRecyclerViewAdapter();
 
-        dbhelper = new DatabaseHelper(getApplicationContext());
+        //dbhelper = new DatabaseHelper(getApplicationContext());
+        dbhelper = DatabaseHelper.getInstance(getApplicationContext());
 
         recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -69,7 +70,7 @@ public class DictionaryActivity extends AppCompatActivity implements SearchView.
                     // this if statement detects when user reaches the end of recyclerView, this is only time we should load more
                     if (!recyclerView.canScrollVertically(RecyclerView.FOCUS_DOWN)) {
                         if (itShouldLoadMore) {
-                            SQLiteDatabase db = dbhelper.getWritableDatabase();
+                            SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                             String sql = "SELECT count(*) from words";
                             Cursor countHistory = db.rawQuery(sql,null);
                             try {
@@ -110,7 +111,7 @@ public class DictionaryActivity extends AppCompatActivity implements SearchView.
     }
 
     private void getDataFromLocalDb() {
-        SQLiteDatabase db = dbhelper.getWritableDatabase();
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
         String sql = "";
         searchTxt = searchTxt.replaceAll("\'","");
         if(searchTxt.equals("")) {

@@ -37,11 +37,12 @@ public class QuickLinksActivity extends AppCompatActivity {
         recyclerview.setLayoutManager(mLayoutManager);
         setRecyclerViewAdapter();
 
-        dbhelper = new DatabaseHelper(getApplicationContext());
+        //dbhelper = new DatabaseHelper(getApplicationContext());
+        dbhelper = DatabaseHelper.getInstance(getApplicationContext());
 
         getDataFromLocalDb();
 
-        recyclerview.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerview, new RecyclerTouchListener.ClickListener() {
+        /*recyclerview.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerview, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
                 Sura vd = suras.get(position);
@@ -56,11 +57,11 @@ public class QuickLinksActivity extends AppCompatActivity {
             public void onLongClick(View view, int position) {
 
             }
-        }));
+        }));*/
     }
 
     private void getDataFromLocalDb() {
-        SQLiteDatabase db = dbhelper.getWritableDatabase();
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
         String sql = "SELECT sura.*,quick_link.quick_link_id " +
                 "FROM quick_link " +
                 "LEFT JOIN sura ON  quick_link.sura_id = sura.surah_id " +

@@ -58,7 +58,8 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         setTitle("Search");
 
-        dbhelper = new DatabaseHelper(getApplicationContext());
+        //dbhelper = new DatabaseHelper(getApplicationContext());
+        dbhelper = DatabaseHelper.getInstance(getApplicationContext());
         ayat_number=(EditText) findViewById(R.id.ayat_number);
         ArrayList suras = this.getAllSura();
 
@@ -95,7 +96,7 @@ public class SearchActivity extends AppCompatActivity {
                 Integer selectedSuraId = 0;
                 if (suraName != null && !suraName.isEmpty()) {
                     String[] parts = suraName.split("\\(");
-                    SQLiteDatabase db1 = dbhelper.getWritableDatabase();
+                    SQLiteDatabase db1 = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                     String term = parts[0];
                     term = term.replaceAll("'","''");
                     String sql1 = "select * from sura where name_simple = '"+term+"'";
@@ -138,7 +139,7 @@ public class SearchActivity extends AppCompatActivity {
                     ayahNumber = "";
                 }
                 if (selectedSuraId != null && !selectedSuraId.equals("")) {
-                    SQLiteDatabase db = dbhelper.getWritableDatabase();
+                    SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                     String sql = "select * from sura where surah_id = "+selectedSuraId;
                     Cursor cursor = db.rawQuery(sql, null);
                     Log.i(TAG, sql);
@@ -174,7 +175,7 @@ public class SearchActivity extends AppCompatActivity {
                     if(ayahNumber.equals("")) {
                         if (!recyclerView.canScrollVertically(RecyclerView.FOCUS_DOWN)) {
                             if (itShouldLoadMore) {
-                                SQLiteDatabase db = dbhelper.getWritableDatabase();
+                                SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                                 String sql = "SELECT COUNT(*) FROM ayah WHERE surah_id = " + suraId;
                                 Cursor countHistory = db.rawQuery(sql, null);
                                 try {
@@ -205,7 +206,7 @@ public class SearchActivity extends AppCompatActivity {
 
         quickLinkBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                SQLiteDatabase db = dbhelper.getWritableDatabase();
+                SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                 String sql = "SELECT * FROM quick_link WHERE sura_id = "+suraId;
                 Log.i(TAG, sql);
                 Cursor cursor = db.rawQuery(sql, null);
@@ -219,7 +220,7 @@ public class SearchActivity extends AppCompatActivity {
                     else {
                         ContentValues values = new ContentValues();
                         values.put("sura_id", suraId);
-                        dbhelper.getWritableDatabase().insertOrThrow("quick_link", "", values);
+                        DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase().insertOrThrow("quick_link", "", values);
                         Toast.makeText(getApplicationContext(), "Added to favourites.", Toast.LENGTH_LONG).show();
                         quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_delete, 0, 0, 0);
                         quickLinkBtn.setText("Remove from favourites");
@@ -261,7 +262,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void getDataFromLocalDb() {
-        SQLiteDatabase db = dbhelper.getWritableDatabase();
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
         String conSql = " ";
         if (ayahNumber != null && !ayahNumber.equals("")) {
             conSql = " AND ayah_num IN ("+ayahNumber+") ";
@@ -314,7 +315,7 @@ public class SearchActivity extends AppCompatActivity {
 
     public ArrayList<SpinnerObject> getAllSura(){
         ArrayList < SpinnerObject > suras = new ArrayList<>();
-        SQLiteDatabase db = dbhelper.getReadableDatabase();
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getReadableDatabase();
         String sql = "SELECT * FROM sura order by surah_id ASC";
         Log.i("Search SQL", sql);
         Cursor cursor = db.rawQuery(sql, null);

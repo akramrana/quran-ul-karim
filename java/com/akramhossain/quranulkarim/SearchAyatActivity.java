@@ -62,7 +62,8 @@ public class SearchAyatActivity extends AppCompatActivity {
 
         setRecyclerViewAdapter();
 
-        dbhelper = new DatabaseHelper(getApplicationContext());
+        //dbhelper = new DatabaseHelper(getApplicationContext());
+        dbhelper = DatabaseHelper.getInstance(getApplicationContext());
 
         cd = new ConnectionDetector(getApplicationContext());
         isInternetPresent = cd.isConnectingToInternet();
@@ -95,7 +96,7 @@ public class SearchAyatActivity extends AppCompatActivity {
     }
 
     private void getDataFromLocalDb() {
-        SQLiteDatabase db = dbhelper.getWritableDatabase();
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
         String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple " +
                 "FROM ayah " +
                 "LEFT join sura ON ayah.surah_id = sura.surah_id " +

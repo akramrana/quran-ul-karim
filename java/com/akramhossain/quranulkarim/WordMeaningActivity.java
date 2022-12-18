@@ -77,7 +77,8 @@ public class WordMeaningActivity extends AppCompatActivity {
 
         setRecyclerViewAdapter();
 
-        dbhelper = new DatabaseHelper(getApplicationContext());
+        //dbhelper = new DatabaseHelper(getApplicationContext());
+        dbhelper = DatabaseHelper.getInstance(getApplicationContext());
 
         getDataFromLocalDb();
 
@@ -108,7 +109,7 @@ public class WordMeaningActivity extends AppCompatActivity {
     }
 
     private void getDataFromLocalDb() {
-        SQLiteDatabase db = dbhelper.getWritableDatabase();
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
         String sql = "SELECT words.*,(select translate_bn from bywords b where b._id =  words.word_id) as bangla " +
                 "FROM words " +
                 "WHERE ayah_index = "+ayah_index+" order by word_id ASC";

@@ -82,9 +82,10 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         fontNooreHidayat = Typeface.createFromAsset(c.getAssets(),"fonts/noorehidayat.ttf");
         fontSaleem = Typeface.createFromAsset(c.getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
         //
-        dbhelper = new DatabaseHelper(c);
+        //dbhelper = new DatabaseHelper(c);
+        dbhelper = DatabaseHelper.getInstance(c);
         this.activity = activity;
-        //db = dbhelper.getWritableDatabase();
+        //db = DatabaseHelper.getInstance(c).getWritableDatabase();
 
         cd = new ConnectionDetector(c);
         isInternetPresent = cd.isConnectingToInternet();
@@ -242,7 +243,7 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             @Override
             public void onClick(View view) {
                 try {
-                    SQLiteDatabase db = dbhelper.getWritableDatabase();
+                    SQLiteDatabase db = DatabaseHelper.getInstance(c).getWritableDatabase();
                     Button bookmark = view.findViewById(R.id.bookmarkBtn);
                     String sql = "SELECT * FROM bookmark WHERE ayah_id = "+ayah.getAyah_index();
                     //Log.i("BOOKMARK_SQL", sql);
@@ -255,7 +256,7 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                         } else {
                             ContentValues values = new ContentValues();
                             values.put("ayah_id", ayah.getAyah_index());
-                            dbhelper.getWritableDatabase().insertOrThrow("bookmark", "", values);
+                            DatabaseHelper.getInstance(c).getWritableDatabase().insertOrThrow("bookmark", "", values);
                             Toast.makeText(c, "Added to bookmark.", Toast.LENGTH_LONG).show();
                             bookmark.setCompoundDrawablesWithIntrinsicBounds(0, android.R.drawable.btn_star_big_on, 0, 0);
                         }
@@ -276,7 +277,7 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             }
         });
 
-        SQLiteDatabase db = dbhelper.getWritableDatabase();
+        SQLiteDatabase db = DatabaseHelper.getInstance(c).getWritableDatabase();
         String checksql = "SELECT * FROM bookmark WHERE ayah_id = "+ayah.getAyah_index();
         //Log.i("CHECK_BOOKMARK_SQL", checksql);
         Cursor cursor = db.rawQuery(checksql,null);

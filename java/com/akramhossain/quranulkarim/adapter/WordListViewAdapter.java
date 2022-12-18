@@ -56,7 +56,7 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         this.c = c;
         this.words = words;
         //dbhelper = new DatabaseHelper(c);
-        //db = dbhelper.getWritableDatabase();
+        //db = DatabaseHelper.getInstance(c).getWritableDatabase();
         cd = new ConnectionDetector(c);
         isInternetPresent = cd.isConnectingToInternet();
         this.activity = activity;

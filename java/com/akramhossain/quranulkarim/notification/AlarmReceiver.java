@@ -37,9 +37,10 @@ public class AlarmReceiver extends BroadcastReceiver {
         if(isAppIsInBackground(context)) {
 
 
-            DatabaseHelper dbhelper = new DatabaseHelper(context);
+            //DatabaseHelper dbhelper = new DatabaseHelper(context);
+            DatabaseHelper dbhelper = DatabaseHelper.getInstance(context);
 
-            SQLiteDatabase db = dbhelper.getWritableDatabase();
+            SQLiteDatabase db = DatabaseHelper.getInstance(context).getWritableDatabase();
             String sql = "SELECT sura.surah_id,sura.name_english,sura.name_arabic,sura.name_simple,ayah.ayah_num,ayah.text_tashkeel,ayah.content_en \n" +
                     "FROM ayah \n" +
                     "LEFT JOIN sura ON ayah.surah_id = sura.surah_id \n" +
@@ -55,13 +56,13 @@ public class AlarmReceiver extends BroadcastReceiver {
             String name_arabic = "";
             try {
                 if(ayah.moveToFirst()) {
-                    text_tashkeel = ayah.getString(ayah.getColumnIndex("text_tashkeel")).toString();
-                    ayahDescription = ayah.getString(ayah.getColumnIndex("content_en")).toString();
-                    suraName = ayah.getString(ayah.getColumnIndex("name_simple")).toString();
-                    ayah_num = ayah.getString(ayah.getColumnIndex("ayah_num")).toString();
-                    surah_id = ayah.getString(ayah.getColumnIndex("surah_id")).toString();
-                    name_english = ayah.getString(ayah.getColumnIndex("name_english")).toString();
-                    name_arabic = ayah.getString(ayah.getColumnIndex("name_arabic")).toString();
+                    text_tashkeel = ayah.getString(ayah.getColumnIndexOrThrow("text_tashkeel")).toString();
+                    ayahDescription = ayah.getString(ayah.getColumnIndexOrThrow("content_en")).toString();
+                    suraName = ayah.getString(ayah.getColumnIndexOrThrow("name_simple")).toString();
+                    ayah_num = ayah.getString(ayah.getColumnIndexOrThrow("ayah_num")).toString();
+                    surah_id = ayah.getString(ayah.getColumnIndexOrThrow("surah_id")).toString();
+                    name_english = ayah.getString(ayah.getColumnIndexOrThrow("name_english")).toString();
+                    name_arabic = ayah.getString(ayah.getColumnIndexOrThrow("name_arabic")).toString();
 
                     //Intent to invoke app when click on notification.
                     //In this sample, we want to start/launch this sample app when user clicks on notification

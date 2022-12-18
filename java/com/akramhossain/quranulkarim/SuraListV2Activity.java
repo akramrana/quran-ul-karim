@@ -70,7 +70,8 @@ public class SuraListV2Activity extends AppCompatActivity implements SearchView.
             }
         }));*/
 
-        dbhelper = new DatabaseHelper(getApplicationContext());
+        //dbhelper = new DatabaseHelper(getApplicationContext());
+        dbhelper = DatabaseHelper.getInstance(getApplicationContext());
 
         //getSuraListFromFile();
         getDataFromLocalDb();
@@ -80,7 +81,7 @@ public class SuraListV2Activity extends AppCompatActivity implements SearchView.
     }
 
     private void getDataFromLocalDb() {
-        SQLiteDatabase db = dbhelper.getWritableDatabase();
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
         String sql = "";
         searchTxt = searchTxt.replaceAll("\'","");
         if(searchTxt.equals("")) {

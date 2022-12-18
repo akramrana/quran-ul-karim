@@ -145,7 +145,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
                 super.onScrollStateChanged(recyclerView, newState);
                 //
                 if (!recyclerView.canScrollVertically(1) && newState==RecyclerView.SCROLL_STATE_IDLE) {
-                    SQLiteDatabase db1 = dbhelper.getWritableDatabase();
+                    SQLiteDatabase db1 = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                     String sql1 = "DELETE FROM last_position";
                     try {
                         db1.execSQL(sql1);
@@ -167,14 +167,14 @@ public class SuraDetailsActivity extends AppCompatActivity {
                     if(firstVisiblePosition > 1) {
                         rl.setVisibility(View.GONE);
                     }
-                    SQLiteDatabase db1 = dbhelper.getWritableDatabase();
+                    SQLiteDatabase db1 = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                     String sql1 = "DELETE FROM last_position";
                     try {
                         db1.execSQL(sql1);
                         ContentValues values = new ContentValues();
                         values.put("sura_id", suraId);
                         values.put("position", firstVisiblePosition);
-                        dbhelper.getWritableDatabase().insertOrThrow("last_position", "", values);
+                        DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase().insertOrThrow("last_position", "", values);
                     }
                     catch (Exception e){
                         Log.i("Last Position", e.getMessage());
@@ -187,7 +187,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
                     // this if statement detects when user reaches the end of recyclerView, this is only time we should load more
                     if (!recyclerView.canScrollVertically(RecyclerView.FOCUS_DOWN)) {
                         if (itShouldLoadMore) {
-                            SQLiteDatabase db = dbhelper.getWritableDatabase();
+                            SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                             String sql = "SELECT COUNT(*) FROM ayah WHERE surah_id = "+suraId;
                             Cursor countHistory = db.rawQuery(sql,null);
                             try {
@@ -226,7 +226,8 @@ public class SuraDetailsActivity extends AppCompatActivity {
             recyclerview.scrollToPosition(Integer.parseInt(suraLastPosition));
         }
 
-        dbhelper = new DatabaseHelper(getApplicationContext());
+        //dbhelper = new DatabaseHelper(getApplicationContext());
+        dbhelper = DatabaseHelper.getInstance(getApplicationContext());
 
         getDataFromLocalDb();
 
@@ -235,7 +236,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
         final Button quickLinkBtn = (Button) findViewById(R.id.quickLinkBtn);
 
         String checksql = "SELECT * FROM quick_link WHERE sura_id = "+suraId;
-        SQLiteDatabase chkdb = dbhelper.getWritableDatabase();
+        SQLiteDatabase chkdb = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
         Cursor cursor1 = chkdb.rawQuery(checksql,null);
 
         try {
@@ -282,7 +283,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
                 resume_audio.setVisibility(View.GONE);
                 stop_audio.setVisibility(View.GONE);*/
                 //
-                SQLiteDatabase db = dbhelper.getWritableDatabase();
+                SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                 String sql = "SELECT * FROM sura WHERE surah_id < "+suraId+" order by surah_id DESC limit 1";
                 Cursor cursor = db.rawQuery(sql, null);
                 try {
@@ -298,7 +299,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
                         titleEn.setText(suraName);
                         titleAr.setText(suraNameArabic);
 
-                        //SQLiteDatabase db1 = dbhelper.getWritableDatabase();
+                        //SQLiteDatabase db1 = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                         String checksql = "SELECT * FROM quick_link WHERE sura_id = "+suraId;
                         Cursor cursor1 = db.rawQuery(checksql,null);
 
@@ -357,7 +358,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
                 resume_audio.setVisibility(View.GONE);
                 stop_audio.setVisibility(View.GONE);*/
                 //
-                SQLiteDatabase db = dbhelper.getWritableDatabase();
+                SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                 String sql = "SELECT * FROM sura WHERE surah_id > "+suraId+" order by surah_id ASC limit 1";
                 Cursor cursor = db.rawQuery(sql, null);
                 try {
@@ -375,7 +376,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
                         titleEn.setText(suraName);
                         titleAr.setText(suraNameArabic);
 
-                        //SQLiteDatabase db1 = dbhelper.getWritableDatabase();
+                        //SQLiteDatabase db1 = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                         String checksql = "SELECT * FROM quick_link WHERE sura_id = "+suraId;
                         Cursor cursor1 = db.rawQuery(checksql,null);
 
@@ -415,7 +416,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
 
         quickLinkBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                SQLiteDatabase db = dbhelper.getWritableDatabase();
+                SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                 String sql = "SELECT * FROM quick_link WHERE sura_id = "+suraId;
                 Log.i(TAG, sql);
                 Cursor cursor = db.rawQuery(sql, null);
@@ -429,7 +430,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
                     else {
                         ContentValues values = new ContentValues();
                         values.put("sura_id", suraId);
-                        dbhelper.getWritableDatabase().insertOrThrow("quick_link", "", values);
+                        DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase().insertOrThrow("quick_link", "", values);
                         Toast.makeText(getApplicationContext(), "Added to favourites.", Toast.LENGTH_LONG).show();
                         quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_delete, 0, 0, 0);
                         quickLinkBtn.setText("Remove from favourites");
@@ -642,7 +643,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
     }
 
     private void getDataFromLocalDb() {
-        SQLiteDatabase db = dbhelper.getWritableDatabase();
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
         String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple " +
                 "FROM ayah " +
                 "LEFT join sura ON ayah.surah_id = sura.surah_id " +
@@ -723,7 +724,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
 
                     //Log.i(TAG, update_column+"="+update_value);
 
-                    SQLiteDatabase db = dbhelper.getWritableDatabase();
+                    SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                     try {
                         ContentValues cv = new ContentValues();
                         cv.put(update_column, update_value);

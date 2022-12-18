@@ -111,7 +111,7 @@ public class JuzHizbRubDetailsActivity extends AppCompatActivity {
                     // this if statement detects when user reaches the end of recyclerView, this is only time we should load more
                     if (!recyclerView.canScrollVertically(RecyclerView.FOCUS_DOWN)) {
                         if (itShouldLoadMore) {
-                            SQLiteDatabase db = dbhelper.getWritableDatabase();
+                            SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                             String sql = String.format("SELECT COUNT(*) FROM ayah WHERE %s", where_clause);
                             Log.i(TAG, sql);
                             Cursor countHistory = db.rawQuery(sql,null);
@@ -140,14 +140,15 @@ public class JuzHizbRubDetailsActivity extends AppCompatActivity {
 
         });
 
-        dbhelper = new DatabaseHelper(getApplicationContext());
+        //dbhelper = new DatabaseHelper(getApplicationContext());
+        dbhelper = DatabaseHelper.getInstance(getApplicationContext());
 
         getDataFromLocalDb();
 
         Button previousBtn = (Button) findViewById(R.id.previousBtn);
         previousBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                SQLiteDatabase db = dbhelper.getWritableDatabase();
+                SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                 String sql = String.format("SELECT ayah.*,sura.name_simple,sura.name_complex,sura.name_english,sura.name_arabic " +
                         "FROM ayah " +
                         "inner join sura ON ayah.surah_id = sura.surah_id " +
@@ -218,7 +219,7 @@ public class JuzHizbRubDetailsActivity extends AppCompatActivity {
         Button nextBtn = (Button) findViewById(R.id.nextBtn);
         nextBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                SQLiteDatabase db = dbhelper.getWritableDatabase();
+                SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                 String sql = String.format("SELECT ayah.*,sura.name_simple,sura.name_complex,sura.name_english,sura.name_arabic " +
                         "FROM ayah " +
                         "inner join sura ON ayah.surah_id = sura.surah_id  " +
@@ -293,7 +294,7 @@ public class JuzHizbRubDetailsActivity extends AppCompatActivity {
     }
 
     private void getDataFromLocalDb() {
-        SQLiteDatabase db = dbhelper.getWritableDatabase();
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
         String sql = String.format("SELECT ayah.*,sura.name_simple,sura.name_complex,sura.name_english,sura.name_arabic \nFROM ayah \nLEFT JOIN sura ON ayah.surah_id = sura.surah_id \nWHERE %s order by ayah_index ASC limit %d,%d", where_clause, offset, limit);
         Log.i(TAG, sql);
         Cursor cursor = db.rawQuery(sql, null);

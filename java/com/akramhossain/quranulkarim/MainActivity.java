@@ -297,12 +297,13 @@ public class MainActivity extends AppCompatActivity {
         //NotificationHelper.scheduleRepeatingRTCNotification(getApplicationContext(), "22", "10");
         //NotificationHelper.enableBootReceiver(getApplicationContext());
 
-        dbhelper = new DatabaseHelper(getApplicationContext());
+        //dbhelper = new DatabaseHelper(getApplicationContext());
+        dbhelper = DatabaseHelper.getInstance(getApplicationContext());
 
         start_from_last.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SQLiteDatabase db = dbhelper.getWritableDatabase();
+                SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                 String sql = "SELECT last_position.sura_id,position,name_english,name_arabic " +
                         "FROM last_position " +
                         "LEFT JOIN sura ON last_position.sura_id = sura.surah_id " +
@@ -418,7 +419,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getPopularSearchFromLocalDb() {
-        SQLiteDatabase db = dbhelper.getWritableDatabase();
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
         String sql = "SELECT * FROM sura WHERE surah_id IN(18,36,55,56,67,71,73,78,85,112) order by RANDOM() LIMIT 10";
         Log.i(TAG, sql);
         Cursor cursor = db.rawQuery(sql, null);
@@ -484,7 +485,7 @@ public class MainActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         //Log.d("ACTIVTY","RESUME");
-        SQLiteDatabase db = dbhelper.getWritableDatabase();
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
         String sql = "SELECT last_position.sura_id,position,name_english,name_arabic " +
                 "FROM last_position " +
                 "LEFT JOIN sura ON last_position.sura_id = sura.surah_id " +

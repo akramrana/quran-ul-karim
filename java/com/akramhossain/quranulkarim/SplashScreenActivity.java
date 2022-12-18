@@ -52,7 +52,8 @@ public class SplashScreenActivity extends Activity {
             splash_title_ar.setTypeface(fontSaleem);
         }
 
-        mDBHelper = new DatabaseHelper(this);
+        //mDBHelper = new DatabaseHelper(this);
+        mDBHelper = DatabaseHelper.getInstance(getApplicationContext());
 
         try {
             mDBHelper.updateDataBase();

@@ -69,11 +69,12 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         fontAlQalam = Typeface.createFromAsset(c.getAssets(),"fonts/AlQalamQuran.ttf");
         fontNooreHidayat = Typeface.createFromAsset(c.getAssets(),"fonts/noorehidayat.ttf");
         fontSaleem = Typeface.createFromAsset(c.getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
-        dbhelper = new DatabaseHelper(c);
+        //dbhelper = new DatabaseHelper(c);
+        dbhelper = DatabaseHelper.getInstance(c);
         this.activity = activity;
         cd = new ConnectionDetector(c);
         isInternetPresent = cd.isConnectingToInternet();
-        //db = dbhelper.getWritableDatabase();
+        //db = DatabaseHelper.getInstance(c).getWritableDatabase();
         mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
     }
 
@@ -225,7 +226,7 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             @Override
             public void onClick(View view) {
                 try {
-                    SQLiteDatabase db = dbhelper.getWritableDatabase();
+                    SQLiteDatabase db = DatabaseHelper.getInstance(c).getWritableDatabase();
                     String sql = "SELECT * FROM bookmark WHERE ayah_id = "+ayah.getAyah_index();
                     Cursor cursor = db.rawQuery(sql,null);
                     try {

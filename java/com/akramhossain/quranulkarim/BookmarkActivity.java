@@ -56,7 +56,7 @@ public class BookmarkActivity extends AppCompatActivity {
                     // this if statement detects when user reaches the end of recyclerView, this is only time we should load more
                     if (!recyclerView.canScrollVertically(RecyclerView.FOCUS_DOWN)) {
                         if (itShouldLoadMore) {
-                            SQLiteDatabase db = dbhelper.getWritableDatabase();
+                            SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                             String sql = "SELECT COUNT(*) FROM bookmark";
                             Cursor countHistory = db.rawQuery(sql,null);
                             try {
@@ -84,13 +84,14 @@ public class BookmarkActivity extends AppCompatActivity {
 
         });
 
-        dbhelper = new DatabaseHelper(getApplicationContext());
+        //dbhelper = new DatabaseHelper(getApplicationContext());
+        dbhelper = DatabaseHelper.getInstance(getApplicationContext());
 
         getDataFromLocalDb();
     }
 
     private void getDataFromLocalDb() {
-        SQLiteDatabase db = dbhelper.getWritableDatabase();
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
         String sql = "SELECT ayah.*,bookmark.bookmark_id,sura.name_simple,sura.name_complex,sura.name_english,sura.name_arabic " +
                 "FROM bookmark " +
                 "LEFT JOIN ayah ON bookmark.ayah_id = ayah.ayah_index " +
