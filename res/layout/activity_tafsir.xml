@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -19,9 +19,29 @@
             android:id="@+id/topTafsirBar">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:layout_weight="2"
+                android:layout_gravity="center_vertical">
+
+                <Button
+                    android:id="@+id/previousBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prev"
+                    android:textSize="12dp"
+                    android:drawableLeft="@android:drawable/ic_media_previous"
+                    android:layout_alignParentLeft="true"
+                    android:background="@android:color/transparent"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="6">
 
                 <TextView
                     android:id="@+id/bookmark_title"
@@ -51,44 +71,34 @@
 
             </LinearLayout>
 
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/nextPrevSection"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@id/topTafsirBar">
-
-            <Button
-                android:id="@+id/previousBtn"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Prev"
-                android:textSize="12dp"
-                android:drawableLeft="@android:drawable/ic_media_previous"
-                android:layout_alignParentLeft="true"
-                android:background="@android:color/transparent"/>
+                android:orientation="vertical"
+                android:layout_weight="2"
+                android:layout_gravity="center_vertical"
+                android:gravity="right">
 
+                <Button
+                    android:id="@+id/nextBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Next"
+                    android:textSize="12dp"
+                    android:drawableRight="@android:drawable/ic_media_next"
+                    android:layout_alignParentRight="true"
+                    android:background="@android:color/transparent"/>
 
-            <Button
-                android:id="@+id/nextBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Next"
-                android:textSize="12dp"
-                android:drawableRight="@android:drawable/ic_media_next"
-                android:layout_alignParentRight="true"
-                android:background="@android:color/transparent"/>
+            </LinearLayout>
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:id="@+id/tafsirButtonSection"
-            android:layout_below="@id/nextPrevSection">
+            android:layout_below="@id/topTafsirBar">
 
             <HorizontalScrollView
                 android:id="@+id/horizontalScrollView1"
