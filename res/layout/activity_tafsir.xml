@@ -31,6 +31,7 @@
                     android:layout_height="wrap_content"
                     android:text="Prev"
                     android:textSize="12dp"
+                    android:textColor="@color/colorWhiteDN"
                     android:drawableLeft="@android:drawable/ic_media_previous"
                     android:layout_alignParentLeft="true"
                     android:background="@android:color/transparent"/>
@@ -85,6 +86,7 @@
                     android:layout_height="wrap_content"
                     android:text="Next"
                     android:textSize="12dp"
+                    android:textColor="@color/colorWhiteDN"
                     android:drawableRight="@android:drawable/ic_media_next"
                     android:layout_alignParentRight="true"
                     android:background="@android:color/transparent"/>
@@ -359,7 +361,7 @@
                         android:id="@+id/fathul_mazid_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/zakaria_content"
+                        android:layout_below="@id/tafhim_content"
                         android:textIsSelectable="true"
                         android:textColor="@color/colorWhite"
                         android:paddingLeft="5dp"
@@ -373,7 +375,7 @@
                         android:id="@+id/fezilalil_quran_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/zakaria_content"
+                        android:layout_below="@id/fathul_mazid_content"
                         android:textIsSelectable="true"
                         android:textColor="@color/colorWhite"
                         android:paddingLeft="5dp"
@@ -387,7 +389,7 @@
                         android:id="@+id/jalalayn_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/zakaria_content"
+                        android:layout_below="@id/fezilalil_quran_content"
                         android:textIsSelectable="true"
                         android:textColor="@color/colorWhite"
                         android:paddingLeft="5dp"
@@ -395,6 +397,25 @@
                         android:textSize="15dip"
                         android:visibility="gone"
                         android:layout_gravity="center_vertical|end"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/copyTextSection"
+                    android:layout_below="@id/tafsirTextSection"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/copyButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/string_cp"
+                        android:textSize="12dp"
+                        android:drawableTop="@android:drawable/ic_menu_set_as"
+                        android:layout_marginBottom="5dp"/>
 
                 </RelativeLayout>
 

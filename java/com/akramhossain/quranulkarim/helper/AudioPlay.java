@@ -36,7 +36,7 @@ public class AudioPlay {
         }
         catch (Exception e)
         {
-            Log.e("MP3", e.getMessage());
+            Log.e("MP3", e.toString());
         }
     }
 
@@ -56,7 +56,7 @@ public class AudioPlay {
         }
         catch (Exception e)
         {
-            Log.e("MP3", e.getMessage());
+            Log.e("MP3", e.toString());
         }
     }
 

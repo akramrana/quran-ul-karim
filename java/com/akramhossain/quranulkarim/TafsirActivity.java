@@ -1,6 +1,7 @@
 package com.akramhossain.quranulkarim;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,6 +14,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.Ayah;
@@ -40,7 +42,7 @@ public class TafsirActivity extends AppCompatActivity {
 
     TextView tv_surah_name,tv_ayah_arabic,tv_ayah_english,tv_ayah_bangla,tv_ayah_num;
 
-    Button btn_bayaan, btn_zakaria, btn_jalalayn, btn_ibnkathir, btn_tafhim, btn_fathul_mazid, btn_fezilalil_quran;
+    Button btn_bayaan, btn_zakaria, btn_jalalayn, btn_ibnkathir, btn_tafhim, btn_fathul_mazid, btn_fezilalil_quran, copyButton;
 
     private static final String TAG = TafsirActivity.class.getSimpleName();
 
@@ -51,6 +53,9 @@ public class TafsirActivity extends AppCompatActivity {
     public static final String is_tafsir_fathul_mazid_selected = "isTafsirFathulMazidSelected";
     public static final String is_tafsir_fezilalil_selected = "isTafsirFezilalilSelected";
     public static final String is_tafsir_jalalayn_selected = "isTafsirJalalaynSelected";
+
+    public String active_tafsir = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +116,8 @@ public class TafsirActivity extends AppCompatActivity {
 
         getDataFromLocalDb();
 
+        active_tafsir = "ibn_kasir";
+
         btn_ibnkathir = (Button) findViewById(R.id.ibnkathir);
         btn_ibnkathir.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
 
@@ -121,6 +128,8 @@ public class TafsirActivity extends AppCompatActivity {
         btn_tafhim = (Button) findViewById(R.id.tafhim);
         btn_fathul_mazid = (Button) findViewById(R.id.fathul_mazid);
         btn_fezilalil_quran = (Button) findViewById(R.id.fezilalil_quran);
+
+        copyButton = (Button) findViewById(R.id.copyButton);
 
         btn_ibnkathir.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -141,6 +150,8 @@ public class TafsirActivity extends AppCompatActivity {
                 btn_tafhim.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
                 btn_fathul_mazid.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
                 btn_fezilalil_quran.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
+
+                active_tafsir = "ibn_kasir";
             }
         });
 
@@ -163,6 +174,8 @@ public class TafsirActivity extends AppCompatActivity {
                 btn_tafhim.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
                 btn_fathul_mazid.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
                 btn_fezilalil_quran.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
+
+                active_tafsir = "bayaan";
             }
         });
 
@@ -185,6 +198,8 @@ public class TafsirActivity extends AppCompatActivity {
                 btn_tafhim.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
                 btn_fathul_mazid.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
                 btn_fezilalil_quran.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
+
+                active_tafsir = "zakaria";
             }
         });
 
@@ -207,6 +222,8 @@ public class TafsirActivity extends AppCompatActivity {
                 btn_tafhim.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
                 btn_fathul_mazid.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
                 btn_fezilalil_quran.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
+
+                active_tafsir = "jalalayn";
             }
         });
 
@@ -231,6 +248,8 @@ public class TafsirActivity extends AppCompatActivity {
                 btn_fezilalil_quran.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
 
                 getTafhimTafsirFromLocalDB();
+
+                active_tafsir = "tafhim";
             }
         });
 
@@ -255,6 +274,8 @@ public class TafsirActivity extends AppCompatActivity {
                 btn_fezilalil_quran.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
 
                 getFathulMazidTafsirFromLocalDB();
+
+                active_tafsir = "fathul";
             }
         });
 
@@ -279,6 +300,8 @@ public class TafsirActivity extends AppCompatActivity {
                 btn_fezilalil_quran.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
 
                 getFezilalilTafsirFromLocalDB();
+
+                active_tafsir = "fezilalil";
             }
         });
 
@@ -438,6 +461,44 @@ public class TafsirActivity extends AppCompatActivity {
         if(is_jalalayn.equals("-1")){
             btn_jalalayn.setVisibility(View.GONE);
         }
+
+        copyButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.i(TAG, active_tafsir);
+
+                String label = surah_name+" "+ayah_key;
+                String copyTxt =  surah_name+" "+ayah_key +"\n"+ text_tashkeel +"\n"+ content_en +"\n"+ content_bn+"\n\n";
+                String tafsirTxt = "";
+
+                if(active_tafsir.equals("ibn_kasir")){
+                    tafsirTxt = ibn_kathir_content.getText().toString();
+                }
+                else if(active_tafsir.equals("bayaan")){
+                    tafsirTxt = bayaan_content.getText().toString();
+                }
+                else if(active_tafsir.equals("zakaria")){
+                    tafsirTxt = zakaria_content.getText().toString();
+                }
+                else if(active_tafsir.equals("jalalayn")){
+                    tafsirTxt = jalalayn_content.getText().toString();
+                }
+                else if(active_tafsir.equals("tafhim")){
+                    tafsirTxt = tafhim_content.getText().toString();
+                }
+                else if(active_tafsir.equals("fathul")){
+                    tafsirTxt = fathul_mazid_content.getText().toString();
+                }
+                else if(active_tafsir.equals("fezilalil")){
+                    tafsirTxt = fezilalil_quran_content.getText().toString();
+                }
+
+                Log.d(label,copyTxt+tafsirTxt);
+                android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getApplicationContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                android.content.ClipData clip = android.content.ClipData.newPlainText(label,copyTxt+tafsirTxt);
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText(getApplicationContext(), "Tafsir Copied.", Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 
