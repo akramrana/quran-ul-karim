@@ -46,10 +46,20 @@
             android:textIsSelectable="true"/>
 
         <TextView
+            android:id="@+id/trans"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true"
+            android:textColor="@color/transColor"
+            android:layout_marginTop="12dip"
+            android:layout_below="@id/text_tashkeel"
+            android:textSize="15dip"/>
+
+        <TextView
             android:id="@+id/content_en"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/text_tashkeel"
+            android:layout_below="@id/trans"
             android:textIsSelectable="true"
             android:textColor="@color/colorWhite"
             android:layout_marginTop="12dip"

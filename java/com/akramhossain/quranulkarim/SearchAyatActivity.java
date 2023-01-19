@@ -97,9 +97,9 @@ public class SearchAyatActivity extends AppCompatActivity {
 
     private void getDataFromLocalDb() {
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-        String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple " +
+        String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans " +
                 "FROM ayah " +
-                "LEFT join sura ON ayah.surah_id = sura.surah_id " +
+                "LEFT join sura ON ayah.surah_id = sura.surah_id LEFT join transliteration ON ayah.ayah_num = transliteration.ayat_id and transliteration.sura_id = ayah.surah_id " +
                 "WHERE (text LIKE \"%"+search_term+"%\" or text_tashkeel LIKE \"%"+search_term+"%\" or content_en LIKE \"%"+search_term+"%\" or content_bn LIKE \"%"+search_term+"%\" or ayah_key LIKE \"%"+search_term+"%\") " +
                 "order by ayah_index ASC " +
                 "limit " + offset + "," + limit;
@@ -129,6 +129,7 @@ public class SearchAyatActivity extends AppCompatActivity {
                     ayah.setName_complex(cursor.getString(cursor.getColumnIndexOrThrow("name_complex")));
                     ayah.setName_english(cursor.getString(cursor.getColumnIndexOrThrow("name_english")));
                     ayah.setName_arabic(cursor.getString(cursor.getColumnIndexOrThrow("name_arabic")));
+                    ayah.setTrans(cursor.getString(cursor.getColumnIndexOrThrow("trans")));
                     ayahs.add(ayah);
                 } while (cursor.moveToNext());
             }

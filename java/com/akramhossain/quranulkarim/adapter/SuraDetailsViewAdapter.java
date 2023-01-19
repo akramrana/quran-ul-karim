@@ -41,6 +41,8 @@ import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.Ayah;
 import com.akramhossain.quranulkarim.task.BackgroundTask;
 
+import org.w3c.dom.Text;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -97,6 +99,7 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         View v= LayoutInflater.from(c).inflate(R.layout.sura_ayah_list,parent,false);
         RecyclerViewHolder rvHolder = new RecyclerViewHolder(v);
         rvHolder.content_bn.setTypeface(font);
+        rvHolder.trans.setTypeface(font);
         return rvHolder;
     }
 
@@ -116,6 +119,8 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             sajdahText = "Yes";
         }
         rvHolder.sajdah.setText("Sajdah: "+sajdahText);
+
+        rvHolder.trans.setText(ayah.getTrans());
 
         rvHolder.playBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -448,6 +453,7 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         TextView ayah_num;
         Button shareButton;
         Button copyButton;
+        TextView trans;
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
@@ -464,6 +470,7 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             shareButton = (Button) itemView.findViewById(R.id.shareButton);
             copyButton = (Button) itemView.findViewById(R.id.copyButton);
             tafsirs = (TextView) itemView.findViewById(R.id.tafsirs);
+            trans = (TextView) itemView.findViewById(R.id.trans);
             //
             String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
             String mp_arFz = mPrefs.getString("arFontSize", "30");
@@ -496,6 +503,7 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             }
             if(!mp_bnFz.equals("")){
                 content_bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+                trans.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
             }
         }
     }

@@ -83,6 +83,7 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         View v= LayoutInflater.from(c).inflate(R.layout.sura_bookmark_list,parent,false);
         RecyclerViewHolder rvHolder = new RecyclerViewHolder(v);
         rvHolder.content_bn.setTypeface(font);
+        rvHolder.trans.setTypeface(font);
         return rvHolder;
     }
 
@@ -102,6 +103,8 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             sajdahText = "Yes";
         }
         rvHolder.sajdah.setText("Sajdah: "+sajdahText);
+
+        rvHolder.trans.setText(ayah.getTrans());
 
         rvHolder.playBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -386,6 +389,7 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         Button shareButton;
         TextView ayah_num,surah_name;
         Button copyButton;
+        TextView trans;
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
@@ -403,6 +407,7 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             surah_name = (TextView) itemView.findViewById(R.id.surah_name);
             copyButton = (Button) itemView.findViewById(R.id.copyButton);
             tafsirs = (TextView) itemView.findViewById(R.id.tafsirs);
+            trans = (TextView) itemView.findViewById(R.id.trans);
             //
             String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
             String mp_arFz = mPrefs.getString("arFontSize", "30");
@@ -431,6 +436,7 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
             if(!mp_bnFz.equals("")){
                 content_bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+                trans.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
             }
         }
     }

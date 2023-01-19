@@ -25,6 +25,7 @@ public class Ayah {
     private String name_complex;
     private String name_english;
     private String name_arabic;
+    private String trans;
 
     public String getAyah_index() {
         return ayah_index;
@@ -176,5 +177,13 @@ public class Ayah {
 
     public void setName_arabic(String name_arabic) {
         this.name_arabic = name_arabic;
+    }
+
+    public String getTrans() {
+        return trans;
+    }
+
+    public void setTrans(String trans) {
+        this.trans = trans;
     }
 }

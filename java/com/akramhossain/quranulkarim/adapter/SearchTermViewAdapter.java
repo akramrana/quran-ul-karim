@@ -85,6 +85,7 @@ public class SearchTermViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         View v= LayoutInflater.from(c).inflate(R.layout.search_term_list,parent,false);
         RecyclerViewHolder rvHolder = new RecyclerViewHolder(v);
         rvHolder.content_bn.setTypeface(font);
+        rvHolder.trans.setTypeface(font);
         return rvHolder;
     }
 
@@ -104,6 +105,8 @@ public class SearchTermViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             sajdahText = "Yes";
         }
         rvHolder.sajdah.setText("Sajdah: "+sajdahText);
+
+        rvHolder.trans.setText(ayah.getTrans());
 
         rvHolder.playBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -417,6 +420,7 @@ public class SearchTermViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         Button bookmarkBtn;
         Button copyButton;
         TextView tafsirs;
+        TextView trans;
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
@@ -435,6 +439,7 @@ public class SearchTermViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             bookmarkBtn = (Button) itemView.findViewById(R.id.bookmarkBtn);
             copyButton = (Button) itemView.findViewById(R.id.copyButton);
             tafsirs = (TextView) itemView.findViewById(R.id.tafsirs);
+            trans = (TextView) itemView.findViewById(R.id.trans);
 
             String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
             String mp_arFz = mPrefs.getString("arFontSize", "30");
@@ -463,6 +468,7 @@ public class SearchTermViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             }
             if(!mp_bnFz.equals("")){
                 content_bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+                trans.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
             }
         }
     }
