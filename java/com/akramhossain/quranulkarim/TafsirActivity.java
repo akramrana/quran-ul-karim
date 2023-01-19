@@ -32,11 +32,13 @@ public class TafsirActivity extends AppCompatActivity {
     public static String surah_id;
     public static String ayah_key;
     public static String surah_name;
+    public static String ayah_trans;
+
     DatabaseHelper dbhelper;
     Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
     SharedPreferences mPrefs;
 
-    TextView bayaan_content,zakaria_content,jalalayn_content, ibn_kathir_content, tafhim_content, fathul_mazid_content, fezilalil_quran_content;
+    TextView bayaan_content,zakaria_content,jalalayn_content, ibn_kathir_content, tafhim_content, fathul_mazid_content, fezilalil_quran_content, trans;
 
     String bayaan_text, zakaria_text, jalalayn_text, ibn_kasir_text, tafhim_text, fathul_mazid_text, fezilalil_quran_text;
 
@@ -70,6 +72,7 @@ public class TafsirActivity extends AppCompatActivity {
             ayah_num = extras.getString("ayah_num");
             surah_id = extras.getString("surah_id");
             ayah_key = extras.getString("ayah_key");
+            ayah_trans = extras.getString("trans");
         }
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -113,6 +116,8 @@ public class TafsirActivity extends AppCompatActivity {
         tv_ayah_bangla = (TextView) findViewById(R.id.ayah_bangla);
         tv_ayah_bangla.setTypeface(font);
         tv_ayah_num = (TextView) findViewById(R.id.ayah_num);
+        trans = (TextView) findViewById(R.id.trans);
+        trans.setTypeface(font);
 
         getDataFromLocalDb();
 
@@ -313,9 +318,9 @@ public class TafsirActivity extends AppCompatActivity {
         previousBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-                String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple " +
+                String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans " +
                         "FROM ayah " +
-                        "LEFT join sura ON ayah.surah_id = sura.surah_id " +
+                        "LEFT join sura ON ayah.surah_id = sura.surah_id LEFT join transliteration ON ayah.ayah_num = transliteration.ayat_id and transliteration.sura_id = ayah.surah_id " +
                         "WHERE ayah.surah_id = "+surah_id+" and ayah.ayah_num < "+ayah_num+" " +
                         "order by ayah.ayah_index DESC " +
                         "limit 1";
@@ -330,6 +335,7 @@ public class TafsirActivity extends AppCompatActivity {
                         ayah_num = cursor.getString(2);
                         surah_id = cursor.getString(1);
                         ayah_key = cursor.getString(8);
+                        ayah_trans = cursor.getString(19);
 
                         getDataFromLocalDb();
                         getTafhimTafsirFromLocalDB();
@@ -351,9 +357,9 @@ public class TafsirActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-                String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple " +
+                String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans " +
                         "FROM ayah " +
-                        "LEFT join sura ON ayah.surah_id = sura.surah_id " +
+                        "LEFT join sura ON ayah.surah_id = sura.surah_id LEFT join transliteration ON ayah.ayah_num = transliteration.ayat_id and transliteration.sura_id = ayah.surah_id " +
                         "WHERE ayah.surah_id = "+surah_id+" and ayah.ayah_num > "+ayah_num+" " +
                         "order by ayah.ayah_index ASC " +
                         "limit 1";
@@ -368,6 +374,7 @@ public class TafsirActivity extends AppCompatActivity {
                         ayah_num = cursor.getString(2);
                         surah_id = cursor.getString(1);
                         ayah_key = cursor.getString(8);
+                        ayah_trans = cursor.getString(19);
 
                         getDataFromLocalDb();
                         getTafhimTafsirFromLocalDB();
@@ -414,6 +421,7 @@ public class TafsirActivity extends AppCompatActivity {
         }
         if(!mp_bnFz.equals("")){
             tv_ayah_bangla.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+            trans.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
         }
 
         String mp_enFzTs = mPrefs.getString("enFontSizeTafsir", "15");
@@ -467,7 +475,7 @@ public class TafsirActivity extends AppCompatActivity {
                 Log.i(TAG, active_tafsir);
 
                 String label = surah_name+" "+ayah_key;
-                String copyTxt =  surah_name+" "+ayah_key +"\n"+ text_tashkeel +"\n"+ content_en +"\n"+ content_bn+"\n\n";
+                String copyTxt =  surah_name+" "+ayah_key +"\n"+ text_tashkeel +"\n"+ ayah_trans +"\n"+ content_en +"\n"+ content_bn+"\n\n";
                 String tafsirTxt = "";
 
                 if(active_tafsir.equals("ibn_kasir")){
@@ -537,6 +545,7 @@ public class TafsirActivity extends AppCompatActivity {
                 tv_ayah_english.setText(content_en);
                 tv_ayah_bangla.setText(content_bn);
                 tv_ayah_num.setText(surah_name+" "+ayah_key);
+                trans.setText(ayah_trans);
             }
         }catch (Exception e){
             Log.i("Tafsir", e.getMessage());

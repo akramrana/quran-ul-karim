@@ -52,13 +52,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.net.URL;
+
 import static android.content.Context.CLIPBOARD_SERVICE;
 
 /**
  * Created by akram on 3/31/2019.
  */
 
-public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     Context c;
     ArrayList<Ayah> ayahs;
@@ -77,12 +78,12 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         this.c = c;
         this.ayahs = ayahs;
         //
-        font = Typeface.createFromAsset(c.getAssets(),"fonts/Siyamrupali.ttf");
-        fontUthmani = Typeface.createFromAsset(c.getAssets(),"fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf");
-        fontAlmajeed = Typeface.createFromAsset(c.getAssets(),"fonts/AlMajeedQuranicFont_shiped.ttf");
-        fontAlQalam = Typeface.createFromAsset(c.getAssets(),"fonts/AlQalamQuran.ttf");
-        fontNooreHidayat = Typeface.createFromAsset(c.getAssets(),"fonts/noorehidayat.ttf");
-        fontSaleem = Typeface.createFromAsset(c.getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
+        font = Typeface.createFromAsset(c.getAssets(), "fonts/Siyamrupali.ttf");
+        fontUthmani = Typeface.createFromAsset(c.getAssets(), "fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf");
+        fontAlmajeed = Typeface.createFromAsset(c.getAssets(), "fonts/AlMajeedQuranicFont_shiped.ttf");
+        fontAlQalam = Typeface.createFromAsset(c.getAssets(), "fonts/AlQalamQuran.ttf");
+        fontNooreHidayat = Typeface.createFromAsset(c.getAssets(), "fonts/noorehidayat.ttf");
+        fontSaleem = Typeface.createFromAsset(c.getAssets(), "fonts/PDMS_Saleem_QuranFont.ttf");
         //
         //dbhelper = new DatabaseHelper(c);
         dbhelper = DatabaseHelper.getInstance(c);
@@ -96,7 +97,7 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(c).inflate(R.layout.sura_ayah_list,parent,false);
+        View v = LayoutInflater.from(c).inflate(R.layout.sura_ayah_list, parent, false);
         RecyclerViewHolder rvHolder = new RecyclerViewHolder(v);
         rvHolder.content_bn.setTypeface(font);
         rvHolder.trans.setTypeface(font);
@@ -105,7 +106,7 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        RecyclerViewHolder rvHolder= (RecyclerViewHolder) holder;
+        RecyclerViewHolder rvHolder = (RecyclerViewHolder) holder;
         final Ayah ayah = ayahs.get(position);
         rvHolder.ayah_index.setText(ayah.getAyah_index());
         rvHolder.text_tashkeel.setText(ayah.getText_tashkeel());
@@ -113,20 +114,20 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         rvHolder.content_bn.setText(ayah.getContent_bn());
         rvHolder.ayah_num.setText(ayah.getAyah_num());
         String sajdahText = "";
-        if(ayah.getSajdah().equals("0")){
+        if (ayah.getSajdah().equals("0")) {
             sajdahText = "No";
-        }else{
+        } else {
             sajdahText = "Yes";
         }
-        rvHolder.sajdah.setText("Sajdah: "+sajdahText);
+        rvHolder.sajdah.setText("Sajdah: " + sajdahText);
 
         rvHolder.trans.setText(ayah.getTrans());
 
-        rvHolder.playBtn.setOnClickListener(new View.OnClickListener(){
+        rvHolder.playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String activityName = activity.getClass().getSimpleName();
-                if(activityName.equals("SuraDetailsActivity")){
+                if (activityName.equals("SuraDetailsActivity")) {
                     /*TextView play_audio = (TextView) activity.findViewById(R.id.play_audio);
                     play_audio.setVisibility(View.VISIBLE);
                     TextView pause_audio = (TextView) activity.findViewById(R.id.pause_audio);
@@ -140,7 +141,7 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     if (checkPermission()) {
                         new BackgroundTask(activity) {
                             @Override
-                            public void onPreExecute(){
+                            public void onPreExecute() {
                                 pd = new ProgressDialog(c);
                                 pd.setTitle("Processing...");
                                 pd.setMessage("Please wait.");
@@ -230,29 +231,29 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                                 }
                             }
                         }.execute();*/
-                    }else{
+                    } else {
                         requestPermission(); // Code for permission
                     }
-                }else{
+                } else {
                     AlertDialog.Builder alert = new AlertDialog.Builder(c);
                     alert.setTitle(R.string.text_warning);
                     alert.setMessage(R.string.text_enable_internet);
-                    alert.setPositiveButton(R.string.text_ok,null);
+                    alert.setPositiveButton(R.string.text_ok, null);
                     alert.show();
                 }
             }
         });
 
 
-        rvHolder.bookmarkBtn.setOnClickListener(new View.OnClickListener(){
+        rvHolder.bookmarkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
                     SQLiteDatabase db = DatabaseHelper.getInstance(c).getWritableDatabase();
                     Button bookmark = view.findViewById(R.id.bookmarkBtn);
-                    String sql = "SELECT * FROM bookmark WHERE ayah_id = "+ayah.getAyah_index();
+                    String sql = "SELECT * FROM bookmark WHERE ayah_id = " + ayah.getAyah_index();
                     //Log.i("BOOKMARK_SQL", sql);
-                    Cursor cursor = db.rawQuery(sql,null);
+                    Cursor cursor = db.rawQuery(sql, null);
                     try {
                         if (cursor.moveToFirst()) {
                             db.execSQL("DELETE FROM bookmark WHERE ayah_id = " + ayah.getAyah_index());
@@ -265,27 +266,25 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                             Toast.makeText(c, "Added to bookmark.", Toast.LENGTH_LONG).show();
                             bookmark.setCompoundDrawablesWithIntrinsicBounds(0, android.R.drawable.btn_star_big_on, 0, 0);
                         }
-                    }
-                    catch (Exception e){
+                    } catch (Exception e) {
                         Log.i("Bookmark Button", e.getMessage());
-                    }
-                    finally {
-                        if (cursor != null && !cursor.isClosed()){
+                    } finally {
+                        if (cursor != null && !cursor.isClosed()) {
                             cursor.close();
                         }
                         db.close();
                     }
 
-                }catch (Exception e) {
+                } catch (Exception e) {
                     Log.e("Favorite", e.getMessage());
                 }
             }
         });
 
         SQLiteDatabase db = DatabaseHelper.getInstance(c).getWritableDatabase();
-        String checksql = "SELECT * FROM bookmark WHERE ayah_id = "+ayah.getAyah_index();
+        String checksql = "SELECT * FROM bookmark WHERE ayah_id = " + ayah.getAyah_index();
         //Log.i("CHECK_BOOKMARK_SQL", checksql);
-        Cursor cursor = db.rawQuery(checksql,null);
+        Cursor cursor = db.rawQuery(checksql, null);
 
         try {
             if (cursor.moveToFirst()) {
@@ -293,16 +292,16 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             } else {
                 rvHolder.bookmarkBtn.setCompoundDrawablesWithIntrinsicBounds(0, android.R.drawable.btn_star, 0, 0);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.i("Bookmark Check", e.getMessage());
-        }finally {
-            if (cursor != null && !cursor.isClosed()){
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
             }
             db.close();
         }
 
-        rvHolder.wordMeaningButton.setOnClickListener(new View.OnClickListener(){
+        rvHolder.wordMeaningButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
@@ -312,13 +311,13 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     in.putExtra("content_en", ayah.getContent_en());
                     in.putExtra("content_bn", ayah.getContent_bn());
                     c.startActivity(in);
-                }catch (Exception e) {
+                } catch (Exception e) {
                     Log.e("Favorite", e.getMessage());
                 }
             }
         });
 
-        rvHolder.shareButton.setOnClickListener(new View.OnClickListener(){
+        rvHolder.shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
@@ -330,31 +329,32 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     in.putExtra("ayah_num", ayah.getAyah_num());
                     in.putExtra("surah_id", ayah.getSurah_id());
                     in.putExtra("ayah_key", ayah.getAyah_key());
+                    in.putExtra("trans", ayah.getTrans());
                     c.startActivity(in);
-                }catch (Exception e) {
+                } catch (Exception e) {
                     Log.e("Share", e.getMessage());
                 }
             }
         });
 
-        rvHolder.copyButton.setOnClickListener(new View.OnClickListener(){
+        rvHolder.copyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
-                    String fullAyat = ayah.getText_tashkeel()+"\n\n"+ayah.getContent_en()+"\n\n"+ayah.getContent_bn()+"\n\nSura "+ayah.getName_simple()+", Ayah "+ayah.getAyah_num();
-                    String label = ayah.getName_simple()+", Ayah "+ayah.getAyah_num();
-                    Log.d(label,fullAyat);
+                    String fullAyat = ayah.getText_tashkeel() + "\n\n" + ayah.getTrans() + "\n\n" + ayah.getContent_en() + "\n\n" + ayah.getContent_bn() + "\n\nSura " + ayah.getName_simple() + ", Ayah " + ayah.getAyah_num();
+                    String label = ayah.getName_simple() + ", Ayah " + ayah.getAyah_num();
+                    Log.d(label, fullAyat);
                     android.content.ClipboardManager clipboard = (android.content.ClipboardManager) c.getSystemService(Context.CLIPBOARD_SERVICE);
-                    android.content.ClipData clip = android.content.ClipData.newPlainText(label,fullAyat);
+                    android.content.ClipData clip = android.content.ClipData.newPlainText(label, fullAyat);
                     clipboard.setPrimaryClip(clip);
                     Toast.makeText(c, "Ayah Copied.", Toast.LENGTH_LONG).show();
-                }catch (Exception e) {
+                } catch (Exception e) {
                     Log.e("Copied", e.getMessage());
                 }
             }
         });
 
-        rvHolder.tafsirs.setOnClickListener(new View.OnClickListener(){
+        rvHolder.tafsirs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
@@ -366,8 +366,9 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     in.putExtra("ayah_num", ayah.getAyah_num());
                     in.putExtra("surah_id", ayah.getSurah_id());
                     in.putExtra("ayah_key", ayah.getAyah_key());
+                    in.putExtra("trans", ayah.getTrans());
                     c.startActivity(in);
-                }catch (Exception e) {
+                } catch (Exception e) {
                     Log.e("Tafsirs", e.getMessage());
                 }
             }
@@ -480,28 +481,28 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             Log.i("arFontSize", mp_arFz);
             Log.i("enFontSize", mp_enFz);
             Log.i("bnFontSize", mp_bnFz);*/
-            if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
+            if (mp_arabicFontFamily.equals("Al Majeed Quranic Font")) {
                 text_tashkeel.setTypeface(fontAlmajeed);
             }
-            if(mp_arabicFontFamily.equals("Al Qalam Quran")){
+            if (mp_arabicFontFamily.equals("Al Qalam Quran")) {
                 text_tashkeel.setTypeface(fontAlQalam);
             }
-            if(mp_arabicFontFamily.equals("Uthmanic Script")){
+            if (mp_arabicFontFamily.equals("Uthmanic Script")) {
                 text_tashkeel.setTypeface(fontUthmani);
             }
-            if(mp_arabicFontFamily.equals("Noore Hidayat")){
+            if (mp_arabicFontFamily.equals("Noore Hidayat")) {
                 text_tashkeel.setTypeface(fontNooreHidayat);
             }
-            if(mp_arabicFontFamily.equals("Saleem Quran")){
+            if (mp_arabicFontFamily.equals("Saleem Quran")) {
                 text_tashkeel.setTypeface(fontSaleem);
             }
-            if(!mp_arFz.equals("")){
+            if (!mp_arFz.equals("")) {
                 text_tashkeel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
             }
-            if(!mp_enFz.equals("")){
+            if (!mp_enFz.equals("")) {
                 content_en.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
             }
-            if(!mp_bnFz.equals("")){
+            if (!mp_bnFz.equals("")) {
                 content_bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
                 trans.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
             }

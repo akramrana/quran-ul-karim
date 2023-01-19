@@ -42,6 +42,10 @@
         <item>@color/darkgreen</item>
         <item>@color/darkorange</item>
         <item>@color/darkred</item>
+        <item>@color/playColor</item>
+        <item>@color/transColor</item>
+        <item>@color/colorBlack</item>
+        <item>@color/googleGreen</item>
     </integer-array>
 
     <string-array name="stringcolors">

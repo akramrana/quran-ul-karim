@@ -56,10 +56,12 @@ public class ShareVerseActivity extends AppCompatActivity {
     public static String surah_id;
     public static String ayah_key;
     public static String surah_name;
+    public static String ayah_trans;
+
     DatabaseHelper dbhelper;
     Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
 
-    TextView tv_surah_name,tv_ayah_arabic,tv_ayah_english,tv_ayah_bangla,tv_ayah_num;
+    TextView tv_surah_name,tv_ayah_arabic,tv_ayah_english,tv_ayah_bangla,tv_ayah_num, tv_trans;
     Button shareBtn,colorBtn, imgBtn;
     Bitmap bitmap;
     int randomNumber;
@@ -83,6 +85,7 @@ public class ShareVerseActivity extends AppCompatActivity {
             ayah_num = extras.getString("ayah_num");
             surah_id = extras.getString("surah_id");
             ayah_key = extras.getString("ayah_key");
+            ayah_trans = extras.getString("trans");
         }
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -134,6 +137,10 @@ public class ShareVerseActivity extends AppCompatActivity {
         tv_ayah_num = (TextView) findViewById(R.id.ayah_num);
         tv_ayah_num.setText(surah_name+" "+ayah_key);
 
+        tv_trans = (TextView) findViewById(R.id.trans);
+        tv_trans.setTypeface(font);
+        tv_trans.setText(ayah_trans);
+
         String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
         String mp_arFz = mPrefs.getString("arFontSize", "30");
         String mp_enFz = mPrefs.getString("enFontSize", "15");
@@ -161,6 +168,7 @@ public class ShareVerseActivity extends AppCompatActivity {
         }
         if(!mp_bnFz.equals("")){
             tv_ayah_bangla.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+            tv_trans.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
         }
 
         /*Log.d("arabic",text_tashkeel);
@@ -277,6 +285,7 @@ public class ShareVerseActivity extends AppCompatActivity {
         imgBtn =  (Button) findViewById(R.id.imgBtn);
         androidStringColors = getResources().getStringArray(R.array.stringcolors);
         int arrayLength = androidStringColors.length;
+
         Random random = new Random();
         int randomNumber = random.nextInt(arrayLength);
         int randomNumber1 = random.nextInt(arrayLength);
@@ -285,12 +294,14 @@ public class ShareVerseActivity extends AppCompatActivity {
         GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,colors);
         gd.setCornerRadius(0f);
         imgBtn.setBackground(gd);
+
         imgBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 int arrayLength = androidStringColors.length;
                 Random random = new Random();
                 int randomNumber = random.nextInt(arrayLength);
                 int randomNumber1 = random.nextInt(arrayLength);
+
                 int[] colors = {Color.parseColor(androidStringColors[randomNumber]),Color.parseColor(androidStringColors[randomNumber1])};
                 GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,colors);
                 gd.setCornerRadius(0f);
