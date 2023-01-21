@@ -121,6 +121,7 @@
                 android:drawableTop="@android:drawable/ic_media_play"
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical|center"
+                android:textAllCaps="false"
                 android:layout_margin="4dp"/>
 
             <Button
@@ -133,6 +134,7 @@
                 android:drawableTop="@android:drawable/btn_star"
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical|center"
+                android:textAllCaps="false"
                 android:layout_margin="4dp"/>
 
             <Button
@@ -145,6 +147,7 @@
                 android:drawableTop="@android:drawable/ic_menu_directions"
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical|center"
+                android:textAllCaps="false"
                 android:layout_margin="4dp"/>
 
             <Button
@@ -157,6 +160,7 @@
                 android:drawableTop="@android:drawable/ic_menu_set_as"
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical|center"
+                android:textAllCaps="false"
                 android:layout_margin="4dp"/>
 
 
@@ -169,6 +173,7 @@
                 android:drawableTop="@android:drawable/ic_menu_share"
                 android:background="@android:color/transparent"
                 android:layout_alignParentRight="true"
+                android:textAllCaps="false"
                 android:layout_margin="4dp"/>
 
         </RelativeLayout>

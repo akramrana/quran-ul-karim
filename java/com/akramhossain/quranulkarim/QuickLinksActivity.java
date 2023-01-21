@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.akramhossain.quranulkarim.adapter.RecyclerViewAdapter;
+import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.listener.RecyclerTouchListener;
 import com.akramhossain.quranulkarim.model.Sura;
@@ -62,9 +63,10 @@ public class QuickLinksActivity extends AppCompatActivity {
 
     private void getDataFromLocalDb() {
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-        String sql = "SELECT sura.*,quick_link.quick_link_id " +
+        String sql = "SELECT sura.*,quick_link.quick_link_id, bangla_name.name_bangla " +
                 "FROM quick_link " +
                 "LEFT JOIN sura ON  quick_link.sura_id = sura.surah_id " +
+                "left join bangla_name on sura.surah_id = bangla_name.surah_id " +
                 "Order by quick_link_id ASC";
         Log.i(TAG, sql);
         Cursor cursor = db.rawQuery(sql, null);
@@ -80,6 +82,7 @@ public class QuickLinksActivity extends AppCompatActivity {
                     sura.setAyat(cursor.getString(cursor.getColumnIndexOrThrow("ayat")));
                     sura.setRevelation_order(cursor.getString(cursor.getColumnIndexOrThrow("revelation_order")));
                     sura.setId(cursor.getString(cursor.getColumnIndexOrThrow("sid")));
+                    sura.setName_bangla(cursor.getString(cursor.getColumnIndexOrThrow("name_bangla")));
                     suras.add(sura);
                 } while (cursor.moveToNext());
             }
@@ -96,5 +99,11 @@ public class QuickLinksActivity extends AppCompatActivity {
         suras = new ArrayList<Sura>();
         rvAdapter = new RecyclerViewAdapter(QuickLinksActivity.this, suras, this);
         recyclerview.setAdapter(rvAdapter);
+    }
+
+    public void onPause()
+    {
+        super.onPause();
+        AudioPlay.stopAudio();
     }
 }

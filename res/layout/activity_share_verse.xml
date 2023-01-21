@@ -240,7 +240,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:textColor="@color/colorWhiteDN"
-                                android:background="@drawable/rounded_button"/>
+                                android:background="@drawable/rounded_button"
+                                android:textAllCaps="false"/>
 
                         </LinearLayout>
 
@@ -259,7 +260,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:textColor="@color/colorWhiteDN"
-                                android:background="@drawable/rounded_button"/>
+                                android:background="@drawable/rounded_button"
+                                android:textAllCaps="false"/>
 
                         </LinearLayout>
 
@@ -279,7 +281,7 @@
                     android:background="@color/bg_color"
                     android:textColor="@color/cardview_light_background"
                     android:gravity="center"
-                    />
+                    android:textAllCaps="false"/>
             </RelativeLayout>
 
         </ScrollView>

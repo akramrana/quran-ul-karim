@@ -349,7 +349,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager rLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         popularSearchView.setLayoutManager(rLinearLayoutManager);
         setPopularSearchViewAdapter();
-        popularSearchView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), popularSearchView, new RecyclerTouchListener.ClickListener() {
+        /*popularSearchView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), popularSearchView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
                 Sura vd = popularSearches.get(position);
@@ -365,7 +365,7 @@ public class MainActivity extends AppCompatActivity {
             public void onLongClick(View view, int position) {
 
             }
-        }));
+        }));*/
 
         cd = new ConnectionDetector(getApplicationContext());
         isInternetPresent = cd.isConnectingToInternet();

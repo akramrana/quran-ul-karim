@@ -2,14 +2,20 @@ package com.akramhossain.quranulkarim.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.akramhossain.quranulkarim.PopUpClass;
 import com.akramhossain.quranulkarim.R;
+import com.akramhossain.quranulkarim.SuraDetailsActivity;
 import com.akramhossain.quranulkarim.model.Sura;
 import java.util.ArrayList;
 
@@ -56,6 +62,36 @@ public class PopularRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
         rvHolder.revelationOrderTxt.setText("Revelation order: "+sura.getRevelation_order());
         rvHolder.sid.setText(sura.getId());
         rvHolder.nameBangla.setText(sura.getName_bangla());
+
+        rvHolder.playBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopUpClass popUpClass = new PopUpClass();
+                popUpClass.showPopupWindow(view, sura, c);
+            }
+        });
+
+        rvHolder.middle_section.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(c, SuraDetailsActivity.class);
+                in.putExtra("sura_id", sura.getSurah_id());
+                in.putExtra("sura_name", sura.getName_english());
+                in.putExtra("sura_name_arabic", sura.getName_arabic());
+                c.startActivity(in);
+            }
+        });
+
+        rvHolder.right_section.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(c, SuraDetailsActivity.class);
+                in.putExtra("sura_id", sura.getSurah_id());
+                in.putExtra("sura_name", sura.getName_english());
+                in.putExtra("sura_name_arabic", sura.getName_arabic());
+                c.startActivity(in);
+            }
+        });
     }
 
     @Override
@@ -74,6 +110,9 @@ public class PopularRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
         TextView revelationOrderTxt;
         TextView sid;
         TextView nameBangla;
+        ImageButton playBtn;
+        LinearLayout middle_section;
+        LinearLayout right_section;
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
@@ -87,6 +126,9 @@ public class PopularRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
             revelationOrderTxt = (TextView) itemView.findViewById(R.id.revelation_order);
             sid = (TextView) itemView.findViewById(R.id.sid);
             nameBangla = (TextView) itemView.findViewById(R.id.name_bangla);
+            playBtn = (ImageButton) itemView.findViewById(R.id.btnPlay);
+            middle_section = (LinearLayout) itemView.findViewById(R.id.mid_section);
+            right_section = (LinearLayout) itemView.findViewById(R.id.right_section);
 
             String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
             if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){

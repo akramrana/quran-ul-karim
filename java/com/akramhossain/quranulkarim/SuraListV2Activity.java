@@ -18,6 +18,7 @@ import android.widget.SearchView;
 
 import com.akramhossain.quranulkarim.adapter.RecyclerViewAdapter;
 import com.akramhossain.quranulkarim.adapter.WordListViewAdapter;
+import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.listener.RecyclerTouchListener;
 import com.akramhossain.quranulkarim.model.Sura;
@@ -193,6 +194,12 @@ public class SuraListV2Activity extends AppCompatActivity implements SearchView.
 
 
         return true;
+    }
+
+    public void onPause()
+    {
+        super.onPause();
+        AudioPlay.stopAudio();
     }
 
 }

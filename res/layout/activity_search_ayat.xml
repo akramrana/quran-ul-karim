@@ -81,7 +81,8 @@
             android:background="@color/cardview_dark_background"
             android:textColor="@color/colorWhiteDN"
             android:text="Search"
-            android:layout_marginBottom="15dp"/>
+            android:layout_marginBottom="15dp"
+            android:textAllCaps="false"/>
 
         <View
             android:id="@+id/horizon-line"

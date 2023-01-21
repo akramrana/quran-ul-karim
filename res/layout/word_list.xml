@@ -89,7 +89,8 @@
                 android:layout_alignParentLeft="true"
                 android:text="@string/string_play"
                 android:gravity="center_vertical|center"
-                android:layout_margin="4dp"/>
+                android:layout_margin="4dp"
+                android:textAllCaps="false"/>
 
         </RelativeLayout>
 
