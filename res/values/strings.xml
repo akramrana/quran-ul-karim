@@ -82,7 +82,7 @@
     <string name="string_zakaria">তাফসির আবু বকর জাকারিয়া</string>
     <string name="string_jalalayn">Tafsir Jalalayn</string>
     <string name="string_ibnkathir">তাফসির ইবনে কাসির</string>
-    <string name="mosque_near_me"><b>Masjid near me</b></string>
+    <string name="mosque_near_me">Masjid near me</string>
     <string name="string_mn_term">Masjid near me</string>
     <string name="string_search_mn_subtitle">See nearby masjid</string>
     <string name="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</string>
@@ -102,4 +102,8 @@
     <string name="string_share">Share</string>
     <string name="string_del">Delete</string>
     <string name="string_cancel">Cancel</string>
+    <string name="string_author_name">Md.Akram Hossain</string>
+    <string name="string_about_bn">কুরআন ইংলিশ এবং বাংলা</string>
+    <string name="name_title_bn">আর আমি কুরআনকে সহজ করে দিয়েছি উপদেশ গ্রহণের জন্য, অতএব কোন উপদেশ গ্রহণকারী আছে কি?</string>
+    <string name="settings_en_bn">সেটিংস</string>
 </resources>

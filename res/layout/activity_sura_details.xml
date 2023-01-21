@@ -33,7 +33,8 @@
                     android:drawableLeft="@android:drawable/ic_media_previous"
                     android:text="Prev"
                     android:textColor="@color/colorWhiteDN"
-                    android:textSize="12dp" />
+                    android:textSize="12dp"
+                    android:textAllCaps="false"/>
 
             </LinearLayout>
 
@@ -86,7 +87,8 @@
                         android:drawableLeft="@android:drawable/ic_menu_upload"
                         android:text="Add to favourites"
                         android:textColor="@color/colorWhiteDN"
-                        android:textSize="12dp" />
+                        android:textSize="12dp"
+                        android:textAllCaps="false"/>
 
                 </LinearLayout>
 
@@ -108,7 +110,8 @@
                     android:drawableRight="@android:drawable/ic_media_next"
                     android:text="Next"
                     android:textColor="@color/colorWhiteDN"
-                    android:textSize="12dp"/>
+                    android:textSize="12dp"
+                    android:textAllCaps="false"/>
 
             </LinearLayout>
 

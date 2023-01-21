@@ -13,13 +13,15 @@ import android.widget.TextView;
 
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 
 public class SplashScreenActivity extends Activity {
 
     private DatabaseHelper mDBHelper;
     private SQLiteDatabase mDb;
-    Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
+    Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem, font;
     SharedPreferences mPrefs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +35,11 @@ public class SplashScreenActivity extends Activity {
         fontAlQalam = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/AlQalamQuran.ttf");
         fontNooreHidayat = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/noorehidayat.ttf");
         fontSaleem = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
+        font = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/Siyamrupali.ttf");
 
         TextView splash_title_ar = (TextView) findViewById(R.id.splash_title_ar);
+        TextView splash_title_bn = (TextView) findViewById(R.id.splash_title_bn);
+
         String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
         if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
             splash_title_ar.setTypeface(fontAlmajeed);
@@ -51,6 +56,11 @@ public class SplashScreenActivity extends Activity {
         if(mp_arabicFontFamily.equals("Saleem Quran")){
             splash_title_ar.setTypeface(fontSaleem);
         }
+
+        TextView splash_app_bn = (TextView) findViewById(R.id.splash_app_bn);
+
+        splash_title_bn.setTypeface(font);
+        splash_app_bn.setTypeface(font);
 
         //mDBHelper = new DatabaseHelper(this);
         mDBHelper = DatabaseHelper.getInstance(getApplicationContext());

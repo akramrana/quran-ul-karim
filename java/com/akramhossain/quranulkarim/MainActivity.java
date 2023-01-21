@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     ConnectionDetector cd;
     Boolean isInternetPresent = false;
 
-    Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
+    Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem, font;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -400,6 +400,7 @@ public class MainActivity extends AppCompatActivity {
         fontAlQalam = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/AlQalamQuran.ttf");
         fontNooreHidayat = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/noorehidayat.ttf");
         fontSaleem = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
+        font = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/Siyamrupali.ttf");
 
         String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
         if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
@@ -417,6 +418,36 @@ public class MainActivity extends AppCompatActivity {
         if(mp_arabicFontFamily.equals("Saleem Quran")){
             name_title_ar.setTypeface(fontSaleem);
         }
+
+        TextView textView11 = (TextView) findViewById(R.id.textView11);
+        textView11.setTypeface(font);
+
+        TextView juzTextView11 = (TextView) findViewById(R.id.juzTextView11);
+        juzTextView11.setTypeface(font);
+
+        TextView hizbTextView11 = (TextView) findViewById(R.id.hizbTextView11);
+        hizbTextView11.setTypeface(font);
+
+        TextView rubTextView11 = (TextView) findViewById(R.id.rubTextView11);
+        rubTextView11.setTypeface(font);
+
+        TextView textView33 = (TextView) findViewById(R.id.textView33);
+        textView33.setTypeface(font);
+
+        TextView textView22 = (TextView) findViewById(R.id.textView22);
+        textView22.setTypeface(font);
+
+        TextView textView44 = (TextView) findViewById(R.id.textView44);
+        textView44.setTypeface(font);
+
+        TextView textView55 = (TextView) findViewById(R.id.textView55);
+        textView55.setTypeface(font);
+
+        TextView timeTextView11 = (TextView) findViewById(R.id.timeTextView11);
+        timeTextView11.setTypeface(font);
+
+        TextView textView66 = (TextView) findViewById(R.id.textView66);
+        textView66.setTypeface(font);
 
     }
 

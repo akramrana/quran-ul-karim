@@ -34,7 +34,8 @@
                     android:drawableLeft="@android:drawable/ic_media_previous"
                     android:layout_alignParentLeft="true"
                     android:textColor="@color/colorWhiteDN"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:textAllCaps="false"/>
 
             </LinearLayout>
 
@@ -75,7 +76,8 @@
                     android:drawableRight="@android:drawable/ic_media_next"
                     android:layout_alignParentRight="true"
                     android:textColor="@color/colorWhiteDN"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:textAllCaps="false"/>
 
             </LinearLayout>
 
