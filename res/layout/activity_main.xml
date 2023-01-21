@@ -92,20 +92,22 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/rounded_border"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:gravity="center"/>
 
 
                 <TextView
                     android:id="@+id/settings"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/settings"
+                    android:text="@string/string_setting"
                     android:textColor="@color/googleGreen"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginLeft="5dp"
                     android:background="@drawable/rounded_border"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:gravity="center"/>
 
             </LinearLayout>
 
@@ -165,8 +167,8 @@
 
                 <ImageView
                     android:id="@+id/imageView1"
-                    android:layout_width="64.0dip"
-                    android:layout_height="64.0dip"
+                    android:layout_width="48.0dip"
+                    android:layout_height="48.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/menu_icon" />
@@ -178,11 +180,21 @@
                     android:layout_below="@id/imageView1"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2.0dip"
-                    android:ellipsize="marquee"
-                    android:text="Sura List"
-                    android:textSize="18.0sp"
+                    android:text="Surah"
+                    android:textSize="15.0sp"
                     android:textColor="@color/colorWhite"
-                    android:textAllCaps="true"/>
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView1"
+                    android:text="সূরা সমূহ"
+                    android:textSize="15.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -196,8 +208,8 @@
 
                 <ImageView
                     android:id="@+id/juzImageView"
-                    android:layout_width="64.0dip"
-                    android:layout_height="64.0dip"
+                    android:layout_width="48.0dip"
+                    android:layout_height="48.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/juz" />
@@ -207,13 +219,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/juzImageView"
-                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="2.0dip"
-                    android:ellipsize="marquee"
-                    android:text="JUZ'"
-                    android:textSize="18.0sp"
+                    android:text="Juz'"
+                    android:textSize="15.0sp"
                     android:textColor="@color/colorWhite"
-                    android:textAllCaps="true"/>
+                    android:gravity="center"/>
+
+
+                <TextView
+                    android:id="@+id/juzTextView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/juzTextView"
+                    android:text="পারা"
+                    android:textSize="15.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
             </LinearLayout>
 
         </LinearLayout>
@@ -237,8 +259,8 @@
 
                 <ImageView
                     android:id="@+id/hizbImageView"
-                    android:layout_width="64.0dip"
-                    android:layout_height="64.0dip"
+                    android:layout_width="48.0dip"
+                    android:layout_height="48.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/hizb" />
@@ -248,13 +270,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/hizbImageView"
-                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="2.0dip"
-                    android:ellipsize="marquee"
                     android:text="Hizb"
-                    android:textSize="18.0sp"
+                    android:textSize="15.0sp"
                     android:textColor="@color/colorWhite"
-                    android:textAllCaps="true"/>
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/hizbTextView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/hizbTextView"
+                    android:text="অর্ধ-পারা"
+                    android:textSize="15.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -268,8 +299,8 @@
 
                 <ImageView
                     android:id="@+id/rubImageView"
-                    android:layout_width="64.0dip"
-                    android:layout_height="64.0dip"
+                    android:layout_width="48.0dip"
+                    android:layout_height="48.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/rub" />
@@ -279,13 +310,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/rubImageView"
-                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="2.0dip"
                     android:ellipsize="marquee"
-                    android:text="RUB'"
-                    android:textSize="18.0sp"
+                    android:text="Rub'"
+                    android:textSize="15.0sp"
                     android:textColor="@color/colorWhite"
-                    android:textAllCaps="true"/>
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/rubTextView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rubImageView"
+                    android:text="রুকু"
+                    android:textSize="15.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+
             </LinearLayout>
 
         </LinearLayout>
@@ -307,8 +349,8 @@
 
                 <ImageView
                     android:id="@+id/imageView3"
-                    android:layout_width="64.0dip"
-                    android:layout_height="64.0dip"
+                    android:layout_width="48.0dip"
+                    android:layout_height="48.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/search" />
@@ -318,13 +360,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/imageView3"
-                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="2.0dip"
-                    android:ellipsize="marquee"
                     android:text="Search"
-                    android:textSize="18.0sp"
+                    android:textSize="15.0sp"
                     android:textColor="@color/colorWhite"
-                    android:textAllCaps="true"/>
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/textView33"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView3"
+                    android:ellipsize="marquee"
+                    android:text="সার্চ"
+                    android:textSize="15.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -338,8 +390,8 @@
 
                 <ImageView
                     android:id="@+id/imageView2"
-                    android:layout_width="64.0dip"
-                    android:layout_height="64.0dip"
+                    android:layout_width="48.0dip"
+                    android:layout_height="48.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/bookmark" />
@@ -349,13 +401,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/imageView2"
-                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="2.0dip"
-                    android:ellipsize="marquee"
                     android:text="Bookmarks"
-                    android:textSize="18.0sp"
+                    android:textSize="15.0sp"
                     android:textColor="@color/colorWhite"
-                    android:textAllCaps="true"/>
+                    android:gravity="center"/>
+
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView2"
+                    android:ellipsize="marquee"
+                    android:text="বুকমার্ক"
+                    android:textSize="15.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
             </LinearLayout>
 
 
@@ -379,8 +442,8 @@
 
                 <ImageView
                     android:id="@+id/imageView4"
-                    android:layout_width="64.0dip"
-                    android:layout_height="64.0dip"
+                    android:layout_width="48.0dip"
+                    android:layout_height="48.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/links" />
@@ -390,13 +453,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/imageView4"
-                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="2.0dip"
-                    android:ellipsize="marquee"
                     android:text="Favourites"
-                    android:textSize="18.0sp"
+                    android:textSize="15.0sp"
                     android:textColor="@color/colorWhite"
-                    android:textAllCaps="true"/>
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/textView44"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView4"
+                    android:text="প্রিয় সূরা"
+                    android:textSize="15.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -410,8 +482,8 @@
 
                 <ImageView
                     android:id="@+id/imageView5"
-                    android:layout_width="64.0dip"
-                    android:layout_height="64.0dip"
+                    android:layout_width="48.0dip"
+                    android:layout_height="48.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/collection" />
@@ -421,13 +493,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/imageView5"
-                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="2.0dip"
-                    android:ellipsize="marquee"
                     android:text="By Word"
-                    android:textSize="18.0sp"
+                    android:textSize="15.0sp"
                     android:textColor="@color/colorWhite"
-                    android:textAllCaps="true"/>
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/textView55"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView5"
+                    android:text="শব্দে শব্দে"
+                    android:textSize="15.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
             </LinearLayout>
 
 
@@ -451,8 +532,8 @@
 
                 <ImageView
                     android:id="@+id/timeImageView"
-                    android:layout_width="64.0dip"
-                    android:layout_height="64.0dip"
+                    android:layout_width="48.0dip"
+                    android:layout_height="48.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/time" />
@@ -462,13 +543,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/timeImageView"
-                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="2.0dip"
-                    android:ellipsize="marquee"
-                    android:text="PRAYER TIME"
-                    android:textSize="18.0sp"
+                    android:text="Prayer Time"
+                    android:textSize="15.0sp"
                     android:textColor="@color/colorWhite"
-                    android:textAllCaps="true"/>
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/timeTextView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/timeTextView"
+                    android:text="নামাজের সময়"
+                    android:textSize="15.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -482,8 +572,8 @@
 
                 <ImageView
                     android:id="@+id/imageView6"
-                    android:layout_width="64.0dip"
-                    android:layout_height="64.0dip"
+                    android:layout_width="48.0dip"
+                    android:layout_height="48.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/about" />
@@ -493,13 +583,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/imageView6"
-                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="2.0dip"
-                    android:ellipsize="marquee"
                     android:text="About"
-                    android:textSize="18.0sp"
+                    android:textSize="15.0sp"
                     android:textColor="@color/colorWhite"
-                    android:textAllCaps="true"/>
+                    android:gravity="center"/>
+
+
+                <TextView
+                    android:id="@+id/textView66"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView6"
+                    android:text="অ্যাপ সম্পর্কে"
+                    android:textSize="15.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+
             </LinearLayout>
 
         </LinearLayout>
@@ -543,7 +644,6 @@
             android:paddingTop="13dp"
             android:paddingBottom="13dp"
             android:text="@string/start_from_last"
-            android:textAllCaps="true"
             android:textColor="@color/colorWhiteDN"
             android:background="@color/bg_color"
             android:textSize="15dp"
