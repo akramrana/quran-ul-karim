@@ -1,76 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
-    android:layout_width="300dp"
+    android:layout_width="330dp"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp"
     android:layout_height="wrap_content"
     android:foreground="?android:attr/selectableItemBackground"
     android:clickable="true">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/sid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorWhiteDN"
-            android:textSize="10dp"
-            android:textIsSelectable="true"
-            android:textStyle="bold"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/rounded_border"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:layout_marginLeft="45dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/sura_id"
-            android:layout_width="fill_parent"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:visibility="gone" />
+            android:layout_weight="1.5"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/name_arabic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold"
-            android:textSize="22dp"
-            android:gravity="right"/>
+            <TextView
+                android:id="@+id/sid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhiteDN"
+                android:textSize="10dp"
+                android:textIsSelectable="true"
+                android:textStyle="bold"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/rounded_border"/>
 
-        <TextView
-            android:id="@+id/name_simple"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorWhite"
-            android:textSize="15dip" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/name_english"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/name_arabic"
-            android:textColor="@color/colorWhite"
-            android:textSize="11dip"
-            android:textAllCaps="true"/>
+            android:layout_weight="5.5"
+            android:orientation="vertical"
+            android:id="@+id/mid_section">
 
-        <RelativeLayout
-            android:id="@+id/middle-section"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@id/name_english">
+            <TextView
+                android:id="@+id/sura_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/name_simple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="15dip" />
+
+            <TextView
+                android:id="@+id/name_english"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="11dip"
+                android:textAllCaps="true"/>
 
             <TextView
                 android:id="@+id/revelation_place"
@@ -79,21 +68,46 @@
                 android:textColor="@color/colorWhite" />
 
             <TextView
+                android:id="@+id/revelation_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:id="@+id/right_section">
+
+            <TextView
+                android:id="@+id/name_arabic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="22dp"
+                android:gravity="right"/>
+
+            <TextView
+                android:id="@+id/name_bangla"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="15dp"
+                android:gravity="right"/>
+
+            <TextView
                 android:id="@+id/ayat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorWhite"
                 android:gravity="right"/>
 
-        </RelativeLayout>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/revelation_order"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorWhite"
-            android:layout_below="@id/middle-section"/>
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

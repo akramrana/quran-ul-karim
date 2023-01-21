@@ -14,6 +14,7 @@ public class Sura {
     private String name_english;
     private String name_arabic;
     private String id;
+    private String name_bangla;
 
     public String getSurah_id() {
         return surah_id;
@@ -85,5 +86,13 @@ public class Sura {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getName_bangla() {
+        return name_bangla;
+    }
+
+    public void setName_bangla(String name_bangla) {
+        this.name_bangla = name_bangla;
     }
 }

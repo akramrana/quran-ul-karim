@@ -453,7 +453,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void getPopularSearchFromLocalDb() {
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-        String sql = "SELECT * FROM sura WHERE surah_id IN(18,36,55,56,67,71,73,78,85,112) order by RANDOM() LIMIT 10";
+        String sql = "SELECT sura.*,bangla_name.name_bangla " +
+                "FROM sura " +
+                "left join bangla_name on sura.surah_id = bangla_name.surah_id " +
+                "WHERE sura.surah_id IN(18,36,55,56,67,71,73,78,85,112) " +
+                "order by RANDOM() " +
+                "LIMIT 10";
         Log.i(TAG, sql);
         Cursor cursor = db.rawQuery(sql, null);
         try {
@@ -468,6 +473,7 @@ public class MainActivity extends AppCompatActivity {
                     sura.setAyat(cursor.getString(cursor.getColumnIndexOrThrow("ayat")));
                     sura.setRevelation_order(cursor.getString(cursor.getColumnIndexOrThrow("revelation_order")));
                     sura.setId(cursor.getString(cursor.getColumnIndexOrThrow("sid")));
+                    sura.setName_bangla(cursor.getString(cursor.getColumnIndexOrThrow("name_bangla")));
                     popularSearches.add(sura);
                 } while (cursor.moveToNext());
             }

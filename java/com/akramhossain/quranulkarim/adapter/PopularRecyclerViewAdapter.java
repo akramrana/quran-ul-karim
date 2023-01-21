@@ -20,7 +20,7 @@ public class PopularRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
     Context c;
     ArrayList<Sura> suras;
     private Activity activity;
-    Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
+    Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem, font;
     SharedPreferences mPrefs;
 
     public PopularRecyclerViewAdapter(Context c, ArrayList<Sura> suras, Activity activity) {
@@ -33,6 +33,7 @@ public class PopularRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
         fontAlQalam = Typeface.createFromAsset(c.getAssets(),"fonts/AlQalamQuran.ttf");
         fontNooreHidayat = Typeface.createFromAsset(c.getAssets(),"fonts/noorehidayat.ttf");
         fontSaleem = Typeface.createFromAsset(c.getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
+        font = Typeface.createFromAsset(c.getAssets(),"fonts/Siyamrupali.ttf");
     }
 
     @Override
@@ -54,6 +55,7 @@ public class PopularRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
         rvHolder.ayatTxt.setText("Ayah: "+sura.getAyat());
         rvHolder.revelationOrderTxt.setText("Revelation order: "+sura.getRevelation_order());
         rvHolder.sid.setText(sura.getId());
+        rvHolder.nameBangla.setText(sura.getName_bangla());
     }
 
     @Override
@@ -71,6 +73,7 @@ public class PopularRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
         TextView ayatTxt;
         TextView revelationOrderTxt;
         TextView sid;
+        TextView nameBangla;
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
@@ -83,6 +86,7 @@ public class PopularRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
             ayatTxt = (TextView) itemView.findViewById(R.id.ayat);
             revelationOrderTxt = (TextView) itemView.findViewById(R.id.revelation_order);
             sid = (TextView) itemView.findViewById(R.id.sid);
+            nameBangla = (TextView) itemView.findViewById(R.id.name_bangla);
 
             String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
             if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
@@ -100,6 +104,7 @@ public class PopularRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
             if(mp_arabicFontFamily.equals("Saleem Quran")){
                 nameArabicTxt.setTypeface(fontSaleem);
             }
+            nameBangla.setTypeface(font);
         }
     }
 }

@@ -85,9 +85,14 @@ public class SuraListV2Activity extends AppCompatActivity implements SearchView.
         String sql = "";
         searchTxt = searchTxt.replaceAll("\'","");
         if(searchTxt.equals("")) {
-            sql = "SELECT * FROM sura order by surah_id ASC";
+            sql = "SELECT sura.*,bangla_name.name_bangla " +
+                    "FROM sura " +
+                    "left join bangla_name on sura.surah_id = bangla_name.surah_id " +
+                    "order by surah_id ASC";
         }else{
-            sql = "SELECT * FROM sura " +
+            sql = "SELECT sura.*,bangla_name.name_bangla " +
+                    "FROM sura " +
+                    "left join bangla_name on sura.surah_id = bangla_name.surah_id " +
                     "WHERE name_complex LIKE '%"+searchTxt+"%' OR name_simple LIKE '%"+searchTxt+"%' OR name_english LIKE '%"+searchTxt+"%' OR name_arabic LIKE '%"+searchTxt+"%' " +
                     "order by surah_id ASC";
         }
@@ -105,6 +110,7 @@ public class SuraListV2Activity extends AppCompatActivity implements SearchView.
                     sura.setAyat(cursor.getString(cursor.getColumnIndexOrThrow("ayat")));
                     sura.setRevelation_order(cursor.getString(cursor.getColumnIndexOrThrow("revelation_order")));
                     sura.setId(cursor.getString(cursor.getColumnIndexOrThrow("sid")));
+                    sura.setName_bangla(cursor.getString(cursor.getColumnIndexOrThrow("name_bangla")));
                     suras.add(sura);
                 } while (cursor.moveToNext());
             }
@@ -146,6 +152,7 @@ public class SuraListV2Activity extends AppCompatActivity implements SearchView.
                 sura.setAyat(jObject.getString("ayat"));
                 sura.setRevelation_order(jObject.getString("revelation_order"));
                 sura.setId(jObject.getString("sid"));
+                sura.setName_bangla(jObject.getString("name_bangla"));
                 suras.add(sura);
             }
             rvAdapter.notifyDataSetChanged();

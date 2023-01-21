@@ -34,7 +34,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     Context c;
     ArrayList<Sura> suras;
     private Activity activity;
-    Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
+    Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem, font;
     SharedPreferences mPrefs;
 
     public RecyclerViewAdapter(Context c, ArrayList<Sura> suras, Activity activity) {
@@ -47,6 +47,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         fontAlQalam = Typeface.createFromAsset(c.getAssets(), "fonts/AlQalamQuran.ttf");
         fontNooreHidayat = Typeface.createFromAsset(c.getAssets(), "fonts/noorehidayat.ttf");
         fontSaleem = Typeface.createFromAsset(c.getAssets(), "fonts/PDMS_Saleem_QuranFont.ttf");
+        font = Typeface.createFromAsset(c.getAssets(),"fonts/Siyamrupali.ttf");
     }
 
     @Override
@@ -68,6 +69,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         rvHolder.ayatTxt.setText("Ayah: " + sura.getAyat());
         rvHolder.revelationOrderTxt.setText("Revelation order: " + sura.getRevelation_order());
         rvHolder.sid.setText(sura.getId());
+        rvHolder.nameBangla.setText(sura.getName_bangla());
 
         rvHolder.playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +121,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         ImageButton playBtn;
         LinearLayout middle_section;
         LinearLayout right_section;
+        TextView nameBangla;
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
@@ -132,6 +135,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             revelationOrderTxt = (TextView) itemView.findViewById(R.id.revelation_order);
             sid = (TextView) itemView.findViewById(R.id.sid);
             playBtn = (ImageButton) itemView.findViewById(R.id.btnPlay);
+            nameBangla = (TextView) itemView.findViewById(R.id.name_bangla);
 
             middle_section = (LinearLayout) itemView.findViewById(R.id.mid_section);
             right_section = (LinearLayout) itemView.findViewById(R.id.right_section);
@@ -152,6 +156,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             if (mp_arabicFontFamily.equals("Saleem Quran")) {
                 nameArabicTxt.setTypeface(fontSaleem);
             }
+
+            nameBangla.setTypeface(font);
         }
     }
 }
