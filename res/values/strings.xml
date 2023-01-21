@@ -108,4 +108,27 @@
     <string name="settings_en_bn">সেটিংস</string>
     <string name="string_collapse"><u>Collapse</u></string>
     <string name="string_expand"><u>Expand</u></string>
+    <string name="string_bug_report">Bug Report</string>
+    <string name="bug_report_title">Bug Report</string>
+    <string name="bug_report_subtitle">Report app issue</string>
+
+    <string name="feedbacktype1">Praise</string>
+    <string name="feedbacktype2">Gripe</string>
+    <string name="feedbacktype3">Suggestion</string>
+    <string name="feedbacktype4">Bug</string>
+    <string name="feedbacktitle">Enter feedback details</string>
+    <string name="feedbackname">Your Name</string>
+    <string name="feedbackemail">Your Email</string>
+    <string name="feedbacktype">Type</string>
+    <string name="feedbackbody">Comments</string>
+    <string name="feedbackresponse">Would you like an email response?</string>
+    <string name="feedbackbutton">Send Feedback</string>
+
+    <string-array name="feedbacktypelist">
+        <item>@string/feedbacktype1</item>
+        <item>@string/feedbacktype2</item>
+        <item>@string/feedbacktype3</item>
+        <item>@string/feedbacktype4</item>
+    </string-array>
+
 </resources>

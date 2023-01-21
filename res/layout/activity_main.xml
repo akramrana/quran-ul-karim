@@ -109,6 +109,20 @@
                     android:textSize="15dp"
                     android:gravity="center"/>
 
+
+                <TextView
+                    android:id="@+id/bugReport"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/string_bug_report"
+                    android:textColor="@color/googleGreen"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/rounded_border"
+                    android:textSize="15dp"
+                    android:gravity="center"/>
+
             </LinearLayout>
 
         </LinearLayout>

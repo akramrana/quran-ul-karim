@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Sura> popularSearches;
     private PopularRecyclerViewAdapter rvAdapter;
 
-    TextView mosque_near_me, settings;
+    TextView mosque_near_me, settings, bugReport;
 
     ConnectionDetector cd;
     Boolean isInternetPresent = false;
@@ -448,6 +448,15 @@ public class MainActivity extends AppCompatActivity {
 
         TextView textView66 = (TextView) findViewById(R.id.textView66);
         textView66.setTypeface(font);
+
+        bugReport = (TextView) findViewById(R.id.bugReport);
+        bugReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getApplicationContext(), BugReportActivity.class);
+                startActivityForResult(in, 100);
+            }
+        });
 
     }
 

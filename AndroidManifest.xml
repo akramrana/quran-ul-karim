@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="50"
-    android:versionName="50.09.01.2023">
+    android:versionCode="51"
+    android:versionName="51.09.01.2023">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Allow to connect with internet -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Network State Permissions -->
@@ -20,17 +20,19 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SettingActivity"></activity>
+        <activity android:name=".BugReportActivity" />
+        <activity android:name=".SettingActivity" />
         <activity android:name=".MosqueNearActivity" />
         <activity android:name=".TafsirActivity" />
         <activity android:name=".SearchAyatActivity" />
         <activity android:name=".JuzHizbRubDetailsActivity" />
         <activity
             android:name=".SplashScreenActivity"
-            android:theme="@style/SplashScreenTheme"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -77,8 +79,7 @@
         <activity android:name=".PrayerTimesActivity" />
         <activity android:name=".JuzActivity" />
         <activity android:name=".RubActivity" />
-        <activity android:name=".HizbActivity" />
-        <!-- <receiver android:name=".notification.AlarmReceiver" /> -->
+        <activity android:name=".HizbActivity" /> <!-- <receiver android:name=".notification.AlarmReceiver" /> -->
         <!-- <receiver -->
         <!-- android:name=".notification.AlarmBootReceiver" -->
         <!-- android:enabled="false"> -->
