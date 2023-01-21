@@ -106,4 +106,6 @@
     <string name="string_about_bn">কুরআন ইংলিশ এবং বাংলা</string>
     <string name="name_title_bn">আর আমি কুরআনকে সহজ করে দিয়েছি উপদেশ গ্রহণের জন্য, অতএব কোন উপদেশ গ্রহণকারী আছে কি?</string>
     <string name="settings_en_bn">সেটিংস</string>
+    <string name="string_collapse"><u>Collapse</u></string>
+    <string name="string_expand"><u>Expand</u></string>
 </resources>

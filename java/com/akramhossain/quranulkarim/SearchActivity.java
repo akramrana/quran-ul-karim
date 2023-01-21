@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,8 @@ import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.Ayah;
 import com.akramhossain.quranulkarim.model.SpinnerObject;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -49,8 +52,9 @@ public class SearchActivity extends AppCompatActivity {
     public static String ayahNumber="";
     Spinner spinner;
     Button quickLinkBtn;
-    TextView search_by_term;
+    TextView search_by_term, collapse, expand;
     private static final int PERMISSION_REQUEST_CODE = 100;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -252,6 +256,28 @@ public class SearchActivity extends AppCompatActivity {
         }else{
             requestPermission();
         }
+
+        collapse = (TextView) findViewById(R.id.collapse);
+        expand = (TextView) findViewById(R.id.expand);
+
+        RelativeLayout searchInput = (RelativeLayout) findViewById(R.id.searchInput);
+        collapse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchInput.setVisibility(View.GONE);
+                expand.setVisibility(View.VISIBLE);
+                collapse.setVisibility(View.GONE);
+            }
+        });
+
+        expand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchInput.setVisibility(View.VISIBLE);
+                collapse.setVisibility(View.VISIBLE);
+                expand.setVisibility(View.GONE);
+            }
+        });
 
     }
 
