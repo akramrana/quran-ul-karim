@@ -255,7 +255,7 @@
                             <Button
                                 android:id="@+id/imgBtn"
                                 android:layout_margin="10dp"
-                                android:text="Change Color"
+                                android:text="Change Gradient"
                                 android:textSize="9dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
