@@ -27,6 +27,15 @@
     <item name="darkorange" type="color">#FFFF8800</item>
     <item name="darkred" type="color">#FFCC0000</item>
     <color name="transColor">#ffffbb33</color>
+    <color name="color1">#003771</color>
+    <color name="color2">#FB6107</color>
+    <color name="color3">#7CB518</color>
+    <color name="color4">#5C8001</color>
+    <color name="color5">#1B3022</color>
+    <color name="color6">#395756</color>
+    <color name="color7">#4F5D75</color>
+    <color name="color8">#7261A3</color>
+    <color name="color9">#A67DB8</color>
 
     <integer-array name="androidcolors">
         <item>@color/blue</item>
@@ -39,6 +48,19 @@
         <item>@color/darkgreen</item>
         <item>@color/darkorange</item>
         <item>@color/darkred</item>
+        <item>@color/playColor</item>
+        <item>@color/transColor</item>
+        <item>@color/colorBlack</item>
+        <item>@color/googleGreen</item>
+        <item>@color/color1</item>
+        <item>@color/color2</item>
+        <item>@color/color3</item>
+        <item>@color/color4</item>
+        <item>@color/color5</item>
+        <item>@color/color6</item>
+        <item>@color/color7</item>
+        <item>@color/color8</item>
+        <item>@color/color9</item>
     </integer-array>
 
     <string-array name="stringcolors">

@@ -17,6 +17,15 @@
     <color name="daynight_textColor">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
     <color name="transColor">#ffcc0000</color>
+    <color name="color1">#003771</color>
+    <color name="color2">#FB6107</color>
+    <color name="color3">#7CB518</color>
+    <color name="color4">#5C8001</color>
+    <color name="color5">#1B3022</color>
+    <color name="color6">#395756</color>
+    <color name="color7">#4F5D75</color>
+    <color name="color8">#7261A3</color>
+    <color name="color9">#A67DB8</color>
 
 
     <item name="blue" type="color">#FF33B5E5</item>
@@ -30,6 +39,7 @@
     <item name="darkorange" type="color">#FFFF8800</item>
     <item name="darkred" type="color">#FFCC0000</item>
     <item name="playColor" type="color">#ff8222</item>
+
 
     <integer-array name="androidcolors">
         <item>@color/blue</item>
@@ -46,6 +56,16 @@
         <item>@color/transColor</item>
         <item>@color/colorBlack</item>
         <item>@color/googleGreen</item>
+        <item>@color/color1</item>
+        <item>@color/color2</item>
+        <item>@color/color3</item>
+        <item>@color/color4</item>
+        <item>@color/color5</item>
+        <item>@color/color6</item>
+        <item>@color/color7</item>
+        <item>@color/color8</item>
+        <item>@color/color9</item>
+
     </integer-array>
 
     <string-array name="stringcolors">

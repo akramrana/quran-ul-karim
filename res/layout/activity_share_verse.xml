@@ -229,16 +229,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:layout_weight="1" >
+                            android:layout_weight="0.5"
+                            android:gravity="right">
 
                             <Button
                                 android:id="@+id/colorBtn"
                                 android:layout_margin="10dp"
                                 android:text="Change Color"
                                 android:textSize="9dp"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
                                 android:textColor="@color/colorWhiteDN"
                                 android:background="@drawable/rounded_button"
                                 android:textAllCaps="false"/>
@@ -249,16 +249,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
-                            android:layout_weight="1" >
+                            android:layout_weight="0.5"
+                            android:gravity="left">
 
                             <Button
                                 android:id="@+id/imgBtn"
                                 android:layout_margin="10dp"
                                 android:text="Change Color"
                                 android:textSize="9dp"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
                                 android:textColor="@color/colorWhiteDN"
                                 android:background="@drawable/rounded_button"
                                 android:textAllCaps="false"/>
