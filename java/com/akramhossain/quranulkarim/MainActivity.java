@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.adapter.PopularRecyclerViewAdapter;
+import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.listener.RecyclerTouchListener;
 import com.akramhossain.quranulkarim.model.Sura;
@@ -559,4 +560,11 @@ public class MainActivity extends AppCompatActivity {
 
         getPopularSearchFromLocalDb();
     }
+
+    public void onPause()
+    {
+        super.onPause();
+        AudioPlay.stopAudio();
+    }
+
 }
