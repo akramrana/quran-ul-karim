@@ -108,9 +108,9 @@
     <string name="settings_en_bn">সেটিংস</string>
     <string name="string_collapse"><u>Collapse</u></string>
     <string name="string_expand"><u>Expand</u></string>
-    <string name="string_bug_report">Bug Report</string>
-    <string name="bug_report_title">Bug Report</string>
-    <string name="bug_report_subtitle">Report app issue</string>
+    <string name="string_bug_report">Feedback</string>
+    <string name="bug_report_title">Feedback</string>
+    <string name="bug_report_subtitle">Help us improve</string>
 
     <string name="feedbacktype1">Praise</string>
     <string name="feedbacktype2">Gripe</string>

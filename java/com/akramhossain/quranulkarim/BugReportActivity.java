@@ -172,7 +172,8 @@ public class BugReportActivity extends AppCompatActivity {
         pictureDialog.setTitle("Select Action");
         String[] pictureDialogItems = {
                 "Photo Gallery",
-                "Camera"};
+                //"Camera"
+        };
         pictureDialog.setItems(pictureDialogItems,
                 new DialogInterface.OnClickListener() {
                     @Override

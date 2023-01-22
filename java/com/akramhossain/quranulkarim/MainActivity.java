@@ -85,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         Bundle extras = getIntent().getExtras();
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
         setContentView(R.layout.activity_main);
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
