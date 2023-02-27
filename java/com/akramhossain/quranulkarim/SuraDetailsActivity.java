@@ -17,12 +17,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.text.Html;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +42,7 @@ import com.akramhossain.quranulkarim.task.GetJsonFromUrlTask;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -78,8 +84,9 @@ public class SuraDetailsActivity extends AppCompatActivity {
     Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
     SharedPreferences mPrefs;
 
-    private TextView startTime, songTime;
+    private TextView startTime, songTime, ayah_txt;
     private ImageButton forwardbtn, backwardbtn, pausebtn, playbtn;
+    private Button translation_btn, reading_btn;
 
     private static int oTime =0, sTime =0, eTime =0, fTime = 5000, bTime = 5000;
     private SeekBar songPrgs;
@@ -334,6 +341,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
 
                     setRecyclerViewAdapter();
                     getDataFromLocalDb();
+                    getSuraAsText();
                 }
 
             }
@@ -409,6 +417,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
                     db.close();
                     setRecyclerViewAdapter();
                     getDataFromLocalDb();
+                    getSuraAsText();
                 }
 
             }
@@ -612,34 +621,148 @@ public class SuraDetailsActivity extends AppCompatActivity {
 //            });
         }
 
+        ayah_txt = (TextView) findViewById(R.id.ayah_txt);
+
+        String mp_arFz = mPrefs.getString("arFontSize", "30");
+
         String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
         if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
             titleAr.setTypeface(fontAlmajeed);
             text_bismillah.setTypeface(fontAlmajeed);
+            ayah_txt.setTypeface(fontAlmajeed);
         }
         if(mp_arabicFontFamily.equals("Al Qalam Quran")){
             titleAr.setTypeface(fontAlQalam);
             text_bismillah.setTypeface(fontAlQalam);
+            ayah_txt.setTypeface(fontAlQalam);
         }
         if(mp_arabicFontFamily.equals("Uthmanic Script")){
             titleAr.setTypeface(fontUthmani);
             text_bismillah.setTypeface(fontUthmani);
+            ayah_txt.setTypeface(fontUthmani);
         }
         if(mp_arabicFontFamily.equals("Noore Hidayat")){
             titleAr.setTypeface(fontNooreHidayat);
             text_bismillah.setTypeface(fontNooreHidayat);
+            ayah_txt.setTypeface(fontNooreHidayat);
         }
         if(mp_arabicFontFamily.equals("Saleem Quran")){
             titleAr.setTypeface(fontSaleem);
             text_bismillah.setTypeface(fontSaleem);
+            ayah_txt.setTypeface(fontSaleem);
         }
 
+        if(!mp_arFz.equals("")){
+            ayah_txt.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
+        }
+
+        translation_btn = (Button) findViewById(R.id.translation_btn);
+        reading_btn = (Button) findViewById(R.id.reading_btn);
+
+        translation_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
+        reading_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
+
+
+
+        getSuraAsText();
+
+        LinearLayout ayah_list_section = (LinearLayout) findViewById(R.id.ayah_list_section);
+        LinearLayout ayah_read_section = (LinearLayout) findViewById(R.id.ayah_read_section);
+
+        translation_btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                ayah_list_section.setVisibility(View.VISIBLE);
+                ayah_read_section.setVisibility(View.GONE);
+
+                translation_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
+                reading_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
+
+                rl.setVisibility(View.VISIBLE);
+            }
+        });
+
+        reading_btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                ayah_list_section.setVisibility(View.GONE);
+                ayah_read_section.setVisibility(View.VISIBLE);
+
+                reading_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
+                translation_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
+
+                rl.setVisibility(View.VISIBLE);
+            }
+        });
+
+
+        ScrollView ayah_read_sv = (ScrollView) findViewById(R.id.ayah_read_sv);
+
+        ayah_read_sv.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View view, int x, int y, int oldX, int oldY) {
+                //Log.d("y", "it works " + y + " " + x);
+                if(y > 1000){
+                    rl.setVisibility(View.GONE);
+                }else if(y==0){
+                    rl.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+    }
+
+    private String convertoArabic(String str){
+        char[] arabicChars = {'٠','١','٢','٣','٤','٥','٦','٧','٨','٩'};
+        StringBuilder builder = new StringBuilder();
+        for(int i =0;i<str.length();i++)
+        {
+            if(Character.isDigit(str.charAt(i)))
+            {
+                builder.append(arabicChars[(int)(str.charAt(i))-48]);
+            }
+            else
+            {
+                builder.append(str.charAt(i));
+            }
+        }
+
+        return builder.toString();
     }
 
     private void getPatchFromInternet() {
         if (isInternetPresent) {
             new GetJsonFromUrlTask(this, url).execute();
         }
+    }
+
+    private void getSuraAsText(){
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+        String sql = "SELECT ayah.* FROM ayah WHERE ayah.surah_id = "+suraId;
+        Cursor cursor = db.rawQuery(sql, null);
+        StringBuilder fullSuraStr = new StringBuilder();
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    String text = cursor.getString(cursor.getColumnIndexOrThrow("text_tashkeel"));
+                    String num = cursor.getString(cursor.getColumnIndexOrThrow("ayah_num"));
+                    String arabicNum = " <b>"+convertoArabic(num)+"</b> ";
+                    fullSuraStr.append(arabicNum).append(text);
+                }while (cursor.moveToNext());
+            }
+        }catch (Exception e){
+            Log.i(TAG, e.getMessage());
+        }
+        finally {
+            if (cursor != null && !cursor.isClosed()){
+                cursor.close();
+            }
+            db.close();
+        }
+
+        //Log.d("text",fullSuraStr.toString());
+
+        //ayah_txt.setMovementMethod(new ScrollingMovementMethod());
+        ayah_txt.setText(Html.fromHtml(fullSuraStr.toString()));
+
     }
 
     private void getDataFromLocalDb() {
