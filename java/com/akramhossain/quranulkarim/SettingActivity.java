@@ -49,7 +49,7 @@ public class SettingActivity extends AppCompatActivity{
         final Spinner spinner = (Spinner) findViewById(R.id.arabic_font_spinner);
         List<String> fontFamily = new ArrayList<String>();
         fontFamily.add("Arabic Regular");
-        fontFamily.add("Al Majeed Quranic Font");
+        fontFamily.add("Taha Naskh");
         fontFamily.add("Al Qalam Quran");
         fontFamily.add("Uthmanic Script");
         fontFamily.add("Noore Hidayat");

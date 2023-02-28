@@ -677,7 +677,11 @@ public class SuraDetailsActivity extends AppCompatActivity {
                 translation_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
                 reading_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
 
-                rl.setVisibility(View.VISIBLE);
+                if(suraId.equals("1") || suraId.equals("9")){
+                    rl.setVisibility(View.GONE);
+                }else {
+                    rl.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -689,7 +693,11 @@ public class SuraDetailsActivity extends AppCompatActivity {
                 reading_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
                 translation_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
 
-                rl.setVisibility(View.VISIBLE);
+                if(suraId.equals("1") || suraId.equals("9")){
+                    rl.setVisibility(View.GONE);
+                }else {
+                    rl.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -703,7 +711,11 @@ public class SuraDetailsActivity extends AppCompatActivity {
                 if(y > 1000){
                     rl.setVisibility(View.GONE);
                 }else if(y==0){
-                    rl.setVisibility(View.VISIBLE);
+                    if(suraId.equals("1") || suraId.equals("9")){
+                        rl.setVisibility(View.GONE);
+                    }else {
+                        rl.setVisibility(View.VISIBLE);
+                    }
                 }
             }
         });
@@ -758,7 +770,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
             db.close();
         }
 
-        //Log.d("text",fullSuraStr.toString());
+        Log.d("text",fullSuraStr.toString());
 
         //ayah_txt.setMovementMethod(new ScrollingMovementMethod());
         ayah_txt.setText(Html.fromHtml(fullSuraStr.toString()));
