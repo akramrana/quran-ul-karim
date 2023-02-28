@@ -342,6 +342,12 @@ public class SuraDetailsActivity extends AppCompatActivity {
                     setRecyclerViewAdapter();
                     getDataFromLocalDb();
                     getSuraAsText();
+
+                    if(suraId.equals("1") || suraId.equals("9")){
+                        rl.setVisibility(View.GONE);
+                    }else {
+                        rl.setVisibility(View.VISIBLE);
+                    }
                 }
 
             }
@@ -418,6 +424,12 @@ public class SuraDetailsActivity extends AppCompatActivity {
                     setRecyclerViewAdapter();
                     getDataFromLocalDb();
                     getSuraAsText();
+
+                    if(suraId.equals("1") || suraId.equals("9")){
+                        rl.setVisibility(View.GONE);
+                    }else {
+                        rl.setVisibility(View.VISIBLE);
+                    }
                 }
 
             }

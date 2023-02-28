@@ -36,7 +36,7 @@
     <string name="title_activity_about">AboutActivity</string>
     <string name="string_about">Quran English and Bangla</string>
     <string name="string_about_subtitle">About App</string>
-    <string name="string_about_description">Quran English and Bangla is the free App provided to you by Akram Hossain.\nIf you spot any error then please \nreport it to akram_cse@yahoo.com\n\nIf you like this app then you can thank by making dua for my parents, my family and the rest of muslim ummah that Allah (swt) ease the hardships that we all are going through.Thank you.\n\nQuran data was obtained from \nhttps://github.com/quran/.\nIf you see any discrepancies then please report them to akram_cse@yahoo.com.\n\n**Verse by Verse recitations use the internet to download audio files.</string>
+    <string name="string_about_description">Quran English and Bangla is the free App provided to you by Akram Hossain.\nIf you spot any error then please \nreport it to akram_cse@yahoo.com\n\nIf you like this app then you can thank by making dua for my parents, my family and the rest of muslim ummah that Allah (swt) ease the hardships that we all are going through.Thank you.\n\nQuran data was obtained from \nhttps://github.com/quran/.\nIf you see any discrepancies then please report them to akram_cse@yahoo.com.\n\n**Verse by Verse recitations uses the internet to download audio files.\n\nVisit <a href="http://quran.codxplore.com">http://quran.codxplore.com</a> to read Quran online</string>
     <string name="text_warning">Warning</string>
     <string name="text_enable_internet">Please enable internet connection</string>
     <string name="text_ok">OK</string>
