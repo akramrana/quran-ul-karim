@@ -131,4 +131,8 @@
         <item>@string/feedbacktype4</item>
     </string-array>
 
+    <string name="string_show_bn_pron">Show Bangla Pronunciation</string>
+    <string name="string_show_bn_trans">Show Bangla Translation</string>
+    <string name="string_show_en_trans">Show English Translation</string>
+
 </resources>

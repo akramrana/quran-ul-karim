@@ -38,7 +38,12 @@ public class SettingActivity extends AppCompatActivity{
     public static final String is_tafsir_fezilalil_selected = "isTafsirFezilalilSelected";
     public static final String is_tafsir_jalalayn_selected = "isTafsirJalalaynSelected";
 
+    public static final String show_bn_pron = "show_bn_pron";
+    public static final String show_en_trans = "show_en_trans";
+    public static final String show_bn_trans = "show_bn_trans";
+
     CheckBox chk_ibnkasir, chk_bayaan, chk_zakaria, chk_tafhim, chk_fathul_mazid, chk_fezilalil, chk_jalalayn;
+    CheckBox chk_showBnPronunciation, chk_showEnTranslation, chk_showBnTranslation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +91,10 @@ public class SettingActivity extends AppCompatActivity{
         String is_fezilalil = mPrefs.getString(is_tafsir_fezilalil_selected, "2");
         String is_jalalayn = mPrefs.getString(is_tafsir_jalalayn_selected, "2");
 
+        String is_show_bn_pronunciation = mPrefs.getString(show_bn_pron, "2");
+        String is_show_en_translation = mPrefs.getString(show_en_trans, "2");
+        String is_show_bn_translation = mPrefs.getString(show_bn_trans, "2");
+
         chk_ibnkasir = (CheckBox) findViewById(R.id.tafsirIbnKasirCheckBox);
         if(is_ibn_kasir.equals("1") || is_ibn_kasir.equals("2")){
             chk_ibnkasir.setChecked(true);
@@ -113,6 +122,19 @@ public class SettingActivity extends AppCompatActivity{
         chk_jalalayn = (CheckBox) findViewById(R.id.tafsirJalalaynCheckBox);
         if(is_jalalayn.equals("1") || is_jalalayn.equals("2")){
             chk_jalalayn.setChecked(true);
+        }
+        //
+        chk_showBnPronunciation = (CheckBox) findViewById(R.id.showBnPronunciation);
+        if(is_show_bn_pronunciation.equals("1") || is_show_bn_pronunciation.equals("2")){
+            chk_showBnPronunciation.setChecked(true);
+        }
+        chk_showEnTranslation = (CheckBox) findViewById(R.id.showEnTranslation);
+        if(is_show_en_translation.equals("1") || is_show_en_translation.equals("2")){
+            chk_showEnTranslation.setChecked(true);
+        }
+        chk_showBnTranslation = (CheckBox) findViewById(R.id.showBnTranslation);
+        if(is_show_bn_translation.equals("1") || is_show_bn_translation.equals("2")){
+            chk_showBnTranslation.setChecked(true);
         }
         //
         final Button button = (Button) findViewById(R.id.button);
@@ -176,6 +198,22 @@ public class SettingActivity extends AppCompatActivity{
                     editor.putString(is_tafsir_jalalayn_selected, "-1");
                 }
                 //
+                if(chk_showBnPronunciation.isChecked()){
+                    editor.putString(show_bn_pron, "1");
+                }else{
+                    editor.putString(show_bn_pron, "-1");
+                }
+                if(chk_showEnTranslation.isChecked()){
+                    editor.putString(show_en_trans, "1");
+                }else{
+                    editor.putString(show_en_trans, "-1");
+                }
+                if(chk_showBnTranslation.isChecked()){
+                    editor.putString(show_bn_trans, "1");
+                }else{
+                    editor.putString(show_bn_trans, "-1");
+                }
+                //
                 editor.apply();
                 //
                 Toast.makeText(getApplicationContext(),"Settings saved",Toast.LENGTH_SHORT).show();
@@ -215,6 +253,11 @@ public class SettingActivity extends AppCompatActivity{
                 editor.putString(is_tafsir_fathul_mazid_selected, "2");
                 editor.putString(is_tafsir_fezilalil_selected, "2");
                 editor.putString(is_tafsir_jalalayn_selected, "2");
+                //
+                editor.putString(show_bn_pron, "2");
+                editor.putString(show_en_trans, "2");
+                editor.putString(show_bn_trans, "2");
+                //
                 chk_ibnkasir.setChecked(true);
                 chk_bayaan.setChecked(true);
                 chk_zakaria.setChecked(true);
@@ -222,6 +265,10 @@ public class SettingActivity extends AppCompatActivity{
                 chk_fathul_mazid.setChecked(true);
                 chk_fezilalil.setChecked(true);
                 chk_jalalayn.setChecked(true);
+                //
+                chk_showBnPronunciation.setChecked(true);
+                chk_showEnTranslation.setChecked(true);
+                chk_showBnTranslation.setChecked(true);
                 //
                 editor.apply();
                 Toast.makeText(getApplicationContext(),"Settings saved",Toast.LENGTH_SHORT).show();

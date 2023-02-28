@@ -416,6 +416,58 @@
                     android:background="@color/colorWhite"
                     android:layout_marginTop="10dp"/>
 
+                <TextView
+                    android:id="@+id/settingForTranslation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Setting For Translation"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16dip"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="20dp"/>
+
+                <LinearLayout
+                    android:id="@+id/selectTranslationSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/showBnPronunciation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/string_show_bn_pron"/>
+
+                        <CheckBox
+                            android:id="@+id/showEnTranslation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/string_show_bn_trans"/>
+
+                        <CheckBox
+                            android:id="@+id/showBnTranslation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/string_show_en_trans"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/horizontal_line_4"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorWhite"
+                    android:layout_marginTop="10dp"/>
+
                 <LinearLayout
                     android:id="@+id/buttonSection"
                     android:layout_width="match_parent"
