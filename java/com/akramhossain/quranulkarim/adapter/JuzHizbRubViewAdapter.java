@@ -470,6 +470,20 @@ public class JuzHizbRubViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 content_bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
                 trans.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
             }
+
+            //
+            String show_bn_pron = mPrefs.getString("show_bn_pron", "2");
+            if (show_bn_pron.equals("-1")) {
+                trans.setVisibility(View.GONE);
+            }
+            String show_en_trans = mPrefs.getString("show_en_trans", "2");
+            if (show_en_trans.equals("-1")) {
+                content_en.setVisibility(View.GONE);
+            }
+            String show_bn_trans = mPrefs.getString("show_bn_trans", "2");
+            if (show_bn_trans.equals("-1")) {
+                content_bn.setVisibility(View.GONE);
+            }
         }
     }
 }

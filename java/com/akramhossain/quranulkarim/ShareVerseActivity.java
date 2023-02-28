@@ -180,6 +180,19 @@ public class ShareVerseActivity extends AppCompatActivity {
         Log.d("key",ayah_key);
         Log.d("surah",surah_name);*/
 
+        String show_bn_pron = mPrefs.getString("show_bn_pron", "2");
+        if (show_bn_pron.equals("-1")) {
+            tv_trans.setVisibility(View.GONE);
+        }
+        String show_en_trans = mPrefs.getString("show_en_trans", "2");
+        if (show_en_trans.equals("-1")) {
+            tv_ayah_english.setVisibility(View.GONE);
+        }
+        String show_bn_trans = mPrefs.getString("show_bn_trans", "2");
+        if (show_bn_trans.equals("-1")) {
+            tv_ayah_bangla.setVisibility(View.GONE);
+        }
+
         shareBtn = (Button) findViewById(R.id.shareBtn);
 
         shareBtn.setOnClickListener(new View.OnClickListener() {

@@ -475,7 +475,7 @@ public class TafsirActivity extends AppCompatActivity {
                 Log.i(TAG, active_tafsir);
 
                 String label = surah_name+" "+ayah_key;
-                String copyTxt =  surah_name+" "+ayah_key +"\n"+ text_tashkeel +"\n"+ ayah_trans +"\n"+ content_en +"\n"+ content_bn+"\n\n";
+                String copyTxt =  "Surah "+surah_name+" "+ayah_key +"\n"+ text_tashkeel +"\n"+ ayah_trans +"\n"+ content_en +"\n"+ content_bn+"\n\n";
                 String tafsirTxt = "";
 
                 if(active_tafsir.equals("ibn_kasir")){
@@ -507,6 +507,19 @@ public class TafsirActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Tafsir Copied.", Toast.LENGTH_LONG).show();
             }
         });
+
+        String show_bn_pron = mPrefs.getString("show_bn_pron", "2");
+        if (show_bn_pron.equals("-1")) {
+            trans.setVisibility(View.GONE);
+        }
+        String show_en_trans = mPrefs.getString("show_en_trans", "2");
+        if (show_en_trans.equals("-1")) {
+            tv_ayah_english.setVisibility(View.GONE);
+        }
+        String show_bn_trans = mPrefs.getString("show_bn_trans", "2");
+        if (show_bn_trans.equals("-1")) {
+            tv_ayah_bangla.setVisibility(View.GONE);
+        }
 
     }
 

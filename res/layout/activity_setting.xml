@@ -449,13 +449,13 @@
                             android:id="@+id/showEnTranslation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/string_show_bn_trans"/>
+                            android:text="@string/string_show_en_trans"/>
 
                         <CheckBox
                             android:id="@+id/showBnTranslation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/string_show_en_trans"/>
+                            android:text="@string/string_show_bn_trans"/>
 
                     </LinearLayout>
 
