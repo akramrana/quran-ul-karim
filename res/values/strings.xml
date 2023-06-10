@@ -135,4 +135,22 @@
     <string name="string_show_bn_trans">Show Bangla Translation</string>
     <string name="string_show_en_trans">Show English Translation</string>
 
+    <string name="more">More</string>
+    <string name="more_bn">আরও</string>
+
+    <string name="about">About App</string>
+    <string name="about_bn">অ্যাপ সম্পর্কে</string>
+
+    <string name="privacy">Privacy Policy</string>
+    <string name="privacy_bn">গোপনীয়তা নীতি</string>
+
+    <string name="terms">Terms</string>
+    <string name="terms_bn">শর্তাবলী</string>
+
+    <string name="feedback">Feedback</string>
+    <string name="feedback_bn">মতামত</string>
+
+    <string name="masjid">Masjid</string>
+    <string name="masjid_bn">মসজিদ</string>
+
 </resources>

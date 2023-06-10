@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
     View horizontal_line;
     DatabaseHelper dbhelper;
-    LinearLayout sura_link, bookmark_link, search_link, quick_links_link, word_collection_link, about_link, juz_link, hizb_link, rub_link, time_link;
+    LinearLayout sura_link, bookmark_link, search_link, quick_links_link, word_collection_link, about_link, juz_link, hizb_link, rub_link, time_link, setting_link, masjid_link, feedback_link, privacy_link, terms_link;
     Button btnPrayerTime;
 
     public static final String NIGHT_MODE = "APP_NIGHT_MODE";
@@ -375,8 +375,9 @@ public class MainActivity extends AppCompatActivity {
         isInternetPresent = cd.isConnectingToInternet();
 
 
-        mosque_near_me = (TextView) findViewById(R.id.mosque_near_me);
-        mosque_near_me.setOnClickListener(new View.OnClickListener() {
+        //mosque_near_me = (TextView) findViewById(R.id.mosque_near_me);
+        masjid_link = (LinearLayout) findViewById(R.id.masjid_link);
+        masjid_link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isInternetPresent) {
@@ -390,8 +391,9 @@ public class MainActivity extends AppCompatActivity {
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        settings = (TextView) findViewById(R.id.settings);
-        settings.setOnClickListener(new View.OnClickListener() {
+        //settings = (TextView) findViewById(R.id.settings);
+        setting_link = (LinearLayout) findViewById(R.id.setting_link);
+        setting_link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(getApplicationContext(), SettingActivity.class);
@@ -453,12 +455,50 @@ public class MainActivity extends AppCompatActivity {
         TextView textView66 = (TextView) findViewById(R.id.textView66);
         textView66.setTypeface(font);
 
-        bugReport = (TextView) findViewById(R.id.bugReport);
-        bugReport.setOnClickListener(new View.OnClickListener() {
+        TextView textView77 = (TextView) findViewById(R.id.textView77);
+        textView77.setTypeface(font);
+
+        TextView textView88 = (TextView) findViewById(R.id.textView88);
+        textView88.setTypeface(font);
+
+        TextView textView99 = (TextView) findViewById(R.id.textView99);
+        textView99.setTypeface(font);
+
+        TextView textView1010 = (TextView) findViewById(R.id.textView1010);
+        textView1010.setTypeface(font);
+
+        TextView textView1212 = (TextView) findViewById(R.id.textView1212);
+        textView1212.setTypeface(font);
+
+        //bugReport = (TextView) findViewById(R.id.bugReport);
+        feedback_link = (LinearLayout) findViewById(R.id.feedback_link);
+        feedback_link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(getApplicationContext(), BugReportActivity.class);
                 startActivityForResult(in, 100);
+            }
+        });
+
+        privacy_link = (LinearLayout) findViewById(R.id.privacy_link);
+        privacy_link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), MoreMenuActivity.class);
+                i.putExtra("cms_title", "Privacy Policy");
+                i.putExtra("cms_page", "privacy-policy");
+                startActivity(i);
+            }
+        });
+
+        terms_link = (LinearLayout) findViewById(R.id.terms_link);
+        terms_link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), MoreMenuActivity.class);
+                i.putExtra("cms_title", "Terms and Conditions");
+                i.putExtra("cms_page", "terms");
+                startActivity(i);
             }
         });
 
