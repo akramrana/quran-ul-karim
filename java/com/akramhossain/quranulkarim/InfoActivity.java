@@ -9,6 +9,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Html;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.util.TypedValue;
 import android.widget.TextView;
@@ -63,6 +64,7 @@ public class InfoActivity extends AppCompatActivity {
                 TextView info_content = (TextView) findViewById(R.id.info_content);
                 info_content.setText(Html.fromHtml(infoText,Html.FROM_HTML_MODE_LEGACY));
                 info_content.setTypeface(font);
+                info_content.setMovementMethod(new ScrollingMovementMethod());
 
                 String mp_bnFz = mPrefs.getString("bnFontSize", "15");
                 if(!mp_bnFz.equals("")){
