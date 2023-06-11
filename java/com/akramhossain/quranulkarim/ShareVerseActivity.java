@@ -27,6 +27,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -62,7 +63,7 @@ public class ShareVerseActivity extends AppCompatActivity {
     Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
 
     TextView tv_surah_name,tv_ayah_arabic,tv_ayah_english,tv_ayah_bangla,tv_ayah_num, tv_trans;
-    Button shareBtn,colorBtn, imgBtn;
+    Button shareBtn,colorBtn, imgBtn, dowlBtn;
     Bitmap bitmap;
     int randomNumber;
 
@@ -324,6 +325,46 @@ public class ShareVerseActivity extends AppCompatActivity {
                 imgBtn.setBackground(gd);
             }
         });
+
+        dowlBtn = (Button) findViewById(R.id.dowlBtn);
+        dowlBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                RelativeLayout layout = (RelativeLayout)findViewById(R.id.shareSection);
+                layout.setDrawingCacheEnabled(true);
+                //bitmap = Bitmap.createBitmap(layout.getDrawingCache());
+                bitmap = loadBitmapFromView(layout, layout.getWidth(), layout.getHeight());
+
+                layout.setDrawingCacheEnabled(false);
+
+                if (Build.VERSION.SDK_INT >= 23){
+                    if (checkPermission()) {
+                        String mPath = getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DCIM) + "/" + "share-ayah.jpg";
+                        OutputStream fout = null;
+                        File imageFile = new File(mPath);
+                        try {
+                            fout = new FileOutputStream(imageFile);
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fout);
+                            fout.flush();
+                            fout.close();
+
+                            String fileName = "surah_"+surah_id+"_ayah_"+ayah_num+"_"+ayah_index+".jpg";
+
+                            MediaStore.Images.Media.insertImage(getContentResolver(),imageFile.getAbsolutePath(),fileName,imageFile.getName());
+
+                            Toast.makeText(getApplicationContext(), "Image saved!.", Toast.LENGTH_LONG).show();
+
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }else {
+                        requestPermission(); // Code for permission
+                    }
+                }
+            }
+        });
+
     }
 
     public static Bitmap loadBitmapFromView(View v, int width, int height) {

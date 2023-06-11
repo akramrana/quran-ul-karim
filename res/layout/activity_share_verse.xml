@@ -270,18 +270,39 @@
 
                 </RelativeLayout>
 
-
-                <Button
-                    android:id="@+id/shareBtn"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/colorSection"
-                    android:text="Share Image"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/bg_color"
-                    android:textColor="@color/cardview_light_background"
-                    android:gravity="center"
-                    android:textAllCaps="false"/>
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/colorSection"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/shareBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Share Image"
+                        android:background="@color/blue"
+                        android:textColor="@color/cardview_light_background"
+                        android:gravity="center"
+                        android:textAllCaps="false"
+                        android:textSize="9dp"
+                        android:layout_marginRight="20dp"/>
+
+                    <Button
+                        android:id="@+id/dowlBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Download"
+                        android:background="@color/color8"
+                        android:textColor="@color/cardview_light_background"
+                        android:gravity="center"
+                        android:textSize="9dp"
+                        android:textAllCaps="false"/>
+
+                </LinearLayout>
+
+
             </RelativeLayout>
 
         </ScrollView>

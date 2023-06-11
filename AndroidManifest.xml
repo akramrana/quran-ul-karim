@@ -21,6 +21,10 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".InfoActivity"
+            android:exported="false">
+        </activity>
         <activity android:name=".BugReportActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".MosqueNearActivity" />
@@ -81,8 +85,7 @@
         <activity android:name=".JuzActivity" />
         <activity android:name=".RubActivity" />
         <activity android:name=".HizbActivity" />
-        <activity android:name=".MoreMenuActivity" />
-        <!-- <receiver android:name=".notification.AlarmReceiver" /> -->
+        <activity android:name=".MoreMenuActivity" /> <!-- <receiver android:name=".notification.AlarmReceiver" /> -->
         <!-- <receiver -->
         <!-- android:name=".notification.AlarmBootReceiver" -->
         <!-- android:enabled="false"> -->

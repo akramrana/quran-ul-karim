@@ -2,6 +2,7 @@ package com.akramhossain.quranulkarim;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -729,6 +730,18 @@ public class SuraDetailsActivity extends AppCompatActivity {
                         rl.setVisibility(View.VISIBLE);
                     }
                 }
+            }
+        });
+
+        TextView brief_title_en = (TextView) findViewById(R.id.brief_title_en);
+        brief_title_en.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), InfoActivity.class);
+                i.putExtra("sura_id", suraId);
+                i.putExtra("sura_name", suraName);
+                i.putExtra("sura_name_arabic", suraNameArabic);
+                startActivity(i);
             }
         });
 
