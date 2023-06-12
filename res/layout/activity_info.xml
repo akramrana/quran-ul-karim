@@ -53,10 +53,20 @@
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/info_content_ttl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="তাফসীর ফী যিলালিল কোরআন থেকে নেওয়া"
+            android:layout_below="@+id/topAboutBar"
+            android:textColor="@color/colorWhite"
+            android:textSize="14dp"
+            android:gravity="center"/>
+
+        <TextView
             android:id="@+id/info_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/topAboutBar"
+            android:layout_below="@id/info_content_ttl"
             android:layout_marginTop="2dp"
             android:textColor="@color/colorWhite"
             android:textSize="14dp"

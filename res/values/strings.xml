@@ -153,7 +153,7 @@
     <string name="masjid">Masjid</string>
     <string name="masjid_bn">মসজিদ</string>
 
-    <string name="brief_en"><u>Surah Info</u></string>
+    <string name="brief_en"><u>Surah Brief</u></string>
     <string name="brief_bn">সংক্ষিপ্ত আলোচনা</string>
 
 </resources>

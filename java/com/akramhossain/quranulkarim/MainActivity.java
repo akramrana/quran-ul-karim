@@ -497,7 +497,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), MoreMenuActivity.class);
                 i.putExtra("cms_title", "Terms and Conditions");
-                i.putExtra("cms_page", "terms");
+                i.putExtra("cms_page", "terms-quran");
                 startActivity(i);
             }
         });

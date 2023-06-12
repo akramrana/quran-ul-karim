@@ -45,6 +45,9 @@ public class InfoActivity extends AppCompatActivity {
         TextView info_sub_title = (TextView) findViewById(R.id.info_sub_title);
         info_sub_title.setText(suraName);
 
+        TextView info_content_ttl = (TextView) findViewById(R.id.info_content_ttl);
+        info_content_ttl.setTypeface(font);
+
         getFezilalilTafsirFromLocalDB();
     }
 
