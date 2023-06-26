@@ -74,6 +74,7 @@ public class PrayerTimesActivity extends AppCompatActivity {
         ArrayAdapter<CalculationMethod> spinnerAdapter = new ArrayAdapter<CalculationMethod>(this,android.R.layout.simple_spinner_item, cmList);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cm_spinner.setAdapter(spinnerAdapter);
+        cm_spinner.setSelection(4);
         cm_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -97,6 +98,7 @@ public class PrayerTimesActivity extends AppCompatActivity {
         ArrayAdapter<JuristicMethod> spinnerJmAdapter = new ArrayAdapter<JuristicMethod>(this,android.R.layout.simple_spinner_item, jmList);
         spinnerJmAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         jm_spinner.setAdapter(spinnerJmAdapter);
+        jm_spinner.setSelection(1);
         jm_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
