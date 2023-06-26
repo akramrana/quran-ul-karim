@@ -11,15 +11,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.akramhossain.quranulkarim.model.CalculationMethod;
+import com.akramhossain.quranulkarim.model.JuristicMethod;
 import com.akramhossain.quranulkarim.util.PrayTime;
 
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
+import java.util.TreeSet;
+import java.util.concurrent.TimeUnit;
 
 public class PrayerTimesActivity extends AppCompatActivity {
 
@@ -29,6 +38,14 @@ public class PrayerTimesActivity extends AppCompatActivity {
 
     boolean gps_enabled=false;
     boolean network_enabled=false;
+
+    Spinner cm_spinner, jm_spinner;
+
+    double selectedLatitude = -1;
+    double selectedlongitude = -1;
+    int calcMethod = 0;
+    int asrJuristicMethod = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +60,65 @@ public class PrayerTimesActivity extends AppCompatActivity {
 
         TimeZone tmzone = TimeZone.getDefault();
 
-        double hourDiff = (tmzone.getRawOffset()/ 1000)/3600;
+        double rawOffet = tmzone.getRawOffset();
+        //double rawOffet = 19800000;
+        double rawOffetDiv = 1000;
+        double divBySec = 3600;
 
+        double hourDiff = (rawOffet/ rawOffetDiv)/divBySec;
+
+        System.out.println("Timezone: "+hourDiff);
+
+        ArrayList cmList = this.calculationMethods();
+        cm_spinner = (Spinner) findViewById( R.id.calcMtd_spinner);
+        ArrayAdapter<CalculationMethod> spinnerAdapter = new ArrayAdapter<CalculationMethod>(this,android.R.layout.simple_spinner_item, cmList);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        cm_spinner.setAdapter(spinnerAdapter);
+        cm_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+                if (checkPermission()) {
+                    Log.d("Calculation Method:", String.valueOf(id));
+                    calcMethod = (int) id;
+                    if(selectedLatitude !=-1 && selectedlongitude!=-1) {
+                        getPrayerTimes(selectedLatitude, selectedlongitude, hourDiff);
+                    }
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+        });
+        //
+        ArrayList jmList = this.juristicMethods();
+        jm_spinner = (Spinner) findViewById( R.id.jurisMtd_spinner);
+        ArrayAdapter<JuristicMethod> spinnerJmAdapter = new ArrayAdapter<JuristicMethod>(this,android.R.layout.simple_spinner_item, jmList);
+        spinnerJmAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        jm_spinner.setAdapter(spinnerJmAdapter);
+        jm_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+                if (checkPermission()) {
+                    Log.d("Juristic Method:", String.valueOf(id));
+                    asrJuristicMethod = (int) id;
+                    if(selectedLatitude !=-1 && selectedlongitude!=-1) {
+                        getPrayerTimes(selectedLatitude, selectedlongitude, hourDiff);
+                    }
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+        });
+        //
+        PrayTime prayers = new PrayTime();
+        calcMethod = prayers.Makkah;
+        asrJuristicMethod = prayers.Hanafi;
+        //
         if (Build.VERSION.SDK_INT >= 23) {
             if (checkPermission()) {
                 LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
@@ -82,9 +156,17 @@ public class PrayerTimesActivity extends AppCompatActivity {
                     double timezone = hourDiff;
                     //double latitude = 23.810331;
                     //double longitude = 90.412521;
+                    selectedLatitude = latitude;
+                    selectedlongitude = longitude;
                     getPrayerTimes(latitude, longitude, timezone);
                 }else{
                     Toast.makeText(PrayerTimesActivity.this, "Sorry! We could not retrive your current location.", Toast.LENGTH_LONG).show();
+//                    double latitude = 22.978624;
+//                    double longitude = 87.747803;
+//                    double timezone = hourDiff;
+//                    selectedLatitude = latitude;
+//                    selectedlongitude = longitude;
+//                    getPrayerTimes(latitude, longitude, timezone);
                 }
 
             }else{
@@ -125,6 +207,8 @@ public class PrayerTimesActivity extends AppCompatActivity {
                 double latitude = location.getLatitude();
                 double longitude = location.getLongitude();
                 double timezone = hourDiff;
+                selectedLatitude = latitude;
+                selectedlongitude = longitude;
                 getPrayerTimes(latitude, longitude, timezone);
             }else{
                 Toast.makeText(PrayerTimesActivity.this, "Sorry! We could not retrive your current location.", Toast.LENGTH_LONG).show();
@@ -136,8 +220,10 @@ public class PrayerTimesActivity extends AppCompatActivity {
         PrayTime prayers = new PrayTime();
 
         prayers.setTimeFormat(prayers.Time12);
-        prayers.setCalcMethod(prayers.Makkah);
-        prayers.setAsrJuristic(prayers.Hanafi);
+        //prayers.setCalcMethod(prayers.Makkah);
+        //prayers.setAsrJuristic(prayers.Hanafi);
+        prayers.setCalcMethod(calcMethod);
+        prayers.setAsrJuristic(asrJuristicMethod);
         prayers.setAdjustHighLats(prayers.AngleBased);
         int[] offsets = {0, 0, 0, 0, 0, 0, 0}; // {Fajr,Sunrise,Dhuhr,Asr,Sunset,Maghrib,Isha}
         prayers.tune(offsets);
@@ -152,7 +238,6 @@ public class PrayerTimesActivity extends AppCompatActivity {
 
         for (int i = 0; i < prayerTimes.size(); i++) {
             Log.d("Prayer Time", prayerNames.get(i) + " - " + prayerTimes.get(i));
-            //Log.d("i", String.valueOf(i));
             if(i==0){
                 ftime.setText(prayerTimes.get(i));
             }
@@ -172,6 +257,26 @@ public class PrayerTimesActivity extends AppCompatActivity {
                 itime.setText(prayerTimes.get(i));
             }
         }
+
+        /*String[] ids = TimeZone.getAvailableIDs();
+        for (String id : ids) {
+            System.out.println(displayTimeZone(TimeZone.getTimeZone(id)));
+        }*/
+
+    }
+
+    private static String displayTimeZone(TimeZone tz) {
+
+        long hours = TimeUnit.MILLISECONDS.toHours(tz.getRawOffset());
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(tz.getRawOffset())- TimeUnit.HOURS.toMinutes(hours);
+        minutes = Math.abs(minutes);
+        String result = "";
+        if (hours > 0) {
+            result = String.format("(GMT+%d:%02d) %s %s", hours, minutes, tz.getID(), tz.getRawOffset());
+        } else {
+            result = String.format("(GMT%d:%02d) %s %s", hours, minutes, tz.getID(), tz.getRawOffset());
+        }
+        return result;
     }
 
     private boolean checkPermission() {
@@ -237,6 +342,8 @@ public class PrayerTimesActivity extends AppCompatActivity {
                             double latitude = location.getLatitude();
                             double longitude = location.getLongitude();
                             double timezone = hourDiff;
+                            selectedLatitude = latitude;
+                            selectedlongitude = longitude;
                             getPrayerTimes(latitude, longitude, timezone);
                         } else {
                             Toast.makeText(PrayerTimesActivity.this, "Sorry! We could not retrive your current location.", Toast.LENGTH_LONG).show();
@@ -249,4 +356,22 @@ public class PrayerTimesActivity extends AppCompatActivity {
         }
     }
 
+    public ArrayList<CalculationMethod> calculationMethods(){
+        ArrayList < CalculationMethod > cm = new ArrayList<>();
+        cm.add(new CalculationMethod(0, "Shia Ithna Ashari"));
+        cm.add(new CalculationMethod(1, "University of Islamic Sciences, Karachi"));
+        cm.add(new CalculationMethod(2, "Islamic Society of North America (ISNA)"));
+        cm.add(new CalculationMethod(3, "Muslim World League (MWL)"));
+        cm.add(new CalculationMethod(4, "Umm al-Qura, Makkah"));
+        cm.add(new CalculationMethod(5, "Egyptian General Authority of Survey"));
+        cm.add(new CalculationMethod(6, "Institute of Geophysics, University of Tehran"));
+        return cm;
+    }
+
+    public ArrayList<JuristicMethod> juristicMethods(){
+        ArrayList < JuristicMethod > jm = new ArrayList<>();
+        jm.add(new JuristicMethod(0, "Shafii (Standard)"));
+        jm.add(new JuristicMethod(1, "Hanafi Juristic"));
+        return jm;
+    }
 }

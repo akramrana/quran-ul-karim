@@ -156,4 +156,7 @@
     <string name="brief_en"><u>Surah Brief</u></string>
     <string name="brief_bn">সংক্ষিপ্ত আলোচনা</string>
 
+    <string name="spinner_calculation_method">Calculation method</string>
+    <string name="spinner_juristic_method">Asr method</string>
+
 </resources>

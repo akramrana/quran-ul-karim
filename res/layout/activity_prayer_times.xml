@@ -65,6 +65,30 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
+                <RelativeLayout
+                    android:id="@+id/settingSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+                    <Spinner
+                        android:id="@+id/calcMtd_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:prompt="@string/spinner_calculation_method"/>
+
+
+                    <Spinner
+                        android:id="@+id/jurisMtd_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_below="@+id/calcMtd_spinner"
+                        android:prompt="@string/spinner_juristic_method"/>
+
+
+                </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/fajrSection"
@@ -75,7 +99,8 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:background="@color/colorPrayerTimeRowBg"
-                    android:padding="10dp">
+                    android:padding="10dp"
+                    android:layout_below="@+id/settingSection">
 
                     <ImageView
                         android:id="@+id/fimg"
