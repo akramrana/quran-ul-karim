@@ -73,19 +73,82 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp">
 
-                    <Spinner
-                        android:id="@+id/calcMtd_spinner"
+                    <LinearLayout
+                        android:id="@+id/cmSection"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:prompt="@string/spinner_calculation_method"/>
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical">
 
-                    <Spinner
-                        android:id="@+id/jurisMtd_spinner"
+                            <TextView
+                                android:id="@+id/calcMLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/spinner_calculation_method"
+                                android:textColor="@color/colorWhite"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:orientation="vertical">
+
+                            <Spinner
+                                android:id="@+id/calcMtd_spinner"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:prompt="@string/spinner_calculation_method"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/jmSection"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_below="@+id/calcMtd_spinner"
-                        android:prompt="@string/spinner_juristic_method"/>
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_below="@+id/cmSection">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical">
+
+                            <TextView
+                                android:id="@+id/jurisMLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/spinner_juristic_method"
+                                android:textColor="@color/colorWhite"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:orientation="vertical">
+
+                            <Spinner
+                                android:id="@+id/jurisMtd_spinner"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:prompt="@string/spinner_juristic_method"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
 
                 </RelativeLayout>
