@@ -40,6 +40,7 @@ import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.Ayah;
 import com.akramhossain.quranulkarim.task.BackgroundTask;
+import com.akramhossain.quranulkarim.util.Utils;
 
 import org.w3c.dom.Text;
 
@@ -52,6 +53,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
 
@@ -126,6 +128,10 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         rvHolder.playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Double secD = Double.parseDouble(ayah.getAudio_duration());
+                long sec = secD.longValue();
+                long millisecond = TimeUnit.SECONDS.toMillis(sec);
+                Utils.preventTwoClick(view, millisecond);
                 String activityName = activity.getClass().getSimpleName();
                 if (activityName.equals("SuraDetailsActivity")) {
                     /*TextView play_audio = (TextView) activity.findViewById(R.id.play_audio);

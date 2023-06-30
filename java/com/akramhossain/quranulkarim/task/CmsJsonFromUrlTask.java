@@ -50,8 +50,8 @@ public class CmsJsonFromUrlTask {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Api Error: " + error.getMessage());
-                Toast.makeText(activity.getApplicationContext(),error.getMessage(), Toast.LENGTH_LONG).show();
+                Log.e(TAG, "Api Error: " + error);
+                Toast.makeText(activity.getApplicationContext(), "Something went wrong, please try again after sometime", Toast.LENGTH_LONG).show();
                 progressBar.setVisibility(View.GONE);
             }
         }) {};

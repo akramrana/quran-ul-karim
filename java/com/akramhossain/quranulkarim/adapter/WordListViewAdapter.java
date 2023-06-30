@@ -29,6 +29,7 @@ import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.model.Word;
 import com.akramhossain.quranulkarim.task.BackgroundTask;
+import com.akramhossain.quranulkarim.util.Utils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -90,6 +91,7 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         rvHolder.playWordBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                Utils.preventTwoClick(view, 2000);
                 if (isInternetPresent) {
                     if (checkPermission()) {
                         new BackgroundTask(activity) {

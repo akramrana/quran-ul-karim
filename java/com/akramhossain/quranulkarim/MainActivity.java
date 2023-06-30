@@ -595,6 +595,9 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.i("Last Position Select", e.getMessage());
         } finally {
+            if (cursor != null && !cursor.isClosed()){
+                cursor.close();
+            }
             db.close();
         }
 

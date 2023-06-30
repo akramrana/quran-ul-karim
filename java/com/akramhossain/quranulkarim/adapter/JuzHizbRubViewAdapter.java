@@ -37,6 +37,7 @@ import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.Ayah;
 import com.akramhossain.quranulkarim.task.BackgroundTask;
+import com.akramhossain.quranulkarim.util.Utils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -46,6 +47,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class JuzHizbRubViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -109,6 +111,10 @@ public class JuzHizbRubViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         rvHolder.playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Double secD = Double.parseDouble(ayah.getAudio_duration());
+                long sec = secD.longValue();
+                long millisecond = TimeUnit.SECONDS.toMillis(sec);
+                Utils.preventTwoClick(view, millisecond);
                 if (isInternetPresent) {
                     if (checkPermission()) {
                         new BackgroundTask(activity) {

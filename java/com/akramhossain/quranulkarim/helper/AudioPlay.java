@@ -66,8 +66,10 @@ public class AudioPlay {
         isAudioLoaded = false;
         isAudioStopped = true;
         if (mp != null) {
-            mp.stop();
-            mp.reset();
+            if(mp.isPlaying()) {
+                mp.reset();
+                mp.stop();
+            }
             mp.release();
             mp = null;
         }
