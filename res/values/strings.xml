@@ -158,5 +158,12 @@
 
     <string name="spinner_calculation_method">Calculation method</string>
     <string name="spinner_juristic_method">Asr method</string>
+    <string name="string_qc_bn">কিবলা কম্পাস</string>
+    <string name="string_qc_en">Qibla Compass</string>
+    <string name="string_qc_subtitle">Get Qibla Direction</string>
+
+    <string name="string_dg_bn">দৈনন্দিন লক্ষ্য</string>
+    <string name="string_dg_en">Daily Goals</string>
+    <string name="string_dg_subtitle">Accomplish your daily goals</string>
 
 </resources>

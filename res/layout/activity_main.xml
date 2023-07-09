@@ -164,6 +164,102 @@
         <!--android:verticalSpacing="10dp">-->
 
         <!--</GridView>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <LinearLayout
+                android:id="@+id/qibla_compass"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="@drawable/linear_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:layout_marginRight="2dp"
+                android:padding="2dp">
+
+                <ImageView
+                    android:id="@+id/qibla_compass_img"
+                    android:layout_width="48.0dip"
+                    android:layout_height="48.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/compass" />
+
+                <TextView
+                    android:id="@+id/qc_text_view_en"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/qibla_compass_img"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2.0dip"
+                    android:text="@string/string_qc_en"
+                    android:textSize="15.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/qc_text_view_dn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/qc_text_view_en"
+                    android:text="@string/string_qc_bn"
+                    android:textSize="15.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/daily_goal"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="@drawable/linear_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:layout_marginRight="2dp"
+                android:padding="2dp">
+
+                <ImageView
+                    android:id="@+id/dg_img"
+                    android:layout_width="48.0dip"
+                    android:layout_height="48.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/daily_tasks" />
+
+                <TextView
+                    android:id="@+id/dg_text_view_en"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/dg_img"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2.0dip"
+                    android:text="@string/string_dg_en"
+                    android:textSize="15.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/dg_text_view_dn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/dg_text_view_en"
+                    android:text="@string/string_dg_bn"
+                    android:textSize="15.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

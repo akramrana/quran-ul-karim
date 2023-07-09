@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
     View horizontal_line;
     DatabaseHelper dbhelper;
-    LinearLayout sura_link, bookmark_link, search_link, quick_links_link, word_collection_link, about_link, juz_link, hizb_link, rub_link, time_link, setting_link, masjid_link, feedback_link, privacy_link, terms_link;
+    LinearLayout sura_link, bookmark_link, search_link, quick_links_link, word_collection_link, about_link, juz_link, hizb_link, rub_link, time_link, setting_link, masjid_link, feedback_link, privacy_link, terms_link, qibla_compass, daily_goal;
     Button btnPrayerTime;
 
     public static final String NIGHT_MODE = "APP_NIGHT_MODE";
@@ -498,6 +498,24 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(), MoreMenuActivity.class);
                 i.putExtra("cms_title", "Terms and Conditions");
                 i.putExtra("cms_page", "terms-quran");
+                startActivity(i);
+            }
+        });
+
+        qibla_compass = (LinearLayout) findViewById(R.id.qibla_compass);
+        qibla_compass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), QiblaCompassActivity.class);
+                startActivity(i);
+            }
+        });
+
+        daily_goal = (LinearLayout) findViewById(R.id.daily_goal);
+        daily_goal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), DailyGoalsActivity.class);
                 startActivity(i);
             }
         });
