@@ -87,26 +87,7 @@ public class QiblaCompassActivity extends AppCompatActivity implements SensorEve
                 double latitude = location.getLatitude();
                 double longitude = location.getLongitude();
                 double altitude = location.getAltitude();
-
-                double longi = longitude;
-                double lati = latitude;
-                double alti = altitude;
-
-                // TextView that will tell the user what degree is he heading
-                tvHeading = (TextView) findViewById(R.id.heading);
-
-                userLoc.setLongitude(longi);
-                userLoc.setLatitude(lati);
-                userLoc.setAltitude(alti);
-
-                mSensorManager =  (SensorManager) getApplicationContext().getSystemService(SENSOR_SERVICE);
-                sensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
-                if(sensor!=null) {
-                    // for the system's orientation sensor registered listeners
-                    mSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_GAME);//SensorManager.SENSOR_DELAY_Fastest
-                }else{
-                    Toast.makeText(getApplicationContext(),"Not Supported", Toast.LENGTH_SHORT).show();
-                }
+                setQiblaPos(longitude, latitude, altitude);
 
             }else{
                 Toast.makeText(QiblaCompassActivity.this, "Sorry! We could not retrive your current location.", Toast.LENGTH_LONG).show();
@@ -117,11 +98,29 @@ public class QiblaCompassActivity extends AppCompatActivity implements SensorEve
         }
     }
 
+    public void setQiblaPos(double longi, double lati, double alti){
+        // TextView that will tell the user what degree is he heading
+        tvHeading = (TextView) findViewById(R.id.heading);
+        //
+        userLoc.setLongitude(longi);
+        userLoc.setLatitude(lati);
+        userLoc.setAltitude(alti);
+        //
+        mSensorManager =  (SensorManager) getApplicationContext().getSystemService(SENSOR_SERVICE);
+        sensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+        if(sensor!=null) {
+            // for the system's orientation sensor registered listeners
+            mSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_GAME);//SensorManager.SENSOR_DELAY_Fastest
+        }else{
+            Toast.makeText(getApplicationContext(),"Not Supported", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         float degree = Math.round(sensorEvent.values[0]);
         float head = Math.round(sensorEvent.values[0]);
-
+        //
         Location destinationLoc = new Location("service Provider");
         destinationLoc.setLatitude(21.422487); //kaaba latitude setting
         destinationLoc.setLongitude(39.826206); //kaaba longitude setting
@@ -164,13 +163,10 @@ public class QiblaCompassActivity extends AppCompatActivity implements SensorEve
         mSensorManager.unregisterListener(this);
         Toast.makeText(getApplicationContext(), "Destroy", Toast.LENGTH_SHORT).show();
         super.onDestroy();
-
     }
 
     @Override
-    public void onAccuracyChanged(Sensor sensor, int i) {
-
-    }
+    public void onAccuracyChanged(Sensor sensor, int i) {}
 
     private boolean checkPermission() {
         int result = ContextCompat.checkSelfPermission(QiblaCompassActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION);
@@ -197,9 +193,7 @@ public class QiblaCompassActivity extends AppCompatActivity implements SensorEve
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     //Log.e("value", "Permission Granted.");
                     TimeZone tmzone = TimeZone.getDefault();
-
                     double hourDiff = (tmzone.getRawOffset() / 1000) / 3600;
-
                     if (checkPermission()) {
                         LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
                         //Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -234,7 +228,8 @@ public class QiblaCompassActivity extends AppCompatActivity implements SensorEve
                         if (location != null) {
                             double latitude = location.getLatitude();
                             double longitude = location.getLongitude();
-                            double timezone = hourDiff;
+                            double altitude = location.getAltitude();
+                            setQiblaPos(longitude, latitude, altitude);
                         } else {
                             Toast.makeText(QiblaCompassActivity.this, "Sorry! We could not retrive your current location.", Toast.LENGTH_LONG).show();
                         }

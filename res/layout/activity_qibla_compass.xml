@@ -64,7 +64,7 @@
                 android:id="@+id/heading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorWhiteDN"
+                android:textColor="@color/colorWhite"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="20dp"
@@ -85,12 +85,12 @@
                         android:scaleType="centerInside"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"
-                        android:src="@drawable/compass"/>
+                        android:src="@drawable/compas_yellow"/>
 
                     <ImageView
                         android:id="@+id/needle"
-                        android:layout_width="128dp"
-                        android:layout_height="128dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:layout_centerVertical="true"
                         android:layout_centerHorizontal="true"
                         android:scaleType="centerInside"
