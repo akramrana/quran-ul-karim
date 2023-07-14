@@ -54,6 +54,1347 @@
 
         </RelativeLayout>
 
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/topAboutBar"
+            android:layout_marginTop="10dp"
+            android:fillViewport="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/tahajjudSec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/linear_background"
+                    android:layout_margin="5dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/chkTahajjud"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Perform Tahajjud"
+                            android:textColor="@color/darkblue"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/txtTahajjud"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="তাহাজ্জুদের নামাজ আদায়"
+                            android:textColor="@color/darkblue"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressTahajjud"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:max="100"
+                            android:progress="0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/fajrSec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/linear_background"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/tahajjudSec">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/chkFajr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Perform Fajr Prayer"
+                            android:textColor="@color/color10"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/txtFajr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="ফজরের নামাজ আদায়"
+                            android:textColor="@color/color10"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressFajr"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:max="100"
+                            android:progress="0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/adhkarSec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/linear_background"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/fajrSec">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/chkAdhkar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Morning Adhkar"
+                            android:textColor="@color/darkpurple"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/txtAdhkar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="সকালের জিকির"
+                            android:textColor="@color/darkpurple"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressAdhkar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:max="100"
+                            android:progress="0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/quranReciteSec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/linear_background"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/adhkarSec">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/chkReci"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Quran Recitation"
+                            android:textColor="@color/darkpurple"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/txtQuran"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="কুরআন তেলাওয়াত"
+                            android:textColor="@color/darkpurple"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressRecite"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:max="100"
+                            android:progress="0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/hadithSec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/linear_background"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/quranReciteSec">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/chkHadith"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Study Hadith"
+                            android:textColor="@color/darkpurple"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/txtHadith"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="হাদিস অধ্যায়ন"
+                            android:textColor="@color/darkpurple"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressHadith"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:max="100"
+                            android:progress="0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/dohaSec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/linear_background"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/hadithSec">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/chkDoha"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Perform Salat Ud Doha"
+                            android:textColor="@color/darkblue"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/txtDoha"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="দোহার নামাজ আদায়"
+                            android:textColor="@color/darkblue"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressDoha"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:max="100"
+                            android:progress="0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/dhuhrSec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/linear_background"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/dohaSec">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/chkDhuhr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Perform Dhuhr Prayer"
+                            android:textColor="@color/color10"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/txtDhuhr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="যোহর নামাজ আদায়"
+                            android:textColor="@color/color10"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressDhuhr"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:max="100"
+                            android:progress="0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/asrSec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/linear_background"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/dhuhrSec">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/chkAsr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Perform Asr Prayer"
+                            android:textColor="@color/color10"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/txtAsr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="আসর নামাজ আদায়"
+                            android:textColor="@color/color10"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressAsr"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:max="100"
+                            android:progress="0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/maghribSec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/linear_background"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/asrSec">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/chkMaghrib"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Perform Maghrib Prayer"
+                            android:textColor="@color/color10"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/txtMaghrib"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="মাগরিব নামাজ আদায়"
+                            android:textColor="@color/color10"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressMaghrib"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:max="100"
+                            android:progress="0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ishaSec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/maghribSec"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/linear_background"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/chkIsha"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Perform Isha Prayer"
+                            android:textColor="@color/color10"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtIsha"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="এশার নামাজ আদায়"
+                            android:textColor="@color/color10"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressIsha"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:max="100"
+                            android:progress="0" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/charitySec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/linear_background"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/ishaSec">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/chkCharity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Give Charity"
+                            android:textColor="@color/darkorange"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/txtCharity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="দান-সাদকা"
+                            android:textColor="@color/darkorange"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressCharity"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:max="100"
+                            android:progress="0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/literatureSec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/linear_background"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/charitySec">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/chkLiterature"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Studies in Islamic Literature"
+                            android:textColor="@color/darkpurple"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/txtLiterature"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="ইসলামী সাহিত্য অধ্যায়ন"
+                            android:textColor="@color/darkpurple"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressLiterature"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:max="100"
+                            android:progress="0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/mulkSec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/linear_background"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/literatureSec">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/chkMulk"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Surah Mulk Recitation"
+                            android:textColor="@color/darkpurple"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/txtMulk"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="সুরা মূলক তেলাওয়াত"
+                            android:textColor="@color/darkpurple"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressMulk"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:max="100"
+                            android:progress="0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/baqaraSec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/linear_background"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/mulkSec">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/chkBaqara"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Recitation of Last 2 Verse of Surah Baqarah"
+                            android:textColor="@color/darkpurple"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/txtBaqarah"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="সুরা বাকারার শেষের ২ আয়াত তেলাওয়াত"
+                            android:textColor="@color/darkpurple"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressBaqara"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:max="100"
+                            android:progress="0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/qursiSec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/linear_background"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/baqaraSec">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/chkQursi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Recitation of Ayatul Kursi"
+                            android:textColor="@color/darkpurple"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/txtQursi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="আয়াতুল কুরসী তেলাওয়াত"
+                            android:textColor="@color/darkpurple"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressQursi"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:max="100"
+                            android:progress="0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/kahfSec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/linear_background"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/qursiSec">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/chkKahf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Recitation of First/Last 10 Verse of Surah Al Kahf"
+                            android:textColor="@color/darkpurple"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/txtKahf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="সুরা কাহাফের প্রথম/শেষ ১০ আয়াত তেলাওয়াত"
+                            android:textColor="@color/darkpurple"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressKahf"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:max="100"
+                            android:progress="0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/haram1Sec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/linear_background"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/kahfSec">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/chkHaram1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Restrain from Smoking"
+                            android:textColor="@color/color2"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/txtHaram1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="ধূমপান থেকে বিরত থাকা"
+                            android:textColor="@color/color2"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressHaram1"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:max="100"
+                            android:progress="0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/haram2Sec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/linear_background"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/haram1Sec">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/chkHaram2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Restrain from Alcohol"
+                            android:textColor="@color/color2"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/txtHaram2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="মদ বা অ্যালকোহল জাতীয় বস্তু থেকে বিরত থাকা"
+                            android:textColor="@color/color2"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressHaram2"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:max="100"
+                            android:progress="0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/haram3Sec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/linear_background"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/haram2Sec">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/chkHaram3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Avoid Watching Haram Things"
+                            android:textColor="@color/color2"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/txtHaram3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="অশ্লীলতা ও পর্নোগ্রাফি থেকে বিরত থাকা"
+                            android:textColor="@color/color2"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressHaram3"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:max="100"
+                            android:progress="0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/haram4Sec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/linear_background"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/haram3Sec">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/chkHaram4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Avoid Gossiping and Backbiting Others"
+                            android:textColor="@color/color2"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/txtHaram4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="গীবত থেকে বিরত থাকা"
+                            android:textColor="@color/color2"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressHaram4"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:max="100"
+                            android:progress="0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/haram5Sec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/linear_background"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/haram4Sec">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/chkHaram5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Avoid Slandering Others"
+                            android:textColor="@color/color2"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/txtHaram5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="পরনিন্দা থেকে বিরত থাকা"
+                            android:textColor="@color/color2"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressHaram5"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:max="100"
+                            android:progress="0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </ScrollView>
 
 
     </RelativeLayout>

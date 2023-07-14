@@ -470,6 +470,12 @@ public class MainActivity extends AppCompatActivity {
         TextView textView1212 = (TextView) findViewById(R.id.textView1212);
         textView1212.setTypeface(font);
 
+        TextView qc_text_view_bn = (TextView) findViewById(R.id.qc_text_view_bn);
+        qc_text_view_bn.setTypeface(font);
+
+        TextView dg_text_view_bn = (TextView) findViewById(R.id.dg_text_view_bn);
+        dg_text_view_bn.setTypeface(font);
+
         //bugReport = (TextView) findViewById(R.id.bugReport);
         feedback_link = (LinearLayout) findViewById(R.id.feedback_link);
         feedback_link.setOnClickListener(new View.OnClickListener() {
