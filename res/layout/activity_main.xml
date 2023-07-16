@@ -48,7 +48,7 @@
                 android:paddingRight="5dp"
                 android:text="@string/name_title_en"
                 android:textColor="@color/colorWhiteDN"
-                android:textSize="15dp" />
+                android:textSize="15sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -60,6 +60,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/daynight_textColor"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
                     android:text=""/>
 
                 <TextView
@@ -247,14 +249,14 @@
                             android:layout_gravity="center_horizontal"/>
 
                         <TextView
-                            android:id="@+id/txtper"
+                            android:id="@+id/txtPer"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="75%"
                             android:textStyle="bold"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="125dp"
-                            android:textSize="16dp"/>
+                            android:textSize="16sp"/>
 
                         <ProgressBar
                             tools:progress="1"

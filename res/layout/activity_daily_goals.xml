@@ -1078,7 +1078,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/haram1Sec"
+                    android:id="@+id/tasbihSec"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -1086,6 +1086,69 @@
                     android:background="@drawable/linear_background"
                     android:layout_margin="5dp"
                     android:layout_below="@+id/kahfSec">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/chkTasbih"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minWidth="48dp"
+                            android:minHeight="48dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Dhikr and Tasbeeh Before Sleep"
+                            android:textColor="@color/darkpurple"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/txtTasbih"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="ঘুমানোর পূর্বে জিকির এবং তাসবীহ"
+                            android:textColor="@color/darkpurple"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressTasbih"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:max="100"
+                            android:progress="0"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/haram1Sec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:background="@drawable/linear_background"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/tasbihSec">
 
                     <LinearLayout
                         android:layout_width="0dp"

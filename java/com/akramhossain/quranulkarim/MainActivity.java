@@ -1,10 +1,14 @@
 package com.akramhossain.quranulkarim;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -23,6 +27,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,6 +85,10 @@ public class MainActivity extends AppCompatActivity {
     Boolean isInternetPresent = false;
 
     Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem, font;
+
+    TextView txtPer;
+
+    ProgressBar prog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -526,6 +535,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        txtPer = (TextView) findViewById(R.id.txtPer);
+        prog = (ProgressBar) findViewById(R.id.prog);
+
     }
 
     private void getPopularSearchFromLocalDb() {
@@ -626,6 +638,33 @@ public class MainActivity extends AppCompatActivity {
         }
 
         getPopularSearchFromLocalDb();
+        calculateReportsValue();
+    }
+
+    public void calculateReportsValue(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        //System.out.println(dateFormat.format(date));
+        String dtStr = dateFormat.format(date);
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+        String sql = "select sum(perform_tahajjud+perform_fajr+morning_adhkar+quran_recitation+study_hadith+salat_ud_doha+dhuhr_prayer+asr_prayer+maghrib_prayer+isha_prayer+charity+literature+surah_mulk_recitation+recitation_last_2_surah_baqarah+ayatul_kursi+recitation_first_last_10_surah_kahf+tasbih+smoking+alcohol+haram_things+backbiting+slandering) as total_points\n" +
+                    "from reports \n" +
+                    "where date = '"+dtStr+"'";
+        Cursor cursor = db.rawQuery(sql, null);
+        Log.i("Report SQL", sql);
+        try {
+            if (cursor.moveToFirst()) {
+                Integer total_points = cursor.getInt(cursor.getColumnIndexOrThrow("total_points"));
+                System.out.println("Report value: "+total_points);
+            }
+        }catch (Exception e) {
+            Log.i("Report SQL", e.getMessage());
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
+                cursor.close();
+            }
+            db.close();
+        }
     }
 
     public void onPause()

@@ -161,7 +161,7 @@ public class QiblaCompassActivity extends AppCompatActivity implements SensorEve
     @Override
     public void onDestroy() {
         mSensorManager.unregisterListener(this);
-        Toast.makeText(getApplicationContext(), "Destroy", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "Destroy", Toast.LENGTH_SHORT).show();
         super.onDestroy();
     }
 
