@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +50,12 @@ public class DailyGoalsActivity extends AppCompatActivity {
     Integer points_haram_things=5;
     Integer points_backbiting=5;
     Integer points_slandering=5;
+
+    ProgressBar progressTahajjud, progressFajr, progressAdhkar, progressRecite, progressHadith;
+    ProgressBar progressDoha, progressDhuhr, progressAsr, progressMaghrib, progressIsha, progressCharity;
+    ProgressBar progressLiterature, progressMulk, progressBaqara, progressQursi, progressKahf, progressTasbih;
+    ProgressBar progressHaram1, progressHaram2, progressHaram3, progressHaram4, progressHaram5;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,62 +129,98 @@ public class DailyGoalsActivity extends AppCompatActivity {
         TextView txtHaram5 = (TextView) findViewById(R.id.txtHaram5);
         txtHaram5.setTypeface(font);
 
-        CheckBox chkTahajjud = findViewById(R.id.chkTahajjud);
+        progressTahajjud = findViewById(R.id.progressTahajjud);
+        progressFajr = findViewById(R.id.progressFajr);
+        progressAdhkar = findViewById(R.id.progressAdhkar);
+        progressRecite = findViewById(R.id.progressRecite);
+        progressHadith = findViewById(R.id.progressHadith);
+        progressDoha = findViewById(R.id.progressDoha);
+
+        progressDhuhr = findViewById(R.id.progressDhuhr);
+        progressAsr = findViewById(R.id.progressAsr);
+        progressMaghrib = findViewById(R.id.progressMaghrib);
+        progressIsha = findViewById(R.id.progressIsha);
+        progressCharity = findViewById(R.id.progressCharity);
+        progressLiterature = findViewById(R.id.progressLiterature);
+
+        progressMulk = findViewById(R.id.progressMulk);
+        progressBaqara = findViewById(R.id.progressBaqara);
+        progressQursi = findViewById(R.id.progressQursi);
+        progressKahf = findViewById(R.id.progressKahf);
+        progressTasbih = findViewById(R.id.progressTasbih);
+
+        progressHaram1 = findViewById(R.id.progressHaram1);
+        progressHaram2 = findViewById(R.id.progressHaram2);
+        progressHaram3 = findViewById(R.id.progressHaram3);
+        progressHaram4 = findViewById(R.id.progressHaram4);
+        progressHaram5 = findViewById(R.id.progressHaram5);
+
+        chkTahajjud = findViewById(R.id.chkTahajjud);
         chkTahajjud.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     updateDailyReport("perform_tahajjud", points_perform_tahajjud);
+                    progressTahajjud.setProgress(100,true);
                 } else {
                     updateDailyReport("perform_tahajjud", 0);
+                    progressTahajjud.setProgress(0,true);
                 }
             }
         });
-        CheckBox chkFajr = findViewById(R.id.chkFajr);
+        chkFajr = findViewById(R.id.chkFajr);
         chkFajr.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     updateDailyReport("perform_fajr", points_perform_fajr);
+                    progressFajr.setProgress(100,true);
                 } else {
                     updateDailyReport("perform_fajr", 0);
+                    progressFajr.setProgress(0,true);
                 }
             }
         });
-        CheckBox chkAdhkar = findViewById(R.id.chkAdhkar);
+        chkAdhkar = findViewById(R.id.chkAdhkar);
         chkAdhkar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     updateDailyReport("morning_adhkar", points_morning_adhkar);
+                    progressAdhkar.setProgress(100, true);
                 } else {
                     updateDailyReport("morning_adhkar", 0);
+                    progressAdhkar.setProgress(0, true);
                 }
             }
         });
-        CheckBox chkReci = findViewById(R.id.chkReci);
+        chkReci = findViewById(R.id.chkReci);
         chkReci.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     updateDailyReport("quran_recitation", points_quran_recitation);
+                    progressRecite.setProgress(100,true);
                 } else {
                     updateDailyReport("quran_recitation", 0);
+                    progressRecite.setProgress(0,true);
                 }
             }
         });
-        CheckBox chkHadith = findViewById(R.id.chkHadith);
+        chkHadith = findViewById(R.id.chkHadith);
         chkHadith.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     updateDailyReport("study_hadith", points_study_hadith);
+                    progressHadith.setProgress(100, true);
                 } else {
                     updateDailyReport("study_hadith", 0);
+                    progressHadith.setProgress(0, true);
                 }
             }
         });
-        CheckBox chkDoha = findViewById(R.id.chkDoha);
+        chkDoha = findViewById(R.id.chkDoha);
         chkHadith.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -188,7 +231,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
                 }
             }
         });
-        CheckBox chkDhuhr = findViewById(R.id.chkDhuhr);
+        chkDhuhr = findViewById(R.id.chkDhuhr);
         chkDhuhr.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -199,7 +242,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
                 }
             }
         });
-        CheckBox chkAsr = findViewById(R.id.chkAsr);
+        chkAsr = findViewById(R.id.chkAsr);
         chkAsr.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -210,7 +253,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
                 }
             }
         });
-        CheckBox chkMaghrib = findViewById(R.id.chkMaghrib);
+        chkMaghrib = findViewById(R.id.chkMaghrib);
         chkMaghrib.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -221,7 +264,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
                 }
             }
         });
-        CheckBox chkIsha = findViewById(R.id.chkIsha);
+        chkIsha = findViewById(R.id.chkIsha);
         chkIsha.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -232,7 +275,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
                 }
             }
         });
-        CheckBox chkCharity = findViewById(R.id.chkCharity);
+        chkCharity = findViewById(R.id.chkCharity);
         chkCharity.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -243,7 +286,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
                 }
             }
         });
-        CheckBox chkLiterature = findViewById(R.id.chkLiterature);
+        chkLiterature = findViewById(R.id.chkLiterature);
         chkLiterature.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -254,7 +297,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
                 }
             }
         });
-        CheckBox chkMulk = findViewById(R.id.chkMulk);
+        chkMulk = findViewById(R.id.chkMulk);
         chkMulk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -265,7 +308,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
                 }
             }
         });
-        CheckBox chkBaqara = findViewById(R.id.chkBaqara);
+        chkBaqara = findViewById(R.id.chkBaqara);
         chkBaqara.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -276,7 +319,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
                 }
             }
         });
-        CheckBox chkQursi = findViewById(R.id.chkQursi);
+        chkQursi = findViewById(R.id.chkQursi);
         chkQursi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -287,7 +330,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
                 }
             }
         });
-        CheckBox chkKahf = findViewById(R.id.chkKahf);
+        chkKahf = findViewById(R.id.chkKahf);
         chkKahf.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -298,7 +341,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
                 }
             }
         });
-        CheckBox chkTasbih = findViewById(R.id.chkTasbih);
+        chkTasbih = findViewById(R.id.chkTasbih);
         chkTasbih.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -309,7 +352,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
                 }
             }
         });
-        CheckBox chkHaram1 = findViewById(R.id.chkHaram1);
+        chkHaram1 = findViewById(R.id.chkHaram1);
         chkHaram1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -320,7 +363,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
                 }
             }
         });
-        CheckBox chkHaram2 = findViewById(R.id.chkHaram2);
+        chkHaram2 = findViewById(R.id.chkHaram2);
         chkHaram2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -331,7 +374,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
                 }
             }
         });
-        CheckBox chkHaram3 = findViewById(R.id.chkHaram3);
+        chkHaram3 = findViewById(R.id.chkHaram3);
         chkHaram3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -342,7 +385,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
                 }
             }
         });
-        CheckBox chkHaram4 = findViewById(R.id.chkHaram4);
+        chkHaram4 = findViewById(R.id.chkHaram4);
         chkHaram4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -353,7 +396,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
                 }
             }
         });
-        CheckBox chkHaram5 = findViewById(R.id.chkHaram5);
+        chkHaram5 = findViewById(R.id.chkHaram5);
         chkHaram5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -365,7 +408,58 @@ public class DailyGoalsActivity extends AppCompatActivity {
             }
         });
 
+        getReportData();
 
+    }
+
+    public void getReportData(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        //System.out.println(dateFormat.format(date));
+        String dtStr = dateFormat.format(date);
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+        String sql = "select * from reports where date = '"+dtStr+"'";
+        Cursor cursor = db.rawQuery(sql, null);
+        try {
+            if (cursor.moveToFirst()) {
+                Integer perform_tahajjud = cursor.getInt(cursor.getColumnIndexOrThrow("perform_tahajjud"));
+                if(perform_tahajjud > 0){
+                    chkTahajjud.setChecked(true);
+                    progressTahajjud.setProgress(100, true);
+                }
+
+                Integer perform_fajr = cursor.getInt(cursor.getColumnIndexOrThrow("perform_fajr"));
+                if(perform_fajr > 0){
+                    chkFajr.setChecked(true);
+                    progressFajr.setProgress(100, true);
+                }
+
+                Integer morning_adhkar = cursor.getInt(cursor.getColumnIndexOrThrow("morning_adhkar"));
+                if(morning_adhkar > 0){
+                    chkAdhkar.setChecked(true);
+                    progressAdhkar.setProgress(100, true);
+                }
+
+                Integer quran_recitation = cursor.getInt(cursor.getColumnIndexOrThrow("quran_recitation"));
+                if(quran_recitation > 0){
+                    chkReci.setChecked(true);
+                    progressRecite.setProgress(100, true);
+                }
+
+                Integer study_hadith = cursor.getInt(cursor.getColumnIndexOrThrow("study_hadith"));
+                if(study_hadith > 0){
+                    chkHadith.setChecked(true);
+                    progressHadith.setProgress(100, true);
+                }
+            }
+        }catch (Exception e) {
+            Log.i("Report SQL", e.getMessage());
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
+                cursor.close();
+            }
+            db.close();
+        }
     }
 
     public void updateDailyReport(String columnName,Integer value){

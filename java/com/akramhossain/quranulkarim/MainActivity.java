@@ -656,6 +656,8 @@ public class MainActivity extends AppCompatActivity {
             if (cursor.moveToFirst()) {
                 Integer total_points = cursor.getInt(cursor.getColumnIndexOrThrow("total_points"));
                 System.out.println("Report value: "+total_points);
+                txtPer.setText(total_points+"%");
+                prog.setProgress(total_points,true);
             }
         }catch (Exception e) {
             Log.i("Report SQL", e.getMessage());
