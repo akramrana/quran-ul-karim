@@ -27,6 +27,8 @@ public class Ayah {
     private String name_arabic;
     private String trans;
 
+    private String indo_pak;
+
     public String getAyah_index() {
         return ayah_index;
     }
@@ -185,5 +187,13 @@ public class Ayah {
 
     public void setTrans(String trans) {
         this.trans = trans;
+    }
+
+    public String getIndo_pak() {
+        return indo_pak;
+    }
+
+    public void setIndo_pak(String indo_pak) {
+        this.indo_pak = indo_pak;
     }
 }

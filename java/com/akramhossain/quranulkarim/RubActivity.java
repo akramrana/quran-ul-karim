@@ -67,9 +67,10 @@ public class RubActivity extends AppCompatActivity {
 
     private void getDataFromLocalDb() {
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-        String sql = "select ayah.ayah_index,ayah.ayah_num,ayah.surah_id,ayah.page_num,ayah.rub_num,ayah.text_tashkeel,ayah.ayah_key,sura.name_simple,sura.name_complex,sura.name_english,sura.name_arabic\n" +
+        String sql = "select ayah.ayah_index,ayah.ayah_num,ayah.surah_id,ayah.page_num,ayah.rub_num,ayah.text_tashkeel,ayah.ayah_key,sura.name_simple,sura.name_complex,sura.name_english,sura.name_arabic,ayah_indo.text as indo_pak\n" +
                 "from ayah \n" +
                 "inner join sura ON ayah.surah_id = sura.surah_id\n" +
+                "inner join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id "+
                 "group by rub_num " +
                 "HAVING MIN(ayah_index) " +
                 "order by rub_num asc";
@@ -90,6 +91,7 @@ public class RubActivity extends AppCompatActivity {
                     rub.setName_english(cursor.getString(cursor.getColumnIndexOrThrow("name_english")));
                     rub.setName_arabic(cursor.getString(cursor.getColumnIndexOrThrow("name_arabic")));
                     rub.setAyah_num(cursor.getString(cursor.getColumnIndexOrThrow("ayah_num")));
+                    rub.setIndo_pak(cursor.getString(cursor.getColumnIndexOrThrow("indo_pak")));
                     rubs.add(rub);
                 }while (cursor.moveToNext());
             }

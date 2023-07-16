@@ -53,7 +53,9 @@ public class HizbViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         //rvHolder.surah_id.setText(juz.getSurah_id());
         //rvHolder.page_num.setText(juz.getPage_num());
         rvHolder.hizb_num.setText("Hizb "+hizb.getHizb_num());
-        String tt = hizb.getText_tashkeel();
+        //String tt = hizb.getText_tashkeel();
+        String tt = hizb.getIndo_pak();
+
         if (tt.length() > 110) {
             cutTT = tt.substring(0, 110);
         }else{

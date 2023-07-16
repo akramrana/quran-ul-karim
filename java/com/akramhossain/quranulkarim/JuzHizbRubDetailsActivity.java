@@ -295,7 +295,7 @@ public class JuzHizbRubDetailsActivity extends AppCompatActivity {
 
     private void getDataFromLocalDb() {
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-        String sql = String.format("SELECT ayah.*,sura.name_simple,sura.name_complex,sura.name_english,sura.name_arabic,transliteration.trans \nFROM ayah \nLEFT JOIN sura ON ayah.surah_id = sura.surah_id LEFT join transliteration ON ayah.ayah_num = transliteration.ayat_id and transliteration.sura_id = ayah.surah_id \nWHERE %s order by ayah_index ASC limit %d,%d", where_clause, offset, limit);
+        String sql = String.format("SELECT ayah.*,sura.name_simple,sura.name_complex,sura.name_english,sura.name_arabic,transliteration.trans,ayah_indo.text as indo_pak \nFROM ayah \nLEFT JOIN sura ON ayah.surah_id = sura.surah_id \nLEFT join transliteration ON ayah.ayah_num = transliteration.ayat_id and transliteration.sura_id = ayah.surah_id \nLEFT join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id \nWHERE %s order by ayah_index ASC limit %d,%d", where_clause, offset, limit);
         Log.i(TAG, sql);
         Cursor cursor = db.rawQuery(sql, null);
         try {
@@ -322,6 +322,7 @@ public class JuzHizbRubDetailsActivity extends AppCompatActivity {
                     ayah.setName_english(cursor.getString(cursor.getColumnIndexOrThrow("name_english")));
                     ayah.setName_arabic(cursor.getString(cursor.getColumnIndexOrThrow("name_arabic")));
                     ayah.setTrans(cursor.getString(cursor.getColumnIndexOrThrow("trans")));
+                    ayah.setIndo_pak(cursor.getString(cursor.getColumnIndexOrThrow("indo_pak")));
                     ayahs.add(ayah);
                 } while (cursor.moveToNext());
             }

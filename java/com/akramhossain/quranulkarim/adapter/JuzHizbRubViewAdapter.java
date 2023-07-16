@@ -94,7 +94,12 @@ public class JuzHizbRubViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         final RecyclerViewHolder rvHolder = (RecyclerViewHolder) holder;
         final Ayah ayah = ayahs.get(position);
         rvHolder.ayah_index.setText(ayah.getAyah_index());
-        rvHolder.text_tashkeel.setText(ayah.getText_tashkeel());
+        String mushaf = mPrefs.getString("mushaf", "IndoPak");
+        if(mushaf.equals("Uthmanic")) {
+            rvHolder.text_tashkeel.setText(ayah.getText_tashkeel());
+        }else {
+            rvHolder.text_tashkeel.setText(ayah.getIndo_pak());
+        }
         rvHolder.content_en.setText(ayah.getContent_en());
         rvHolder.content_bn.setText(ayah.getContent_bn());
         rvHolder.ayah_num.setText(ayah.getAyah_key());

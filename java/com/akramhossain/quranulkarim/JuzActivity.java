@@ -68,9 +68,10 @@ public class JuzActivity extends AppCompatActivity {
 
     private void getDataFromLocalDb() {
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-        String sql = "select ayah.ayah_index,ayah.ayah_num,ayah.surah_id,ayah.page_num,ayah.juz_num,ayah.text_tashkeel,ayah.ayah_key,sura.name_simple,sura.name_complex,sura.name_english,sura.name_arabic\n" +
+        String sql = "select ayah.ayah_index,ayah.ayah_num,ayah.surah_id,ayah.page_num,ayah.juz_num,ayah.text_tashkeel,ayah.ayah_key,sura.name_simple,sura.name_complex,sura.name_english,sura.name_arabic,ayah_indo.text as indo_pak\n" +
                 "from ayah \n" +
                 "inner join sura ON ayah.surah_id = sura.surah_id\n" +
+                "inner join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id "+
                 "group by juz_num " +
                 "HAVING MIN(ayah_index) " +
                 "order by juz_num asc";
@@ -91,6 +92,7 @@ public class JuzActivity extends AppCompatActivity {
                     juz.setName_english(cursor.getString(cursor.getColumnIndexOrThrow("name_english")));
                     juz.setName_arabic(cursor.getString(cursor.getColumnIndexOrThrow("name_arabic")));
                     juz.setAyah_num(cursor.getString(cursor.getColumnIndexOrThrow("ayah_num")));
+                    juz.setIndo_pak(cursor.getString(cursor.getColumnIndexOrThrow("indo_pak")));
                     juzs.add(juz);
                 }while (cursor.moveToNext());
             }

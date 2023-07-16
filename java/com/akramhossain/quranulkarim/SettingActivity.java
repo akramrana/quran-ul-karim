@@ -42,6 +42,8 @@ public class SettingActivity extends AppCompatActivity{
     public static final String show_en_trans = "show_en_trans";
     public static final String show_bn_trans = "show_bn_trans";
 
+    public static final String sp_mushaf = "mushaf";
+
     CheckBox chk_ibnkasir, chk_bayaan, chk_zakaria, chk_tafhim, chk_fathul_mazid, chk_fezilalil, chk_jalalayn;
     CheckBox chk_showBnPronunciation, chk_showEnTranslation, chk_showBnTranslation;
 
@@ -56,12 +58,20 @@ public class SettingActivity extends AppCompatActivity{
         fontFamily.add("Arabic Regular");
         fontFamily.add("Taha Naskh");
         fontFamily.add("Al Qalam Quran");
-        fontFamily.add("Uthmanic Script");
+        fontFamily.add("Noore Huda");
         fontFamily.add("Noore Hidayat");
         fontFamily.add("Saleem Quran");
         final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, fontFamily);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
+        //
+        final Spinner spinner1 = (Spinner) findViewById(R.id.mushaf_spinner);
+        List<String> mushafs = new ArrayList<String>();
+        mushafs.add("IndoPak");
+        mushafs.add("Uthmanic");
+        final ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mushafs);
+        dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner1.setAdapter(dataAdapter1);
         //
         arFontSize = (EditText)findViewById(R.id.arFontSize);
         enFontSize = (EditText)findViewById(R.id.enFontSize);
@@ -75,6 +85,7 @@ public class SettingActivity extends AppCompatActivity{
         String mp_bnFz = mPrefs.getString(sp_bnFontSize, "15");
         String mp_enFzTs = mPrefs.getString(sp_enFontSizeTafsir, "15");
         String mp_bnFzTs = mPrefs.getString(sp_bnFontSizeTafsir, "15");
+        String mp_mushaf = mPrefs.getString(sp_mushaf, "IndoPak");
         //
         arFontSize.setText(mp_arFz);
         enFontSize.setText(mp_enFz);
@@ -82,6 +93,7 @@ public class SettingActivity extends AppCompatActivity{
         enFontSizeTafsir.setText(mp_enFzTs);
         bnFontSizeTafsir.setText(mp_bnFzTs);
         spinner.setSelection(dataAdapter.getPosition(mp_arabicFontFamily));
+        spinner1.setSelection(dataAdapter1.getPosition(mp_mushaf));
         //
         String is_ibn_kasir = mPrefs.getString(is_tafsir_ibn_kasir_selected, "2");
         String is_bayaan = mPrefs.getString(is_tafsir_bayaan_selected, "2");
@@ -146,6 +158,7 @@ public class SettingActivity extends AppCompatActivity{
                 String bnFz = bnFontSize.getText().toString();
                 String enFzTs = enFontSizeTafsir.getText().toString();
                 String bnFzTs = bnFontSizeTafsir.getText().toString();
+                String mushaf = spinner1.getSelectedItem().toString();
                 //
                 /*Log.i("arabicFontFamily", arabicFontFamily);
                 Log.i("arFontSize", arFz);
@@ -161,6 +174,7 @@ public class SettingActivity extends AppCompatActivity{
                 editor.putString(sp_bnFontSize, bnFz);
                 editor.putString(sp_enFontSizeTafsir, enFzTs);
                 editor.putString(sp_bnFontSizeTafsir, bnFzTs);
+                editor.putString(sp_mushaf, mushaf);
                 //
                 if(chk_ibnkasir.isChecked()){
                     editor.putString(is_tafsir_ibn_kasir_selected, "1");
@@ -236,8 +250,10 @@ public class SettingActivity extends AppCompatActivity{
                 String bnFz = "15";
                 String enFzTs ="15";
                 String bnFzTs = "15";
+                String mushaf = "IndoPak";
                 //
                 spinner.setSelection(dataAdapter.getPosition(arabicFontFamily));
+                spinner1.setSelection(dataAdapter1.getPosition(mushaf));
                 SharedPreferences.Editor editor = mPrefs.edit();
                 editor.putString(sp_arabicFontFamily, arabicFontFamily);
                 editor.putString(sp_arFontSize, arFz);
@@ -245,6 +261,7 @@ public class SettingActivity extends AppCompatActivity{
                 editor.putString(sp_bnFontSize, bnFz);
                 editor.putString(sp_enFontSizeTafsir, enFzTs);
                 editor.putString(sp_bnFontSizeTafsir, bnFzTs);
+                editor.putString(sp_mushaf, mushaf);
                 //
                 editor.putString(is_tafsir_ibn_kasir_selected, "2");
                 editor.putString(is_tafsir_bayaan_selected, "2");
