@@ -53,6 +53,8 @@ public class QiblaCompassActivity extends AppCompatActivity implements SensorEve
         image = (ImageView) findViewById(R.id.compass);
         arrow = (ImageView) findViewById(R.id.needle);
 
+        mSensorManager =  (SensorManager) getApplicationContext().getSystemService(SENSOR_SERVICE);
+
         if (checkPermission()) {
             LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
             try{
@@ -106,7 +108,6 @@ public class QiblaCompassActivity extends AppCompatActivity implements SensorEve
         userLoc.setLatitude(lati);
         userLoc.setAltitude(alti);
         //
-        mSensorManager =  (SensorManager) getApplicationContext().getSystemService(SENSOR_SERVICE);
         sensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
         if(sensor!=null) {
             // for the system's orientation sensor registered listeners

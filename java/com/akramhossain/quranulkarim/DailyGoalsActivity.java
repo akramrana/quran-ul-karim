@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 
+import org.w3c.dom.Text;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -221,13 +223,15 @@ public class DailyGoalsActivity extends AppCompatActivity {
             }
         });
         chkDoha = findViewById(R.id.chkDoha);
-        chkHadith.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        chkDoha.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     updateDailyReport("salat_ud_doha", points_salat_ud_doha);
+                    progressDoha.setProgress(100, true);
                 } else {
                     updateDailyReport("salat_ud_doha", 0);
+                    progressDoha.setProgress(0, true);
                 }
             }
         });
@@ -237,8 +241,10 @@ public class DailyGoalsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     updateDailyReport("dhuhr_prayer", points_dhuhr_prayer);
+                    progressDhuhr.setProgress(100, true);
                 } else {
                     updateDailyReport("dhuhr_prayer", 0);
+                    progressDhuhr.setProgress(0, true);
                 }
             }
         });
@@ -248,8 +254,10 @@ public class DailyGoalsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     updateDailyReport("asr_prayer", points_asr_prayer);
+                    progressAsr.setProgress(100, true);
                 } else {
                     updateDailyReport("asr_prayer", 0);
+                    progressAsr.setProgress(0, true);
                 }
             }
         });
@@ -259,8 +267,10 @@ public class DailyGoalsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     updateDailyReport("maghrib_prayer", points_maghrib_prayer);
+                    progressMaghrib.setProgress(100, true);
                 } else {
                     updateDailyReport("maghrib_prayer", 0);
+                    progressMaghrib.setProgress(0, true);
                 }
             }
         });
@@ -270,8 +280,10 @@ public class DailyGoalsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     updateDailyReport("isha_prayer", points_isha_prayer);
+                    progressIsha.setProgress(100, true);
                 } else {
                     updateDailyReport("isha_prayer", 0);
+                    progressIsha.setProgress(0, true);
                 }
             }
         });
@@ -281,8 +293,10 @@ public class DailyGoalsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     updateDailyReport("charity", points_charity);
+                    progressCharity.setProgress(100, true);
                 } else {
                     updateDailyReport("charity", 0);
+                    progressCharity.setProgress(0, true);
                 }
             }
         });
@@ -292,8 +306,10 @@ public class DailyGoalsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     updateDailyReport("literature", points_literature);
+                    progressLiterature.setProgress(100, true);
                 } else {
                     updateDailyReport("literature", 0);
+                    progressLiterature.setProgress(0, true);
                 }
             }
         });
@@ -303,8 +319,10 @@ public class DailyGoalsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     updateDailyReport("surah_mulk_recitation", points_surah_mulk_recitation);
+                    progressMulk.setProgress(100, true);
                 } else {
                     updateDailyReport("surah_mulk_recitation", 0);
+                    progressMulk.setProgress(0, true);
                 }
             }
         });
@@ -314,8 +332,10 @@ public class DailyGoalsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     updateDailyReport("recitation_last_2_surah_baqarah", points_recitation_last_2_surah_baqarah);
+                    progressBaqara.setProgress(100, true);
                 } else {
                     updateDailyReport("recitation_last_2_surah_baqarah", 0);
+                    progressBaqara.setProgress(0, true);
                 }
             }
         });
@@ -325,8 +345,10 @@ public class DailyGoalsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     updateDailyReport("ayatul_kursi", points_ayatul_kursi);
+                    progressQursi.setProgress(100, true);
                 } else {
                     updateDailyReport("ayatul_kursi", 0);
+                    progressQursi.setProgress(0, true);
                 }
             }
         });
@@ -336,8 +358,10 @@ public class DailyGoalsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     updateDailyReport("recitation_first_last_10_surah_kahf", points_recitation_first_last_10_surah_kahf);
+                    progressKahf.setProgress(100, true);
                 } else {
                     updateDailyReport("recitation_first_last_10_surah_kahf", 0);
+                    progressKahf.setProgress(0, true);
                 }
             }
         });
@@ -347,8 +371,10 @@ public class DailyGoalsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     updateDailyReport("tasbih", points_tasbih);
+                    progressTasbih.setProgress(100, true);
                 } else {
                     updateDailyReport("tasbih", 0);
+                    progressTasbih.setProgress(0, true);
                 }
             }
         });
@@ -358,8 +384,10 @@ public class DailyGoalsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     updateDailyReport("smoking", points_smoking);
+                    progressHaram1.setProgress(100, true);
                 } else {
                     updateDailyReport("smoking", 0);
+                    progressHaram1.setProgress(0, true);
                 }
             }
         });
@@ -369,8 +397,10 @@ public class DailyGoalsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     updateDailyReport("alcohol", points_alcohol);
+                    progressHaram2.setProgress(100, true);
                 } else {
                     updateDailyReport("alcohol", 0);
+                    progressHaram2.setProgress(0, true);
                 }
             }
         });
@@ -380,8 +410,10 @@ public class DailyGoalsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     updateDailyReport("haram_things", points_haram_things);
+                    progressHaram3.setProgress(100, true);
                 } else {
                     updateDailyReport("haram_things", 0);
+                    progressHaram3.setProgress(0, true);
                 }
             }
         });
@@ -391,8 +423,10 @@ public class DailyGoalsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     updateDailyReport("backbiting", points_backbiting);
+                    progressHaram4.setProgress(100, true);
                 } else {
                     updateDailyReport("backbiting", 0);
+                    progressHaram4.setProgress(0, true);
                 }
             }
         });
@@ -402,14 +436,21 @@ public class DailyGoalsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     updateDailyReport("slandering", points_slandering);
+                    progressHaram5.setProgress(100, true);
                 } else {
                     updateDailyReport("slandering", 0);
+                    progressHaram5.setProgress(0, true);
                 }
             }
         });
 
         getReportData();
 
+        TextView title = (TextView) findViewById(R.id.title);
+        DateFormat dateFormat = new SimpleDateFormat("EEE, MMMM dd yyyy");
+        Date date = new Date();
+        String dtStr = dateFormat.format(date);
+        title.setText(dtStr);
     }
 
     public void getReportData(){
@@ -451,6 +492,108 @@ public class DailyGoalsActivity extends AppCompatActivity {
                     chkHadith.setChecked(true);
                     progressHadith.setProgress(100, true);
                 }
+
+                Integer salat_ud_doha = cursor.getInt(cursor.getColumnIndexOrThrow("salat_ud_doha"));
+                if(salat_ud_doha > 0){
+                    chkDoha.setChecked(true);
+                    progressDoha.setProgress(100, true);
+                }
+
+                Integer dhuhr_prayer = cursor.getInt(cursor.getColumnIndexOrThrow("dhuhr_prayer"));
+                if(dhuhr_prayer > 0){
+                    chkDhuhr.setChecked(true);
+                    progressDhuhr.setProgress(100, true);
+                }
+
+                Integer asr_prayer = cursor.getInt(cursor.getColumnIndexOrThrow("asr_prayer"));
+                if(asr_prayer > 0){
+                    chkAsr.setChecked(true);
+                    progressAsr.setProgress(100, true);
+                }
+
+                Integer maghrib_prayer = cursor.getInt(cursor.getColumnIndexOrThrow("maghrib_prayer"));
+                if(maghrib_prayer > 0){
+                    chkMaghrib.setChecked(true);
+                    progressMaghrib.setProgress(100, true);
+                }
+
+                Integer isha_prayer = cursor.getInt(cursor.getColumnIndexOrThrow("isha_prayer"));
+                if(isha_prayer > 0){
+                    chkIsha.setChecked(true);
+                    progressIsha.setProgress(100, true);
+                }
+
+                Integer charity = cursor.getInt(cursor.getColumnIndexOrThrow("charity"));
+                if(charity > 0){
+                    chkCharity.setChecked(true);
+                    progressCharity.setProgress(100, true);
+                }
+
+                Integer literature = cursor.getInt(cursor.getColumnIndexOrThrow("literature"));
+                if(literature > 0){
+                    chkLiterature.setChecked(true);
+                    progressLiterature.setProgress(100, true);
+                }
+
+                Integer surah_mulk_recitation = cursor.getInt(cursor.getColumnIndexOrThrow("surah_mulk_recitation"));
+                if(surah_mulk_recitation > 0){
+                    chkMulk.setChecked(true);
+                    progressMulk.setProgress(100, true);
+                }
+
+                Integer recitation_last_2_surah_baqarah = cursor.getInt(cursor.getColumnIndexOrThrow("recitation_last_2_surah_baqarah"));
+                if(recitation_last_2_surah_baqarah > 0){
+                    chkBaqara.setChecked(true);
+                    progressBaqara.setProgress(100, true);
+                }
+
+                Integer ayatul_kursi = cursor.getInt(cursor.getColumnIndexOrThrow("ayatul_kursi"));
+                if(ayatul_kursi > 0){
+                    chkQursi.setChecked(true);
+                    progressQursi.setProgress(100, true);
+                }
+
+                Integer recitation_first_last_10_surah_kahf = cursor.getInt(cursor.getColumnIndexOrThrow("recitation_first_last_10_surah_kahf"));
+                if(recitation_first_last_10_surah_kahf > 0){
+                    chkKahf.setChecked(true);
+                    progressKahf.setProgress(100, true);
+                }
+
+                Integer tasbih = cursor.getInt(cursor.getColumnIndexOrThrow("tasbih"));
+                if(tasbih > 0){
+                    chkTasbih.setChecked(true);
+                    progressTasbih.setProgress(100, true);
+                }
+
+                Integer smoking = cursor.getInt(cursor.getColumnIndexOrThrow("smoking"));
+                if(smoking > 0){
+                    chkHaram1.setChecked(true);
+                    progressHaram1.setProgress(100, true);
+                }
+
+                Integer alcohol = cursor.getInt(cursor.getColumnIndexOrThrow("alcohol"));
+                if(alcohol > 0){
+                    chkHaram2.setChecked(true);
+                    progressHaram2.setProgress(100, true);
+                }
+
+                Integer haram_things = cursor.getInt(cursor.getColumnIndexOrThrow("haram_things"));
+                if(haram_things > 0){
+                    chkHaram3.setChecked(true);
+                    progressHaram3.setProgress(100, true);
+                }
+
+                Integer backbiting = cursor.getInt(cursor.getColumnIndexOrThrow("backbiting"));
+                if(backbiting > 0){
+                    chkHaram4.setChecked(true);
+                    progressHaram4.setProgress(100, true);
+                }
+
+                Integer slandering = cursor.getInt(cursor.getColumnIndexOrThrow("slandering"));
+                if(slandering > 0){
+                    chkHaram5.setChecked(true);
+                    progressHaram5.setProgress(100, true);
+                }
             }
         }catch (Exception e) {
             Log.i("Report SQL", e.getMessage());
@@ -477,13 +620,13 @@ public class DailyGoalsActivity extends AppCompatActivity {
                 values.put(columnName, value);
                 values.put("date",dtStr);
                 DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase().update("reports", values, "date = ?", new String[]{dtStr});
-                Toast.makeText(getApplicationContext(), "Reports updated.", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Reports updated.", Toast.LENGTH_LONG).show();
             }else{
                 ContentValues values = new ContentValues();
                 values.put(columnName, value);
                 values.put("date",dtStr);
                 DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase().insertOrThrow("reports", "", values);
-                Toast.makeText(getApplicationContext(), "Reports updated.", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Reports updated.", Toast.LENGTH_LONG).show();
             }
         }catch (Exception e) {
             Log.i("Report SQL", e.getMessage());

@@ -236,17 +236,8 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="160dp"
                         android:layout_height="160dp"
-                        app:cardElevation="2dp"
+                        app:cardElevation="3dp"
                         app:cardCornerRadius="25dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Current Progress"
-                            android:textSize="16sp"
-                            android:textColor="@color/colorWhite"
-                            android:layout_marginTop="15dp"
-                            android:layout_gravity="center_horizontal"/>
 
                         <TextView
                             android:id="@+id/txtPer"
@@ -255,15 +246,16 @@
                             android:text="75%"
                             android:textStyle="bold"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="125dp"
-                            android:textSize="16sp"/>
+                            android:layout_marginTop="55dp"
+                            android:textSize="14sp"
+                            android:gravity="center"/>
 
                         <ProgressBar
                             tools:progress="1"
                             android:id="@+id/prog"
-                            android:layout_marginTop="30dp"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="160dp"
+                            android:layout_height="140dp"
                             android:indeterminateOnly="false"
                             android:layout_gravity="center_horizontal"
                             android:progressDrawable="@drawable/circle"
