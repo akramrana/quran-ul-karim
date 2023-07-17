@@ -88,14 +88,14 @@ public class WordMeaningActivity extends AppCompatActivity {
             requestPermission();
         }
 
-        String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
+        String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
         if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
             titleAr.setTypeface(fontAlmajeed);
         }
         if(mp_arabicFontFamily.equals("Al Qalam Quran")){
             titleAr.setTypeface(fontAlQalam);
         }
-        if(mp_arabicFontFamily.equals("Uthmanic Script")){
+        if(mp_arabicFontFamily.equals("Noore Huda")){
             titleAr.setTypeface(fontUthmani);
         }
         if(mp_arabicFontFamily.equals("Noore Hidayat")){

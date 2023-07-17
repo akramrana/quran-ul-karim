@@ -142,7 +142,7 @@ public class ShareVerseActivity extends AppCompatActivity {
         tv_trans.setTypeface(font);
         tv_trans.setText(ayah_trans);
 
-        String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
+        String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
         String mp_arFz = mPrefs.getString("arFontSize", "30");
         String mp_enFz = mPrefs.getString("enFontSize", "15");
         String mp_bnFz = mPrefs.getString("bnFontSize", "15");
@@ -152,7 +152,7 @@ public class ShareVerseActivity extends AppCompatActivity {
         if(mp_arabicFontFamily.equals("Al Qalam Quran")){
             tv_ayah_arabic.setTypeface(fontAlQalam);
         }
-        if(mp_arabicFontFamily.equals("Uthmanic Script")){
+        if(mp_arabicFontFamily.equals("Noore Huda")){
             tv_ayah_arabic.setTypeface(fontUthmani);
         }
         if(mp_arabicFontFamily.equals("Noore Hidayat")){

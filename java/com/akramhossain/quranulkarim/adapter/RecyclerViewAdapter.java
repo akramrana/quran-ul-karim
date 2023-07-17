@@ -140,14 +140,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             middle_section = (LinearLayout) itemView.findViewById(R.id.mid_section);
             right_section = (LinearLayout) itemView.findViewById(R.id.right_section);
 
-            String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
+            String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
             if (mp_arabicFontFamily.equals("Al Majeed Quranic Font")) {
                 nameArabicTxt.setTypeface(fontAlmajeed);
             }
             if (mp_arabicFontFamily.equals("Al Qalam Quran")) {
                 nameArabicTxt.setTypeface(fontAlQalam);
             }
-            if (mp_arabicFontFamily.equals("Uthmanic Script")) {
+            if (mp_arabicFontFamily.equals("Noore Huda")) {
                 nameArabicTxt.setTypeface(fontUthmani);
             }
             if (mp_arabicFontFamily.equals("Noore Hidayat")) {

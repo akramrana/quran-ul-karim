@@ -315,12 +315,15 @@ public class TafsirActivity extends AppCompatActivity {
         Button previousBtn = (Button) findViewById(R.id.previousBtn);
         Button nextBtn = (Button) findViewById(R.id.nextBtn);
 
+        String mushaf = mPrefs.getString("mushaf", "IndoPak");
         previousBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-                String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans " +
+                String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans,ayah_indo.text as indo_pak " +
                         "FROM ayah " +
-                        "LEFT join sura ON ayah.surah_id = sura.surah_id LEFT join transliteration ON ayah.ayah_num = transliteration.ayat_id and transliteration.sura_id = ayah.surah_id " +
+                        "LEFT join sura ON ayah.surah_id = sura.surah_id " +
+                        "LEFT join transliteration ON ayah.ayah_num = transliteration.ayat_id and transliteration.sura_id = ayah.surah_id " +
+                        "LEFT join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id "+
                         "WHERE ayah.surah_id = "+surah_id+" and ayah.ayah_num < "+ayah_num+" " +
                         "order by ayah.ayah_index DESC " +
                         "limit 1";
@@ -329,7 +332,11 @@ public class TafsirActivity extends AppCompatActivity {
                 try {
                     if (cursor.moveToFirst()) {
                         ayah_index = cursor.getString(0);
-                        text_tashkeel = cursor.getString(10);
+                        if(mushaf.equals("Uthmanic")) {
+                            text_tashkeel = cursor.getString(10);
+                        }else{
+                            text_tashkeel = cursor.getString(20);
+                        }
                         content_en = cursor.getString(11);
                         content_bn = cursor.getString(12);
                         ayah_num = cursor.getString(2);
@@ -357,9 +364,11 @@ public class TafsirActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-                String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans " +
+                String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans,ayah_indo.text as indo_pak " +
                         "FROM ayah " +
-                        "LEFT join sura ON ayah.surah_id = sura.surah_id LEFT join transliteration ON ayah.ayah_num = transliteration.ayat_id and transliteration.sura_id = ayah.surah_id " +
+                        "LEFT join sura ON ayah.surah_id = sura.surah_id " +
+                        "LEFT join transliteration ON ayah.ayah_num = transliteration.ayat_id and transliteration.sura_id = ayah.surah_id " +
+                        "LEFT join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id "+
                         "WHERE ayah.surah_id = "+surah_id+" and ayah.ayah_num > "+ayah_num+" " +
                         "order by ayah.ayah_index ASC " +
                         "limit 1";
@@ -368,7 +377,11 @@ public class TafsirActivity extends AppCompatActivity {
                 try {
                     if (cursor.moveToFirst()) {
                         ayah_index = cursor.getString(0);
-                        text_tashkeel = cursor.getString(10);
+                        if(mushaf.equals("Uthmanic")) {
+                            text_tashkeel = cursor.getString(10);
+                        }else{
+                            text_tashkeel = cursor.getString(20);
+                        }
                         content_en = cursor.getString(11);
                         content_bn = cursor.getString(12);
                         ayah_num = cursor.getString(2);
@@ -393,7 +406,7 @@ public class TafsirActivity extends AppCompatActivity {
             }
         });
 
-        String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
+        String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
         String mp_arFz = mPrefs.getString("arFontSize", "30");
         String mp_enFz = mPrefs.getString("enFontSize", "15");
         String mp_bnFz = mPrefs.getString("bnFontSize", "15");
@@ -404,7 +417,7 @@ public class TafsirActivity extends AppCompatActivity {
         if(mp_arabicFontFamily.equals("Al Qalam Quran")){
             tv_ayah_arabic.setTypeface(fontAlQalam);
         }
-        if(mp_arabicFontFamily.equals("Uthmanic Script")){
+        if(mp_arabicFontFamily.equals("Noore Huda")){
             tv_ayah_arabic.setTypeface(fontUthmani);
         }
         if(mp_arabicFontFamily.equals("Noore Hidayat")){

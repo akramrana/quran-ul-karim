@@ -417,14 +417,14 @@ public class MainActivity extends AppCompatActivity {
         fontSaleem = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
         font = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/Siyamrupali.ttf");
 
-        String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
+        String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
         if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
             name_title_ar.setTypeface(fontAlmajeed);
         }
         if(mp_arabicFontFamily.equals("Al Qalam Quran")){
             name_title_ar.setTypeface(fontAlQalam);
         }
-        if(mp_arabicFontFamily.equals("Uthmanic Script")){
+        if(mp_arabicFontFamily.equals("Noore Huda")){
             name_title_ar.setTypeface(fontUthmani);
         }
         if(mp_arabicFontFamily.equals("Noore Hidayat")){

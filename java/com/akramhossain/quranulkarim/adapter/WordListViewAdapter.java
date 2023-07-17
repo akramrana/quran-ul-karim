@@ -325,7 +325,7 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             playWordBtn = (Button) itemView.findViewById(R.id.playWordBtn);
             word_bangla = (TextView) itemView.findViewById(R.id.word_bangla);
 
-            String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
+            String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
             String mp_arFz = mPrefs.getString("arFontSize", "30");
             String mp_enFz = mPrefs.getString("enFontSize", "15");
             String mp_bnFz = mPrefs.getString("bnFontSize", "15");
@@ -336,7 +336,7 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             if(mp_arabicFontFamily.equals("Al Qalam Quran")){
                 word_arabic.setTypeface(fontAlQalam);
             }
-            if(mp_arabicFontFamily.equals("Uthmanic Script")){
+            if(mp_arabicFontFamily.equals("Noore Huda")){
                 word_arabic.setTypeface(fontUthmani);
             }
             if(mp_arabicFontFamily.equals("Noore Hidayat")){

@@ -52,9 +52,14 @@ public class HizbViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         rvHolder.ayah_index.setText(hizb.getAyah_index());
         //rvHolder.surah_id.setText(juz.getSurah_id());
         //rvHolder.page_num.setText(juz.getPage_num());
+        String mushaf = mPrefs.getString("mushaf", "IndoPak");
         rvHolder.hizb_num.setText("Hizb "+hizb.getHizb_num());
-        //String tt = hizb.getText_tashkeel();
-        String tt = hizb.getIndo_pak();
+        String tt = "";
+        if(mushaf.equals("Uthmanic")) {
+            tt = hizb.getText_tashkeel();
+        }else {
+            tt = hizb.getIndo_pak();
+        }
 
         if (tt.length() > 110) {
             cutTT = tt.substring(0, 110);
@@ -102,7 +107,7 @@ public class HizbViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             name_english = (TextView) itemView.findViewById(R.id.name_english);
             name_arabic = (TextView) itemView.findViewById(R.id.name_arabic);
 
-            String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
+            String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
             if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
                 text_tashkeel.setTypeface(fontAlmajeed);
                 name_arabic.setTypeface(fontAlmajeed);
@@ -111,7 +116,7 @@ public class HizbViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 text_tashkeel.setTypeface(fontAlQalam);
                 name_arabic.setTypeface(fontAlQalam);
             }
-            if(mp_arabicFontFamily.equals("Uthmanic Script")){
+            if(mp_arabicFontFamily.equals("Noore Huda")){
                 text_tashkeel.setTypeface(fontUthmani);
                 name_arabic.setTypeface(fontUthmani);
             }

@@ -79,7 +79,7 @@ public class SettingActivity extends AppCompatActivity{
         enFontSizeTafsir = (EditText)findViewById(R.id.enFontSizeTafsir);
         bnFontSizeTafsir = (EditText)findViewById(R.id.bnFontSizeTafsir);
         //
-        String mp_arabicFontFamily = mPrefs.getString(sp_arabicFontFamily, "Arabic Regular");
+        String mp_arabicFontFamily = mPrefs.getString(sp_arabicFontFamily, "Noore Huda");
         String mp_arFz = mPrefs.getString(sp_arFontSize, "30");
         String mp_enFz = mPrefs.getString(sp_enFontSize, "15");
         String mp_bnFz = mPrefs.getString(sp_bnFontSize, "15");
@@ -244,7 +244,7 @@ public class SettingActivity extends AppCompatActivity{
                 enFontSizeTafsir.setText("15");
                 bnFontSizeTafsir.setText("15");
 
-                String arabicFontFamily = "Arabic Regular";
+                String arabicFontFamily = "Noore Huda";
                 String arFz = "30";
                 String enFz = "15";
                 String bnFz = "15";

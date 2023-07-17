@@ -40,14 +40,14 @@ public class SplashScreenActivity extends Activity {
         TextView splash_title_ar = (TextView) findViewById(R.id.splash_title_ar);
         TextView splash_title_bn = (TextView) findViewById(R.id.splash_title_bn);
 
-        String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
+        String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
         if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
             splash_title_ar.setTypeface(fontAlmajeed);
         }
         if(mp_arabicFontFamily.equals("Al Qalam Quran")){
             splash_title_ar.setTypeface(fontAlQalam);
         }
-        if(mp_arabicFontFamily.equals("Uthmanic Script")){
+        if(mp_arabicFontFamily.equals("Noore Huda")){
             splash_title_ar.setTypeface(fontUthmani);
         }
         if(mp_arabicFontFamily.equals("Noore Hidayat")){

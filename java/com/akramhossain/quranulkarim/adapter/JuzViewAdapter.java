@@ -52,8 +52,13 @@ public class JuzViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         //rvHolder.surah_id.setText(juz.getSurah_id());
         //rvHolder.page_num.setText(juz.getPage_num());
         rvHolder.juz_num.setText("JUZ\' "+juz.getJuz_num());
-        //String tt = juz.getText_tashkeel();
-        String tt = juz.getIndo_pak();
+        String mushaf = mPrefs.getString("mushaf", "IndoPak");
+        String tt = "";
+        if(mushaf.equals("Uthmanic")) {
+            tt = juz.getText_tashkeel();
+        }else {
+            tt = juz.getIndo_pak();
+        }
         if (tt.length() > 110) {
             cutTT = tt.substring(0, 110);
         }else{
@@ -100,7 +105,7 @@ public class JuzViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             name_english = (TextView) itemView.findViewById(R.id.name_english);
             name_arabic = (TextView) itemView.findViewById(R.id.name_arabic);
 
-            String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
+            String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
             if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
                 text_tashkeel.setTypeface(fontAlmajeed);
                 name_arabic.setTypeface(fontAlmajeed);
@@ -109,7 +114,7 @@ public class JuzViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 text_tashkeel.setTypeface(fontAlQalam);
                 name_arabic.setTypeface(fontAlQalam);
             }
-            if(mp_arabicFontFamily.equals("Uthmanic Script")){
+            if(mp_arabicFontFamily.equals("Noore Huda")){
                 text_tashkeel.setTypeface(fontUthmani);
                 name_arabic.setTypeface(fontUthmani);
             }

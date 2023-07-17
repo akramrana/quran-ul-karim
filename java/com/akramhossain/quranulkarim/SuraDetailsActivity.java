@@ -638,7 +638,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
 
         String mp_arFz = mPrefs.getString("arFontSize", "30");
 
-        String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
+        String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
         if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
             titleAr.setTypeface(fontAlmajeed);
             text_bismillah.setTypeface(fontAlmajeed);
@@ -649,7 +649,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
             text_bismillah.setTypeface(fontAlQalam);
             ayah_txt.setTypeface(fontAlQalam);
         }
-        if(mp_arabicFontFamily.equals("Uthmanic Script")){
+        if(mp_arabicFontFamily.equals("Noore Huda")){
             titleAr.setTypeface(fontUthmani);
             text_bismillah.setTypeface(fontUthmani);
             ayah_txt.setTypeface(fontUthmani);

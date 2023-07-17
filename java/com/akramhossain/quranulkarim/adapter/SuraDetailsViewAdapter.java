@@ -318,7 +318,12 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 try {
                     Intent in = new Intent(c, WordMeaningActivity.class);
                     in.putExtra("ayah_index", ayah.getAyah_index());
-                    in.putExtra("text_tashkeel", ayah.getText_tashkeel());
+                    String mushaf = mPrefs.getString("mushaf", "IndoPak");
+                    if(mushaf.equals("Uthmanic")) {
+                        in.putExtra("text_tashkeel", ayah.getText_tashkeel());
+                    }else{
+                        in.putExtra("text_tashkeel", ayah.getIndo_pak());
+                    }
                     in.putExtra("content_en", ayah.getContent_en());
                     in.putExtra("content_bn", ayah.getContent_bn());
                     c.startActivity(in);
@@ -334,7 +339,12 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 try {
                     Intent in = new Intent(c, ShareVerseActivity.class);
                     in.putExtra("ayah_index", ayah.getAyah_index());
-                    in.putExtra("text_tashkeel", ayah.getText_tashkeel());
+                    String mushaf = mPrefs.getString("mushaf", "IndoPak");
+                    if(mushaf.equals("Uthmanic")) {
+                        in.putExtra("text_tashkeel", ayah.getText_tashkeel());
+                    }else{
+                        in.putExtra("text_tashkeel", ayah.getIndo_pak());
+                    }
                     in.putExtra("content_en", ayah.getContent_en());
                     in.putExtra("content_bn", ayah.getContent_bn());
                     in.putExtra("ayah_num", ayah.getAyah_num());
@@ -352,7 +362,14 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             @Override
             public void onClick(View view) {
                 try {
-                    String fullAyat = ayah.getText_tashkeel() + "\n\n" + ayah.getTrans() + "\n\n" + ayah.getContent_en() + "\n\n" + ayah.getContent_bn() + "\n\nSura " + ayah.getName_simple() + ", Ayah " + ayah.getAyah_num();
+                    String ayahAraTxt = "";
+                    String mushaf = mPrefs.getString("mushaf", "IndoPak");
+                    if(mushaf.equals("Uthmanic")) {
+                        ayahAraTxt = ayah.getText_tashkeel();
+                    }else{
+                        ayahAraTxt = ayah.getIndo_pak();
+                    }
+                    String fullAyat = ayahAraTxt + "\n\n" + ayah.getTrans() + "\n\n" + ayah.getContent_en() + "\n\n" + ayah.getContent_bn() + "\n\nSura " + ayah.getName_simple() + ", Ayah " + ayah.getAyah_num();
                     String label = ayah.getName_simple() + ", Ayah " + ayah.getAyah_num();
                     Log.d(label, fullAyat);
                     android.content.ClipboardManager clipboard = (android.content.ClipboardManager) c.getSystemService(Context.CLIPBOARD_SERVICE);
@@ -371,7 +388,12 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 try {
                     Intent in = new Intent(c, TafsirActivity.class);
                     in.putExtra("ayah_index", ayah.getAyah_index());
-                    in.putExtra("text_tashkeel", ayah.getText_tashkeel());
+                    String mushaf = mPrefs.getString("mushaf", "IndoPak");
+                    if(mushaf.equals("Uthmanic")) {
+                        in.putExtra("text_tashkeel", ayah.getText_tashkeel());
+                    }else{
+                        in.putExtra("text_tashkeel", ayah.getIndo_pak());
+                    }
                     in.putExtra("content_en", ayah.getContent_en());
                     in.putExtra("content_bn", ayah.getContent_bn());
                     in.putExtra("ayah_num", ayah.getAyah_num());
@@ -484,7 +506,7 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             tafsirs = (TextView) itemView.findViewById(R.id.tafsirs);
             trans = (TextView) itemView.findViewById(R.id.trans);
             //
-            String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Arabic Regular");
+            String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
             String mp_arFz = mPrefs.getString("arFontSize", "30");
             String mp_enFz = mPrefs.getString("enFontSize", "15");
             String mp_bnFz = mPrefs.getString("bnFontSize", "15");
@@ -498,7 +520,7 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             if (mp_arabicFontFamily.equals("Al Qalam Quran")) {
                 text_tashkeel.setTypeface(fontAlQalam);
             }
-            if (mp_arabicFontFamily.equals("Uthmanic Script")) {
+            if (mp_arabicFontFamily.equals("Noore Huda")) {
                 text_tashkeel.setTypeface(fontUthmani);
             }
             if (mp_arabicFontFamily.equals("Noore Hidayat")) {
