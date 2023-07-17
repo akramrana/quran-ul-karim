@@ -145,7 +145,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:text="@string/string_search_by_term"
-                    android:textColor="@color/darkblue"
+                    android:textColor="@color/color10"
                     android:layout_marginBottom="10dp">
                 </TextView>
 
