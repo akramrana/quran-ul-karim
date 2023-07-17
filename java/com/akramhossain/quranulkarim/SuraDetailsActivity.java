@@ -773,13 +773,22 @@ public class SuraDetailsActivity extends AppCompatActivity {
 
     private void getSuraAsText(){
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-        String sql = "SELECT ayah.* FROM ayah WHERE ayah.surah_id = "+suraId;
+        String sql = "SELECT ayah.*,ayah_indo.text as indo_pak " +
+                "FROM ayah " +
+                "LEFT join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id "+
+                "WHERE ayah.surah_id = "+suraId;
         Cursor cursor = db.rawQuery(sql, null);
         StringBuilder fullSuraStr = new StringBuilder();
         try {
             if (cursor.moveToFirst()) {
                 do {
-                    String text = cursor.getString(cursor.getColumnIndexOrThrow("text_tashkeel"));
+                    String mushaf = mPrefs.getString("mushaf", "IndoPak");
+                    String text = "";
+                    if(mushaf.equals("Uthmanic")) {
+                        text = cursor.getString(cursor.getColumnIndexOrThrow("text_tashkeel"));
+                    }else{
+                        text = cursor.getString(cursor.getColumnIndexOrThrow("indo_pak"));
+                    }
                     String num = cursor.getString(cursor.getColumnIndexOrThrow("ayah_num"));
                     String arabicNum = " <b>"+convertoArabic(num)+"</b> ";
                     fullSuraStr.append(arabicNum).append(text);

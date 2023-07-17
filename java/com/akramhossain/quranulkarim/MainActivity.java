@@ -485,6 +485,9 @@ public class MainActivity extends AppCompatActivity {
         TextView dg_text_view_bn = (TextView) findViewById(R.id.dg_text_view_bn);
         dg_text_view_bn.setTypeface(font);
 
+        TextView subj_text_view_bn = (TextView) findViewById(R.id.subj_text_view_bn);
+        subj_text_view_bn.setTypeface(font);
+
         //bugReport = (TextView) findViewById(R.id.bugReport);
         feedback_link = (LinearLayout) findViewById(R.id.feedback_link);
         feedback_link.setOnClickListener(new View.OnClickListener() {
@@ -537,6 +540,15 @@ public class MainActivity extends AppCompatActivity {
 
         txtPer = (TextView) findViewById(R.id.txtPer);
         prog = (ProgressBar) findViewById(R.id.prog);
+
+        LinearLayout subj_sec = (LinearLayout) findViewById(R.id.subj_sec);
+        subj_sec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), SubjectWiseActivity.class);
+                startActivity(i);
+            }
+        });
 
     }
 

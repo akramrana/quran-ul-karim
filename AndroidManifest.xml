@@ -22,6 +22,9 @@
         android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".SubjectWiseActivity"
+            android:exported="false" />
+        <activity
             android:name=".DailyGoalsActivity"
             android:exported="false" />
         <activity
