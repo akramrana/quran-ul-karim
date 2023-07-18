@@ -18,6 +18,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
@@ -114,6 +115,7 @@ public class QiblaCompassActivity extends AppCompatActivity implements SensorEve
             mSensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_GAME);//SensorManager.SENSOR_DELAY_Fastest
         }else{
             Toast.makeText(getApplicationContext(),"Not Supported", Toast.LENGTH_SHORT).show();
+            arrow.setVisibility(View.INVISIBLE);
         }
     }
 
