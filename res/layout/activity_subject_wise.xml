@@ -37,24 +37,44 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
                     android:gravity="center"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:textColor="@color/colorWhiteDN"
                     android:textSize="15dp"
+                    android:layout_marginBottom="5dp"
                     android:text="@string/string_subj_subtitle"/>
+
+                <TextView
+                    android:id="@+id/hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/string_hint"
+                    android:textColor="@color/colorWhiteDN"
+                    android:gravity="center"
+                    android:layout_marginBottom="15dp"
+                    android:textSize="11dp"/>
 
             </LinearLayout>
 
 
         </RelativeLayout>
 
+        <SearchView
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:iconifiedByDefault="false"
+            android:focusable="false"
+            android:queryHint="Enter keyword to search..."
+            android:layout_below="@+id/topBarSlist">
+        </SearchView>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/all_index_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/topBarSlist"/>
+            android:layout_below="@id/search"/>
 
         <ProgressBar
             android:id="@+id/progressBar"

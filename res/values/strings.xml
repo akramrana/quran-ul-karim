@@ -169,4 +169,6 @@
     <string name="string_subj_bn">বিষয় ভিত্তিক আয়াত</string>
     <string name="string_subj_subtitle">Explore by Topic</string>
 
+    <string name="string_hint">**কিছু টপিকের বাংলা অর্থ ভুল হতে পারে**</string>
+
 </resources>
