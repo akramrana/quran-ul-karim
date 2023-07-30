@@ -238,6 +238,7 @@
                         android:orientation="vertical"
                         android:gravity="center_horizontal"
                         android:background="@drawable/linear_background"
+                        android:layout_marginRight="2dp"
                         android:padding="2dp">
 
                         <ImageView

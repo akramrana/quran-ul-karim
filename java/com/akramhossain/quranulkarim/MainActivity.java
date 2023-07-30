@@ -557,7 +557,7 @@ public class MainActivity extends AppCompatActivity {
         hadith_sec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), SubjectWiseActivity.class);
+                Intent i = new Intent(getApplicationContext(), HadithBookActivity.class);
                 startActivity(i);
             }
         });

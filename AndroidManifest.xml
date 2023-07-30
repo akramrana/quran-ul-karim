@@ -22,6 +22,9 @@
         android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".HadithBookActivity"
+            android:exported="false" />
+        <activity
             android:name=".SubjectDetailsActivity"
             android:exported="false" />
         <activity
