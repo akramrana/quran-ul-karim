@@ -191,7 +191,7 @@
                         android:id="@+id/qibla_compass"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
+                        android:layout_weight="0.3"
                         android:orientation="vertical"
                         android:gravity="center_horizontal"
                         android:background="@drawable/linear_background"
@@ -234,7 +234,7 @@
                         android:id="@+id/subj_sec"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
+                        android:layout_weight="0.3"
                         android:orientation="vertical"
                         android:gravity="center_horizontal"
                         android:background="@drawable/linear_background"
@@ -266,6 +266,48 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/subj_text_view_en"
                             android:text="@string/string_subj_bn"
+                            android:textSize="15.0sp"
+                            android:textColor="@color/colorWhite"
+                            android:gravity="center"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/hadith_sec"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:background="@drawable/linear_background"
+                        android:padding="2dp">
+
+                        <ImageView
+                            android:id="@+id/hadith_img"
+                            android:layout_width="48.0dip"
+                            android:layout_height="48.0dip"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/hadith" />
+
+                        <TextView
+                            android:id="@+id/hadith_text_view_en"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/hadith_img"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="2.0dip"
+                            android:text="@string/string_hadith_en"
+                            android:textSize="15.0sp"
+                            android:textColor="@color/colorWhite"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/hadith_text_view_bn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/hadith_text_view_en"
+                            android:text="@string/string_hadith_bn"
                             android:textSize="15.0sp"
                             android:textColor="@color/colorWhite"
                             android:gravity="center"/>

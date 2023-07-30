@@ -488,6 +488,9 @@ public class MainActivity extends AppCompatActivity {
         TextView subj_text_view_bn = (TextView) findViewById(R.id.subj_text_view_bn);
         subj_text_view_bn.setTypeface(font);
 
+        TextView hadith_text_view_bn = (TextView) findViewById(R.id.hadith_text_view_bn);
+        hadith_text_view_bn.setTypeface(font);
+
         //bugReport = (TextView) findViewById(R.id.bugReport);
         feedback_link = (LinearLayout) findViewById(R.id.feedback_link);
         feedback_link.setOnClickListener(new View.OnClickListener() {
@@ -543,6 +546,15 @@ public class MainActivity extends AppCompatActivity {
 
         LinearLayout subj_sec = (LinearLayout) findViewById(R.id.subj_sec);
         subj_sec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), SubjectWiseActivity.class);
+                startActivity(i);
+            }
+        });
+
+        LinearLayout hadith_sec = (LinearLayout) findViewById(R.id.hadith_sec);
+        hadith_sec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), SubjectWiseActivity.class);
