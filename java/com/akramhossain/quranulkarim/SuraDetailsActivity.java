@@ -790,7 +790,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
                         text = cursor.getString(cursor.getColumnIndexOrThrow("indo_pak"));
                     }
                     String num = cursor.getString(cursor.getColumnIndexOrThrow("ayah_num"));
-                    String arabicNum = " <b>"+convertoArabic(num)+"</b> ";
+                    String arabicNum = " <font color=\"#ffbb33\">"+convertoArabic(num)+"</font> ";
                     fullSuraStr.append(arabicNum).append(text);
                 }while (cursor.moveToNext());
             }
@@ -807,7 +807,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
         Log.d("text",fullSuraStr.toString());
 
         //ayah_txt.setMovementMethod(new ScrollingMovementMethod());
-        ayah_txt.setText(Html.fromHtml(fullSuraStr.toString()));
+        ayah_txt.setText(Html.fromHtml(fullSuraStr.toString(), Html.FROM_HTML_MODE_LEGACY));
 
     }
 

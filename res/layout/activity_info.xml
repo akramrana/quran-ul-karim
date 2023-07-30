@@ -62,17 +62,26 @@
             android:textSize="14dp"
             android:gravity="center"/>
 
-        <TextView
-            android:id="@+id/info_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_below="@id/info_content_ttl"
             android:layout_marginTop="2dp"
-            android:textColor="@color/colorWhite"
-            android:textSize="14dp"
-            android:textIsSelectable="true"
-            android:scrollbars = "vertical"
-            android:paddingLeft="8dp"/>
+            android:fillViewport="true"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/info_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/info_content_ttl"
+                android:textColor="@color/colorWhite"
+                android:textSize="14dp"
+                android:textIsSelectable="true"/>
+
+        </ScrollView>
+
 
     </RelativeLayout>
 

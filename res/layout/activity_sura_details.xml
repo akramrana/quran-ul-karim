@@ -33,7 +33,7 @@
                     android:drawableLeft="@android:drawable/ic_media_previous"
                     android:text="Prev"
                     android:textColor="@color/colorWhiteDN"
-                    android:textSize="12dp"
+                    android:textSize="12sp"
                     android:textAllCaps="false"/>
 
             </LinearLayout>
@@ -87,7 +87,7 @@
                         android:drawableLeft="@android:drawable/ic_menu_upload"
                         android:text="Add to favourites"
                         android:textColor="@color/colorWhiteDN"
-                        android:textSize="12dp"
+                        android:textSize="12sp"
                         android:textAllCaps="false"/>
 
                 </LinearLayout>
@@ -99,7 +99,18 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:layout_gravity="bottom"
-                android:gravity="right">
+                android:gravity="right"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/brief_title_en"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhiteDN"
+                    android:textSize="10sp"
+                    android:gravity="center"
+                    android:text="@string/brief_en"
+                    android:background="@drawable/rounded_border"/>
 
                 <Button
                     android:id="@+id/nextBtn"
@@ -110,7 +121,7 @@
                     android:drawableRight="@android:drawable/ic_media_next"
                     android:text="Next"
                     android:textColor="@color/colorWhiteDN"
-                    android:textSize="12dp"
+                    android:textSize="12sp"
                     android:textAllCaps="false"/>
 
             </LinearLayout>
@@ -208,7 +219,7 @@
                     android:id="@+id/translation_btn"
                     android:layout_width="wrap_content"
                     android:text="Translation"
-                    android:textSize="12dp"
+                    android:textSize="12sp"
                     android:textColor="@color/colorWhiteDN"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
@@ -218,7 +229,7 @@
                     android:id="@+id/reading_btn"
                     android:layout_width="wrap_content"
                     android:text="Reading"
-                    android:textSize="12dp"
+                    android:textSize="12sp"
                     android:textColor="@color/colorWhiteDN"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
@@ -226,18 +237,7 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/brief_title_en"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="5dp"
-                android:textColor="@color/darkblue"
-                android:textSize="12dp"
-                android:gravity="center"
-                android:text="@string/brief_en"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="5dp"
-                android:layout_alignRight="@+id/i18n_sec"/>
+
 
         </RelativeLayout>
 
@@ -377,6 +377,7 @@
                     <ImageButton
                         android:id="@+id/btnBackward"
                         android:layout_width="50dp"
+                        android:contentDescription="Back"
                         android:layout_height="50dp"
                         android:src="@android:drawable/ic_media_rew" />
 
@@ -384,18 +385,21 @@
                         android:id="@+id/btnPlay"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:contentDescription="Play"
                         android:src="@android:drawable/ic_media_play" />
 
                     <ImageButton
                         android:id="@+id/btnPause"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:contentDescription="Pause"
                         android:src="@android:drawable/ic_media_pause" />
 
                     <ImageButton
                         android:id="@+id/btnForward"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:contentDescription="Stop"
                         android:src="@android:drawable/ic_media_ff" />
 
                 </LinearLayout>
