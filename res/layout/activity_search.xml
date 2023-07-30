@@ -176,7 +176,7 @@
         </RelativeLayout>
 
         <View
-            android:id="@+id/horizon-line"
+            android:id="@+id/horizontal_line"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
             android:background="@color/colorWhite"
@@ -191,7 +191,7 @@
             android:drawableLeft="@android:drawable/ic_menu_upload"
             android:layout_centerHorizontal="true"
             android:background="@android:color/transparent"
-            android:layout_below="@id/horizon-line"
+            android:layout_below="@id/horizontal_line"
             android:visibility="gone"
             android:textAllCaps="false"/>
 

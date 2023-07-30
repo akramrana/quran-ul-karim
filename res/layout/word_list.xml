@@ -65,7 +65,7 @@
             android:textIsSelectable="true"/>
 
         <View
-            android:id="@+id/horizon-line"
+            android:id="@+id/horizon_line"
             android:layout_width="fill_parent"
             android:layout_height="0.5dp"
             android:background="@color/colorWhite"
@@ -73,11 +73,11 @@
             android:layout_marginTop="15dp"/>
 
         <RelativeLayout
-            android:id="@+id/button-section"
+            android:id="@+id/button_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@id/horizon-line">
+            android:layout_below="@id/horizon_line">
 
             <Button
                 android:id="@+id/playWordBtn"
