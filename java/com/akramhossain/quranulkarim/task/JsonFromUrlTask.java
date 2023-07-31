@@ -8,6 +8,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.HadithBookActivity;
+import com.akramhossain.quranulkarim.HadithChapterActivity;
 import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.app.AppController;
 import com.android.volley.Request;
@@ -41,7 +42,12 @@ public class JsonFromUrlTask {
                 Log.d(TAG, "Api Response: " + response.toString());
                 progressBar.setVisibility(View.GONE);
                 try {
-                    ((HadithBookActivity) activity).parseJsonResponse(response);
+                    if(TAG.equals("HadithBookActivity")) {
+                        ((HadithBookActivity) activity).parseJsonResponse(response);
+                    }
+                    else if(TAG.equals("HadithChapterActivity")){
+                        ((HadithChapterActivity) activity).parseJsonResponse(response);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.d(TAG, "Api error: " + e.getMessage());

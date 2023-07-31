@@ -5,13 +5,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.akramhossain.quranulkarim.adapter.HadithBookViewAdapter;
+import com.akramhossain.quranulkarim.listener.RecyclerTouchListener;
 import com.akramhossain.quranulkarim.model.HadithBook;
 import com.akramhossain.quranulkarim.task.JsonFromUrlTask;
 
@@ -45,6 +48,22 @@ public class HadithBookActivity extends AppCompatActivity {
         recyclerview.setLayoutManager(mLayoutManager);
 
         setRecyclerViewAdapter();
+        recyclerview.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerview, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                HadithBook hb = hadithBook.get(position);
+                Intent in = new Intent(getApplicationContext(),HadithChapterActivity.class);
+                in.putExtra("book_id", hb.getBook_id());
+                in.putExtra("name_en", hb.getName_english());
+                in.putExtra("name_ar", hb.getName_arabic());
+                in.putExtra("name_bn", hb.getName_bangla());
+                startActivity(in);
+            }
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
 
         URL = host+"api/v1/book-list.php";
 
@@ -76,14 +95,14 @@ public class HadithBookActivity extends AppCompatActivity {
     }
 
     public void parseJsonResponse(String result) {
-        Log.i(TAG, result);
+        //Log.i(TAG, result);
         try {
             JSONObject response = new JSONObject(result);
             JSONArray jArray = new JSONArray(response.getString("data"));
 
             for (int i = 0; i < jArray.length(); i++) {
                 JSONObject jObject = jArray.getJSONObject(i);
-                Log.i(TAG, jObject.toString());
+                //Log.i(TAG, jObject.toString());
                 HadithBook hb = new HadithBook();
                 hb.setBook_id(jObject.getString("id"));
                 hb.setName_english(jObject.getString("name_en"));
