@@ -19,72 +19,96 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorWhite"
-            android:textSize="14dp"
             android:visibility="gone"/>
 
         <TextView
             android:id="@+id/hadithnumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorWhite"
-            android:textSize="14dp"
-            android:layout_gravity="center"/>
+            android:textColor="@color/colorWhiteDN"
+            android:textSize="15dip"
+            android:layout_gravity="left"
+            android:background="@drawable/rounded_border"/>
 
         <TextView
             android:id="@+id/arabicnumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorWhite"
-            android:textSize="14dp"
-            android:layout_gravity="center"/>
-
-        <TextView
-            android:id="@+id/grades"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorWhite"
-            android:textSize="14dp"
-            android:layout_gravity="center"/>
+            android:textSize="15dip"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/reference_book"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorWhite"
-            android:textSize="14dp"
-            android:layout_gravity="center"/>
+            android:textSize="15dip"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/reference_hadith"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorWhite"
-            android:textSize="14dp"
-            android:layout_gravity="center"/>
+            android:textSize="15dip"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/text_ar"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorWhite"
-            android:textSize="14dp"
-            android:layout_gravity="center"/>
+            android:textSize="25dip"
+            android:layout_gravity="right"
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:id="@+id/text_bn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorWhite"
-            android:textSize="14dp"
-            android:layout_gravity="center"/>
+            android:textSize="15dip"
+            android:layout_gravity="left"
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:id="@+id/text_en"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorWhite"
-            android:textSize="14dp"
-            android:layout_gravity="center"/>
+            android:textSize="15dip"
+            android:layout_gravity="left"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/grades"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/transColor"
+            android:textSize="12dip"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/copyButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/string_cp"
+                    android:textSize="9dp"
+                    android:drawableTop="@android:drawable/ic_menu_set_as"
+                    android:gravity="center_vertical|center"
+                    android:layout_margin="2dp"/>
+
+            </LinearLayout>
 
     </LinearLayout>
 

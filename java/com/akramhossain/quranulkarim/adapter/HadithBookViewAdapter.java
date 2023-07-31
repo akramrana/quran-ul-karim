@@ -101,15 +101,15 @@ public class HadithBookViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 name_arabic.setTypeface(fontSaleem);
             }
 
-            if (!mp_arFz.equals("")) {
-                name_arabic.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
-            }
-            if (!mp_enFz.equals("")) {
-                name_english.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
-            }
-            if (!mp_bnFz.equals("")) {
-                name_bangla.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
-            }
+//            if (!mp_arFz.equals("")) {
+//                name_arabic.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
+//            }
+//            if (!mp_enFz.equals("")) {
+//                name_english.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+//            }
+//            if (!mp_bnFz.equals("")) {
+//                name_bangla.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+//            }
 
         }
     }

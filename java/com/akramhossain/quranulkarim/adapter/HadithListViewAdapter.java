@@ -5,17 +5,21 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.model.HadithList;
 
 import java.util.ArrayList;
 
+import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class HadithListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
@@ -52,14 +56,58 @@ public class HadithListViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         RecyclerViewHolder rvHolder= (RecyclerViewHolder) holder;
         HadithList hc = hadithList.get(position);
         rvHolder.hid.setText(hc.getHid());
-        rvHolder.hadithnumber.setText(hc.getHadithnumber());
+        rvHolder.hadithnumber.setText("Hadith Number: "+hc.getHadithnumber());
         rvHolder.arabicnumber.setText(hc.getArabicnumber());
-        rvHolder.grades.setText(hc.getGrades());
+        String grades = hc.getGrades();
+        if(hc.getGrades().equals("null")){
+            grades = "";
+        }
+        rvHolder.grades.setText(grades);
         rvHolder.reference_book.setText(hc.getReference_book());
         rvHolder.reference_hadith.setText(hc.getReference_hadith());
         rvHolder.text_ar.setText(hc.getText_ar());
-        rvHolder.text_bn.setText(hc.getText_bn());
+        String textBn = hc.getText_bn();
+        if(hc.getText_bn().equals("null")){
+            textBn = "";
+        }
+        rvHolder.text_bn.setText(textBn);
         rvHolder.text_en.setText(hc.getText_en());
+
+        rvHolder.copyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    String nameEn = "";
+                    if (hc.getText_en() != null && !hc.getText_en().equals("")) {
+                        String textEn = HtmlCompat.fromHtml(hc.getText_en(), HtmlCompat.FROM_HTML_MODE_COMPACT).toString();
+                        nameEn = HtmlCompat.fromHtml(textEn, HtmlCompat.FROM_HTML_MODE_COMPACT).toString();
+                    }
+
+                    String nameBn = "";
+                    if (hc.getText_bn() != null && !hc.getText_bn().equals("")) {
+                        String textBn = HtmlCompat.fromHtml(hc.getText_bn(), HtmlCompat.FROM_HTML_MODE_COMPACT).toString();
+                        nameBn = HtmlCompat.fromHtml(textBn, HtmlCompat.FROM_HTML_MODE_COMPACT).toString();
+                    }
+
+                    String nameAr = "";
+                    if (hc.getText_ar() != null && !hc.getText_ar().equals("")) {
+                        String textAr = HtmlCompat.fromHtml(hc.getText_ar(), HtmlCompat.FROM_HTML_MODE_COMPACT).toString();
+                        nameAr = HtmlCompat.fromHtml(textAr, HtmlCompat.FROM_HTML_MODE_COMPACT).toString();
+                    }
+
+                    String fullHadith = nameAr + "\n\n" + nameBn + "\n\n" + hc.getKitab_bn() + "\nঅধ্যায়: " + hc.getBook_name_bn() + "\n\n" + nameEn + "\n\n" + hc.getKitab_en() + "\nReference Book: " + hc.getBook_name_en();
+                    String label = "Reference Book: " + hc.getBook_name_en() + ", Hadith Number: " + hc.getHadithnumber();
+
+                    android.content.ClipboardManager clipboard = (android.content.ClipboardManager) c.getApplicationContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                    android.content.ClipData clip = android.content.ClipData.newPlainText(label, fullHadith);
+                    clipboard.setPrimaryClip(clip);
+
+                    Toast.makeText(c.getApplicationContext(), "Copied.", Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    Log.e("copy error", e.getMessage());
+                }
+            }
+        });
     }
 
     @Override
@@ -72,6 +120,8 @@ public class HadithListViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         TextView hid, hadithnumber, arabicnumber, grades;
         TextView reference_book, reference_hadith, text_ar, text_en, text_bn;
 
+        Button copyButton;
+
         public RecyclerViewHolder(View itemView) {
             super(itemView);
             hid = (TextView) itemView.findViewById(R.id.hid);
@@ -83,6 +133,8 @@ public class HadithListViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             text_ar = (TextView) itemView.findViewById(R.id.text_ar);
             text_en = (TextView) itemView.findViewById(R.id.text_en);
             text_bn = (TextView) itemView.findViewById(R.id.text_bn);
+
+            copyButton = itemView.findViewById(R.id.copyButton);
 
             String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
             String mp_arFz = mPrefs.getString("arFontSize", "30");
@@ -110,15 +162,15 @@ public class HadithListViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 text_ar.setTypeface(fontSaleem);
             }
 
-            if (!mp_arFz.equals("")) {
-                text_ar.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
-            }
-            if (!mp_enFz.equals("")) {
-                text_en.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
-            }
-            if (!mp_bnFz.equals("")) {
-                text_bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
-            }
+//            if (!mp_arFz.equals("")) {
+//                text_ar.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
+//            }
+//            if (!mp_enFz.equals("")) {
+//                text_en.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+//            }
+//            if (!mp_bnFz.equals("")) {
+//                text_bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+//            }
 
         }
     }

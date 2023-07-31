@@ -147,14 +147,20 @@ public class HadithListActivity extends AppCompatActivity {
                 hc.setText_bn(jObject.getString("text_bn"));
                 hc.setText_en(jObject.getString("text_en"));
                 hc.setText_ar(jObject.getString("text_ar"));
+                hc.setKitab_bn(jObject.getString("kitab_bn"));
+                hc.setKitab_en(jObject.getString("kitab_en"));
+                hc.setKitab_ar(jObject.getString("kitab_ar"));
+                hc.setBook_name_bn(jObject.getString("book_name_bn"));
+                hc.setBook_name_en(jObject.getString("book_name_en"));
+                hc.setBook_name_ar(jObject.getString("book_name_ar"));
                 hadithLists.add(hc);
             }
 
             rvAdapter.notifyDataSetChanged();
 
             JSONObject bookInfo = json.getJSONObject("bookInfo");
-            info_title.setText(bookInfo.getString("name_en"));
-            info_sub_title.setText(bookInfo.getString("name_bn"));
+            info_title.setText(bookInfo.getString("kitab_name_en")+": "+bookInfo.getString("name_en"));
+            info_sub_title.setText(bookInfo.getString("kitab_name_bn")+": "+bookInfo.getString("name_bn"));
 
             itShouldLoadMore = true;
             maxPage = json.getString("total_pages");
