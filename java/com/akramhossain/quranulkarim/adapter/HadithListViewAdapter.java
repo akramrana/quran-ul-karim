@@ -12,25 +12,23 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.akramhossain.quranulkarim.R;
-import com.akramhossain.quranulkarim.model.HadithChapter;
-
-import org.w3c.dom.Text;
+import com.akramhossain.quranulkarim.model.HadithList;
 
 import java.util.ArrayList;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-public class HadithChapterViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class HadithListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     Context c;
-    ArrayList<HadithChapter> hadithChapter;
+    ArrayList<HadithList> hadithList;
     private Activity activity;
     Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
     SharedPreferences mPrefs;
 
-    public HadithChapterViewAdapter(Context c, ArrayList<HadithChapter> hadithChapter, Activity activity) {
+    public HadithListViewAdapter(Context c, ArrayList<HadithList> hadithList, Activity activity) {
         this.c = c;
-        this.hadithChapter = hadithChapter;
+        this.hadithList = hadithList;
         this.activity = activity;
         mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
         font = Typeface.createFromAsset(c.getAssets(), "fonts/Siyamrupali.ttf");
@@ -43,44 +41,48 @@ public class HadithChapterViewAdapter extends RecyclerView.Adapter<RecyclerView.
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(c).inflate(R.layout.hadith_chapter_list,parent,false);
+        View v= LayoutInflater.from(c).inflate(R.layout.hadith_list,parent,false);
         RecyclerViewHolder rvHolder = new RecyclerViewHolder(v);
-        rvHolder.name_bangla.setTypeface(font);
+        rvHolder.text_bn.setTypeface(font);
         return rvHolder;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         RecyclerViewHolder rvHolder= (RecyclerViewHolder) holder;
-        HadithChapter hc = hadithChapter.get(position);
-        rvHolder.bid.setText(hc.getBid());
-        rvHolder.name_bangla.setText(hc.getName_bangla());
-        rvHolder.name_english.setText(hc.getName_english());
-        rvHolder.name_arabic.setText(hc.getName_arabic());
+        HadithList hc = hadithList.get(position);
+        rvHolder.hid.setText(hc.getHid());
+        rvHolder.hadithnumber.setText(hc.getHadithnumber());
+        rvHolder.arabicnumber.setText(hc.getArabicnumber());
+        rvHolder.grades.setText(hc.getGrades());
         rvHolder.reference_book.setText(hc.getReference_book());
+        rvHolder.reference_hadith.setText(hc.getReference_hadith());
+        rvHolder.text_ar.setText(hc.getText_ar());
+        rvHolder.text_bn.setText(hc.getText_bn());
+        rvHolder.text_en.setText(hc.getText_en());
     }
 
     @Override
     public int getItemCount() {
-        return hadithChapter.size();
+        return hadithList.size();
     }
 
     class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
-        TextView bid;
-        TextView name_bangla;
-        TextView name_english;
-        TextView name_arabic;
-
-        TextView reference_book;
+        TextView hid, hadithnumber, arabicnumber, grades;
+        TextView reference_book, reference_hadith, text_ar, text_en, text_bn;
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
-            bid = (TextView) itemView.findViewById(R.id.bid);
-            name_bangla = (TextView) itemView.findViewById(R.id.name_bangla);
-            name_english = (TextView) itemView.findViewById(R.id.name_english);
-            name_arabic = (TextView) itemView.findViewById(R.id.name_arabic);
+            hid = (TextView) itemView.findViewById(R.id.hid);
+            hadithnumber = (TextView) itemView.findViewById(R.id.hadithnumber);
+            arabicnumber = (TextView) itemView.findViewById(R.id.arabicnumber);
+            grades = (TextView) itemView.findViewById(R.id.grades);
             reference_book = (TextView) itemView.findViewById(R.id.reference_book);
+            reference_hadith = (TextView) itemView.findViewById(R.id.reference_hadith);
+            text_ar = (TextView) itemView.findViewById(R.id.text_ar);
+            text_en = (TextView) itemView.findViewById(R.id.text_en);
+            text_bn = (TextView) itemView.findViewById(R.id.text_bn);
 
             String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
             String mp_arFz = mPrefs.getString("arFontSize", "30");
@@ -88,36 +90,37 @@ public class HadithChapterViewAdapter extends RecyclerView.Adapter<RecyclerView.
             String mp_bnFz = mPrefs.getString("bnFontSize", "15");
 
             if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
-                name_arabic.setTypeface(fontAlmajeed);
-                name_arabic.setTypeface(fontAlmajeed);
+                text_ar.setTypeface(fontAlmajeed);
+                text_ar.setTypeface(fontAlmajeed);
             }
             if(mp_arabicFontFamily.equals("Al Qalam Quran")){
-                name_arabic.setTypeface(fontAlQalam);
-                name_arabic.setTypeface(fontAlQalam);
+                text_ar.setTypeface(fontAlQalam);
+                text_ar.setTypeface(fontAlQalam);
             }
             if(mp_arabicFontFamily.equals("Noore Huda")){
-                name_arabic.setTypeface(fontUthmani);
-                name_arabic.setTypeface(fontUthmani);
+                text_ar.setTypeface(fontUthmani);
+                text_ar.setTypeface(fontUthmani);
             }
             if(mp_arabicFontFamily.equals("Noore Hidayat")){
-                name_arabic.setTypeface(fontNooreHidayat);
-                name_arabic.setTypeface(fontNooreHidayat);
+                text_ar.setTypeface(fontNooreHidayat);
+                text_ar.setTypeface(fontNooreHidayat);
             }
             if(mp_arabicFontFamily.equals("Saleem Quran")){
-                name_arabic.setTypeface(fontSaleem);
-                name_arabic.setTypeface(fontSaleem);
+                text_ar.setTypeface(fontSaleem);
+                text_ar.setTypeface(fontSaleem);
             }
 
             if (!mp_arFz.equals("")) {
-                name_arabic.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
+                text_ar.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
             }
             if (!mp_enFz.equals("")) {
-                name_english.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+                text_en.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
             }
             if (!mp_bnFz.equals("")) {
-                name_bangla.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+                text_bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
             }
 
         }
     }
+
 }

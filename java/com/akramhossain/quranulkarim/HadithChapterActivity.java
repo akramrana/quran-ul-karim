@@ -5,12 +5,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.akramhossain.quranulkarim.adapter.HadithChapterViewAdapter;
+import com.akramhossain.quranulkarim.listener.RecyclerTouchListener;
 import com.akramhossain.quranulkarim.model.HadithBook;
 import com.akramhossain.quranulkarim.model.HadithChapter;
 import com.akramhossain.quranulkarim.task.JsonFromUrlTask;
@@ -72,7 +75,26 @@ public class HadithChapterActivity extends AppCompatActivity {
 
         setRecyclerViewAdapter();
 
-        URL = host+"api/v1/app-book.php";
+        recyclerview.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerview, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                HadithChapter hb = hadithChapters.get(position);
+                Intent in = new Intent(getApplicationContext(),HadithListActivity.class);
+                in.putExtra("bid", hb.getBid());
+                in.putExtra("name_en", hb.getName_english());
+                in.putExtra("name_ar", hb.getName_arabic());
+                in.putExtra("name_bn", hb.getName_bangla());
+                in.putExtra("kitab_id", hb.getKitab_id());
+                in.putExtra("reference_book", hb.getReference_book());
+                startActivity(in);
+            }
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
+
+        URL = host+"api/v1/app-book.php?id="+bookId;
 
         cd = new ConnectionDetector(getApplicationContext());
         isInternetPresent = cd.isConnectingToInternet();
@@ -101,7 +123,7 @@ public class HadithChapterActivity extends AppCompatActivity {
     }
 
     public void parseJsonResponse(String result) {
-        Log.i(TAG, result);
+        //Log.i(TAG, result);
         try {
             JSONObject response = new JSONObject(result);
             JSONObject json = response.getJSONObject("data");
@@ -109,7 +131,7 @@ public class HadithChapterActivity extends AppCompatActivity {
 
             for (int i = 0; i < jArray.length(); i++) {
                 JSONObject jObject = jArray.getJSONObject(i);
-                //Log.i(TAG, jObject.toString());
+                Log.i(TAG, jObject.toString());
                 HadithChapter hc = new HadithChapter();
                 hc.setBid(jObject.getString("bid"));
                 hc.setName_english(jObject.getString("name_en"));

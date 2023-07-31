@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="5dp"
+    android:layout_height="wrap_content"
+    android:foreground="?android:attr/selectableItemBackground">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/hid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:textSize="14dp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/hadithnumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:textSize="14dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/arabicnumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:textSize="14dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/grades"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:textSize="14dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/reference_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:textSize="14dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/reference_hadith"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:textSize="14dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/text_ar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:textSize="14dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/text_bn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:textSize="14dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/text_en"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:textSize="14dp"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
