@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.akramhossain.quranulkarim.HadithBookActivity;
 import com.akramhossain.quranulkarim.HadithChapterActivity;
 import com.akramhossain.quranulkarim.HadithListActivity;
+import com.akramhossain.quranulkarim.HadithSearchActivity;
 import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.app.AppController;
 import com.android.volley.Request;
@@ -51,6 +52,12 @@ public class JsonFromUrlTask {
                     }
                     else if(TAG.equals("HadithListActivity")){
                         ((HadithListActivity) activity).parseJsonResponse(response);
+                    }
+                    else if(TAG.equals("HadithSearchActivityBookList")){
+                        ((HadithSearchActivity) activity).parseJsonResponse(response);
+                    }
+                    else if(TAG.equals("HadithSearchActivity")){
+                        ((HadithSearchActivity) activity).parseJsonResponseSearch(response);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

@@ -100,6 +100,15 @@ public class HadithChapterActivity extends AppCompatActivity {
         isInternetPresent = cd.isConnectingToInternet();
         //FETCH DATA FROM REMOTE SERVER
         getDataFromInternet();
+
+        TextView search_hadith = (TextView) findViewById(R.id.search_hadith);
+        search_hadith.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), HadithSearchActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     private void setRecyclerViewAdapter() {
@@ -131,7 +140,7 @@ public class HadithChapterActivity extends AppCompatActivity {
 
             for (int i = 0; i < jArray.length(); i++) {
                 JSONObject jObject = jArray.getJSONObject(i);
-                Log.i(TAG, jObject.toString());
+                //Log.i(TAG, jObject.toString());
                 HadithChapter hc = new HadithChapter();
                 hc.setBid(jObject.getString("bid"));
                 hc.setName_english(jObject.getString("name_en"));

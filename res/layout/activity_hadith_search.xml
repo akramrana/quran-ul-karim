@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HadithChapterActivity">
+    tools:context=".HadithSearchActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -34,39 +34,68 @@
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:textColor="@color/colorWhiteDN"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:text="@string/search_hadith_ttl"/>
 
                 <TextView
                     android:id="@+id/info_sub_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="15dp"
                     android:gravity="center"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:textColor="@color/colorWhiteDN"
-                    android:textSize="15dp"/>
-
-                <TextView
-                    android:id="@+id/search_hadith"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/color10"
                     android:textSize="15dp"
-                    android:layout_gravity="center"
-                    android:text="@string/search_hadith"
-                    android:layout_marginBottom="10dp"/>
+                    android:text="@string/search_hadith_sbttl"/>
 
             </LinearLayout>
 
 
         </RelativeLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/hadith_chapter_list"
+        <RelativeLayout
+            android:id="@+id/search_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/topAboutBar"/>
+            android:layout_below="@+id/topAboutBar"
+            android:layout_marginBottom="10dp">
+
+            <Spinner
+                android:id="@+id/kitab_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:textSize="14dp"
+                android:prompt="@string/spinner_prompt" />
+
+            <EditText
+                android:id="@+id/hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:hint="@string/hadith_hint"
+                android:layout_below="@+id/kitab_spinner"/>
+
+            <Button
+                android:id="@+id/search_hadith_btn"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:background="@color/cardview_dark_background"
+                android:textColor="@color/colorWhiteDN"
+                android:text="Search"
+                android:textSize="14dp"
+                android:textAllCaps="false"
+                android:layout_below="@+id/hint"/>
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/hadith_listing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/search_input"/>
 
 
         <ProgressBar
