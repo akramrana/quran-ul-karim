@@ -76,7 +76,7 @@ public class JsonFromUrlTask {
         }) {};
 
         // Adding request to request queue
-        strReq.setShouldCache(false);
+        //strReq.setShouldCache(false);
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 

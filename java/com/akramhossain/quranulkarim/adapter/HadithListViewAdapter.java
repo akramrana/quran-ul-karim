@@ -56,7 +56,7 @@ public class HadithListViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         RecyclerViewHolder rvHolder= (RecyclerViewHolder) holder;
         HadithList hc = hadithList.get(position);
         rvHolder.hid.setText(hc.getHid());
-        rvHolder.hadithnumber.setText("Hadith Number: "+hc.getHadithnumber());
+        rvHolder.hadithnumber.setText(hc.getKitab_en()+": "+hc.getHadithnumber());
         rvHolder.arabicnumber.setText(hc.getArabicnumber());
         String grades = hc.getGrades();
         if(hc.getGrades().equals("null")){

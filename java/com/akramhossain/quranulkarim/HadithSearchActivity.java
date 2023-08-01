@@ -44,6 +44,10 @@ public class HadithSearchActivity extends AppCompatActivity {
     private RecyclerView recyclerview;
     LinearLayoutManager mLayoutManager;
     public HadithListViewAdapter rvAdapter;
+    public String page = "1";
+    public int Counter = 1;
+    public String maxPage;
+    private boolean itShouldLoadMore = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +77,7 @@ public class HadithSearchActivity extends AppCompatActivity {
                 kitabId = itemIds.get(kitabNamePos);
                 if (search_term != null && !search_term.isEmpty()) {
                     hadithLists.clear();
+                    SEARCH_URL = host+"/api/v1/app-search-hadith.php?q="+search_term+"&kitab_id="+kitabId+"&page=1&perPage=20";
                     getDataSearchDataFromInternet();
                 }
             }
@@ -83,6 +88,35 @@ public class HadithSearchActivity extends AppCompatActivity {
         recyclerview.setLayoutManager(mLayoutManager);
 
         setRecyclerViewAdapter();
+
+        recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0) {
+                    // Recycle view scrolling downwards...
+                    // this if statement detects when user reaches the end of recyclerView, this is only time we should load more
+                    if (!recyclerView.canScrollVertically(RecyclerView.FOCUS_DOWN)) {
+                        if (itShouldLoadMore) {
+                            //loadMore();
+                            int counter = Integer.parseInt(page);
+                            int maxPageCount = Integer.parseInt(maxPage);
+                            if(counter < maxPageCount) {
+                                counter = (counter + 1);
+                                page = Integer.toString(counter);
+                                SEARCH_URL = host+"/api/v1/app-search-hadith.php?q="+search_term+"&kitab_id="+kitabId+"&page="+page+"&perPage=20";
+                                getDataSearchDataFromInternet();
+                            }
+                        }
+                    }
+                }
+            }
+
+        });
     }
 
     private void setRecyclerViewAdapter() {
@@ -94,7 +128,6 @@ public class HadithSearchActivity extends AppCompatActivity {
     public void getDataSearchDataFromInternet(){
         Log.i("kitab_id", kitabId);
         Log.i("search_term", search_term);
-        SEARCH_URL = host+"/api/v1/app-search-hadith.php?q="+search_term+"&kitab_id="+kitabId+"&page=1&perPage=20";
         Log.i(TAG, SEARCH_URL);
         if (isInternetPresent) {
             new JsonFromUrlTask(this, SEARCH_URL, TAG);
@@ -172,6 +205,9 @@ public class HadithSearchActivity extends AppCompatActivity {
             }
 
             rvAdapter.notifyDataSetChanged();
+
+            itShouldLoadMore = true;
+            maxPage = json.getString("total_pages");
 
         } catch (JSONException e) {
             e.printStackTrace();

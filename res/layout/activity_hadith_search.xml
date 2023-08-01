@@ -64,7 +64,7 @@
             <Spinner
                 android:id="@+id/kitab_spinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_gravity="left"
                 android:textSize="14dp"
                 android:prompt="@string/spinner_prompt" />
@@ -75,7 +75,9 @@
                 android:layout_height="wrap_content"
                 android:textSize="14dp"
                 android:hint="@string/hadith_hint"
-                android:layout_below="@+id/kitab_spinner"/>
+                android:layout_below="@+id/kitab_spinner"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"/>
 
             <Button
                 android:id="@+id/search_hadith_btn"
