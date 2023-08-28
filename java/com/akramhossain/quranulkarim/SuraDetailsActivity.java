@@ -82,7 +82,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
 
     RelativeLayout rl;
 
-    Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
+    Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem, fontTahaNaskh, fontKitab;
     SharedPreferences mPrefs;
 
     private TextView startTime, songTime, ayah_txt;
@@ -115,6 +115,9 @@ public class SuraDetailsActivity extends AppCompatActivity {
         fontAlQalam = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/AlQalamQuran.ttf");
         fontNooreHidayat = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/noorehidayat.ttf");
         fontSaleem = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
+
+        fontTahaNaskh = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/KFGQPC_Uthman_Taha_Naskh_Regular.ttf");
+        fontKitab = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/kitab.ttf");
 
         url = "http://websites.codxplore.com/islamicvideo/api/patch?sura_id="+suraId;
         //url = "http://10.0.2.2/islamicvideo/api/patch?sura_id="+suraId;
@@ -663,6 +666,16 @@ public class SuraDetailsActivity extends AppCompatActivity {
             titleAr.setTypeface(fontSaleem);
             text_bismillah.setTypeface(fontSaleem);
             ayah_txt.setTypeface(fontSaleem);
+        }
+        if(mp_arabicFontFamily.equals("KFGQPC Uthman Taha Naskh")){
+            titleAr.setTypeface(fontTahaNaskh);
+            text_bismillah.setTypeface(fontTahaNaskh);
+            ayah_txt.setTypeface(fontTahaNaskh);
+        }
+        if(mp_arabicFontFamily.equals("Arabic Regular")){
+            titleAr.setTypeface(fontKitab);
+            text_bismillah.setTypeface(fontKitab);
+            ayah_txt.setTypeface(fontKitab);
         }
 
         if(!mp_arFz.equals("")){

@@ -22,7 +22,7 @@ public class JuzViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     ArrayList<Juz> juzs;
     String cutTT;
     private Activity activity;
-    Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
+    Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem, fontTahaNaskh, fontKitab;
     SharedPreferences mPrefs;
 
     public JuzViewAdapter(Context c, ArrayList<Juz> juzs, Activity activity) {
@@ -35,6 +35,9 @@ public class JuzViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         fontAlQalam = Typeface.createFromAsset(c.getAssets(),"fonts/AlQalamQuran.ttf");
         fontNooreHidayat = Typeface.createFromAsset(c.getAssets(),"fonts/noorehidayat.ttf");
         fontSaleem = Typeface.createFromAsset(c.getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
+        fontTahaNaskh = Typeface.createFromAsset(c.getAssets(),"fonts/KFGQPC_Uthman_Taha_Naskh_Regular.ttf");
+        fontKitab = Typeface.createFromAsset(c.getAssets(),"fonts/kitab.ttf");
+
     }
 
     @Override
@@ -125,6 +128,14 @@ public class JuzViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             if(mp_arabicFontFamily.equals("Saleem Quran")){
                 text_tashkeel.setTypeface(fontSaleem);
                 name_arabic.setTypeface(fontSaleem);
+            }
+            if(mp_arabicFontFamily.equals("KFGQPC Uthman Taha Naskh")){
+                text_tashkeel.setTypeface(fontTahaNaskh);
+                name_arabic.setTypeface(fontTahaNaskh);
+            }
+            if(mp_arabicFontFamily.equals("Arabic Regular")){
+                text_tashkeel.setTypeface(fontKitab);
+                name_arabic.setTypeface(fontKitab);
             }
         }
 

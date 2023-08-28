@@ -60,7 +60,7 @@ public class ShareVerseActivity extends AppCompatActivity {
     public static String ayah_trans;
 
     DatabaseHelper dbhelper;
-    Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
+    Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem, fontTahaNaskh, fontKitab;
 
     TextView tv_surah_name,tv_ayah_arabic,tv_ayah_english,tv_ayah_bangla,tv_ayah_num, tv_trans;
     Button shareBtn,colorBtn, imgBtn, dowlBtn;
@@ -97,6 +97,9 @@ public class ShareVerseActivity extends AppCompatActivity {
         fontAlQalam = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/AlQalamQuran.ttf");
         fontNooreHidayat = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/noorehidayat.ttf");
         fontSaleem = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
+
+        fontTahaNaskh = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/KFGQPC_Uthman_Taha_Naskh_Regular.ttf");
+        fontKitab = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/kitab.ttf");
 
         //dbhelper = new DatabaseHelper(getApplicationContext());
         dbhelper = DatabaseHelper.getInstance(getApplicationContext());
@@ -160,6 +163,12 @@ public class ShareVerseActivity extends AppCompatActivity {
         }
         if(mp_arabicFontFamily.equals("Saleem Quran")){
             tv_ayah_arabic.setTypeface(fontSaleem);
+        }
+        if(mp_arabicFontFamily.equals("KFGQPC Uthman Taha Naskh")){
+            tv_ayah_arabic.setTypeface(fontTahaNaskh);
+        }
+        if(mp_arabicFontFamily.equals("Arabic Regular")){
+            tv_ayah_arabic.setTypeface(fontKitab);
         }
         if(!mp_arFz.equals("")){
             tv_ayah_arabic.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));

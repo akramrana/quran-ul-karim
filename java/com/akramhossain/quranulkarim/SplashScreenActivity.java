@@ -21,7 +21,7 @@ public class SplashScreenActivity extends Activity {
 
     private DatabaseHelper mDBHelper;
     private SQLiteDatabase mDb;
-    Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem, font;
+    Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem, font, fontTahaNaskh, fontKitab;
     SharedPreferences mPrefs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,9 @@ public class SplashScreenActivity extends Activity {
         fontNooreHidayat = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/noorehidayat.ttf");
         fontSaleem = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
         font = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/Siyamrupali.ttf");
+
+        fontTahaNaskh = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/KFGQPC_Uthman_Taha_Naskh_Regular.ttf");
+        fontKitab = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/kitab.ttf");
 
         TextView splash_title_ar = (TextView) findViewById(R.id.splash_title_ar);
         TextView splash_title_bn = (TextView) findViewById(R.id.splash_title_bn);
@@ -55,6 +58,12 @@ public class SplashScreenActivity extends Activity {
         }
         if(mp_arabicFontFamily.equals("Saleem Quran")){
             splash_title_ar.setTypeface(fontSaleem);
+        }
+        if(mp_arabicFontFamily.equals("KFGQPC Uthman Taha Naskh")){
+            splash_title_ar.setTypeface(fontTahaNaskh);
+        }
+        if(mp_arabicFontFamily.equals("Arabic Regular")){
+            splash_title_ar.setTypeface(fontKitab);
         }
 
         TextView splash_app_bn = (TextView) findViewById(R.id.splash_app_bn);

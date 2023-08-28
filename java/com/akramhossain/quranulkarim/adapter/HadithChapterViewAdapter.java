@@ -25,7 +25,7 @@ public class HadithChapterViewAdapter extends RecyclerView.Adapter<RecyclerView.
     Context c;
     ArrayList<HadithChapter> hadithChapter;
     private Activity activity;
-    Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
+    Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem, fontTahaNaskh, fontKitab;
     SharedPreferences mPrefs;
 
     public HadithChapterViewAdapter(Context c, ArrayList<HadithChapter> hadithChapter, Activity activity) {
@@ -39,6 +39,8 @@ public class HadithChapterViewAdapter extends RecyclerView.Adapter<RecyclerView.
         fontAlQalam = Typeface.createFromAsset(c.getAssets(),"fonts/AlQalamQuran.ttf");
         fontNooreHidayat = Typeface.createFromAsset(c.getAssets(),"fonts/noorehidayat.ttf");
         fontSaleem = Typeface.createFromAsset(c.getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
+        fontTahaNaskh = Typeface.createFromAsset(c.getAssets(),"fonts/KFGQPC_Uthman_Taha_Naskh_Regular.ttf");
+        fontKitab = Typeface.createFromAsset(c.getAssets(),"fonts/kitab.ttf");
     }
 
     @Override
@@ -89,23 +91,24 @@ public class HadithChapterViewAdapter extends RecyclerView.Adapter<RecyclerView.
 
             if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
                 name_arabic.setTypeface(fontAlmajeed);
-                name_arabic.setTypeface(fontAlmajeed);
             }
             if(mp_arabicFontFamily.equals("Al Qalam Quran")){
-                name_arabic.setTypeface(fontAlQalam);
                 name_arabic.setTypeface(fontAlQalam);
             }
             if(mp_arabicFontFamily.equals("Noore Huda")){
                 name_arabic.setTypeface(fontUthmani);
-                name_arabic.setTypeface(fontUthmani);
             }
             if(mp_arabicFontFamily.equals("Noore Hidayat")){
-                name_arabic.setTypeface(fontNooreHidayat);
                 name_arabic.setTypeface(fontNooreHidayat);
             }
             if(mp_arabicFontFamily.equals("Saleem Quran")){
                 name_arabic.setTypeface(fontSaleem);
-                name_arabic.setTypeface(fontSaleem);
+            }
+            if(mp_arabicFontFamily.equals("KFGQPC Uthman Taha Naskh")){
+                name_arabic.setTypeface(fontTahaNaskh);
+            }
+            if(mp_arabicFontFamily.equals("Arabic Regular")){
+                name_arabic.setTypeface(fontKitab);
             }
 
 //            if (!mp_arFz.equals("")) {

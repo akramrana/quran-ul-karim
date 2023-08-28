@@ -34,7 +34,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     Context c;
     ArrayList<Sura> suras;
     private Activity activity;
-    Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem, font;
+    Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem, font, fontTahaNaskh, fontKitab;
     SharedPreferences mPrefs;
 
     public RecyclerViewAdapter(Context c, ArrayList<Sura> suras, Activity activity) {
@@ -48,6 +48,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         fontNooreHidayat = Typeface.createFromAsset(c.getAssets(), "fonts/noorehidayat.ttf");
         fontSaleem = Typeface.createFromAsset(c.getAssets(), "fonts/PDMS_Saleem_QuranFont.ttf");
         font = Typeface.createFromAsset(c.getAssets(),"fonts/Siyamrupali.ttf");
+        fontTahaNaskh = Typeface.createFromAsset(c.getAssets(),"fonts/KFGQPC_Uthman_Taha_Naskh_Regular.ttf");
+        fontKitab = Typeface.createFromAsset(c.getAssets(),"fonts/kitab.ttf");
     }
 
     @Override
@@ -155,6 +157,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
             if (mp_arabicFontFamily.equals("Saleem Quran")) {
                 nameArabicTxt.setTypeface(fontSaleem);
+            }
+            if(mp_arabicFontFamily.equals("KFGQPC Uthman Taha Naskh")){
+                nameArabicTxt.setTypeface(fontTahaNaskh);
+            }
+            if(mp_arabicFontFamily.equals("Arabic Regular")){
+                nameArabicTxt.setTypeface(fontKitab);
             }
 
             nameBangla.setTypeface(font);

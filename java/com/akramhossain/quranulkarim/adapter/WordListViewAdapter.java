@@ -51,7 +51,7 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private Activity activity;
     private static final int PERMISSION_REQUEST_CODE = 100;
     SharedPreferences mPrefs;
-    Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
+    Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem, fontTahaNaskh, fontKitab;
 
     public WordListViewAdapter(Context c, ArrayList<Word> words, Activity activity) {
         this.c = c;
@@ -68,6 +68,8 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         fontAlQalam = Typeface.createFromAsset(c.getAssets(),"fonts/AlQalamQuran.ttf");
         fontNooreHidayat = Typeface.createFromAsset(c.getAssets(),"fonts/noorehidayat.ttf");
         fontSaleem = Typeface.createFromAsset(c.getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
+        fontTahaNaskh = Typeface.createFromAsset(c.getAssets(),"fonts/KFGQPC_Uthman_Taha_Naskh_Regular.ttf");
+        fontKitab = Typeface.createFromAsset(c.getAssets(),"fonts/kitab.ttf");
         mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
     }
 
@@ -344,6 +346,12 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
             if(mp_arabicFontFamily.equals("Saleem Quran")){
                 word_arabic.setTypeface(fontSaleem);
+            }
+            if(mp_arabicFontFamily.equals("KFGQPC Uthman Taha Naskh")){
+                word_arabic.setTypeface(fontTahaNaskh);
+            }
+            if(mp_arabicFontFamily.equals("Arabic Regular")){
+                word_arabic.setTypeface(fontKitab);
             }
             if(!mp_arFz.equals("")){
                 word_arabic.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));

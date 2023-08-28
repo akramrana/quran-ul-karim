@@ -56,11 +56,12 @@ public class SettingActivity extends AppCompatActivity{
         final Spinner spinner = (Spinner) findViewById(R.id.arabic_font_spinner);
         List<String> fontFamily = new ArrayList<String>();
         fontFamily.add("Arabic Regular");
-        fontFamily.add("Taha Naskh");
+        fontFamily.add("KFGQPC Uthman Taha Naskh");
         fontFamily.add("Al Qalam Quran");
         fontFamily.add("Noore Huda");
         fontFamily.add("Noore Hidayat");
         fontFamily.add("Saleem Quran");
+        fontFamily.add("Al Majeed Quranic Font");
         final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, fontFamily);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
