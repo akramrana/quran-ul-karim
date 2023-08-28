@@ -42,7 +42,7 @@ public class WordMeaningActivity extends AppCompatActivity {
     private WordListViewAdapter rvAdapter;
     private static final int PERMISSION_REQUEST_CODE = 100;
 
-    Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem;
+    Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem, fontTahaNaskh, fontKitab;
     SharedPreferences mPrefs;
 
     @Override
@@ -63,6 +63,8 @@ public class WordMeaningActivity extends AppCompatActivity {
         fontAlQalam = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/AlQalamQuran.ttf");
         fontNooreHidayat = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/noorehidayat.ttf");
         fontSaleem = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
+        fontTahaNaskh = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/KFGQPC_Uthman_Taha_Naskh_Regular.ttf");
+        fontKitab = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/kitab.ttf");
 
         setTitle("Word Meaning");
 
@@ -103,6 +105,12 @@ public class WordMeaningActivity extends AppCompatActivity {
         }
         if(mp_arabicFontFamily.equals("Saleem Quran")){
             titleAr.setTypeface(fontSaleem);
+        }
+        if(mp_arabicFontFamily.equals("KFGQPC Uthman Taha Naskh")){
+            titleAr.setTypeface(fontTahaNaskh);
+        }
+        if(mp_arabicFontFamily.equals("Arabic Regular")){
+            titleAr.setTypeface(fontKitab);
         }
 
         titleAr.setMovementMethod(new ScrollingMovementMethod());

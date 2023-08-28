@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     ConnectionDetector cd;
     Boolean isInternetPresent = false;
 
-    Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem, font;
+    Typeface fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem, font, fontTahaNaskh, fontKitab;
 
     TextView txtPer;
 
@@ -416,6 +416,8 @@ public class MainActivity extends AppCompatActivity {
         fontNooreHidayat = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/noorehidayat.ttf");
         fontSaleem = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
         font = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/Siyamrupali.ttf");
+        fontTahaNaskh = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/KFGQPC_Uthman_Taha_Naskh_Regular.ttf");
+        fontKitab = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/kitab.ttf");
 
         String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
         if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
@@ -432,6 +434,12 @@ public class MainActivity extends AppCompatActivity {
         }
         if(mp_arabicFontFamily.equals("Saleem Quran")){
             name_title_ar.setTypeface(fontSaleem);
+        }
+        if(mp_arabicFontFamily.equals("KFGQPC Uthman Taha Naskh")){
+            name_title_ar.setTypeface(fontTahaNaskh);
+        }
+        if(mp_arabicFontFamily.equals("Arabic Regular")){
+            name_title_ar.setTypeface(fontKitab);
         }
 
         TextView textView11 = (TextView) findViewById(R.id.textView11);
