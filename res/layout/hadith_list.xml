@@ -78,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorWhite"
-            android:textSize="15dip"
+            android:textSize="17dip"
             android:layout_gravity="left"
             android:layout_marginTop="10dp"/>
 
