@@ -303,7 +303,8 @@
                         android:paddingRight="10dp"
                         android:lineSpacingExtra="10sp"
                         android:textColor="@color/colorWhite"
-                        android:gravity="center"/>
+                        android:gravity="center"
+                        android:layout_gravity="center"/>
 
                 </ScrollView>
 

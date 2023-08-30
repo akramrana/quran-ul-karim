@@ -18,7 +18,7 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/transColor"
             android:textSize="25dip"
             android:layout_gravity="center"/>
 
@@ -32,13 +32,20 @@
             android:layout_gravity="center"
             android:layout_marginTop="3dp"/>
 
+        <View
+            android:id="@+id/horizontal_line"
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorWhite"/>
+
         <TextView
             android:id="@+id/en_meaning"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorWhite"
             android:textSize="15dip"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_gravity="center"/>
 
         <TextView
@@ -61,14 +68,21 @@
             android:layout_marginTop="3dp"
             android:layout_gravity="center"/>
 
+        <View
+            android:id="@+id/horizontal_line_2"
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorWhite"/>
+
         <TextView
             android:id="@+id/bn_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/transColor"
             android:textSize="15dip"
             android:gravity="center"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_gravity="center"/>
 
         <TextView
