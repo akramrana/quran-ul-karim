@@ -37,7 +37,7 @@
             android:layout_width="fill_parent"
             android:layout_height="0.5dp"
             android:layout_marginTop="8dp"
-            android:background="@color/colorWhite"/>
+            android:background="@color/counter_text_color"/>
 
         <TextView
             android:id="@+id/en_meaning"
@@ -73,7 +73,7 @@
             android:layout_width="fill_parent"
             android:layout_height="0.5dp"
             android:layout_marginTop="8dp"
-            android:background="@color/colorWhite"/>
+            android:background="@color/counter_text_color"/>
 
         <TextView
             android:id="@+id/bn_desc"
