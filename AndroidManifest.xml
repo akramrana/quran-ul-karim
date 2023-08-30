@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="58"
-    android:versionName="58.28.08.2023">
+    android:versionCode="59"
+    android:versionName="59.30.08.2023">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Allow to connect with internet -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Network State Permissions -->
@@ -21,6 +21,9 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".NameOfAllahActivity"
+            android:exported="false" />
         <activity
             android:name=".HadithSearchActivity"
             android:exported="false" />

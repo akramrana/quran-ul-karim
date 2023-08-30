@@ -499,6 +499,9 @@ public class MainActivity extends AppCompatActivity {
         TextView hadith_text_view_bn = (TextView) findViewById(R.id.hadith_text_view_bn);
         hadith_text_view_bn.setTypeface(font);
 
+        TextView noa_text_view_bn = (TextView) findViewById(R.id.noa_text_view_bn);
+        noa_text_view_bn.setTypeface(font);
+
         //bugReport = (TextView) findViewById(R.id.bugReport);
         feedback_link = (LinearLayout) findViewById(R.id.feedback_link);
         feedback_link.setOnClickListener(new View.OnClickListener() {
@@ -566,6 +569,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), HadithBookActivity.class);
+                startActivity(i);
+            }
+        });
+
+        LinearLayout name_of_allah = (LinearLayout) findViewById(R.id.name_of_allah);
+        name_of_allah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), NameOfAllahActivity.class);
                 startActivity(i);
             }
         });
