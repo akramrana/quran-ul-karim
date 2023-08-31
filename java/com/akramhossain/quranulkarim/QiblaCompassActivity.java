@@ -15,6 +15,7 @@ import android.hardware.SensorManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
@@ -172,6 +173,9 @@ public class QiblaCompassActivity extends AppCompatActivity implements SensorEve
     public void onAccuracyChanged(Sensor sensor, int i) {}
 
     private boolean checkPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return true;
+        }
         int result = ContextCompat.checkSelfPermission(QiblaCompassActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION);
         if (result == PackageManager.PERMISSION_GRANTED) {
             return true;

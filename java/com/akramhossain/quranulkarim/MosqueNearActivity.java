@@ -92,6 +92,9 @@ public class MosqueNearActivity extends AppCompatActivity {
     }
 
     private boolean checkPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return true;
+        }
         int result = ContextCompat.checkSelfPermission(MosqueNearActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION);
         if (result == PackageManager.PERMISSION_GRANTED) {
             return true;
