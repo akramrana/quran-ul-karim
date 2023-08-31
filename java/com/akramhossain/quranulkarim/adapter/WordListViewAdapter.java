@@ -390,6 +390,7 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             if(!mp_bnFz.equals("")){
                 word_bangla.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
             }
+            word_bangla.setTypeface(font);
         }
     }
 }
