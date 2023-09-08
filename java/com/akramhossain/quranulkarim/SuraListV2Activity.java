@@ -94,7 +94,7 @@ public class SuraListV2Activity extends AppCompatActivity implements SearchView.
             sql = "SELECT sura.*,bangla_name.name_bangla " +
                     "FROM sura " +
                     "left join bangla_name on sura.surah_id = bangla_name.surah_id " +
-                    "WHERE name_complex LIKE '%"+searchTxt+"%' OR name_simple LIKE '%"+searchTxt+"%' OR name_english LIKE '%"+searchTxt+"%' OR name_arabic LIKE '%"+searchTxt+"%' " +
+                    "WHERE name_complex LIKE '%"+searchTxt+"%' OR name_simple LIKE '%"+searchTxt+"%' OR name_english LIKE '%"+searchTxt+"%' OR name_arabic LIKE '%"+searchTxt+"%' OR bangla_name.name_bangla LIKE '%"+searchTxt+"%' " +
                     "order by surah_id ASC";
         }
         Log.i(TAG, sql);

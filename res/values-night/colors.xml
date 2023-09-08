@@ -37,6 +37,8 @@
     <color name="color8">#7261A3</color>
     <color name="color9">#A67DB8</color>
 
+    <color name="bottom_bg_color">#FF424242</color>
+
     <integer-array name="androidcolors">
         <item>@color/blue</item>
         <item>@color/purple</item>
