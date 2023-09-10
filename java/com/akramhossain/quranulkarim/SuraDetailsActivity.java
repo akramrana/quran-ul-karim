@@ -871,7 +871,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                     "LEFT join sura ON ayah.surah_id = sura.surah_id " +
                     "LEFT join transliteration ON ayah.ayah_num = transliteration.ayat_id and transliteration.sura_id = ayah.surah_id " +
                     "LEFT join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id " +
-                    "WHERE (ayah.surah_id = " + suraId + ") and (ayah.ayah_num like '%"+searchTxt+"%' or ayah.ayah_key like '%"+searchTxt+"%' or ayah.content_en like '%"+searchTxt+"%' or ayah.content_bn like '%"+searchTxt+"%' or ayah.text like '%"+searchTxt+"%' or ayah.text_tashkeel like '%"+searchTxt+"%')" +
+                    "WHERE (ayah.surah_id = " + suraId + ") and (ayah.ayah_num like '%"+searchTxt+"%' or ayah.content_en like '%"+searchTxt+"%' or ayah.content_bn like '%"+searchTxt+"%' or ayah.text like '%"+searchTxt+"%' or ayah.text_tashkeel like '%"+searchTxt+"%')" +
                     "order by ayah.ayah_index ASC ";
         }
         Log.i(TAG, sql);
