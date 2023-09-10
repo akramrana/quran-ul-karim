@@ -1,6 +1,7 @@
 package com.akramhossain.quranulkarim;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -12,6 +13,8 @@ import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
@@ -21,9 +24,11 @@ public class InfoActivity extends AppCompatActivity {
     public static String suraId;
     public static String suraName;
     public static String suraNameArabic;
-    String infoText;
+    String infoText, infoTafhimText;
     Typeface font;
     SharedPreferences mPrefs;
+    TextView info_content_tafhim, info_content;
+    Button tafhim,fezilalil_quran;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +50,65 @@ public class InfoActivity extends AppCompatActivity {
         TextView info_sub_title = (TextView) findViewById(R.id.info_sub_title);
         info_sub_title.setText(suraName);
 
-        TextView info_content_ttl = (TextView) findViewById(R.id.info_content_ttl);
-        info_content_ttl.setTypeface(font);
+        info_content = (TextView) findViewById(R.id.info_content);
+        info_content_tafhim = (TextView) findViewById(R.id.info_content_tafhim);
+
+        //TextView info_content_ttl = (TextView) findViewById(R.id.info_content_ttl);
+        //info_content_ttl.setTypeface(font);
+        tafhim = (Button) findViewById(R.id.tafhim);
+        tafhim.setTypeface(font);
+        //
+        fezilalil_quran = (Button) findViewById(R.id.fezilalil_quran);
+        fezilalil_quran.setTypeface(font);
+        fezilalil_quran.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
+        tafhim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                info_content_tafhim.setVisibility(View.VISIBLE);
+                info_content.setVisibility(View.GONE);
+                tafhim.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
+                fezilalil_quran.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
+            }
+        });
+        fezilalil_quran.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                info_content_tafhim.setVisibility(View.GONE);
+                info_content.setVisibility(View.VISIBLE);
+                tafhim.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
+                fezilalil_quran.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
+            }
+        });
 
         getFezilalilTafsirFromLocalDB();
+        getIntroduction();
+    }
+
+    private void getIntroduction(){
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+        String sql = "select * from introduction where sura_id = "+suraId;
+        Log.i("SQL", sql);
+        Cursor cursor = db.rawQuery(sql,null);
+        try {
+            if (cursor.moveToFirst()) {
+                infoTafhimText = cursor.getString(1);
+                info_content_tafhim.setText(Html.fromHtml(infoTafhimText,Html.FROM_HTML_MODE_LEGACY));
+                info_content_tafhim.setTypeface(font);
+
+                String mp_bnFz = mPrefs.getString("bnFontSize", "15");
+                if(!mp_bnFz.equals("")){
+                    info_content_tafhim.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+                }
+            }
+        }
+        catch (Exception e){
+            Log.i("Info", e.getMessage());
+        }finally {
+            if (cursor != null && !cursor.isClosed()){
+                cursor.close();
+            }
+            db.close();
+        }
     }
 
     private void getFezilalilTafsirFromLocalDB(){
@@ -64,11 +124,8 @@ public class InfoActivity extends AppCompatActivity {
         try {
             if (cursor.moveToFirst()) {
                 infoText = cursor.getString(0);
-                TextView info_content = (TextView) findViewById(R.id.info_content);
                 info_content.setText(Html.fromHtml(infoText,Html.FROM_HTML_MODE_LEGACY));
                 info_content.setTypeface(font);
-                info_content.setMovementMethod(new ScrollingMovementMethod());
-
                 String mp_bnFz = mPrefs.getString("bnFontSize", "15");
                 if(!mp_bnFz.equals("")){
                     info_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));

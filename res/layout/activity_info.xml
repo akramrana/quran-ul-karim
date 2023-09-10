@@ -52,33 +52,82 @@
 
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/info_content_ttl"
+        <LinearLayout
+            android:id="@+id/info_sec_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="তাফসীর ফী যিলালিল কোরআন থেকে নেওয়া"
+            android:orientation="horizontal"
             android:layout_below="@+id/topAboutBar"
-            android:textColor="@color/colorWhite"
-            android:textSize="14sp"
-            android:gravity="center"/>
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/fezilalil_quran"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/string_fezilalil_quran"
+                android:textSize="12sp"
+                android:layout_margin="5dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:textColor="@color/colorWhiteDN"
+                android:background="@color/colorBlack"/>
+
+            <Button
+                android:id="@+id/tafhim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/string_tafhim"
+                android:textSize="12sp"
+                android:layout_margin="5dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:textColor="@color/colorWhiteDN"
+                android:background="@color/colorBlack"/>
+
+        </LinearLayout>
+
+<!--        <TextView-->
+<!--            android:id="@+id/info_content_ttl"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="তাফসীর ফী যিলালিল কোরআন থেকে নেওয়া"-->
+<!--            android:layout_below="@+id/info_sec_btn"-->
+<!--            android:textColor="@color/colorWhite"-->
+<!--            android:textSize="14sp"-->
+<!--            android:gravity="center"/>-->
 
         <ScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/info_content_ttl"
+            android:layout_below="@id/info_sec_btn"
             android:layout_marginTop="2dp"
             android:fillViewport="true"
             android:padding="5dp">
 
-            <TextView
-                android:id="@+id/info_content"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/info_content_ttl"
-                android:textColor="@color/colorWhite"
-                android:textSize="14dp"
-                android:textIsSelectable="true"/>
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/info_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14sp"
+                    android:textIsSelectable="true"/>
+
+                <TextView
+                    android:id="@+id/info_content_tafhim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    android:textIsSelectable="true"/>
+
+            </LinearLayout>
 
         </ScrollView>
 
