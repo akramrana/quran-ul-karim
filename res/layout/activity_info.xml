@@ -116,6 +116,8 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorWhite"
                     android:textSize="14sp"
+                    android:layout_gravity="left"
+                    android:gravity="left"
                     android:textIsSelectable="true"/>
 
                 <TextView
@@ -124,6 +126,8 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorWhite"
                     android:textSize="14sp"
+                    android:layout_gravity="left"
+                    android:gravity="left"
                     android:visibility="gone"
                     android:textIsSelectable="true"/>
 
