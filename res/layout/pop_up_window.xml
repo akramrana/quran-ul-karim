@@ -102,24 +102,28 @@
                         android:id="@+id/btnBackward"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:contentDescription="Back"
                         android:src="@android:drawable/ic_media_rew" />
 
                     <ImageButton
                         android:id="@+id/btnPlay"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:contentDescription="Play"
                         android:src="@android:drawable/ic_media_play" />
 
                     <ImageButton
                         android:id="@+id/btnPause"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:contentDescription="Pause"
                         android:src="@android:drawable/ic_media_pause" />
 
                     <ImageButton
                         android:id="@+id/btnForward"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:contentDescription="Forward"
                         android:src="@android:drawable/ic_media_ff" />
 
                 </LinearLayout>

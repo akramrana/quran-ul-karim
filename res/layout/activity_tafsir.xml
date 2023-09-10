@@ -30,7 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Prev"
-                    android:textSize="12dp"
+                    android:textSize="12sp"
                     android:textColor="@color/colorWhiteDN"
                     android:drawableLeft="@android:drawable/ic_media_previous"
                     android:layout_alignParentLeft="true"
@@ -86,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Next"
-                    android:textSize="12dp"
+                    android:textSize="12sp"
                     android:textColor="@color/colorWhiteDN"
                     android:drawableRight="@android:drawable/ic_media_next"
                     android:layout_alignParentRight="true"
@@ -120,7 +120,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/string_ibnkathir"
-                        android:textSize="12dp"
+                        android:textSize="12sp"
                         android:layout_margin="5dp"
                         android:paddingLeft="6dp"
                         android:paddingRight="6dp"
@@ -132,7 +132,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/string_bayaan"
-                        android:textSize="12dp"
+                        android:textSize="12sp"
                         android:layout_margin="5dp"
                         android:paddingLeft="6dp"
                         android:paddingRight="6dp"
@@ -144,7 +144,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/string_zakaria"
-                        android:textSize="12dp"
+                        android:textSize="12sp"
                         android:layout_margin="5dp"
                         android:paddingLeft="6dp"
                         android:paddingRight="6dp"
@@ -156,7 +156,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/string_tafhim"
-                        android:textSize="12dp"
+                        android:textSize="12sp"
                         android:layout_margin="5dp"
                         android:paddingLeft="6dp"
                         android:paddingRight="6dp"
@@ -168,7 +168,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/string_fathul_mazid"
-                        android:textSize="12dp"
+                        android:textSize="12sp"
                         android:layout_margin="5dp"
                         android:paddingLeft="6dp"
                         android:paddingRight="6dp"
@@ -262,7 +262,7 @@
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
                         android:layout_below="@id/ayah_arabic"
-                        android:textSize="15dip"/>
+                        android:textSize="15sp"/>
 
                     <TextView
                         android:id="@+id/ayah_english"
@@ -328,7 +328,7 @@
                         android:textColor="@color/colorWhite"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
-                        android:textSize="15dip"
+                        android:textSize="15sp"
                         android:layout_gravity="center_vertical|end"/>
 
                     <TextView
@@ -428,7 +428,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/string_cp"
-                        android:textSize="12dp"
+                        android:textSize="12sp"
                         android:textAllCaps="false"
                         android:drawableTop="@android:drawable/ic_menu_set_as"
                         android:layout_marginBottom="5dp"/>

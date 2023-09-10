@@ -22,6 +22,7 @@
             android:textSize="12dp"
             android:textIsSelectable="true"
             android:textStyle="bold"
+            android:contentDescription="Rub Num"
             android:background="@drawable/rounded_border"/>
 
     </RelativeLayout>

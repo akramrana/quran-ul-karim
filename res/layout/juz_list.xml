@@ -22,6 +22,7 @@
             android:textSize="12dp"
             android:textIsSelectable="true"
             android:textStyle="bold"
+            android:contentDescription="Juz Num"
             android:background="@drawable/rounded_border"/>
 
     </RelativeLayout>

@@ -66,6 +66,7 @@
                 android:id="@+id/ayat_term"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:textSize="14sp"
                 android:hint="@string/spinner_ayat_term"
                 android:textStyle="italic"/>

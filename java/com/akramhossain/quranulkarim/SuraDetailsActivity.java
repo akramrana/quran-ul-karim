@@ -32,6 +32,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.SearchView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,7 +52,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-public class SuraDetailsActivity extends AppCompatActivity {
+public class SuraDetailsActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
     public static String suraId;
     public static String suraName;
@@ -95,6 +96,10 @@ public class SuraDetailsActivity extends AppCompatActivity {
     private static int oTime =0, sTime =0, eTime =0, fTime = 5000, bTime = 5000;
     private SeekBar songPrgs;
     private Handler hdlr = new Handler();
+
+    String searchTxt = "";
+    Handler mHandler = new Handler();
+    SearchView searchAyah;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,7 +178,7 @@ public class SuraDetailsActivity extends AppCompatActivity {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if (dy > 0) {
+                if (dy > 0 && searchTxt.equals("")) {
                     int firstVisiblePosition = mLayoutManager.findLastVisibleItemPosition();
                     //Log.i("Top Position", Integer.toString(topPosition));
                     //Log.i("Last Position Visible", Integer.toString(firstVisiblePosition));
@@ -761,6 +766,25 @@ public class SuraDetailsActivity extends AppCompatActivity {
             }
         });
 
+        searchAyah = (SearchView) findViewById(R.id.search);
+        searchAyah.setOnQueryTextListener(this);
+
+        TextView search_ayah = (TextView) findViewById(R.id.search_ayah);
+        LinearLayout search_ayah_section = (LinearLayout) findViewById(R.id.search_ayah_section);
+        search_ayah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                search_ayah_section.setVisibility(View.VISIBLE);
+            }
+        });
+
+        TextView search_close = (TextView) findViewById(R.id.search_close);
+        search_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                search_ayah_section.setVisibility(View.GONE);
+            }
+        });
     }
 
     private String convertoArabic(String str){
@@ -829,14 +853,27 @@ public class SuraDetailsActivity extends AppCompatActivity {
 
     private void getDataFromLocalDb() {
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-        String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans,ayah_indo.text as indo_pak " +
-                "FROM ayah " +
-                "LEFT join sura ON ayah.surah_id = sura.surah_id " +
-                "LEFT join transliteration ON ayah.ayah_num = transliteration.ayat_id and transliteration.sura_id = ayah.surah_id " +
-                "LEFT join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id "+
-                "WHERE ayah.surah_id = "+suraId+" " +
-                "order by ayah.ayah_index ASC " +
-                "limit " + offset + "," + limit;
+        searchTxt = searchTxt.replaceAll("\'","");
+        String sql = "";
+        if(searchTxt.equals("")) {
+            sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans,ayah_indo.text as indo_pak " +
+                    "FROM ayah " +
+                    "LEFT join sura ON ayah.surah_id = sura.surah_id " +
+                    "LEFT join transliteration ON ayah.ayah_num = transliteration.ayat_id and transliteration.sura_id = ayah.surah_id " +
+                    "LEFT join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id " +
+                    "WHERE ayah.surah_id = " + suraId + " " +
+                    "order by ayah.ayah_index ASC " +
+                    "limit " + offset + "," + limit;
+        }else{
+            Log.d("searchTxt",searchTxt);
+            sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans,ayah_indo.text as indo_pak " +
+                    "FROM ayah " +
+                    "LEFT join sura ON ayah.surah_id = sura.surah_id " +
+                    "LEFT join transliteration ON ayah.ayah_num = transliteration.ayat_id and transliteration.sura_id = ayah.surah_id " +
+                    "LEFT join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id " +
+                    "WHERE (ayah.surah_id = " + suraId + ") and (ayah.ayah_num like '%"+searchTxt+"%' or ayah.ayah_key like '%"+searchTxt+"%' or ayah.content_en like '%"+searchTxt+"%' or ayah.content_bn like '%"+searchTxt+"%' or ayah.text like '%"+searchTxt+"%' or ayah.text_tashkeel like '%"+searchTxt+"%')" +
+                    "order by ayah.ayah_index ASC ";
+        }
         Log.i(TAG, sql);
         Cursor cursor = db.rawQuery(sql, null);
         try {
@@ -881,6 +918,9 @@ public class SuraDetailsActivity extends AppCompatActivity {
     }
 
     private void setRecyclerViewAdapter() {
+        if(ayahs != null && !ayahs.isEmpty()) {
+            ayahs.clear();
+        }
         ayahs = new ArrayList<Ayah>();
         rvAdapter = new SuraDetailsViewAdapter(SuraDetailsActivity.this, ayahs, this);
         recyclerview.setAdapter(rvAdapter);
@@ -1019,4 +1059,31 @@ public class SuraDetailsActivity extends AppCompatActivity {
             }
         }
     };
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String query) {
+        searchTxt = query;
+        mHandler.removeCallbacksAndMessages(null);
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                int length = searchTxt.length();
+                offset = 0;
+                if(length > 0) {
+                    setRecyclerViewAdapter();
+                    getDataFromLocalDb();
+                }else{
+                    setRecyclerViewAdapter();
+                    getDataFromLocalDb();
+                }
+            }
+        }, 500);
+
+        return true;
+    }
 }

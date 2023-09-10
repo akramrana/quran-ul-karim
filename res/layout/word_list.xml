@@ -31,6 +31,7 @@
             android:textAllCaps="true"
             android:textColor="@color/colorWhite"
             android:textSize="30dip"
+            android:contentDescription="Arabic Text"
             android:textIsSelectable="true"/>
 
         <TextView
@@ -40,6 +41,7 @@
             android:textColor="@color/colorWhite"
             android:paddingLeft="6dip"
             android:textSize="15dip"
+            android:contentDescription="Transliteration"
             android:textIsSelectable="true"/>
 
         <TextView
@@ -51,6 +53,7 @@
             android:paddingLeft="6dip"
             android:textSize="15dip"
             android:layout_below="@+id/word_transliteration"
+            android:contentDescription="Translation"
             android:textIsSelectable="true"/>
 
         <TextView
@@ -62,6 +65,7 @@
             android:paddingLeft="4dip"
             android:textSize="15dip"
             android:layout_below="@+id/word_translation"
+            android:contentDescription="Bangla Text"
             android:textIsSelectable="true"/>
 
         <View
@@ -83,7 +87,7 @@
                 android:id="@+id/playWordBtn"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:textSize="9dp"
+                android:textSize="9sp"
                 android:drawableLeft="@android:drawable/ic_media_play"
                 android:background="@android:color/transparent"
                 android:layout_alignParentLeft="true"

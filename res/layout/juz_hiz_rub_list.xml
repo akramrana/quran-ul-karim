@@ -9,7 +9,7 @@
     android:clickable="false"
     android:focusable="true">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
@@ -103,7 +103,7 @@
             android:layout_marginTop="10dip"
             android:layout_marginBottom="10dip"
             android:textColor="@color/colorWhiteDN"
-            android:textSize="12dp"
+            android:textSize="12sp"
             android:textStyle="bold"
             android:text="@string/text_tafsirs"
             android:background="@drawable/rounded_border"
@@ -129,7 +129,7 @@
                 android:layout_width="45dp"
                 android:layout_height="wrap_content"
                 android:text="@string/string_play"
-                android:textSize="9dp"
+                android:textSize="9sp"
                 android:drawableTop="@android:drawable/ic_media_play"
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical|center"
@@ -140,46 +140,55 @@
                 android:id="@+id/bookmarkBtn"
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
-                android:text="@string/string_bkmark"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
                 android:layout_toRightOf="@id/playBtn"
-                android:textSize="9dp"
-                android:drawableTop="@android:drawable/btn_star"
                 android:background="@android:color/transparent"
+                android:drawableTop="@android:drawable/btn_star"
                 android:gravity="center_vertical|center"
+                android:text="@string/string_bkmark"
                 android:textAllCaps="false"
-                android:layout_margin="4dp"/>
+                android:textSize="9sp" />
 
             <Button
                 android:id="@+id/wordMeaningButton"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:text="@string/string_wrd_mni"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
                 android:layout_toRightOf="@id/bookmarkBtn"
-                android:textSize="9dp"
-                android:drawableTop="@android:drawable/ic_menu_directions"
                 android:background="@android:color/transparent"
+                android:drawableTop="@android:drawable/ic_menu_directions"
                 android:gravity="center_vertical|center"
+                android:text="@string/string_wrd_mni"
                 android:textAllCaps="false"
-                android:layout_margin="4dp"/>
+                android:textSize="9sp" />
 
             <Button
                 android:id="@+id/copyButton"
                 android:layout_width="45dp"
                 android:layout_height="wrap_content"
-                android:text="@string/string_cp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
                 android:layout_toRightOf="@id/wordMeaningButton"
-                android:textSize="9dp"
-                android:drawableTop="@android:drawable/ic_menu_set_as"
                 android:background="@android:color/transparent"
+                android:drawableTop="@android:drawable/ic_menu_set_as"
                 android:gravity="center_vertical|center"
+                android:text="@string/string_cp"
                 android:textAllCaps="false"
-                android:layout_margin="4dp"/>
+                android:textSize="9sp" />
 
             <Button
                 android:id="@+id/shareButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="9dp"
+                android:textSize="9sp"
                 android:drawableTop="@android:drawable/ic_menu_share"
                 android:background="@android:color/transparent"
                 android:layout_alignParentRight="true"

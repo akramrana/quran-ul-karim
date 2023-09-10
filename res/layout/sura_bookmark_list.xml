@@ -43,6 +43,7 @@
             android:textSize="30dp"
             android:gravity="right"
             android:textIsSelectable="true"
+            android:contentDescription="Arabic Text"
             android:layout_toLeftOf="@+id/ayah_num"/>
 
 
@@ -54,6 +55,7 @@
             android:textColor="@color/transColor"
             android:layout_marginTop="12dip"
             android:layout_below="@id/text_tashkeel"
+            android:contentDescription="Transliteration"
             android:textSize="15dip"/>
 
         <TextView
@@ -103,7 +105,7 @@
             android:layout_marginTop="10dip"
             android:layout_marginBottom="10dip"
             android:textColor="@color/colorWhiteDN"
-            android:textSize="12dp"
+            android:textSize="12sp"
             android:textStyle="bold"
             android:text="@string/text_tafsirs"
             android:background="@drawable/rounded_border"
@@ -126,10 +128,10 @@
 
             <Button
                 android:id="@+id/playBtn"
-                android:layout_width="45dp"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:text="@string/string_play"
-                android:textSize="9dp"
+                android:textSize="9sp"
                 android:drawableTop="@android:drawable/ic_media_play"
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical|center"
@@ -142,7 +144,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/string_wrd_mni"
                 android:layout_toRightOf="@id/playBtn"
-                android:textSize="9dp"
+                android:textSize="9sp"
                 android:drawableTop="@android:drawable/ic_menu_directions"
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical|center"
@@ -155,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/string_del"
                 android:layout_toRightOf="@id/wordMeaningButton"
-                android:textSize="9dp"
+                android:textSize="9sp"
                 android:drawableTop="@android:drawable/ic_menu_delete"
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical|center"
@@ -165,11 +167,11 @@
 
             <Button
                 android:id="@+id/copyButton"
-                android:layout_width="45dp"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:text="@string/string_cp"
                 android:layout_toRightOf="@id/removeBookmarkButton"
-                android:textSize="9dp"
+                android:textSize="9sp"
                 android:drawableTop="@android:drawable/ic_menu_set_as"
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical|center"
@@ -180,7 +182,7 @@
                 android:id="@+id/shareButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="9dp"
+                android:textSize="9sp"
                 android:text="@string/string_share"
                 android:drawableTop="@android:drawable/ic_menu_share"
                 android:background="@android:color/transparent"

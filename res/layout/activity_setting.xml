@@ -45,7 +45,7 @@
                     android:paddingRight="5dp"
                     android:text="@string/string_setting_subtitle"
                     android:textColor="@color/colorWhiteDN"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:text="Setting For Mushaf"
                     android:textColor="@color/colorWhite"
-                    android:textSize="16dip"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="10dp"/>
 
@@ -105,6 +105,7 @@
                             android:id="@+id/mushaf_spinner"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:minHeight="48dp"
                             android:layout_gravity="right"
                             android:prompt="@string/spinner_prompt" />
                     </LinearLayout>
@@ -125,7 +126,7 @@
                     android:layout_height="wrap_content"
                     android:text="Font Setting For Arabic"
                     android:textColor="@color/colorWhite"
-                    android:textSize="16dip"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="10dp"/>
 
@@ -160,6 +161,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
+                            android:minHeight="48dp"
                             android:prompt="@string/spinner_prompt" />
 
                         <TextView
@@ -168,7 +170,7 @@
                             android:text="**Please use Uthman Taha Naskh font with Uthmanic Mushaf Only**"
                             android:textColor="@color/transColor"
                             android:gravity="right"
-                            android:textSize="12dp"
+                            android:textSize="12sp"
                             android:layout_marginTop="5dp"/>
                     </LinearLayout>
 
@@ -188,7 +190,7 @@
                     android:layout_height="wrap_content"
                     android:text="Font Setting For Ayah"
                     android:textColor="@color/colorWhite"
-                    android:textSize="16dip"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="20dp"/>
@@ -223,6 +225,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ems="10"
+                            android:minHeight="48dp"
                             android:layout_gravity="right"
                             android:inputType="number"/>
                     </LinearLayout>
@@ -259,6 +262,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ems="10"
+                            android:minHeight="48dp"
                             android:layout_gravity="right"
                             android:inputType="number"/>
                     </LinearLayout>
@@ -295,6 +299,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ems="10"
+                            android:minHeight="48dp"
                             android:layout_gravity="right"
                             android:inputType="number"/>
                     </LinearLayout>
@@ -315,7 +320,7 @@
                     android:layout_height="wrap_content"
                     android:text="Font Setting For Tafsir"
                     android:textColor="@color/colorWhite"
-                    android:textSize="16dip"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="20dp"/>
@@ -350,6 +355,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ems="10"
+                            android:minHeight="48dp"
                             android:layout_gravity="right"
                             android:inputType="number"/>
                     </LinearLayout>
@@ -385,6 +391,7 @@
                             android:id="@+id/bnFontSizeTafsir"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:minHeight="48dp"
                             android:ems="10"
                             android:layout_gravity="right"
                             android:inputType="number"/>
@@ -406,7 +413,7 @@
                     android:layout_height="wrap_content"
                     android:text="Setting For Tafsir"
                     android:textColor="@color/colorWhite"
-                    android:textSize="16dip"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="20dp"/>
@@ -430,42 +437,56 @@
                             android:layout_height="wrap_content"
                             android:text="@string/string_ibnkathir"
                             android:buttonTint="#d1d2d4"
+                            android:minHeight="48dp"
+                            android:minWidth="48dp"
                             android:clickable="false"/>
 
                         <CheckBox
                             android:id="@+id/tafsirBayaanCheckBox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:minWidth="48dp"
                             android:text="@string/string_bayaan"/>
 
                         <CheckBox
                             android:id="@+id/tafsirZakariaCheckBox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:minWidth="48dp"
                             android:text="@string/string_zakaria"/>
 
                         <CheckBox
                             android:id="@+id/tafsirTafhimCheckBox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:minWidth="48dp"
                             android:text="@string/string_tafhim"/>
 
                         <CheckBox
                             android:id="@+id/tafsirFathulCheckBox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:minWidth="48dp"
                             android:text="@string/string_fathul_mazid"/>
 
                         <CheckBox
                             android:id="@+id/tafsirFezilalilCheckBox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:minWidth="48dp"
                             android:text="@string/string_fezilalil_quran"/>
 
                         <CheckBox
                             android:id="@+id/tafsirJalalaynCheckBox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:minWidth="48dp"
                             android:text="@string/string_jalalayn"/>
 
                     </LinearLayout>
@@ -506,18 +527,24 @@
                             android:id="@+id/showBnPronunciation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:minWidth="48dp"
                             android:text="@string/string_show_bn_pron"/>
 
                         <CheckBox
                             android:id="@+id/showEnTranslation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:minWidth="48dp"
                             android:text="@string/string_show_en_trans"/>
 
                         <CheckBox
                             android:id="@+id/showBnTranslation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:minWidth="48dp"
                             android:text="@string/string_show_bn_trans"/>
 
                     </LinearLayout>

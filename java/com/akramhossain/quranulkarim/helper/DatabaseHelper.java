@@ -19,7 +19,7 @@ import java.io.OutputStream;
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static String DB_NAME = "db.sqlite";
     private static String DB_PATH = "";
-    private static final int DB_VERSION = 14;
+    private static final int DB_VERSION = 16;
 
     private SQLiteDatabase mDataBase;
     private final Context mContext;
@@ -67,7 +67,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase checkDb = null;
         try {
             String mypath = DB_PATH + DB_NAME;
-            checkDb = SQLiteDatabase.openDatabase(mypath, null, SQLiteDatabase.OPEN_READONLY);
+            File dbFile = new File(DB_PATH + DB_NAME);
+            if (dbFile.exists()) {
+                checkDb = SQLiteDatabase.openDatabase(mypath, null, SQLiteDatabase.OPEN_READONLY);
+            }
         }
         catch (Exception e) {
             Log.d("Exception",e.getMessage());

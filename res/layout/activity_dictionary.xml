@@ -45,7 +45,7 @@
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:textColor="@color/colorWhiteDN"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:text="@string/string_dictionary_subtitle"/>
 
             </LinearLayout>
@@ -53,7 +53,7 @@
 
         </RelativeLayout>
 
-        <SearchView
+        <android.widget.SearchView
             android:id="@+id/search"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
             android:layout_marginBottom="15dp"
             android:queryHint="Enter keyword to search..."
             android:layout_below="@+id/topBarDictionary">
-        </SearchView>
+        </android.widget.SearchView>
 
 
         <androidx.recyclerview.widget.RecyclerView

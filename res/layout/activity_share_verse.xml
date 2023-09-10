@@ -47,7 +47,7 @@
                     android:paddingRight="5dp"
                     android:text="@string/string_shar_verse_subtitle"
                     android:textColor="@color/colorWhiteDN"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
@@ -121,7 +121,7 @@
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
                         android:layout_below="@id/ayah_arabic"
-                        android:textSize="15dip"/>
+                        android:textSize="15sp"/>
 
                     <View
                         android:layout_width="match_parent"
@@ -215,7 +215,7 @@
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
                         android:textColor="#333"
-                        android:textSize="13dp"
+                        android:textSize="13sp"
                         android:text="@string/label_change_color"/>
 
 
@@ -236,7 +236,7 @@
                                 android:id="@+id/colorBtn"
                                 android:layout_margin="10dp"
                                 android:text="Change Color"
-                                android:textSize="9dp"
+                                android:textSize="9sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/colorWhiteDN"
@@ -256,7 +256,7 @@
                                 android:id="@+id/imgBtn"
                                 android:layout_margin="10dp"
                                 android:text="Change Gradient"
-                                android:textSize="9dp"
+                                android:textSize="9sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/colorWhiteDN"
@@ -286,7 +286,7 @@
                         android:textColor="@color/cardview_light_background"
                         android:gravity="center"
                         android:textAllCaps="false"
-                        android:textSize="9dp"
+                        android:textSize="9sp"
                         android:layout_marginRight="20dp"/>
 
                     <Button
@@ -297,7 +297,7 @@
                         android:background="@color/color8"
                         android:textColor="@color/cardview_light_background"
                         android:gravity="center"
-                        android:textSize="9dp"
+                        android:textSize="9sp"
                         android:textAllCaps="false"/>
 
                 </LinearLayout>

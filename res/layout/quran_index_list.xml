@@ -57,6 +57,7 @@
                 android:textIsSelectable="true"
                 android:textStyle="bold"
                 android:background="@drawable/rounded_border"
+                android:contentDescription="Ayah Count"
                 android:layout_gravity="right"/>
 
 <!--            <TextView-->

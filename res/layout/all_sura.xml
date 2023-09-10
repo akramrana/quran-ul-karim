@@ -33,8 +33,8 @@
 
             <ImageButton
                 android:id="@+id/btnPlay"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:background="?android:selectableItemBackground"
                 android:src="@android:drawable/ic_media_play" />
 

@@ -59,7 +59,7 @@
             android:text="তাফসীর ফী যিলালিল কোরআন থেকে নেওয়া"
             android:layout_below="@+id/topAboutBar"
             android:textColor="@color/colorWhite"
-            android:textSize="14dp"
+            android:textSize="14sp"
             android:gravity="center"/>
 
         <ScrollView

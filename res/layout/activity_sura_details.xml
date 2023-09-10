@@ -22,7 +22,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:layout_gravity="bottom">
+                android:gravity="left"
+                android:layout_gravity="bottom"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/search_ayah"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhiteDN"
+                    android:textSize="10sp"
+                    android:gravity="center"
+                    android:text="@string/search_ayah_en"
+                    android:background="@drawable/rounded_border"/>
 
                 <Button
                     android:id="@+id/previousBtn"
@@ -210,10 +222,44 @@
             android:layout_marginTop="5dp">
 
             <LinearLayout
+                android:id="@+id/search_ayah_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="6dip"
+                android:paddingRight="6dip"
+                android:visibility="gone">
+
+                <android.widget.SearchView
+                    android:id="@+id/search"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.8"
+                    android:layout_height="wrap_content"
+                    android:iconifiedByDefault="false"
+                    android:focusable="false"
+                    android:queryHint="Enter ayah number,term..."
+                    android:layout_marginBottom="3dp">
+                </android.widget.SearchView>
+
+                <TextView
+                    android:id="@+id/search_close"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.2"
+                    android:layout_height="wrap_content"
+                    android:text="@string/close_search"
+                    android:gravity="center"
+                    android:textColor="@color/darkblue"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/i18n_sec"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center">
+                android:gravity="center"
+                android:layout_below="@+id/search_ayah_section">
 
                 <Button
                     android:id="@+id/translation_btn"

@@ -103,7 +103,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/string_cp"
-                    android:textSize="9dp"
+                    android:textSize="9sp"
                     android:drawableTop="@android:drawable/ic_menu_set_as"
                     android:gravity="center_vertical|center"
                     android:layout_margin="2dp"/>

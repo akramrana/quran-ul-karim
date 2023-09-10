@@ -41,7 +41,7 @@
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:textColor="@color/colorWhiteDN"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:layout_marginBottom="5dp"
                     android:text="@string/string_subj_subtitle"/>
 
@@ -53,14 +53,14 @@
                     android:textColor="@color/colorWhiteDN"
                     android:gravity="center"
                     android:layout_marginBottom="15dp"
-                    android:textSize="11dp"/>
+                    android:textSize="11sp"/>
 
             </LinearLayout>
 
 
         </RelativeLayout>
 
-        <SearchView
+        <android.widget.SearchView
             android:id="@+id/search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
             android:focusable="false"
             android:queryHint="Enter keyword to search..."
             android:layout_below="@+id/topBarSlist">
-        </SearchView>
+        </android.widget.SearchView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/all_index_list"
