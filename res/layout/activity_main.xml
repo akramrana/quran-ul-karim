@@ -661,7 +661,7 @@
                     android:layout_height="48.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/search" />
+                    android:src="@drawable/search_color" />
 
                 <TextView
                     android:id="@+id/textView3"
@@ -757,7 +757,7 @@
                     android:layout_height="48.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/links" />
+                    android:src="@drawable/lover" />
 
                 <TextView
                     android:id="@+id/textView4"
@@ -840,7 +840,7 @@
                     android:layout_height="48.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/time" />
+                    android:src="@drawable/clock" />
 
                 <TextView
                     android:id="@+id/timeTextView"
