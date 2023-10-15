@@ -746,8 +746,8 @@ public class MainActivity extends AppCompatActivity {
                 img.setVisibility(View.GONE);
             }else{
                 Picasso.get().load(json.getString("image"))
-                        .networkPolicy(NetworkPolicy.NO_CACHE)
-                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                        //.networkPolicy(NetworkPolicy.NO_CACHE)
+                        //.memoryPolicy(MemoryPolicy.NO_CACHE)
                         .into(img);
                 img.setVisibility(View.VISIBLE);
             }
