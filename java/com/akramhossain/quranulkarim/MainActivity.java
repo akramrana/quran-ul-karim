@@ -18,6 +18,8 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.preference.PreferenceManager;
+import android.text.Html;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -26,6 +28,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -37,7 +40,12 @@ import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.listener.RecyclerTouchListener;
 import com.akramhossain.quranulkarim.model.Sura;
 import com.akramhossain.quranulkarim.notification.NotificationHelper;
+import com.akramhossain.quranulkarim.task.BannerJsonFromUrlTask;
+import com.akramhossain.quranulkarim.task.CmsJsonFromUrlTask;
 import com.akramhossain.quranulkarim.util.ConnectionDetector;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,6 +57,8 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import static com.akramhossain.quranulkarim.BugReportActivity.host;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -89,6 +99,10 @@ public class MainActivity extends AppCompatActivity {
     TextView txtPer;
 
     ProgressBar prog;
+
+    public static String URL;
+
+    ImageView img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -582,6 +596,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        img = (ImageView) findViewById(R.id.img);
+        URL = host+"api/banner";
+        getBannerFromInternet();
     }
 
     private void getPopularSearchFromLocalDb() {
@@ -710,6 +727,33 @@ public class MainActivity extends AppCompatActivity {
                 cursor.close();
             }
             db.close();
+        }
+    }
+
+    private void getBannerFromInternet() {
+        if (isInternetPresent) {
+            new BannerJsonFromUrlTask(this, URL);
+        }
+    }
+
+    public void parseJsonResponse(String result) {
+        //Log.i(TAG, result);
+        try {
+            JSONObject response = new JSONObject(result);
+            JSONObject json = response.getJSONObject("data");
+            if(json.length()==0){
+                Log.d("banner","Banner is empty");
+                img.setVisibility(View.GONE);
+            }else{
+                Picasso.get().load(json.getString("image"))
+                        .networkPolicy(NetworkPolicy.NO_CACHE)
+                        .memoryPolicy(MemoryPolicy.NO_CACHE)
+                        .into(img);
+                img.setVisibility(View.VISIBLE);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 
