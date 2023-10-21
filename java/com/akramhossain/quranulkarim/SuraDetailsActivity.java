@@ -68,7 +68,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
 
     private boolean itShouldLoadMore = true;
     Integer offset = 0;
-    Integer limit = 100;
+    Integer limit = 300;
     Integer counter = 0;
     TextView titleEn,titleAr, text_bismillah;
 

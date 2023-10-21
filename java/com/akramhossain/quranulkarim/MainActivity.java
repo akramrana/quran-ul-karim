@@ -595,7 +595,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
+        start_from_last.setTypeface(font);
         img = (ImageView) findViewById(R.id.img);
         URL = host+"api/banner";
         getBannerFromInternet();
