@@ -68,8 +68,10 @@ public class SettingActivity extends AppCompatActivity{
         //
         final Spinner spinner1 = (Spinner) findViewById(R.id.mushaf_spinner);
         List<String> mushafs = new ArrayList<String>();
+        mushafs.add("ImlaeiSimple");
         mushafs.add("IndoPak");
         mushafs.add("Uthmanic");
+        mushafs.add("Tajweed");
         final ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mushafs);
         dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(dataAdapter1);

@@ -100,11 +100,13 @@ public class SearchAyatActivity extends AppCompatActivity {
 
     private void getDataFromLocalDb() {
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-        String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans,ayah_indo.text as indo_pak " +
+        String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans,ayah_indo.text as indo_pak,ut.text_uthmani_tajweed,u.text_uthmani " +
                 "FROM ayah " +
                 "LEFT join sura ON ayah.surah_id = sura.surah_id " +
                 "LEFT join transliteration ON ayah.ayah_num = transliteration.ayat_id and transliteration.sura_id = ayah.surah_id " +
                 "LEFT join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id "+
+                "LEFT JOIN uthmani_tajweed ut ON ayah.ayah_key = ut.verse_key " +
+                "LEFT JOIN uthmani u ON ayah.ayah_key = u.verse_key "+
                 "WHERE (ayah.text LIKE \"%"+search_term+"%\" or text_tashkeel LIKE \"%"+search_term+"%\" or content_en LIKE \"%"+search_term+"%\" or content_bn LIKE \"%"+search_term+"%\" or ayah_key LIKE \"%"+search_term+"%\") " +
                 "order by ayah_index ASC " +
                 "limit " + offset + "," + limit;
@@ -136,6 +138,8 @@ public class SearchAyatActivity extends AppCompatActivity {
                     ayah.setName_arabic(cursor.getString(cursor.getColumnIndexOrThrow("name_arabic")));
                     ayah.setTrans(cursor.getString(cursor.getColumnIndexOrThrow("trans")));
                     ayah.setIndo_pak(cursor.getString(cursor.getColumnIndexOrThrow("indo_pak")));
+                    ayah.setText_uthmani(cursor.getString(cursor.getColumnIndexOrThrow("text_uthmani")));
+                    ayah.setText_uthmani_tajweed(cursor.getString(cursor.getColumnIndexOrThrow("text_uthmani_tajweed")));
                     ayahs.add(ayah);
                 } while (cursor.moveToNext());
             }

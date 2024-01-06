@@ -15,6 +15,10 @@ public class Hizb {
     private String name_arabic;
     private String indo_pak;
 
+    private String text_uthmani;
+
+    private String text_uthmani_tajweed;
+
     public String getAyah_index() {
         return ayah_index;
     }
@@ -109,5 +113,18 @@ public class Hizb {
 
     public void setIndo_pak(String indo_pak) {
         this.indo_pak = indo_pak;
+    }
+
+    public String getText_uthmani() {
+        return text_uthmani;
+    }
+    public void setText_uthmani(String text_uthmani) {
+        this.text_uthmani = text_uthmani;
+    }
+    public String getText_uthmani_tajweed() {
+        return text_uthmani_tajweed;
+    }
+    public void setText_uthmani_tajweed(String text_uthmani_tajweed) {
+        this.text_uthmani_tajweed = text_uthmani_tajweed;
     }
 }

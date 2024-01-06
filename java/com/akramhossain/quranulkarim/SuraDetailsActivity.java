@@ -843,10 +843,11 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
 
     private void getSuraAsText(){
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-        String sql = "SELECT ayah.*,ayah_indo.text as indo_pak,ut.text_uthmani_tajweed " +
+        String sql = "SELECT ayah.*,ayah_indo.text as indo_pak,ut.text_uthmani_tajweed,u.text_uthmani " +
                 "FROM ayah " +
                 "LEFT join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id " +
                 "LEFT join uthmani_tajweed ut ON ayah.ayah_key = ut.verse_key "+
+                "LEFT JOIN uthmani u ON ayah.ayah_key = u.verse_key "+
                 "WHERE ayah.surah_id = "+suraId;
         Cursor cursor = db.rawQuery(sql, null);
         StringBuilder fullSuraStr = new StringBuilder();
@@ -986,21 +987,25 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         searchTxt = searchTxt.replaceAll("\'","");
         String sql = "";
         if(searchTxt.equals("")) {
-            sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans,ayah_indo.text as indo_pak " +
+            sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans,ayah_indo.text as indo_pak,ut.text_uthmani_tajweed,u.text_uthmani " +
                     "FROM ayah " +
                     "LEFT join sura ON ayah.surah_id = sura.surah_id " +
                     "LEFT join transliteration ON ayah.ayah_num = transliteration.ayat_id and transliteration.sura_id = ayah.surah_id " +
                     "LEFT join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id " +
+                    "LEFT JOIN uthmani_tajweed ut ON ayah.ayah_key = ut.verse_key " +
+                    "LEFT JOIN uthmani u ON ayah.ayah_key = u.verse_key "+
                     "WHERE ayah.surah_id = " + suraId + " " +
                     "order by ayah.ayah_index ASC " +
                     "limit " + offset + "," + limit;
         }else{
             Log.d("searchTxt",searchTxt);
-            sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans,ayah_indo.text as indo_pak " +
+            sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans,ayah_indo.text as indo_pak,ut.text_uthmani_tajweed,u.text_uthmani " +
                     "FROM ayah " +
                     "LEFT join sura ON ayah.surah_id = sura.surah_id " +
                     "LEFT join transliteration ON ayah.ayah_num = transliteration.ayat_id and transliteration.sura_id = ayah.surah_id " +
                     "LEFT join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id " +
+                    "LEFT JOIN uthmani_tajweed ut ON ayah.ayah_key = ut.verse_key " +
+                    "LEFT JOIN uthmani u ON ayah.ayah_key = u.verse_key "+
                     "WHERE (ayah.surah_id = " + suraId + ") and (ayah.ayah_num like '%"+searchTxt+"%' or ayah.content_en like '%"+searchTxt+"%' or ayah.content_bn like '%"+searchTxt+"%' or ayah.text like '%"+searchTxt+"%' or ayah.text_tashkeel like '%"+searchTxt+"%')" +
                     "order by ayah.ayah_index ASC ";
         }
@@ -1032,6 +1037,8 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                     ayah.setName_arabic(cursor.getString(cursor.getColumnIndexOrThrow("name_arabic")));
                     ayah.setTrans(cursor.getString(cursor.getColumnIndexOrThrow("trans")));
                     ayah.setIndo_pak(cursor.getString(cursor.getColumnIndexOrThrow("indo_pak")));
+                    ayah.setText_uthmani(cursor.getString(cursor.getColumnIndexOrThrow("text_uthmani")));
+                    ayah.setText_uthmani_tajweed(cursor.getString(cursor.getColumnIndexOrThrow("text_uthmani_tajweed")));
                     ayahs.add(ayah);
                 } while (cursor.moveToNext());
             }

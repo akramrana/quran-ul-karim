@@ -67,10 +67,12 @@ public class HizbActivity extends AppCompatActivity {
 
     private void getDataFromLocalDb() {
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-        String sql = "select ayah.ayah_index,ayah.ayah_num,ayah.surah_id,ayah.page_num,ayah.hizb_num,ayah.text_tashkeel,ayah.ayah_key,sura.name_simple,sura.name_complex,sura.name_english,sura.name_arabic, ayah_indo.text as indo_pak\n" +
+        String sql = "select ayah.ayah_index,ayah.ayah_num,ayah.surah_id,ayah.page_num,ayah.hizb_num,ayah.text_tashkeel,ayah.ayah_key,sura.name_simple,sura.name_complex,sura.name_english,sura.name_arabic, ayah_indo.text as indo_pak,ut.text_uthmani_tajweed,u.text_uthmani \n" +
                 "from ayah \n" +
                 "inner join sura ON ayah.surah_id = sura.surah_id\n" +
                 "inner join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id "+
+                "inner JOIN uthmani_tajweed ut ON ayah.ayah_key = ut.verse_key " +
+                "inner JOIN uthmani u ON ayah.ayah_key = u.verse_key "+
                 "group by hizb_num " +
                 "HAVING MIN(ayah_index) " +
                 "order by hizb_num asc";
@@ -92,6 +94,8 @@ public class HizbActivity extends AppCompatActivity {
                     hizb.setName_arabic(cursor.getString(cursor.getColumnIndexOrThrow("name_arabic")).toString());
                     hizb.setAyah_num(cursor.getString(cursor.getColumnIndexOrThrow("ayah_num")).toString());
                     hizb.setIndo_pak(cursor.getString(cursor.getColumnIndexOrThrow("indo_pak")));
+                    hizb.setText_uthmani(cursor.getString(cursor.getColumnIndexOrThrow("text_uthmani")));
+                    hizb.setText_uthmani_tajweed(cursor.getString(cursor.getColumnIndexOrThrow("text_uthmani_tajweed")));
                     hizbs.add(hizb);
                 }while (cursor.moveToNext());
             }

@@ -321,11 +321,13 @@ public class TafsirActivity extends AppCompatActivity {
         previousBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-                String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans,ayah_indo.text as indo_pak " +
+                String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans,ayah_indo.text as indo_pak,ut.text_uthmani_tajweed,u.text_uthmani " +
                         "FROM ayah " +
                         "LEFT join sura ON ayah.surah_id = sura.surah_id " +
                         "LEFT join transliteration ON ayah.ayah_num = transliteration.ayat_id and transliteration.sura_id = ayah.surah_id " +
                         "LEFT join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id "+
+                        "LEFT JOIN uthmani_tajweed ut ON ayah.ayah_key = ut.verse_key " +
+                        "LEFT JOIN uthmani u ON ayah.ayah_key = u.verse_key "+
                         "WHERE ayah.surah_id = "+surah_id+" and ayah.ayah_num < "+ayah_num+" " +
                         "order by ayah.ayah_index DESC " +
                         "limit 1";
@@ -366,11 +368,13 @@ public class TafsirActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-                String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans,ayah_indo.text as indo_pak " +
+                String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans,ayah_indo.text as indo_pak,ut.text_uthmani_tajweed,u.text_uthmani " +
                         "FROM ayah " +
                         "LEFT join sura ON ayah.surah_id = sura.surah_id " +
                         "LEFT join transliteration ON ayah.ayah_num = transliteration.ayat_id and transliteration.sura_id = ayah.surah_id " +
                         "LEFT join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id "+
+                        "LEFT JOIN uthmani_tajweed ut ON ayah.ayah_key = ut.verse_key " +
+                        "LEFT JOIN uthmani u ON ayah.ayah_key = u.verse_key "+
                         "WHERE ayah.surah_id = "+surah_id+" and ayah.ayah_num > "+ayah_num+" " +
                         "order by ayah.ayah_index ASC " +
                         "limit 1";
