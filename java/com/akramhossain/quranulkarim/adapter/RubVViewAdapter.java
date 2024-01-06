@@ -57,9 +57,13 @@ public class RubVViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         rvHolder.rub_num.setText("Rub\' "+rub.getRub_num());
         String mushaf = mPrefs.getString("mushaf", "IndoPak");
         String tt = "";
-        if(mushaf.equals("Uthmanic")) {
+        if(mushaf.equals("ImlaeiSimple")) {
             tt = rub.getText_tashkeel();
-        }else {
+        }
+        else if(mushaf.equals("Uthmanic")) {
+            tt = rub.getText_uthmani();
+        }
+        else {
             tt = rub.getIndo_pak();
         }
         if (tt.length() > 110) {

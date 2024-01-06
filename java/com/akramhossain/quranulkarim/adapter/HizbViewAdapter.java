@@ -57,9 +57,13 @@ public class HizbViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         String mushaf = mPrefs.getString("mushaf", "IndoPak");
         rvHolder.hizb_num.setText("Hizb "+hizb.getHizb_num());
         String tt = "";
-        if(mushaf.equals("Uthmanic")) {
+        if(mushaf.equals("ImlaeiSimple")) {
             tt = hizb.getText_tashkeel();
-        }else {
+        }
+        else if(mushaf.equals("Uthmanic")) {
+            tt = hizb.getText_uthmani();
+        }
+        else {
             tt = hizb.getIndo_pak();
         }
 

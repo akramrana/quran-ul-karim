@@ -336,9 +336,13 @@ public class TafsirActivity extends AppCompatActivity {
                 try {
                     if (cursor.moveToFirst()) {
                         ayah_index = cursor.getString(0);
-                        if(mushaf.equals("Uthmanic")) {
+                        if(mushaf.equals("ImlaeiSimple")) {
                             text_tashkeel = cursor.getString(10);
-                        }else{
+                        }
+                        else if(mushaf.equals("Uthmanic")) {
+                            text_tashkeel = cursor.getString(22);
+                        }
+                        else{
                             text_tashkeel = cursor.getString(20);
                         }
                         content_en = cursor.getString(11);
@@ -383,9 +387,13 @@ public class TafsirActivity extends AppCompatActivity {
                 try {
                     if (cursor.moveToFirst()) {
                         ayah_index = cursor.getString(0);
-                        if(mushaf.equals("Uthmanic")) {
+                        if(mushaf.equals("ImlaeiSimple")) {
                             text_tashkeel = cursor.getString(10);
-                        }else{
+                        }
+                        else if(mushaf.equals("Uthmanic")) {
+                            text_tashkeel = cursor.getString(22);
+                        }
+                        else{
                             text_tashkeel = cursor.getString(20);
                         }
                         content_en = cursor.getString(11);

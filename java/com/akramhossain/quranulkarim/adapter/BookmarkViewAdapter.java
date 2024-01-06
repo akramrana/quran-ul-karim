@@ -98,9 +98,13 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         final Ayah ayah = ayahs.get(position);
         rvHolder.ayah_index.setText(ayah.getAyah_index());
         String mushaf = mPrefs.getString("mushaf", "IndoPak");
-        if(mushaf.equals("Uthmanic")) {
+        if(mushaf.equals("ImlaeiSimple")) {
             rvHolder.text_tashkeel.setText(ayah.getText_tashkeel());
-        }else {
+        }
+        else if(mushaf.equals("Uthmanic")){
+            rvHolder.text_tashkeel.setText(ayah.getText_uthmani());
+        }
+        else {
             rvHolder.text_tashkeel.setText(ayah.getIndo_pak());
         }
         rvHolder.content_en.setText(ayah.getContent_en());
@@ -226,9 +230,13 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     Intent in = new Intent(c, WordMeaningActivity.class);
                     in.putExtra("ayah_index", ayah.getAyah_index());
                     String mushaf = mPrefs.getString("mushaf", "IndoPak");
-                    if(mushaf.equals("Uthmanic")) {
+                    if(mushaf.equals("ImlaeiSimple")) {
                         in.putExtra("text_tashkeel", ayah.getText_tashkeel());
-                    }else{
+                    }
+                    else if(mushaf.equals("Uthmanic")) {
+                        in.putExtra("text_tashkeel", ayah.getText_uthmani());
+                    }
+                    else{
                         in.putExtra("text_tashkeel", ayah.getIndo_pak());
                     }
                     in.putExtra("content_en", ayah.getContent_en());
@@ -275,9 +283,13 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     Intent in = new Intent(c, ShareVerseActivity.class);
                     in.putExtra("ayah_index", ayah.getAyah_index());
                     String mushaf = mPrefs.getString("mushaf", "IndoPak");
-                    if(mushaf.equals("Uthmanic")) {
+                    if(mushaf.equals("ImlaeiSimple")) {
                         in.putExtra("text_tashkeel", ayah.getText_tashkeel());
-                    }else{
+                    }
+                    else if(mushaf.equals("Uthmanic")) {
+                        in.putExtra("text_tashkeel", ayah.getText_uthmani());
+                    }
+                    else{
                         in.putExtra("text_tashkeel", ayah.getIndo_pak());
                     }
                     in.putExtra("content_en", ayah.getContent_en());
@@ -301,9 +313,13 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 try {
                     String ayahAraTxt = "";
                     String mushaf = mPrefs.getString("mushaf", "IndoPak");
-                    if(mushaf.equals("Uthmanic")) {
+                    if(mushaf.equals("ImlaeiSimple")) {
                         ayahAraTxt = ayah.getText_tashkeel();
-                    }else{
+                    }
+                    else if(mushaf.equals("Uthmanic")) {
+                        ayahAraTxt = ayah.getText_uthmani();
+                    }
+                    else{
                         ayahAraTxt = ayah.getIndo_pak();
                     }
                     String fullAyat = ayahAraTxt + "\n\n" + ayah.getTrans() + "\n\n" + ayah.getContent_en() + "\n\n" + ayah.getContent_bn() + "\n\nSura " + ayah.getName_simple() + ", Ayah " + ayah.getAyah_num();
@@ -326,9 +342,13 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     Intent in = new Intent(c, TafsirActivity.class);
                     in.putExtra("ayah_index", ayah.getAyah_index());
                     String mushaf = mPrefs.getString("mushaf", "IndoPak");
-                    if(mushaf.equals("Uthmanic")) {
+                    if(mushaf.equals("ImlaeiSimple")) {
                         in.putExtra("text_tashkeel", ayah.getText_tashkeel());
-                    }else{
+                    }
+                    else if(mushaf.equals("Uthmanic")) {
+                        in.putExtra("text_tashkeel", ayah.getText_uthmani());
+                    }
+                    else{
                         in.putExtra("text_tashkeel", ayah.getIndo_pak());
                     }
                     in.putExtra("content_en", ayah.getContent_en());

@@ -57,9 +57,13 @@ public class JuzViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         rvHolder.juz_num.setText("JUZ\' "+juz.getJuz_num());
         String mushaf = mPrefs.getString("mushaf", "IndoPak");
         String tt = "";
-        if(mushaf.equals("Uthmanic")) {
+        if(mushaf.equals("ImlaeiSimple")) {
             tt = juz.getText_tashkeel();
-        }else {
+        }
+        else if(mushaf.equals("Uthmanic")) {
+            tt = juz.getText_uthmani();
+        }
+        else {
             tt = juz.getIndo_pak();
         }
         if (tt.length() > 110) {

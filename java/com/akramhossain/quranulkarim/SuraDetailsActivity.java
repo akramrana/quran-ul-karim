@@ -858,9 +858,13 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                     String mushaf = mPrefs.getString("mushaf", "IndoPak");
                     String text = "";
                     String textTajweed = "";
-                    if(mushaf.equals("Uthmanic")) {
+                    if(mushaf.equals("ImlaeiSimple")) {
                         text = cursor.getString(cursor.getColumnIndexOrThrow("text_tashkeel"));
-                    }else{
+                    }
+                    else if(mushaf.equals("Uthmanic")) {
+                        text = cursor.getString(cursor.getColumnIndexOrThrow("text_uthmani"));
+                    }
+                    else{
                         text = cursor.getString(cursor.getColumnIndexOrThrow("indo_pak"));
                     }
                     String num = cursor.getString(cursor.getColumnIndexOrThrow("ayah_num"));
