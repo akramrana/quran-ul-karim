@@ -125,16 +125,16 @@ public class MainActivity extends AppCompatActivity {
 
         if (appTheme.equals("1")) {
             switchCompat.setChecked(true);
-            txtNightMode.setText("Dark Mode");
+            txtNightMode.setText("Dark mode enabled");
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else if (appTheme.equals("0")) {
             switchCompat.setChecked(false);
-            txtNightMode.setText("Light Mode");
+            txtNightMode.setText("Dark mode disabled");
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             switchCompat.setChecked(true);
-            txtNightMode.setText("Dark Mode");
+            txtNightMode.setText("Dark mode enabled");
         }
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

@@ -27,6 +27,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -100,6 +101,12 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
     String searchTxt = "";
     Handler mHandler = new Handler();
     SearchView searchAyah;
+
+    WebView webview;
+    String fontFamily = "fontUthmani";
+    String fontSize = "30px";
+    String bodyBgColor = "#000000";
+    String bodyTxtColor = "#ffffff";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -647,47 +654,58 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
 
         ayah_txt = (TextView) findViewById(R.id.ayah_txt);
 
-        String mp_arFz = mPrefs.getString("arFontSize", "30");
+        webview = (WebView) findViewById(R.id.webview);
 
+        String mp_arFz = mPrefs.getString("arFontSize", "30");
         String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
+        //
+
         if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
             titleAr.setTypeface(fontAlmajeed);
             text_bismillah.setTypeface(fontAlmajeed);
             ayah_txt.setTypeface(fontAlmajeed);
+            fontFamily = "fontAlmajeed";
         }
         if(mp_arabicFontFamily.equals("Al Qalam Quran")){
             titleAr.setTypeface(fontAlQalam);
             text_bismillah.setTypeface(fontAlQalam);
             ayah_txt.setTypeface(fontAlQalam);
+            fontFamily = "fontAlQalam";
         }
         if(mp_arabicFontFamily.equals("Noore Huda")){
             titleAr.setTypeface(fontUthmani);
             text_bismillah.setTypeface(fontUthmani);
             ayah_txt.setTypeface(fontUthmani);
+            fontFamily = "fontUthmani";
         }
         if(mp_arabicFontFamily.equals("Noore Hidayat")){
             titleAr.setTypeface(fontNooreHidayat);
             text_bismillah.setTypeface(fontNooreHidayat);
             ayah_txt.setTypeface(fontNooreHidayat);
+            fontFamily = "fontNooreHidayat";
         }
         if(mp_arabicFontFamily.equals("Saleem Quran")){
             titleAr.setTypeface(fontSaleem);
             text_bismillah.setTypeface(fontSaleem);
             ayah_txt.setTypeface(fontSaleem);
+            fontFamily = "fontSaleem";
         }
         if(mp_arabicFontFamily.equals("KFGQPC Uthman Taha Naskh")){
             titleAr.setTypeface(fontTahaNaskh);
             text_bismillah.setTypeface(fontTahaNaskh);
             ayah_txt.setTypeface(fontTahaNaskh);
+            fontFamily = "fontTahaNaskh";
         }
         if(mp_arabicFontFamily.equals("Arabic Regular")){
             titleAr.setTypeface(fontKitab);
             text_bismillah.setTypeface(fontKitab);
             ayah_txt.setTypeface(fontKitab);
+            fontFamily = "fontKitab";
         }
 
         if(!mp_arFz.equals("")){
             ayah_txt.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
+            fontSize = mp_arFz+"px";
         }
 
         translation_btn = (Button) findViewById(R.id.translation_btn);
@@ -696,7 +714,17 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         translation_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
         reading_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
 
-
+        String appTheme = mPrefs.getString("APP_NIGHT_MODE", "-1");
+        if (appTheme.equals("1")) {
+            bodyBgColor = "#000000";
+            bodyTxtColor = "#ffffff";
+        }else if (appTheme.equals("0")) {
+            bodyBgColor = "#FFFFFF";
+            bodyTxtColor = "#000000";
+        }else {
+            bodyBgColor = "#000000";
+            bodyTxtColor = "#ffffff";
+        }
 
         getSuraAsText();
 
@@ -785,6 +813,8 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                 search_ayah_section.setVisibility(View.GONE);
             }
         });
+
+
     }
 
     private String convertoArabic(String str){
@@ -813,17 +843,20 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
 
     private void getSuraAsText(){
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-        String sql = "SELECT ayah.*,ayah_indo.text as indo_pak " +
+        String sql = "SELECT ayah.*,ayah_indo.text as indo_pak,ut.text_uthmani_tajweed " +
                 "FROM ayah " +
-                "LEFT join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id "+
+                "LEFT join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id " +
+                "LEFT join uthmani_tajweed ut ON ayah.ayah_key = ut.verse_key "+
                 "WHERE ayah.surah_id = "+suraId;
         Cursor cursor = db.rawQuery(sql, null);
         StringBuilder fullSuraStr = new StringBuilder();
+        StringBuilder fullSuraStrTajweed = new StringBuilder();
         try {
             if (cursor.moveToFirst()) {
                 do {
                     String mushaf = mPrefs.getString("mushaf", "IndoPak");
                     String text = "";
+                    String textTajweed = "";
                     if(mushaf.equals("Uthmanic")) {
                         text = cursor.getString(cursor.getColumnIndexOrThrow("text_tashkeel"));
                     }else{
@@ -832,6 +865,9 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                     String num = cursor.getString(cursor.getColumnIndexOrThrow("ayah_num"));
                     String arabicNum = " <font color=\"#ffbb33\">"+convertoArabic(num)+"</font> ";
                     fullSuraStr.append(arabicNum).append(text);
+                    //
+                    textTajweed = cursor.getString(cursor.getColumnIndexOrThrow("text_uthmani_tajweed"));
+                    fullSuraStrTajweed.append(textTajweed);
                 }while (cursor.moveToNext());
             }
         }catch (Exception e){
@@ -844,10 +880,104 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
             db.close();
         }
 
-        Log.d("text",fullSuraStr.toString());
+        //Log.d("text",fullSuraStrTajweed.toString());
+        Log.d("font family",fontFamily);
+        Log.d("font size",fontSize);
 
         //ayah_txt.setMovementMethod(new ScrollingMovementMethod());
+        String html = "<html><head><style type=\"text/css\">@font-face {\n" +
+                "    font-family: fontUthmani;\n" +
+                "    src: url(\"file:///android_asset/fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf\")\n" +
+                "}\n" +
+                "@font-face {\n" +
+                "    font-family: fontAlmajeed;\n" +
+                "    src: url(\"file:///android_asset/fonts/AlMajeedQuranicFont_shiped.ttf\")\n" +
+                "}\n" +
+                "@font-face {\n" +
+                "    font-family: fontAlQalam;\n" +
+                "    src: url(\"file:///android_asset/fonts/AlQalamQuran.ttf\")\n" +
+                "}\n" +
+                "@font-face {\n" +
+                "    font-family: fontNooreHidayat;\n" +
+                "    src: url(\"file:///android_asset/fonts/noorehidayat.ttf\")\n" +
+                "}\n" +
+                "@font-face {\n" +
+                "    font-family: fontSaleem;\n" +
+                "    src: url(\"file:///android_asset/fonts/PDMS_Saleem_QuranFont.ttf\")\n" +
+                "}\n" +
+                "@font-face {\n" +
+                "    font-family: fontTahaNaskh;\n" +
+                "    src: url(\"file:///android_asset/fonts/KFGQPC_Uthman_Taha_Naskh_Regular.ttf\")\n" +
+                "}\n" +
+                "@font-face {\n" +
+                "    font-family: fontKitab;\n" +
+                "    src: url(\"file:///android_asset/fonts/kitab.ttf\")\n" +
+                "}\n" +
+                "body {\n" +
+                "    font-family: "+fontFamily+";\n" +
+                "    font-size: "+fontSize+";\n" +
+                "    text-align: justify;" +
+                "    background:"+bodyBgColor+";\n" +
+                "    color: "+bodyTxtColor+";" +
+                "    direction: rtl\n" +
+                "}\n" +
+                ".hamza_wasl{\n" +
+                "\tcolor:#AAAAAA;\n" +
+                "}\n" +
+                ".silent{\n" +
+                "\tcolor: #AAAAAA;\n" +
+                "}\n" +
+                ".laam_shamsiyah{\n" +
+                "\tcolor: #AAAAAA;\n" +
+                "}\n" +
+                ".madda_normal{\n" +
+                "\tcolor: #537FFF;\n" +
+                "}\n" +
+                ".madda_permissible{\n" +
+                "\tcolor:#4050FF;\n" +
+                "}\n" +
+                ".madda_necessary{\n" +
+                "\tcolor:#000EBC;\n" +
+                "}\n" +
+                ".qalaqah{\n" +
+                "\tcolor: #DD0008;\n" +
+                "}\n" +
+                ".madda_obligatory{\n" +
+                "\tcolor: #2144C1;\n" +
+                "}\n" +
+                ".ikhafa_shafawi{\n" +
+                "\tcolor: #D500B7;\n" +
+                "}\n" +
+                ".ikhafa{\n" +
+                "\tcolor: #9400A8;\n" +
+                "}\n" +
+                ".idgham-shafawi{\n" +
+                "\tcolor: #58B800;\n" +
+                "}\n" +
+                ".iqlab{\n" +
+                "\tcolor: #26BFFD;\n" +
+                "}\n" +
+                ".idgham_ghunnah{\n" +
+                "\tcolor: #169777;\n" +
+                "}\n" +
+                ".idgham_wo_ghunnah{\n" +
+                "\tcolor: #169200;\n" +
+                "}\n" +
+                ".idgham_mutajanisayn{\n" +
+                "\tcolor: #A1A1A1;\n" +
+                "}\n" +
+                ".idgham_mutaqaribayn{\n" +
+                "\tcolor: #A1A1A1;\n" +
+                "}\n" +
+                ".ghunnah{\n" +
+                "\tcolor: #FF7E1E;\n" +
+                "}.end{\n" +
+                "\tcolor: #82f200;\n" +
+                "\tmargin-left: 15px;" +
+                "font-size:18px\n" +
+                "}</style></head><body>"+fullSuraStrTajweed.toString()+"</body></html>";
         ayah_txt.setText(Html.fromHtml(fullSuraStr.toString(), Html.FROM_HTML_MODE_LEGACY));
+        webview.loadDataWithBaseURL(null,html, "text/html; charset=utf-8", "UTF-8",null);
 
     }
 
