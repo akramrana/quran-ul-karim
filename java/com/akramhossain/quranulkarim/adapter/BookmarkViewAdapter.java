@@ -26,6 +26,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,7 @@ import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.Ayah;
 import com.akramhossain.quranulkarim.task.BackgroundTask;
+import com.akramhossain.quranulkarim.util.Utils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -119,7 +121,61 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         rvHolder.sajdah.setText("Sajdah: " + sajdahText);
 
         rvHolder.trans.setText(ayah.getTrans());
-
+        //
+        if(mushaf.equals("Tajweed")) {
+            rvHolder.text_tajweed.setVisibility(View.VISIBLE);
+            rvHolder.ayah_num.setVisibility(View.GONE);
+            rvHolder.text_tashkeel.setVisibility(View.GONE);
+        }else{
+            rvHolder.text_tajweed.setVisibility(View.GONE);
+            rvHolder.ayah_num.setVisibility(View.VISIBLE);
+            rvHolder.text_tashkeel.setVisibility(View.VISIBLE);
+        }
+        String mp_arFz = mPrefs.getString("arFontSize", "30");
+        String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
+        String fontFamily = "fontUthmani";
+        String fontSize = "30px";
+        if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
+            fontFamily = "fontAlmajeed";
+        }
+        if(mp_arabicFontFamily.equals("Al Qalam Quran")){
+            fontFamily = "fontAlQalam";
+        }
+        if(mp_arabicFontFamily.equals("Noore Huda")){
+            fontFamily = "fontUthmani";
+        }
+        if(mp_arabicFontFamily.equals("Noore Hidayat")){
+            fontFamily = "fontNooreHidayat";
+        }
+        if(mp_arabicFontFamily.equals("Saleem Quran")){
+            fontFamily = "fontSaleem";
+        }
+        if(mp_arabicFontFamily.equals("KFGQPC Uthman Taha Naskh")){
+            fontFamily = "fontTahaNaskh";
+        }
+        if(mp_arabicFontFamily.equals("Arabic Regular")){
+            fontFamily = "fontKitab";
+        }
+        if(!mp_arFz.equals("")){
+            fontSize = mp_arFz+"px";
+        }
+        String appTheme = mPrefs.getString("APP_NIGHT_MODE", "-1");
+        String bodyBgColor = "#424242";
+        String bodyTxtColor = "#ffffff";
+        if (appTheme.equals("1")) {
+            bodyBgColor = "#424242";
+            bodyTxtColor = "#ffffff";
+        }else if (appTheme.equals("0")) {
+            bodyBgColor = "#FFFFFF";
+            bodyTxtColor = "#000000";
+        }else {
+            bodyBgColor = "#424242";
+            bodyTxtColor = "#ffffff";
+        }
+        String style = Utils.tajweedCss(fontFamily,fontSize,bodyBgColor,bodyTxtColor);
+        String html = "<html><head>"+style+"</head><body>"+ayah.getText_uthmani_tajweed()+"</body></html>";
+        rvHolder.text_tajweed.loadDataWithBaseURL(null,html, "text/html; charset=utf-8", "UTF-8",null);
+        //
         rvHolder.playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -241,6 +297,7 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     }
                     in.putExtra("content_en", ayah.getContent_en());
                     in.putExtra("content_bn", ayah.getContent_bn());
+                    in.putExtra("text_tajweed", ayah.getText_uthmani_tajweed());
                     c.startActivity(in);
                 } catch (Exception e) {
                     Log.e("Favorite", e.getMessage());
@@ -468,6 +525,7 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         TextView ayah_num, surah_name;
         Button copyButton;
         TextView trans;
+        WebView text_tajweed;
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
@@ -486,6 +544,7 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             copyButton = (Button) itemView.findViewById(R.id.copyButton);
             tafsirs = (TextView) itemView.findViewById(R.id.tafsirs);
             trans = (TextView) itemView.findViewById(R.id.trans);
+            text_tajweed = (WebView) itemView.findViewById(R.id.text_tajweed);
             //
             String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
             String mp_arFz = mPrefs.getString("arFontSize", "30");

@@ -20,6 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.preference.PreferenceManager;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.View;
+import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +29,7 @@ import com.akramhossain.quranulkarim.adapter.WordListViewAdapter;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.Word;
+import com.akramhossain.quranulkarim.util.Utils;
 
 import java.util.ArrayList;
 
@@ -36,6 +39,7 @@ public class WordMeaningActivity extends AppCompatActivity {
     public static String text_tashkeel;
     public static String content_en;
     public static String content_bn;
+    public static String text_tajweed;
 
     private RecyclerView recyclerview;
     LinearLayoutManager mLayoutManager;
@@ -58,6 +62,7 @@ public class WordMeaningActivity extends AppCompatActivity {
             text_tashkeel = extras.getString("text_tashkeel");
             content_en = extras.getString("content_en");
             content_bn = extras.getString("content_bn");
+            text_tajweed = extras.getString("text_tajweed");
         }
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -76,6 +81,8 @@ public class WordMeaningActivity extends AppCompatActivity {
         TextView titleAr = (TextView) findViewById(R.id.name_title_ar);
         titleAr.setText(text_tashkeel);
 
+        WebView wb_text_tajweed = (WebView) findViewById(R.id.text_tajweed);
+
         recyclerview = (RecyclerView) findViewById(R.id.word_list);
         mLayoutManager = new LinearLayoutManager(this);
         recyclerview.setLayoutManager(mLayoutManager);
@@ -92,31 +99,67 @@ public class WordMeaningActivity extends AppCompatActivity {
         }else{
             requestPermission();
         }
-
+        String mp_arFz = mPrefs.getString("arFontSize", "30");
         String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
+        String fontFamily = "fontUthmani";
+        String fontSize = "30px";
         if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
             titleAr.setTypeface(fontAlmajeed);
+            fontFamily = "fontAlmajeed";
         }
         if(mp_arabicFontFamily.equals("Al Qalam Quran")){
             titleAr.setTypeface(fontAlQalam);
+            fontFamily = "fontAlQalam";
         }
         if(mp_arabicFontFamily.equals("Noore Huda")){
             titleAr.setTypeface(fontUthmani);
+            fontFamily = "fontUthmani";
         }
         if(mp_arabicFontFamily.equals("Noore Hidayat")){
             titleAr.setTypeface(fontNooreHidayat);
+            fontFamily = "fontNooreHidayat";
         }
         if(mp_arabicFontFamily.equals("Saleem Quran")){
             titleAr.setTypeface(fontSaleem);
+            fontFamily = "fontSaleem";
         }
         if(mp_arabicFontFamily.equals("KFGQPC Uthman Taha Naskh")){
             titleAr.setTypeface(fontTahaNaskh);
+            fontFamily = "fontTahaNaskh";
         }
         if(mp_arabicFontFamily.equals("Arabic Regular")){
             titleAr.setTypeface(fontKitab);
+            fontFamily = "fontKitab";
         }
-
         titleAr.setMovementMethod(new ScrollingMovementMethod());
+        if(!mp_arFz.equals("")){
+            fontSize = mp_arFz+"px";
+        }
+        String appTheme = mPrefs.getString("APP_NIGHT_MODE", "-1");
+        String bodyBgColor = "#424242";
+        String bodyTxtColor = "#ffffff";
+        if (appTheme.equals("1")) {
+            bodyBgColor = "#424242";
+            bodyTxtColor = "#ffffff";
+        }else if (appTheme.equals("0")) {
+            bodyBgColor = "#FFFFFF";
+            bodyTxtColor = "#000000";
+        }else {
+            bodyBgColor = "#424242";
+            bodyTxtColor = "#ffffff";
+        }
+        String style = Utils.tajweedCss(fontFamily,fontSize,bodyBgColor,bodyTxtColor);
+        String html = "<html><head>"+style+"</head><body>"+text_tajweed+"</body></html>";
+        wb_text_tajweed.loadDataWithBaseURL(null,html, "text/html; charset=utf-8", "UTF-8",null);
+
+        String mushaf = mPrefs.getString("mushaf", "IndoPak");
+        if(mushaf.equals("Tajweed")) {
+            wb_text_tajweed.setVisibility(View.VISIBLE);
+            titleAr.setVisibility(View.GONE);
+        }else{
+            wb_text_tajweed.setVisibility(View.GONE);
+            titleAr.setVisibility(View.VISIBLE);
+        }
     }
 
     private void getDataFromLocalDb() {

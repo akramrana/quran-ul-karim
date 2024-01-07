@@ -394,6 +394,7 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     }
                     in.putExtra("content_en", ayah.getContent_en());
                     in.putExtra("content_bn", ayah.getContent_bn());
+                    in.putExtra("text_tajweed", ayah.getText_uthmani_tajweed());
                     c.startActivity(in);
                 } catch (Exception e) {
                     Log.e("Favorite", e.getMessage());

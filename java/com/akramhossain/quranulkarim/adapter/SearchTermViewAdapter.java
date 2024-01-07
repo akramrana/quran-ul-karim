@@ -338,6 +338,7 @@ public class SearchTermViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     }
                     in.putExtra("content_en", ayah.getContent_en());
                     in.putExtra("content_bn", ayah.getContent_bn());
+                    in.putExtra("text_tajweed", ayah.getText_uthmani_tajweed());
                     c.startActivity(in);
                 } catch (Exception e) {
                     Log.e("Favorite", e.getMessage());
