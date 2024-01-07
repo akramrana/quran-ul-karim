@@ -46,7 +46,8 @@
             android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/ayah_num"
             android:contentDescription="Arabic Text"
-            android:textIsSelectable="true"/>
+            android:textIsSelectable="true"
+            android:minHeight="48dp"/>
 
         <WebView
             android:id="@+id/text_tajweed"
@@ -67,7 +68,8 @@
             android:layout_marginTop="12dip"
             android:contentDescription="Transliteration"
             android:layout_below="@id/text_tajweed"
-            android:textSize="15dip"/>
+            android:textSize="15dip"
+            android:minHeight="48dp"/>
 
         <TextView
             android:id="@+id/content_en"

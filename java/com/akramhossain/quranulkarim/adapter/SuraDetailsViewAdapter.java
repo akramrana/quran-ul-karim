@@ -592,7 +592,6 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         Button shareButton;
         Button copyButton;
         TextView trans;
-
         WebView text_tajweed;
 
         public RecyclerViewHolder(View itemView) {
