@@ -354,16 +354,16 @@
                             android:paddingRight="8dp"
                             android:lineSpacingExtra="8dp"
                             android:textColor="@color/colorWhite"
-                            android:gravity="center"
-                            android:visibility="gone"/>
+                            android:gravity="center"/>
 
                         <WebView
                             android:id="@+id/webview"
                             android:layout_width="match_parent"
                             android:paddingLeft="8dp"
                             android:paddingRight="8dp"
-                            android:gravity="center"
-                            android:layout_height="wrap_content"/>
+                            android:scrollbars="none"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"/>
 
                     </LinearLayout>
 

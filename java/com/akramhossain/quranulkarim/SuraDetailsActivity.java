@@ -44,6 +44,7 @@ import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.Ayah;
 import com.akramhossain.quranulkarim.util.ConnectionDetector;
 import com.akramhossain.quranulkarim.task.GetJsonFromUrlTask;
+import com.akramhossain.quranulkarim.util.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -890,100 +891,19 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         Log.d("font size",fontSize);
 
         //ayah_txt.setMovementMethod(new ScrollingMovementMethod());
-        String html = "<html><head><style type=\"text/css\">@font-face {\n" +
-                "    font-family: fontUthmani;\n" +
-                "    src: url(\"file:///android_asset/fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf\")\n" +
-                "}\n" +
-                "@font-face {\n" +
-                "    font-family: fontAlmajeed;\n" +
-                "    src: url(\"file:///android_asset/fonts/AlMajeedQuranicFont_shiped.ttf\")\n" +
-                "}\n" +
-                "@font-face {\n" +
-                "    font-family: fontAlQalam;\n" +
-                "    src: url(\"file:///android_asset/fonts/AlQalamQuran.ttf\")\n" +
-                "}\n" +
-                "@font-face {\n" +
-                "    font-family: fontNooreHidayat;\n" +
-                "    src: url(\"file:///android_asset/fonts/noorehidayat.ttf\")\n" +
-                "}\n" +
-                "@font-face {\n" +
-                "    font-family: fontSaleem;\n" +
-                "    src: url(\"file:///android_asset/fonts/PDMS_Saleem_QuranFont.ttf\")\n" +
-                "}\n" +
-                "@font-face {\n" +
-                "    font-family: fontTahaNaskh;\n" +
-                "    src: url(\"file:///android_asset/fonts/KFGQPC_Uthman_Taha_Naskh_Regular.ttf\")\n" +
-                "}\n" +
-                "@font-face {\n" +
-                "    font-family: fontKitab;\n" +
-                "    src: url(\"file:///android_asset/fonts/kitab.ttf\")\n" +
-                "}\n" +
-                "body {\n" +
-                "    font-family: "+fontFamily+";\n" +
-                "    font-size: "+fontSize+";\n" +
-                "    text-align: justify;" +
-                "    background:"+bodyBgColor+";\n" +
-                "    color: "+bodyTxtColor+";" +
-                "    direction: rtl\n" +
-                "}\n" +
-                ".hamza_wasl{\n" +
-                "\tcolor:#AAAAAA;\n" +
-                "}\n" +
-                ".silent{\n" +
-                "\tcolor: #AAAAAA;\n" +
-                "}\n" +
-                ".laam_shamsiyah{\n" +
-                "\tcolor: #AAAAAA;\n" +
-                "}\n" +
-                ".madda_normal{\n" +
-                "\tcolor: #537FFF;\n" +
-                "}\n" +
-                ".madda_permissible{\n" +
-                "\tcolor:#4050FF;\n" +
-                "}\n" +
-                ".madda_necessary{\n" +
-                "\tcolor:#000EBC;\n" +
-                "}\n" +
-                ".qalaqah{\n" +
-                "\tcolor: #DD0008;\n" +
-                "}\n" +
-                ".madda_obligatory{\n" +
-                "\tcolor: #2144C1;\n" +
-                "}\n" +
-                ".ikhafa_shafawi{\n" +
-                "\tcolor: #D500B7;\n" +
-                "}\n" +
-                ".ikhafa{\n" +
-                "\tcolor: #9400A8;\n" +
-                "}\n" +
-                ".idgham-shafawi{\n" +
-                "\tcolor: #58B800;\n" +
-                "}\n" +
-                ".iqlab{\n" +
-                "\tcolor: #26BFFD;\n" +
-                "}\n" +
-                ".idgham_ghunnah{\n" +
-                "\tcolor: #169777;\n" +
-                "}\n" +
-                ".idgham_wo_ghunnah{\n" +
-                "\tcolor: #169200;\n" +
-                "}\n" +
-                ".idgham_mutajanisayn{\n" +
-                "\tcolor: #A1A1A1;\n" +
-                "}\n" +
-                ".idgham_mutaqaribayn{\n" +
-                "\tcolor: #A1A1A1;\n" +
-                "}\n" +
-                ".ghunnah{\n" +
-                "\tcolor: #FF7E1E;\n" +
-                "}.end{\n" +
-                "\tcolor: #82f200;\n" +
-                "\tmargin-left: 15px;" +
-                "font-size:18px\n" +
-                "}</style></head><body>"+fullSuraStrTajweed.toString()+"</body></html>";
+        String style = Utils.tajweedCss(fontFamily,fontSize,bodyBgColor,bodyTxtColor);
+        String html = "<html><head>"+style+"</head><body>"+fullSuraStrTajweed.toString()+"</body></html>";
         ayah_txt.setText(Html.fromHtml(fullSuraStr.toString(), Html.FROM_HTML_MODE_LEGACY));
         webview.loadDataWithBaseURL(null,html, "text/html; charset=utf-8", "UTF-8",null);
 
+        String mushaf = mPrefs.getString("mushaf", "IndoPak");
+        if(mushaf.equals("Tajweed")) {
+            ayah_txt.setVisibility(View.GONE);
+            webview.setVisibility(View.VISIBLE);
+        }else{
+            ayah_txt.setVisibility(View.VISIBLE);
+            webview.setVisibility(View.GONE);
+        }
     }
 
     private void getDataFromLocalDb() {
