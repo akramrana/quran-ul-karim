@@ -252,6 +252,20 @@
                         android:textColor="@color/colorWhite"
                         android:textSize="22dp" />
 
+                    <WebView
+                        android:id="@+id/text_tajweed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:contentDescription="Tajweed Text"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        tools:ignore="WebViewLayout"
+                        android:visibility="gone"
+                        android:scrollbars="none"
+                        android:layout_below="@id/ayah_arabic"/>
+
                     <TextView
                         android:id="@+id/trans"
                         android:layout_width="match_parent"
@@ -261,7 +275,7 @@
                         android:layout_marginTop="5dip"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
-                        android:layout_below="@id/ayah_arabic"
+                        android:layout_below="@id/text_tajweed"
                         android:textSize="15sp"/>
 
                     <TextView

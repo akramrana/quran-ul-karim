@@ -12,12 +12,14 @@ import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.Ayah;
+import com.akramhossain.quranulkarim.util.Utils;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -33,6 +35,7 @@ public class TafsirActivity extends AppCompatActivity {
     public static String ayah_key;
     public static String surah_name;
     public static String ayah_trans;
+    public static String text_tajweed;
 
     DatabaseHelper dbhelper;
     Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem, fontTahaNaskh, fontKitab;
@@ -46,6 +49,8 @@ public class TafsirActivity extends AppCompatActivity {
 
     Button btn_bayaan, btn_zakaria, btn_jalalayn, btn_ibnkathir, btn_tafhim, btn_fathul_mazid, btn_fezilalil_quran, copyButton;
 
+    WebView wv_text_tajweed;
+
     private static final String TAG = TafsirActivity.class.getSimpleName();
 
     public static final String is_tafsir_ibn_kasir_selected = "isTafsirIbnKasirSelected";
@@ -57,7 +62,10 @@ public class TafsirActivity extends AppCompatActivity {
     public static final String is_tafsir_jalalayn_selected = "isTafsirJalalaynSelected";
 
     public String active_tafsir = "";
-
+    String fontFamily = "fontUthmani";
+    String fontSize = "30px";
+    String bodyBgColor = "#303030";
+    String bodyTxtColor = "#ffffff";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +81,7 @@ public class TafsirActivity extends AppCompatActivity {
             surah_id = extras.getString("surah_id");
             ayah_key = extras.getString("ayah_key");
             ayah_trans = extras.getString("trans");
+            text_tajweed = extras.getString("text_tajweed");
         }
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -120,6 +129,8 @@ public class TafsirActivity extends AppCompatActivity {
         tv_ayah_num = (TextView) findViewById(R.id.ayah_num);
         trans = (TextView) findViewById(R.id.trans);
         trans.setTypeface(font);
+
+        wv_text_tajweed = (WebView) findViewById(R.id.text_tajweed);
 
         getDataFromLocalDb();
 
@@ -351,6 +362,7 @@ public class TafsirActivity extends AppCompatActivity {
                         surah_id = cursor.getString(1);
                         ayah_key = cursor.getString(8);
                         ayah_trans = cursor.getString(19);
+                        text_tajweed = cursor.getString(21);
 
                         getDataFromLocalDb();
                         getTafhimTafsirFromLocalDB();
@@ -402,6 +414,7 @@ public class TafsirActivity extends AppCompatActivity {
                         surah_id = cursor.getString(1);
                         ayah_key = cursor.getString(8);
                         ayah_trans = cursor.getString(19);
+                        text_tajweed = cursor.getString(21);
 
                         getDataFromLocalDb();
                         getTafhimTafsirFromLocalDB();
@@ -427,27 +440,35 @@ public class TafsirActivity extends AppCompatActivity {
 
         if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
             tv_ayah_arabic.setTypeface(fontAlmajeed);
+            fontFamily = "fontAlmajeed";
         }
         if(mp_arabicFontFamily.equals("Al Qalam Quran")){
             tv_ayah_arabic.setTypeface(fontAlQalam);
+            fontFamily = "fontAlQalam";
         }
         if(mp_arabicFontFamily.equals("Noore Huda")){
             tv_ayah_arabic.setTypeface(fontUthmani);
+            fontFamily = "fontUthmani";
         }
         if(mp_arabicFontFamily.equals("Noore Hidayat")){
             tv_ayah_arabic.setTypeface(fontNooreHidayat);
+            fontFamily = "fontNooreHidayat";
         }
         if(mp_arabicFontFamily.equals("Saleem Quran")){
             tv_ayah_arabic.setTypeface(fontSaleem);
+            fontFamily = "fontSaleem";
         }
         if(mp_arabicFontFamily.equals("KFGQPC Uthman Taha Naskh")){
             tv_ayah_arabic.setTypeface(fontTahaNaskh);
+            fontFamily = "fontTahaNaskh";
         }
         if(mp_arabicFontFamily.equals("Arabic Regular")){
             tv_ayah_arabic.setTypeface(fontKitab);
+            fontFamily = "fontKitab";
         }
         if(!mp_arFz.equals("")){
             tv_ayah_arabic.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
+            fontSize = mp_arFz+"px";
         }
         if(!mp_enFz.equals("")){
             tv_ayah_english.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
@@ -554,6 +575,28 @@ public class TafsirActivity extends AppCompatActivity {
             tv_ayah_bangla.setVisibility(View.GONE);
         }
 
+        String appTheme = mPrefs.getString("APP_NIGHT_MODE", "-1");
+        if (appTheme.equals("1")) {
+            bodyBgColor = "#303030";
+            bodyTxtColor = "#ffffff";
+        }else if (appTheme.equals("0")) {
+            bodyBgColor = "#FAFAFA";
+            bodyTxtColor = "#000000";
+        }else {
+            bodyBgColor = "#303030";
+            bodyTxtColor = "#ffffff";
+        }
+        String style = Utils.tajweedCss(fontFamily,fontSize,bodyBgColor,bodyTxtColor);
+        String html = "<html><head>"+style+"</head><body>"+text_tajweed+"</body></html>";
+        wv_text_tajweed.loadDataWithBaseURL(null,html, "text/html; charset=utf-8", "UTF-8",null);
+        if(mushaf.equals("Tajweed")) {
+            wv_text_tajweed.setVisibility(View.VISIBLE);
+            tv_ayah_arabic.setVisibility(View.GONE);
+        }else{
+            wv_text_tajweed.setVisibility(View.GONE);
+            tv_ayah_arabic.setVisibility(View.VISIBLE);
+        }
+
     }
 
     private void getDataFromLocalDb() {
@@ -592,6 +635,18 @@ public class TafsirActivity extends AppCompatActivity {
                 tv_ayah_bangla.setText(content_bn);
                 tv_ayah_num.setText(surah_name+" "+ayah_key);
                 trans.setText(ayah_trans);
+                //
+                String style = Utils.tajweedCss(fontFamily,fontSize,bodyBgColor,bodyTxtColor);
+                String html = "<html><head>"+style+"</head><body>"+text_tajweed+"</body></html>";
+                wv_text_tajweed.loadDataWithBaseURL(null,html, "text/html; charset=utf-8", "UTF-8",null);
+                String mushaf = mPrefs.getString("mushaf", "IndoPak");
+                if(mushaf.equals("Tajweed")) {
+                    wv_text_tajweed.setVisibility(View.VISIBLE);
+                    tv_ayah_arabic.setVisibility(View.GONE);
+                }else{
+                    wv_text_tajweed.setVisibility(View.GONE);
+                    tv_ayah_arabic.setVisibility(View.VISIBLE);
+                }
             }
         }catch (Exception e){
             Log.i("Tafsir", e.getMessage());

@@ -127,11 +127,11 @@ public class SearchTermViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         //
         if(mushaf.equals("Tajweed")) {
             rvHolder.text_tajweed.setVisibility(View.VISIBLE);
-            rvHolder.ayah_num.setVisibility(View.GONE);
+            //rvHolder.ayah_num.setVisibility(View.GONE);
             rvHolder.text_tashkeel.setVisibility(View.GONE);
         }else{
             rvHolder.text_tajweed.setVisibility(View.GONE);
-            rvHolder.ayah_num.setVisibility(View.VISIBLE);
+            //rvHolder.ayah_num.setVisibility(View.VISIBLE);
             rvHolder.text_tashkeel.setVisibility(View.VISIBLE);
         }
         String mp_arFz = mPrefs.getString("arFontSize", "30");
@@ -448,6 +448,7 @@ public class SearchTermViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     in.putExtra("surah_id", ayah.getSurah_id());
                     in.putExtra("ayah_key", ayah.getAyah_key());
                     in.putExtra("trans", ayah.getTrans());
+                    in.putExtra("text_tajweed", ayah.getText_uthmani_tajweed());
                     c.startActivity(in);
                 } catch (Exception e) {
                     Log.e("Tafsirs", e.getMessage());
