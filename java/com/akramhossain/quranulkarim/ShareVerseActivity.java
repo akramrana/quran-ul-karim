@@ -213,7 +213,7 @@ public class ShareVerseActivity extends AppCompatActivity {
             bodyBgColor = "#303030";
             bodyTxtColor = "#ffffff";
         }
-        String style = Utils.tajweedCss(fontFamily,fontSize,"#1b3022",bodyTxtColor);
+        String style = Utils.tajweedCss(fontFamily,fontSize,"#1b3022","#ffffff");
         String html = "<html><head>"+style+"</head><body>"+text_tajweed+"</body></html>";
         wv_text_tajweed.loadDataWithBaseURL(null,html, "text/html; charset=utf-8", "UTF-8",null);
         String mushaf = mPrefs.getString("mushaf", "IndoPak");
