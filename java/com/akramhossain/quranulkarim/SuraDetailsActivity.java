@@ -717,13 +717,13 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
 
         String appTheme = mPrefs.getString("APP_NIGHT_MODE", "-1");
         if (appTheme.equals("1")) {
-            bodyBgColor = "#000000";
+            bodyBgColor = "#303030";
             bodyTxtColor = "#ffffff";
         }else if (appTheme.equals("0")) {
-            bodyBgColor = "#FFFFFF";
+            bodyBgColor = "#FAFAFA";
             bodyTxtColor = "#000000";
         }else {
-            bodyBgColor = "#000000";
+            bodyBgColor = "#303030";
             bodyTxtColor = "#ffffff";
         }
 

@@ -63,6 +63,9 @@ public class RubVViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         else if(mushaf.equals("Uthmanic")) {
             tt = rub.getText_uthmani();
         }
+        else if(mushaf.equals("Tajweed")) {
+            tt = rub.getText_uthmani();
+        }
         else {
             tt = rub.getIndo_pak();
         }

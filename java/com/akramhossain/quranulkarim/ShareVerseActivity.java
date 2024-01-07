@@ -33,6 +33,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -40,6 +41,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
+import com.akramhossain.quranulkarim.util.Utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -60,6 +62,7 @@ public class ShareVerseActivity extends AppCompatActivity {
     public static String ayah_key;
     public static String surah_name;
     public static String ayah_trans;
+    public static String text_tajweed;
 
     DatabaseHelper dbhelper;
     Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem, fontTahaNaskh, fontKitab;
@@ -76,6 +79,12 @@ public class ShareVerseActivity extends AppCompatActivity {
 
     SharedPreferences mPrefs;
 
+    String fontFamily = "fontUthmani";
+    String fontSize = "30px";
+    String bodyBgColor = "#303030";
+    String bodyTxtColor = "#ffffff";
+    WebView wv_text_tajweed;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle extras = getIntent().getExtras();
@@ -89,6 +98,7 @@ public class ShareVerseActivity extends AppCompatActivity {
             surah_id = extras.getString("surah_id");
             ayah_key = extras.getString("ayah_key");
             ayah_trans = extras.getString("trans");
+            text_tajweed = extras.getString("text_tajweed");
         }
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -147,33 +157,43 @@ public class ShareVerseActivity extends AppCompatActivity {
         tv_trans.setTypeface(font);
         tv_trans.setText(ayah_trans);
 
+        wv_text_tajweed = (WebView) findViewById(R.id.text_tajweed);
+
         String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
         String mp_arFz = mPrefs.getString("arFontSize", "30");
         String mp_enFz = mPrefs.getString("enFontSize", "15");
         String mp_bnFz = mPrefs.getString("bnFontSize", "15");
         if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
             tv_ayah_arabic.setTypeface(fontAlmajeed);
+            fontFamily = "fontAlmajeed";
         }
         if(mp_arabicFontFamily.equals("Al Qalam Quran")){
             tv_ayah_arabic.setTypeface(fontAlQalam);
+            fontFamily = "fontAlQalam";
         }
         if(mp_arabicFontFamily.equals("Noore Huda")){
             tv_ayah_arabic.setTypeface(fontUthmani);
+            fontFamily = "fontUthmani";
         }
         if(mp_arabicFontFamily.equals("Noore Hidayat")){
             tv_ayah_arabic.setTypeface(fontNooreHidayat);
+            fontFamily = "fontNooreHidayat";
         }
         if(mp_arabicFontFamily.equals("Saleem Quran")){
             tv_ayah_arabic.setTypeface(fontSaleem);
+            fontFamily = "fontSaleem";
         }
         if(mp_arabicFontFamily.equals("KFGQPC Uthman Taha Naskh")){
             tv_ayah_arabic.setTypeface(fontTahaNaskh);
+            fontFamily = "fontTahaNaskh";
         }
         if(mp_arabicFontFamily.equals("Arabic Regular")){
             tv_ayah_arabic.setTypeface(fontKitab);
+            fontFamily = "fontKitab";
         }
         if(!mp_arFz.equals("")){
             tv_ayah_arabic.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
+            fontSize = mp_arFz+"px";
         }
         if(!mp_enFz.equals("")){
             tv_ayah_english.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
@@ -181,6 +201,28 @@ public class ShareVerseActivity extends AppCompatActivity {
         if(!mp_bnFz.equals("")){
             tv_ayah_bangla.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
             tv_trans.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+        }
+        String appTheme = mPrefs.getString("APP_NIGHT_MODE", "-1");
+        if (appTheme.equals("1")) {
+            bodyBgColor = "#303030";
+            bodyTxtColor = "#ffffff";
+        }else if (appTheme.equals("0")) {
+            bodyBgColor = "#FAFAFA";
+            bodyTxtColor = "#000000";
+        }else {
+            bodyBgColor = "#303030";
+            bodyTxtColor = "#ffffff";
+        }
+        String style = Utils.tajweedCss(fontFamily,fontSize,"#1b3022",bodyTxtColor);
+        String html = "<html><head>"+style+"</head><body>"+text_tajweed+"</body></html>";
+        wv_text_tajweed.loadDataWithBaseURL(null,html, "text/html; charset=utf-8", "UTF-8",null);
+        String mushaf = mPrefs.getString("mushaf", "IndoPak");
+        if(mushaf.equals("Tajweed")) {
+            wv_text_tajweed.setVisibility(View.VISIBLE);
+            tv_ayah_arabic.setVisibility(View.GONE);
+        }else{
+            wv_text_tajweed.setVisibility(View.GONE);
+            tv_ayah_arabic.setVisibility(View.VISIBLE);
         }
 
         /*Log.d("arabic",text_tashkeel);
@@ -304,6 +346,13 @@ public class ShareVerseActivity extends AppCompatActivity {
                 int nextAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
                 //
                 colorBtn.setBackgroundColor(nextAndroidColor);
+                //
+                String hexColor = Integer.toHexString(color).substring(2);
+                Log.d("color",hexColor);
+                String bgColor = "#"+hexColor;
+                String style = Utils.tajweedCss(fontFamily,fontSize,bgColor,bodyTxtColor);
+                String html = "<html><head>"+style+"</head><body>"+text_tajweed+"</body></html>";
+                wv_text_tajweed.loadDataWithBaseURL(null,html, "text/html; charset=utf-8", "UTF-8",null);
             }
         });
 
@@ -326,14 +375,24 @@ public class ShareVerseActivity extends AppCompatActivity {
                 Random random = new Random();
                 int randomNumber = random.nextInt(arrayLength);
                 int randomNumber1 = random.nextInt(arrayLength);
-
-                int[] colors = {Color.parseColor(androidStringColors[randomNumber]),Color.parseColor(androidStringColors[randomNumber1])};
+                //
+                int gdColor1 = Color.parseColor(androidStringColors[randomNumber]);
+                int gdColor2 = Color.parseColor(androidStringColors[randomNumber1]);
+                //
+                int[] colors = {gdColor1,gdColor2};
                 GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,colors);
                 gd.setCornerRadius(0f);
-
+                //
                 RelativeLayout layout = (RelativeLayout)findViewById(R.id.shareSection);
                 layout.setBackground(gd);
                 imgBtn.setBackground(gd);
+                //
+                String hexColor1 = Integer.toHexString(gdColor2).substring(2);
+                Log.d("gd top color",hexColor1);
+                String bgColor = "#"+hexColor1;
+                String style = Utils.tajweedCss(fontFamily,fontSize,bgColor,bodyTxtColor);
+                String html = "<html><head>"+style+"</head><body>"+text_tajweed+"</body></html>";
+                wv_text_tajweed.loadDataWithBaseURL(null,html, "text/html; charset=utf-8", "UTF-8",null);
             }
         });
 

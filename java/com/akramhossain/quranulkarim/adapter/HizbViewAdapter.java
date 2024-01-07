@@ -63,6 +63,9 @@ public class HizbViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         else if(mushaf.equals("Uthmanic")) {
             tt = hizb.getText_uthmani();
         }
+        else if(mushaf.equals("Tajweed")) {
+            tt = hizb.getText_uthmani();
+        }
         else {
             tt = hizb.getIndo_pak();
         }

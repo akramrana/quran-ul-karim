@@ -388,6 +388,7 @@ public class JuzHizbRubViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     in.putExtra("surah_id", ayah.getSurah_id());
                     in.putExtra("ayah_key", ayah.getAyah_key());
                     in.putExtra("trans", ayah.getTrans());
+                    in.putExtra("text_tajweed", ayah.getText_uthmani_tajweed());
                     c.startActivity(in);
                 } catch (Exception e) {
                     Log.e("Share", e.getMessage());

@@ -63,6 +63,9 @@ public class JuzViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         else if(mushaf.equals("Uthmanic")) {
             tt = juz.getText_uthmani();
         }
+        else if(mushaf.equals("Tajweed")) {
+            tt = juz.getText_uthmani();
+        }
         else {
             tt = juz.getIndo_pak();
         }
