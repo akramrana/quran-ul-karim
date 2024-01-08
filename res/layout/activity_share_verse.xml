@@ -123,8 +123,7 @@
                         tools:ignore="WebViewLayout"
                         android:visibility="gone"
                         android:scrollbars="none"
-                        android:layout_below="@id/ayah_arabic"
-                        android:background="@android:color/transparent"/>
+                        android:layout_below="@id/ayah_arabic"/>
 
                     <TextView
                         android:id="@+id/trans"

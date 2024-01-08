@@ -350,7 +350,7 @@ public class ShareVerseActivity extends AppCompatActivity {
                 String hexColor = Integer.toHexString(color).substring(2);
                 Log.d("color",hexColor);
                 String bgColor = "#"+hexColor;
-                String style = Utils.tajweedCss(fontFamily,fontSize,bgColor,bodyTxtColor);
+                String style = Utils.tajweedCss(fontFamily,fontSize,bgColor,"#ffffff");
                 String html = "<html><head>"+style+"</head><body>"+text_tajweed+"</body></html>";
                 wv_text_tajweed.loadDataWithBaseURL(null,html, "text/html; charset=utf-8", "UTF-8",null);
             }
@@ -376,10 +376,7 @@ public class ShareVerseActivity extends AppCompatActivity {
                 int randomNumber = random.nextInt(arrayLength);
                 int randomNumber1 = random.nextInt(arrayLength);
                 //
-                int gdColor1 = Color.parseColor(androidStringColors[randomNumber]);
-                int gdColor2 = Color.parseColor(androidStringColors[randomNumber1]);
-                //
-                int[] colors = {gdColor1,gdColor2};
+                int[] colors = {Color.parseColor(androidStringColors[randomNumber]),Color.parseColor(androidStringColors[randomNumber1])};
                 GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,colors);
                 gd.setCornerRadius(0f);
                 //
@@ -387,12 +384,15 @@ public class ShareVerseActivity extends AppCompatActivity {
                 layout.setBackground(gd);
                 imgBtn.setBackground(gd);
                 //
+                //
+                /*int gdColor1 = Color.parseColor(androidStringColors[randomNumber]);
+                int gdColor2 = Color.parseColor(androidStringColors[randomNumber1]);
                 String hexColor1 = Integer.toHexString(gdColor2).substring(2);
                 Log.d("gd top color",hexColor1);
                 String bgColor = "#"+hexColor1;
-                String style = Utils.tajweedCss(fontFamily,fontSize,bgColor,bodyTxtColor);
+                String style = Utils.tajweedCss(fontFamily,fontSize,"#FAFAFA","#000000");
                 String html = "<html><head>"+style+"</head><body>"+text_tajweed+"</body></html>";
-                wv_text_tajweed.loadDataWithBaseURL(null,html, "text/html; charset=utf-8", "UTF-8",null);
+                wv_text_tajweed.loadDataWithBaseURL(null,html, "text/html; charset=utf-8", "UTF-8",null);*/
             }
         });
 
