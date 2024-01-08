@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.akramhossain.quranulkarim.AboutActivity;
 import com.akramhossain.quranulkarim.HadithBookActivity;
 import com.akramhossain.quranulkarim.HadithChapterActivity;
 import com.akramhossain.quranulkarim.HadithListActivity;
@@ -58,6 +59,9 @@ public class JsonFromUrlTask {
                     }
                     else if(TAG.equals("HadithSearchActivity")){
                         ((HadithSearchActivity) activity).parseJsonResponseSearch(response);
+                    }
+                    else if(TAG.equals("AboutActivity")){
+                        ((AboutActivity) activity).parseJsonResponseSearch(response);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
