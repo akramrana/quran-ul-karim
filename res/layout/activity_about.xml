@@ -65,7 +65,8 @@
             android:textIsSelectable="true"
             android:paddingLeft="8dp"
             android:gravity="left"
-            android:text="@string/string_about_description"/>
+            android:text="@string/string_about_description"
+            android:linksClickable="true"/>
 
         <TextView
             android:id="@+id/label"
