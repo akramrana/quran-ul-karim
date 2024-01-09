@@ -5,6 +5,7 @@ public class MobileApp {
     private String name;
     private String url;
     private String img;
+    private String huawei_url;
 
     public String getId() {
         return id;
@@ -36,5 +37,13 @@ public class MobileApp {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public String getHuawei_url() {
+        return huawei_url;
+    }
+
+    public void setHuawei_url(String huawei_url) {
+        this.huawei_url = huawei_url;
     }
 }

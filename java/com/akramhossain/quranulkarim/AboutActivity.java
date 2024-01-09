@@ -51,7 +51,11 @@ public class AboutActivity extends AppCompatActivity {
             public void onClick(View view, int position) {
                 MobileApp ma = mobileApps.get(position);
                 Toast.makeText(getApplicationContext(), ma.getName(), Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(ma.getUrl())));
+                if(isHuaweiDevice()){
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(ma.getHuawei_url())));
+                }else {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(ma.getUrl())));
+                }
             }
             @Override
             public void onLongClick(View view, int position) {
@@ -93,6 +97,7 @@ public class AboutActivity extends AppCompatActivity {
                 ma.setName(jObject.getString("name"));
                 ma.setUrl(jObject.getString("url"));
                 ma.setImg(jObject.getString("img"));
+                ma.setHuawei_url(jObject.getString("huawei_url"));
                 mobileApps.add(ma);
             }
             rvAdapter.notifyDataSetChanged();
@@ -105,6 +110,13 @@ public class AboutActivity extends AppCompatActivity {
         mobileApps = new ArrayList<MobileApp>();
         rvAdapter = new MobileAppViewAdapter(AboutActivity.this, mobileApps, this);
         recyclerview.setAdapter(rvAdapter);
+    }
+
+    private boolean isHuaweiDevice(){
+        String manufacturer = android.os.Build.MANUFACTURER;
+        String brand =  android.os.Build.BRAND;
+        Log.d("Brand",brand.toString());
+        return  manufacturer.toLowerCase().contains("huawei") ||  brand.toLowerCase().contains("huawei");
     }
 
 }
