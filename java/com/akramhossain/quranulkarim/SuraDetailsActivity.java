@@ -108,7 +108,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
     String fontSize = "30px";
     String bodyBgColor = "#000000";
     String bodyTxtColor = "#ffffff";
-
+    String appTheme = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -715,7 +715,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         translation_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
         reading_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
 
-        String appTheme = mPrefs.getString("APP_NIGHT_MODE", "-1");
+        appTheme = mPrefs.getString("APP_NIGHT_MODE", "-1");
         if (appTheme.equals("1")) {
             bodyBgColor = "#303030";
             bodyTxtColor = "#ffffff";
@@ -891,7 +891,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         Log.d("font size",fontSize);
 
         //ayah_txt.setMovementMethod(new ScrollingMovementMethod());
-        String style = Utils.tajweedCss(fontFamily,fontSize,bodyBgColor,bodyTxtColor);
+        String style = Utils.tajweedCss(fontFamily,fontSize,bodyBgColor,bodyTxtColor, appTheme);
         String html = "<html><head>"+style+"</head><body>"+fullSuraStrTajweed.toString()+"</body></html>";
         ayah_txt.setText(Html.fromHtml(fullSuraStr.toString(), Html.FROM_HTML_MODE_LEGACY));
         webview.loadDataWithBaseURL(null,html, "text/html; charset=utf-8", "UTF-8",null);

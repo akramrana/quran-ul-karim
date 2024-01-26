@@ -136,7 +136,8 @@
             android:id="@+id/popular_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginBottom="15dp">
 
             <TextView
                 android:id="@+id/popular_searched_title"
@@ -175,7 +176,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp">
+            android:paddingRight="10dp"
+            android:layout_marginBottom="15dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -185,7 +187,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="15dp">
 
                     <LinearLayout
                         android:id="@+id/qibla_compass"
@@ -214,7 +217,7 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="2.0dip"
                             android:text="@string/string_qc_en"
-                            android:textSize="15.0sp"
+                            android:textSize="13.0sp"
                             android:textColor="@color/colorWhite"
                             android:gravity="center"/>
 
@@ -224,7 +227,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/qc_text_view_en"
                             android:text="@string/string_qc_bn"
-                            android:textSize="15.0sp"
+                            android:textSize="13.0sp"
                             android:textColor="@color/colorWhite"
                             android:gravity="center"/>
 
@@ -257,7 +260,7 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="2.0dip"
                             android:text="@string/string_subj_en"
-                            android:textSize="15.0sp"
+                            android:textSize="13.0sp"
                             android:textColor="@color/colorWhite"
                             android:gravity="center"/>
 
@@ -267,7 +270,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/subj_text_view_en"
                             android:text="@string/string_subj_bn"
-                            android:textSize="15.0sp"
+                            android:textSize="13.0sp"
                             android:textColor="@color/colorWhite"
                             android:gravity="center"/>
 
@@ -299,7 +302,7 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="2.0dip"
                             android:text="@string/string_hadith_en"
-                            android:textSize="15.0sp"
+                            android:textSize="13.0sp"
                             android:textColor="@color/colorWhite"
                             android:gravity="center"/>
 
@@ -309,7 +312,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/hadith_text_view_en"
                             android:text="@string/string_hadith_bn"
-                            android:textSize="15.0sp"
+                            android:textSize="13.0sp"
                             android:textColor="@color/colorWhite"
                             android:gravity="center"/>
 
@@ -325,7 +328,7 @@
                 android:background="@drawable/linear_background"
                 android:orientation="horizontal"
                 android:padding="2dp"
-                android:layout_marginTop="2dp">
+                android:layout_marginBottom="15dp">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -348,7 +351,7 @@
                             android:textStyle="bold"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="55dp"
-                            android:textSize="14sp"
+                            android:textSize="13sp"
                             android:gravity="center"/>
 
                         <ProgressBar
@@ -392,7 +395,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="2.0dip"
                         android:text="@string/string_dg_en"
-                        android:textSize="15.0sp"
+                        android:textSize="13.0sp"
                         android:textColor="@color/colorWhite"
                         android:gravity="center"/>
 
@@ -402,7 +405,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/dg_text_view_en"
                         android:text="@string/string_dg_bn"
-                        android:textSize="15.0sp"
+                        android:textSize="13.0sp"
                         android:textColor="@color/colorWhite"
                         android:gravity="center"/>
 
@@ -418,7 +421,6 @@
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/linear_background"
                 android:padding="2dp"
-                android:layout_marginTop="2dp"
                 android:id="@+id/name_of_allah">
 
                 <ImageView
@@ -437,7 +439,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2.0dip"
                     android:text="@string/string_noa_en"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -447,7 +449,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/noa_text_view_en"
                     android:text="@string/string_noa_bn"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -461,7 +463,8 @@
             android:orientation="horizontal"
             android:paddingTop="2dp"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp">
+            android:paddingRight="10dp"
+            android:layout_marginBottom="15dp">
 
             <LinearLayout
                 android:id="@+id/sura_link"
@@ -490,7 +493,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2.0dip"
                     android:text="Surah"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -500,7 +503,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textView1"
                     android:text="সূরা সমূহ"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -532,7 +535,7 @@
                     android:layout_below="@id/juzImageView"
                     android:layout_marginTop="2.0dip"
                     android:text="Juz'"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -543,7 +546,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/juzTextView"
                     android:text="পারা"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -574,7 +577,7 @@
                     android:layout_below="@id/hizbImageView"
                     android:layout_marginTop="2.0dip"
                     android:text="Hizb"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -584,7 +587,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/hizbTextView"
                     android:text="অর্ধ-পারা"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -599,7 +602,8 @@
             android:orientation="horizontal"
             android:paddingTop="2dp"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp">
+            android:paddingRight="10dp"
+            android:layout_marginBottom="15dp">
 
             <LinearLayout
                 android:id="@+id/rub_link"
@@ -628,7 +632,7 @@
                     android:layout_marginTop="2.0dip"
                     android:ellipsize="marquee"
                     android:text="Rub'"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -640,7 +644,7 @@
                     android:gravity="center"
                     android:text="রুব উল হিজব"
                     android:textColor="@color/colorWhite"
-                    android:textSize="15.0sp" />
+                    android:textSize="13.0sp" />
 
             </LinearLayout>
 
@@ -670,7 +674,7 @@
                     android:layout_below="@id/imageView3"
                     android:layout_marginTop="2.0dip"
                     android:text="Search"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -681,7 +685,7 @@
                     android:layout_below="@id/textView3"
                     android:ellipsize="marquee"
                     android:text="সার্চ"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -712,7 +716,7 @@
                     android:layout_below="@id/imageView2"
                     android:layout_marginTop="2.0dip"
                     android:text="Bookmarks"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -724,7 +728,7 @@
                     android:layout_below="@id/textView2"
                     android:ellipsize="marquee"
                     android:text="বুকমার্ক"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -738,7 +742,8 @@
             android:orientation="horizontal"
             android:paddingTop="2dp"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp">
+            android:paddingRight="10dp"
+            android:layout_marginBottom="15dp">
 
             <LinearLayout
                 android:id="@+id/quick_links_link"
@@ -766,7 +771,7 @@
                     android:layout_below="@id/imageView4"
                     android:layout_marginTop="2.0dip"
                     android:text="Favourites"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -776,7 +781,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textView4"
                     android:text="প্রিয় সূরা"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -808,7 +813,7 @@
                     android:layout_below="@id/imageView5"
                     android:layout_marginTop="2.0dip"
                     android:text="By Word"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -818,7 +823,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textView5"
                     android:text="শব্দে শব্দে"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -849,7 +854,7 @@
                     android:layout_below="@id/timeImageView"
                     android:layout_marginTop="2.0dip"
                     android:text="Prayer Time"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -859,7 +864,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/timeTextView"
                     android:text="নামাজের সময়"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -873,7 +878,8 @@
             android:orientation="horizontal"
             android:paddingTop="2dp"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp">
+            android:paddingRight="10dp"
+            android:layout_marginBottom="15dp">
 
             <LinearLayout
                 android:id="@+id/setting_link"
@@ -901,7 +907,7 @@
                     android:layout_below="@id/imageView12"
                     android:layout_marginTop="2.0dip"
                     android:text="@string/settings"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -911,7 +917,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textView12"
                     android:text="@string/settings_en_bn"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -944,7 +950,7 @@
                     android:layout_below="@id/imageView10"
                     android:layout_marginTop="2.0dip"
                     android:text="@string/masjid"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -954,7 +960,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textView10"
                     android:text="@string/masjid_bn"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -986,7 +992,7 @@
                     android:layout_below="@id/imageView9"
                     android:layout_marginTop="2.0dip"
                     android:text="@string/feedback"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -996,7 +1002,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textView9"
                     android:text="@string/feedback_bn"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -1039,7 +1045,7 @@
                     android:layout_below="@id/imageView6"
                     android:layout_marginTop="2.0dip"
                     android:text="@string/about"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -1049,7 +1055,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textView6"
                     android:text="@string/about_bn"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -1082,7 +1088,7 @@
                     android:layout_below="@id/imageView7"
                     android:layout_marginTop="2.0dip"
                     android:text="@string/privacy"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -1092,7 +1098,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textView7"
                     android:text="@string/privacy_bn"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -1126,7 +1132,7 @@
                     android:gravity="center"
                     android:text="@string/terms"
                     android:textColor="@color/colorWhite"
-                    android:textSize="15.0sp" />
+                    android:textSize="13.0sp" />
 
                 <TextView
                     android:id="@+id/textView88"
@@ -1134,7 +1140,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textView8"
                     android:text="@string/terms_bn"
-                    android:textSize="15.0sp"
+                    android:textSize="13.0sp"
                     android:textColor="@color/colorWhite"
                     android:gravity="center"/>
 
@@ -1174,7 +1180,6 @@
             android:id="@+id/horizontal_line"
             android:layout_width="fill_parent"
             android:layout_height="1dp"
-            android:background="@color/colorWhite"
             android:visibility="gone"
             android:layout_marginTop="10dp"/>
 
@@ -1192,7 +1197,7 @@
             android:text="@string/start_from_last"
             android:textColor="@color/colorWhiteDN"
             android:background="@color/bg_color"
-            android:textSize="15dp"
+            android:textSize="13dp"
             android:visibility="gone" />
 
     </LinearLayout>

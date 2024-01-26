@@ -148,7 +148,7 @@ public class WordMeaningActivity extends AppCompatActivity {
             bodyBgColor = "#424242";
             bodyTxtColor = "#ffffff";
         }
-        String style = Utils.tajweedCss(fontFamily,fontSize,bodyBgColor,bodyTxtColor);
+        String style = Utils.tajweedCss(fontFamily,fontSize,bodyBgColor,bodyTxtColor,appTheme);
         String html = "<html><head>"+style+"</head><body>"+text_tajweed+"</body></html>";
         wb_text_tajweed.loadDataWithBaseURL(null,html, "text/html; charset=utf-8", "UTF-8",null);
 

@@ -85,6 +85,8 @@ public class ShareVerseActivity extends AppCompatActivity {
     String bodyTxtColor = "#ffffff";
     WebView wv_text_tajweed;
 
+    String appTheme = "";
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle extras = getIntent().getExtras();
@@ -202,7 +204,7 @@ public class ShareVerseActivity extends AppCompatActivity {
             tv_ayah_bangla.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
             tv_trans.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
         }
-        String appTheme = mPrefs.getString("APP_NIGHT_MODE", "-1");
+        appTheme = mPrefs.getString("APP_NIGHT_MODE", "-1");
         if (appTheme.equals("1")) {
             bodyBgColor = "#303030";
             bodyTxtColor = "#ffffff";
@@ -213,7 +215,7 @@ public class ShareVerseActivity extends AppCompatActivity {
             bodyBgColor = "#303030";
             bodyTxtColor = "#ffffff";
         }
-        String style = Utils.tajweedCss(fontFamily,fontSize,"#1b3022","#ffffff");
+        String style = Utils.tajweedCss(fontFamily,fontSize,"#1b3022","#ffffff", appTheme);
         String html = "<html><head>"+style+"</head><body>"+text_tajweed+"</body></html>";
         wv_text_tajweed.loadDataWithBaseURL(null,html, "text/html; charset=utf-8", "UTF-8",null);
         String mushaf = mPrefs.getString("mushaf", "IndoPak");
@@ -350,7 +352,7 @@ public class ShareVerseActivity extends AppCompatActivity {
                 String hexColor = Integer.toHexString(color).substring(2);
                 Log.d("color",hexColor);
                 String bgColor = "#"+hexColor;
-                String style = Utils.tajweedCss(fontFamily,fontSize,bgColor,"#ffffff");
+                String style = Utils.tajweedCss(fontFamily,fontSize,bgColor,"#ffffff", appTheme);
                 String html = "<html><head>"+style+"</head><body>"+text_tajweed+"</body></html>";
                 wv_text_tajweed.loadDataWithBaseURL(null,html, "text/html; charset=utf-8", "UTF-8",null);
             }
@@ -390,7 +392,7 @@ public class ShareVerseActivity extends AppCompatActivity {
                 String hexColor1 = Integer.toHexString(gdColor2).substring(2);
                 Log.d("gd top color",hexColor1);
                 String bgColor = "#"+hexColor1;
-                String style = Utils.tajweedCss(fontFamily,fontSize,"#FAFAFA","#000000");
+                String style = Utils.tajweedCss(fontFamily,fontSize,"#FAFAFA","#000000",appTheme);
                 String html = "<html><head>"+style+"</head><body>"+text_tajweed+"</body></html>";
                 wv_text_tajweed.loadDataWithBaseURL(null,html, "text/html; charset=utf-8", "UTF-8",null);*/
             }

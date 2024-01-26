@@ -66,7 +66,7 @@ public class TafsirActivity extends AppCompatActivity {
     String fontSize = "30px";
     String bodyBgColor = "#303030";
     String bodyTxtColor = "#ffffff";
-
+    String appTheme = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -575,7 +575,7 @@ public class TafsirActivity extends AppCompatActivity {
             tv_ayah_bangla.setVisibility(View.GONE);
         }
 
-        String appTheme = mPrefs.getString("APP_NIGHT_MODE", "-1");
+        appTheme = mPrefs.getString("APP_NIGHT_MODE", "-1");
         if (appTheme.equals("1")) {
             bodyBgColor = "#303030";
             bodyTxtColor = "#ffffff";
@@ -586,7 +586,7 @@ public class TafsirActivity extends AppCompatActivity {
             bodyBgColor = "#303030";
             bodyTxtColor = "#ffffff";
         }
-        String style = Utils.tajweedCss(fontFamily,fontSize,bodyBgColor,bodyTxtColor);
+        String style = Utils.tajweedCss(fontFamily,fontSize,bodyBgColor,bodyTxtColor,appTheme);
         String html = "<html><head>"+style+"</head><body>"+text_tajweed+"</body></html>";
         wv_text_tajweed.loadDataWithBaseURL(null,html, "text/html; charset=utf-8", "UTF-8",null);
         if(mushaf.equals("Tajweed")) {
@@ -636,7 +636,7 @@ public class TafsirActivity extends AppCompatActivity {
                 tv_ayah_num.setText(surah_name+" "+ayah_key);
                 trans.setText(ayah_trans);
                 //
-                String style = Utils.tajweedCss(fontFamily,fontSize,bodyBgColor,bodyTxtColor);
+                String style = Utils.tajweedCss(fontFamily,fontSize,bodyBgColor,bodyTxtColor,appTheme);
                 String html = "<html><head>"+style+"</head><body>"+text_tajweed+"</body></html>";
                 wv_text_tajweed.loadDataWithBaseURL(null,html, "text/html; charset=utf-8", "UTF-8",null);
                 String mushaf = mPrefs.getString("mushaf", "IndoPak");
