@@ -20,7 +20,7 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:textColor="#FFFFFF"
-            android:textSize="15sp"
+            android:textSize="13sp"
             android:text="@string/string_about"/>
 
         <TextView
@@ -32,7 +32,7 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:textColor="#FFFFFF"
-            android:textSize="15sp"
+            android:textSize="13sp"
             android:layout_below="@+id/splash_title"
             android:text="@string/string_about_bn"/>
 
@@ -46,7 +46,8 @@
                 android:id="@+id/splash_icon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_quran_radio"/>
+                android:src="@drawable/ic_quran_radio"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/splash_title_ar"
@@ -111,6 +112,14 @@
             android:textColor="#FFFFFF"
             android:textSize="15sp"
             android:text="@string/string_author_name"
+            android:layout_alignParentBottom="true"/>
+
+        <ImageView
+            android:id="@+id/background_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/mosque_pattern"
             android:layout_alignParentBottom="true"/>
 
 
