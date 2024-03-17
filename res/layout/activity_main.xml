@@ -416,42 +416,99 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/linear_background"
-                android:padding="2dp"
-                android:id="@+id/name_of_allah">
+                android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/noa_img"
-                    android:layout_width="48.0dip"
-                    android:layout_height="48.0dip"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/allah" />
-
-                <TextView
-                    android:id="@+id/noa_text_view_en"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/noa_img"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="2.0dip"
-                    android:text="@string/string_noa_en"
-                    android:textSize="13.0sp"
-                    android:textColor="@color/colorWhite"
-                    android:gravity="center"/>
+                    android:orientation="horizontal"
+                    android:padding="2dp">
 
-                <TextView
-                    android:id="@+id/noa_text_view_bn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/noa_text_view_en"
-                    android:text="@string/string_noa_bn"
-                    android:textSize="13.0sp"
-                    android:textColor="@color/colorWhite"
-                    android:gravity="center"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/linear_background"
+                        android:id="@+id/name_of_allah">
+
+                        <ImageView
+                            android:id="@+id/noa_img"
+                            android:layout_width="48.0dip"
+                            android:layout_height="48.0dip"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/allah" />
+
+                        <TextView
+                            android:id="@+id/noa_text_view_en"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/noa_img"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="2.0dip"
+                            android:text="@string/string_noa_en"
+                            android:textSize="13.0sp"
+                            android:textColor="@color/colorWhite"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/noa_text_view_bn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/noa_text_view_en"
+                            android:text="@string/string_noa_bn"
+                            android:textSize="13.0sp"
+                            android:textColor="@color/colorWhite"
+                            android:gravity="center"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/linear_background"
+                        android:id="@+id/dua_zikr">
+
+                        <ImageView
+                            android:id="@+id/dz_img"
+                            android:layout_width="48.0dip"
+                            android:layout_height="48.0dip"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/dua" />
+
+                        <TextView
+                            android:id="@+id/dz_text_view_en"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/dz_img"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="2.0dip"
+                            android:text="@string/string_dz_en"
+                            android:textSize="13.0sp"
+                            android:textColor="@color/colorWhite"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/dz_text_view_bn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/dz_text_view_en"
+                            android:text="@string/string_dz_bn"
+                            android:textSize="13.0sp"
+                            android:textColor="@color/colorWhite"
+                            android:gravity="center"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
 

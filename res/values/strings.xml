@@ -188,4 +188,10 @@
     <string name="search_ayah_en">Search Ayah</string>
     <string name="close_search">Close</string>
 
+    <string name="string_dz_bn">দোয়া জিকির</string>
+    <string name="string_dz_en">Dua Zikr</string>
+    <string name="string_dz_subtitle">Dua and Zikr</string>
+
+    <string name="string_info">Info</string>
+
 </resources>

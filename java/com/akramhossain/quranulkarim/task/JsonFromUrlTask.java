@@ -8,11 +8,13 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.AboutActivity;
+import com.akramhossain.quranulkarim.DuaZikrActivity;
 import com.akramhossain.quranulkarim.HadithBookActivity;
 import com.akramhossain.quranulkarim.HadithChapterActivity;
 import com.akramhossain.quranulkarim.HadithListActivity;
 import com.akramhossain.quranulkarim.HadithSearchActivity;
 import com.akramhossain.quranulkarim.R;
+import com.akramhossain.quranulkarim.TagActivity;
 import com.akramhossain.quranulkarim.app.AppController;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -62,6 +64,12 @@ public class JsonFromUrlTask {
                     }
                     else if(TAG.equals("AboutActivity")){
                         ((AboutActivity) activity).parseJsonResponseSearch(response);
+                    }
+                    else if(TAG.equals("TagActivity")){
+                        ((TagActivity) activity).parseJsonResponse(response);
+                    }
+                    else if(TAG.equals("DuaZikrActivity")){
+                        ((DuaZikrActivity) activity).parseJsonResponse(response);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

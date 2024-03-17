@@ -597,6 +597,18 @@ public class MainActivity extends AppCompatActivity {
         });
         start_from_last.setTypeface(font);
         img = (ImageView) findViewById(R.id.img);
+        //
+        TextView dz_text_view_bn = (TextView) findViewById(R.id.dz_text_view_bn);
+        dz_text_view_bn.setTypeface(font);
+        LinearLayout dua_zikr = (LinearLayout) findViewById(R.id.dua_zikr);
+        dua_zikr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), TagActivity.class);
+                startActivity(i);
+            }
+        });
+        //
         URL = host+"api/banner";
         getBannerFromInternet();
     }
