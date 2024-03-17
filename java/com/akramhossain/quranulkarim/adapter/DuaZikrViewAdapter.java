@@ -1,23 +1,29 @@
 package com.akramhossain.quranulkarim.adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.text.Html;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.R;
+import com.akramhossain.quranulkarim.TagActivity;
 import com.akramhossain.quranulkarim.model.DuaZikr;
 import com.akramhossain.quranulkarim.model.Tag;
 
 import java.util.ArrayList;
 
+import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class DuaZikrViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
@@ -77,6 +83,82 @@ public class DuaZikrViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         rvHolder.when_to_bn.setTypeface(font);
         rvHolder.translations_bn.setTypeface(font);
         rvHolder.transliteration_bn.setTypeface(font);
+
+        rvHolder.copyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    String str1 = "";
+                    if (dz.getArabic() != null && !dz.getArabic().equals("")) {
+                        String text = HtmlCompat.fromHtml(dz.getArabic(), HtmlCompat.FROM_HTML_MODE_COMPACT).toString();
+                        str1 = HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_COMPACT).toString();
+                    }
+
+                    String str2 = "";
+                    if (dz.getTransliteration_en() != null && !dz.getTransliteration_en().equals("")) {
+                        String text = HtmlCompat.fromHtml(dz.getTransliteration_en(), HtmlCompat.FROM_HTML_MODE_COMPACT).toString();
+                        str2 = HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_COMPACT).toString();
+                    }
+
+                    String str3 = "";
+                    if (dz.getTransliteration_bn() != null && !dz.getTransliteration_bn().equals("")) {
+                        String text = HtmlCompat.fromHtml(dz.getTransliteration_bn(), HtmlCompat.FROM_HTML_MODE_COMPACT).toString();
+                        str3 = HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_COMPACT).toString();
+                    }
+
+                    String str4 = "";
+                    if (dz.getTranslations_en() != null && !dz.getTranslations_en().equals("")) {
+                        String text = HtmlCompat.fromHtml(dz.getTranslations_en(), HtmlCompat.FROM_HTML_MODE_COMPACT).toString();
+                        str4 = HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_COMPACT).toString();
+                    }
+
+                    String str5 = "";
+                    if (dz.getTranslations_bn() != null && !dz.getTranslations_bn().equals("")) {
+                        String text = HtmlCompat.fromHtml(dz.getTranslations_bn(), HtmlCompat.FROM_HTML_MODE_COMPACT).toString();
+                        str5 = HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_COMPACT).toString();
+                    }
+
+                    String str6 = "";
+                    if (dz.getReference_en() != null && !dz.getReference_en().equals("")) {
+                        String text = HtmlCompat.fromHtml(dz.getReference_en(), HtmlCompat.FROM_HTML_MODE_COMPACT).toString();
+                        str6 = HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_COMPACT).toString();
+                    }
+
+                    String str7 = "";
+                    if (dz.getReference_bn() != null && !dz.getReference_bn().equals("")) {
+                        String text = HtmlCompat.fromHtml(dz.getReference_bn(), HtmlCompat.FROM_HTML_MODE_COMPACT).toString();
+                        str7 = HtmlCompat.fromHtml(text, HtmlCompat.FROM_HTML_MODE_COMPACT).toString();
+                    }
+
+                    String fullHadith = str1+"\n\n"+str2+"\n\n"+str3+"\n\n"+str4+"\n\n"+str5+"\n\n"+str6+"\n\n"+str7;
+                    String label = dz.getName_en()+", "+dz.getName_bn();
+
+                    android.content.ClipboardManager clipboard = (android.content.ClipboardManager) c.getApplicationContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                    android.content.ClipData clip = android.content.ClipData.newPlainText(label, fullHadith);
+                    clipboard.setPrimaryClip(clip);
+
+                    Toast.makeText(c.getApplicationContext(), "Copied.", Toast.LENGTH_LONG).show();
+
+                }catch (Exception e) {
+                    Log.e("copy error", e.getMessage());
+                }
+            }
+        });
+
+        rvHolder.infoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(c);
+                    alert.setTitle("Reference");
+                    alert.setMessage(dz.getReference_en() + "\n\n" + dz.getReference_bn());
+                    alert.setPositiveButton(R.string.text_ok,null);
+                    alert.show();
+                }catch (Exception e) {
+                    Log.e("info error", e.getMessage());
+                }
+            }
+        });
     }
 
     @Override
@@ -101,6 +183,8 @@ public class DuaZikrViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         TextView name_bn;
         TextView tag_en;
         TextView tag_bn;
+
+        Button copyButton, infoButton;
         public RecyclerViewHolder(View itemView) {
             super(itemView);
 
@@ -126,6 +210,9 @@ public class DuaZikrViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             tag_en = (TextView) itemView.findViewById(R.id.tag_en);
             tag_bn = (TextView) itemView.findViewById(R.id.tag_bn);
+
+            copyButton = itemView.findViewById(R.id.copyButton);
+            infoButton = itemView.findViewById(R.id.infoButton);
 
             String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
             String mp_enFz = mPrefs.getString("enFontSize", "15");

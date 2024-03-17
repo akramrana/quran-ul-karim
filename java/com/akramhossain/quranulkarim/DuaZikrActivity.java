@@ -110,16 +110,17 @@ public class DuaZikrActivity extends AppCompatActivity {
                 dz.setTranslations_en(jObject.getString("translations_en"));
                 dz.setTranslations_bn(jObject.getString("translations_bn"));
 
-                dz.setWhen_to_en(jObject.getString("reference_en"));
-                dz.setWhen_to_bn(jObject.getString("reference_bn"));
+                dz.setReference_en(jObject.getString("reference_en"));
+                dz.setReference_bn(jObject.getString("reference_bn"));
 
-                dz.setWhen_to_bn(jObject.getString("repeat_times"));
+                dz.setRepeat_times(jObject.getString("repeat_times"));
 
                 dz.setWhen_to_en(jObject.getString("when_to_en"));
                 dz.setWhen_to_bn(jObject.getString("when_to_bn"));
 
                 dz.setName_en(jObject.getString("name_en"));
                 dz.setName_bn(jObject.getString("name_bn"));
+
                 dz.setTag_en(jObject.getString("tag_en"));
                 dz.setTag_bn(jObject.getString("tag_bn"));
                 duaZikr.add(dz);
