@@ -194,4 +194,7 @@
 
     <string name="string_info">Ref</string>
 
+    <string name="string_ms_en">Monthly Summary</string>
+    <string name="string_ms_subtitle">Monthly summary your daily goals</string>
+
 </resources>

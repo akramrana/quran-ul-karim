@@ -3,13 +3,16 @@ package com.akramhossain.quranulkarim;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -451,6 +454,15 @@ public class DailyGoalsActivity extends AppCompatActivity {
         Date date = new Date();
         String dtStr = dateFormat.format(date);
         title.setText(dtStr);
+
+        LinearLayout summary_section = (LinearLayout) findViewById(R.id.summarySection);
+        summary_section.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),MonthlySummaryActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     public void getReportData(){
@@ -603,6 +615,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
             }
             db.close();
         }
+
     }
 
     public void updateDailyReport(String columnName,Integer value){
