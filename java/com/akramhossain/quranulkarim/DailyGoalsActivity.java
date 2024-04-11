@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -458,6 +459,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
         getReportData(dtStr);
         //
         title = (TextView) findViewById(R.id.title);
+        title.setPaintFlags(title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         DateFormat dateFormat = new SimpleDateFormat("EEE, MMMM dd yyyy");
         Date date = new Date();
         String dtStr1 = dateFormat.format(date);

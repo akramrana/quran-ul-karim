@@ -196,5 +196,6 @@
 
     <string name="string_ms_en">Monthly Progress</string>
     <string name="string_ms_subtitle">Monthly progress of your daily goals</string>
+    <string name="string_ms_underline"><u>Monthly Progress</u></string>
 
 </resources>
