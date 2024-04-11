@@ -137,14 +137,14 @@ public class MonthlySummaryActivity extends AppCompatActivity {
             }
 
             BarDataSet barDataSet = new BarDataSet(entries, title);
-            barDataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
+            //barDataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
             barDataSet.setDrawValues(true);
             barDataSet.setHighlightEnabled(true);
             barDataSet.setHighLightColor(ContextCompat.getColor(this,R.color.transColor));
             barDataSet.setValueTextColor(ContextCompat.getColor(this,R.color.transColor));
 
             BarData data = new BarData(barDataSet);
-            data.setBarWidth(0.1f);
+            data.setBarWidth(0.3f);
 
             chart.setData(data);
             chart.setFitBars(true);
