@@ -63,8 +63,8 @@ public class DailyGoalsActivity extends AppCompatActivity {
     ProgressBar progressDoha, progressDhuhr, progressAsr, progressMaghrib, progressIsha, progressCharity;
     ProgressBar progressLiterature, progressMulk, progressBaqara, progressQursi, progressKahf, progressTasbih;
     ProgressBar progressHaram1, progressHaram2, progressHaram3, progressHaram4, progressHaram5;
-
     TextView title;
+    String globalSelectedDate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -454,6 +454,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
         DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
         Date date1 = new Date();
         String dtStr = dateFormat1.format(date1);
+        globalSelectedDate = dtStr;
         getReportData(dtStr);
         //
         title = (TextView) findViewById(R.id.title);
@@ -488,7 +489,10 @@ public class DailyGoalsActivity extends AppCompatActivity {
                                     SimpleDateFormat sdfDestination1 = new SimpleDateFormat("yyyy-MM-dd");
                                     String strDate1 = sdfDestination1.format(date2);
 
+                                    globalSelectedDate = strDate1;
                                     getReportData(strDate1);
+
+
                                 }catch (Exception e){
                                     Log.i(TAG, e.getMessage());
                                 }
@@ -499,6 +503,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
                         year, month, day);
                 // at last we are calling show to
                 // display our date picker dialog.
+                datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
                 datePickerDialog.show();
             }
         });
@@ -525,133 +530,265 @@ public class DailyGoalsActivity extends AppCompatActivity {
                 if(perform_tahajjud > 0){
                     chkTahajjud.setChecked(true);
                     progressTahajjud.setProgress(100, true);
+                }else{
+                    chkTahajjud.setChecked(false);
+                    progressTahajjud.setProgress(0, true);
                 }
 
                 Integer perform_fajr = cursor.getInt(cursor.getColumnIndexOrThrow("perform_fajr"));
                 if(perform_fajr > 0){
                     chkFajr.setChecked(true);
                     progressFajr.setProgress(100, true);
+                }else{
+                    chkFajr.setChecked(false);
+                    progressFajr.setProgress(0, true);
                 }
 
                 Integer morning_adhkar = cursor.getInt(cursor.getColumnIndexOrThrow("morning_adhkar"));
                 if(morning_adhkar > 0){
                     chkAdhkar.setChecked(true);
                     progressAdhkar.setProgress(100, true);
+                }else{
+                    chkAdhkar.setChecked(false);
+                    progressAdhkar.setProgress(0, true);
                 }
 
                 Integer quran_recitation = cursor.getInt(cursor.getColumnIndexOrThrow("quran_recitation"));
                 if(quran_recitation > 0){
                     chkReci.setChecked(true);
                     progressRecite.setProgress(100, true);
+                }else{
+                    chkReci.setChecked(false);
+                    progressRecite.setProgress(0, true);
                 }
 
                 Integer study_hadith = cursor.getInt(cursor.getColumnIndexOrThrow("study_hadith"));
                 if(study_hadith > 0){
                     chkHadith.setChecked(true);
                     progressHadith.setProgress(100, true);
+                }else{
+                    chkHadith.setChecked(false);
+                    progressHadith.setProgress(0, true);
                 }
 
                 Integer salat_ud_doha = cursor.getInt(cursor.getColumnIndexOrThrow("salat_ud_doha"));
                 if(salat_ud_doha > 0){
                     chkDoha.setChecked(true);
                     progressDoha.setProgress(100, true);
+                }else{
+                    chkDoha.setChecked(false);
+                    progressDoha.setProgress(0, true);
                 }
 
                 Integer dhuhr_prayer = cursor.getInt(cursor.getColumnIndexOrThrow("dhuhr_prayer"));
                 if(dhuhr_prayer > 0){
                     chkDhuhr.setChecked(true);
                     progressDhuhr.setProgress(100, true);
+                }else{
+                    chkDhuhr.setChecked(false);
+                    progressDhuhr.setProgress(0, true);
                 }
 
                 Integer asr_prayer = cursor.getInt(cursor.getColumnIndexOrThrow("asr_prayer"));
                 if(asr_prayer > 0){
                     chkAsr.setChecked(true);
                     progressAsr.setProgress(100, true);
+                }else{
+                    chkAsr.setChecked(false);
+                    progressAsr.setProgress(0, true);
                 }
 
                 Integer maghrib_prayer = cursor.getInt(cursor.getColumnIndexOrThrow("maghrib_prayer"));
                 if(maghrib_prayer > 0){
                     chkMaghrib.setChecked(true);
                     progressMaghrib.setProgress(100, true);
+                }else{
+                    chkMaghrib.setChecked(false);
+                    progressMaghrib.setProgress(0, true);
                 }
 
                 Integer isha_prayer = cursor.getInt(cursor.getColumnIndexOrThrow("isha_prayer"));
                 if(isha_prayer > 0){
                     chkIsha.setChecked(true);
                     progressIsha.setProgress(100, true);
+                }else{
+                    chkIsha.setChecked(false);
+                    progressIsha.setProgress(0, true);
                 }
 
                 Integer charity = cursor.getInt(cursor.getColumnIndexOrThrow("charity"));
                 if(charity > 0){
                     chkCharity.setChecked(true);
                     progressCharity.setProgress(100, true);
+                }else{
+                    chkCharity.setChecked(false);
+                    progressCharity.setProgress(0, true);
                 }
 
                 Integer literature = cursor.getInt(cursor.getColumnIndexOrThrow("literature"));
                 if(literature > 0){
                     chkLiterature.setChecked(true);
                     progressLiterature.setProgress(100, true);
+                }else{
+                    chkLiterature.setChecked(false);
+                    progressLiterature.setProgress(0, true);
                 }
 
                 Integer surah_mulk_recitation = cursor.getInt(cursor.getColumnIndexOrThrow("surah_mulk_recitation"));
                 if(surah_mulk_recitation > 0){
                     chkMulk.setChecked(true);
                     progressMulk.setProgress(100, true);
+                }else{
+                    chkMulk.setChecked(false);
+                    progressMulk.setProgress(0, true);
                 }
 
                 Integer recitation_last_2_surah_baqarah = cursor.getInt(cursor.getColumnIndexOrThrow("recitation_last_2_surah_baqarah"));
                 if(recitation_last_2_surah_baqarah > 0){
                     chkBaqara.setChecked(true);
                     progressBaqara.setProgress(100, true);
+                }else{
+                    chkBaqara.setChecked(false);
+                    progressBaqara.setProgress(0, true);
                 }
 
                 Integer ayatul_kursi = cursor.getInt(cursor.getColumnIndexOrThrow("ayatul_kursi"));
                 if(ayatul_kursi > 0){
                     chkQursi.setChecked(true);
                     progressQursi.setProgress(100, true);
+                }else{
+                    chkQursi.setChecked(false);
+                    progressQursi.setProgress(0, true);
                 }
 
                 Integer recitation_first_last_10_surah_kahf = cursor.getInt(cursor.getColumnIndexOrThrow("recitation_first_last_10_surah_kahf"));
                 if(recitation_first_last_10_surah_kahf > 0){
                     chkKahf.setChecked(true);
                     progressKahf.setProgress(100, true);
+                }else{
+                    chkKahf.setChecked(false);
+                    progressKahf.setProgress(0, true);
                 }
 
                 Integer tasbih = cursor.getInt(cursor.getColumnIndexOrThrow("tasbih"));
                 if(tasbih > 0){
                     chkTasbih.setChecked(true);
                     progressTasbih.setProgress(100, true);
+                }else{
+                    chkTasbih.setChecked(false);
+                    progressTasbih.setProgress(0, true);
                 }
 
                 Integer smoking = cursor.getInt(cursor.getColumnIndexOrThrow("smoking"));
                 if(smoking > 0){
                     chkHaram1.setChecked(true);
                     progressHaram1.setProgress(100, true);
+                }else{
+                    chkHaram1.setChecked(false);
+                    progressHaram1.setProgress(0, true);
                 }
 
                 Integer alcohol = cursor.getInt(cursor.getColumnIndexOrThrow("alcohol"));
                 if(alcohol > 0){
                     chkHaram2.setChecked(true);
                     progressHaram2.setProgress(100, true);
+                }else{
+                    chkHaram2.setChecked(false);
+                    progressHaram2.setProgress(0, true);
                 }
 
                 Integer haram_things = cursor.getInt(cursor.getColumnIndexOrThrow("haram_things"));
                 if(haram_things > 0){
                     chkHaram3.setChecked(true);
                     progressHaram3.setProgress(100, true);
+                }else{
+                    chkHaram3.setChecked(false);
+                    progressHaram3.setProgress(0, true);
                 }
 
                 Integer backbiting = cursor.getInt(cursor.getColumnIndexOrThrow("backbiting"));
                 if(backbiting > 0){
                     chkHaram4.setChecked(true);
                     progressHaram4.setProgress(100, true);
+                }else{
+                    chkHaram4.setChecked(false);
+                    progressHaram4.setProgress(0, true);
                 }
 
                 Integer slandering = cursor.getInt(cursor.getColumnIndexOrThrow("slandering"));
                 if(slandering > 0){
                     chkHaram5.setChecked(true);
                     progressHaram5.setProgress(100, true);
+                }else{
+                    chkHaram5.setChecked(false);
+                    progressHaram5.setProgress(0, true);
                 }
+            }else{
+                chkTahajjud.setChecked(false);
+                progressTahajjud.setProgress(0, true);
+
+                chkFajr.setChecked(false);
+                progressFajr.setProgress(0, true);
+
+                chkAdhkar.setChecked(false);
+                progressAdhkar.setProgress(0, true);
+
+                chkReci.setChecked(false);
+                progressRecite.setProgress(0, true);
+
+                chkHadith.setChecked(false);
+                progressHadith.setProgress(0, true);
+
+                chkDoha.setChecked(false);
+                progressDoha.setProgress(0, true);
+
+                chkDhuhr.setChecked(false);
+                progressDhuhr.setProgress(0, true);
+
+                chkAsr.setChecked(false);
+                progressAsr.setProgress(0, true);
+
+                chkMaghrib.setChecked(false);
+                progressMaghrib.setProgress(0, true);
+
+                chkIsha.setChecked(false);
+                progressIsha.setProgress(0, true);
+
+                chkCharity.setChecked(false);
+                progressCharity.setProgress(0, true);
+
+                chkLiterature.setChecked(false);
+                progressLiterature.setProgress(0, true);
+
+                chkMulk.setChecked(false);
+                progressMulk.setProgress(0, true);
+
+                chkBaqara.setChecked(false);
+                progressBaqara.setProgress(0, true);
+
+                chkQursi.setChecked(false);
+                progressQursi.setProgress(0, true);
+
+                chkKahf.setChecked(false);
+                progressKahf.setProgress(0, true);
+
+                chkTasbih.setChecked(false);
+                progressTasbih.setProgress(0, true);
+
+                chkHaram1.setChecked(false);
+                progressHaram1.setProgress(0, true);
+
+                chkHaram2.setChecked(false);
+                progressHaram2.setProgress(0, true);
+
+                chkHaram3.setChecked(false);
+                progressHaram3.setProgress(0, true);
+
+                chkHaram4.setChecked(false);
+                progressHaram4.setProgress(0, true);
+
+                chkHaram5.setChecked(false);
+                progressHaram5.setProgress(0, true);
             }
         }catch (Exception e) {
             Log.i("Report SQL", e.getMessage());
@@ -665,10 +802,11 @@ public class DailyGoalsActivity extends AppCompatActivity {
     }
 
     public void updateDailyReport(String columnName,Integer value){
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date();
+        //DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        //Date date = new Date();
         //System.out.println(dateFormat.format(date));
-        String dtStr = dateFormat.format(date);
+        //String dtStr = dateFormat.format(date);
+        String dtStr = globalSelectedDate;
         //
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
         String sql = "select * from reports where date = '"+dtStr+"'";
