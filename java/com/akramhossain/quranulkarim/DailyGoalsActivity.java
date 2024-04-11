@@ -2,6 +2,7 @@ package com.akramhossain.quranulkarim;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -23,10 +25,11 @@ import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class DailyGoalsActivity extends AppCompatActivity {
-
+    private static final String TAG = DailyGoalsActivity.class.getSimpleName();
     Typeface font;
     CheckBox chkTahajjud, chkFajr, chkAdhkar, chkReci, chkHadith;
     CheckBox chkDoha, chkDhuhr, chkAsr, chkMaghrib, chkIsha, chkCharity;
@@ -61,6 +64,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
     ProgressBar progressLiterature, progressMulk, progressBaqara, progressQursi, progressKahf, progressTasbih;
     ProgressBar progressHaram1, progressHaram2, progressHaram3, progressHaram4, progressHaram5;
 
+    TextView title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -447,13 +451,57 @@ public class DailyGoalsActivity extends AppCompatActivity {
             }
         });
 
-        getReportData();
-
-        TextView title = (TextView) findViewById(R.id.title);
+        DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+        Date date1 = new Date();
+        String dtStr = dateFormat1.format(date1);
+        getReportData(dtStr);
+        //
+        title = (TextView) findViewById(R.id.title);
         DateFormat dateFormat = new SimpleDateFormat("EEE, MMMM dd yyyy");
         Date date = new Date();
-        String dtStr = dateFormat.format(date);
-        title.setText(dtStr);
+        String dtStr1 = dateFormat.format(date);
+        title.setText(dtStr1);
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        // on below line we are passing context.
+                        DailyGoalsActivity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year,int monthOfYear, int dayOfMonth) {
+                                // on below line we are setting date to our text view.
+                                /*Log.d(TAG,dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);*/
+                                String selectedDate = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
+                                try {
+                                    SimpleDateFormat sdfSource = new SimpleDateFormat("dd-M-yyyy");
+                                    Date date2 = sdfSource.parse(selectedDate);
+                                    SimpleDateFormat sdfDestination = new SimpleDateFormat("EEE, MMMM dd yyyy");
+                                    String strDate = sdfDestination.format(date2);
+                                    /*Log.d(TAG, strDate);*/
+                                    title.setText(strDate);
+
+                                    SimpleDateFormat sdfDestination1 = new SimpleDateFormat("yyyy-MM-dd");
+                                    String strDate1 = sdfDestination1.format(date2);
+
+                                    getReportData(strDate1);
+                                }catch (Exception e){
+                                    Log.i(TAG, e.getMessage());
+                                }
+                            }
+                        },
+                        // on below line we are passing year,
+                        // month and day for selected date in our date picker.
+                        year, month, day);
+                // at last we are calling show to
+                // display our date picker dialog.
+                datePickerDialog.show();
+            }
+        });
 
         LinearLayout summary_section = (LinearLayout) findViewById(R.id.summarySection);
         summary_section.setOnClickListener(new View.OnClickListener() {
@@ -465,13 +513,11 @@ public class DailyGoalsActivity extends AppCompatActivity {
         });
     }
 
-    public void getReportData(){
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date();
-        //System.out.println(dateFormat.format(date));
-        String dtStr = dateFormat.format(date);
+    public void getReportData(String dtStr){
+
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
         String sql = "select * from reports where date = '"+dtStr+"'";
+        Log.d(TAG,sql);
         Cursor cursor = db.rawQuery(sql, null);
         try {
             if (cursor.moveToFirst()) {
