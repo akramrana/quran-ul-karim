@@ -130,7 +130,7 @@ public class HadithSearchActivity extends AppCompatActivity {
         Log.i("search_term", search_term);
         Log.i(TAG, SEARCH_URL);
         if (isInternetPresent) {
-            new JsonFromUrlTask(this, SEARCH_URL, TAG);
+            new JsonFromUrlTask(this, SEARCH_URL, TAG, "");
         }
         else{
             AlertDialog.Builder alert = new AlertDialog.Builder(HadithSearchActivity.this);
@@ -142,9 +142,9 @@ public class HadithSearchActivity extends AppCompatActivity {
     }
 
     private void getDataFromInternet() {
-        Log.i("HadithSearchActivityBookList", URL);
+        Log.i(TAG, URL);
         if (isInternetPresent) {
-            new JsonFromUrlTask(this, URL, "HadithSearchActivityBookList");
+            new JsonFromUrlTask(this, URL, TAG, "");
         }
         else{
             AlertDialog.Builder alert = new AlertDialog.Builder(HadithSearchActivity.this);

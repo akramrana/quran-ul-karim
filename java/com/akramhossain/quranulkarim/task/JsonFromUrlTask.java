@@ -2,6 +2,8 @@ package com.akramhossain.quranulkarim.task;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -27,14 +29,18 @@ public class JsonFromUrlTask {
     private String url;
     private String TAG;
     ProgressBar progressBar;
+    SharedPreferences mPrefs;
+    private String sharedPref;
 
-    public JsonFromUrlTask(Activity activity, String url, String TAG) {
+    public JsonFromUrlTask(Activity activity, String url, String TAG, String sharedPref) {
         super();
         this.activity = activity;
         this.url = url;
         this.TAG = TAG;
         progressBar = (ProgressBar) activity.findViewById(R.id.progressBar);
         getData();
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        this.sharedPref = sharedPref;
     }
 
     private void getData(){
@@ -67,9 +73,17 @@ public class JsonFromUrlTask {
                     }
                     else if(TAG.equals("TagActivity")){
                         ((TagActivity) activity).parseJsonResponse(response);
+                        SharedPreferences.Editor editor = mPrefs.edit();
+                        editor.putString("DUA_TAG_JSON_DATA", response.toString());
+                        editor.putString("IS_DUA_TAG_JSON_DATA_STORED", "1");
+                        editor.apply();
                     }
                     else if(TAG.equals("DuaZikrActivity")){
                         ((DuaZikrActivity) activity).parseJsonResponse(response);
+                        SharedPreferences.Editor editor = mPrefs.edit();
+                        editor.putString("DUA_ZIKR_JSON_DATA_"+sharedPref, response.toString());
+                        editor.putString("IS_DUA_ZIKR_JSON_DATA_STORED_"+sharedPref, "1");
+                        editor.apply();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

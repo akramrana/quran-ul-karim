@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 
@@ -35,10 +37,13 @@ public class TagActivity extends AppCompatActivity {
     public static String URL;
 
     public static String host = "http://quran.codxplore.com/";
+
+    SharedPreferences mPrefs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tag);
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         recyclerview = (RecyclerView) findViewById(R.id.dua_tags);
         mLayoutManager = new LinearLayoutManager(this);
@@ -65,8 +70,16 @@ public class TagActivity extends AppCompatActivity {
 
         cd = new ConnectionDetector(getApplicationContext());
         isInternetPresent = cd.isConnectingToInternet();
-        //FETCH DATA FROM REMOTE SERVER
-        getDataFromInternet();
+
+        String IS_DUA_TAG_JSON_DATA_STORED = mPrefs.getString("IS_DUA_TAG_JSON_DATA_STORED", "0");
+        if(IS_DUA_TAG_JSON_DATA_STORED.equals("1")){
+            String DUA_TAG_JSON_DATA = mPrefs.getString("DUA_TAG_JSON_DATA", "{}");
+            Log.i(TAG, DUA_TAG_JSON_DATA);
+            parseJsonResponse(DUA_TAG_JSON_DATA);
+        }else {
+            //FETCH DATA FROM REMOTE SERVER
+            getDataFromInternet();
+        }
     }
 
     private void setRecyclerViewAdapter() {
@@ -78,7 +91,7 @@ public class TagActivity extends AppCompatActivity {
     private void getDataFromInternet() {
         Log.i(TAG, URL);
         if (isInternetPresent) {
-            new JsonFromUrlTask(this, URL, TAG);
+            new JsonFromUrlTask(this, URL, TAG, "");
         }
         else{
             AlertDialog.Builder alert = new AlertDialog.Builder(TagActivity.this);

@@ -72,7 +72,7 @@ public class AboutActivity extends AppCompatActivity {
 
     private void getDataFromInternet() {
         if (isInternetPresent) {
-            new JsonFromUrlTask(this, URL, TAG);
+            new JsonFromUrlTask(this, URL, TAG, "");
         }
         else{
             AlertDialog.Builder alert = new AlertDialog.Builder(AboutActivity.this);

@@ -120,7 +120,7 @@ public class HadithChapterActivity extends AppCompatActivity {
     private void getDataFromInternet() {
         Log.i(TAG, URL);
         if (isInternetPresent) {
-            new JsonFromUrlTask(this, URL, TAG);
+            new JsonFromUrlTask(this, URL, TAG, "");
         }
         else{
             AlertDialog.Builder alert = new AlertDialog.Builder(HadithChapterActivity.this);

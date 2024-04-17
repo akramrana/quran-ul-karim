@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -37,7 +39,7 @@ public class DuaZikrActivity extends AppCompatActivity {
     ConnectionDetector cd;
     private ArrayList<DuaZikr> duaZikr;
     public DuaZikrViewAdapter rvAdapter;
-
+    SharedPreferences mPrefs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,28 +49,32 @@ public class DuaZikrActivity extends AppCompatActivity {
             tagEn = extras.getString("tag_en");
             tagBn = extras.getString("tag_bn");
         }
-
         font = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/Siyamrupali.ttf");
-
+        //
         info_title = (TextView) findViewById(R.id.info_title);
         info_title.setText(tagEn);
         info_sub_title = (TextView) findViewById(R.id.info_sub_title);
         info_sub_title.setTypeface(font);
         info_sub_title.setText(tagBn);
-
+        //
         recyclerview = (RecyclerView) findViewById(R.id.dua_zikr);
         mLayoutManager = new LinearLayoutManager(this);
         recyclerview.setLayoutManager(mLayoutManager);
-
         setRecyclerViewAdapter();
-
+        //
         URL = host+"/api/v1/app-dua-zikr-list.php?q="+tagEn;
-
         cd = new ConnectionDetector(getApplicationContext());
         isInternetPresent = cd.isConnectingToInternet();
 
-        getDataFromInternet();
-
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String IS_DUA_ZIKR_JSON_DATA_STORED = mPrefs.getString("IS_DUA_ZIKR_JSON_DATA_STORED_"+tagEn, "0");
+        if(IS_DUA_ZIKR_JSON_DATA_STORED.equals("1")){
+            String DUA_ZIKR_JSON_DATA = mPrefs.getString("DUA_ZIKR_JSON_DATA_"+tagEn, "{}");
+            Log.i(TAG, DUA_ZIKR_JSON_DATA);
+            parseJsonResponse(DUA_ZIKR_JSON_DATA);
+        }else {
+            getDataFromInternet();
+        }
     }
 
     private void setRecyclerViewAdapter() {
@@ -80,7 +86,7 @@ public class DuaZikrActivity extends AppCompatActivity {
     private void getDataFromInternet() {
         Log.i(TAG, URL);
         if (isInternetPresent) {
-            new JsonFromUrlTask(this, URL, TAG);
+            new JsonFromUrlTask(this, URL, TAG, tagEn);
         }
         else{
             AlertDialog.Builder alert = new AlertDialog.Builder(DuaZikrActivity.this);
