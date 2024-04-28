@@ -23,7 +23,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/dg_title"
@@ -53,6 +53,187 @@
 
 
         </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/topAboutBar"
+            android:id="@+id/backup_sec">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/bckup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Backup"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"/>
+
+
+                    <LinearLayout
+                        android:id="@+id/bln"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="✓ Favourites"
+                            android:layout_marginBottom="8dp"
+                            android:textColor="@color/colorWhite"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="✓ Bookmarks"
+                            android:layout_marginBottom="8dp"
+                            android:textColor="@color/colorWhite"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="✓ Reports"
+                            android:layout_marginBottom="8dp"
+                            android:textColor="@color/colorWhite"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="✓ Last visited Surah"
+                            android:textColor="@color/colorWhite"/>
+
+
+                        <TextView
+                            android:id="@+id/lastBckpTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:text="Last Backup: 04 April 2024 6:45pm"
+                            android:textColor="@color/colorWhite"
+                            android:visibility="gone"
+                            android:textSize="12sp"/>
+
+                        <Button
+                            android:id="@+id/button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:background="@color/googleGreen"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:text="@string/backup"
+                            android:textColor="@android:color/background_light"
+                            android:textSize="15sp"
+                            android:layout_marginTop="10dp"
+                            android:layout_gravity="right"
+                            android:textAllCaps="false"/>
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/horizontal_line_00"
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorWhite"
+                        android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/backup_sec"
+            android:id="@+id/restore_sec">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/rstr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Restore"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"/>
+
+
+                <LinearLayout
+                    android:id="@+id/rstrln"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="✓ Favourites"
+                        android:layout_marginBottom="8dp"
+                        android:textColor="@color/colorWhite"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="✓ Bookmarks"
+                        android:layout_marginBottom="8dp"
+                        android:textColor="@color/colorWhite"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="✓ Reports"
+                        android:layout_marginBottom="8dp"
+                        android:textColor="@color/colorWhite"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="✓ Last visited Surah"
+                        android:textColor="@color/colorWhite"/>
+
+                    <Button
+                        android:id="@+id/button1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:background="@color/orange"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="@string/restore"
+                        android:textColor="@android:color/background_light"
+                        android:textSize="15sp"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="right"
+                        android:textAllCaps="false"/>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/horizontal_line_01"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorWhite"
+                    android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
 
     </RelativeLayout>
 
