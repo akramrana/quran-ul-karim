@@ -608,6 +608,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        TextView bcre_text_view_bn = (TextView) findViewById(R.id.bcre_text_view_bn);
+        bcre_text_view_bn.setTypeface(font);
+        LinearLayout back_restore = (LinearLayout) findViewById(R.id.back_restore);
+        back_restore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), BackupRestoreActivity.class);
+                startActivity(i);
+            }
+        });
         //
         URL = host+"api/banner";
         getBannerFromInternet();

@@ -36,7 +36,7 @@
     <string name="title_activity_about">AboutActivity</string>
     <string name="string_about">Quran English and Bangla</string>
     <string name="string_about_subtitle">About App</string>
-    <string name="string_about_description">Quran English and Bangla is the free App provided to you by Akram Hossain.If you like this app then you can thank by making dua for my parents, my family and the rest of muslim ummah that Allah (swt) ease the hardships that we all are going through.Thank you.\n\nQuran data was obtained from https://github.com/quran/.If you see any discrepancies then please report them to akram_cse@yahoo.com.\n\n**Verse by Verse recitations uses the internet to download audio files.\n\nVisit <a href="http://quran.codxplore.com">http://quran.codxplore.com</a> to read Quran online, Visit <a href="https://alquran.cloud/tajweed-guide">https://alquran.cloud/tajweed-guide</a> for Tajweed guide</string>
+    <string name="string_about_description">Quran English and Bangla is the free App provided to you by Akram Hossain.If you like this app then you can thank by making dua for my parents, my family and the rest of muslim ummah that Allah (swt) ease the hardships that we all are going through.Thank you.\n\nQuran data was obtained from https://github.com/quran/.If you see any discrepancies then please report them to akram_cse@yahoo.com.\n\n**Verse by Verse recitations uses the internet to download audio files.</string>
     <string name="text_warning">Warning</string>
     <string name="text_enable_internet">Please enable internet connection</string>
     <string name="text_ok">OK</string>
@@ -197,5 +197,12 @@
     <string name="string_ms_en">Monthly Progress</string>
     <string name="string_ms_subtitle">Monthly progress of your daily goals</string>
     <string name="string_ms_underline"><u>Monthly Progress</u></string>
+
+    <string name="string_bcre_bn">ব্যাকআপ রিস্টোর</string>
+    <string name="string_bcre_en">Backup Restore</string>
+    <string name="string_bcre_subtitle">Backup and restore your data</string>
+
+    <string name="string_quran_online">Visit <a href="http://quran.codxplore.com">http://quran.codxplore.com</a> to read Quran online</string>
+    <string name="string_tajweed_text">Visit <a href="https://alquran.cloud/tajweed-guide">https://alquran.cloud/tajweed-guide</a> for Tajweed guide</string>
 
 </resources>

@@ -427,7 +427,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
+                        android:layout_weight="0.3"
                         android:orientation="vertical"
                         android:gravity="center_horizontal"
                         android:layout_gravity="center_vertical"
@@ -469,7 +469,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
+                        android:layout_weight="0.3"
                         android:orientation="vertical"
                         android:gravity="center_horizontal"
                         android:layout_gravity="center_vertical"
@@ -502,6 +502,48 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/dz_text_view_en"
                             android:text="@string/string_dz_bn"
+                            android:textSize="13.0sp"
+                            android:textColor="@color/colorWhite"
+                            android:gravity="center"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/linear_background"
+                        android:id="@+id/back_restore">
+
+                        <ImageView
+                            android:id="@+id/bcre_img"
+                            android:layout_width="48.0dip"
+                            android:layout_height="48.0dip"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/backup" />
+
+                        <TextView
+                            android:id="@+id/bcre_text_view_en"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/dz_img"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="2.0dip"
+                            android:text="@string/string_bcre_en"
+                            android:textSize="13.0sp"
+                            android:textColor="@color/colorWhite"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/bcre_text_view_bn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/dz_text_view_en"
+                            android:text="@string/string_bcre_bn"
                             android:textSize="13.0sp"
                             android:textColor="@color/colorWhite"
                             android:gravity="center"/>
