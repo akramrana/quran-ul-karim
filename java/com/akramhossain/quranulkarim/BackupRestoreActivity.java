@@ -59,8 +59,8 @@ public class BackupRestoreActivity extends AppCompatActivity {
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         String lastBackupTimeInPm = mPrefs.getString("LAST_BACKUP_TIME", "");
         lastBckpTime = (TextView) findViewById(R.id.lastBckpTime);
-        lastBckpTime.setText(lastBackupTimeInPm);
-        if(lastBackupTimeInPm.equals("")){
+        lastBckpTime.setText("Last backup: "+lastBackupTimeInPm);
+        if(!lastBackupTimeInPm.equals("")){
             lastBckpTime.setVisibility(View.VISIBLE);
         }else{
             lastBckpTime.setVisibility(View.GONE);
@@ -161,12 +161,12 @@ public class BackupRestoreActivity extends AppCompatActivity {
                     fOut.close();
                     Toast.makeText(getApplicationContext(),"Backup saved to "+path,Toast.LENGTH_LONG).show();
 
-                    DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy hh:mm A");
+                    DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy hh:mm a");
                     Date date = new Date();
                     SharedPreferences.Editor editor = mPrefs.edit();
                     editor.putString("LAST_BACKUP_TIME", dateFormat.format(date));
-                    lastBckpTime.setText(dateFormat.format(date));
-                    if(lastBackupTimeInPm.equals("")){
+                    lastBckpTime.setText("Last backup: "+dateFormat.format(date));
+                    if(!lastBackupTimeInPm.equals("")){
                         lastBckpTime.setVisibility(View.VISIBLE);
                     }else{
                         lastBckpTime.setVisibility(View.GONE);
@@ -175,7 +175,7 @@ public class BackupRestoreActivity extends AppCompatActivity {
                 }
                 catch (java.io.IOException e) {
                     //do something if an IOException occurs.
-                    Toast.makeText(getApplicationContext(),"ERROR - Could't backup data",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"ERROR - Could't not backup data",Toast.LENGTH_LONG).show();
                 }
             }
         });
