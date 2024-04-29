@@ -201,7 +201,24 @@ public class BackupRestoreActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK){
                 Uri uri = data.getData();
                 String fileContent = readTextFile(uri);
-                Log.i(TAG, fileContent);
+                SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+                String sql = "delete from quick_link;delete from last_position;delete from bookmark;delete from reports;"+fileContent;
+                //Log.i(TAG, fileContent);
+                db.beginTransaction();
+                try {
+                    String[] arrOfSql = sql.split(";");
+                    for (String sq : arrOfSql){
+                        //Log.i(TAG, sq);
+                        db.execSQL(sq+";");
+                    }
+                    db.setTransactionSuccessful();
+                    Toast.makeText(getApplicationContext(),"Data successfully restored",Toast.LENGTH_LONG).show();
+                }catch (Exception e) {
+                    Log.i("Restore Backup", e.getMessage());
+                } finally {
+                    db.endTransaction();
+                    db.close();
+                }
             }
         }
     }

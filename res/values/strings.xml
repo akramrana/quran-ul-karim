@@ -206,6 +206,6 @@
     <string name="string_tajweed_text">Visit <a href="https://alquran.cloud/tajweed-guide">https://alquran.cloud/tajweed-guide</a> for Tajweed guide</string>
 
     <string name="backup">Backup</string>
-    <string name="restore">Restore</string>
+    <string name="restore">Restore Backup</string>
 
 </resources>
