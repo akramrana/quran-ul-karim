@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -150,7 +151,9 @@ public class BackupRestoreActivity extends AppCompatActivity {
                 Log.i(TAG, lastPositionStr);*/
                 try {
                     File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-                    File myFile = new File(path, "quran_tafsir_english_bangla_backup.backup");
+                    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                    long backup_num = timestamp.getTime();
+                    File myFile = new File(path, "quran_tafsir_english_bangla_"+String.valueOf(backup_num)+".backup");
                     FileOutputStream fOut = new FileOutputStream(myFile,true);
                     OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
                     myOutWriter.append(bookmarkStr);
