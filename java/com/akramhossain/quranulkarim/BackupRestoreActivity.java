@@ -150,7 +150,7 @@ public class BackupRestoreActivity extends AppCompatActivity {
                 Log.i(TAG, lastPositionStr);*/
                 try {
                     File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-                    File myFile = new File(path, "quran_tafsir_english_bangla_backup.txt");
+                    File myFile = new File(path, "quran_tafsir_english_bangla_backup.backup");
                     FileOutputStream fOut = new FileOutputStream(myFile,true);
                     OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
                     myOutWriter.append(bookmarkStr);

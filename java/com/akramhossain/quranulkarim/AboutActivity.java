@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.adapter.MobileAppViewAdapter;
@@ -17,6 +18,7 @@ import com.akramhossain.quranulkarim.task.JsonFromUrlTask;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -68,6 +70,22 @@ public class AboutActivity extends AppCompatActivity {
         isInternetPresent = cd.isConnectingToInternet();
         //FETCH DATA FROM REMOTE SERVER
         getDataFromInternet();
+
+        TextView quran_online = (TextView) findViewById(R.id.quran_online);
+        quran_online.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://quran.codxplore.com")));
+            }
+        });
+
+        TextView tajweed_text = (TextView) findViewById(R.id.tajweed_text);
+        tajweed_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://alquran.cloud/tajweed-guide")));
+            }
+        });
     }
 
     private void getDataFromInternet() {
