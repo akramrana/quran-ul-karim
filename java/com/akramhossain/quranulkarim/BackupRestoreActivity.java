@@ -188,7 +188,7 @@ public class BackupRestoreActivity extends AppCompatActivity {
                 Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
 // Ask specifically for something that can be opened:
                 chooseFile.addCategory(Intent.CATEGORY_OPENABLE);
-                chooseFile.setType("*/*");
+                chooseFile.setType("application/*");
                 startActivityForResult(
                         Intent.createChooser(chooseFile, "Choose a file"),
                         PICKFILE_REQUEST_CODE

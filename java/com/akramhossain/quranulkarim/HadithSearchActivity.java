@@ -142,9 +142,9 @@ public class HadithSearchActivity extends AppCompatActivity {
     }
 
     private void getDataFromInternet() {
-        Log.i(TAG, URL);
+        Log.i("HadithSearchActivityBookList", URL);
         if (isInternetPresent) {
-            new JsonFromUrlTask(this, URL, TAG, "");
+            new JsonFromUrlTask(this, URL, "HadithSearchActivityBookList", "");
         }
         else{
             AlertDialog.Builder alert = new AlertDialog.Builder(HadithSearchActivity.this);
