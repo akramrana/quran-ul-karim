@@ -3,6 +3,7 @@ package com.akramhossain.quranulkarim;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -647,6 +648,52 @@ public class MainActivity extends AppCompatActivity {
         }else{
             friday_section.setVisibility(View.GONE);
         }
+        //
+        TextView night_ttl_bn = (TextView) findViewById(R.id.night_ttl_bn);
+        night_ttl_bn.setTypeface(font);
+
+        TextView night_subttl_bn = (TextView) findViewById(R.id.night_subttl_bn);
+        night_subttl_bn.setTypeface(font);
+
+        TextView night_subttl_10_verse_bn = (TextView) findViewById(R.id.night_subttl_10_verse_bn);
+        night_subttl_10_verse_bn.setTypeface(font);
+
+        LinearLayout night_recite_section = (LinearLayout) findViewById(R.id.night_recite_section);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            LocalTime currentTime = LocalTime.now();
+            LocalTime nightTimeStart = LocalTime.of(20, 0); // 8 PM
+            LocalTime nightTimeEnd = LocalTime.of(4, 0); // 4 AM
+            if (currentTime.isAfter(nightTimeStart) || currentTime.isBefore(nightTimeEnd)) {
+                // It's night time
+                night_recite_section.setVisibility(View.VISIBLE);
+            }else{
+                night_recite_section.setVisibility(View.GONE);
+            }
+        }
+        Button mulk_button = (Button) findViewById(R.id.mulk_button);
+        mulk_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), SuraDetailsActivity.class);
+                i.putExtra("sura_id", "67");
+                i.putExtra("sura_name", "Al-Mulk");
+                i.putExtra("sura_name_arabic", "الملك");
+                startActivity(i);
+            }
+        });
+
+        Button baqara_button = (Button) findViewById(R.id.baqara_button);
+        baqara_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), SuraDetailsActivity.class);
+                i.putExtra("sura_id", "2");
+                i.putExtra("sura_name", "Al-Baqarah");
+                i.putExtra("sura_name_arabic", "البقرة");
+                i.putExtra("position", "276");
+                startActivity(i);
+            }
+        });
         //
         URL = host+"api/banner";
         getBannerFromInternet();

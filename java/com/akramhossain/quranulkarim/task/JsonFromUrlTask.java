@@ -55,9 +55,17 @@ public class JsonFromUrlTask {
                 try {
                     if(TAG.equals("HadithBookActivity")) {
                         ((HadithBookActivity) activity).parseJsonResponse(response);
+                        SharedPreferences.Editor editor = mPrefs.edit();
+                        editor.putString("HADITH_BOOK_JSON_DATA", response.toString());
+                        editor.putString("IS_HADITH_BOOK_JSON_DATA_STORED", "1");
+                        editor.apply();
                     }
                     else if(TAG.equals("HadithChapterActivity")){
                         ((HadithChapterActivity) activity).parseJsonResponse(response);
+                        SharedPreferences.Editor editor = mPrefs.edit();
+                        editor.putString("HADITH_CHAPTER_JSON_DATA_"+sharedPref, response.toString());
+                        editor.putString("IS_HADITH_CHAPTER_JSON_DATA_STORED_"+sharedPref, "1");
+                        editor.apply();
                     }
                     else if(TAG.equals("HadithListActivity")){
                         ((HadithListActivity) activity).parseJsonResponse(response);

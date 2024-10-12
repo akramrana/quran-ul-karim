@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -37,6 +39,7 @@ public class HadithBookActivity extends AppCompatActivity {
     public static String URL;
 
     public static String host = "http://quran.codxplore.com/";
+    SharedPreferences mPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +73,15 @@ public class HadithBookActivity extends AppCompatActivity {
         cd = new ConnectionDetector(getApplicationContext());
         isInternetPresent = cd.isConnectingToInternet();
         //FETCH DATA FROM REMOTE SERVER
-        getDataFromInternet();
-
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String IS_HADITH_BOOK_JSON_DATA_STORED = mPrefs.getString("IS_HADITH_BOOK_JSON_DATA_STORED", "0");
+        if(IS_HADITH_BOOK_JSON_DATA_STORED.equals("1")){
+            String HADITH_BOOK_JSON_DATA = mPrefs.getString("HADITH_BOOK_JSON_DATA", "{}");
+            Log.i(TAG, HADITH_BOOK_JSON_DATA);
+            parseJsonResponse(HADITH_BOOK_JSON_DATA);
+        }else {
+            getDataFromInternet();
+        }
     }
 
     private void setRecyclerViewAdapter() {

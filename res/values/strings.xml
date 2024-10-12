@@ -209,9 +209,17 @@
     <string name="restore">Restore Backup</string>
 
     <string name="string_friday_ttl">It\'s Friday</string>
-    <string name="string_friday_subttl">Recite Surah Kahf</string>
+    <string name="string_friday_subttl">Recite Surah Al-Kahf</string>
     <string name="read_surah_kahf">Open Surah Kahf</string>
     <string name="friday_ttl_bn">আজ শুক্রবার!</string>
     <string name="string_friday_subttl_bn">সূরা আল-কাহাফ তেলাওয়াত করুণ</string>
+    <string name="string_nightly_ttl">Nightly Recitation</string>
+    <string name="string_nightly_ttl_bn">রাতের তেলাওয়াত</string>
+    <string name="string_night_mulk_ttl">Recite Surah Al-Mulk</string>
+    <string name="string_night_mulk_ttl_bn">সূরা আল-মূলক তেলাওয়াত করুণ</string>
+    <string name="string_night_baqara_ttl">Last 10 verse of \nSurah Baqarah</string>
+    <string name="string_night_baqara_ttl_bn">সুরা আল-বাক্বারার শেষের \n১০ আয়াত তেলাওয়াত</string>
+    <string name="read_surah_mulk">Open Surah Al-Mulk</string>
+    <string name="read_surah_baqarah">Open Surah Al-Baqarah</string>
 
 </resources>

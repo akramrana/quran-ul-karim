@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -47,6 +49,7 @@ public class HadithChapterActivity extends AppCompatActivity {
     public HadithChapterViewAdapter rvAdapter;
 
     public static String host = "http://quran.codxplore.com/";
+    SharedPreferences mPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,8 +102,15 @@ public class HadithChapterActivity extends AppCompatActivity {
         cd = new ConnectionDetector(getApplicationContext());
         isInternetPresent = cd.isConnectingToInternet();
         //FETCH DATA FROM REMOTE SERVER
-        getDataFromInternet();
-
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String IS_HADITH_BOOK_JSON_DATA_STORED = mPrefs.getString("IS_HADITH_CHAPTER_JSON_DATA_STORED_"+bookId, "0");
+        if(IS_HADITH_BOOK_JSON_DATA_STORED.equals("1")){
+            String HADITH_CHAPTER_JSON_DATA_ = mPrefs.getString("HADITH_CHAPTER_JSON_DATA_"+bookId, "{}");
+            Log.i(TAG, HADITH_CHAPTER_JSON_DATA_);
+            parseJsonResponse(HADITH_CHAPTER_JSON_DATA_);
+        }else {
+            getDataFromInternet();
+        }
         TextView search_hadith = (TextView) findViewById(R.id.search_hadith);
         search_hadith.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,7 +130,7 @@ public class HadithChapterActivity extends AppCompatActivity {
     private void getDataFromInternet() {
         Log.i(TAG, URL);
         if (isInternetPresent) {
-            new JsonFromUrlTask(this, URL, TAG, "");
+            new JsonFromUrlTask(this, URL, TAG, bookId);
         }
         else{
             AlertDialog.Builder alert = new AlertDialog.Builder(HadithChapterActivity.this);

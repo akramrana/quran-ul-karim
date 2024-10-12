@@ -75,6 +75,200 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/night_recite_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:cardElevation="3dp"
+                app:cardCornerRadius="25dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/night_ttl"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dip"
+                                android:text="@string/string_nightly_ttl"
+                                android:textSize="18.0sp"
+                                android:textColor="@color/transColor"
+                                android:gravity="left"
+                                android:layout_marginLeft="15dip"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/night_ttl_bn"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dip"
+                                android:text="@string/string_nightly_ttl_bn"
+                                android:textSize="17.0sp"
+                                android:textColor="@color/transColor"
+                                android:gravity="right"
+                                android:layout_marginRight="15dip"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/night_subttl"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2.0dip"
+                                android:text="@string/string_night_mulk_ttl"
+                                android:textSize="13sp"
+                                android:textColor="@color/colorWhite"
+                                android:gravity="left"
+                                android:layout_marginLeft="15dip"/>
+
+                            <TextView
+                                android:id="@+id/night_subttl_10_verse"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2.0dip"
+                                android:text="@string/string_night_baqara_ttl"
+                                android:textSize="13sp"
+                                android:textColor="@color/colorWhite"
+                                android:gravity="left"
+                                android:layout_marginLeft="15dip"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/night_subttl_bn"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dip"
+                                android:text="@string/string_night_mulk_ttl_bn"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorWhite"
+                                android:gravity="right"
+                                android:layout_marginRight="15dip"/>
+
+                            <TextView
+                                android:id="@+id/night_subttl_10_verse_bn"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dip"
+                                android:text="@string/string_night_baqara_ttl_bn"
+                                android:textSize="12sp"
+                                android:textColor="@color/colorWhite"
+                                android:gravity="right"
+                                android:layout_marginRight="15dip"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:orientation="vertical">
+
+                            <Button
+                                android:id="@+id/mulk_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:text="@string/read_surah_mulk"
+                                android:textSize="13sp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="15dp"
+                                android:layout_marginRight="2.5dp"
+                                android:layout_gravity="right"
+                                android:textColor="@color/colorWhiteDN"
+                                android:background="@color/bg_color"
+                                android:textAllCaps="false"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:orientation="vertical">
+
+                            <Button
+                                android:id="@+id/baqara_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:text="@string/read_surah_baqarah"
+                                android:textSize="13sp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="15dp"
+                                android:layout_marginLeft="2.5dp"
+                                android:layout_gravity="left"
+                                android:textColor="@color/colorWhiteDN"
+                                android:background="@color/bg_color"
+                                android:textAllCaps="false"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/friday_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -113,7 +307,7 @@
                                 android:layout_marginTop="10dip"
                                 android:text="@string/string_friday_ttl"
                                 android:textSize="18.0sp"
-                                android:textColor="@color/colorWhite"
+                                android:textColor="@color/transColor"
                                 android:gravity="left"
                                 android:layout_marginLeft="15dip"/>
 
@@ -132,7 +326,7 @@
                                 android:layout_marginTop="10dip"
                                 android:text="@string/friday_ttl_bn"
                                 android:textSize="17.0sp"
-                                android:textColor="@color/colorWhite"
+                                android:textColor="@color/transColor"
                                 android:gravity="right"
                                 android:layout_marginRight="15dip"/>
 
@@ -196,8 +390,8 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="15dp"
                         android:layout_gravity="center"
-                        android:background="@color/orange"
-                        android:textColor="@android:color/background_light"
+                        android:textColor="@color/colorWhiteDN"
+                        android:background="@color/bg_color"
                         android:textAllCaps="false"/>
 
                 </LinearLayout>
