@@ -208,4 +208,10 @@
     <string name="backup">Backup</string>
     <string name="restore">Restore Backup</string>
 
+    <string name="string_friday_ttl">It\'s Friday</string>
+    <string name="string_friday_subttl">Recite Surah Kahf</string>
+    <string name="read_surah_kahf">Open Surah Kahf</string>
+    <string name="friday_ttl_bn">আজ শুক্রবার!</string>
+    <string name="string_friday_subttl_bn">সূরা আল-কাহাফ তেলাওয়াত করুণ</string>
+
 </resources>

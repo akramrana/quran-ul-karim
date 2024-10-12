@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
@@ -618,6 +620,33 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        //
+        TextView friday_ttl_bn = (TextView) findViewById(R.id.friday_ttl_bn);
+        friday_ttl_bn.setTypeface(font);
+
+        TextView friday_subttl_bn = (TextView) findViewById(R.id.friday_subttl_bn);
+        friday_subttl_bn.setTypeface(font);
+
+        Button kahf_button = (Button) findViewById(R.id.kahf_button);
+        kahf_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), SuraDetailsActivity.class);
+                i.putExtra("sura_id", "18");
+                i.putExtra("sura_name", "Al-Kahf");
+                i.putExtra("sura_name_arabic", "الكهف");
+                startActivity(i);
+            }
+        });
+        Date c = Calendar.getInstance().getTime();
+        String dayWeekText = new SimpleDateFormat("EEEE", Locale.getDefault()).format(c);
+        Log.d("day name",dayWeekText);
+        LinearLayout friday_section = (LinearLayout) findViewById(R.id.friday_section);
+        if(dayWeekText.equals("Friday")){
+            friday_section.setVisibility(View.VISIBLE);
+        }else{
+            friday_section.setVisibility(View.GONE);
+        }
         //
         URL = host+"api/banner";
         getBannerFromInternet();
