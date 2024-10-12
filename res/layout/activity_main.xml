@@ -471,8 +471,8 @@
 
                         <ImageView
                             android:id="@+id/qibla_compass_img"
-                            android:layout_width="48.0dip"
-                            android:layout_height="48.0dip"
+                            android:layout_width="32.0dip"
+                            android:layout_height="32.0dip"
                             android:layout_alignParentTop="true"
                             android:layout_centerHorizontal="true"
                             android:src="@drawable/compass" />
@@ -514,8 +514,8 @@
 
                         <ImageView
                             android:id="@+id/subj_img"
-                            android:layout_width="48.0dip"
-                            android:layout_height="48.0dip"
+                            android:layout_width="32.0dip"
+                            android:layout_height="32.0dip"
                             android:layout_alignParentTop="true"
                             android:layout_centerHorizontal="true"
                             android:src="@drawable/subject_wise" />
@@ -556,8 +556,8 @@
 
                         <ImageView
                             android:id="@+id/hadith_img"
-                            android:layout_width="48.0dip"
-                            android:layout_height="48.0dip"
+                            android:layout_width="32.0dip"
+                            android:layout_height="32.0dip"
                             android:layout_alignParentTop="true"
                             android:layout_centerHorizontal="true"
                             android:src="@drawable/hadith" />
@@ -649,8 +649,8 @@
 
                     <ImageView
                         android:id="@+id/dg_img"
-                        android:layout_width="48.0dip"
-                        android:layout_height="48.0dip"
+                        android:layout_width="32.0dip"
+                        android:layout_height="32.0dip"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
                         android:src="@drawable/daily_tasks" />
@@ -704,8 +704,8 @@
 
                         <ImageView
                             android:id="@+id/noa_img"
-                            android:layout_width="48.0dip"
-                            android:layout_height="48.0dip"
+                            android:layout_width="32.0dip"
+                            android:layout_height="32.0dip"
                             android:layout_alignParentTop="true"
                             android:layout_centerHorizontal="true"
                             android:src="@drawable/allah" />
@@ -746,8 +746,8 @@
 
                         <ImageView
                             android:id="@+id/dz_img"
-                            android:layout_width="48.0dip"
-                            android:layout_height="48.0dip"
+                            android:layout_width="32.0dip"
+                            android:layout_height="32.0dip"
                             android:layout_alignParentTop="true"
                             android:layout_centerHorizontal="true"
                             android:src="@drawable/dua" />
@@ -788,8 +788,8 @@
 
                         <ImageView
                             android:id="@+id/bcre_img"
-                            android:layout_width="48.0dip"
-                            android:layout_height="48.0dip"
+                            android:layout_width="32.0dip"
+                            android:layout_height="32.0dip"
                             android:layout_alignParentTop="true"
                             android:layout_centerHorizontal="true"
                             android:src="@drawable/backup" />
@@ -846,8 +846,8 @@
 
                 <ImageView
                     android:id="@+id/imageView1"
-                    android:layout_width="48.0dip"
-                    android:layout_height="48.0dip"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/quran" />
@@ -889,8 +889,8 @@
 
                 <ImageView
                     android:id="@+id/juzImageView"
-                    android:layout_width="48.0dip"
-                    android:layout_height="48.0dip"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/books" />
@@ -931,8 +931,8 @@
 
                 <ImageView
                     android:id="@+id/hizbImageView"
-                    android:layout_width="48.0dip"
-                    android:layout_height="48.0dip"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/list" />
@@ -985,8 +985,8 @@
 
                 <ImageView
                     android:id="@+id/rubImageView"
-                    android:layout_width="48.0dip"
-                    android:layout_height="48.0dip"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/magazine" />
@@ -1028,8 +1028,8 @@
 
                 <ImageView
                     android:id="@+id/imageView3"
-                    android:layout_width="48.0dip"
-                    android:layout_height="48.0dip"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/search_color" />
@@ -1070,8 +1070,8 @@
 
                 <ImageView
                     android:id="@+id/imageView2"
-                    android:layout_width="48.0dip"
-                    android:layout_height="48.0dip"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/mark" />
@@ -1125,8 +1125,8 @@
 
                 <ImageView
                     android:id="@+id/imageView4"
-                    android:layout_width="48.0dip"
-                    android:layout_height="48.0dip"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/lover" />
@@ -1167,8 +1167,8 @@
 
                 <ImageView
                     android:id="@+id/imageView5"
-                    android:layout_width="48.0dip"
-                    android:layout_height="48.0dip"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/document" />
@@ -1208,8 +1208,8 @@
 
                 <ImageView
                     android:id="@+id/timeImageView"
-                    android:layout_width="48.0dip"
-                    android:layout_height="48.0dip"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/clock" />
@@ -1261,8 +1261,8 @@
 
                 <ImageView
                     android:id="@+id/imageView12"
-                    android:layout_width="48.0dip"
-                    android:layout_height="48.0dip"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/settings" />
@@ -1304,8 +1304,8 @@
 
                 <ImageView
                     android:id="@+id/imageView10"
-                    android:layout_width="48.0dip"
-                    android:layout_height="48.0dip"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/mosque" />
@@ -1346,8 +1346,8 @@
 
                 <ImageView
                     android:id="@+id/imageView9"
-                    android:layout_width="48.0dip"
-                    android:layout_height="48.0dip"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/feedback" />
@@ -1399,8 +1399,8 @@
 
                 <ImageView
                     android:id="@+id/imageView6"
-                    android:layout_width="48.0dip"
-                    android:layout_height="48.0dip"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/support" />
@@ -1442,8 +1442,8 @@
 
                 <ImageView
                     android:id="@+id/imageView7"
-                    android:layout_width="48.0dip"
-                    android:layout_height="48.0dip"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/shield" />
@@ -1484,8 +1484,8 @@
 
                 <ImageView
                     android:id="@+id/imageView8"
-                    android:layout_width="48.0dip"
-                    android:layout_height="48.0dip"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/archive" />
