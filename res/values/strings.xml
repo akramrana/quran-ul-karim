@@ -222,4 +222,20 @@
     <string name="read_surah_mulk">Open Surah Al-Mulk</string>
     <string name="read_surah_baqarah">Open Surah Al-Baqarah</string>
 
+    <string name="word_challenge_subttl_bn">কুরআন শেখার মজার উপায়</string>
+    <string name="word_challenge_subttl">The most fun way to learn Quran</string>
+    <string name="word_challenge_ttl">Quranic word game</string>
+    <string name="word_challenge_ttl_bn">কোরআনিক শব্দের খেলা</string>
+    <string name="enter_challenge">Enter</string>
+    <string name="string_challenge_txt">Translate the word</string>
+    <string name="string_challenge_question">Questions will be displayed here!</string>
+    <string name="answer_1">Answer One</string>
+    <string name="answer_2">Answer Two</string>
+    <string name="answer_3">Answer Three</string>
+    <string name="answer_4">Answer Four</string>
+    <string name="string_transliteration_en">Transliteration English</string>
+    <string name="string_transliteration_bn">বাংলা উচ্চারন</string>
+    <string name="next_btn_txt">Next Word</string>
+    <string name="skip_btn_txt">Skip</string>
+
 </resources>

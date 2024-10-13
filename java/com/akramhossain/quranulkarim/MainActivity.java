@@ -695,6 +695,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //
+        Button enter_challenge_button = (Button) findViewById(R.id.enter_challenge_button);
+        enter_challenge_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), WordAnswerActivity.class);
+                startActivity(i);
+            }
+        });
+        //
         URL = host+"api/banner";
         getBannerFromInternet();
     }

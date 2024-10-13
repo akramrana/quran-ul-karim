@@ -87,6 +87,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginBottom="2dp"
                 app:cardElevation="3dp"
                 app:cardCornerRadius="25dp">
 
@@ -281,6 +282,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginBottom="2dp"
                 app:cardElevation="3dp"
                 app:cardCornerRadius="25dp">
 
@@ -596,7 +598,7 @@
                 android:background="@drawable/linear_background"
                 android:orientation="horizontal"
                 android:padding="2dp"
-                android:layout_marginBottom="15dp">
+                android:layout_marginBottom="5dp">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -608,6 +610,8 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="160dp"
                         android:layout_height="160dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="1dp"
                         app:cardElevation="3dp"
                         app:cardCornerRadius="25dp">
 
@@ -678,6 +682,98 @@
                         android:gravity="center"/>
 
                 </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/word_challenge_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="1dp"
+                    app:cardElevation="3dp"
+                    app:cardCornerRadius="25dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/word_challenge_ttl"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dip"
+                                    android:text="@string/word_challenge_ttl"
+                                    android:textSize="18.0sp"
+                                    android:textColor="@color/transColor"
+                                    android:gravity="center"
+                                    android:layout_marginLeft="15dip"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/word_challenge_subttl"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2.0dip"
+                                    android:text="@string/word_challenge_subttl"
+                                    android:textSize="13sp"
+                                    android:textColor="@color/colorWhite"
+                                    android:gravity="center"
+                                    android:layout_marginLeft="15dip"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/enter_challenge_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:text="@string/enter_challenge"
+                            android:textSize="13sp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="15dp"
+                            android:layout_gravity="center"
+                            android:textColor="@color/colorWhite"
+                            android:background="@drawable/button_border"
+                            android:textAllCaps="false"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 
