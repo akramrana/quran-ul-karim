@@ -230,8 +230,8 @@
                                 android:layout_marginBottom="15dp"
                                 android:layout_marginRight="2.5dp"
                                 android:layout_gravity="right"
-                                android:textColor="@color/colorWhiteDN"
-                                android:background="@color/bg_color"
+                                android:textColor="@color/colorWhite"
+                                android:background="@drawable/button_border"
                                 android:textAllCaps="false"/>
 
                         </LinearLayout>
@@ -254,8 +254,8 @@
                                 android:layout_marginBottom="15dp"
                                 android:layout_marginLeft="2.5dp"
                                 android:layout_gravity="left"
-                                android:textColor="@color/colorWhiteDN"
-                                android:background="@color/bg_color"
+                                android:textColor="@color/colorWhite"
+                                android:background="@drawable/button_border"
                                 android:textAllCaps="false"/>
 
                         </LinearLayout>
@@ -390,8 +390,8 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="15dp"
                         android:layout_gravity="center"
-                        android:textColor="@color/colorWhiteDN"
-                        android:background="@color/bg_color"
+                        android:textColor="@color/colorWhite"
+                        android:background="@drawable/button_border"
                         android:textAllCaps="false"/>
 
                 </LinearLayout>

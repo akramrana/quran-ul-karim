@@ -94,4 +94,6 @@
         <item>#000000</item>
     </string-array>
 
+    <color name="button_bg_color">#474749</color>
+
 </resources>

@@ -99,4 +99,6 @@
         <item>#000000</item>
     </string-array>
 
+    <color name="button_bg_color">#f4f4f4</color>
+
 </resources>
