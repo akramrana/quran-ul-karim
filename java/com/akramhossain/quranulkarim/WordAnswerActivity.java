@@ -1,5 +1,8 @@
 package com.akramhossain.quranulkarim;
 
+import android.app.AlertDialog;
+import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -16,7 +19,12 @@ import android.widget.TextView;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.util.ConnectionDetector;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 public class WordAnswerActivity extends AppCompatActivity {
 
@@ -27,8 +35,10 @@ public class WordAnswerActivity extends AppCompatActivity {
     Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem, fontTahaNaskh, fontKitab;
     SharedPreferences mPrefs;
     TextView quiz_arabic,transliteration_en,transliteration_bn;
-    TextView answer_one_en,answer_one_bn,answer_two_en,answer_two_bn,answer_three_en,answer_three_bn,answer_four_en,answer_four_bn;
-
+    TextView answer_one_en,answer_one_bn,answer_two_en,answer_two_bn,answer_three_en,answer_three_bn,answer_four_en,answer_four_bn,tv_word_id,tv_right_answer;
+    Boolean isWrongAnswer = false;
+    CardView option1,option2,option3,option4;
+    Button skip_button,point_button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +73,9 @@ public class WordAnswerActivity extends AppCompatActivity {
         answer_four_bn = (TextView) findViewById(R.id.answer_four_bn);
         answer_four_bn.setTypeface(font);
 
+        tv_word_id = (TextView) findViewById(R.id.word_id);
+        tv_right_answer = (TextView) findViewById(R.id.right_answer);
+
         dbhelper = DatabaseHelper.getInstance(getApplicationContext());
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -96,7 +109,7 @@ public class WordAnswerActivity extends AppCompatActivity {
 
         getDataFromLocalDb();
 
-        Button skip_button = (Button) findViewById(R.id.skip_button);
+        skip_button = (Button) findViewById(R.id.skip_button);
         skip_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,9 +117,177 @@ public class WordAnswerActivity extends AppCompatActivity {
             }
         });
 
+        option1 = (CardView) findViewById(R.id.option1);
+        option2 = (CardView) findViewById(R.id.option2);
+        option3 = (CardView) findViewById(R.id.option3);
+        option4 = (CardView) findViewById(R.id.option4);
+
+        option1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkOption(1);
+            }
+        });
+
+        option2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkOption(2);
+            }
+        });
+
+        option3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkOption(3);
+            }
+        });
+
+        option4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkOption(4);
+            }
+        });
+
+        point_button = (Button) findViewById(R.id.point_button);
+
+        countTotalPoint();
+    }
+
+    private void countTotalPoint(){
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+        String sql = "SELECT count(*) as total FROM word_answers";
+        Cursor cursor = db.rawQuery(sql, null);
+        try {
+            if (cursor.moveToFirst()) {
+                String total = cursor.getString(cursor.getColumnIndexOrThrow("total"));
+                Integer pointsTotal = Integer.parseInt(total)*1;
+                point_button.setText(String.valueOf(pointsTotal)+" Point(s)");
+            }
+        }catch (Exception e) {
+            Log.i(TAG, e.getMessage());
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
+                cursor.close();
+            }
+            db.close();
+        }
+    }
+
+    private void checkOption(int option){
+        String right_answer = tv_right_answer.getText().toString();
+        if(isWrongAnswer){
+            AlertDialog.Builder alert = new AlertDialog.Builder(WordAnswerActivity.this);
+            alert.setTitle(R.string.text_ans_taken);
+            alert.setMessage(R.string.text_ans_taken_desc);
+            alert.setPositiveButton(R.string.text_yes, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    Log.d("right_answer",right_answer);
+                    String answer_1 = answer_one_en.getText().toString();
+                    String answer_2 = answer_two_en.getText().toString();
+                    String answer_3 = answer_three_en.getText().toString();
+                    String answer_4 = answer_four_en.getText().toString();
+                    if(right_answer.equals(answer_1)){
+                        answer_one_en.setTextColor(getColor(R.color.transColor));
+                        answer_one_bn.setTextColor(getColor(R.color.transColor));
+                    }
+                    else if(right_answer.equals(answer_2)){
+                        answer_two_en.setTextColor(getColor(R.color.transColor));
+                        answer_two_bn.setTextColor(getColor(R.color.transColor));
+                    }
+                    else if(right_answer.equals(answer_3)){
+                        answer_three_en.setTextColor(getColor(R.color.transColor));
+                        answer_three_bn.setTextColor(getColor(R.color.transColor));
+                    }
+                    else if(right_answer.equals(answer_4)){
+                        answer_four_en.setTextColor(getColor(R.color.transColor));
+                        answer_four_bn.setTextColor(getColor(R.color.transColor));
+                    }
+                }
+            });
+            alert.setNegativeButton(R.string.text_no, null);
+            alert.show();
+        }else {
+            String word_id = tv_word_id.getText().toString();
+            String answer = "";
+            String answerBn = "";
+            if (option == 1) {
+                answer = answer_one_en.getText().toString();
+                answerBn = answer_one_bn.getText().toString();
+            } else if (option == 2) {
+                answer = answer_two_en.getText().toString();
+                answerBn = answer_two_bn.getText().toString();
+            } else if (option == 3) {
+                answer = answer_three_en.getText().toString();
+                answerBn = answer_three_bn.getText().toString();
+            } else if (option == 4) {
+                answer = answer_four_en.getText().toString();
+                answerBn = answer_four_bn.getText().toString();
+            }
+            Log.d("option", String.valueOf(option));
+            Log.d("answer", answer);
+            if (answer != null && !answer.equals("")) {
+                SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+                String sql = "SELECT * FROM words WHERE translation = '" + answer + "' and word_id = " + Integer.parseInt(word_id);
+                Cursor cursor = db.rawQuery(sql, null);
+                try {
+                    if (cursor.moveToFirst()) {
+                        AlertDialog.Builder alert = new AlertDialog.Builder(WordAnswerActivity.this);
+                        alert.setTitle(R.string.text_right_ans);
+                        alert.setMessage(R.string.text_right_ans_desc);
+                        alert.setPositiveButton(R.string.text_ok, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                Date date = new Date();
+                                String dtStr1 = dateFormat.format(date);
+                                ContentValues values = new ContentValues();
+                                values.put("word_id", word_id);
+                                values.put("datetime", dtStr1);
+                                try {
+                                    DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase().insertOrThrow("word_answers", "", values);
+                                    getDataFromLocalDb();
+                                    countTotalPoint();
+                                } catch (Exception e) {
+                                    Log.i("word_answers", e.getMessage());
+                                }
+                            }
+                        });
+                        alert.show();
+                    } else {
+                        isWrongAnswer = true;
+                        AlertDialog.Builder alert = new AlertDialog.Builder(WordAnswerActivity.this);
+                        alert.setTitle(R.string.text_wrong_ans);
+                        alert.setMessage(R.string.text_wrong_ans_desc);
+                        alert.setPositiveButton(R.string.text_ok, null);
+                        alert.show();
+                    }
+                } catch (Exception e) {
+                    Log.i(TAG, e.getMessage());
+                } finally {
+                    if (cursor != null && !cursor.isClosed()) {
+                        cursor.close();
+                    }
+                    db.close();
+                }
+            }
+        }
     }
 
     private void getDataFromLocalDb() {
+        isWrongAnswer = false;
+        answer_one_en.setTextColor(getColor(R.color.colorWhite));
+        answer_one_bn.setTextColor(getColor(R.color.colorWhite));
+
+        answer_two_en.setTextColor(getColor(R.color.colorWhite));
+        answer_two_bn.setTextColor(getColor(R.color.colorWhite));
+
+        answer_three_en.setTextColor(getColor(R.color.colorWhite));
+        answer_three_bn.setTextColor(getColor(R.color.colorWhite));
+
+        answer_four_en.setTextColor(getColor(R.color.colorWhite));
+        answer_four_bn.setTextColor(getColor(R.color.colorWhite));
+        //
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
         String sql = "select w.word_id,w.arabic,w.translation, w.transliteration,b.translate_bn,b.words_ar " +
                 "from words w " +
@@ -128,6 +309,8 @@ public class WordAnswerActivity extends AppCompatActivity {
 
                 quiz_arabic.setText(arabic);
                 transliteration_en.setText(transliteration);
+                tv_word_id.setText(word_id);
+                tv_right_answer.setText(translation);
 
                 SQLiteDatabase db2 = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                 String choiceSql = "SELECT * FROM( " +

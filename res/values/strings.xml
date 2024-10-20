@@ -237,5 +237,14 @@
     <string name="string_transliteration_bn">বাংলা উচ্চারন</string>
     <string name="next_btn_txt">Next Word</string>
     <string name="skip_btn_txt">Skip</string>
+    <string name="text_wrong_ans">Wrong Answer!</string>
+    <string name="text_wrong_ans_desc">Incorrect answer!</string>
+    <string name="text_right_ans">Masha\'Allah, Correct Answer!</string>
+    <string name="text_right_ans_desc">Congratulations! You\'ve earned 1 points for correct answer</string>
+    <string name="text_ans_taken">Subhanallahi wa bihamdihi</string>
+    <string name="text_ans_taken_desc">You have already tried this question ?\nwould you like to see the right answer! ?</string>
+    <string name="text_yes">Yes</string>
+    <string name="text_no">No</string>
+    <string name="btn_point_txt">0 Point(s)</string>
 
 </resources>
