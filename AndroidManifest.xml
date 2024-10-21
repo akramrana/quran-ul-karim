@@ -29,6 +29,9 @@
         android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ChallengeDashboardActivity"
+            android:exported="false" />
+        <activity
             android:name=".WordAnswerActivity"
             android:exported="false" />
         <activity

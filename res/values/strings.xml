@@ -224,8 +224,8 @@
 
     <string name="word_challenge_subttl_bn">কুরআন শেখার মজার উপায়</string>
     <string name="word_challenge_subttl">The most fun way to learn Quran</string>
-    <string name="word_challenge_ttl">Quranic word game</string>
-    <string name="word_challenge_ttl_bn">কোরআনিক শব্দের খেলা</string>
+    <string name="word_challenge_ttl">Quranic word challenge</string>
+    <string name="word_challenge_ttl_bn">কোরআনিক শব্দার্থের প্রতিযোগিতা</string>
     <string name="enter_challenge">Enter</string>
     <string name="string_challenge_txt">Translate the word</string>
     <string name="string_challenge_question">Questions will be displayed here!</string>
@@ -241,10 +241,13 @@
     <string name="text_wrong_ans_desc">Incorrect answer!</string>
     <string name="text_right_ans">Masha\'Allah, Correct Answer!</string>
     <string name="text_right_ans_desc">Congratulations! You\'ve earned 1 points for correct answer</string>
-    <string name="text_ans_taken">Subhanallahi wa bihamdihi</string>
-    <string name="text_ans_taken_desc">You have already tried this question ?\nwould you like to see the right answer! ?</string>
+    <string name="text_ans_taken">Subhan\'Allah</string>
+    <string name="text_ans_taken_desc">You have already tried this question.would you like to see the right answer! ?</string>
     <string name="text_yes">Yes</string>
     <string name="text_no">No</string>
     <string name="btn_point_txt">0 Point(s)</string>
+    <string name="word_challenge_dash_ttl">Challenge Dashboard</string>
+    <string name="word_challenge_dash_subttl">Start challenge, view points and leaderboard!</string>
+    <string name="btn_start_chal">Start Challenge</string>
 
 </resources>

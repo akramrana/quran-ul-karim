@@ -157,7 +157,7 @@ public class WordAnswerActivity extends AppCompatActivity {
 
     private void countTotalPoint(){
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-        String sql = "SELECT count(*) as total FROM word_answers";
+        String sql = "SELECT count(*) as total FROM word_answers WHERE is_right_answer = 1";
         Cursor cursor = db.rawQuery(sql, null);
         try {
             if (cursor.moveToFirst()) {
@@ -176,7 +176,7 @@ public class WordAnswerActivity extends AppCompatActivity {
     }
 
     private void checkOption(int option){
-        String right_answer = tv_right_answer.getText().toString();
+        String right_answer = tv_right_answer.getText().toString().trim();
         if(isWrongAnswer){
             AlertDialog.Builder alert = new AlertDialog.Builder(WordAnswerActivity.this);
             alert.setTitle(R.string.text_ans_taken);
@@ -184,10 +184,10 @@ public class WordAnswerActivity extends AppCompatActivity {
             alert.setPositiveButton(R.string.text_yes, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     Log.d("right_answer",right_answer);
-                    String answer_1 = answer_one_en.getText().toString();
-                    String answer_2 = answer_two_en.getText().toString();
-                    String answer_3 = answer_three_en.getText().toString();
-                    String answer_4 = answer_four_en.getText().toString();
+                    String answer_1 = answer_one_en.getText().toString().trim();
+                    String answer_2 = answer_two_en.getText().toString().trim();
+                    String answer_3 = answer_three_en.getText().toString().trim();
+                    String answer_4 = answer_four_en.getText().toString().trim();
                     if(right_answer.equals(answer_1)){
                         answer_one_en.setTextColor(getColor(R.color.transColor));
                         answer_one_bn.setTextColor(getColor(R.color.transColor));
@@ -213,24 +213,25 @@ public class WordAnswerActivity extends AppCompatActivity {
             String answer = "";
             String answerBn = "";
             if (option == 1) {
-                answer = answer_one_en.getText().toString();
+                answer = answer_one_en.getText().toString().trim();
                 answerBn = answer_one_bn.getText().toString();
             } else if (option == 2) {
-                answer = answer_two_en.getText().toString();
+                answer = answer_two_en.getText().toString().trim();
                 answerBn = answer_two_bn.getText().toString();
             } else if (option == 3) {
-                answer = answer_three_en.getText().toString();
+                answer = answer_three_en.getText().toString().trim();
                 answerBn = answer_three_bn.getText().toString();
             } else if (option == 4) {
-                answer = answer_four_en.getText().toString();
+                answer = answer_four_en.getText().toString().trim();
                 answerBn = answer_four_bn.getText().toString();
             }
             Log.d("option", String.valueOf(option));
             Log.d("answer", answer);
             if (answer != null && !answer.equals("")) {
                 SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-                String sql = "SELECT * FROM words WHERE translation = '" + answer + "' and word_id = " + Integer.parseInt(word_id);
-                Cursor cursor = db.rawQuery(sql, null);
+
+                String sql = "SELECT * FROM words WHERE trim(translation) = ? and word_id = ?";
+                Cursor cursor = db.rawQuery(sql, new String[]{answer, word_id});
                 try {
                     if (cursor.moveToFirst()) {
                         AlertDialog.Builder alert = new AlertDialog.Builder(WordAnswerActivity.this);
@@ -244,12 +245,13 @@ public class WordAnswerActivity extends AppCompatActivity {
                                 ContentValues values = new ContentValues();
                                 values.put("word_id", word_id);
                                 values.put("datetime", dtStr1);
+                                values.put("is_right_answer",1);
                                 try {
                                     DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase().insertOrThrow("word_answers", "", values);
                                     getDataFromLocalDb();
                                     countTotalPoint();
                                 } catch (Exception e) {
-                                    Log.i("word_answers", e.getMessage());
+                                    Log.i("right_answers", e.getMessage());
                                 }
                             }
                         });
@@ -259,7 +261,24 @@ public class WordAnswerActivity extends AppCompatActivity {
                         AlertDialog.Builder alert = new AlertDialog.Builder(WordAnswerActivity.this);
                         alert.setTitle(R.string.text_wrong_ans);
                         alert.setMessage(R.string.text_wrong_ans_desc);
-                        alert.setPositiveButton(R.string.text_ok, null);
+                        alert.setPositiveButton(R.string.text_ok, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                Date date = new Date();
+                                String dtStr1 = dateFormat.format(date);
+                                ContentValues values = new ContentValues();
+                                values.put("word_id", word_id);
+                                values.put("datetime", dtStr1);
+                                values.put("is_right_answer",0);
+                                try {
+                                    DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase().insertOrThrow("word_answers", "", values);
+                                    getDataFromLocalDb();
+                                    countTotalPoint();
+                                } catch (Exception e) {
+                                    Log.i("wrong_answers", e.getMessage());
+                                }
+                            }
+                        });
                         alert.show();
                     }
                 } catch (Exception e) {
@@ -292,8 +311,8 @@ public class WordAnswerActivity extends AppCompatActivity {
         String sql = "select w.word_id,w.arabic,w.translation, w.transliteration,b.translate_bn,b.words_ar " +
                 "from words w " +
                 "inner join bywords b on w.word_id = b._id " +
-                "where w.word_id NOT IN(select wa.word_id from word_answers wa)" +
-                "order by RANDOM() " +
+                "where w.word_id NOT IN(select wa.word_id from word_answers wa where wa.is_right_answer = 1)" +
+                "group by w.translation order by RANDOM() " +
                 "limit 1";
         Log.i(TAG, sql);
         Cursor cursor = db.rawQuery(sql, null);
@@ -306,6 +325,7 @@ public class WordAnswerActivity extends AppCompatActivity {
                 String word_id = cursor.getString(cursor.getColumnIndexOrThrow("word_id"));
                 String words_ar = cursor.getString(cursor.getColumnIndexOrThrow("words_ar"));
                 Log.d("arabic",arabic);
+                Log.d("word_id",word_id);
 
                 quiz_arabic.setText(arabic);
                 transliteration_en.setText(transliteration);
@@ -323,7 +343,7 @@ public class WordAnswerActivity extends AppCompatActivity {
                         "FROM words w " +
                         "INNER JOIN bywords b ON w.word_id = b._id " +
                         "WHERE w.word_id in (SELECT words.word_id from words where words.word_id != "+word_id+" order by RANDOM() limit 3) "+
-                        " LIMIT 4 " +
+                        "group by w.translation LIMIT 4 " +
                         ") as tmp " +
                         "order by RANDOM() ";
 
