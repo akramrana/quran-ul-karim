@@ -249,5 +249,14 @@
     <string name="word_challenge_dash_ttl">Challenge Dashboard</string>
     <string name="word_challenge_dash_subttl">Start challenge, view points and leaderboard!</string>
     <string name="btn_start_chal">Start Challenge</string>
+    <string name="challenge_attempted">Challenge Attempted</string>
+    <string name="challenge_attempted_count">0</string>
+    <string name="current_score_txt">Current score</string>
+    <string name="current_score_count">0</string>
+    <string name="right_answer">Total Right Answer</string>
+    <string name="right_answer_score_count">0</string>
+    <string name="wrong_answer">Total Wrong Answer</string>
+    <string name="wrong_answer_score_count">0</string>
+    <string name="btn_leader_board">Leader Board</string>
 
 </resources>

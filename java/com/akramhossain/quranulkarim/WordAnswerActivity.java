@@ -272,8 +272,7 @@ public class WordAnswerActivity extends AppCompatActivity {
                                 values.put("is_right_answer",0);
                                 try {
                                     DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase().insertOrThrow("word_answers", "", values);
-                                    getDataFromLocalDb();
-                                    countTotalPoint();
+
                                 } catch (Exception e) {
                                     Log.i("wrong_answers", e.getMessage());
                                 }
