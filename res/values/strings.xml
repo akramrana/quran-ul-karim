@@ -257,7 +257,7 @@
     <string name="right_answer_score_count">0</string>
     <string name="wrong_answer">Total Wrong Answer</string>
     <string name="wrong_answer_score_count">0</string>
-    <string name="btn_leader_board">View Leader Board</string>
+    <string name="btn_leader_board">View Leaderboard</string>
     <string name="success_rate">Success Rate</string>
     <string name="success_rate_count">0</string>
 

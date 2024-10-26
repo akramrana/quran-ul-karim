@@ -49,6 +49,7 @@ public class BackupRestoreActivity extends AppCompatActivity {
     String quickLinkStr="";
     String reportStr="";
     String lastPositionStr="";
+    String wordAnserStr="";
     int PICKFILE_REQUEST_CODE=1;
     SharedPreferences mPrefs;
 
@@ -134,7 +135,7 @@ public class BackupRestoreActivity extends AppCompatActivity {
                     if (cursor3.moveToFirst()) {
                         do {
                             lastPositionStr+= "insert into last_position(sura_id,position) values("+cursor3.getString(cursor3.getColumnIndexOrThrow("sura_id"))+","+cursor3.getString(cursor3.getColumnIndexOrThrow("position"))+");";
-                        }while (cursor1.moveToNext());
+                        }while (cursor3.moveToNext());
                     }
                 }catch (Exception e){
                     Log.i(TAG, e.getMessage());
@@ -144,6 +145,25 @@ public class BackupRestoreActivity extends AppCompatActivity {
                         cursor3.close();
                     }
                     db3.close();
+                }
+                //
+                SQLiteDatabase db4 = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+                String sql4 = "select * from word_answers";
+                Cursor cursor4 = db4.rawQuery(sql4, null);
+                try {
+                    if (cursor4.moveToFirst()) {
+                        do {
+                            wordAnserStr+= "insert into word_answers(word_id,datetime,is_right_answer) values("+cursor4.getString(cursor4.getColumnIndexOrThrow("word_id"))+",'"+cursor4.getString(cursor4.getColumnIndexOrThrow("datetime"))+"',"+cursor4.getString(cursor4.getColumnIndexOrThrow("is_right_answer"))+");";
+                        }while (cursor4.moveToNext());
+                    }
+                }catch (Exception e){
+                    Log.i(TAG, e.getMessage());
+                }
+                finally {
+                    if (cursor4 != null && !cursor4.isClosed()){
+                        cursor4.close();
+                    }
+                    db4.close();
                 }
                 /*Log.i(TAG, bookmarkStr);
                 Log.i(TAG, quickLinkStr);
@@ -160,6 +180,7 @@ public class BackupRestoreActivity extends AppCompatActivity {
                     myOutWriter.append(quickLinkStr);
                     myOutWriter.append(reportStr);
                     myOutWriter.append(lastPositionStr);
+                    myOutWriter.append(wordAnserStr);
                     myOutWriter.close();
                     fOut.close();
                     Toast.makeText(getApplicationContext(),"Backup saved to "+path,Toast.LENGTH_LONG).show();
@@ -205,7 +226,7 @@ public class BackupRestoreActivity extends AppCompatActivity {
                 Uri uri = data.getData();
                 String fileContent = readTextFile(uri);
                 SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-                String sql = "delete from quick_link;delete from last_position;delete from bookmark;delete from reports;"+fileContent;
+                String sql = "delete from quick_link;delete from last_position;delete from bookmark;delete from reports;delete from word_answers;"+fileContent;
                 //Log.i(TAG, fileContent);
                 db.beginTransaction();
                 try {

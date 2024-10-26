@@ -227,7 +227,8 @@
                             android:ems="10"
                             android:minHeight="48dp"
                             android:layout_gravity="right"
-                            android:inputType="number"/>
+                            android:inputType="number"
+                            android:hint="Arabic font size"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -264,7 +265,8 @@
                             android:ems="10"
                             android:minHeight="48dp"
                             android:layout_gravity="right"
-                            android:inputType="number"/>
+                            android:inputType="number"
+                            android:hint="English font size"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -301,7 +303,8 @@
                             android:ems="10"
                             android:minHeight="48dp"
                             android:layout_gravity="right"
-                            android:inputType="number"/>
+                            android:inputType="number"
+                            android:hint="Bangla font size"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -341,7 +344,7 @@
                             android:id="@+id/enfontSizeTafsirLabel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="English Font Size"
+                            android:text="English font size"
                             android:textColor="@color/colorWhite"/>
                     </LinearLayout>
 
@@ -357,7 +360,8 @@
                             android:ems="10"
                             android:minHeight="48dp"
                             android:layout_gravity="right"
-                            android:inputType="number"/>
+                            android:inputType="number"
+                            android:hint="English font size"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -394,7 +398,8 @@
                             android:minHeight="48dp"
                             android:ems="10"
                             android:layout_gravity="right"
-                            android:inputType="number"/>
+                            android:inputType="number"
+                            android:hint="Font Size of Bangla"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -506,7 +511,7 @@
                     android:layout_height="wrap_content"
                     android:text="Setting For Translation"
                     android:textColor="@color/colorWhite"
-                    android:textSize="16dip"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="20dp"/>
@@ -574,12 +579,12 @@
                         <Button
                             android:id="@+id/button1"
                             android:layout_width="wrap_content"
-                            android:layout_height="40dp"
+                            android:layout_height="48dp"
                             android:background="@color/orange"
                             android:paddingStart="10dp"
                             android:paddingEnd="10dp"
                             android:text="@string/reset"
-                            android:textColor="@android:color/background_light"
+                            android:textColor="@color/contrast_black"
                             android:textSize="15sp"
                             android:layout_marginTop="10dp"
                             android:layout_gravity="right"
@@ -597,8 +602,8 @@
                         <Button
                             android:id="@+id/button"
                             android:layout_width="wrap_content"
-                            android:layout_height="40dp"
-                            android:background="@color/googleGreen"
+                            android:layout_height="48dp"
+                            android:background="@color/contrast_green"
                             android:paddingStart="10dp"
                             android:paddingEnd="10dp"
                             android:text="@string/save"

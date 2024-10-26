@@ -109,6 +109,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="✓ Last visited Surah"
+                            android:layout_marginBottom="8dp"
+                            android:textColor="@color/colorWhite"/>
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="✓ Word Challenge Data"
                             android:textColor="@color/colorWhite"/>
 
 
@@ -125,8 +133,8 @@
                         <Button
                             android:id="@+id/button"
                             android:layout_width="wrap_content"
-                            android:layout_height="40dp"
-                            android:background="@color/googleGreen"
+                            android:layout_height="48dp"
+                            android:background="@color/contrast_green"
                             android:paddingStart="10dp"
                             android:paddingEnd="10dp"
                             android:text="@string/backup"
@@ -205,17 +213,24 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="✓ Last visited Surah"
+                        android:layout_marginBottom="8dp"
+                        android:textColor="@color/colorWhite"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="✓ Word Challenge Data"
                         android:textColor="@color/colorWhite"/>
 
                     <Button
                         android:id="@+id/button1"
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
+                        android:layout_height="48dp"
                         android:background="@color/orange"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
                         android:text="@string/restore"
-                        android:textColor="@android:color/background_light"
+                        android:textColor="@color/contrast_black"
                         android:textSize="15sp"
                         android:layout_marginTop="10dp"
                         android:layout_gravity="right"

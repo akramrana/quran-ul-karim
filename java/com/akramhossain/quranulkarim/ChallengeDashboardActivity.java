@@ -53,6 +53,13 @@ public class ChallengeDashboardActivity extends AppCompatActivity {
         prog = (ProgressBar) findViewById(R.id.prog);
 
         Button leader_button = (Button) findViewById(R.id.leader_button);
+        leader_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), LeaderboardActivity.class);
+                startActivity(i);
+            }
+        });
 
     }
 

@@ -93,7 +93,7 @@
                                 android:text="@string/btn_start_chal"
                                 android:textSize="15sp"
                                 android:layout_gravity="left"
-                                android:textColor="@android:color/background_light"
+                                android:textColor="@color/contrast_black"
                                 android:background="@color/orange"
                                 android:textAllCaps="false"/>
 
@@ -115,7 +115,7 @@
                                 android:textSize="15sp"
                                 android:layout_gravity="left"
                                 android:textColor="@android:color/background_light"
-                                android:background="@color/googleGreen"
+                                android:background="@color/contrast_green"
                                 android:textAllCaps="false"/>
 
 

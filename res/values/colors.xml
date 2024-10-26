@@ -100,5 +100,7 @@
     </string-array>
 
     <color name="button_bg_color">#f4f4f4</color>
+    <color name="contrast_black">#363636</color>
+    <color name="contrast_green">#206532</color>
 
 </resources>
