@@ -15,6 +15,7 @@ import com.akramhossain.quranulkarim.HadithBookActivity;
 import com.akramhossain.quranulkarim.HadithChapterActivity;
 import com.akramhossain.quranulkarim.HadithListActivity;
 import com.akramhossain.quranulkarim.HadithSearchActivity;
+import com.akramhossain.quranulkarim.LeaderboardActivity;
 import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.TagActivity;
 import com.akramhossain.quranulkarim.app.AppController;
@@ -92,6 +93,9 @@ public class JsonFromUrlTask {
                         editor.putString("DUA_ZIKR_JSON_DATA_"+sharedPref, response.toString());
                         editor.putString("IS_DUA_ZIKR_JSON_DATA_STORED_"+sharedPref, "1");
                         editor.apply();
+                    }
+                    else if(TAG.equals("LeaderboardActivity")){
+                        ((LeaderboardActivity) activity).parseJsonResponseSearch(response);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

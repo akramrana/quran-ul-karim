@@ -260,5 +260,7 @@
     <string name="btn_leader_board">View Leaderboard</string>
     <string name="success_rate">Success Rate</string>
     <string name="success_rate_count">0</string>
+    <string name="leaderboard_ttl">View Leaderboard</string>
+    <string name="leaderboard_subttl">List of top 100 participants!</string>
 
 </resources>

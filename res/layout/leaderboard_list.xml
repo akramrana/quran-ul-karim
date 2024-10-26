@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="5dp"
+    android:layout_height="wrap_content"
+    android:foreground="?android:attr/selectableItemBackground">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/user_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25">
+
+            <TextView
+                android:id="@+id/rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dip"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25">
+
+            <ImageView
+                android:id="@+id/flag"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dip"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25">
+
+            <TextView
+                android:id="@+id/right_ans"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dip"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
