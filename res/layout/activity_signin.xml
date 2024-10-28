@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LeaderboardActivity">
+    tools:context=".SigninActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
                     android:paddingRight="5dp"
                     android:textColor="@color/colorWhiteDN"
                     android:textSize="18dp"
-                    android:text="@string/leaderboard_ttl"/>
+                    android:text="@string/sign_in_ttl"/>
 
                 <TextView
                     android:id="@+id/info_sub_title"
@@ -48,42 +48,66 @@
                     android:paddingRight="5dp"
                     android:textColor="@color/colorWhiteDN"
                     android:textSize="15sp"
-                    android:text="@string/leaderboard_subttl"/>
+                    android:text="@string/sign_in_subttl"/>
 
             </LinearLayout>
 
         </RelativeLayout>
 
-        <Button
-            android:id="@+id/sign_in_button"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:text="@string/btn_sign_in"
-            android:textSize="15sp"
-            android:layout_gravity="left"
-            android:textColor="@color/contrast_black"
-            android:background="@color/orange"
-            android:textAllCaps="false"
-            android:layout_below="@id/topAboutBar"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_below="@+id/topAboutBar">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/leaderboard_list"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/sign_in_button"/>
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="10dp"
+                android:hint="E-mail"
+                android:inputType="textEmailAddress"
+                android:padding="10dp"
+                android:singleLine="true"/>
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center|center_horizontal"
-            android:visibility="gone" />
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="10dp"
+                android:hint="password"
+                android:inputType="textPassword"
+                android:padding="10dp"
+                android:singleLine="true"/>
+
+            <!-- Login Button -->
+
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:textColor="@color/contrast_black"
+                android:background="@color/orange"
+                android:text="@string/sign_in_ttl"
+                android:textAllCaps="false"/>
+
+            <!-- Link to Login Screen -->
+
+            <Button
+                android:id="@+id/btnLinkToRegisterScreen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dip"
+                android:background="@null"
+                android:textAllCaps="false"
+                android:textSize="15sp"
+                android:text="@string/register"/>
+        </LinearLayout>
+
 
     </RelativeLayout>
 

@@ -261,6 +261,13 @@
     <string name="success_rate">Success Rate</string>
     <string name="success_rate_count">0</string>
     <string name="leaderboard_ttl">View Leaderboard</string>
-    <string name="leaderboard_subttl">List of top 100 participants!</string>
+    <string name="leaderboard_subttl">List of top participants!</string>
+    <string name="btn_sign_in">Sign-in To Participate</string>
 
+    <string name="sign_in_ttl">Sign-in</string>
+    <string name="sign_in_subttl">Track points and engage in friendly competition</string>
+    <string name="register">Don\'t have an account ? Sign Up</string>
+    <string name="sign_up_ttl">Sign Up</string>
+    <string name="btn_register">Submit</string>
+    <string name="btn_link_to_login">Back to Sign-in</string>
 </resources>

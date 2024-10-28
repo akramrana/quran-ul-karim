@@ -29,6 +29,12 @@
         android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SigninActivity"
+            android:exported="false" />
+        <activity
             android:name=".LeaderboardActivity"
             android:exported="false" />
         <activity
