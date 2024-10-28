@@ -72,7 +72,9 @@
                 android:hint="Full Name"
                 android:padding="10dp"
                 android:singleLine="true"
-                android:inputType="textCapWords"/>
+                android:inputType="textCapWords"
+                android:textColor="@color/input_register"
+                android:textColorHint="@color/input_register_hint" />
 
             <EditText
                 android:id="@+id/email"
@@ -82,7 +84,9 @@
                 android:hint="E-mail"
                 android:inputType="textEmailAddress"
                 android:padding="10dp"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:textColor="@color/input_register"
+                android:textColorHint="@color/input_register_hint" />
 
             <EditText
                 android:id="@+id/password"
@@ -92,7 +96,9 @@
                 android:hint="password"
                 android:inputType="textPassword"
                 android:padding="10dp"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:textColor="@color/input_register"
+                android:textColorHint="@color/input_register_hint" />
             <!-- Login Button -->
             <Button
                 android:id="@+id/btnRegister"
@@ -116,6 +122,14 @@
                 android:textSize="15dp" />
 
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center|center_horizontal"
+            android:visibility="gone" />
 
 
     </RelativeLayout>

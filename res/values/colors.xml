@@ -103,4 +103,7 @@
     <color name="contrast_black">#363636</color>
     <color name="contrast_green">#206532</color>
 
+    <color name="input_register">#888888</color>
+    <color name="input_register_hint">#5e6266</color>
+
 </resources>
