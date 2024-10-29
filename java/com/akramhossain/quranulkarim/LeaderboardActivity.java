@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.akramhossain.quranulkarim.adapter.LeaderboardViewAdapter;
+import com.akramhossain.quranulkarim.helper.SessionManager;
 import com.akramhossain.quranulkarim.model.Leaderboard;
 import com.akramhossain.quranulkarim.task.JsonFromUrlTask;
 
@@ -38,6 +40,8 @@ public class LeaderboardActivity extends AppCompatActivity {
     public LeaderboardViewAdapter rvAdapter;
     public static String host = "http://quran.codxplore.com/";
 
+    private SessionManager session;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,8 +64,35 @@ public class LeaderboardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), SigninActivity.class);
                 startActivity(i);
+                finish();
             }
         });
+
+        LinearLayout logged_user_sec = (LinearLayout) findViewById(R.id.logged_user_sec);
+
+        session = new SessionManager(getApplicationContext());
+        if (session.isLoggedIn()) {
+            sign_in_button.setVisibility(View.GONE);
+            logged_user_sec.setVisibility(View.VISIBLE);
+        }else{
+            sign_in_button.setVisibility(View.VISIBLE);
+            logged_user_sec.setVisibility(View.GONE);
+        }
+
+        Button btn_sign_out = (Button) findViewById(R.id.btn_sign_out);
+        btn_sign_out.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                session.setLogin(false);
+                session.setLoginData("");
+
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(getIntent());
+                overridePendingTransition(0, 0);
+            }
+        });
+
     }
 
     private void getDataFromInternet() {

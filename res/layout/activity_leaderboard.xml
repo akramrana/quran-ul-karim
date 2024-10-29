@@ -54,28 +54,89 @@
 
         </RelativeLayout>
 
-        <Button
-            android:id="@+id/sign_in_button"
+        <LinearLayout
+            android:id="@+id/user_section"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:text="@string/btn_sign_in"
-            android:textSize="15sp"
-            android:layout_gravity="left"
-            android:textColor="@color/contrast_black"
-            android:background="@color/orange"
-            android:textAllCaps="false"
-            android:layout_below="@id/topAboutBar"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/topAboutBar">
+
+            <Button
+                android:id="@+id/sign_in_button"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/btn_sign_in"
+                android:textSize="15sp"
+                android:layout_gravity="left"
+                android:textColor="@color/contrast_black"
+                android:background="@color/orange"
+                android:textAllCaps="false"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/logged_user_sec"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5">
+
+                    <Button
+                        android:id="@+id/btn_sign_out"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="@string/btn_sign_out"
+                        android:textSize="15sp"
+                        android:layout_gravity="left"
+                        android:textColor="@color/contrast_black"
+                        android:background="@color/orange"
+                        android:textAllCaps="false"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5">
+
+                    <Button
+                        android:id="@+id/btn_del_acc"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="@string/btn_del_acc"
+                        android:textSize="15sp"
+                        android:layout_gravity="left"
+                        android:textColor="@color/contrast_black"
+                        android:background="@color/color2"
+                        android:textAllCaps="false"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/leaderboard_list"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/sign_in_button"/>
+            android:layout_below="@id/user_section"/>
 
         <ProgressBar
             android:id="@+id/progressBar"

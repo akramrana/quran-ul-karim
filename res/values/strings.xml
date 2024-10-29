@@ -270,4 +270,6 @@
     <string name="sign_up_ttl">Sign Up</string>
     <string name="btn_register">Submit</string>
     <string name="btn_link_to_login">Back to Sign-in</string>
+    <string name="btn_sign_out">Sign-out</string>
+    <string name="btn_del_acc">Delete Account</string>
 </resources>
