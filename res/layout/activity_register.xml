@@ -99,6 +99,23 @@
                 android:singleLine="true"
                 android:textColor="@color/input_register"
                 android:textColorHint="@color/input_register_hint" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Country"
+                android:paddingLeft="10dp"
+                android:textSize="18sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="2dp">
+
+            </TextView>
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_spinner_dropdown"/>
             <!-- Login Button -->
             <Button
                 android:id="@+id/btnRegister"

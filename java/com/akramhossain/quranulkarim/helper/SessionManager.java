@@ -18,6 +18,7 @@ public class SessionManager {
     // Shared preferences file name
     private static final String PREF_NAME = "QuranulkarimLogin";
     private static final String KEY_IS_LOGGEDIN = "isLoggedIn";
+    private static final String LOGIN_DATA = "loginData";
 
     public SessionManager(Context context) {
         this._context = context;
@@ -27,10 +28,16 @@ public class SessionManager {
 
     public void setLogin(boolean isLoggedIn) {
         editor.putBoolean(KEY_IS_LOGGEDIN, isLoggedIn);
-        // commit changes
         editor.commit();
         Log.d(TAG, "User login session modified!");
     }
+
+    public void setLoginData(String data){
+        editor.putString(LOGIN_DATA, data);
+        editor.commit();
+        Log.d(TAG, "User login data saved!");
+    }
+
     public boolean isLoggedIn(){
         return pref.getBoolean(KEY_IS_LOGGEDIN, false);
     }
