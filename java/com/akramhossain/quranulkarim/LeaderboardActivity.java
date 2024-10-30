@@ -75,8 +75,6 @@ public class LeaderboardActivity extends AppCompatActivity {
         cd = new ConnectionDetector(getApplicationContext());
         isInternetPresent = cd.isConnectingToInternet();
         //FETCH DATA FROM REMOTE SERVER
-        getDataFromInternet();
-
         Button sign_in_button = (Button) findViewById(R.id.sign_in_button);
         sign_in_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,10 +91,19 @@ public class LeaderboardActivity extends AppCompatActivity {
         if (session.isLoggedIn()) {
             sign_in_button.setVisibility(View.GONE);
             logged_user_sec.setVisibility(View.VISIBLE);
+            String userJson = session.getLoginData();
+            try {
+                JSONObject response = new JSONObject(userJson);
+                user_id = response.getString("user_id");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }else{
             sign_in_button.setVisibility(View.VISIBLE);
             logged_user_sec.setVisibility(View.GONE);
         }
+
+        getDataFromInternet();
 
         Button btn_sign_out = (Button) findViewById(R.id.btn_sign_out);
         btn_sign_out.setOnClickListener(new View.OnClickListener() {
@@ -117,13 +124,6 @@ public class LeaderboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (session.isLoggedIn()) {
-                    String userJson = session.getLoginData();
-                    try {
-                        JSONObject response = new JSONObject(userJson);
-                        user_id = response.getString("user_id");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
                     SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                     String sql = "SELECT * FROM word_answers WHERE is_sync = 0";
                     Cursor cursor = db.rawQuery(sql, null);
@@ -152,7 +152,9 @@ public class LeaderboardActivity extends AppCompatActivity {
 
     private void getDataFromInternet() {
         if (isInternetPresent) {
-            new JsonFromUrlTask(this, URL, TAG, "");
+            String remoteUrl = URL+"?user_id="+user_id;
+            Log.i(TAG, remoteUrl.toString());
+            new JsonFromUrlTask(this, remoteUrl, TAG, "");
         }
         else{
             AlertDialog.Builder alert = new AlertDialog.Builder(LeaderboardActivity.this);
@@ -167,7 +169,8 @@ public class LeaderboardActivity extends AppCompatActivity {
         Log.i(TAG, result);
         try {
             JSONObject response = new JSONObject(result);
-            JSONArray jArray = new JSONArray(response.getString("list"));
+            JSONObject json = response.getJSONObject("data");
+            JSONArray jArray = new JSONArray(json.getString("list"));
             Log.i(TAG, jArray.toString());
             for (int i = 0; i < jArray.length(); i++) {
                 JSONObject jObject = jArray.getJSONObject(i);
