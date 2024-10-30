@@ -86,7 +86,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5">
+                    android:layout_weight="0.3">
 
                     <Button
                         android:id="@+id/btn_sign_out"
@@ -108,7 +108,29 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.5">
+                    android:layout_weight="0.3">
+
+                    <Button
+                        android:id="@+id/btn_publish_data"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="@string/btn_publish_data"
+                        android:textSize="15sp"
+                        android:layout_gravity="left"
+                        android:textColor="@android:color/background_light"
+                        android:background="@color/contrast_green"
+                        android:textAllCaps="false"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3">
 
                     <Button
                         android:id="@+id/btn_del_acc"
@@ -119,8 +141,8 @@
                         android:text="@string/btn_del_acc"
                         android:textSize="15sp"
                         android:layout_gravity="left"
-                        android:textColor="@color/contrast_black"
-                        android:background="@color/color2"
+                        android:textColor="@android:color/background_light"
+                        android:background="@color/darkred"
                         android:textAllCaps="false"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"/>

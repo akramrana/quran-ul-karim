@@ -41,4 +41,8 @@ public class SessionManager {
     public boolean isLoggedIn(){
         return pref.getBoolean(KEY_IS_LOGGEDIN, false);
     }
+
+    public String getLoginData(){
+        return pref.getString(LOGIN_DATA, "{}");
+    }
 }

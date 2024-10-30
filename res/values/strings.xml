@@ -272,4 +272,6 @@
     <string name="btn_link_to_login">Back to Sign-in</string>
     <string name="btn_sign_out">Sign-out</string>
     <string name="btn_del_acc">Delete Account</string>
+    <string name="btn_publish_data">Sync Data</string>
+
 </resources>
