@@ -153,7 +153,7 @@ public class BackupRestoreActivity extends AppCompatActivity {
                 try {
                     if (cursor4.moveToFirst()) {
                         do {
-                            wordAnserStr+= "insert into word_answers(word_id,datetime,is_right_answer) values("+cursor4.getString(cursor4.getColumnIndexOrThrow("word_id"))+",'"+cursor4.getString(cursor4.getColumnIndexOrThrow("datetime"))+"',"+cursor4.getString(cursor4.getColumnIndexOrThrow("is_right_answer"))+");";
+                            wordAnserStr+= "insert into word_answers(word_id,datetime,is_right_answer,is_sync) values("+cursor4.getString(cursor4.getColumnIndexOrThrow("word_id"))+",'"+cursor4.getString(cursor4.getColumnIndexOrThrow("datetime"))+"',"+cursor4.getString(cursor4.getColumnIndexOrThrow("is_right_answer"))+","+cursor4.getString(cursor4.getColumnIndexOrThrow("is_sync"))+");";
                         }while (cursor4.moveToNext());
                     }
                 }catch (Exception e){

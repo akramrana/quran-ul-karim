@@ -2,6 +2,7 @@ package com.akramhossain.quranulkarim;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,8 +10,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.adapter.LeaderboardViewAdapter;
@@ -23,6 +26,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,6 +60,9 @@ public class LeaderboardActivity extends AppCompatActivity {
     private SessionManager session;
     public static String SYNC_URL;
     public String user_id = "";
+    TextView user_name,user_rank,user_points;
+    ImageView user_flag;
+    public static String DEL_ACC_URL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +76,14 @@ public class LeaderboardActivity extends AppCompatActivity {
         recyclerview.setLayoutManager(mLayoutManager);
         setRecyclerViewAdapter();
 
+        user_name = (TextView) findViewById(R.id.user_name);
+        user_rank = (TextView) findViewById(R.id.user_rank);
+        user_points = (TextView) findViewById(R.id.user_points);
+        user_flag = (ImageView) findViewById(R.id.user_flag);
+
         URL = host+"api/v1/leaderboard.php";
         SYNC_URL = host+"api/v1/sync.php";
+        DEL_ACC_URL = host+"api/v1/delete-account.php";
 
         cd = new ConnectionDetector(getApplicationContext());
         isInternetPresent = cd.isConnectingToInternet();
@@ -135,6 +148,10 @@ public class LeaderboardActivity extends AppCompatActivity {
                                 String is_right_answer = cursor.getString(cursor.getColumnIndexOrThrow("is_right_answer"));
                                 pushAnswerData(word_id, datetime, is_right_answer);
                             } while (cursor.moveToNext());
+                            Toast.makeText(getApplicationContext(), "User data successfully sync", Toast.LENGTH_LONG).show();
+                            leaderboards.clear();
+                            rvAdapter.notifyDataSetChanged();
+                            getDataFromInternet();
                         }
                     } catch (Exception e) {
                         Log.i(TAG, e.getMessage());
@@ -145,6 +162,23 @@ public class LeaderboardActivity extends AppCompatActivity {
                         db.close();
                     }
                 }
+            }
+        });
+
+        Button btn_del_acc = (Button) findViewById(R.id.btn_del_acc);
+        btn_del_acc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(LeaderboardActivity.this);
+                alert.setTitle(R.string.text_delete_title);
+                alert.setMessage(R.string.text_delete_desc);
+                alert.setPositiveButton(R.string.text_yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        deleteAcount();
+                    }
+                });
+                alert.setNegativeButton(R.string.text_no, null);
+                alert.show();
             }
         });
 
@@ -188,6 +222,18 @@ public class LeaderboardActivity extends AppCompatActivity {
                 leaderboards.add(ma);
             }
             rvAdapter.notifyDataSetChanged();
+            //
+            JSONObject userInfo = json.getJSONObject("userInfo");
+            Log.i(TAG, userInfo.toString());
+            if(userInfo.length()==0){
+
+            }else {
+                user_name.setText(userInfo.getString("name"));
+                user_rank.setText("Rank: " + userInfo.getString("rank"));
+                user_points.setText(userInfo.getString("right_ans") + " point(s)");
+                Picasso.get().load(userInfo.getString("flag")).into(user_flag);
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -213,7 +259,7 @@ public class LeaderboardActivity extends AppCompatActivity {
                     boolean error = jObj.getBoolean("error");
                     if (!error) {
                         // User successfully stored in database
-                        Toast.makeText(getApplicationContext(), "User data successfully sync", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), "User data successfully sync", Toast.LENGTH_LONG).show();
                         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
                         String sql = "SELECT * FROM word_answers WHERE word_id = "+word_id;
                         Cursor cursor = db.rawQuery(sql, null);
@@ -256,6 +302,58 @@ public class LeaderboardActivity extends AppCompatActivity {
                 params.put("word_id", word_id);
                 params.put("datetime", datetime);
                 params.put("is_right_answer", is_right_answer);
+                params.put("user_id",user_id);
+                return params;
+            }
+        };
+        strReq.setShouldCache(false);
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+    }
+
+    public void deleteAcount(){
+        String tag_string_req = "req_acc_delete";
+        progressBar.setVisibility(View.VISIBLE);
+        Log.d(TAG, "Delete Account URL: " + DEL_ACC_URL.toString());
+        StringRequest strReq = new StringRequest(Request.Method.POST, DEL_ACC_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "Delete Account Response: " + response.toString());
+                progressBar.setVisibility(View.GONE);
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    boolean error = jObj.getBoolean("error");
+                    if (!error) {
+                        Toast.makeText(getApplicationContext(), "User account successfully deleted", Toast.LENGTH_LONG).show();
+                        session.setLogin(false);
+                        session.setLoginData("");
+                        finish();
+                        overridePendingTransition(0, 0);
+                        startActivity(getIntent());
+                        overridePendingTransition(0, 0);
+                    } else {
+                        // Error occurred in registration. Get the error
+                        // message
+                        String errorMsg = jObj.getString("error_msg");
+                        Toast.makeText(getApplicationContext(),errorMsg, Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Delete Account Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.GONE);
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to register url
+                Map<String, String> params = new HashMap<String, String>();
                 params.put("user_id",user_id);
                 return params;
             }

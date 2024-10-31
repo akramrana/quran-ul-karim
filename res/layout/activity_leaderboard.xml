@@ -92,9 +92,10 @@
                     android:layout_gravity="center">
 
                     <TextView
+                        android:id="@+id/user_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Hi, Akram Hossain"
+                        android:text="Name"
                         android:gravity="center"
                         android:textSize="18sp"/>
 
@@ -114,9 +115,10 @@
                         android:layout_gravity="center">
 
                         <TextView
+                            android:id="@+id/user_rank"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Rank: 20"
+                            android:text="Rank: 0"
                             android:gravity="left"
                             android:textSize="18sp"/>
 
@@ -130,7 +132,7 @@
                         android:gravity="center">
 
                         <ImageView
-                            android:id="@+id/flag"
+                            android:id="@+id/user_flag"
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:adjustViewBounds="true"
@@ -144,9 +146,10 @@
                         android:layout_weight="0.3"
                         android:layout_gravity="center">
                         <TextView
+                            android:id="@+id/user_points"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="280 point(s)"
+                            android:text="0 point(s)"
                             android:gravity="right"
                             android:textSize="18sp"/>
 
