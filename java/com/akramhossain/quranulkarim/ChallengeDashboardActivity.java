@@ -7,10 +7,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
+import com.akramhossain.quranulkarim.helper.SessionManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +30,9 @@ public class ChallengeDashboardActivity extends AppCompatActivity {
     TextView txtPer;
     ProgressBar prog;
     Integer rightAnsCount = 0;
+    private SessionManager session;
+    TextView user_name;
+    Button edit_profile,change_pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +69,26 @@ public class ChallengeDashboardActivity extends AppCompatActivity {
             }
         });
 
+        user_name = (TextView) findViewById(R.id.user_name);
+
+        LinearLayout logged_user_sec = (LinearLayout) findViewById(R.id.logged_user_sec);
+        session = new SessionManager(getApplicationContext());
+        if (session.isLoggedIn()) {
+            logged_user_sec.setVisibility(View.VISIBLE);
+            String userJson = session.getLoginData();
+            try {
+                JSONObject response = new JSONObject(userJson);
+                JSONObject user = new JSONObject(response.getString("user"));
+                Log.i(TAG, user.toString());
+                String name = user.getString("name");
+                user_name.setText("Hi, "+name+"\nAs-salamu alaykum");
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }else{
+            logged_user_sec.setVisibility(View.GONE);
+        }
     }
 
     private void countTotalScore(){
