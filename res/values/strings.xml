@@ -272,10 +272,12 @@
     <string name="btn_link_to_login">Back to Sign-in</string>
     <string name="btn_sign_out">Sign-out</string>
     <string name="btn_del_acc">Delete Account</string>
-    <string name="btn_publish_data">Sync Data</string>
+    <string name="btn_publish_data">Publish Data</string>
     <string name="text_delete_title">Are you sure ?</string>
     <string name="text_delete_desc">Do you really want to delete your account ?</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="change_pass">Change Password</string>
+    <string name="edit_profile_subttl">Update your profile data</string>
+    <string name="btn_update_profile">Update Profile</string>
 
 </resources>

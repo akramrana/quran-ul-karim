@@ -33,6 +33,7 @@ public class ChallengeDashboardActivity extends AppCompatActivity {
     private SessionManager session;
     TextView user_name;
     Button edit_profile,change_pass;
+    LinearLayout logged_user_sec;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +72,7 @@ public class ChallengeDashboardActivity extends AppCompatActivity {
 
         user_name = (TextView) findViewById(R.id.user_name);
 
-        LinearLayout logged_user_sec = (LinearLayout) findViewById(R.id.logged_user_sec);
+        logged_user_sec = (LinearLayout) findViewById(R.id.logged_user_sec);
         session = new SessionManager(getApplicationContext());
         if (session.isLoggedIn()) {
             logged_user_sec.setVisibility(View.VISIBLE);
@@ -81,7 +82,7 @@ public class ChallengeDashboardActivity extends AppCompatActivity {
                 JSONObject user = new JSONObject(response.getString("user"));
                 Log.i(TAG, user.toString());
                 String name = user.getString("name");
-                user_name.setText("Hi, "+name+"\nAs-salamu alaykum");
+                user_name.setText("Hi, "+name+"\nWelcome Back!");
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -89,6 +90,24 @@ public class ChallengeDashboardActivity extends AppCompatActivity {
         }else{
             logged_user_sec.setVisibility(View.GONE);
         }
+
+        Button btn_change_pass = (Button) findViewById(R.id.btn_change_pass);
+        btn_change_pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), ChangePasswordActivity.class);
+                startActivity(i);
+            }
+        });
+
+        Button btn_edit_profile = (Button) findViewById(R.id.btn_edit_profile);
+        btn_edit_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), EditProfileActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     private void countTotalScore(){
@@ -169,5 +188,21 @@ public class ChallengeDashboardActivity extends AppCompatActivity {
         countTotalScore();
         countWrongTotal();
         countTotal();
+        if (session.isLoggedIn()) {
+            logged_user_sec.setVisibility(View.VISIBLE);
+            String userJson = session.getLoginData();
+            try {
+                JSONObject response = new JSONObject(userJson);
+                JSONObject user = new JSONObject(response.getString("user"));
+                Log.i(TAG, user.toString());
+                String name = user.getString("name");
+                user_name.setText("Hi, "+name+"\nWelcome Back!");
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }else{
+            logged_user_sec.setVisibility(View.GONE);
+        }
     }
 }

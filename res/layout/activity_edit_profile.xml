@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    tools:context=".EditProfileActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
                     android:paddingRight="5dp"
                     android:textColor="@color/colorWhiteDN"
                     android:textSize="18dp"
-                    android:text="@string/sign_up_ttl"/>
+                    android:text="@string/edit_profile"/>
 
                 <TextView
                     android:id="@+id/info_sub_title"
@@ -48,12 +48,11 @@
                     android:paddingRight="5dp"
                     android:textColor="@color/colorWhiteDN"
                     android:textSize="15sp"
-                    android:text="@string/sign_in_subttl"/>
+                    android:text="@string/edit_profile_subttl"/>
 
             </LinearLayout>
 
         </RelativeLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -76,30 +75,6 @@
                 android:textColor="@color/input_register"
                 android:textColorHint="@color/input_register_hint" />
 
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginBottom="10dp"
-                android:hint="E-mail"
-                android:inputType="textEmailAddress"
-                android:padding="10dp"
-                android:singleLine="true"
-                android:textColor="@color/input_register"
-                android:textColorHint="@color/input_register_hint" />
-
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="fill_parent"
-                android:layout_height="48dp"
-                android:layout_marginBottom="10dp"
-                android:hint="password"
-                android:inputType="textPassword"
-                android:padding="10dp"
-                android:singleLine="true"
-                android:textColor="@color/input_register"
-                android:textColorHint="@color/input_register_hint" />
-
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -116,27 +91,16 @@
                 android:layout_height="48dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/bg_spinner_dropdown"/>
-            <!-- Login Button -->
+
+
             <Button
-                android:id="@+id/btnRegister"
+                android:id="@+id/btnUpdateProfile"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dip"
                 android:background="@color/orange"
-                android:text="@string/btn_register"
+                android:text="@string/btn_update_profile"
                 android:textColor="@color/contrast_black" />
-
-            <!-- Link to Login Screen -->
-
-            <Button
-                android:id="@+id/btnLinkToLoginScreen"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dip"
-                android:background="@null"
-                android:text="@string/btn_link_to_login"
-                android:textAllCaps="false"
-                android:textSize="15sp" />
 
         </LinearLayout>
 
@@ -147,7 +111,6 @@
             android:layout_centerInParent="true"
             android:layout_gravity="center|center_horizontal"
             android:visibility="gone" />
-
 
     </RelativeLayout>
 

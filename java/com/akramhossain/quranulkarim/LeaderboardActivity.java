@@ -107,7 +107,10 @@ public class LeaderboardActivity extends AppCompatActivity {
             String userJson = session.getLoginData();
             try {
                 JSONObject response = new JSONObject(userJson);
+                JSONObject userInfo = new JSONObject(response.getString("user"));
                 user_id = response.getString("user_id");
+                user_name.setText(userInfo.getString("name"));
+                Picasso.get().load(userInfo.getString("flag")).into(user_flag);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -228,10 +231,10 @@ public class LeaderboardActivity extends AppCompatActivity {
             if(userInfo.length()==0){
 
             }else {
-                user_name.setText(userInfo.getString("name"));
+                //user_name.setText(userInfo.getString("name"));
                 user_rank.setText("Rank: " + userInfo.getString("rank"));
                 user_points.setText(userInfo.getString("right_ans") + " point(s)");
-                Picasso.get().load(userInfo.getString("flag")).into(user_flag);
+                //Picasso.get().load(userInfo.getString("flag")).into(user_flag);
             }
 
         } catch (JSONException e) {
