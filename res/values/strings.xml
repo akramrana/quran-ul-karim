@@ -279,5 +279,7 @@
     <string name="change_pass">Change Password</string>
     <string name="edit_profile_subttl">Update your profile data</string>
     <string name="btn_update_profile">Update Profile</string>
+    <string name="update_pass_subttl">Update your password</string>
+    <string name="btn_update_pass">Update Password</string>
 
 </resources>

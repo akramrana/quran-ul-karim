@@ -78,7 +78,7 @@ public class EditProfileActivity extends AppCompatActivity implements Spinner.On
                 e.printStackTrace();
             }
         }else{
-            Intent intent = new Intent(EditProfileActivity.this,ChangePasswordActivity.class);
+            Intent intent = new Intent(EditProfileActivity.this,ChallengeDashboardActivity.class);
             startActivity(intent);
             finish();
         }
