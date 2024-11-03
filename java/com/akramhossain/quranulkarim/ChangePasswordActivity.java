@@ -103,7 +103,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
                     boolean error = jObj.getBoolean("error");
                     if (!error) {
                         // User successfully stored in database
-                        session.setLoginData(response.toString());
                         Toast.makeText(getApplicationContext(), "Password successfully updated!", Toast.LENGTH_LONG).show();
                     } else {
                         // Error occurred in registration. Get the error
