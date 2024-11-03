@@ -28,6 +28,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import android.provider.Settings;
 
 
 public class RegisterActivity extends AppCompatActivity implements Spinner.OnItemSelectedListener{
@@ -188,6 +189,8 @@ public class RegisterActivity extends AppCompatActivity implements Spinner.OnIte
                 params.put("email", email);
                 params.put("password", password);
                 params.put("countryId",countryId);
+                String mId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+                params.put("device_id",mId);
                 return params;
             }
         };
