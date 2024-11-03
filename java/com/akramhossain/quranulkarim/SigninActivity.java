@@ -88,6 +88,15 @@ public class SigninActivity extends AppCompatActivity {
 
         });
 
+        Button btnLinkToForgotScreen = (Button) findViewById(R.id.btnLinkToForgotScreen);
+        btnLinkToForgotScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), ForgotPassActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 
     private void checkLogin(final String email, final String password) {

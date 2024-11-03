@@ -281,5 +281,8 @@
     <string name="btn_update_profile">Update Profile</string>
     <string name="update_pass_subttl">Update your password</string>
     <string name="btn_update_pass">Update Password</string>
+    <string name="forgot_pass_info">Forgot Password ? Click Here</string>
+    <string name="forgot_pass_ttl">Forgot Password</string>
+    <string name="forgot_pass_subttl">Reset your password</string>
 
 </resources>

@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SigninActivity">
+    tools:context=".ForgotPassActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
                     android:paddingRight="5dp"
                     android:textColor="@color/colorWhiteDN"
                     android:textSize="18dp"
-                    android:text="@string/sign_in_ttl"/>
+                    android:text="@string/forgot_pass_ttl"/>
 
                 <TextView
                     android:id="@+id/info_sub_title"
@@ -48,7 +48,7 @@
                     android:paddingRight="5dp"
                     android:textColor="@color/colorWhiteDN"
                     android:textSize="15sp"
-                    android:text="@string/sign_in_subttl"/>
+                    android:text="@string/forgot_pass_subttl"/>
 
             </LinearLayout>
 
@@ -73,16 +73,6 @@
                 android:padding="10dp"
                 android:singleLine="true"/>
 
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="fill_parent"
-                android:layout_height="48dp"
-                android:layout_marginBottom="10dp"
-                android:hint="password"
-                android:inputType="textPassword"
-                android:padding="10dp"
-                android:singleLine="true"/>
-
             <!-- Login Button -->
 
             <Button
@@ -92,31 +82,21 @@
                 android:layout_marginTop="20dip"
                 android:textColor="@color/contrast_black"
                 android:background="@color/orange"
-                android:text="@string/sign_in_ttl"
+                android:text="@string/btn_register"
                 android:textAllCaps="false"/>
 
             <!-- Link to Login Screen -->
 
             <Button
-                android:id="@+id/btnLinkToRegisterScreen"
-                android:layout_width="match_parent"
+                android:id="@+id/btnLinkToLoginScreen"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dip"
                 android:background="@null"
+                android:text="@string/btn_link_to_login"
                 android:textAllCaps="false"
-                android:textSize="15sp"
-                android:text="@string/register"/>
+                android:textSize="15sp" />
 
-
-            <Button
-                android:id="@+id/btnLinkToForgotScreen"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:textAllCaps="false"
-                android:textSize="15sp"
-                android:textColor="@color/blue"
-                android:text="@string/forgot_pass_info"/>
         </LinearLayout>
 
         <ProgressBar
