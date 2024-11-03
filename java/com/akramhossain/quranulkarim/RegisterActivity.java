@@ -189,8 +189,8 @@ public class RegisterActivity extends AppCompatActivity implements Spinner.OnIte
                 params.put("email", email);
                 params.put("password", password);
                 params.put("countryId",countryId);
-                String mId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-                params.put("device_id",mId);
+                //String mId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+                params.put("device_id","");
                 return params;
             }
         };

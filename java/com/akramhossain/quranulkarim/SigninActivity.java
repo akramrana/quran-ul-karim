@@ -138,8 +138,8 @@ public class SigninActivity extends AppCompatActivity {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("email", email);
                 params.put("password", password);
-                String mId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-                params.put("device_id",mId);
+                //String mId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+                params.put("device_id","");
                 return params;
             }
 
