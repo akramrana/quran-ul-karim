@@ -284,5 +284,7 @@
     <string name="forgot_pass_info">Forgot Password ? Click Here</string>
     <string name="forgot_pass_ttl">Forgot Password</string>
     <string name="forgot_pass_subttl">Reset your password</string>
+    <string name="reset_pass_info">Already have password reset code ? Click Here</string>
+    <string name="reset_pass">Reset Password</string>
 
 </resources>

@@ -28,84 +28,77 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class ForgotPassActivity extends AppCompatActivity {
+public class ResetPasswordActivity extends AppCompatActivity {
 
-    private static final String TAG = ForgotPassActivity.class.getSimpleName();
-    private EditText inputEmail;
+    private static final String TAG = ResetPasswordActivity.class.getSimpleName();
     ProgressBar progressBar;
     private SessionManager session;
-    public static String URL;
     public static String host = "http://quran.codxplore.com/";
+    public static String URL;
+    private Button btnUpdatePass;
+    private EditText reset_otp_code,new_password,confirm_new_password;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forgot_pass);
+        setContentView(R.layout.activity_reset_password);
+
+        reset_otp_code = (EditText) findViewById(R.id.reset_otp_code);
+        new_password = (EditText) findViewById(R.id.new_password);
+        confirm_new_password = (EditText) findViewById(R.id.confirm_new_password);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         session = new SessionManager(getApplicationContext());
         if (session.isLoggedIn()) {
             // User is already logged in. Take him to main activity
-            Intent intent = new Intent(ForgotPassActivity.this,LeaderboardActivity.class);
+            Intent intent = new Intent(ResetPasswordActivity.this,LeaderboardActivity.class);
             startActivity(intent);
             finish();
         }
 
-        Button btnLinkToLoginScreen = (Button) findViewById(R.id.btnLinkToLoginScreen);
-        btnLinkToLoginScreen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), SigninActivity.class);
-                startActivity(i);
-                finish();
-            }
-        });
+        URL = host+"api/v1/reset-password.php";
 
-        URL = host+"api/v1/forgot-password.php";
-
-        inputEmail = (EditText) findViewById(R.id.email);
-
-        Button btnSubmit = (Button) findViewById(R.id.btnSubmit);
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
+        btnUpdatePass = (Button) findViewById(R.id.btnUpdatePass);
+        btnUpdatePass.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                String email = inputEmail.getText().toString().trim();
-                if (!email.isEmpty()) {
-                    resetPass(email);
+                String reset_otp_code_str = reset_otp_code.getText().toString().trim();
+                String new_password_str = new_password.getText().toString().trim();
+                String confirm_new_password_str = confirm_new_password.getText().toString().trim();
+
+                if (!reset_otp_code_str.isEmpty() && !new_password_str.isEmpty() && !confirm_new_password_str.isEmpty()) {
+                    if(confirm_new_password_str.equals(new_password_str)) {
+                        resetPassword(reset_otp_code_str, new_password_str, confirm_new_password_str);
+                    }else{
+                        Toast.makeText(getApplicationContext(),"Confirm password did not match!", Toast.LENGTH_LONG).show();
+                    }
                 } else {
                     Toast.makeText(getApplicationContext(),"Please enter your details!", Toast.LENGTH_LONG).show();
                 }
             }
         });
-
-        Button btnLinkToResetPassScreen = (Button) findViewById(R.id.btnLinkToResetPassScreen);
-        btnLinkToResetPassScreen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), ResetPasswordActivity.class);
-                startActivity(i);
-                finish();
-            }
-        });
-
     }
 
-    private void resetPass(final String email) {
+    private void resetPassword(final String otp_code, String new_pass, String confirm_pass) {
         // Tag used to cancel the request
-        String tag_string_req = "req_reset_pass";
+        String tag_string_req = "req_reset_forgot_pass";
         progressBar.setVisibility(View.VISIBLE);
-        Log.d(TAG, "Reset Pass URL: " + URL.toString());
+        Log.d(TAG, "Reset Forgot Pass URL: " + URL.toString());
         StringRequest strReq = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d(TAG, "Reset Pass Response: " + response.toString());
+                Log.d(TAG, "Reset Forgot Pass Response: " + response.toString());
                 progressBar.setVisibility(View.GONE);
                 try {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("error");
                     if (!error) {
                         // User successfully stored in database
-                        inputEmail.setText("");
-                        Toast.makeText(getApplicationContext(), "A password reset code has been sent to your email. Please check your inbox/spam folder!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Password successfully updated!", Toast.LENGTH_LONG).show();
+                        new_password.setText("");
+                        reset_otp_code.setText("");
+                        confirm_new_password.setText("");
+
                     } else {
                         // Error occurred in registration. Get the error
                         // message
@@ -120,7 +113,7 @@ public class ForgotPassActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Reset Pass Error: " + error.getMessage());
+                Log.e(TAG, "Reset Forgot Pass Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_LONG).show();
                 progressBar.setVisibility(View.GONE);
             }
@@ -129,7 +122,9 @@ public class ForgotPassActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 // Posting params to register url
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("email", email);
+                params.put("reset_otp_code", otp_code);
+                params.put("new_pass",new_pass);
+                params.put("confirm_pass",confirm_pass);
                 return params;
             }
         };
