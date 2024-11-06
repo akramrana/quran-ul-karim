@@ -108,6 +108,20 @@ public class ChallengeDashboardActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        Button btn_sign_out = (Button) findViewById(R.id.btn_sign_out);
+        btn_sign_out.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                session.setLogin(false);
+                session.setLoginData("");
+
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(getIntent());
+                overridePendingTransition(0, 0);
+            }
+        });
     }
 
     private void countTotalScore(){
