@@ -109,6 +109,11 @@
                                 android:background="@null"
                                 android:textAllCaps="false"/>
 
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.5dp"
+                                android:background="@color/colorWhite"/>
+
                             <Button
                                 android:id="@+id/btn_edit_profile"
                                 android:layout_width="match_parent"
@@ -118,6 +123,11 @@
                                 android:textSize="15sp"
                                 android:text="@string/edit_profile"
                                 android:gravity="center|left"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.5dp"
+                                android:background="@color/colorWhite"/>
 
 
                             <Button
@@ -130,6 +140,11 @@
                                 android:text="@string/change_pass"
                                 android:gravity="center|left"/>
 
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.5dp"
+                                android:background="@color/colorWhite"/>
+
                             <Button
                                 android:id="@+id/btn_publish_data"
                                 android:layout_width="match_parent"
@@ -139,6 +154,11 @@
                                 android:gravity="center|left"
                                 android:background="@null"
                                 android:textAllCaps="false"/>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.5dp"
+                                android:background="@color/colorWhite"/>
 
                             <Button
                                 android:id="@+id/btn_del_acc"
@@ -608,7 +628,16 @@
                 </LinearLayout>
 
             </LinearLayout>
+
         </ScrollView>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center|center_horizontal"
+            android:visibility="gone" />
 
     </RelativeLayout>
 
