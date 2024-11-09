@@ -1,28 +1,25 @@
 package com.akramhossain.quranulkarim;
 
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
+import java.util.TimeZone;
 
-import android.app.AlertDialog;
-import android.content.ContentValues;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
 import android.preference.PreferenceManager;
-import android.text.Html;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -40,24 +37,18 @@ import android.widget.Toast;
 import com.akramhossain.quranulkarim.adapter.PopularRecyclerViewAdapter;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
-import com.akramhossain.quranulkarim.listener.RecyclerTouchListener;
 import com.akramhossain.quranulkarim.model.Sura;
-import com.akramhossain.quranulkarim.notification.NotificationHelper;
 import com.akramhossain.quranulkarim.task.BannerJsonFromUrlTask;
-import com.akramhossain.quranulkarim.task.CmsJsonFromUrlTask;
 import com.akramhossain.quranulkarim.util.ConnectionDetector;
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.NetworkPolicy;
+import com.akramhossain.quranulkarim.util.PrayTime;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -106,6 +97,16 @@ public class MainActivity extends AppCompatActivity {
     public static String URL;
 
     ImageView img;
+
+    boolean gps_enabled=false;
+    boolean network_enabled=false;
+    int calcMethod = 4;
+    int asrJuristicMethod = 1;
+    TextView ftime,stime,ztime,atime,mtime,itime;
+    double selectedLatitude = -1;
+    double selectedlongitude = -1;
+    LinearLayout night_recite_section;
+    LinearLayout friday_section;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -260,76 +261,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        // prepared arraylist and passed it to the Adapter class
-        //mAdapter = new GridviewAdapter(this, listText, listImage);
-
-        // Set custom adapter to gridview
-        //gridView = (GridView) findViewById(R.id.gridView1);
-        //gridView.setAdapter(mAdapter);
-
-//		gridView.setOnItemClickListener(new OnItemClickListener() {
-//			public void onItemClick(AdapterView<?> arg0, View arg1,
-//					int position, long arg3) {
-//				// Toast.makeText(getActivity(),
-//				// mAdapter.getItem(position),Toast.LENGTH_SHORT).show();
-//				// System.out.println(position);
-//				switch (position) {
-//					case 0:
-//						Intent i = new Intent(getApplicationContext(),
-//								SuraListV2Activity.class);
-//						startActivity(i);
-//						break;
-//					case 1:
-//						Intent b = new Intent(getApplicationContext(),
-//								BookmarkActivity.class);
-//						startActivity(b);
-//						break;
-//					case 2:
-//						Intent s = new Intent(getApplicationContext(),
-//								SearchActivity.class);
-//						startActivity(s);
-//						break;
-//					case 3:
-//						Intent q = new Intent(getApplicationContext(),
-//								QuickLinksActivity.class);
-//						startActivity(q);
-//						break;
-//					case 4:
-//						Intent d = new Intent(getApplicationContext(),
-//                                DictionaryActivity.class);
-//						startActivity(d);
-//						break;
-//					case 5:
-//						Intent a = new Intent(getApplicationContext(),
-//								AboutActivity.class);
-//						startActivity(a);
-//						break;
-//					default:
-//						break;
-//				}
-//			}
-//		});
-
-        /*mDBHelper = new DatabaseHelper(this);
-
-        try {
-            mDBHelper.updateDataBase();
-        } catch (IOException mIOException) {
-            throw new Error("UnableToUpdateDatabase");
-        }
-
-        try {
-            mDb = mDBHelper.getWritableDatabase();
-        } catch (SQLException mSQLException) {
-            throw mSQLException;
-        }*/
-
-
-        //NotificationHelper.scheduleRepeatingRTCNotification(getApplicationContext(), "22", "10");
-        //NotificationHelper.enableBootReceiver(getApplicationContext());
-
-        //dbhelper = new DatabaseHelper(getApplicationContext());
         dbhelper = DatabaseHelper.getInstance(getApplicationContext());
 
         start_from_last.setOnClickListener(new View.OnClickListener() {
@@ -367,35 +298,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        btnPrayerTime = (Button) findViewById(R.id.btnPrayerTime);
-//        btnPrayerTime.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                Intent i = new Intent(getApplicationContext(),PrayerTimesActivity.class);
-//                startActivity(i);
-//            }
-//        });
         //popular searches
         popularSearchView = (RecyclerView) findViewById(R.id.popularSearchView);
         LinearLayoutManager rLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         popularSearchView.setLayoutManager(rLinearLayoutManager);
         setPopularSearchViewAdapter();
-        /*popularSearchView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), popularSearchView, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                Sura vd = popularSearches.get(position);
-                //Toast.makeText(getApplicationContext(), vd.getVideo_id() + " is selected!", Toast.LENGTH_SHORT).show();
-                Intent in = new Intent(getApplicationContext(), SuraDetailsActivity.class);
-                in.putExtra("sura_id", vd.getSurah_id());
-                in.putExtra("sura_name", vd.getName_english());
-                in.putExtra("sura_name_arabic", vd.getName_arabic());
-                startActivityForResult(in, 100);
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-
-            }
-        }));*/
 
         cd = new ConnectionDetector(getApplicationContext());
         isInternetPresent = cd.isConnectingToInternet();
@@ -639,15 +546,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        Date c = Calendar.getInstance().getTime();
-        String dayWeekText = new SimpleDateFormat("EEEE", Locale.getDefault()).format(c);
-        Log.d("day name",dayWeekText);
-        LinearLayout friday_section = (LinearLayout) findViewById(R.id.friday_section);
-        if(dayWeekText.equals("Friday")){
-            friday_section.setVisibility(View.VISIBLE);
-        }else{
-            friday_section.setVisibility(View.GONE);
-        }
+        //
+        friday_section = (LinearLayout) findViewById(R.id.friday_section);
         //
         TextView night_ttl_bn = (TextView) findViewById(R.id.night_ttl_bn);
         night_ttl_bn.setTypeface(font);
@@ -657,19 +557,9 @@ public class MainActivity extends AppCompatActivity {
 
         TextView night_subttl_10_verse_bn = (TextView) findViewById(R.id.night_subttl_10_verse_bn);
         night_subttl_10_verse_bn.setTypeface(font);
-
-        LinearLayout night_recite_section = (LinearLayout) findViewById(R.id.night_recite_section);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            LocalTime currentTime = LocalTime.now();
-            LocalTime nightTimeStart = LocalTime.of(20, 0); // 8 PM
-            LocalTime nightTimeEnd = LocalTime.of(4, 0); // 4 AM
-            if (currentTime.isAfter(nightTimeStart) || currentTime.isBefore(nightTimeEnd)) {
-                // It's night time
-                night_recite_section.setVisibility(View.VISIBLE);
-            }else{
-                night_recite_section.setVisibility(View.GONE);
-            }
-        }
+        //
+        night_recite_section = (LinearLayout) findViewById(R.id.night_recite_section);
+        //
         Button mulk_button = (Button) findViewById(R.id.mulk_button);
         mulk_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -704,8 +594,193 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //
+        ftime = (TextView) findViewById(R.id.ftime);
+        ztime = (TextView) findViewById(R.id.ztime);
+        atime = (TextView) findViewById(R.id.atime);
+        mtime = (TextView) findViewById(R.id.mtime);
+        itime = (TextView) findViewById(R.id.itime);
+        //
+        TimeZone tmzone = TimeZone.getDefault();
+        double rawOffet = tmzone.getRawOffset();
+        //double rawOffet = 19800000;
+        double rawOffetDiv = 1000;
+        double divBySec = 3600;
+        double hourDiff = (rawOffet/ rawOffetDiv)/divBySec;
+        System.out.println("Timezone: "+hourDiff);
+
+        LinearLayout prayer_times_section = (LinearLayout) findViewById(R.id.prayer_times_section);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            if (checkPermission()) {
+                LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
+                try{
+                    gps_enabled=lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+                }catch(Exception ex){
+                    Log.d(TAG,ex.getMessage());
+                }
+                //
+                try{
+                    network_enabled=lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+                }catch(Exception ex){
+                    Log.d(TAG,ex.getMessage());
+                }
+                //
+                Location networkLoacation = null, gpsLocation = null, location = null;
+                //
+                if(gps_enabled){
+                    gpsLocation = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                }
+                if(network_enabled){
+                    networkLoacation = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                }
+                //
+                if (gpsLocation != null && networkLoacation != null) {
+                    if (gpsLocation.getAccuracy() > networkLoacation.getAccuracy()) {
+                        location = networkLoacation;
+                    }else {
+                        location = gpsLocation;
+                    }
+                } else {
+                    if (gpsLocation != null) {
+                        location = gpsLocation;
+                    } else if (networkLoacation != null) {
+                        location = networkLoacation;
+                    }
+                }
+                if(location!= null) {
+                    double latitude = location.getLatitude();
+                    double longitude = location.getLongitude();
+                    double timezone = hourDiff;
+                    selectedLatitude = latitude;
+                    selectedlongitude = longitude;
+                    getPrayerTimes(latitude, longitude, timezone);
+                    //
+                    prayer_times_section.setVisibility(View.VISIBLE);
+                }else{
+                    prayer_times_section.setVisibility(View.GONE);
+                    nightlyRecitationWithoutPrayerTimes();
+                    fridayRecitationWithoutPrayerTimes();
+                }
+            }else{
+                prayer_times_section.setVisibility(View.GONE);
+                nightlyRecitationWithoutPrayerTimes();
+                fridayRecitationWithoutPrayerTimes();
+            }
+        }else{
+            prayer_times_section.setVisibility(View.GONE);
+            nightlyRecitationWithoutPrayerTimes();
+            fridayRecitationWithoutPrayerTimes();
+        }
+        //
         URL = host+"api/banner";
         getBannerFromInternet();
+    }
+
+    public void fridayRecitationWithoutPrayerTimes(){
+        Date c = Calendar.getInstance().getTime();
+        String dayWeekText = new SimpleDateFormat("EEEE", Locale.getDefault()).format(c);
+        Log.d("day name",dayWeekText);
+        if(dayWeekText.equals("Friday")){
+            friday_section.setVisibility(View.VISIBLE);
+        }else{
+            friday_section.setVisibility(View.GONE);
+        }
+    }
+
+    public void nightlyRecitationWithoutPrayerTimes(){
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            LocalTime currentTime = LocalTime.now();
+            LocalTime nightTimeStart = LocalTime.of(20, 0); // 8 PM
+            LocalTime nightTimeEnd = LocalTime.of(4, 0); // 4 AM
+            if (currentTime.isAfter(nightTimeStart) || currentTime.isBefore(nightTimeEnd)) {
+                // It's night time
+                night_recite_section.setVisibility(View.VISIBLE);
+            }else{
+                night_recite_section.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    public void getPrayerTimes(double latitude,double longitude,double timezone){
+        PrayTime prayers = new PrayTime();
+        prayers.setTimeFormat(prayers.Time12);
+        prayers.setCalcMethod(calcMethod);
+        prayers.setAsrJuristic(asrJuristicMethod);
+        prayers.setAdjustHighLats(prayers.AngleBased);
+        int[] offsets = {0, 0, 0, 0, 0, 0, 0}; // {Fajr,Sunrise,Dhuhr,Asr,Sunset,Maghrib,Isha}
+        prayers.tune(offsets);
+
+        Date now = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(now);
+
+        ArrayList<String> prayerTimes = prayers.getPrayerTimes(cal,latitude, longitude, timezone);
+        ArrayList<String> prayerNames = prayers.getTimeNames();
+
+        String magribTime = "";
+        String fajrTime = "";
+
+        for (int i = 0; i < prayerTimes.size(); i++) {
+            Log.d(TAG, prayerNames.get(i) + " - " + prayerTimes.get(i));
+            if(i==0){
+                ftime.setText(prayerTimes.get(i));
+                fajrTime = prayerTimes.get(i);
+            }
+            if(i==2){
+                ztime.setText(prayerTimes.get(i));
+            }
+            if(i==3){
+                atime.setText(prayerTimes.get(i));
+            }
+            if(i==4){
+                mtime.setText(prayerTimes.get(i));
+                magribTime = prayerTimes.get(i);
+            }
+            if(i==6){
+                itime.setText(prayerTimes.get(i));
+            }
+        }
+        Log.d("Magrib Time",magribTime);
+        Log.d("Fajr Time",fajrTime);
+
+        if(magribTime != null && !magribTime.isEmpty() && fajrTime !=null && !fajrTime.isEmpty()){
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
+                LocalTime magPrayerTime = LocalTime.parse(magribTime, formatter);
+                //
+                LocalTime fjrPrayerTime = LocalTime.parse(fajrTime, formatter);
+                //
+                LocalTime currentTime = LocalTime.now();
+
+                Log.d("Parsed Magrib Time",magPrayerTime.toString());
+                Log.d("Parsed Fajr Time",fjrPrayerTime.toString());
+                Log.d("Parsed Current Time",currentTime.toString());
+
+                if (currentTime.isAfter(magPrayerTime) || currentTime.isBefore(fjrPrayerTime)) {
+                    night_recite_section.setVisibility(View.VISIBLE);
+                }else{
+                    night_recite_section.setVisibility(View.GONE);
+                }
+                //
+                Date c = Calendar.getInstance().getTime();
+                String dayWeekText = new SimpleDateFormat("EEEE", Locale.getDefault()).format(c);
+                Log.d("day name",dayWeekText);
+                if(dayWeekText.equals("Friday")){
+                    if (currentTime.isAfter(magPrayerTime)) {
+                        friday_section.setVisibility(View.GONE);
+                    }else {
+                        friday_section.setVisibility(View.VISIBLE);
+                    }
+                }else{
+                    friday_section.setVisibility(View.GONE);
+                }
+            }else{
+                nightlyRecitationWithoutPrayerTimes();
+                fridayRecitationWithoutPrayerTimes();
+            }
+        }else{
+            nightlyRecitationWithoutPrayerTimes();
+            fridayRecitationWithoutPrayerTimes();
+        }
     }
 
     private void getPopularSearchFromLocalDb() {
@@ -861,6 +936,15 @@ public class MainActivity extends AppCompatActivity {
 
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+    }
+
+    private boolean checkPermission() {
+        int result = ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION);
+        if (result == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        } else {
+            return false;
         }
     }
 
