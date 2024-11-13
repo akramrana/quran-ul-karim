@@ -8,6 +8,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -35,9 +36,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.akramhossain.quranulkarim.ChallengeDashboardActivity;
 import com.akramhossain.quranulkarim.ConnectionDetector;
 import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.ShareVerseActivity;
+import com.akramhossain.quranulkarim.SuraDetailsActivity;
 import com.akramhossain.quranulkarim.TafsirActivity;
 import com.akramhossain.quranulkarim.WordMeaningActivity;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
@@ -490,6 +493,25 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             }
         });
 
+        rvHolder.report.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                String ayah_num = ayah.getAyah_num();
+                String surah_id = ayah.getSurah_id();
+                String ayah_index = ayah.getAyah_index();
+                String ayah_key = ayah.getAyah_key();
+                AlertDialog.Builder alert = new AlertDialog.Builder(c);
+                alert.setTitle(R.string.text_report_ttl);
+                alert.setMessage(R.string.text_report_wrong);
+                alert.setPositiveButton(R.string.text_yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        ((SuraDetailsActivity) activity).reportVerse(ayah_num,surah_id,ayah_index,ayah_key);
+                    }
+                });
+                alert.setNegativeButton(R.string.text_no, null);
+                alert.show();
+            }
+        });
+
     }
 
     @Override
@@ -596,6 +618,7 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         Button copyButton;
         TextView trans;
         WebView text_tajweed;
+        TextView report;
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
@@ -614,6 +637,7 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             tafsirs = (TextView) itemView.findViewById(R.id.tafsirs);
             trans = (TextView) itemView.findViewById(R.id.trans);
             text_tajweed = (WebView) itemView.findViewById(R.id.text_tajweed);
+            report = (TextView) itemView.findViewById(R.id.report);
             //
             String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
             String mp_arFz = mPrefs.getString("arFontSize", "30");

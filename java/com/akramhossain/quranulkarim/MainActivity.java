@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -745,9 +746,18 @@ public class MainActivity extends AppCompatActivity {
         if(magribTime != null && !magribTime.isEmpty() && fajrTime !=null && !fajrTime.isEmpty()){
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
-                LocalTime magPrayerTime = LocalTime.parse(magribTime, formatter);
+                LocalTime magPrayerTime = null, fjrPrayerTime = null;
+                try {
+                    magPrayerTime = LocalTime.parse(magribTime.toUpperCase(), formatter);
+                }catch (DateTimeParseException e) {
+                    System.out.println("Error parsing time: " + e.getMessage());
+                }
                 //
-                LocalTime fjrPrayerTime = LocalTime.parse(fajrTime, formatter);
+                try {
+                    fjrPrayerTime = LocalTime.parse(fajrTime.toUpperCase(), formatter);
+                }catch (DateTimeParseException e) {
+                    System.out.println("Error parsing time: " + e.getMessage());
+                }
                 //
                 LocalTime currentTime = LocalTime.now();
 

@@ -31,6 +31,7 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.SearchView;
@@ -39,12 +40,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.adapter.SuraDetailsViewAdapter;
+import com.akramhossain.quranulkarim.app.AppController;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.Ayah;
 import com.akramhossain.quranulkarim.util.ConnectionDetector;
 import com.akramhossain.quranulkarim.task.GetJsonFromUrlTask;
 import com.akramhossain.quranulkarim.util.Utils;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,6 +58,8 @@ import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class SuraDetailsActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
@@ -109,6 +117,10 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
     String bodyBgColor = "#000000";
     String bodyTxtColor = "#ffffff";
     String appTheme = "";
+
+    ProgressBar progressBar;
+    public static String host = "http://quran.codxplore.com/";
+    public static String REPORT_URL;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,6 +134,8 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
             suraNameArabic = extras.getString("sura_name_arabic");
             suraLastPosition = extras.getString("position");
         }
+
+        REPORT_URL = host+"api/v1/report-verse.php";
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -165,6 +179,8 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         if(suraId.equals("1") || suraId.equals("9")){
             rl.setVisibility(View.GONE);
         }
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -1146,5 +1162,57 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         }, 500);
 
         return true;
+    }
+
+    public void reportVerse(String ayah_num,String surah_id,String ayah_index,String ayah_key){
+        String tag_string_req = "req_report_verse";
+        progressBar.setVisibility(View.VISIBLE);
+        Log.d(TAG, "Report Verse URL: " + REPORT_URL.toString());
+        StringRequest strReq = new StringRequest(Request.Method.POST, REPORT_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "Report Verse Response: " + response.toString());
+                progressBar.setVisibility(View.GONE);
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    boolean error = jObj.getBoolean("error");
+                    if (!error) {
+                        Toast.makeText(getApplicationContext(), "Report successfully saved", Toast.LENGTH_LONG).show();
+
+                    } else {
+                        // Error occurred in registration. Get the error
+                        // message
+                        String errorMsg = jObj.getString("error_msg");
+                        Toast.makeText(getApplicationContext(),errorMsg, Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Report Verse Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.GONE);
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to register url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("ayah_num",ayah_num);
+                params.put("surah_id",surah_id);
+                params.put("ayah_index",ayah_index);
+                params.put("ayah_key",ayah_key);
+                params.put("report_for","V");
+                Log.e(TAG, "Post param: " + params.toString());
+                return params;
+            }
+        };
+        strReq.setShouldCache(false);
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 }
