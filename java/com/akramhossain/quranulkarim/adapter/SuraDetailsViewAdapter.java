@@ -499,16 +499,24 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 String surah_id = ayah.getSurah_id();
                 String ayah_index = ayah.getAyah_index();
                 String ayah_key = ayah.getAyah_key();
-                AlertDialog.Builder alert = new AlertDialog.Builder(c);
-                alert.setTitle(R.string.text_report_ttl);
-                alert.setMessage(R.string.text_report_wrong);
-                alert.setPositiveButton(R.string.text_yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        ((SuraDetailsActivity) activity).reportVerse(ayah_num,surah_id,ayah_index,ayah_key);
-                    }
-                });
-                alert.setNegativeButton(R.string.text_no, null);
-                alert.show();
+                if (isInternetPresent) {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(c);
+                    alert.setTitle(R.string.text_report_ttl);
+                    alert.setMessage(R.string.text_report_wrong);
+                    alert.setPositiveButton(R.string.text_yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            ((SuraDetailsActivity) activity).reportVerse(ayah_num, surah_id, ayah_index, ayah_key);
+                        }
+                    });
+                    alert.setNegativeButton(R.string.text_no, null);
+                    alert.show();
+                }else{
+                    AlertDialog.Builder alert = new AlertDialog.Builder(c);
+                    alert.setTitle(R.string.text_warning);
+                    alert.setMessage(R.string.text_enable_internet);
+                    alert.setPositiveButton(R.string.text_ok, null);
+                    alert.show();
+                }
             }
         });
 
