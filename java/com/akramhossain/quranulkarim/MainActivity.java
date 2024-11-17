@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -35,15 +36,20 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.akramhossain.quranulkarim.adapter.HadithBookViewAdapter;
 import com.akramhossain.quranulkarim.adapter.PopularRecyclerViewAdapter;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
+import com.akramhossain.quranulkarim.listener.RecyclerTouchListener;
+import com.akramhossain.quranulkarim.model.HadithBook;
 import com.akramhossain.quranulkarim.model.Sura;
 import com.akramhossain.quranulkarim.task.BannerJsonFromUrlTask;
+import com.akramhossain.quranulkarim.task.JsonFromUrlTask;
 import com.akramhossain.quranulkarim.util.ConnectionDetector;
 import com.akramhossain.quranulkarim.util.PrayTime;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -108,6 +114,13 @@ public class MainActivity extends AppCompatActivity {
     double selectedlongitude = -1;
     LinearLayout night_recite_section;
     LinearLayout friday_section;
+
+    private RecyclerView hbRecyclerview;
+    LinearLayoutManager hbLayoutManager;
+    private ArrayList<HadithBook> hadithBook;
+    public HadithBookViewAdapter hbRvAdapter;
+    public static String HB_URL;
+    public static String hb_host = "http://quran.codxplore.com/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -674,6 +687,57 @@ public class MainActivity extends AppCompatActivity {
         //
         URL = host+"api/banner";
         getBannerFromInternet();
+        //
+        hbRecyclerview = (RecyclerView) findViewById(R.id.hadith_book_list);
+        hbLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false);
+        hbRecyclerview.setLayoutManager(hbLayoutManager);
+        //
+        HB_URL = hb_host+"api/v1/book-list.php";
+        setHbRecyclerViewAdapter();
+        String IS_HADITH_BOOK_JSON_DATA_STORED = mPrefs.getString("IS_HADITH_BOOK_JSON_DATA_STORED", "0");
+        if(IS_HADITH_BOOK_JSON_DATA_STORED.equals("1")){
+            String HADITH_BOOK_JSON_DATA = mPrefs.getString("HADITH_BOOK_JSON_DATA", "{}");
+            Log.i(TAG, HADITH_BOOK_JSON_DATA);
+            parseHadithJsonResponse(HADITH_BOOK_JSON_DATA);
+        }else {
+            getHbDataFromInternet();
+        }
+        hbRecyclerview.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), hbRecyclerview, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                HadithBook hb = hadithBook.get(position);
+                Intent in = new Intent(getApplicationContext(),HadithChapterActivity.class);
+                in.putExtra("book_id", hb.getBook_id());
+                in.putExtra("name_en", hb.getName_english());
+                in.putExtra("name_ar", hb.getName_arabic());
+                in.putExtra("name_bn", hb.getName_bangla());
+                startActivity(in);
+            }
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
+    }
+
+    private void setHbRecyclerViewAdapter() {
+        hadithBook = new ArrayList<HadithBook>();
+        hbRvAdapter = new HadithBookViewAdapter(MainActivity.this, hadithBook, this);
+        hbRecyclerview.setAdapter(hbRvAdapter);
+    }
+
+    private void getHbDataFromInternet() {
+        Log.i(TAG, URL);
+        if (isInternetPresent) {
+            new JsonFromUrlTask(this, HB_URL, TAG, "");
+        }
+        else{
+            AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+            alert.setTitle(R.string.text_warning);
+            alert.setMessage(R.string.text_enable_internet);
+            alert.setPositiveButton(R.string.text_ok,null);
+            alert.show();
+        }
     }
 
     public void fridayRecitationWithoutPrayerTimes(){
@@ -745,7 +809,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(magribTime != null && !magribTime.isEmpty() && fajrTime !=null && !fajrTime.isEmpty()){
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a", Locale.US);
                 LocalTime magPrayerTime = null, fjrPrayerTime = null;
                 try {
                     magPrayerTime = LocalTime.parse(magribTime.toUpperCase(), formatter);
@@ -943,6 +1007,29 @@ public class MainActivity extends AppCompatActivity {
                         .into(img);
                 img.setVisibility(View.VISIBLE);
             }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void parseHadithJsonResponse(String result){
+        try {
+            JSONObject response = new JSONObject(result);
+            JSONArray jArray = new JSONArray(response.getString("data"));
+
+            for (int i = 0; i < jArray.length(); i++) {
+                JSONObject jObject = jArray.getJSONObject(i);
+                //Log.i(TAG, jObject.toString());
+                HadithBook hb = new HadithBook();
+                hb.setBook_id(jObject.getString("id"));
+                hb.setName_english(jObject.getString("name_en"));
+                hb.setName_arabic(jObject.getString("name_ar"));
+                hb.setName_bangla(jObject.getString("name_bn"));
+                hadithBook.add(hb);
+            }
+
+            rvAdapter.notifyDataSetChanged();
 
         } catch (JSONException e) {
             e.printStackTrace();

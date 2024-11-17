@@ -216,6 +216,7 @@
                                 android:textSize="15sp"
                                 android:gravity="center|left"
                                 android:background="@null"
+                                android:textColor="@color/transColor"
                                 android:textAllCaps="false"/>
 
                             <View

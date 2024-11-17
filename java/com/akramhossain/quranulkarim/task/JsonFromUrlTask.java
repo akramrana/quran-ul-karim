@@ -16,6 +16,7 @@ import com.akramhossain.quranulkarim.HadithChapterActivity;
 import com.akramhossain.quranulkarim.HadithListActivity;
 import com.akramhossain.quranulkarim.HadithSearchActivity;
 import com.akramhossain.quranulkarim.LeaderboardActivity;
+import com.akramhossain.quranulkarim.MainActivity;
 import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.TagActivity;
 import com.akramhossain.quranulkarim.app.AppController;
@@ -54,8 +55,14 @@ public class JsonFromUrlTask {
                 Log.d(TAG, "Api Response: " + response.toString());
                 progressBar.setVisibility(View.GONE);
                 try {
-                    if(TAG.equals("HadithBookActivity")) {
-                        ((HadithBookActivity) activity).parseJsonResponse(response);
+                    if(TAG.equals("HadithBookActivity") || TAG.equals("MainActivity")) {
+                        if(TAG.equals("HadithBookActivity")) {
+                            ((HadithBookActivity) activity).parseJsonResponse(response);
+                        }
+                        if(TAG.equals("MainActivity")) {
+                            ((MainActivity) activity).parseHadithJsonResponse(response);
+                        }
+                        //
                         SharedPreferences.Editor editor = mPrefs.edit();
                         editor.putString("HADITH_BOOK_JSON_DATA", response.toString());
                         editor.putString("IS_HADITH_BOOK_JSON_DATA_STORED", "1");
