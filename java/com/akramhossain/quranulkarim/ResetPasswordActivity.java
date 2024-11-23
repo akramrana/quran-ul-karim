@@ -37,6 +37,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
     public static String URL;
     private Button btnUpdatePass;
     private EditText reset_otp_code,new_password,confirm_new_password;
+    private Button btnLinkToLoginScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,16 @@ public class ResetPasswordActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(),"Please enter your details!", Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+
+        btnLinkToLoginScreen = (Button) findViewById(R.id.btnLinkToLoginScreen);
+        btnLinkToLoginScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), SigninActivity.class);
+                startActivity(i);
+                finish();
             }
         });
     }

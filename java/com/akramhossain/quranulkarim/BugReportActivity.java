@@ -74,11 +74,18 @@ public class BugReportActivity extends AppCompatActivity {
     Boolean isInternetPresent = false;
 
     public static String host = "http://websites.codxplore.com/islamicvideo/";
+    Spinner feedbackSpinner;
+    public static int position = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bug_report);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            position = extras.getInt("position");
+        }
 
         cd = new ConnectionDetector(getApplicationContext());
         isInternetPresent = cd.isConnectingToInternet();
@@ -98,6 +105,11 @@ public class BugReportActivity extends AppCompatActivity {
 
         ButtonSendFeedback = (Button) findViewById(R.id.ButtonSendFeedback);
 
+        feedbackSpinner = (Spinner) findViewById(R.id.SpinnerFeedbackType);
+        Log.d("Bug Type",String.valueOf(position));
+        if(position==3) {
+            feedbackSpinner.setSelection(3);
+        }
         ButtonSendFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,7 +130,6 @@ public class BugReportActivity extends AppCompatActivity {
                 EditText nameField = (EditText) findViewById(R.id.EditTextName);
                 EditText emailField = (EditText) findViewById(R.id.EditTextEmail);
                 EditText feedbackField = (EditText) findViewById(R.id.EditTextFeedbackBody);
-                Spinner feedbackSpinner = (Spinner) findViewById(R.id.SpinnerFeedbackType);
                 CheckBox responseCheckbox = (CheckBox) findViewById(R.id.CheckBoxResponse);
 
 

@@ -289,5 +289,6 @@
     <string name="report_wrong_translation"><u>Anything wrong ? Click to Report</u></string>
     <string name="text_report_wrong">Do you really want to report this verse ?</string>
     <string name="text_report_ttl">Report Verse</string>
+    <string name="report_issue">Report an issue?</string>
 
 </resources>

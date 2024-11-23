@@ -153,6 +153,16 @@ public class WordAnswerActivity extends AppCompatActivity {
         point_button = (Button) findViewById(R.id.point_button);
 
         countTotalPoint();
+
+        Button reportAnIssue = (Button) findViewById(R.id.reportAnIssue);
+        reportAnIssue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), BugReportActivity.class);
+                i.putExtra("position", 3);
+                startActivity(i);
+            }
+        });
     }
 
     private void countTotalPoint(){
