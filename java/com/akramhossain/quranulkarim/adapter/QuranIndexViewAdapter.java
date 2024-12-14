@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.model.QuranIndex;
+import com.akramhossain.quranulkarim.util.Utils;
 
 import org.w3c.dom.Text;
 
@@ -31,7 +32,7 @@ public class QuranIndexViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         this.c = c;
         this.quranIndex = quranIndex;
         this.activity = activity;
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        mPrefs = c.getSharedPreferences(Utils.PREF_NAME, 0);
         font = Typeface.createFromAsset(c.getAssets(), "fonts/Siyamrupali.ttf");
         fontUthmani = Typeface.createFromAsset(c.getAssets(),"fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf");
         fontAlmajeed = Typeface.createFromAsset(c.getAssets(),"fonts/AlMajeedQuranicFont_shiped.ttf");

@@ -19,6 +19,7 @@ import com.akramhossain.quranulkarim.adapter.HadithBookViewAdapter;
 import com.akramhossain.quranulkarim.listener.RecyclerTouchListener;
 import com.akramhossain.quranulkarim.model.HadithBook;
 import com.akramhossain.quranulkarim.task.JsonFromUrlTask;
+import com.akramhossain.quranulkarim.util.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -73,7 +74,7 @@ public class HadithBookActivity extends AppCompatActivity {
         cd = new ConnectionDetector(getApplicationContext());
         isInternetPresent = cd.isConnectingToInternet();
         //FETCH DATA FROM REMOTE SERVER
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mPrefs = getApplicationContext().getSharedPreferences(Utils.PREF_NAME, 0);
         String IS_HADITH_BOOK_JSON_DATA_STORED = mPrefs.getString("IS_HADITH_BOOK_JSON_DATA_STORED", "0");
         if(IS_HADITH_BOOK_JSON_DATA_STORED.equals("1")){
             String HADITH_BOOK_JSON_DATA = mPrefs.getString("HADITH_BOOK_JSON_DATA", "{}");

@@ -85,7 +85,7 @@ public class SearchTermViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         cd = new ConnectionDetector(c);
         isInternetPresent = cd.isConnectingToInternet();
         //db = DatabaseHelper.getInstance(c).getWritableDatabase();
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        mPrefs = c.getSharedPreferences(Utils.PREF_NAME, 0);
     }
 
     @Override

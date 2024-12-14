@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.util.ConnectionDetector;
+import com.akramhossain.quranulkarim.util.Utils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -78,7 +79,7 @@ public class WordAnswerActivity extends AppCompatActivity {
 
         dbhelper = DatabaseHelper.getInstance(getApplicationContext());
 
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mPrefs = getApplicationContext().getSharedPreferences(Utils.PREF_NAME, 0);
 
         String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
         String mp_arFz = mPrefs.getString("arFontSize", "30");

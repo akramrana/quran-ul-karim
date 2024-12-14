@@ -17,6 +17,7 @@ import com.akramhossain.quranulkarim.adapter.TagViewAdapter;
 import com.akramhossain.quranulkarim.listener.RecyclerTouchListener;
 import com.akramhossain.quranulkarim.model.Tag;
 import com.akramhossain.quranulkarim.task.JsonFromUrlTask;
+import com.akramhossain.quranulkarim.util.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,7 +44,7 @@ public class TagActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tag);
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mPrefs = getApplicationContext().getSharedPreferences(Utils.PREF_NAME, 0);
 
         recyclerview = (RecyclerView) findViewById(R.id.dua_tags);
         mLayoutManager = new LinearLayoutManager(this);

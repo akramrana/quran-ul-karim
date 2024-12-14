@@ -83,7 +83,7 @@ public class JuzHizbRubViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         this.activity = activity;
         cd = new ConnectionDetector(c);
         isInternetPresent = cd.isConnectingToInternet();
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        mPrefs = c.getSharedPreferences(Utils.PREF_NAME, 0);
     }
 
     @Override

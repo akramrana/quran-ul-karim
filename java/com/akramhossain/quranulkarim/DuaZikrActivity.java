@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.akramhossain.quranulkarim.adapter.DuaZikrViewAdapter;
 import com.akramhossain.quranulkarim.model.DuaZikr;
 import com.akramhossain.quranulkarim.task.JsonFromUrlTask;
+import com.akramhossain.quranulkarim.util.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -66,7 +67,7 @@ public class DuaZikrActivity extends AppCompatActivity {
         cd = new ConnectionDetector(getApplicationContext());
         isInternetPresent = cd.isConnectingToInternet();
 
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mPrefs = getApplicationContext().getSharedPreferences(Utils.PREF_NAME, 0);;
         String IS_DUA_ZIKR_JSON_DATA_STORED = mPrefs.getString("IS_DUA_ZIKR_JSON_DATA_STORED_"+tagEn, "0");
         if(IS_DUA_ZIKR_JSON_DATA_STORED.equals("1")){
             String DUA_ZIKR_JSON_DATA = mPrefs.getString("DUA_ZIKR_JSON_DATA_"+tagEn, "{}");

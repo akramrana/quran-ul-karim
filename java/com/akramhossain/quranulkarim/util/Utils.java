@@ -5,6 +5,9 @@ import android.view.View;
 
 public class Utils {
 
+    public static final String PREF_NAME = "quran_ul_karim_pref";
+    public static final int PRIVATE_MODE = 0;
+
     public Utils() {
     }
 

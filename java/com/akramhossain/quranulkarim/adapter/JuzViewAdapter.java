@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.model.Juz;
+import com.akramhossain.quranulkarim.util.Utils;
+
 import java.util.ArrayList;
 
 public class JuzViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
@@ -29,7 +31,7 @@ public class JuzViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         this.c = c;
         this.juzs = juzs;
         this.activity = activity;
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        mPrefs = c.getSharedPreferences(Utils.PREF_NAME, 0);
         fontUthmani = Typeface.createFromAsset(c.getAssets(),"fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf");
         fontAlmajeed = Typeface.createFromAsset(c.getAssets(),"fonts/AlMajeedQuranicFont_shiped.ttf");
         fontAlQalam = Typeface.createFromAsset(c.getAssets(),"fonts/AlQalamQuran.ttf");

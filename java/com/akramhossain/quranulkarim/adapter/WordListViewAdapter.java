@@ -73,7 +73,7 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         fontSaleem = Typeface.createFromAsset(c.getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
         fontTahaNaskh = Typeface.createFromAsset(c.getAssets(),"fonts/KFGQPC_Uthman_Taha_Naskh_Regular.ttf");
         fontKitab = Typeface.createFromAsset(c.getAssets(),"fonts/kitab.ttf");
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        mPrefs = c.getSharedPreferences(Utils.PREF_NAME, 0);
     }
 
     @Override

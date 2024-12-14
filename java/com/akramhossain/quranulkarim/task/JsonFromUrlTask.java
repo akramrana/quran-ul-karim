@@ -20,6 +20,7 @@ import com.akramhossain.quranulkarim.MainActivity;
 import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.TagActivity;
 import com.akramhossain.quranulkarim.app.AppController;
+import com.akramhossain.quranulkarim.util.Utils;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -41,7 +42,7 @@ public class JsonFromUrlTask {
         this.TAG = TAG;
         progressBar = (ProgressBar) activity.findViewById(R.id.progressBar);
         getData();
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        mPrefs = activity.getApplicationContext().getSharedPreferences(Utils.PREF_NAME, 0);
         this.sharedPref = sharedPref;
     }
 

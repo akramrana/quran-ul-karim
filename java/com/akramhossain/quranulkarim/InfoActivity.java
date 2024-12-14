@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
+import com.akramhossain.quranulkarim.util.Utils;
 
 public class InfoActivity extends AppCompatActivity {
 
@@ -39,7 +40,7 @@ public class InfoActivity extends AppCompatActivity {
             suraNameArabic = extras.getString("sura_name_arabic");
         }
 
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mPrefs = getApplicationContext().getSharedPreferences(Utils.PREF_NAME, 0);
         font = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/Siyamrupali.ttf");
 
         setContentView(R.layout.activity_info);

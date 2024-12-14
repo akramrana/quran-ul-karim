@@ -17,6 +17,8 @@ import com.akramhossain.quranulkarim.PopUpClass;
 import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.SuraDetailsActivity;
 import com.akramhossain.quranulkarim.model.Sura;
+import com.akramhossain.quranulkarim.util.Utils;
+
 import java.util.ArrayList;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,7 +35,7 @@ public class PopularRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
         this.c = c;
         this.suras = suras;
         this.activity = activity;
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        mPrefs = c.getSharedPreferences(Utils.PREF_NAME, 0);
         fontUthmani = Typeface.createFromAsset(c.getAssets(),"fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf");
         fontAlmajeed = Typeface.createFromAsset(c.getAssets(),"fonts/AlMajeedQuranicFont_shiped.ttf");
         fontAlQalam = Typeface.createFromAsset(c.getAssets(),"fonts/AlQalamQuran.ttf");

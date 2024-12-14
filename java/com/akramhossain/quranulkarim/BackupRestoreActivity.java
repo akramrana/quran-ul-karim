@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
+import com.akramhossain.quranulkarim.util.Utils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -41,6 +42,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import static com.akramhossain.quranulkarim.util.Utils.PRIVATE_MODE;
 
 public class BackupRestoreActivity extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_CODE = 100;
@@ -58,7 +61,7 @@ public class BackupRestoreActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_backup_restore);
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mPrefs = getApplicationContext().getSharedPreferences(Utils.PREF_NAME, 0);
         String lastBackupTimeInPm = mPrefs.getString("LAST_BACKUP_TIME", "");
         lastBckpTime = (TextView) findViewById(R.id.lastBckpTime);
         lastBckpTime.setText("Last backup: "+lastBackupTimeInPm);

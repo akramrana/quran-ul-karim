@@ -20,6 +20,7 @@ import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.TagActivity;
 import com.akramhossain.quranulkarim.model.DuaZikr;
 import com.akramhossain.quranulkarim.model.Tag;
+import com.akramhossain.quranulkarim.util.Utils;
 
 import java.util.ArrayList;
 
@@ -38,7 +39,7 @@ public class DuaZikrViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         this.c = c;
         this.duaZikr = duaZikr;
         this.activity = activity;
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        mPrefs = c.getSharedPreferences(Utils.PREF_NAME, 0);
         font = Typeface.createFromAsset(c.getAssets(), "fonts/Siyamrupali.ttf");
         fontUthmani = Typeface.createFromAsset(c.getAssets(),"fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf");
         fontAlmajeed = Typeface.createFromAsset(c.getAssets(),"fonts/AlMajeedQuranicFont_shiped.ttf");

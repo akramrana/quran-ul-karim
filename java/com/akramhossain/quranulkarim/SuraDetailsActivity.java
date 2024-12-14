@@ -137,7 +137,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
 
         REPORT_URL = host+"api/v1/report-verse.php";
 
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mPrefs = getApplicationContext().getSharedPreferences(Utils.PREF_NAME, 0);
 
         font = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/Siyamrupali.ttf");
         fontUthmani = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf");
@@ -925,7 +925,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
     private void getDataFromLocalDb() {
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
         searchTxt = searchTxt.replaceAll("\'","");
-        String sql = "";
+        String sql;
         if(searchTxt.equals("")) {
             sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans,ayah_indo.text as indo_pak,ut.text_uthmani_tajweed,u.text_uthmani " +
                     "FROM ayah " +

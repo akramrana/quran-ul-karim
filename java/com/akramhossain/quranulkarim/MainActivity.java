@@ -47,6 +47,7 @@ import com.akramhossain.quranulkarim.task.BannerJsonFromUrlTask;
 import com.akramhossain.quranulkarim.task.JsonFromUrlTask;
 import com.akramhossain.quranulkarim.util.ConnectionDetector;
 import com.akramhossain.quranulkarim.util.PrayTime;
+import com.akramhossain.quranulkarim.util.Utils;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -132,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mPrefs = getApplicationContext().getSharedPreferences(Utils.PREF_NAME, 0);
         appTheme = mPrefs.getString(NIGHT_MODE, "-1");
 
 //        SwitchCompat switchCompat = findViewById(R.id.switchCompat);

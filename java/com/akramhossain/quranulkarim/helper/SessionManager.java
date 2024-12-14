@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
 
+import com.akramhossain.quranulkarim.util.Utils;
+
 public class SessionManager {
     // LogCat tag
     private static String TAG = SessionManager.class.getSimpleName();
@@ -16,13 +18,13 @@ public class SessionManager {
     // Shared pref mode
     int PRIVATE_MODE = 0;
     // Shared preferences file name
-    private static final String PREF_NAME = "QuranulkarimLogin";
+    //private static final String PREF_NAME = "quranulkarim_pref";
     private static final String KEY_IS_LOGGEDIN = "isLoggedIn";
     private static final String LOGIN_DATA = "loginData";
 
     public SessionManager(Context context) {
         this._context = context;
-        pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+        pref = _context.getSharedPreferences(Utils.PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
     }
 

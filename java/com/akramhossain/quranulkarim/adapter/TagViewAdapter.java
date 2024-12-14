@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.model.Tag;
+import com.akramhossain.quranulkarim.util.Utils;
 
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ public class TagViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         this.c = c;
         this.tag = tag;
         this.activity = activity;
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        mPrefs = c.getSharedPreferences(Utils.PREF_NAME, 0);
         font = Typeface.createFromAsset(c.getAssets(), "fonts/Siyamrupali.ttf");
     }
 

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.akramhossain.quranulkarim.R;
 import java.util.ArrayList;
 import com.akramhossain.quranulkarim.model.Hizb;
+import com.akramhossain.quranulkarim.util.Utils;
 
 public class HizbViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
@@ -30,7 +31,7 @@ public class HizbViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.c = c;
         this.hizbs = hizbs;
         this.activity = activity;
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        mPrefs = c.getSharedPreferences(Utils.PREF_NAME, 0);
         fontUthmani = Typeface.createFromAsset(c.getAssets(),"fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf");
         fontAlmajeed = Typeface.createFromAsset(c.getAssets(),"fonts/AlMajeedQuranicFont_shiped.ttf");
         fontAlQalam = Typeface.createFromAsset(c.getAssets(),"fonts/AlQalamQuran.ttf");
