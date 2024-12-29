@@ -25,11 +25,13 @@ public class HadithBookViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     private Activity activity;
     Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem, fontTahaNaskh, fontKitab;
     SharedPreferences mPrefs;
+    String screen;
 
-    public HadithBookViewAdapter(Context c, ArrayList<HadithBook> hadithBook, Activity activity) {
+    public HadithBookViewAdapter(Context c, ArrayList<HadithBook> hadithBook, Activity activity, String screen) {
         this.c = c;
         this.hadithBook = hadithBook;
         this.activity = activity;
+        this.screen = screen;
         mPrefs = c.getSharedPreferences(Utils.PREF_NAME, 0);
         font = Typeface.createFromAsset(c.getAssets(), "fonts/Siyamrupali.ttf");
         fontUthmani = Typeface.createFromAsset(c.getAssets(),"fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf");
@@ -43,7 +45,12 @@ public class HadithBookViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(c).inflate(R.layout.hadith_book_list,parent,false);
+        View v;
+        if(screen.equals("MA")){
+            v = LayoutInflater.from(c).inflate(R.layout.hadith_book_list_home, parent, false);
+        }else {
+            v = LayoutInflater.from(c).inflate(R.layout.hadith_book_list, parent, false);
+        }
         RecyclerViewHolder rvHolder = new RecyclerViewHolder(v);
         rvHolder.name_bangla.setTypeface(font);
         return rvHolder;

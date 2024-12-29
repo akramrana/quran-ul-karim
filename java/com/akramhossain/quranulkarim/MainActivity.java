@@ -723,7 +723,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setHbRecyclerViewAdapter() {
         hadithBook = new ArrayList<HadithBook>();
-        hbRvAdapter = new HadithBookViewAdapter(MainActivity.this, hadithBook, this);
+        hbRvAdapter = new HadithBookViewAdapter(MainActivity.this, hadithBook, this, "MA");
         hbRecyclerview.setAdapter(hbRvAdapter);
     }
 

@@ -87,7 +87,7 @@ public class HadithBookActivity extends AppCompatActivity {
 
     private void setRecyclerViewAdapter() {
         hadithBook = new ArrayList<HadithBook>();
-        rvAdapter = new HadithBookViewAdapter(HadithBookActivity.this, hadithBook, this);
+        rvAdapter = new HadithBookViewAdapter(HadithBookActivity.this, hadithBook, this, "HBA");
         recyclerview.setAdapter(rvAdapter);
     }
 
