@@ -863,7 +863,7 @@ public class MainActivity extends AppCompatActivity {
         String sql = "SELECT sura.*,bangla_name.name_bangla " +
                 "FROM sura " +
                 "left join bangla_name on sura.surah_id = bangla_name.surah_id " +
-                "WHERE sura.surah_id IN(18,36,55,56,67,71,73,78,85,112) " +
+                "WHERE sura.surah_id IN(17,18,19,36,49,51,55,56,67,71,72,73,77,78,85) " +
                 "order by RANDOM() " +
                 "LIMIT 10";
         Log.i(TAG, sql);
