@@ -1030,7 +1030,7 @@ public class MainActivity extends AppCompatActivity {
                 hadithBook.add(hb);
             }
 
-            rvAdapter.notifyDataSetChanged();
+            hbRvAdapter.notifyDataSetChanged();
 
         } catch (JSONException e) {
             e.printStackTrace();
