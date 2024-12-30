@@ -472,31 +472,51 @@ public class TafsirActivity extends AppCompatActivity {
             fontFamily = "fontKitab";
         }
         if(!mp_arFz.equals("")){
-            tv_ayah_arabic.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
-            fontSize = mp_arFz+"px";
+            try {
+                tv_ayah_arabic.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
+                fontSize = mp_arFz + "px";
+            }catch (NumberFormatException e) {
+                Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
+            }
         }
         if(!mp_enFz.equals("")){
-            tv_ayah_english.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+            try {
+                tv_ayah_english.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+            }catch (NumberFormatException e) {
+                Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
+            }
         }
         if(!mp_bnFz.equals("")){
-            tv_ayah_bangla.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
-            trans.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+            try {
+                tv_ayah_bangla.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+                trans.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+            }catch (NumberFormatException e) {
+                Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
+            }
         }
 
         String mp_enFzTs = mPrefs.getString("enFontSizeTafsir", "15");
         if(!mp_enFzTs.equals("")){
-            jalalayn_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFzTs));
+            try {
+                jalalayn_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFzTs));
+            }catch (NumberFormatException e) {
+                Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
+            }
         }
 
         String mp_bnFzTs = mPrefs.getString("bnFontSizeTafsir", "15");
         if(!mp_bnFzTs.equals("")){
-            bayaan_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
-            zakaria_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
-            ibn_kathir_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
+            try {
+                bayaan_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
+                zakaria_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
+                ibn_kathir_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
 
-            tafhim_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
-            fathul_mazid_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
-            fezilalil_quran_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
+                tafhim_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
+                fathul_mazid_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
+                fezilalil_quran_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
+            }catch (NumberFormatException e) {
+                Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
+            }
         }
 
         String is_ibn_kasir = mPrefs.getString(is_tafsir_ibn_kasir_selected, "2");

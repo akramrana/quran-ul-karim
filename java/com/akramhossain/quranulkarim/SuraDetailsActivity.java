@@ -728,8 +728,12 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         }
 
         if(!mp_arFz.equals("")){
-            ayah_txt.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
-            fontSize = mp_arFz+"px";
+            try {
+                ayah_txt.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
+                fontSize = mp_arFz + "px";
+            }catch (NumberFormatException e) {
+                Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
+            }
         }
 
         translation_btn = (Button) findViewById(R.id.translation_btn);

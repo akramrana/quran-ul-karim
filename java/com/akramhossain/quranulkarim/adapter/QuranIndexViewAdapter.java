@@ -86,7 +86,7 @@ public class QuranIndexViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             //verses = (TextView) itemView.findViewById(R.id.verses);
             ayah_num = (TextView) itemView.findViewById(R.id.ayah_count);
 
-            if (!mp_bnFz.equals("")) {
+            if (!mp_bnFz.equals("") && mp_bnFz != null) {
                 bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
             }
             if (!mp_enFz.equals("")) {

@@ -105,7 +105,11 @@ public class WordAnswerActivity extends AppCompatActivity {
             quiz_arabic.setTypeface(fontKitab);
         }
         if (!mp_arFz.equals("")) {
-            quiz_arabic.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
+            try {
+                quiz_arabic.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
+            }catch (NumberFormatException e) {
+                Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
+            }
         }
 
         getDataFromLocalDb();

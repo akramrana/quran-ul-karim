@@ -98,7 +98,11 @@ public class InfoActivity extends AppCompatActivity {
 
                 String mp_bnFz = mPrefs.getString("bnFontSize", "15");
                 if(!mp_bnFz.equals("")){
-                    info_content_tafhim.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+                    try {
+                        info_content_tafhim.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+                    }catch (NumberFormatException e) {
+                        Log.e("SuraDetailsViewAdapter", "Error parsing number: ", e);
+                    }
                 }
             }
         }
@@ -130,7 +134,11 @@ public class InfoActivity extends AppCompatActivity {
                 info_content.setTypeface(font);
                 String mp_bnFz = mPrefs.getString("bnFontSize", "15");
                 if(!mp_bnFz.equals("")){
-                    info_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+                    try {
+                        info_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+                    }catch (NumberFormatException e) {
+                        Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
+                    }
                 }
             }
         }

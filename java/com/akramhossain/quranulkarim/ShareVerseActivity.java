@@ -195,15 +195,27 @@ public class ShareVerseActivity extends AppCompatActivity {
             fontFamily = "fontKitab";
         }
         if(!mp_arFz.equals("")){
-            tv_ayah_arabic.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
-            fontSize = mp_arFz+"px";
+            try {
+                tv_ayah_arabic.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
+                fontSize = mp_arFz + "px";
+            }catch (NumberFormatException e) {
+                Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
+            }
         }
         if(!mp_enFz.equals("")){
-            tv_ayah_english.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+            try {
+                tv_ayah_english.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+            }catch (NumberFormatException e) {
+                Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
+            }
         }
         if(!mp_bnFz.equals("")){
-            tv_ayah_bangla.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
-            tv_trans.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+            try {
+                tv_ayah_bangla.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+                tv_trans.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+            }catch (NumberFormatException e) {
+                Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
+            }
         }
         appTheme = mPrefs.getString("APP_NIGHT_MODE", "-1");
         if (appTheme.equals("1")) {
