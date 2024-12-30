@@ -307,6 +307,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 } catch (Exception e) {
                     Log.i("Last Position Select", e.getMessage());
+                    throw new RuntimeException("SQL Query: " + sql, e);
                 } finally {
                     db.close();
                 }
@@ -886,6 +887,7 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
+            throw new RuntimeException("SQL Query: " + sql, e);
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
@@ -948,6 +950,7 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             Log.i("Last Position Select", e.getMessage());
+            throw new RuntimeException("SQL Query: " + sql, e);
         } finally {
             if (cursor != null && !cursor.isClosed()){
                 cursor.close();
@@ -979,6 +982,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }catch (Exception e) {
             Log.i("Report SQL", e.getMessage());
+            throw new RuntimeException("SQL Query: " + sql, e);
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();

@@ -245,6 +245,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                                 }
                             }catch (Exception e){
                                 Log.i("On Scroll Count Check", e.getMessage());
+                                throw new RuntimeException("SQL Query: " + sql, e);
                             }finally {
                                 if (countHistory != null && !countHistory.isClosed()){
                                     countHistory.close();
@@ -292,6 +293,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
             }
         }catch (Exception e){
             Log.i("Quick Link Check", e.getMessage());
+            throw new RuntimeException("SQL Query: " + checksql, e);
         }finally {
             if (cursor1 != null && !cursor1.isClosed()){
                 cursor1.close();
@@ -360,6 +362,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                             }
                         }catch (Exception e){
                             Log.i(TAG, e.getMessage());
+                            throw new RuntimeException("SQL Query: " + sql, e);
                         }finally {
                             if (cursor1 != null && !cursor1.isClosed()){
                                 cursor1.close();
@@ -368,6 +371,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                     }
                 }catch (Exception e){
                     Log.i(TAG, e.getMessage());
+                    throw new RuntimeException("SQL Query: " + sql, e);
                 }
                 finally {
                     if (cursor != null && !cursor.isClosed()){
@@ -442,6 +446,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                             }
                         }catch (Exception e){
                             Log.i(TAG, e.getMessage());
+                            throw new RuntimeException("SQL Query: " + checksql, e);
                         }
                         finally {
                             if (cursor1 != null && !cursor1.isClosed()){
@@ -451,6 +456,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                     }
                 }catch (Exception e){
                     Log.i(TAG, e.getMessage());
+                    throw new RuntimeException("SQL Query: " + sql, e);
                 }
                 finally {
                     if (cursor != null && !cursor.isClosed()){
@@ -494,6 +500,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                     }
                 }catch (Exception e){
                     Log.i(TAG, e.getMessage());
+                    throw new RuntimeException("SQL Query: " + sql, e);
                 }
                 finally {
                     if (cursor != null && !cursor.isClosed()){
@@ -894,6 +901,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
             }
         }catch (Exception e){
             Log.i(TAG, e.getMessage());
+            throw new RuntimeException("SQL Query: " + sql, e);
         }
         finally {
             if (cursor != null && !cursor.isClosed()){
@@ -984,6 +992,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
             }
         }catch (Exception e){
             Log.i(TAG, e.getMessage());
+            throw new RuntimeException("SQL Query: " + sql, e);
         }
         finally {
             if (cursor != null && !cursor.isClosed()){

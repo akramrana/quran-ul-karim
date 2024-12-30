@@ -333,6 +333,7 @@ public class JuzHizbRubViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                         }
                     } catch (Exception e) {
                         Log.i("Bookmark Button", e.getMessage());
+                        throw new RuntimeException("SQL Query: " + sql, e);
                     } finally {
                         if (cursor != null && !cursor.isClosed()) {
                             cursor.close();
@@ -359,6 +360,7 @@ public class JuzHizbRubViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             }
         } catch (Exception e) {
             Log.i("Bookmark Check", e.getMessage());
+            throw new RuntimeException("SQL Query: " + checksql, e);
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();

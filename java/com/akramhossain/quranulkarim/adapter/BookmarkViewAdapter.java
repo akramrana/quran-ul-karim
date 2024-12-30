@@ -321,6 +321,7 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         }
                     } catch (Exception e) {
                         Log.i("bookmark Check", e.getMessage());
+                        throw new RuntimeException("SQL Query: " + sql, e);
                     } finally {
                         if (cursor != null && !cursor.isClosed()) {
                             cursor.close();

@@ -178,6 +178,7 @@ public class WordAnswerActivity extends AppCompatActivity {
             }
         }catch (Exception e) {
             Log.i(TAG, e.getMessage());
+            throw new RuntimeException("SQL Query: " + sql, e);
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
@@ -293,6 +294,7 @@ public class WordAnswerActivity extends AppCompatActivity {
                     }
                 } catch (Exception e) {
                     Log.i(TAG, e.getMessage());
+                    throw new RuntimeException("SQL Query: " + sql, e);
                 } finally {
                     if (cursor != null && !cursor.isClosed()) {
                         cursor.close();
@@ -386,6 +388,7 @@ public class WordAnswerActivity extends AppCompatActivity {
                     }
                 }catch (Exception e){
                     Log.i(TAG, e.getMessage());
+                    throw new RuntimeException("SQL Query: " + choiceSql, e);
                 }
                 finally {
                     if (cursor2 != null && !cursor2.isClosed()){
@@ -397,6 +400,7 @@ public class WordAnswerActivity extends AppCompatActivity {
             }
         }catch (Exception e){
             Log.i(TAG, e.getMessage());
+            throw new RuntimeException("SQL Query: " + sql, e);
         }finally {
             if (cursor != null && !cursor.isClosed()){
                 cursor.close();

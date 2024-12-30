@@ -346,6 +346,7 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                         }
                     } catch (Exception e) {
                         Log.i("Bookmark Button", e.getMessage());
+                        throw new RuntimeException("SQL Query: " + sql, e);
                     } finally {
                         if (cursor != null && !cursor.isClosed()) {
                             cursor.close();
@@ -372,6 +373,7 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             }
         } catch (Exception e) {
             Log.i("Bookmark Check", e.getMessage());
+            throw new RuntimeException("SQL Query: " + checksql, e);
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();

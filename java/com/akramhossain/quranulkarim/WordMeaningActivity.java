@@ -189,6 +189,7 @@ public class WordMeaningActivity extends AppCompatActivity {
             }
         }catch (Exception e){
             Log.i(TAG, e.getMessage());
+            throw new RuntimeException("SQL Query: " + sql, e);
         }
         finally {
             if (cursor != null && !cursor.isClosed()){

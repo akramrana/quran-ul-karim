@@ -128,6 +128,7 @@ public class ShareVerseActivity extends AppCompatActivity {
             }
         }catch (Exception e){
             Log.i("Share Verse", e.getMessage());
+            throw new RuntimeException("SQL Query: " + suraSql, e);
         }finally {
             if (cursor != null && !cursor.isClosed()){
                 cursor.close();

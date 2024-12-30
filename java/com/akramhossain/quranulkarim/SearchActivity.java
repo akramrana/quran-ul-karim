@@ -158,6 +158,7 @@ public class SearchActivity extends AppCompatActivity {
                         }
                     } catch (Exception e) {
                         Log.i(TAG, e.getMessage());
+                        throw new RuntimeException("SQL Query: " + sql, e);
                     } finally {
                         if (cursor != null && !cursor.isClosed()) {
                             cursor.close();
@@ -197,6 +198,7 @@ public class SearchActivity extends AppCompatActivity {
                                     }
                                 } catch (Exception e) {
                                     Log.i("On Scroll Count Check", e.getMessage());
+                                    throw new RuntimeException("SQL Query: " + sql, e);
                                 } finally {
                                     if (countHistory != null && !countHistory.isClosed()) {
                                         countHistory.close();
@@ -234,6 +236,7 @@ public class SearchActivity extends AppCompatActivity {
                     }
                 }catch (Exception e){
                     Log.i(TAG, e.getMessage());
+                    throw new RuntimeException("SQL Query: " + sql, e);
                 }
                 finally {
                     if (cursor != null && !cursor.isClosed()){
@@ -339,6 +342,7 @@ public class SearchActivity extends AppCompatActivity {
             }
         }catch (Exception e){
             Log.i(TAG, e.getMessage());
+            throw new RuntimeException("SQL Query: " + sql, e);
         }
         finally {
             if (cursor != null && !cursor.isClosed()){
@@ -364,6 +368,7 @@ public class SearchActivity extends AppCompatActivity {
             }
         }catch (Exception e){
             Log.i("Search", e.getMessage());
+            throw new RuntimeException("SQL Query: " + sql, e);
         }finally {
             if (cursor != null && !cursor.isClosed()){
                 cursor.close();

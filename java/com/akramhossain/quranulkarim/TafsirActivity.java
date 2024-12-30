@@ -374,6 +374,7 @@ public class TafsirActivity extends AppCompatActivity {
                     }
                 }catch (Exception e){
                     Log.i(TAG, e.getMessage());
+                    throw new RuntimeException("SQL Query: " + sql, e);
                 }
                 finally {
                     if (cursor != null && !cursor.isClosed()){
@@ -426,6 +427,7 @@ public class TafsirActivity extends AppCompatActivity {
                     }
                 }catch (Exception e){
                     Log.i(TAG, e.getMessage());
+                    throw new RuntimeException("SQL Query: " + sql, e);
                 }
                 finally {
                     if (cursor != null && !cursor.isClosed()){
@@ -653,6 +655,7 @@ public class TafsirActivity extends AppCompatActivity {
             }
         }catch (Exception e){
             Log.i("Tafsir", e.getMessage());
+            throw new RuntimeException("SQL Query: " + bayaanSql, e);
         }finally {
             if (cursor != null && !cursor.isClosed()){
                 cursor.close();
@@ -679,6 +682,7 @@ public class TafsirActivity extends AppCompatActivity {
         }
         catch (Exception e){
             Log.i("Tafsir", e.getMessage());
+            throw new RuntimeException("SQL Query: " + sql, e);
         }finally {
             if (cursor != null && !cursor.isClosed()){
                 cursor.close();
@@ -705,6 +709,7 @@ public class TafsirActivity extends AppCompatActivity {
         }
         catch (Exception e){
             Log.i("Tafsir", e.getMessage());
+            throw new RuntimeException("SQL Query: " + sql, e);
         }finally {
             if (cursor != null && !cursor.isClosed()){
                 cursor.close();
@@ -733,6 +738,7 @@ public class TafsirActivity extends AppCompatActivity {
         }
         catch (Exception e){
             Log.i("Tafsir", e.getMessage());
+            throw new RuntimeException("SQL Query: " + sql, e);
         }finally {
             if (cursor != null && !cursor.isClosed()){
                 cursor.close();

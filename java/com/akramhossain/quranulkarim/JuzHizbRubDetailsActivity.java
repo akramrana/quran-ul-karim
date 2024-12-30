@@ -132,6 +132,7 @@ public class JuzHizbRubDetailsActivity extends AppCompatActivity {
                                 }
                             }catch (Exception e){
                                 Log.i("On Scroll Count Check", e.getMessage());
+                                throw new RuntimeException("SQL Query: " + sql, e);
                             }finally {
                                 if (countHistory != null && !countHistory.isClosed()){
                                     countHistory.close();
@@ -207,6 +208,7 @@ public class JuzHizbRubDetailsActivity extends AppCompatActivity {
                     }
                 }catch (Exception e){
                     Log.i(TAG, e.getMessage());
+                    throw new RuntimeException("SQL Query: " + sql, e);
                 }
                 finally {
                     if (cursor != null && !cursor.isClosed()){
@@ -278,6 +280,7 @@ public class JuzHizbRubDetailsActivity extends AppCompatActivity {
                     }
                 }catch (Exception e){
                     Log.i(TAG, e.getMessage());
+                    throw new RuntimeException("SQL Query: " + sql, e);
                 }
                 finally {
                     if (cursor != null && !cursor.isClosed()){
@@ -300,14 +303,23 @@ public class JuzHizbRubDetailsActivity extends AppCompatActivity {
 
     private void getDataFromLocalDb() {
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-        String sql = String.format("SELECT ayah.*,sura.name_simple,sura.name_complex,sura.name_english,sura.name_arabic,transliteration.trans,ayah_indo.text as indo_pak,ut.text_uthmani_tajweed,u.text_uthmani \n" +
+        /*String sql = String.format("SELECT ayah.*,sura.name_simple,sura.name_complex,sura.name_english,sura.name_arabic,transliteration.trans,ayah_indo.text as indo_pak,ut.text_uthmani_tajweed,u.text_uthmani \n" +
                 "FROM ayah \n" +
                 "LEFT JOIN sura ON ayah.surah_id = sura.surah_id \n" +
                 "LEFT join transliteration ON ayah.ayah_num = transliteration.ayat_id and transliteration.sura_id = ayah.surah_id \n" +
                 "LEFT join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id " +
                 "LEFT JOIN uthmani_tajweed ut ON ayah.ayah_key = ut.verse_key " +
                 "LEFT JOIN uthmani u ON ayah.ayah_key = u.verse_key\n" +
-                "WHERE %s order by ayah_index ASC limit %d,%d", where_clause, offset, limit);
+                "WHERE %s order by ayah_index ASC limit %d,%d", where_clause, offset, limit);*/
+        String sql = "SELECT ayah.*, sura.name_simple, sura.name_complex, sura.name_english, sura.name_arabic, transliteration.trans, " +
+                "ayah_indo.text as indo_pak, ut.text_uthmani_tajweed, u.text_uthmani " +
+                "FROM ayah " +
+                "LEFT JOIN sura ON ayah.surah_id = sura.surah_id " +
+                "LEFT JOIN transliteration ON ayah.ayah_num = transliteration.ayat_id AND transliteration.sura_id = ayah.surah_id " +
+                "LEFT JOIN ayah_indo ON ayah.ayah_num = ayah_indo.ayah AND ayah_indo.sura = ayah.surah_id " +
+                "LEFT JOIN uthmani_tajweed ut ON ayah.ayah_key = ut.verse_key " +
+                "LEFT JOIN uthmani u ON ayah.ayah_key = u.verse_key " +
+                (where_clause.isEmpty() ? "" : "WHERE " + where_clause)+ " ORDER BY ayah_index ASC LIMIT " + offset + ", " + limit;
         Log.i(TAG, sql);
         Cursor cursor = db.rawQuery(sql, null);
         try {
@@ -342,6 +354,7 @@ public class JuzHizbRubDetailsActivity extends AppCompatActivity {
             }
         }catch (Exception e){
             Log.i(TAG, e.getMessage());
+            throw new RuntimeException("SQL Query: " + sql, e);
         }
         finally {
             if (cursor != null && !cursor.isClosed()){

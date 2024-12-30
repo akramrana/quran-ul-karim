@@ -104,6 +104,7 @@ public class InfoActivity extends AppCompatActivity {
         }
         catch (Exception e){
             Log.i("Info", e.getMessage());
+            throw new RuntimeException("SQL Query: " + sql, e);
         }finally {
             if (cursor != null && !cursor.isClosed()){
                 cursor.close();
@@ -135,6 +136,7 @@ public class InfoActivity extends AppCompatActivity {
         }
         catch (Exception e){
             Log.i("Info", e.getMessage());
+            throw new RuntimeException("SQL Query: " + sql, e);
         }finally {
             if (cursor != null && !cursor.isClosed()){
                 cursor.close();

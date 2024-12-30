@@ -88,6 +88,7 @@ public class DictionaryActivity extends AppCompatActivity implements SearchView.
                                 }
                             }catch (Exception e){
                                 Log.i("On Scroll Count Check", e.getMessage());
+                                throw new RuntimeException("SQL Query: " + sql, e);
                             }finally {
                                 if (countHistory != null && !countHistory.isClosed()){
                                     countHistory.close();
@@ -154,6 +155,7 @@ public class DictionaryActivity extends AppCompatActivity implements SearchView.
             }
         }catch (Exception e){
             Log.i(TAG, e.getMessage());
+            throw new RuntimeException("SQL Query: " + sql, e);
         }
         finally {
             if (cursor != null && !cursor.isClosed()){

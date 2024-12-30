@@ -794,6 +794,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
             }
         }catch (Exception e) {
             Log.i("Report SQL", e.getMessage());
+            throw new RuntimeException("SQL Query: " + sql, e);
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
@@ -829,6 +830,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
             }
         }catch (Exception e) {
             Log.i("Report SQL", e.getMessage());
+            throw new RuntimeException("SQL Query: " + sql, e);
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
