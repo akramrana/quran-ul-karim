@@ -574,15 +574,27 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             if(mp_arabicFontFamily.equals("Arabic Regular")){
                 text_tashkeel.setTypeface(fontKitab);
             }
-            if (!mp_arFz.equals("")) {
-                text_tashkeel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
+            if (!mp_arFz.equals("") && mp_arFz !=null) {
+                try {
+                    text_tashkeel.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
+                }catch (NumberFormatException e) {
+                    Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
+                }
             }
-            if (!mp_enFz.equals("")) {
-                content_en.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+            if (!mp_enFz.equals("") && mp_enFz !=null) {
+                try {
+                    content_en.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+                }catch (NumberFormatException e) {
+                    Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
+                }
             }
-            if (!mp_bnFz.equals("")) {
-                content_bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
-                trans.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+            if (!mp_bnFz.equals("") && mp_bnFz !=null) {
+                try {
+                    content_bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+                    trans.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+                }catch (NumberFormatException e) {
+                    Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
+                }
             }
             //
             String show_bn_pron = mPrefs.getString("show_bn_pron", "2");

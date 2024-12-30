@@ -380,15 +380,27 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             if(mp_arabicFontFamily.equals("Arabic Regular")){
                 word_arabic.setTypeface(fontKitab);
             }
-            if(!mp_arFz.equals("")){
-                word_arabic.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
+            if(!mp_arFz.equals("") && mp_arFz !=null ){
+                try {
+                    word_arabic.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
+                }catch (NumberFormatException e) {
+                    Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
+                }
             }
-            if(!mp_enFz.equals("")){
-                word_transliteration.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
-                word_translation.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+            if(!mp_enFz.equals("") && mp_enFz != null){
+                try {
+                    word_transliteration.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+                    word_translation.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+                }catch (NumberFormatException e) {
+                    Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
+                }
             }
-            if(!mp_bnFz.equals("")){
-                word_bangla.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+            if(!mp_bnFz.equals("") && mp_bnFz != null){
+                try {
+                    word_bangla.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+                }catch (NumberFormatException e) {
+                    Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
+                }
             }
             word_bangla.setTypeface(font);
         }

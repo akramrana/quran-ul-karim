@@ -104,7 +104,7 @@ public class WordAnswerActivity extends AppCompatActivity {
         if(mp_arabicFontFamily.equals("Arabic Regular")){
             quiz_arabic.setTypeface(fontKitab);
         }
-        if (!mp_arFz.equals("")) {
+        if (!mp_arFz.equals("") && mp_arFz !=null) {
             try {
                 quiz_arabic.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
             }catch (NumberFormatException e) {

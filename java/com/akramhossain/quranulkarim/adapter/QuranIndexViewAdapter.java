@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -87,10 +88,18 @@ public class QuranIndexViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             ayah_num = (TextView) itemView.findViewById(R.id.ayah_count);
 
             if (!mp_bnFz.equals("") && mp_bnFz != null) {
-                bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+                try {
+                    bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+                }catch (NumberFormatException e) {
+                    Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
+                }
             }
-            if (!mp_enFz.equals("")) {
-                en.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+            if (!mp_enFz.equals("") && mp_enFz != null) {
+                try {
+                    en.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+                }catch (NumberFormatException e) {
+                    Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
+                }
             }
         }
 

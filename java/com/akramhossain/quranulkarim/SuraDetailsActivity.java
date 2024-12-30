@@ -727,7 +727,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
             fontFamily = "fontKitab";
         }
 
-        if(!mp_arFz.equals("")){
+        if(!mp_arFz.equals("") && mp_arFz != null){
             try {
                 ayah_txt.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
                 fontSize = mp_arFz + "px";

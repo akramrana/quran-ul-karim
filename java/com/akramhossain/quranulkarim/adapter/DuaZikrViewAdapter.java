@@ -220,25 +220,37 @@ public class DuaZikrViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             String mp_bnFz = mPrefs.getString("bnFontSize", "15");
             String mp_arFz = mPrefs.getString("arFontSize", "30");
 
-            if (!mp_enFz.equals("")) {
-                tag_en.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
-                transliteration_en.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
-                translations_en.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
-                reference_en.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
-                when_to_en.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
-                //name_en.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+            if (!mp_enFz.equals("") && mp_enFz !=null) {
+                try {
+                    tag_en.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+                    transliteration_en.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+                    translations_en.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+                    reference_en.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+                    when_to_en.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+                    //name_en.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
+                }catch (NumberFormatException e) {
+                    Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
+                }
             }
-            if (!mp_bnFz.equals("")) {
-                tag_bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
-                transliteration_bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
-                translations_bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
-                reference_bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
-                when_to_bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
-                //name_bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+            if (!mp_bnFz.equals("") && mp_bnFz !=null) {
+                try {
+                    tag_bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+                    transliteration_bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+                    translations_bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+                    reference_bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+                    when_to_bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+                    //name_bn.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
+                }catch (NumberFormatException e) {
+                    Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
+                }
             }
 
-            if (!mp_arFz.equals("")) {
-                arabic.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
+            if (!mp_arFz.equals("") && mp_arFz !=null) {
+                try {
+                    arabic.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
+                }catch (NumberFormatException e) {
+                    Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
+                }
             }
 
             if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){

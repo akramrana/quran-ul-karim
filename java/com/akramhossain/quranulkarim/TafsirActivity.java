@@ -471,7 +471,7 @@ public class TafsirActivity extends AppCompatActivity {
             tv_ayah_arabic.setTypeface(fontKitab);
             fontFamily = "fontKitab";
         }
-        if(!mp_arFz.equals("")){
+        if(!mp_arFz.equals("") && mp_arFz !=null){
             try {
                 tv_ayah_arabic.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
                 fontSize = mp_arFz + "px";
@@ -479,14 +479,14 @@ public class TafsirActivity extends AppCompatActivity {
                 Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
             }
         }
-        if(!mp_enFz.equals("")){
+        if(!mp_enFz.equals("") && mp_enFz !=null){
             try {
                 tv_ayah_english.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
             }catch (NumberFormatException e) {
                 Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
             }
         }
-        if(!mp_bnFz.equals("")){
+        if(!mp_bnFz.equals("") && mp_bnFz !=null){
             try {
                 tv_ayah_bangla.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
                 trans.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
@@ -496,7 +496,7 @@ public class TafsirActivity extends AppCompatActivity {
         }
 
         String mp_enFzTs = mPrefs.getString("enFontSizeTafsir", "15");
-        if(!mp_enFzTs.equals("")){
+        if(!mp_enFzTs.equals("") && mp_enFzTs !=null){
             try {
                 jalalayn_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFzTs));
             }catch (NumberFormatException e) {
@@ -505,7 +505,7 @@ public class TafsirActivity extends AppCompatActivity {
         }
 
         String mp_bnFzTs = mPrefs.getString("bnFontSizeTafsir", "15");
-        if(!mp_bnFzTs.equals("")){
+        if(!mp_bnFzTs.equals("") && mp_bnFzTs !=null){
             try {
                 bayaan_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
                 zakaria_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
