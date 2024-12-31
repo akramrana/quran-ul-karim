@@ -75,12 +75,12 @@ public class ChallengeDashboardActivity extends AppCompatActivity {
         right_answer_count = (TextView) findViewById(R.id.right_answer_count);
         wrong_answer_score_count = (TextView) findViewById(R.id.wrong_answer_count);
 
+        txtPer = (TextView) findViewById(R.id.txtPer);
+        prog = (ProgressBar) findViewById(R.id.prog);
+
         countTotalScore();
         countWrongTotal();
         countTotal();
-
-        txtPer = (TextView) findViewById(R.id.txtPer);
-        prog = (ProgressBar) findViewById(R.id.prog);
 
         Button leader_button = (Button) findViewById(R.id.leader_button);
         leader_button.setOnClickListener(new View.OnClickListener() {
@@ -250,13 +250,18 @@ public class ChallengeDashboardActivity extends AppCompatActivity {
 
                 double pointsTotalD = pointsTotal;
                 double percentile = (rightAnsCount/pointsTotalD*100);
-                prog.setProgress((int) percentile,true);
 
+                if(!Double.isNaN(percentile)) {
+                    prog.setProgress((int) percentile, true);
+                    txtPer.setText(Math.round(percentile) + "%");
+                }
+                else{
+                    prog.setProgress(0, true);
+                    txtPer.setText("0%");
+                }
                 Log.d("pointsTotal",String.valueOf(pointsTotalD));
                 Log.d("rightAnsCount",String.valueOf(rightAnsCount));
                 Log.d("percentile",String.valueOf(percentile));
-
-                txtPer.setText(Math.round(percentile)+"%");
             }
         }catch (Exception e) {
             Log.i(TAG, e.getMessage());
