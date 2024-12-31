@@ -164,7 +164,7 @@ public class WordMeaningActivity extends AppCompatActivity {
 
     private void getDataFromLocalDb() {
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-        String sql = "SELECT words.*,(select translate_bn from bywords b where b._id =  words.word_id) as bangla " +
+        String sql = "SELECT words.*,(select translate_bn from bywords b where b._id =  words.word_id) as bangla,(select words_id from bywords b where b._id =  words.word_id) as words_id " +
                 "FROM words " +
                 "WHERE ayah_index = "+ayah_index+" order by word_id ASC";
         //Log.i(TAG, sql);
@@ -184,6 +184,7 @@ public class WordMeaningActivity extends AppCompatActivity {
                     word.setAyah_key(cursor.getString(cursor.getColumnIndexOrThrow("ayah_key")));
                     word.setPosition(cursor.getString(cursor.getColumnIndexOrThrow("position")));
                     word.setBangla(cursor.getString(cursor.getColumnIndexOrThrow("bangla")));
+                    word.setWords_id(cursor.getString(cursor.getColumnIndexOrThrow("words_id")));
                     words.add(word);
                 } while (cursor.moveToNext());
             }

@@ -116,7 +116,7 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                 String[] data = word.getAyah_key().split(":", 2);
                                 String sura = data[0];
                                 String ayat = data[1];
-                                String position = word.getPosition();
+                                String position = word.getWords_id();
                                 int slen = sura.length();
                                 int alen = ayat.length();
                                 int plen = position.length();
@@ -144,6 +144,7 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                 //
                                 String mPath = c.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) + "/";
                                 String fullPath = mPath + mp3name;
+                                Log.d("MP3 Url:", mp3Url);
                                 Log.d("File Path:", mPath);
                                 Log.d("Full File Path:", fullPath);
                                 File file = new File(fullPath);

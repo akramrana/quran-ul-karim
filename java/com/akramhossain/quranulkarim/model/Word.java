@@ -12,6 +12,7 @@ public class Word {
     private String ayah_key;
     private String position;
     private String bangla;
+    private String words_id;
 
     public String getCode_dec() {
         return code_dec;
@@ -99,5 +100,13 @@ public class Word {
 
     public void setBangla(String bangla) {
         this.bangla = bangla;
+    }
+
+    public String getWords_id() {
+        return words_id;
+    }
+
+    public void setWords_id(String words_id) {
+        this.words_id = words_id;
     }
 }

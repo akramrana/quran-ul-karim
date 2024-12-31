@@ -119,13 +119,13 @@ public class DictionaryActivity extends AppCompatActivity implements SearchView.
         String sql = "";
         searchTxt = searchTxt.replaceAll("\'","");
         if(searchTxt.equals("")) {
-             sql = "SELECT words.*, b.translate_bn as bangla " +
+             sql = "SELECT words.*, b.translate_bn as bangla,b.words_id " +
                      "FROM words " +
                      "inner join bywords b on words.word_id = b._id " +
                      //"group by arabic  " +
                      "order by word_id ASC limit " + offset + "," + limit;
         }else{
-             sql = "SELECT words.*, b.translate_bn as bangla " +
+             sql = "SELECT words.*, b.translate_bn as bangla,b.words_id " +
                      "FROM words " +
                      "inner join bywords b on words.word_id = b._id " +
                      "WHERE translation LIKE '%"+searchTxt+"%' OR transliteration LIKE '%"+searchTxt+"%' OR arabic LIKE '%"+searchTxt+"%' " +
@@ -150,6 +150,7 @@ public class DictionaryActivity extends AppCompatActivity implements SearchView.
                     word.setAyah_key(cursor.getString(cursor.getColumnIndexOrThrow("ayah_key")).toString());
                     word.setPosition(cursor.getString(cursor.getColumnIndexOrThrow("position")).toString());
                     word.setBangla(cursor.getString(cursor.getColumnIndexOrThrow("bangla")));
+                    word.setWords_id(cursor.getString(cursor.getColumnIndexOrThrow("words_id")));
                     words.add(word);
                 } while (cursor.moveToNext());
             }
