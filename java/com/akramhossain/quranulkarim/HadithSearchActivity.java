@@ -74,11 +74,13 @@ public class HadithSearchActivity extends AppCompatActivity {
             public void onClick(View view) {
                 search_term = hint.getText().toString();
                 int kitabNamePos = spinner.getSelectedItemPosition();
-                kitabId = itemIds.get(kitabNamePos);
-                if (search_term != null && !search_term.isEmpty()) {
-                    hadithLists.clear();
-                    SEARCH_URL = host+"/api/v1/app-search-hadith.php?q="+search_term+"&kitab_id="+kitabId+"&page=1&perPage=20";
-                    getDataSearchDataFromInternet();
+                if(!itemIds.isEmpty()) {
+                    kitabId = itemIds.get(kitabNamePos);
+                    if (search_term != null && !search_term.isEmpty()) {
+                        hadithLists.clear();
+                        SEARCH_URL = host + "/api/v1/app-search-hadith.php?q=" + search_term + "&kitab_id=" + kitabId + "&page=1&perPage=20";
+                        getDataSearchDataFromInternet();
+                    }
                 }
             }
         });
