@@ -939,8 +939,9 @@ public class MainActivity extends AppCompatActivity {
                 "LEFT JOIN sura ON last_position.sura_id = sura.surah_id " +
                 "LIMIT 1";
         Log.d("Last Position SQL", sql);
-        Cursor cursor = db.rawQuery(sql, null);
+        Cursor cursor = null;
         try {
+            cursor = db.rawQuery(sql, null);
             if (cursor.moveToFirst()) {
                 start_from_last.setVisibility(View.VISIBLE);
                 horizontal_line.setVisibility(View.VISIBLE);
