@@ -29,6 +29,9 @@
         android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".RamadanPlannerActivity"
+            android:exported="false" />
+        <activity
             android:name=".ResetPasswordActivity"
             android:exported="false" />
         <activity

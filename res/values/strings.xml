@@ -291,4 +291,8 @@
     <string name="text_report_ttl">Report Verse</string>
     <string name="report_issue">Report an issue?</string>
 
+    <string name="string_rmp_en">Ramadan Planner</string>
+    <string name="string_rmp_bn">রামাদ্বান প্ল্যানার</string>
+    <string name="string_rmp_subtitle">MAY THIS BE OUR BEST RAMADAN</string>
+
 </resources>

@@ -720,6 +720,18 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }));
+
+        TextView ramadan_planner_text_view_bn = (TextView) findViewById(R.id.ramadan_planner_text_view_bn);
+        ramadan_planner_text_view_bn.setTypeface(font);
+
+        LinearLayout ramadan_planner_sec = (LinearLayout) findViewById(R.id.ramadan_planner_sec);
+        ramadan_planner_sec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), RamadanPlannerActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     private void setHbRecyclerViewAdapter() {

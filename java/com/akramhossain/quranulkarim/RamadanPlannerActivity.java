@@ -1,0 +1,67 @@
+package com.akramhossain.quranulkarim;
+
+import android.content.SharedPreferences;
+import android.os.Bundle;
+
+import com.akramhossain.quranulkarim.adapter.RamadanPlannerViewAdapter;
+import com.akramhossain.quranulkarim.model.RamadanPlanner;
+
+import java.util.ArrayList;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+public class RamadanPlannerActivity extends AppCompatActivity {
+
+    private static final String TAG = RamadanPlannerActivity.class.getSimpleName();
+    private RecyclerView recyclerview;
+    GridLayoutManager mLayoutManager;
+
+    private ArrayList<RamadanPlanner> ramadanPlanner;
+    public RamadanPlannerViewAdapter rvAdapter;
+    SharedPreferences mPrefs;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ramadan_planner);
+
+        recyclerview = (RecyclerView) findViewById(R.id.planner_list);
+        mLayoutManager = new GridLayoutManager(this, 2);
+        recyclerview.setLayoutManager(mLayoutManager);
+        setRecyclerViewAdapter();
+        getData();
+    }
+
+    private void setRecyclerViewAdapter() {
+        ramadanPlanner = new ArrayList<RamadanPlanner>();
+        rvAdapter = new RamadanPlannerViewAdapter(RamadanPlannerActivity.this, ramadanPlanner, this);
+        recyclerview.setAdapter(rvAdapter);
+    }
+
+    private void getData() {
+        String[] nameBn = {
+                "১ রামাদান", "২ রামাদান", "৩ রামাদান", "৪ রামাদান", "৫ রামাদান",
+                "৬ রামাদান", "৭ রামাদান", "৮ রামাদান", "৯ রামাদান", "১০ রামাদান",
+                "১১ রামাদান", "১২ রামাদান", "১৩ রামাদান", "১৪ রামাদান", "১৫ রামাদান",
+                "১৬ রামাদান", "১৭ রামাদান", "১৮ রামাদান", "১৯ রামাদান", "২০ রামাদান",
+                "২১ রামাদান", "২২ রামাদান", "২৩ রামাদান", "২৪ রামাদান", "২৫ রামাদান",
+                "২৬ রামাদান", "২৭ রামাদান", "২৮ রামাদান", "২৯ রামাদান", "৩০ রামাদান"
+        };
+
+        for (int i = 1; i <= 30; i++) {
+            RamadanPlanner planner = new RamadanPlanner();
+            planner.setRamadan_planner_id(String.valueOf(i));
+            planner.setName_en(i + " Ramadan");
+            planner.setName_bn(nameBn[i - 1]);
+            ramadanPlanner.add(planner);
+        }
+        rvAdapter.notifyDataSetChanged();
+    }
+}
