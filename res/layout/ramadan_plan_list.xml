@@ -13,30 +13,60 @@
         android:padding="8dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/ramadan_planner_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"/>
-
-        <TextView
-            android:id="@+id/name_en"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="13sp"
-            android:textIsSelectable="true"
-            android:textColor="@color/colorWhite"
-            android:gravity="center"/>
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/name_bn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textIsSelectable="true"
-            android:layout_marginTop="3dip"
-            android:textColor="@color/colorWhite"
-            android:gravity="center"/>
+            <LinearLayout
+                android:layout_weight="0.4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/ramadan_planner_img"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/moon" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="0.6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/ramadan_planner_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/name_en"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textIsSelectable="true"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/name_bn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textIsSelectable="true"
+                    android:layout_marginTop="3dip"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -1,9 +1,12 @@
 package com.akramhossain.quranulkarim;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 
 import com.akramhossain.quranulkarim.adapter.RamadanPlannerViewAdapter;
+import com.akramhossain.quranulkarim.listener.RecyclerTouchListener;
 import com.akramhossain.quranulkarim.model.RamadanPlanner;
 
 import java.util.ArrayList;
@@ -37,6 +40,22 @@ public class RamadanPlannerActivity extends AppCompatActivity {
         recyclerview.setLayoutManager(mLayoutManager);
         setRecyclerViewAdapter();
         getData();
+        //
+        recyclerview.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerview, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                RamadanPlanner rp = ramadanPlanner.get(position);
+                Intent in = new Intent(getApplicationContext(),RamadanPlannerForm.class);
+                in.putExtra("ramadan_planner_id", rp.getRamadan_planner_id());
+                in.putExtra("name_en", rp.getName_en());
+                in.putExtra("name_bn", rp.getName_bn());
+                startActivityForResult(in, 100);
+            }
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
     }
 
     private void setRecyclerViewAdapter() {

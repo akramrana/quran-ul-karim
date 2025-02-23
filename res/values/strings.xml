@@ -293,6 +293,28 @@
 
     <string name="string_rmp_en">Ramadan Planner</string>
     <string name="string_rmp_bn">রামাদ্বান প্ল্যানার</string>
-    <string name="string_rmp_subtitle">MAY THIS BE OUR BEST RAMADAN</string>
+    <string name="string_rmp_subtitle">May this be our best ramadan</string>
+    <string name="prayer_tracker">Prayer Tracker</string>
+    <string name="string_fajr_fard">Fard</string>
+    <string name="string_fard">Fard</string>
+    <string name="string_sunnah">Sunnah</string>
+    <string name="string_witr">Witr</string>
+    <string name="string_tahajjud">Tahajjud</string>
+    <string name="string_taraweeh">Taraweeh</string>
+    <string name="string_duha">Duha</string>
+    <string name="quran_tracker">Quran Tracker</string>
+    <string name="string_verses">Verse(s)</string>
+    <string name="string_surah">Surah(s)</string>
+    <string name="string_ma">Morning Adhkar</string>
+    <string name="daily_checklist">Daily Checklist</string>
+    <string name="string_ea">Evening Adhkar</string>
+    <string name="string_juz_s">Juz(s)</string>
+    <string name="string_istigfar">Istighfar at least 70 times</string>
+    <string name="string_hamd">Shukr: Say Alhamdulillah</string>
+    <string name="string_charity">Give Charity</string>
+    <string name="string_act_knd">Random Act of Kindness</string>
+    <string name="string_quran_tadab"><![CDATA[Recite Al Qur\'an & Tadabbur]]></string>
+    <string name="string_dod">Deed of the Day</string>
+    <string name="string_abs">Adhkar before Sleep</string>
 
 </resources>
