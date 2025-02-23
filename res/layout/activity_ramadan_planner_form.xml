@@ -849,7 +849,7 @@
                                         android:layout_gravity="center"
                                         android:inputType="number"
                                         android:gravity="center"
-                                        android:hint=""/>
+                                        android:hint="Enter"/>
 
                                 </LinearLayout>
 
@@ -868,7 +868,7 @@
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:inputType="number"
-                                        android:hint=""/>
+                                        android:hint="Enter"/>
 
                                 </LinearLayout>
 
@@ -887,7 +887,7 @@
                                         android:layout_gravity="center"
                                         android:gravity="center"
                                         android:inputType="number"
-                                        android:hint=""/>
+                                        android:hint="Enter"/>
 
                                 </LinearLayout>
 
