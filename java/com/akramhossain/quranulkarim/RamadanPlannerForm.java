@@ -1,6 +1,7 @@
 package com.akramhossain.quranulkarim;
 
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Bundle;
@@ -30,11 +31,16 @@ public class RamadanPlannerForm extends AppCompatActivity {
     private SharedPreferences.Editor editor;
     private String currentYear;
 
+    Typeface font;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //EdgeToEdge.enable(this);
         setContentView(R.layout.activity_ramadan_planner_form);
+
+        font = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/Siyamrupali.ttf");
+
         /*ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -71,6 +77,7 @@ public class RamadanPlannerForm extends AppCompatActivity {
                 findViewById(R.id.d_abs)
         };
         for (CheckBox checkBox : checkBoxes) {
+            checkBox.setTypeface(font);
             boolean isChecked = mPrefs.getBoolean(checkBox.getId() + "_state_"+ramadan_planner_id+"_"+currentYear, false);
             checkBox.setChecked(isChecked);
             // Save state on click
@@ -88,6 +95,7 @@ public class RamadanPlannerForm extends AppCompatActivity {
                 findViewById(R.id.isha_fard),
         };
         for (CheckBox checkBox : fardCheckBoxes) {
+            checkBox.setTypeface(font);
             boolean isChecked = mPrefs.getBoolean(checkBox.getId() + "_state_"+ramadan_planner_id+"_"+currentYear, false);
             checkBox.setChecked(isChecked);
             // Save state on click
@@ -109,6 +117,7 @@ public class RamadanPlannerForm extends AppCompatActivity {
                 findViewById(R.id.duha_sunnah),
         };
         for (CheckBox checkBox : sunnahCheckBoxes) {
+            checkBox.setTypeface(font);
             boolean isChecked = mPrefs.getBoolean(checkBox.getId() + "_state_"+ramadan_planner_id+"_"+currentYear, false);
             checkBox.setChecked(isChecked);
             // Save state on click
@@ -129,6 +138,78 @@ public class RamadanPlannerForm extends AppCompatActivity {
         saveOnChange(verseCount, "Verse_" + ramadan_planner_id+"_"+currentYear);
         saveOnChange(surahCount, "Surah_" + ramadan_planner_id+"_"+currentYear);
         saveOnChange(juzCount, "Juz_" + ramadan_planner_id+"_"+currentYear);
+        //
+        TextView fajr = findViewById(R.id.fajr);
+        fajr.setTypeface(font);
+
+        TextView fajr_bn = findViewById(R.id.fajr_bn);
+        fajr_bn.setTypeface(font);
+
+        TextView dhuhr = findViewById(R.id.dhuhr);
+        dhuhr.setTypeface(font);
+
+        TextView dhuhr_bn = findViewById(R.id.dhuhr_bn);
+        dhuhr_bn.setTypeface(font);
+
+        TextView asr = findViewById(R.id.asr);
+        dhuhr.setTypeface(font);
+
+        TextView asr_bn = findViewById(R.id.asr_bn);
+        asr_bn.setTypeface(font);
+
+        TextView maghrib = findViewById(R.id.maghrib);
+        maghrib.setTypeface(font);
+
+        TextView maghrib_bn = findViewById(R.id.maghrib_bn);
+        maghrib_bn.setTypeface(font);
+
+        TextView isha = findViewById(R.id.isha);
+        isha.setTypeface(font);
+
+        TextView isha_bn = findViewById(R.id.isha_bn);
+        isha_bn.setTypeface(font);
+
+        TextView taraweeh = findViewById(R.id.taraweeh);
+        taraweeh.setTypeface(font);
+
+        TextView taraweeh_bn = findViewById(R.id.taraweeh_bn);
+        taraweeh_bn.setTypeface(font);
+
+        TextView witr = findViewById(R.id.witr);
+        witr.setTypeface(font);
+
+        TextView witr_bn = findViewById(R.id.witr_bn);
+        witr_bn.setTypeface(font);
+
+        TextView tahajjud = findViewById(R.id.tahajjud);
+        tahajjud.setTypeface(font);
+
+        TextView tahajjud_bn = findViewById(R.id.tahajjud_bn);
+        tahajjud_bn.setTypeface(font);
+
+        TextView duha = findViewById(R.id.duha);
+        duha.setTypeface(font);
+
+        TextView duha_bn = findViewById(R.id.duha_bn);
+        duha_bn.setTypeface(font);
+
+        TextView verse = findViewById(R.id.verse);
+        verse.setTypeface(font);
+
+        TextView verse_bn = findViewById(R.id.verse_bn);
+        verse_bn.setTypeface(font);
+
+        TextView surah = findViewById(R.id.surah);
+        surah.setTypeface(font);
+
+        TextView surah_bn = findViewById(R.id.surah_bn);
+        surah_bn.setTypeface(font);
+
+        TextView juz = findViewById(R.id.juz);
+        juz.setTypeface(font);
+
+        TextView juz_bn = findViewById(R.id.juz_bn);
+        juz_bn.setTypeface(font);
 
     }
 
