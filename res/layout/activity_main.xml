@@ -1231,7 +1231,8 @@
                     android:orientation="vertical"
                     android:gravity="center_horizontal"
                     android:background="@drawable/linear_background_red"
-                    android:padding="2dp">
+                    android:padding="2dp"
+                    android:visibility="gone">
 
                     <ImageView
                         android:id="@+id/ramadan_planner_img"

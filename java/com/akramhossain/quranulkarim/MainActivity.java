@@ -126,6 +126,8 @@ public class MainActivity extends AppCompatActivity {
     public static String HB_URL;
     public static String hb_host = "http://quran.codxplore.com/";
 
+    LinearLayout ramadan_planner_sec;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -727,7 +729,7 @@ public class MainActivity extends AppCompatActivity {
         TextView ramadan_planner_text_view_bn = (TextView) findViewById(R.id.ramadan_planner_text_view_bn);
         ramadan_planner_text_view_bn.setTypeface(font);
 
-        LinearLayout ramadan_planner_sec = (LinearLayout) findViewById(R.id.ramadan_planner_sec);
+        ramadan_planner_sec = (LinearLayout) findViewById(R.id.ramadan_planner_sec);
         ramadan_planner_sec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -909,7 +911,7 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             Log.i(TAG, e.getMessage());
-            throw new RuntimeException("SQL Query: " + sql, e);
+            //throw new RuntimeException("SQL Query: " + sql, e);
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
@@ -1034,6 +1036,13 @@ public class MainActivity extends AppCompatActivity {
                         //.memoryPolicy(MemoryPolicy.NO_CACHE)
                         .into(img);
                 img.setVisibility(View.VISIBLE);
+
+                Integer show_ramadan_planner = json.getInt("show_ramadan_planner");
+                if(show_ramadan_planner==1){
+                    ramadan_planner_sec.setVisibility(View.VISIBLE);
+                }else{
+                    ramadan_planner_sec.setVisibility(View.GONE);
+                }
             }
 
         } catch (JSONException e) {
