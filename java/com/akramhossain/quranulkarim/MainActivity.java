@@ -17,10 +17,13 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
+import android.graphics.drawable.AnimationDrawable;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
@@ -732,6 +735,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        AnimationDrawable animationDrawable = (AnimationDrawable) ramadan_planner_sec.getBackground();
+        if (animationDrawable != null) {
+            animationDrawable.start();
+
+            new Handler(Looper.getMainLooper()).postDelayed(() -> animationDrawable.stop(), 30000);
+        }
     }
 
     private void setHbRecyclerViewAdapter() {
