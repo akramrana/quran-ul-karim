@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:versionCode="80"
-    android:versionName="80.23.02.2025">
+    android:versionCode="81"
+    android:versionName="81.06.04.2025">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Allow to connect with internet -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Network State Permissions -->
@@ -186,8 +186,8 @@
         <meta-data android:name="io.sentry.dsn" android:value="https://ed5422a83cbad1282ef1700315b9e97a@o4509106248876032.ingest.us.sentry.io/4509106263162880" />
         <meta-data android:name="io.sentry.send-default-pii" android:value="true" />
         <meta-data android:name="io.sentry.traces.user-interaction.enable" android:value="true" />
-        <meta-data android:name="io.sentry.attach-screenshot" android:value="true" />
-        <meta-data android:name="io.sentry.attach-view-hierarchy" android:value="true" />
+        <meta-data android:name="io.sentry.attach-screenshot" android:value="false" />
+        <meta-data android:name="io.sentry.attach-view-hierarchy" android:value="false" />
         <meta-data android:name="io.sentry.auto-init" android:value="true" />
 
     </application>
