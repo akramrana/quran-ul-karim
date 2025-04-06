@@ -34,6 +34,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import io.sentry.Sentry;
 
 public class ChallengeDashboardActivity extends AppCompatActivity {
 
@@ -181,8 +182,9 @@ public class ChallengeDashboardActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "User data successfully sync", Toast.LENGTH_LONG).show();
                         }
                     } catch (Exception e) {
-                        Log.i(TAG, e.getMessage());
-                        throw new RuntimeException("SQL Query: " + sql, e);
+                        Log.e(TAG, e.getMessage());
+                        //throw new RuntimeException("SQL Query: " + sql, e);
+                        Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
                     } finally {
                         if (cursor != null && !cursor.isClosed()) {
                             cursor.close();
@@ -207,8 +209,9 @@ public class ChallengeDashboardActivity extends AppCompatActivity {
                 rightAnsCount = pointsTotal;
             }
         }catch (Exception e) {
-            Log.i(TAG, e.getMessage());
-            throw new RuntimeException("SQL Query: " + sql, e);
+            Log.e(TAG, e.getMessage());
+            //throw new RuntimeException("SQL Query: " + sql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
@@ -228,8 +231,9 @@ public class ChallengeDashboardActivity extends AppCompatActivity {
                 wrong_answer_score_count.setText(String.valueOf(pointsTotal));
             }
         }catch (Exception e) {
-            Log.i(TAG, e.getMessage());
-            throw new RuntimeException("SQL Query: " + sql, e);
+            Log.e(TAG, e.getMessage());
+            //throw new RuntimeException("SQL Query: " + sql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
@@ -264,8 +268,9 @@ public class ChallengeDashboardActivity extends AppCompatActivity {
                 Log.d("percentile",String.valueOf(percentile));
             }
         }catch (Exception e) {
-            Log.i(TAG, e.getMessage());
-            throw new RuntimeException("SQL Query: " + sql, e);
+            Log.e(TAG, e.getMessage());
+            //throw new RuntimeException("SQL Query: " + sql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
@@ -351,8 +356,9 @@ public class ChallengeDashboardActivity extends AppCompatActivity {
                                 DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase().update("word_answers", values, "word_id = ?", new String[]{word_id});
                             }
                         }catch (Exception e) {
-                            Log.i("SYNC ERROR SQL", e.getMessage());
-                            throw new RuntimeException("SQL Query: " + sql, e);
+                            Log.e("SYNC ERROR SQL", e.getMessage());
+                            //throw new RuntimeException("SQL Query: " + sql, e);
+                            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
                         } finally {
                             if (cursor != null && !cursor.isClosed()) {
                                 cursor.close();

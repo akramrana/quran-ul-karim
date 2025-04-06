@@ -9,6 +9,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import io.sentry.Sentry;
+
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -91,8 +93,9 @@ public class QuickLinksActivity extends AppCompatActivity {
                 } while (cursor.moveToNext());
             }
         }catch (Exception e){
-            Log.i(TAG, e.getMessage());
-            throw new RuntimeException("SQL Query: " + sql, e);
+            Log.e(TAG, e.getMessage());
+            //throw new RuntimeException("SQL Query: " + sql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
         }
         finally {
             db.close();

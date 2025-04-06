@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import io.sentry.Sentry;
 
 import android.Manifest;
 import android.content.SharedPreferences;
@@ -155,8 +156,9 @@ public class SubjectDetailsActivity extends AppCompatActivity {
                 } while (cursor.moveToNext());
             }
         }catch (Exception e){
-            Log.i(TAG, e.getMessage());
-            throw new RuntimeException("SQL Query: " + sql, e);
+            Log.e(TAG, e.getMessage());
+            //throw new RuntimeException("SQL Query: " + sql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
         }
         finally {
             if (cursor != null && !cursor.isClosed()){

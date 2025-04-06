@@ -1,6 +1,7 @@
 package com.akramhossain.quranulkarim;
 
 import androidx.appcompat.app.AppCompatActivity;
+import io.sentry.Sentry;
 
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
@@ -793,8 +794,9 @@ public class DailyGoalsActivity extends AppCompatActivity {
                 progressHaram5.setProgress(0, true);
             }
         }catch (Exception e) {
-            Log.i("Report SQL", e.getMessage());
-            throw new RuntimeException("SQL Query: " + sql, e);
+            Log.e("Report SQL", e.getMessage());
+            //throw new RuntimeException("SQL Query: " + sql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
@@ -829,8 +831,9 @@ public class DailyGoalsActivity extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(), "Reports updated.", Toast.LENGTH_LONG).show();
             }
         }catch (Exception e) {
-            Log.i("Report SQL", e.getMessage());
-            throw new RuntimeException("SQL Query: " + sql, e);
+            Log.e("Report SQL", e.getMessage());
+            //throw new RuntimeException("SQL Query: " + sql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();

@@ -16,6 +16,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import io.sentry.Sentry;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -131,8 +133,9 @@ public class JuzHizbRubDetailsActivity extends AppCompatActivity {
                                     getDataFromLocalDb();
                                 }
                             }catch (Exception e){
-                                Log.i("On Scroll Count Check", e.getMessage());
-                                throw new RuntimeException("SQL Query: " + sql, e);
+                                Log.e("On Scroll Count Check", e.getMessage());
+                                //throw new RuntimeException("SQL Query: " + sql, e);
+                                Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
                             }finally {
                                 if (countHistory != null && !countHistory.isClosed()){
                                     countHistory.close();
@@ -207,8 +210,9 @@ public class JuzHizbRubDetailsActivity extends AppCompatActivity {
                         page_title.setText(next_activity_title);
                     }
                 }catch (Exception e){
-                    Log.i(TAG, e.getMessage());
-                    throw new RuntimeException("SQL Query: " + sql, e);
+                    Log.e(TAG, e.getMessage());
+                    //throw new RuntimeException("SQL Query: " + sql, e);
+                    Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
                 }
                 finally {
                     if (cursor != null && !cursor.isClosed()){
@@ -279,8 +283,9 @@ public class JuzHizbRubDetailsActivity extends AppCompatActivity {
                         page_title.setText(next_activity_title);
                     }
                 }catch (Exception e){
-                    Log.i(TAG, e.getMessage());
-                    throw new RuntimeException("SQL Query: " + sql, e);
+                    Log.e(TAG, e.getMessage());
+                    //throw new RuntimeException("SQL Query: " + sql, e);
+                    Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
                 }
                 finally {
                     if (cursor != null && !cursor.isClosed()){
@@ -353,8 +358,9 @@ public class JuzHizbRubDetailsActivity extends AppCompatActivity {
                 } while (cursor.moveToNext());
             }
         }catch (Exception e){
-            Log.i(TAG, e.getMessage());
-            throw new RuntimeException("SQL Query: " + sql, e);
+            Log.e(TAG, e.getMessage());
+            //throw new RuntimeException("SQL Query: " + sql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
         }
         finally {
             if (cursor != null && !cursor.isClosed()){

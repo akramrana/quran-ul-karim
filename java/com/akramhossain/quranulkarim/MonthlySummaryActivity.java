@@ -2,6 +2,7 @@ package com.akramhossain.quranulkarim;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import io.sentry.Sentry;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -119,8 +120,9 @@ public class MonthlySummaryActivity extends AppCompatActivity {
                     }while (cursor.moveToNext());
                 }
             }catch (Exception e){
-                Log.i(TAG, e.getMessage());
-                throw new RuntimeException("SQL Query: " + sql, e);
+                Log.e(TAG, e.getMessage());
+                //throw new RuntimeException("SQL Query: " + sql, e);
+                Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
             }
             finally {
                 if (cursor != null && !cursor.isClosed()){

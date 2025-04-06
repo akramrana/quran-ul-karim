@@ -182,6 +182,14 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_provider_path" />
         </provider>
+
+        <meta-data android:name="io.sentry.dsn" android:value="https://ed5422a83cbad1282ef1700315b9e97a@o4509106248876032.ingest.us.sentry.io/4509106263162880" />
+        <meta-data android:name="io.sentry.send-default-pii" android:value="true" />
+        <meta-data android:name="io.sentry.traces.user-interaction.enable" android:value="true" />
+        <meta-data android:name="io.sentry.attach-screenshot" android:value="true" />
+        <meta-data android:name="io.sentry.attach-view-hierarchy" android:value="true" />
+        <meta-data android:name="io.sentry.auto-init" android:value="true" />
+
     </application>
 
 </manifest>

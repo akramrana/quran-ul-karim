@@ -44,6 +44,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import io.sentry.Sentry;
 
 public class LeaderboardActivity extends AppCompatActivity {
 
@@ -157,8 +158,9 @@ public class LeaderboardActivity extends AppCompatActivity {
                             getDataFromInternet();
                         }
                     } catch (Exception e) {
-                        Log.i(TAG, e.getMessage());
-                        throw new RuntimeException("SQL Query: " + sql, e);
+                        Log.e(TAG, e.getMessage());
+                        //throw new RuntimeException("SQL Query: " + sql, e);
+                        Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
                     } finally {
                         if (cursor != null && !cursor.isClosed()) {
                             cursor.close();
@@ -274,8 +276,9 @@ public class LeaderboardActivity extends AppCompatActivity {
                                 DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase().update("word_answers", values, "word_id = ?", new String[]{word_id});
                             }
                         }catch (Exception e) {
-                            Log.i("SYNC ERROR SQL", e.getMessage());
-                            throw new RuntimeException("SQL Query: " + sql, e);
+                            Log.e("SYNC ERROR SQL", e.getMessage());
+                            //throw new RuntimeException("SQL Query: " + sql, e);
+                            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
                         } finally {
                             if (cursor != null && !cursor.isClosed()) {
                                 cursor.close();

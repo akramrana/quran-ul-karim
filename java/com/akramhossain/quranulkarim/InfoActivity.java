@@ -2,6 +2,7 @@ package com.akramhossain.quranulkarim;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import io.sentry.Sentry;
 
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -107,8 +108,9 @@ public class InfoActivity extends AppCompatActivity {
             }
         }
         catch (Exception e){
-            Log.i("Info", e.getMessage());
-            throw new RuntimeException("SQL Query: " + sql, e);
+            Log.e("Info", e.getMessage());
+            //throw new RuntimeException("SQL Query: " + sql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
         }finally {
             if (cursor != null && !cursor.isClosed()){
                 cursor.close();
@@ -143,8 +145,9 @@ public class InfoActivity extends AppCompatActivity {
             }
         }
         catch (Exception e){
-            Log.i("Info", e.getMessage());
-            throw new RuntimeException("SQL Query: " + sql, e);
+            Log.e("Info", e.getMessage());
+            //throw new RuntimeException("SQL Query: " + sql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
         }finally {
             if (cursor != null && !cursor.isClosed()){
                 cursor.close();

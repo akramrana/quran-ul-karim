@@ -3,6 +3,7 @@ package com.akramhossain.quranulkarim;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import io.sentry.Sentry;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -107,8 +108,9 @@ public class SubjectWiseActivity extends AppCompatActivity implements SearchView
                 } while (cursor.moveToNext());
             }
         }catch (Exception e){
-            Log.i(TAG, e.getMessage());
-            throw new RuntimeException("SQL Query: " + sql, e);
+            Log.e(TAG, e.getMessage());
+            //throw new RuntimeException("SQL Query: " + sql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
         }
         finally {
             if (cursor != null && !cursor.isClosed()){

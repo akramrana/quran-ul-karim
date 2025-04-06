@@ -24,6 +24,7 @@ import com.akramhossain.quranulkarim.util.Utils;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import io.sentry.Sentry;
 
 public class TafsirActivity extends AppCompatActivity {
 
@@ -373,8 +374,9 @@ public class TafsirActivity extends AppCompatActivity {
                         getFezilalilTafsirFromLocalDB();
                     }
                 }catch (Exception e){
-                    Log.i(TAG, e.getMessage());
-                    throw new RuntimeException("SQL Query: " + sql, e);
+                    Log.e(TAG, e.getMessage());
+                    //throw new RuntimeException("SQL Query: " + sql, e);
+                    Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
                 }
                 finally {
                     if (cursor != null && !cursor.isClosed()){
@@ -426,8 +428,9 @@ public class TafsirActivity extends AppCompatActivity {
                         getFezilalilTafsirFromLocalDB();
                     }
                 }catch (Exception e){
-                    Log.i(TAG, e.getMessage());
-                    throw new RuntimeException("SQL Query: " + sql, e);
+                    Log.e(TAG, e.getMessage());
+                    //throw new RuntimeException("SQL Query: " + sql, e);
+                    Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
                 }
                 finally {
                     if (cursor != null && !cursor.isClosed()){
@@ -674,8 +677,9 @@ public class TafsirActivity extends AppCompatActivity {
                 }
             }
         }catch (Exception e){
-            Log.i("Tafsir", e.getMessage());
-            throw new RuntimeException("SQL Query: " + bayaanSql, e);
+            Log.e("Tafsir", e.getMessage());
+            //throw new RuntimeException("SQL Query: " + bayaanSql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + bayaanSql, e));
         }finally {
             if (cursor != null && !cursor.isClosed()){
                 cursor.close();
@@ -701,8 +705,9 @@ public class TafsirActivity extends AppCompatActivity {
             }
         }
         catch (Exception e){
-            Log.i("Tafsir", e.getMessage());
-            throw new RuntimeException("SQL Query: " + sql, e);
+            Log.e("Tafsir", e.getMessage());
+            //throw new RuntimeException("SQL Query: " + sql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
         }finally {
             if (cursor != null && !cursor.isClosed()){
                 cursor.close();
@@ -728,8 +733,9 @@ public class TafsirActivity extends AppCompatActivity {
             }
         }
         catch (Exception e){
-            Log.i("Tafsir", e.getMessage());
-            throw new RuntimeException("SQL Query: " + sql, e);
+            Log.e("Tafsir", e.getMessage());
+            //throw new RuntimeException("SQL Query: " + sql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
         }finally {
             if (cursor != null && !cursor.isClosed()){
                 cursor.close();
@@ -757,8 +763,9 @@ public class TafsirActivity extends AppCompatActivity {
             }
         }
         catch (Exception e){
-            Log.i("Tafsir", e.getMessage());
-            throw new RuntimeException("SQL Query: " + sql, e);
+            Log.e("Tafsir", e.getMessage());
+            //throw new RuntimeException("SQL Query: " + sql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
         }finally {
             if (cursor != null && !cursor.isClosed()){
                 cursor.close();

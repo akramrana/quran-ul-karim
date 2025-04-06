@@ -51,6 +51,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+import io.sentry.Sentry;
 
 
 public class SearchTermViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -306,8 +307,9 @@ public class SearchTermViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                             bookmark.setCompoundDrawablesWithIntrinsicBounds(0, android.R.drawable.btn_star_big_on, 0, 0);
                         }
                     } catch (Exception e) {
-                        Log.i("Bookmark Button", e.getMessage());
-                        throw new RuntimeException("SQL Query: " + sql, e);
+                        Log.e("Bookmark Button", e.getMessage());
+                        //throw new RuntimeException("SQL Query: " + sql, e);
+                        Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
                     } finally {
                         if (cursor != null && !cursor.isClosed()) {
                             cursor.close();
@@ -390,8 +392,9 @@ public class SearchTermViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 rvHolder.bookmarkBtn.setCompoundDrawablesWithIntrinsicBounds(0, android.R.drawable.btn_star, 0, 0);
             }
         } catch (Exception e) {
-            Log.i("Bookmark Check", e.getMessage());
-            throw new RuntimeException("SQL Query: " + checksql, e);
+            Log.e("Bookmark Check", e.getMessage());
+            //throw new RuntimeException("SQL Query: " + checksql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + checksql, e));
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();

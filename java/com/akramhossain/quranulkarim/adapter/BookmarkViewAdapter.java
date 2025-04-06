@@ -17,6 +17,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+import io.sentry.Sentry;
 
 import android.os.Build;
 import android.os.Environment;
@@ -320,8 +321,9 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                             notifyItemRemoved(rvHolder.getAdapterPosition());
                         }
                     } catch (Exception e) {
-                        Log.i("bookmark Check", e.getMessage());
-                        throw new RuntimeException("SQL Query: " + sql, e);
+                        Log.e("bookmark Check", e.getMessage());
+                        //throw new RuntimeException("SQL Query: " + sql, e);
+                        Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
                     } finally {
                         if (cursor != null && !cursor.isClosed()) {
                             cursor.close();

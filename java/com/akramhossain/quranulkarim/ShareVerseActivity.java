@@ -27,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import io.sentry.Sentry;
 
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
@@ -127,8 +128,9 @@ public class ShareVerseActivity extends AppCompatActivity {
                 surah_name = cursor.getString(5);
             }
         }catch (Exception e){
-            Log.i("Share Verse", e.getMessage());
-            throw new RuntimeException("SQL Query: " + suraSql, e);
+            Log.e("Share Verse", e.getMessage());
+            //throw new RuntimeException("SQL Query: " + suraSql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + suraSql, e));
         }finally {
             if (cursor != null && !cursor.isClosed()){
                 cursor.close();

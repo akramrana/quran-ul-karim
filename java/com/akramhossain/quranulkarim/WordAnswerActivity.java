@@ -26,6 +26,7 @@ import java.util.Date;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import io.sentry.Sentry;
 
 public class WordAnswerActivity extends AppCompatActivity {
 
@@ -181,8 +182,9 @@ public class WordAnswerActivity extends AppCompatActivity {
                 point_button.setText(String.valueOf(pointsTotal)+" Point(s)");
             }
         }catch (Exception e) {
-            Log.i(TAG, e.getMessage());
-            throw new RuntimeException("SQL Query: " + sql, e);
+            Log.e(TAG, e.getMessage());
+            //throw new RuntimeException("SQL Query: " + sql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
@@ -297,8 +299,9 @@ public class WordAnswerActivity extends AppCompatActivity {
                         alert.show();
                     }
                 } catch (Exception e) {
-                    Log.i(TAG, e.getMessage());
-                    throw new RuntimeException("SQL Query: " + sql, e);
+                    Log.e(TAG, e.getMessage());
+                    //throw new RuntimeException("SQL Query: " + sql, e);
+                    Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
                 } finally {
                     if (cursor != null && !cursor.isClosed()) {
                         cursor.close();
@@ -391,8 +394,9 @@ public class WordAnswerActivity extends AppCompatActivity {
                         }while (cursor2.moveToNext());
                     }
                 }catch (Exception e){
-                    Log.i(TAG, e.getMessage());
-                    throw new RuntimeException("SQL Query: " + choiceSql, e);
+                    Log.e(TAG, e.getMessage());
+                    //throw new RuntimeException("SQL Query: " + choiceSql, e);
+                    Sentry.captureException(new RuntimeException("SQL Query: " + choiceSql, e));
                 }
                 finally {
                     if (cursor2 != null && !cursor2.isClosed()){
@@ -403,8 +407,9 @@ public class WordAnswerActivity extends AppCompatActivity {
 
             }
         }catch (Exception e){
-            Log.i(TAG, e.getMessage());
-            throw new RuntimeException("SQL Query: " + sql, e);
+            Log.e(TAG, e.getMessage());
+            //throw new RuntimeException("SQL Query: " + sql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
         }finally {
             if (cursor != null && !cursor.isClosed()){
                 cursor.close();

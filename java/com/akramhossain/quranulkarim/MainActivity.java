@@ -62,6 +62,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import io.sentry.Sentry;
 
 import static com.akramhossain.quranulkarim.BugReportActivity.host;
 
@@ -311,8 +312,9 @@ public class MainActivity extends AppCompatActivity {
                         startActivityForResult(in, 100);
                     }
                 } catch (Exception e) {
-                    Log.i("Last Position Select", e.getMessage());
-                    throw new RuntimeException("SQL Query: " + sql, e);
+                    Log.e("Last Position Select", e.getMessage());
+                    //throw new RuntimeException("SQL Query: " + sql, e);
+                    Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
                 } finally {
                     db.close();
                 }
@@ -744,6 +746,8 @@ public class MainActivity extends AppCompatActivity {
 
             new Handler(Looper.getMainLooper()).postDelayed(() -> animationDrawable.stop(), 30000);
         }
+
+        //Sentry.captureException(new RuntimeException("Test crash from Sentry"));
     }
 
     private void setHbRecyclerViewAdapter() {
@@ -910,8 +914,9 @@ public class MainActivity extends AppCompatActivity {
                 } while (cursor.moveToNext());
             }
         } catch (Exception e) {
-            Log.i(TAG, e.getMessage());
+            Log.e(TAG, e.getMessage());
             //throw new RuntimeException("SQL Query: " + sql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
@@ -974,8 +979,9 @@ public class MainActivity extends AppCompatActivity {
                 horizontal_line.setVisibility(View.GONE);
             }
         } catch (Exception e) {
-            Log.i("Last Position Select", e.getMessage());
-            throw new RuntimeException("SQL Query: " + sql, e);
+            Log.e("Last Position Select", e.getMessage());
+            //throw new RuntimeException("SQL Query: " + sql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
         } finally {
             if (cursor != null && !cursor.isClosed()){
                 cursor.close();
@@ -1006,8 +1012,9 @@ public class MainActivity extends AppCompatActivity {
                 prog.setProgress(total_points,true);
             }
         }catch (Exception e) {
-            Log.i("Report SQL", e.getMessage());
-            throw new RuntimeException("SQL Query: " + sql, e);
+            Log.e("Report SQL", e.getMessage());
+            //throw new RuntimeException("SQL Query: " + sql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();

@@ -18,6 +18,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import io.sentry.Sentry;
 
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -244,8 +245,9 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                                     getDataFromLocalDb();
                                 }
                             }catch (Exception e){
-                                Log.i("On Scroll Count Check", e.getMessage());
-                                throw new RuntimeException("SQL Query: " + sql, e);
+                                Log.e("On Scroll Count Check", e.getMessage());
+                                //throw new RuntimeException("SQL Query: " + sql, e);
+                                Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
                             }finally {
                                 if (countHistory != null && !countHistory.isClosed()){
                                     countHistory.close();
@@ -292,8 +294,9 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                 quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_upload, 0, 0, 0);
             }
         }catch (Exception e){
-            Log.i("Quick Link Check", e.getMessage());
-            throw new RuntimeException("SQL Query: " + checksql, e);
+            Log.e("Quick Link Check", e.getMessage());
+            //throw new RuntimeException("SQL Query: " + checksql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + checksql, e));
         }finally {
             if (cursor1 != null && !cursor1.isClosed()){
                 cursor1.close();
@@ -361,8 +364,9 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                                 quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_upload, 0, 0, 0);
                             }
                         }catch (Exception e){
-                            Log.i(TAG, e.getMessage());
-                            throw new RuntimeException("SQL Query: " + sql, e);
+                            Log.e(TAG, e.getMessage());
+                            //throw new RuntimeException("SQL Query: " + sql, e);
+                            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
                         }finally {
                             if (cursor1 != null && !cursor1.isClosed()){
                                 cursor1.close();
@@ -370,8 +374,9 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                         }
                     }
                 }catch (Exception e){
-                    Log.i(TAG, e.getMessage());
-                    throw new RuntimeException("SQL Query: " + sql, e);
+                    Log.e(TAG, e.getMessage());
+                    //throw new RuntimeException("SQL Query: " + sql, e);
+                    Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
                 }
                 finally {
                     if (cursor != null && !cursor.isClosed()){
@@ -445,8 +450,9 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                                 quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_upload, 0, 0, 0);
                             }
                         }catch (Exception e){
-                            Log.i(TAG, e.getMessage());
-                            throw new RuntimeException("SQL Query: " + checksql, e);
+                            Log.e(TAG, e.getMessage());
+                            //throw new RuntimeException("SQL Query: " + checksql, e);
+                            Sentry.captureException(new RuntimeException("SQL Query: " + checksql, e));
                         }
                         finally {
                             if (cursor1 != null && !cursor1.isClosed()){
@@ -455,8 +461,9 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                         }
                     }
                 }catch (Exception e){
-                    Log.i(TAG, e.getMessage());
-                    throw new RuntimeException("SQL Query: " + sql, e);
+                    Log.e(TAG, e.getMessage());
+                    //throw new RuntimeException("SQL Query: " + sql, e);
+                    Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
                 }
                 finally {
                     if (cursor != null && !cursor.isClosed()){
@@ -499,8 +506,9 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                         quickLinkBtn.setText("Remove from favourites");
                     }
                 }catch (Exception e){
-                    Log.i(TAG, e.getMessage());
-                    throw new RuntimeException("SQL Query: " + sql, e);
+                    Log.e(TAG, e.getMessage());
+                    //throw new RuntimeException("SQL Query: " + sql, e);
+                    Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
                 }
                 finally {
                     if (cursor != null && !cursor.isClosed()){
@@ -904,8 +912,9 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                 }while (cursor.moveToNext());
             }
         }catch (Exception e){
-            Log.i(TAG, e.getMessage());
-            throw new RuntimeException("SQL Query: " + sql, e);
+            Log.e(TAG, e.getMessage());
+            //throw new RuntimeException("SQL Query: " + sql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
         }
         finally {
             if (cursor != null && !cursor.isClosed()){
@@ -995,8 +1004,9 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                 } while (cursor.moveToNext());
             }
         }catch (Exception e){
-            Log.i(TAG, e.getMessage());
-            throw new RuntimeException("SQL Query: " + sql, e);
+            Log.e(TAG, e.getMessage());
+            //throw new RuntimeException("SQL Query: " + sql, e);
+            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
         }
         finally {
             if (cursor != null && !cursor.isClosed()){
