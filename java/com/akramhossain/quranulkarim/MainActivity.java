@@ -889,41 +889,53 @@ public class MainActivity extends AppCompatActivity {
 
     private void getPopularSearchFromLocalDb() {
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-        String sql = "SELECT sura.*,bangla_name.name_bangla " +
-                "FROM sura " +
-                "left join bangla_name on sura.surah_id = bangla_name.surah_id " +
-                "WHERE sura.surah_id IN(17,18,19,36,49,51,55,56,67,71,72,73,77,78,85) " +
-                "order by RANDOM() " +
-                "LIMIT 10";
-        Log.i(TAG, sql);
-        Cursor cursor = db.rawQuery(sql, null);
-        try {
-            if (cursor.moveToFirst()) {
-                do {
-                    Sura sura = new Sura();
-                    sura.setSurah_id(cursor.getString(cursor.getColumnIndexOrThrow("surah_id")));
-                    sura.setName_arabic(cursor.getString(cursor.getColumnIndexOrThrow("name_arabic")));
-                    sura.setName_english(cursor.getString(cursor.getColumnIndexOrThrow("name_english")));
-                    sura.setName_simple(cursor.getString(cursor.getColumnIndexOrThrow("name_simple")));
-                    sura.setRevelation_place(cursor.getString(cursor.getColumnIndexOrThrow("revelation_place")));
-                    sura.setAyat(cursor.getString(cursor.getColumnIndexOrThrow("ayat")));
-                    sura.setRevelation_order(cursor.getString(cursor.getColumnIndexOrThrow("revelation_order")));
-                    sura.setId(cursor.getString(cursor.getColumnIndexOrThrow("sid")));
-                    sura.setName_bangla(cursor.getString(cursor.getColumnIndexOrThrow("name_bangla")));
-                    popularSearches.add(sura);
-                } while (cursor.moveToNext());
-            }
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
-            //throw new RuntimeException("SQL Query: " + sql, e);
-            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
-        } finally {
-            if (cursor != null && !cursor.isClosed()) {
-                cursor.close();
-            }
+        Log.i(TAG, "DB Path: " + db.getPath());
+        //
+        Cursor checkCursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='sura'", null);
+        boolean tableExists = (checkCursor.getCount() > 0);
+        checkCursor.close();
+
+        if (!tableExists) {
+            Log.e(TAG, "Table 'sura' not found in database.");
+            Sentry.captureMessage("Missing table: sura");
             db.close();
+        }else {
+            String sql = "SELECT sura.*,bangla_name.name_bangla " +
+                    "FROM sura " +
+                    "left join bangla_name on sura.surah_id = bangla_name.surah_id " +
+                    "WHERE sura.surah_id IN(17,18,19,36,49,51,55,56,67,71,72,73,77,78,85) " +
+                    "order by RANDOM() " +
+                    "LIMIT 10";
+            Log.i(TAG, sql);
+            Cursor cursor = db.rawQuery(sql, null);
+            try {
+                if (cursor.moveToFirst()) {
+                    do {
+                        Sura sura = new Sura();
+                        sura.setSurah_id(cursor.getString(cursor.getColumnIndexOrThrow("surah_id")));
+                        sura.setName_arabic(cursor.getString(cursor.getColumnIndexOrThrow("name_arabic")));
+                        sura.setName_english(cursor.getString(cursor.getColumnIndexOrThrow("name_english")));
+                        sura.setName_simple(cursor.getString(cursor.getColumnIndexOrThrow("name_simple")));
+                        sura.setRevelation_place(cursor.getString(cursor.getColumnIndexOrThrow("revelation_place")));
+                        sura.setAyat(cursor.getString(cursor.getColumnIndexOrThrow("ayat")));
+                        sura.setRevelation_order(cursor.getString(cursor.getColumnIndexOrThrow("revelation_order")));
+                        sura.setId(cursor.getString(cursor.getColumnIndexOrThrow("sid")));
+                        sura.setName_bangla(cursor.getString(cursor.getColumnIndexOrThrow("name_bangla")));
+                        popularSearches.add(sura);
+                    } while (cursor.moveToNext());
+                }
+            } catch (Exception e) {
+                Log.e(TAG, e.getMessage());
+                //throw new RuntimeException("SQL Query: " + sql, e);
+                Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
+            } finally {
+                if (cursor != null && !cursor.isClosed()) {
+                    cursor.close();
+                }
+                db.close();
+            }
+            rvAdapter.notifyDataSetChanged();
         }
-        rvAdapter.notifyDataSetChanged();
     }
 
     private void setPopularSearchViewAdapter() {
@@ -963,32 +975,42 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         //Log.d("ACTIVTY","RESUME");
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-        String sql = "SELECT last_position.sura_id,position,name_english,name_arabic " +
-                "FROM last_position " +
-                "LEFT JOIN sura ON last_position.sura_id = sura.surah_id " +
-                "LIMIT 1";
-        Log.d("Last Position SQL", sql);
-        Cursor cursor = null;
-        try {
-            cursor = db.rawQuery(sql, null);
-            if (cursor.moveToFirst()) {
-                start_from_last.setVisibility(View.VISIBLE);
-                horizontal_line.setVisibility(View.VISIBLE);
-            } else {
-                start_from_last.setVisibility(View.GONE);
-                horizontal_line.setVisibility(View.GONE);
-            }
-        } catch (Exception e) {
-            Log.e("Last Position Select", e.getMessage());
-            //throw new RuntimeException("SQL Query: " + sql, e);
-            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
-        } finally {
-            if (cursor != null && !cursor.isClosed()){
-                cursor.close();
-            }
+        Log.i(TAG, "DB Path: " + db.getPath());
+        //
+        Cursor checkCursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='last_position'", null);
+        boolean tableExists = (checkCursor.getCount() > 0);
+        checkCursor.close();
+        if (!tableExists) {
+            Log.e(TAG, "Table 'last_position' not found in database.");
+            Sentry.captureMessage("Missing table: last_position");
             db.close();
+        }else {
+            String sql = "SELECT last_position.sura_id,position,name_english,name_arabic " +
+                    "FROM last_position " +
+                    "LEFT JOIN sura ON last_position.sura_id = sura.surah_id " +
+                    "LIMIT 1";
+            Log.d("Last Position SQL", sql);
+            Cursor cursor = null;
+            try {
+                cursor = db.rawQuery(sql, null);
+                if (cursor.moveToFirst()) {
+                    start_from_last.setVisibility(View.VISIBLE);
+                    horizontal_line.setVisibility(View.VISIBLE);
+                } else {
+                    start_from_last.setVisibility(View.GONE);
+                    horizontal_line.setVisibility(View.GONE);
+                }
+            } catch (Exception e) {
+                Log.e("Last Position Select", e.getMessage());
+                //throw new RuntimeException("SQL Query: " + sql, e);
+                Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
+            } finally {
+                if (cursor != null && !cursor.isClosed()) {
+                    cursor.close();
+                }
+                db.close();
+            }
         }
-
         getPopularSearchFromLocalDb();
         calculateReportsValue();
     }
