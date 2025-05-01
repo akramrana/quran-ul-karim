@@ -1021,27 +1021,39 @@ public class MainActivity extends AppCompatActivity {
         //System.out.println(dateFormat.format(date));
         String dtStr = dateFormat.format(date);
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-        String sql = "select sum(perform_tahajjud+perform_fajr+morning_adhkar+quran_recitation+study_hadith+salat_ud_doha+dhuhr_prayer+asr_prayer+maghrib_prayer+isha_prayer+charity+literature+surah_mulk_recitation+recitation_last_2_surah_baqarah+ayatul_kursi+recitation_first_last_10_surah_kahf+tasbih+smoking+alcohol+haram_things+backbiting+slandering) as total_points\n" +
-                    "from reports \n" +
-                    "where date = '"+dtStr+"'";
-        Cursor cursor = db.rawQuery(sql, null);
-        Log.i("Report SQL", sql);
-        try {
-            if (cursor.moveToFirst()) {
-                Integer total_points = cursor.getInt(cursor.getColumnIndexOrThrow("total_points"));
-                System.out.println("Report value: "+total_points);
-                txtPer.setText("Daily Goals\n"+total_points+"%\nCompleted");
-                prog.setProgress(total_points,true);
-            }
-        }catch (Exception e) {
-            Log.e("Report SQL", e.getMessage());
-            //throw new RuntimeException("SQL Query: " + sql, e);
-            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
-        } finally {
-            if (cursor != null && !cursor.isClosed()) {
-                cursor.close();
-            }
+        Log.i(TAG, "DB Path: " + db.getPath());
+        //
+        Cursor checkCursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='reports'", null);
+        boolean tableExists = (checkCursor.getCount() > 0);
+        checkCursor.close();
+        //
+        if (!tableExists) {
+            Log.e(TAG, "Table 'reports' not found in database.");
+            Sentry.captureMessage("Missing table: reports");
             db.close();
+        }else {
+            String sql = "select sum(perform_tahajjud+perform_fajr+morning_adhkar+quran_recitation+study_hadith+salat_ud_doha+dhuhr_prayer+asr_prayer+maghrib_prayer+isha_prayer+charity+literature+surah_mulk_recitation+recitation_last_2_surah_baqarah+ayatul_kursi+recitation_first_last_10_surah_kahf+tasbih+smoking+alcohol+haram_things+backbiting+slandering) as total_points\n" +
+                    "from reports \n" +
+                    "where date = '" + dtStr + "'";
+            Cursor cursor = db.rawQuery(sql, null);
+            Log.i("Report SQL", sql);
+            try {
+                if (cursor.moveToFirst()) {
+                    Integer total_points = cursor.getInt(cursor.getColumnIndexOrThrow("total_points"));
+                    System.out.println("Report value: " + total_points);
+                    txtPer.setText("Daily Goals\n" + total_points + "%\nCompleted");
+                    prog.setProgress(total_points, true);
+                }
+            } catch (Exception e) {
+                Log.e("Report SQL", e.getMessage());
+                //throw new RuntimeException("SQL Query: " + sql, e);
+                Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
+            } finally {
+                if (cursor != null && !cursor.isClosed()) {
+                    cursor.close();
+                }
+                db.close();
+            }
         }
     }
 

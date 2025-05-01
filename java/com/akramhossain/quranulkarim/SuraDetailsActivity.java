@@ -8,7 +8,9 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.text.LineBreaker;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -23,9 +25,15 @@ import io.sentry.Sentry;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Html;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.method.ScrollingMovementMethod;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.webkit.WebView;
@@ -685,6 +693,15 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         }
 
         ayah_txt = (TextView) findViewById(R.id.ayah_txt);
+        ayah_txt.setGravity(Gravity.RIGHT);
+        ayah_txt.setLineSpacing(1.5f, 1.0f);
+        ayah_txt.setTextDirection(View.TEXT_DIRECTION_RTL);
+        ayah_txt.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { // API 26
+            ayah_txt.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
+        }else{
+            ayah_txt.setGravity(Gravity.RIGHT | Gravity.TOP);
+        }
 
         webview = (WebView) findViewById(R.id.webview);
 
@@ -888,6 +905,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         Cursor cursor = db.rawQuery(sql, null);
         StringBuilder fullSuraStr = new StringBuilder();
         StringBuilder fullSuraStrTajweed = new StringBuilder();
+        SpannableStringBuilder fullSuraStrBuilder = new SpannableStringBuilder();
         try {
             if (cursor.moveToFirst()) {
                 do {
@@ -909,6 +927,19 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                     //
                     textTajweed = cursor.getString(cursor.getColumnIndexOrThrow("text_uthmani_tajweed"));
                     fullSuraStrTajweed.append(textTajweed);
+                    //
+                    String ayahText = text.trim() + "﴿" + convertoArabic(num) + "﴾";
+                    SpannableString span = new SpannableString(ayahText);
+                    // Optional: Style ayah numbers differently
+                    int start = ayahText.indexOf("﴿");
+                    int end = ayahText.indexOf("﴾") + 1;
+                    if (start >= 0 && end > start) {
+                        span.setSpan(new RelativeSizeSpan(0.7f), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        span.setSpan(new ForegroundColorSpan(Color.parseColor("#ffbb33")), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    }
+
+                    fullSuraStrBuilder.append(span);
+                    fullSuraStrBuilder.append(" ");
                 }while (cursor.moveToNext());
             }
         }catch (Exception e){
@@ -930,7 +961,8 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         //ayah_txt.setMovementMethod(new ScrollingMovementMethod());
         String style = Utils.tajweedCss(fontFamily,fontSize,bodyBgColor,bodyTxtColor, appTheme);
         String html = "<html><head>"+style+"</head><body>"+fullSuraStrTajweed.toString()+"</body></html>";
-        ayah_txt.setText(Html.fromHtml(fullSuraStr.toString(), Html.FROM_HTML_MODE_LEGACY));
+        //ayah_txt.setText(Html.fromHtml(fullSuraStr.toString(), Html.FROM_HTML_MODE_LEGACY));
+        ayah_txt.setText(fullSuraStrBuilder);
         webview.loadDataWithBaseURL(null,html, "text/html; charset=utf-8", "UTF-8",null);
 
         String mushaf = mPrefs.getString("mushaf", "IndoPak");

@@ -354,7 +354,10 @@
                             android:paddingRight="8dp"
                             android:lineSpacingExtra="8dp"
                             android:textColor="@color/colorWhite"
-                            android:gravity="center"/>
+                            android:textAlignment="viewStart"
+                            android:layoutDirection="rtl"
+                            android:textDirection="rtl"
+                            android:typeface="serif"/>
 
                         <WebView
                             android:id="@+id/webview"

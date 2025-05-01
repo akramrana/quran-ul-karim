@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import io.sentry.Sentry;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -38,6 +39,7 @@ import com.akramhossain.quranulkarim.model.SpinnerObject;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -140,12 +142,24 @@ public class SearchActivity extends AppCompatActivity {
                 Log.i("ID", Integer.toString(selectedSuraId));
                 //
                 String verseNum = ayat_number.getText().toString();
+                String[] parts = verseNum.split(",");
+                List<String> cleanedIds = new ArrayList<>();
+                for (String part : parts) {
+                    part = part.trim();
+                    if (part.matches("^\\d+$")) {
+                        cleanedIds.add(part);
+                    }
+                }
+                //
                 String regex = "[0-9, /,]+";
-                if(verseNum.matches(regex)) {
-                    ayahNumber = verseNum;
+                if (!cleanedIds.isEmpty()) {
+                    String inClause = TextUtils.join(",", cleanedIds);
+                    ayahNumber = inClause;
+                    //ayahNumber = verseNum;
                     Log.i("AYAT NUMBER", ayahNumber);
                 }else{
                     ayahNumber = "";
+                    Log.w("InputValidation", "Invalid input: " + verseNum);
                 }
                 if (selectedSuraId != null && !selectedSuraId.equals("")) {
                     SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
