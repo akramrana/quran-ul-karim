@@ -10,7 +10,8 @@
         android:layout_gravity="left"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/root_view">
 
         <LinearLayout
             android:layout_width="fill_parent"

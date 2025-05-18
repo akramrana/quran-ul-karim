@@ -18,6 +18,10 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import io.sentry.Sentry;
@@ -137,6 +141,10 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().setNavigationBarColor(Color.TRANSPARENT);
+
         if (extras != null) {
             suraId = extras.getString("sura_id");
             suraName = extras.getString("sura_name");
@@ -164,6 +172,19 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         setTitle(suraNameArabic+"-"+suraName);
 
         setContentView(R.layout.activity_sura_details);
+
+        View rootView = findViewById(R.id.topBar);
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (view, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            // Apply padding to avoid overlap with status/navigation bars
+            view.setPadding(
+                    systemBars.left,
+                    systemBars.top,
+                    systemBars.right,
+                    0
+            );
+            return insets;
+        });
 
         titleEn = (TextView) findViewById(R.id.name_title_en);
         titleEn.setText(suraName);
