@@ -2,11 +2,16 @@ package com.akramhossain.quranulkarim;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import io.sentry.Sentry;
 
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -44,7 +49,24 @@ public class InfoActivity extends AppCompatActivity {
         mPrefs = getApplicationContext().getSharedPreferences(Utils.PREF_NAME, 0);
         font = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/Siyamrupali.ttf");
 
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().setNavigationBarColor(Color.TRANSPARENT);
+
         setContentView(R.layout.activity_info);
+
+        View rootView = findViewById(R.id.topAboutBar);
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (view, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            // Apply padding to avoid overlap with status/navigation bars
+            view.setPadding(
+                    systemBars.left,
+                    systemBars.top,
+                    systemBars.right,
+                    0
+            );
+            return insets;
+        });
 
         TextView info_title = (TextView) findViewById(R.id.info_title);
         info_title.setText(suraNameArabic);

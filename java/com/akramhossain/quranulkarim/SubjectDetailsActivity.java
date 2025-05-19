@@ -4,6 +4,10 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import io.sentry.Sentry;
@@ -13,10 +17,12 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,7 +69,33 @@ public class SubjectDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().setNavigationBarColor(Color.TRANSPARENT);
+
         setContentView(R.layout.activity_subject_details);
+
+        View rootView = findViewById(R.id.topBarSlist);
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (view, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            // Apply padding to avoid overlap with status/navigation bars
+            view.setPadding(
+                    systemBars.left,
+                    systemBars.top,
+                    systemBars.right,
+                    view.getPaddingBottom()
+            );
+            return insets;
+        });
+
+        View bottomBar = findViewById(R.id.ayah_list);
+        ViewCompat.setOnApplyWindowInsetsListener(bottomBar, (v, insets) -> {
+            int bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+            v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), v.getPaddingRight(), bottomInset);
+            return insets;
+        });
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             enTxt = extras.getString("en");

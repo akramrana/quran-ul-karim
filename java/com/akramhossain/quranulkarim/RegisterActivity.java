@@ -1,7 +1,9 @@
 package com.akramhossain.quranulkarim;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +19,11 @@ import com.akramhossain.quranulkarim.app.AppController;
 import com.akramhossain.quranulkarim.helper.SessionManager;
 import com.android.volley.toolbox.StringRequest;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
+
 import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -47,10 +54,43 @@ public class RegisterActivity extends AppCompatActivity implements Spinner.OnIte
     private ArrayList<String> countries;
     private JSONArray result;
 
+    ConnectionDetector cd;
+    Boolean isInternetPresent = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().setNavigationBarColor(Color.TRANSPARENT);
+
         setContentView(R.layout.activity_register);
+
+        View rootView = findViewById(R.id.topAboutBar);
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (view, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            // Apply padding to avoid overlap with status/navigation bars
+            view.setPadding(
+                    systemBars.left,
+                    systemBars.top,
+                    systemBars.right,
+                    view.getPaddingBottom()
+            );
+            return insets;
+        });
+
+        View bottomBar = findViewById(R.id.bottomBar);
+        ViewCompat.setOnApplyWindowInsetsListener(bottomBar, (v, insets) -> {
+            int bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+            v.setPadding(
+                    v.getPaddingLeft(),
+                    v.getPaddingTop(),
+                    v.getPaddingRight(),
+                    bottomInset
+            );
+            return insets;
+        });
 
         inputFullName = (EditText) findViewById(R.id.name);
         inputEmail = (EditText) findViewById(R.id.email);
@@ -98,7 +138,18 @@ public class RegisterActivity extends AppCompatActivity implements Spinner.OnIte
             }
         });
 
-        getCountryData();
+        cd = new ConnectionDetector(getApplicationContext());
+        isInternetPresent = cd.isConnectingToInternet();
+
+        if (isInternetPresent) {
+            getCountryData();
+        }else{
+            AlertDialog.Builder alert = new AlertDialog.Builder(RegisterActivity.this);
+            alert.setTitle(R.string.text_warning);
+            alert.setMessage(R.string.text_enable_internet);
+            alert.setPositiveButton(R.string.text_ok,null);
+            alert.show();
+        }
     }
 
     private void getCountryData(){

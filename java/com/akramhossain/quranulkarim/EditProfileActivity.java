@@ -1,6 +1,8 @@
 package com.akramhossain.quranulkarim;
 
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +31,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 
 public class EditProfileActivity extends AppCompatActivity implements Spinner.OnItemSelectedListener{
@@ -47,10 +53,32 @@ public class EditProfileActivity extends AppCompatActivity implements Spinner.On
     public String country_id = "";
     public int position = 0;
 
+    ConnectionDetector cd;
+    Boolean isInternetPresent = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().setNavigationBarColor(Color.TRANSPARENT);
+
         setContentView(R.layout.activity_edit_profile);
+
+        View rootView = findViewById(R.id.topAboutBar);
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (view, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            // Apply padding to avoid overlap with status/navigation bars
+            view.setPadding(
+                    systemBars.left,
+                    systemBars.top,
+                    systemBars.right,
+                    view.getPaddingBottom()
+            );
+            return insets;
+        });
+
         inputFullName = (EditText) findViewById(R.id.name);
         btnUpdateProfile = (Button) findViewById(R.id.btnUpdateProfile);
 
@@ -61,7 +89,19 @@ public class EditProfileActivity extends AppCompatActivity implements Spinner.On
 
         URL = host+"api/v1/update-profile.php";
         CountryUrl = host+"api/v1/countries.php";
-        getCountryData();
+
+        cd = new ConnectionDetector(getApplicationContext());
+        isInternetPresent = cd.isConnectingToInternet();
+
+        if (isInternetPresent) {
+            getCountryData();
+        }else{
+            AlertDialog.Builder alert = new AlertDialog.Builder(EditProfileActivity.this);
+            alert.setTitle(R.string.text_warning);
+            alert.setMessage(R.string.text_enable_internet);
+            alert.setPositiveButton(R.string.text_ok,null);
+            alert.show();
+        }
 
         session = new SessionManager(getApplicationContext());
         if (session.isLoggedIn()) {

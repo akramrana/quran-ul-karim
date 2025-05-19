@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -24,6 +25,10 @@ import com.akramhossain.quranulkarim.util.Utils;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import io.sentry.Sentry;
 
 public class TafsirActivity extends AppCompatActivity {
@@ -102,7 +107,33 @@ public class TafsirActivity extends AppCompatActivity {
         //dbhelper = new DatabaseHelper(getApplicationContext());
         dbhelper = DatabaseHelper.getInstance(getApplicationContext());
 
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().setNavigationBarColor(Color.TRANSPARENT);
+
         setContentView(R.layout.activity_tafsir);
+
+        View rootView = findViewById(R.id.topTafsirBar);
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (view, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            // Apply padding to avoid overlap with status/navigation bars
+            view.setPadding(
+                    systemBars.left,
+                    systemBars.top,
+                    systemBars.right,
+                    view.getPaddingBottom()
+            );
+            return insets;
+        });
+
+        View bottomBar = findViewById(R.id.scrollView);
+        ViewCompat.setOnApplyWindowInsetsListener(bottomBar, (v, insets) -> {
+            int bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+            v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), v.getPaddingRight(), bottomInset);
+            return insets;
+        });
+
+
         setTitle("Tafsir");
 
         bayaan_content = (TextView) findViewById(R.id.bayaan_content);

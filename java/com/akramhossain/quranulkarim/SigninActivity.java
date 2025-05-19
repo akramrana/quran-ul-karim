@@ -60,7 +60,7 @@ public class SigninActivity extends AppCompatActivity {
                     systemBars.left,
                     systemBars.top,
                     systemBars.right,
-                    0
+                    view.getPaddingBottom()
             );
             return insets;
         });
@@ -68,7 +68,12 @@ public class SigninActivity extends AppCompatActivity {
         View bottomBar = findViewById(R.id.bottomBar);
         ViewCompat.setOnApplyWindowInsetsListener(bottomBar, (v, insets) -> {
             int bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
-            v.setPadding(0, 0, 0, bottomInset);
+            v.setPadding(
+                    v.getPaddingLeft(),
+                    v.getPaddingTop(),
+                    v.getPaddingRight(),
+                    bottomInset
+            );
             return insets;
         });
 
