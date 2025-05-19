@@ -69,7 +69,7 @@ public class QiblaCompassActivity extends AppCompatActivity implements SensorEve
                     systemBars.left,
                     systemBars.top,
                     systemBars.right,
-                    0
+                    view.getPaddingBottom()
             );
             return insets;
         });

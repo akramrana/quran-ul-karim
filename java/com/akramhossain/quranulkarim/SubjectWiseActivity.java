@@ -63,7 +63,7 @@ public class SubjectWiseActivity extends AppCompatActivity implements SearchView
                     systemBars.left,
                     systemBars.top,
                     systemBars.right,
-                    0
+                    view.getPaddingBottom()
             );
             return insets;
         });

@@ -76,7 +76,7 @@ public class SearchAyatActivity extends AppCompatActivity {
                     systemBars.left,
                     systemBars.top,
                     systemBars.right,
-                    0
+                    view.getPaddingBottom()
             );
             return insets;
         });

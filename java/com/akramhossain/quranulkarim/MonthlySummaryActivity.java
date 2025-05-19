@@ -57,7 +57,7 @@ public class MonthlySummaryActivity extends AppCompatActivity {
                     systemBars.left,
                     systemBars.top,
                     systemBars.right,
-                    0
+                    view.getPaddingBottom()
             );
             return insets;
         });

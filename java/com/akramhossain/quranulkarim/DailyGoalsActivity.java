@@ -90,7 +90,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
                     systemBars.left,
                     systemBars.top,
                     systemBars.right,
-                    0
+                    view.getPaddingBottom()
             );
             return insets;
         });
@@ -98,7 +98,7 @@ public class DailyGoalsActivity extends AppCompatActivity {
         View bottomBar = findViewById(R.id.scrollView);
         ViewCompat.setOnApplyWindowInsetsListener(bottomBar, (v, insets) -> {
             int bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
-            v.setPadding(0, 0, 0, bottomInset);
+            v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), v.getPaddingRight(), bottomInset);
             return insets;
         });
 

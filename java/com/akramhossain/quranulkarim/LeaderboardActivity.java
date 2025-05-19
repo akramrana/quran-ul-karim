@@ -80,14 +80,14 @@ public class LeaderboardActivity extends AppCompatActivity {
         View topBar = findViewById(R.id.topAboutBar);
         ViewCompat.setOnApplyWindowInsetsListener(topBar, (v, insets) -> {
             int topInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).top;
-            v.setPadding(0, topInset, 0, 0);
+            v.setPadding(v.getPaddingLeft(), topInset, v.getPaddingRight(), v.getPaddingBottom());
             return insets;
         });
 
         View bottomBar = findViewById(R.id.leaderboard_list);
         ViewCompat.setOnApplyWindowInsetsListener(bottomBar, (v, insets) -> {
             int bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
-            v.setPadding(0, 0, 0, bottomInset);
+            v.setPadding(v.getPaddingLeft(), v.getPaddingTop(), v.getPaddingRight(), bottomInset);
             return insets;
         });
 
