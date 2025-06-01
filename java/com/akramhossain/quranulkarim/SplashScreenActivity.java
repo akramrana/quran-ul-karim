@@ -100,25 +100,49 @@ public class SplashScreenActivity extends Activity {
         //mDBHelper = new DatabaseHelper(this);
         mDBHelper = DatabaseHelper.getInstance(getApplicationContext());
 
-        try {
-            mDBHelper.updateDataBase();
-        } catch (IOException mIOException) {
-            throw new Error("UnableToUpdateDatabase");
-        }
-        try {
-            mDb = mDBHelper.getWritableDatabase();
-        } catch (SQLException mSQLException) {
-            throw mSQLException;
-        }
-
-        new Handler().postDelayed(new Runnable(){
+//        try {
+//            mDBHelper.updateDataBase();
+//        } catch (IOException mIOException) {
+//            throw new Error("UnableToUpdateDatabase");
+//        }
+//        try {
+//            mDb = mDBHelper.getWritableDatabase();
+//        } catch (SQLException mSQLException) {
+//            throw mSQLException;
+//        }
+//
+//        new Handler().postDelayed(new Runnable(){
+//            @Override
+//            public void run() {
+//                /* Create an Intent that will start the Menu-Activity. */
+//                Intent mainIntent = new Intent(SplashScreenActivity.this,MainActivity.class);
+//                SplashScreenActivity.this.startActivity(mainIntent);
+//                SplashScreenActivity.this.finish();
+//            }
+//        }, 2000);
+        new Thread(new Runnable() {
             @Override
             public void run() {
-                /* Create an Intent that will start the Menu-Activity. */
-                Intent mainIntent = new Intent(SplashScreenActivity.this,MainActivity.class);
-                SplashScreenActivity.this.startActivity(mainIntent);
-                SplashScreenActivity.this.finish();
+                try {
+                    // Copy database if needed
+                    mDBHelper.updateDataBase();
+                    // Open database connection
+                    mDb = mDBHelper.getWritableDatabase();
+                } catch (IOException | SQLException e) {
+                    e.printStackTrace();
+                    // Optional: show error or fallback UI here
+                    return;
+                }
+                // Now launch MainActivity on UI thread
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent mainIntent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                        startActivity(mainIntent);
+                        finish();
+                    }
+                });
             }
-        }, 2000);
+        }).start();
     }
 }

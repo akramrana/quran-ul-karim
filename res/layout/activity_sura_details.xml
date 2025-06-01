@@ -45,7 +45,7 @@
                     android:drawableLeft="@android:drawable/ic_media_previous"
                     android:text="Prev"
                     android:textColor="@color/colorWhiteDN"
-                    android:textSize="12sp"
+                    android:textSize="10sp"
                     android:textAllCaps="false"/>
 
             </LinearLayout>
@@ -88,18 +88,34 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center">
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
                     <Button
                         android:id="@+id/quickLinkBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
                         android:background="@android:color/transparent"
                         android:drawableLeft="@android:drawable/ic_menu_upload"
-                        android:text="Add to favourites"
+                        android:text="Add favourites"
                         android:textColor="@color/colorWhiteDN"
-                        android:textSize="12sp"
+                        android:textSize="10sp"
+                        android:textAllCaps="false"/>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:id="@+id/settingBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:drawableLeft="@android:drawable/ic_menu_manage"
+                        android:text="Settings"
+                        android:textColor="@color/colorWhiteDN"
+                        android:textSize="10sp"
                         android:textAllCaps="false"/>
 
                 </LinearLayout>
@@ -133,7 +149,7 @@
                     android:drawableRight="@android:drawable/ic_media_next"
                     android:text="Next"
                     android:textColor="@color/colorWhiteDN"
-                    android:textSize="12sp"
+                    android:textSize="10sp"
                     android:textAllCaps="false"/>
 
             </LinearLayout>

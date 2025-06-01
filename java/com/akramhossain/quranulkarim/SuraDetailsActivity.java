@@ -316,10 +316,10 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
 
         try {
             if (cursor1.moveToFirst()) {
-                quickLinkBtn.setText("Remove from favourites");
+                quickLinkBtn.setText("Remove favourites");
                 quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_delete, 0, 0, 0);
             } else {
-                quickLinkBtn.setText("Add to favourites");
+                quickLinkBtn.setText("Add favourites");
                 quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_upload, 0, 0, 0);
             }
         }catch (Exception e){
@@ -386,10 +386,10 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
 
                         try {
                             if (cursor1.moveToFirst()) {
-                                quickLinkBtn.setText("Remove from favourites");
+                                quickLinkBtn.setText("Remove favourites");
                                 quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_delete, 0, 0, 0);
                             } else {
-                                quickLinkBtn.setText("Add to favourites");
+                                quickLinkBtn.setText("Add favourites");
                                 quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_upload, 0, 0, 0);
                             }
                         }catch (Exception e){
@@ -472,10 +472,10 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
 
                         try {
                             if (cursor1.moveToFirst()) {
-                                quickLinkBtn.setText("Remove from favourites");
+                                quickLinkBtn.setText("Remove favourites");
                                 quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_delete, 0, 0, 0);
                             } else {
-                                quickLinkBtn.setText("Add to favourites");
+                                quickLinkBtn.setText("Add favourites");
                                 quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_upload, 0, 0, 0);
                             }
                         }catch (Exception e){
@@ -524,7 +524,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                         db.execSQL("DELETE FROM quick_link WHERE sura_id = " + suraId);
                         Toast.makeText(getApplicationContext(), "Deleted from favourites.", Toast.LENGTH_LONG).show();
                         quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_upload, 0, 0, 0);
-                        quickLinkBtn.setText("Add to favourites");
+                        quickLinkBtn.setText("Add favourites");
                     }
                     else {
                         ContentValues values = new ContentValues();
@@ -532,7 +532,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                         DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase().insertOrThrow("quick_link", "", values);
                         Toast.makeText(getApplicationContext(), "Added to favourites.", Toast.LENGTH_LONG).show();
                         quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_delete, 0, 0, 0);
-                        quickLinkBtn.setText("Remove from favourites");
+                        quickLinkBtn.setText("Remove favourites");
                     }
                 }catch (Exception e){
                     Log.e(TAG, e.getMessage());
@@ -888,6 +888,14 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
             }
         });
 
+        Button settingBtn = (Button) findViewById(R.id.settingBtn);
+        settingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), SettingActivity.class);
+                startActivity(i);
+            }
+        });
 
     }
 

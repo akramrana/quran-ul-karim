@@ -187,7 +187,7 @@
             android:id="@+id/quickLinkBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add to favourites"
+            android:text="Add favourites"
             android:textSize="12dp"
             android:drawableLeft="@android:drawable/ic_menu_upload"
             android:layout_centerHorizontal="true"
