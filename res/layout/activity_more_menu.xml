@@ -59,7 +59,7 @@
             android:layout_below="@id/topAboutBar"
             android:layout_marginTop="2dp"
             android:textColor="@color/colorWhite"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:textIsSelectable="true"
             android:scrollbars = "vertical"
             android:paddingLeft="8dp"/>

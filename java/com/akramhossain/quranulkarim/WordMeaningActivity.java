@@ -101,6 +101,18 @@ public class WordMeaningActivity extends AppCompatActivity {
             return insets;
         });
 
+        View bottomBar = findViewById(R.id.word_list);
+        ViewCompat.setOnApplyWindowInsetsListener(bottomBar, (v, insets) -> {
+            int bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+            v.setPadding(
+                    v.getPaddingLeft(),
+                    v.getPaddingTop(),
+                    v.getPaddingRight(),
+                    bottomInset
+            );
+            return insets;
+        });
+
         TextView titleAr = (TextView) findViewById(R.id.name_title_ar);
         titleAr.setText(text_tashkeel);
 

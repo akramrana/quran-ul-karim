@@ -62,6 +62,18 @@ public class MonthlySummaryActivity extends AppCompatActivity {
             return insets;
         });
 
+        View bottomBar = findViewById(R.id.chart_layout);
+        ViewCompat.setOnApplyWindowInsetsListener(bottomBar, (v, insets) -> {
+            int bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+            v.setPadding(
+                    v.getPaddingLeft(),
+                    v.getPaddingTop(),
+                    v.getPaddingRight(),
+                    bottomInset
+            );
+            return insets;
+        });
+
         chart = findViewById(R.id.chart1);
         List<BarEntry> entries = new ArrayList<>();
 

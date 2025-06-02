@@ -66,6 +66,18 @@ public class AboutActivity extends AppCompatActivity {
             return insets;
         });
 
+        View bottomBar = findViewById(R.id.mobile_app_list);
+        ViewCompat.setOnApplyWindowInsetsListener(bottomBar, (v, insets) -> {
+            int bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+            v.setPadding(
+                    v.getPaddingLeft(),
+                    v.getPaddingTop(),
+                    v.getPaddingRight(),
+                    bottomInset
+            );
+            return insets;
+        });
+
         setTitle("About");
         //
         recyclerview = (RecyclerView) findViewById(R.id.mobile_app_list);

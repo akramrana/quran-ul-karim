@@ -70,6 +70,18 @@ public class DuaZikrActivity extends AppCompatActivity {
             return insets;
         });
 
+        View bottomBar = findViewById(R.id.dua_zikr);
+        ViewCompat.setOnApplyWindowInsetsListener(bottomBar, (v, insets) -> {
+            int bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+            v.setPadding(
+                    v.getPaddingLeft(),
+                    v.getPaddingTop(),
+                    v.getPaddingRight(),
+                    bottomInset
+            );
+            return insets;
+        });
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             tagEn = extras.getString("tag_en");

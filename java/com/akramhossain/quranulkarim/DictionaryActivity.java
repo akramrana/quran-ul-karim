@@ -75,6 +75,18 @@ public class DictionaryActivity extends AppCompatActivity implements SearchView.
             return insets;
         });
 
+        View bottomBar = findViewById(R.id.dictionary_word_list);
+        ViewCompat.setOnApplyWindowInsetsListener(bottomBar, (v, insets) -> {
+            int bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+            v.setPadding(
+                    v.getPaddingLeft(),
+                    v.getPaddingTop(),
+                    v.getPaddingRight(),
+                    bottomInset
+            );
+            return insets;
+        });
+
         setTitle("By Word");
 
         recyclerview = (RecyclerView) findViewById(R.id.dictionary_word_list);

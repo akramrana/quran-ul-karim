@@ -70,6 +70,18 @@ public class HadithBookActivity extends AppCompatActivity {
             return insets;
         });
 
+        View bottomBar = findViewById(R.id.hadith_book_list);
+        ViewCompat.setOnApplyWindowInsetsListener(bottomBar, (v, insets) -> {
+            int bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+            v.setPadding(
+                    v.getPaddingLeft(),
+                    v.getPaddingTop(),
+                    v.getPaddingRight(),
+                    bottomInset
+            );
+            return insets;
+        });
+
         recyclerview = (RecyclerView) findViewById(R.id.hadith_book_list);
         mLayoutManager = new LinearLayoutManager(this);
         recyclerview.setLayoutManager(mLayoutManager);

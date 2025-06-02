@@ -186,6 +186,18 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
             return insets;
         });
 
+        View bottomBar = findViewById(R.id.btmSecBtnview);
+        ViewCompat.setOnApplyWindowInsetsListener(bottomBar, (v, insets) -> {
+            int bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+            v.setPadding(
+                    v.getPaddingLeft(),
+                    v.getPaddingTop(),
+                    v.getPaddingRight(),
+                    bottomInset
+            );
+            return insets;
+        });
+
         titleEn = (TextView) findViewById(R.id.name_title_en);
         titleEn.setText(suraName);
 

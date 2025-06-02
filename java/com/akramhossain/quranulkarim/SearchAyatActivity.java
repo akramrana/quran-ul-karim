@@ -81,6 +81,18 @@ public class SearchAyatActivity extends AppCompatActivity {
             return insets;
         });
 
+        View bottomBar = findViewById(R.id.bookmark_list);
+        ViewCompat.setOnApplyWindowInsetsListener(bottomBar, (v, insets) -> {
+            int bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+            v.setPadding(
+                    v.getPaddingLeft(),
+                    v.getPaddingTop(),
+                    v.getPaddingRight(),
+                    bottomInset
+            );
+            return insets;
+        });
+
         ayat_term=(EditText) findViewById(R.id.ayat_term);
 
         recyclerview = (RecyclerView) findViewById(R.id.bookmark_list);

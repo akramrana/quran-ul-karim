@@ -58,6 +58,18 @@ public class JuzActivity extends AppCompatActivity {
             return insets;
         });
 
+        View bottomBar = findViewById(R.id.all_juz_list);
+        ViewCompat.setOnApplyWindowInsetsListener(bottomBar, (v, insets) -> {
+            int bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+            v.setPadding(
+                    v.getPaddingLeft(),
+                    v.getPaddingTop(),
+                    v.getPaddingRight(),
+                    bottomInset
+            );
+            return insets;
+        });
+
         recyclerview = (RecyclerView) findViewById(R.id.all_juz_list);
         mLayoutManager = new LinearLayoutManager(this);
         recyclerview.setLayoutManager(mLayoutManager);

@@ -55,6 +55,18 @@ public class MosqueNearActivity extends AppCompatActivity {
             return insets;
         });
 
+        View bottomBar = findViewById(R.id.mapWebSection);
+        ViewCompat.setOnApplyWindowInsetsListener(bottomBar, (v, insets) -> {
+            int bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+            v.setPadding(
+                    v.getPaddingLeft(),
+                    v.getPaddingTop(),
+                    v.getPaddingRight(),
+                    bottomInset
+            );
+            return insets;
+        });
+
         myWebView = (WebView)findViewById(R.id.mapview);
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);

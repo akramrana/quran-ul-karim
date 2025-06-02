@@ -68,6 +68,18 @@ public class TagActivity extends AppCompatActivity {
             return insets;
         });
 
+        View bottomBar = findViewById(R.id.dua_tags);
+        ViewCompat.setOnApplyWindowInsetsListener(bottomBar, (v, insets) -> {
+            int bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+            v.setPadding(
+                    v.getPaddingLeft(),
+                    v.getPaddingTop(),
+                    v.getPaddingRight(),
+                    bottomInset
+            );
+            return insets;
+        });
+
         mPrefs = getApplicationContext().getSharedPreferences(Utils.PREF_NAME, 0);
 
         recyclerview = (RecyclerView) findViewById(R.id.dua_tags);

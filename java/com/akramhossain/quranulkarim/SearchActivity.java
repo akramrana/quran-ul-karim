@@ -91,6 +91,18 @@ public class SearchActivity extends AppCompatActivity {
             return insets;
         });
 
+        View bottomBar = findViewById(R.id.ayah_list);
+        ViewCompat.setOnApplyWindowInsetsListener(bottomBar, (v, insets) -> {
+            int bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+            v.setPadding(
+                    v.getPaddingLeft(),
+                    v.getPaddingTop(),
+                    v.getPaddingRight(),
+                    bottomInset
+            );
+            return insets;
+        });
+
         setTitle("Search");
 
         //dbhelper = new DatabaseHelper(getApplicationContext());

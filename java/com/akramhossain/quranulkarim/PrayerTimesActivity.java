@@ -75,6 +75,18 @@ public class PrayerTimesActivity extends AppCompatActivity {
             return insets;
         });
 
+        View bottomBar = findViewById(R.id.scrollView);
+        ViewCompat.setOnApplyWindowInsetsListener(bottomBar, (v, insets) -> {
+            int bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+            v.setPadding(
+                    v.getPaddingLeft(),
+                    v.getPaddingTop(),
+                    v.getPaddingRight(),
+                    bottomInset
+            );
+            return insets;
+        });
+
         ftime = (TextView) findViewById(R.id.ftime);
         stime = (TextView) findViewById(R.id.stime);
         ztime = (TextView) findViewById(R.id.ztime);
