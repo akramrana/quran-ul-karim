@@ -98,6 +98,18 @@ public class JuzHizbRubDetailsActivity extends AppCompatActivity {
             return insets;
         });
 
+        View bottomBar = findViewById(R.id.ayah_list);
+        ViewCompat.setOnApplyWindowInsetsListener(bottomBar, (v, insets) -> {
+            int bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+            v.setPadding(
+                    v.getPaddingLeft(),
+                    v.getPaddingTop(),
+                    v.getPaddingRight(),
+                    bottomInset
+            );
+            return insets;
+        });
+
         setTitle(activityTitle);
 
         page_title = (TextView) findViewById(R.id.page_title);
