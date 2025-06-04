@@ -186,7 +186,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
             return insets;
         });
 
-        View bottomBar = findViewById(R.id.btmSecBtnview);
+        View bottomBar = findViewById(R.id.root_view);
         ViewCompat.setOnApplyWindowInsetsListener(bottomBar, (v, insets) -> {
             int bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
             v.setPadding(
