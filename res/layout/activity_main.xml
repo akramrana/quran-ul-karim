@@ -28,6 +28,27 @@
                 android:layout_marginBottom="5dp"
                 android:visibility="gone"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/version_upgrade_warning"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/version_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="@string/version_title"
+                    android:textColor="@color/transColor"
+                    android:textSize="12dp"
+                    android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/name_title_ar"
                 android:layout_width="match_parent"
@@ -1478,6 +1499,33 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/hadith_book_list_title" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tafsir_book_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:id="@+id/tafsir_book_list_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="5dp"
+                    android:text="@string/string_tafsir_en"
+                    android:textSize="21dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/tafsir_book_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tafsir_book_list_title" />
 
             </LinearLayout>
 

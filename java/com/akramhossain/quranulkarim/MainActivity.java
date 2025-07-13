@@ -1101,6 +1101,19 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     ramadan_planner_sec.setVisibility(View.GONE);
                 }
+                //
+                Integer currentAppVersion = json.getInt("current_app_version");
+                Integer appVersion = mPrefs.getInt("app_version", -1);
+                Log.d("app_version",appVersion.toString());
+                LinearLayout version_upgrade_warning = (LinearLayout) findViewById(R.id.version_upgrade_warning);
+                if(appVersion < currentAppVersion){
+                    version_upgrade_warning.setVisibility(View.VISIBLE);
+                }else{
+                    version_upgrade_warning.setVisibility(View.GONE);
+                }
+                SharedPreferences.Editor editor = mPrefs.edit();
+                editor.putInt("app_version",currentAppVersion);
+                editor.apply();
             }
 
         } catch (JSONException e) {

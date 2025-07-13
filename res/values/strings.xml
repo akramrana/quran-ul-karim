@@ -329,4 +329,9 @@
     <string name="string_maghrib_bn">মাগরিব</string>
     <string name="string_asr_bn">আসর</string>
 
+    <string name="version_title">A new version is available. Please back up your data before updating.</string>
+
+    <string name="string_tafsir_en">Tafsir PDF</string>
+    <string name="string_tafsir_bn">তাফসীর পিডিএফ</string>
+
 </resources>
