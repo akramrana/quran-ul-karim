@@ -42,11 +42,13 @@ import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.adapter.HadithBookViewAdapter;
 import com.akramhossain.quranulkarim.adapter.PopularRecyclerViewAdapter;
+import com.akramhossain.quranulkarim.adapter.TafsirBookViewAdapter;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.listener.RecyclerTouchListener;
 import com.akramhossain.quranulkarim.model.HadithBook;
 import com.akramhossain.quranulkarim.model.Sura;
+import com.akramhossain.quranulkarim.model.TafsirBook;
 import com.akramhossain.quranulkarim.task.BannerJsonFromUrlTask;
 import com.akramhossain.quranulkarim.task.JsonFromUrlTask;
 import com.akramhossain.quranulkarim.util.ConnectionDetector;
@@ -133,6 +135,11 @@ public class MainActivity extends AppCompatActivity {
     public static String hb_host = "http://quran.codxplore.com/";
 
     LinearLayout ramadan_planner_sec;
+
+    private RecyclerView tafsirRecyclerview;
+    LinearLayoutManager tafsirLayoutManager;
+    private ArrayList<TafsirBook> tafsirBook;
+    public TafsirBookViewAdapter tafsirRvAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -765,12 +772,57 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //Sentry.captureException(new RuntimeException("Test crash from Sentry"));
+        tafsirRecyclerview = (RecyclerView) findViewById(R.id.tafsir_book_list);
+        tafsirLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false);
+        tafsirRecyclerview.setLayoutManager(tafsirLayoutManager);
+        setTafsirRecyclerViewAdapter();
+        getTafsirDataFromInternet();
     }
 
     private void setHbRecyclerViewAdapter() {
         hadithBook = new ArrayList<HadithBook>();
         hbRvAdapter = new HadithBookViewAdapter(MainActivity.this, hadithBook, this, "MA");
         hbRecyclerview.setAdapter(hbRvAdapter);
+    }
+
+    private void getTafsirDataFromInternet(){
+        String Url = hb_host+"api/v1/tafsir-book-list.php";
+        String tag = "MainActivity.TafsirBookList";
+        if (isInternetPresent) {
+            new JsonFromUrlTask(this, Url, tag, "");
+        }
+        else{
+            AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+            alert.setTitle(R.string.text_warning);
+            alert.setMessage(R.string.text_enable_internet);
+            alert.setPositiveButton(R.string.text_ok,null);
+            alert.show();
+        }
+    }
+
+    public void parseTafsirJsonResponse(String result){
+        try {
+            JSONObject response = new JSONObject(result);
+            JSONArray jArray = new JSONArray(response.getString("data"));
+
+            for (int i = 0; i < jArray.length(); i++) {
+                JSONObject jObject = jArray.getJSONObject(i);
+                Log.i(TAG, jObject.toString());
+
+                TafsirBook tb = new TafsirBook();
+                tb.setTafsir_book_id(jObject.getString("id"));
+                tb.setName_english(jObject.getString("name_en"));
+                tb.setName_bangla(jObject.getString("name_bn"));
+                tb.setName_arabic(jObject.getString("name_ar"));
+                tb.setThumb(jObject.getString("thumb"));
+                tafsirBook.add(tb);
+            }
+
+            tafsirRvAdapter.notifyDataSetChanged();
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private void getHbDataFromInternet() {
@@ -1142,6 +1194,12 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    private void setTafsirRecyclerViewAdapter() {
+        tafsirBook = new ArrayList<TafsirBook>();
+        tafsirRvAdapter = new TafsirBookViewAdapter(MainActivity.this, tafsirBook, this, "MA");
+        tafsirRecyclerview.setAdapter(tafsirRvAdapter);
     }
 
     private boolean checkPermission() {

@@ -105,6 +105,9 @@ public class JsonFromUrlTask {
                     else if(TAG.equals("LeaderboardActivity")){
                         ((LeaderboardActivity) activity).parseJsonResponseSearch(response);
                     }
+                    else if(TAG.equals("MainActivity.TafsirBookList")){
+                        ((MainActivity) activity).parseTafsirJsonResponse(response);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.d(TAG, "Api error: " + e.getMessage());

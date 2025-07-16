@@ -1513,7 +1513,6 @@
                     android:id="@+id/tafsir_book_list_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:paddingLeft="8dp"
                     android:paddingRight="5dp"
                     android:text="@string/string_tafsir_en"

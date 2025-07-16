@@ -10,6 +10,8 @@ public class TafsirBook {
 
     private String name_arabic;
 
+    private String thumb;
+
     public String getTafsir_book_id() {
         return tafsir_book_id;
     }
@@ -40,5 +42,13 @@ public class TafsirBook {
 
     public void setName_arabic(String name_arabic) {
         this.name_arabic = name_arabic;
+    }
+
+    public String getThumb() {
+        return thumb;
+    }
+
+    public void setThumb(String thumb) {
+        this.thumb = thumb;
     }
 }
