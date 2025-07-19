@@ -54,6 +54,15 @@
             android:layout_gravity="center"
             android:visibility="gone"/>
 
+        <ImageView
+            android:id="@+id/actionIcon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@android:drawable/ic_menu_save"
+            android:layout_gravity="center"/>
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
