@@ -17,6 +17,7 @@ import com.akramhossain.quranulkarim.HadithListActivity;
 import com.akramhossain.quranulkarim.HadithSearchActivity;
 import com.akramhossain.quranulkarim.LeaderboardActivity;
 import com.akramhossain.quranulkarim.MainActivity;
+import com.akramhossain.quranulkarim.PdfListActivity;
 import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.TagActivity;
 import com.akramhossain.quranulkarim.app.AppController;
@@ -108,6 +109,9 @@ public class JsonFromUrlTask {
                     else if(TAG.equals("MainActivity.TafsirBookList")){
                         ((MainActivity) activity).parseTafsirJsonResponse(response);
                     }
+                    else if(TAG.equals("PdfListActivity")){
+                        ((PdfListActivity) activity).parseJsonResponse(response);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.d(TAG, "Api error: " + e.getMessage());
@@ -125,7 +129,7 @@ public class JsonFromUrlTask {
         }) {};
 
         // Adding request to request queue
-        //strReq.setShouldCache(false);
+        strReq.setShouldCache(false);
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 

@@ -777,6 +777,24 @@ public class MainActivity extends AppCompatActivity {
         tafsirRecyclerview.setLayoutManager(tafsirLayoutManager);
         setTafsirRecyclerViewAdapter();
         getTafsirDataFromInternet();
+        tafsirRecyclerview.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), hbRecyclerview, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                TafsirBook hb = tafsirBook.get(position);
+                Intent in = new Intent(getApplicationContext(),PdfListActivity.class);
+                in.putExtra("tafsir_book_id", hb.getTafsir_book_id());
+                in.putExtra("name_en", hb.getName_english());
+                in.putExtra("name_ar", hb.getName_arabic());
+                in.putExtra("name_bn", hb.getName_bangla());
+                in.putExtra("thumb", hb.getThumb());
+                in.putExtra("pdf_list_url", hb.getPdf_list_url());
+                startActivity(in);
+            }
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
     }
 
     private void setHbRecyclerViewAdapter() {
@@ -815,6 +833,7 @@ public class MainActivity extends AppCompatActivity {
                 tb.setName_bangla(jObject.getString("name_bn"));
                 tb.setName_arabic(jObject.getString("name_ar"));
                 tb.setThumb(jObject.getString("thumb"));
+                tb.setPdf_list_url(jObject.getString("pdf_list_url"));
                 tafsirBook.add(tb);
             }
 

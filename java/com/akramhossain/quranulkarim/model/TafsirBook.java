@@ -12,6 +12,8 @@ public class TafsirBook {
 
     private String thumb;
 
+    private String pdf_list_url;
+
     public String getTafsir_book_id() {
         return tafsir_book_id;
     }
@@ -50,5 +52,13 @@ public class TafsirBook {
 
     public void setThumb(String thumb) {
         this.thumb = thumb;
+    }
+
+    public String getPdf_list_url() {
+        return pdf_list_url;
+    }
+
+    public void setPdf_list_url(String pdf_list_url) {
+        this.pdf_list_url = pdf_list_url;
     }
 }
