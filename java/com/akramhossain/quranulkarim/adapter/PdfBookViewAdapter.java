@@ -75,7 +75,7 @@ public class PdfBookViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
         holder.itemView.setOnClickListener(v -> {
             if (localFile.exists()) {
-                openPdf(localFile);
+                openPdf(localFile, tb.getName_english());
             } else {
                 downloadAndOpen(tb.getUrl(), tb.getFile_name());
             }
@@ -87,10 +87,11 @@ public class PdfBookViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         return pdfBookList.size();
     }
 
-    private void openPdf(File file) {
+    private void openPdf(File file, String filename) {
         //Log.d("PDF_FILE",file.getAbsolutePath());
         Intent intent = new Intent(c, PdfViewActivity.class);
         intent.putExtra("pdf_path", file.getAbsolutePath());
+        intent.putExtra("pdf_file_name", filename);
         c.startActivity(intent);
     }
 
@@ -110,7 +111,7 @@ public class PdfBookViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             public void onReceive(Context ctx, Intent intent) {
                 File file = new File(c.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), fileName);
                 if (file.exists()) {
-                    openPdf(file);
+                    openPdf(file, fileName);
                 }
                 c.unregisterReceiver(this);
             }

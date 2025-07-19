@@ -1,6 +1,7 @@
 package com.akramhossain.quranulkarim;
 
 import android.app.AlertDialog;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import com.akramhossain.quranulkarim.adapter.PdfBookViewAdapter;
 import com.akramhossain.quranulkarim.model.TafsirPdfList;
 import com.akramhossain.quranulkarim.task.JsonFromUrlTask;
 import com.akramhossain.quranulkarim.util.ConnectionDetector;
+import com.akramhossain.quranulkarim.util.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,6 +51,7 @@ public class PdfListActivity extends AppCompatActivity {
     private ArrayList<TafsirPdfList> pdfBookList;
 
     Typeface font;
+    SharedPreferences mPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +114,16 @@ public class PdfListActivity extends AppCompatActivity {
         pdfLayoutManager = new GridLayoutManager(this, 2);
         pdfRecyclerview.setLayoutManager(pdfLayoutManager);
         setPdfRecyclerViewAdapter();
-        getPdfDataFromInternet();
+        //
+        mPrefs = getApplicationContext().getSharedPreferences(Utils.PREF_NAME, 0);
+        String IS_TAFSIR_PDF_JSON_DATA_STORED = mPrefs.getString("IS_TAFSIR_PDF_JSON_DATA_STORED_"+tafsir_book_id, "0");
+        if(IS_TAFSIR_PDF_JSON_DATA_STORED.equals("1")){
+            String TAFSIR_PDF_JSON_DATA_ = mPrefs.getString("TAFSIR_PDF_JSON_DATA_"+tafsir_book_id, "{}");
+            Log.i(TAG, TAFSIR_PDF_JSON_DATA_);
+            parseJsonResponse(TAFSIR_PDF_JSON_DATA_);
+        }else {
+            getPdfDataFromInternet();
+        }
     }
 
     private void setPdfRecyclerViewAdapter() {
@@ -123,7 +135,7 @@ public class PdfListActivity extends AppCompatActivity {
     private void getPdfDataFromInternet(){
         String Url = pdf_list_url;
         if (isInternetPresent) {
-            new JsonFromUrlTask(this, Url, TAG, "");
+            new JsonFromUrlTask(this, Url, TAG, tafsir_book_id);
         }
         else{
             AlertDialog.Builder alert = new AlertDialog.Builder(PdfListActivity.this);

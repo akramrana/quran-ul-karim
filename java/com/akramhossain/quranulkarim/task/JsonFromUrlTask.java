@@ -108,9 +108,17 @@ public class JsonFromUrlTask {
                     }
                     else if(TAG.equals("MainActivity.TafsirBookList")){
                         ((MainActivity) activity).parseTafsirJsonResponse(response);
+                        SharedPreferences.Editor editor = mPrefs.edit();
+                        editor.putString("TAFSIR_BOOK_JSON_DATA", response.toString());
+                        editor.putString("IS_TAFSIR_BOOK_JSON_DATA_STORED", "1");
+                        editor.apply();
                     }
                     else if(TAG.equals("PdfListActivity")){
                         ((PdfListActivity) activity).parseJsonResponse(response);
+                        SharedPreferences.Editor editor = mPrefs.edit();
+                        editor.putString("TAFSIR_PDF_JSON_DATA_"+sharedPref, response.toString());
+                        editor.putString("IS_TAFSIR_PDF_JSON_DATA_STORED_"+sharedPref, "1");
+                        editor.apply();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -129,7 +137,7 @@ public class JsonFromUrlTask {
         }) {};
 
         // Adding request to request queue
-        strReq.setShouldCache(false);
+        //strReq.setShouldCache(false);
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 

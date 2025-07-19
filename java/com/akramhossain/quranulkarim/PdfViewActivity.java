@@ -45,6 +45,10 @@ public class PdfViewActivity extends AppCompatActivity {
 
         String filePath = getIntent().getStringExtra("pdf_path");
 
+        String title = getIntent().getStringExtra("pdf_file_name");
+
+        getSupportActionBar().setTitle(title);
+
         Log.d("PDF_FILE",filePath);
 
         if (filePath != null) {

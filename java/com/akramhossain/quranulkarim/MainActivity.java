@@ -776,7 +776,17 @@ public class MainActivity extends AppCompatActivity {
         tafsirLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false);
         tafsirRecyclerview.setLayoutManager(tafsirLayoutManager);
         setTafsirRecyclerViewAdapter();
-        getTafsirDataFromInternet();
+        //
+        mPrefs = getApplicationContext().getSharedPreferences(Utils.PREF_NAME, 0);
+        String IS_TAFSIR_BOOK_JSON_DATA_STORED = mPrefs.getString("IS_TAFSIR_BOOK_JSON_DATA_STORED", "0");
+        if(IS_TAFSIR_BOOK_JSON_DATA_STORED.equals("1")){
+            String TAFSIR_BOOK_JSON_DATA = mPrefs.getString("TAFSIR_BOOK_JSON_DATA", "{}");
+            Log.i(TAG, TAFSIR_BOOK_JSON_DATA);
+            parseTafsirJsonResponse(TAFSIR_BOOK_JSON_DATA);
+        }else {
+            getTafsirDataFromInternet();
+        }
+        //
         tafsirRecyclerview.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), hbRecyclerview, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
