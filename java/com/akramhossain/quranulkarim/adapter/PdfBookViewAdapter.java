@@ -7,10 +7,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -109,36 +112,34 @@ public class PdfBookViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         downloadId = manager.enqueue(request);
         Toast.makeText(c, "Downloading started...", Toast.LENGTH_SHORT).show();
         // Optional: Listen for completion and auto-open
-        onDownloadComplete = new BroadcastReceiver() {
+        checkDownloadStatus(downloadId, fileName, title);
+    }
+
+    private void checkDownloadStatus(final long downloadId, final String fileName, final String title) {
+        final Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onReceive(Context ctx, Intent intent) {
-                long completedDownloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
-                Log.d("DownloadDebug", "Completed ID: " + completedDownloadId + ", Expected ID: " + downloadId);
-                if (completedDownloadId == downloadId) {
-                    File file = new File(c.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), fileName);
-                    if (file.exists()) {
-                        openPdf(file, title);
+            public void run() {
+                DownloadManager.Query query = new DownloadManager.Query();
+                query.setFilterById(downloadId);
+                DownloadManager manager = (DownloadManager) c.getSystemService(Context.DOWNLOAD_SERVICE);
+                Cursor cursor = manager.query(query);
+                if (cursor != null && cursor.moveToFirst()) {
+                    int statusIndex = cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS);
+                    int status = cursor.getInt(statusIndex);
+                    if (status == DownloadManager.STATUS_SUCCESSFUL) {
+                        File file = new File(c.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), fileName);
+                        if (file.exists()) {
+                            openPdf(file, title);
+                        }
                     } else {
-                        Log.e("DownloadDebug", "File does not exist: " + file.getAbsolutePath());
+                        // Keep checking every second until complete
+                        handler.postDelayed(this, 1000);
                     }
-                    c.unregisterReceiver(this);
+                    cursor.close();
                 }
             }
-        };
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) { // Android 14+
-            ContextCompat.registerReceiver(
-                    c,
-                    onDownloadComplete,
-                    new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE),
-                    ContextCompat.RECEIVER_NOT_EXPORTED
-            );
-        } else {
-            c.registerReceiver(
-                    onDownloadComplete,
-                    new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE)
-            );
-        }
-
+        }, 1000);
     }
 
     class RecyclerViewHolder extends RecyclerView.ViewHolder {

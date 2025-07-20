@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Quran English and Bangla</string>
+    <string name="app_name">Quran Tafsir English Bangla</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
 
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
-        <item>Quran English and Bangla</item>
+        <item>Quran Tafsir English Bangla</item>
     </string-array>
 
     <!-- Nav Drawer List Item Icons -->
@@ -34,9 +34,9 @@
     <string name="string_dictionary">Word By Word</string>
     <string name="string_dictionary_subtitle">Quran word by word</string>
     <string name="title_activity_about">AboutActivity</string>
-    <string name="string_about">Quran English and Bangla</string>
+    <string name="string_about">Quran Tafsir English Bangla</string>
     <string name="string_about_subtitle">About App</string>
-    <string name="string_about_description">Quran English and Bangla is the free App provided to you by Akram Hossain.If you like this app then you can thank by making dua for my parents, my family and the rest of muslim ummah that Allah (swt) ease the hardships that we all are going through.Thank you.\n\nQuran data was obtained from https://github.com/quran/.If you see any discrepancies then please report them.\n\n**Verse by Verse recitations uses the internet to download audio files.</string>
+    <string name="string_about_description">Quran Tafsir English Bangla is the free App provided to you by Akram Hossain.If you like this app, please make dua for me and my family — that Allah (SWT) blesses us and grants us peace and barakah.Thank you.\n\nQuran data was obtained from https://github.com/quran/.If you see any discrepancies then please report them.\n\n**Verse by Verse recitations uses the internet to download audio files.</string>
     <string name="text_warning">Warning</string>
     <string name="text_enable_internet">Please enable internet connection</string>
     <string name="text_ok">OK</string>
