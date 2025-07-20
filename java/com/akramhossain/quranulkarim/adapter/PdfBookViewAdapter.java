@@ -39,6 +39,8 @@ public class PdfBookViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     Typeface font;
     SharedPreferences mPrefs;
     String screen;
+    private long downloadId;
+    private BroadcastReceiver onDownloadComplete;
 
     public PdfBookViewAdapter(Context c, ArrayList<TafsirPdfList> pdfBookList, Activity activity, String screen) {
         this.c = c;
@@ -77,7 +79,7 @@ public class PdfBookViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             if (localFile.exists()) {
                 openPdf(localFile, tb.getName_english());
             } else {
-                downloadAndOpen(tb.getUrl(), tb.getFile_name());
+                downloadAndOpen(tb.getUrl(), tb.getFile_name(), tb.getName_english());
             }
         });
     }
@@ -92,10 +94,11 @@ public class PdfBookViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         Intent intent = new Intent(c, PdfViewActivity.class);
         intent.putExtra("pdf_path", file.getAbsolutePath());
         intent.putExtra("pdf_file_name", filename);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         c.startActivity(intent);
     }
 
-    private void downloadAndOpen(String url, String fileName) {
+    private void downloadAndOpen(String url, String fileName, String title) {
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
         request.setTitle("Downloading " + fileName);
         request.setDescription("Please wait...");
@@ -103,25 +106,39 @@ public class PdfBookViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         request.setDestinationInExternalFilesDir(c, Environment.DIRECTORY_DOWNLOADS, fileName);
 
         DownloadManager manager = (DownloadManager) c.getSystemService(Context.DOWNLOAD_SERVICE);
-        manager.enqueue(request);
+        downloadId = manager.enqueue(request);
         Toast.makeText(c, "Downloading started...", Toast.LENGTH_SHORT).show();
         // Optional: Listen for completion and auto-open
-        BroadcastReceiver onComplete = new BroadcastReceiver() {
+        onDownloadComplete = new BroadcastReceiver() {
             @Override
             public void onReceive(Context ctx, Intent intent) {
-                File file = new File(c.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), fileName);
-                if (file.exists()) {
-                    openPdf(file, fileName);
+                long completedDownloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+                Log.d("DownloadDebug", "Completed ID: " + completedDownloadId + ", Expected ID: " + downloadId);
+                if (completedDownloadId == downloadId) {
+                    File file = new File(c.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), fileName);
+                    if (file.exists()) {
+                        openPdf(file, title);
+                    } else {
+                        Log.e("DownloadDebug", "File does not exist: " + file.getAbsolutePath());
+                    }
+                    c.unregisterReceiver(this);
                 }
-                c.unregisterReceiver(this);
             }
         };
-        ContextCompat.registerReceiver(
-                c,
-                onComplete,
-                new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE),
-                ContextCompat.RECEIVER_NOT_EXPORTED
-        );
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) { // Android 14+
+            ContextCompat.registerReceiver(
+                    c,
+                    onDownloadComplete,
+                    new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE),
+                    ContextCompat.RECEIVER_NOT_EXPORTED
+            );
+        } else {
+            c.registerReceiver(
+                    onDownloadComplete,
+                    new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE)
+            );
+        }
+
     }
 
     class RecyclerViewHolder extends RecyclerView.ViewHolder {
