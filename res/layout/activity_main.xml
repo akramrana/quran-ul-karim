@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="left"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
         android:id="@+id/root_view">
 
@@ -44,7 +44,7 @@
                     android:paddingRight="5dp"
                     android:text="@string/version_title"
                     android:textColor="@color/transColor"
-                    android:textSize="12dp"
+                    android:textSize="12sp"
                     android:layout_marginTop="10dp"/>
 
             </LinearLayout>
@@ -58,7 +58,7 @@
                 android:paddingRight="5dp"
                 android:text="@string/name_title_ar"
                 android:textColor="@color/colorWhiteDN"
-                android:textSize="22dp"
+                android:textSize="20sp"
                 android:layout_marginTop="20dp"/>
 
             <TextView
@@ -127,12 +127,12 @@
                             android:id="@+id/prayer_time_ttl"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dip"
                             android:layout_marginTop="10dip"
-                            android:text="@string/string_prayer_times"
-                            android:textSize="18.0sp"
-                            android:textColor="@color/transColor"
                             android:gravity="center"
-                            android:layout_marginLeft="15dip"/>
+                            android:text="@string/string_prayer_times"
+                            android:textColor="@color/transColor"
+                            android:textSize="15sp" />
 
                     </LinearLayout>
                     <HorizontalScrollView
@@ -358,7 +358,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dip"
                                 android:text="@string/string_nightly_ttl"
-                                android:textSize="18.0sp"
+                                android:textSize="15sp"
                                 android:textColor="@color/transColor"
                                 android:gravity="left"
                                 android:layout_marginLeft="15dip"/>
@@ -377,7 +377,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dip"
                                 android:text="@string/string_nightly_ttl_bn"
-                                android:textSize="17.0sp"
+                                android:textSize="15sp"
                                 android:textColor="@color/transColor"
                                 android:gravity="right"
                                 android:layout_marginRight="15dip"/>
@@ -553,7 +553,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dip"
                                 android:text="@string/string_friday_ttl"
-                                android:textSize="18.0sp"
+                                android:textSize="15sp"
                                 android:textColor="@color/transColor"
                                 android:gravity="left"
                                 android:layout_marginLeft="15dip"/>
@@ -572,7 +572,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dip"
                                 android:text="@string/friday_ttl_bn"
-                                android:textSize="17.0sp"
+                                android:textSize="15sp"
                                 android:textColor="@color/transColor"
                                 android:gravity="right"
                                 android:layout_marginRight="15dip"/>
@@ -662,7 +662,7 @@
                 android:paddingLeft="8dp"
                 android:paddingRight="5dp"
                 android:text="@string/ppl_search"
-                android:textSize="21dp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 android:layout_gravity="center"/>
 
@@ -1420,7 +1420,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dip"
                                     android:text="@string/word_challenge_ttl"
-                                    android:textSize="18.0sp"
+                                    android:textSize="15sp"
                                     android:textColor="@color/transColor"
                                     android:gravity="center"
                                     android:layout_marginLeft="15dip"/>
@@ -1490,7 +1490,7 @@
                     android:paddingLeft="8dp"
                     android:paddingRight="5dp"
                     android:text="@string/string_hadith_en"
-                    android:textSize="21dp"
+                    android:textSize="15sp"
                     android:textStyle="bold"
                     android:layout_gravity="center"/>
 
@@ -1509,16 +1509,33 @@
                 android:orientation="vertical"
                 android:layout_marginBottom="15dp">
 
-                <TextView
-                    android:id="@+id/tafsir_book_list_title"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="5dp"
-                    android:text="@string/string_tafsir_en"
-                    android:textSize="21dp"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"/>
+                    android:layout_width="match_parent"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tafsir_book_list_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="5dp"
+                        android:text="@string/string_tafsir_en"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+
+                    <ImageView
+                        android:id="@+id/reload_button"
+                        android:layout_width="16.0dip"
+                        android:layout_height="16.0dip"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:src="@android:drawable/ic_popup_sync" />
+
+
+                </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/tafsir_book_list"
@@ -1993,7 +2010,7 @@
             android:text="@string/start_from_last"
             android:textColor="@color/colorWhiteDN"
             android:background="@color/bg_color"
-            android:textSize="13dp"
+            android:textSize="13sp"
             android:visibility="gone" />
 
         <ProgressBar

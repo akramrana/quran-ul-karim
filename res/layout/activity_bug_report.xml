@@ -122,8 +122,11 @@
                 <Button
                     android:id="@+id/ButtonSendFeedback"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:text="@string/feedbackbutton"
+                    android:background="@color/contrast_green"
+                    android:textColor="@android:color/background_light"
+                    android:textSize="15sp"
                     android:textAllCaps="false"></Button>
 
             </LinearLayout>

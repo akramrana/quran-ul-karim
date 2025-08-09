@@ -22,10 +22,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.akramhossain.quranulkarim.MainActivity;
 import com.akramhossain.quranulkarim.PdfViewActivity;
 import com.akramhossain.quranulkarim.R;
+import com.akramhossain.quranulkarim.app.AppController;
 import com.akramhossain.quranulkarim.model.TafsirPdfList;
 import com.akramhossain.quranulkarim.util.Utils;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -128,6 +134,7 @@ public class PdfBookViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     int statusIndex = cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS);
                     int status = cursor.getInt(statusIndex);
                     if (status == DownloadManager.STATUS_SUCCESSFUL) {
+                        pushData(title);
                         File file = new File(c.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), fileName);
                         if (file.exists()) {
                             openPdf(file, title);
@@ -140,6 +147,33 @@ public class PdfBookViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 }
             }
         }, 1000);
+    }
+
+    private void pushData(String bookName){
+        Uri uri = new Uri.Builder()
+                .scheme("http")
+                .authority("quran.codxplore.com")
+                .appendPath("api")
+                .appendPath("v1")
+                .appendPath("download-count.php")
+                .appendQueryParameter("book_name", bookName)
+                .build();
+        String Url = uri.toString();;
+        Log.d("DOWNLOAD PUSH URL", Url);
+        //
+        String tag_string_req = "download_count_api";
+        StringRequest strReq = new StringRequest(Request.Method.GET,Url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("DOWNLOAD_COUNT", "Api Response: " + response.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("DOWNLOAD_COUNT", "Api Error: " + error);
+            }
+        }) {};
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
     class RecyclerViewHolder extends RecyclerView.ViewHolder {

@@ -805,6 +805,19 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }));
+
+        ImageView reload_button = findViewById(R.id.reload_button);
+        reload_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = mPrefs.edit();
+                editor.putString("TAFSIR_BOOK_JSON_DATA", "{}");
+                editor.putString("IS_TAFSIR_BOOK_JSON_DATA_STORED", "0");
+                editor.apply();
+                getTafsirDataFromInternet();
+                Toast.makeText(getApplicationContext(), "Data refreshed", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void setHbRecyclerViewAdapter() {
