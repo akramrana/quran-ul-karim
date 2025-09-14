@@ -15,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -231,7 +232,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                 //
                 if (!recyclerView.canScrollVertically(1) && newState==RecyclerView.SCROLL_STATE_IDLE) {
                     SQLiteDatabase db1 = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-                    String sql1 = "DELETE FROM last_position";
+                    String sql1 = "DELETE FROM last_position WHERE sura_id = "+suraId;
                     try {
                         db1.execSQL(sql1);
                     }catch (Exception e){
@@ -253,7 +254,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                         rl.setVisibility(View.GONE);
                     }
                     SQLiteDatabase db1 = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-                    String sql1 = "DELETE FROM last_position";
+                    String sql1 = "DELETE FROM last_position WHERE sura_id = "+suraId;
                     try {
                         db1.execSQL(sql1);
                         ContentValues values = new ContentValues();
@@ -317,6 +318,38 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         dbhelper = DatabaseHelper.getInstance(getApplicationContext());
 
         getDataFromLocalDb();
+
+        if (suraLastPosition == null || suraLastPosition.isEmpty()) {
+            String checkPosSql = "SELECT * FROM last_position WHERE sura_id = " + suraId;
+            SQLiteDatabase db0 = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+            Cursor cursor0 = db0.rawQuery(checkPosSql, null);
+            try {
+                if (cursor0.moveToFirst()) {
+                    Integer surahLastReadPosition = cursor0.getInt(cursor0.getColumnIndexOrThrow("position"));
+                    Log.d("Surah Last Pos", surahLastReadPosition.toString());
+                    if (surahLastReadPosition > 3) {
+                        new AlertDialog.Builder(this)
+                                .setTitle("Resume reading?")
+                                .setMessage("Continue from ayah " + (surahLastReadPosition + 1) + "?")
+                                .setPositiveButton("Yes", (dialog, which) -> {
+                                    recyclerview.scrollToPosition(surahLastReadPosition);
+                                })
+                                .setNegativeButton("No", (dialog, which) -> {
+                                    // do nothing, just dismiss
+                                })
+                                .show();
+                    }
+                }
+            } catch (Exception e) {
+                Log.e("Last Pos Check", e.getMessage());
+                Sentry.captureException(new RuntimeException("SQL Query: " + checkPosSql, e));
+            } finally {
+                if (cursor0 != null && !cursor0.isClosed()) {
+                    cursor0.close();
+                }
+                cursor0.close();
+            }
+        }
 
         Button previousBtn = (Button) findViewById(R.id.previousBtn);
         Button nextBtn = (Button) findViewById(R.id.nextBtn);
@@ -677,52 +710,6 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                     }
                 }
             });
-
-//            play_audio.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    AudioPlay.stopAudio();
-//                    AudioPlay.playAudio(getApplicationContext(), "https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/" + suraId + ".mp3");
-//
-//                    play_audio.setVisibility(View.GONE);
-//                    pause_audio.setVisibility(View.VISIBLE);
-//                    resume_audio.setVisibility(View.GONE);
-//                    stop_audio.setVisibility(View.VISIBLE);
-//                }
-//            });
-//
-//            pause_audio.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    AudioPlay.pauseAudio();
-//                    play_audio.setVisibility(View.GONE);
-//                    pause_audio.setVisibility(View.GONE);
-//                    resume_audio.setVisibility(View.VISIBLE);
-//                    stop_audio.setVisibility(View.VISIBLE);
-//                }
-//            });
-//
-//            resume_audio.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    AudioPlay.resumeAudio();
-//                    play_audio.setVisibility(View.GONE);
-//                    pause_audio.setVisibility(View.VISIBLE);
-//                    resume_audio.setVisibility(View.GONE);
-//                    stop_audio.setVisibility(View.VISIBLE);
-//                }
-//            });
-//
-//            stop_audio.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    AudioPlay.stopAudio();
-//                    play_audio.setVisibility(View.VISIBLE);
-//                    pause_audio.setVisibility(View.GONE);
-//                    resume_audio.setVisibility(View.GONE);
-//                    stop_audio.setVisibility(View.GONE);
-//                }
-//            });
         }
 
         ayah_txt = (TextView) findViewById(R.id.ayah_txt);

@@ -315,6 +315,7 @@ public class MainActivity extends AppCompatActivity {
                 String sql = "SELECT last_position.sura_id,position,name_english,name_arabic " +
                         "FROM last_position " +
                         "LEFT JOIN sura ON last_position.sura_id = sura.surah_id " +
+                        "ORDER BY last_position_id DESC " +
                         "LIMIT 1";
                 Log.d("Last Position SQL", sql);
                 Cursor cursor = db.rawQuery(sql, null);
@@ -814,6 +815,7 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString("TAFSIR_BOOK_JSON_DATA", "{}");
                 editor.putString("IS_TAFSIR_BOOK_JSON_DATA_STORED", "0");
                 editor.apply();
+
                 getTafsirDataFromInternet();
                 Toast.makeText(getApplicationContext(), "Data refreshed", Toast.LENGTH_LONG).show();
             }
@@ -842,6 +844,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void parseTafsirJsonResponse(String result){
+        tafsirBook.clear();
+        tafsirRvAdapter.notifyDataSetChanged();
+        //
         try {
             JSONObject response = new JSONObject(result);
             JSONArray jArray = new JSONArray(response.getString("data"));
@@ -1099,6 +1104,7 @@ public class MainActivity extends AppCompatActivity {
             String sql = "SELECT last_position.sura_id,position,name_english,name_arabic " +
                     "FROM last_position " +
                     "LEFT JOIN sura ON last_position.sura_id = sura.surah_id " +
+                    "ORDER BY last_position_id DESC " +
                     "LIMIT 1";
             Log.d("Last Position SQL", sql);
             Cursor cursor = null;
