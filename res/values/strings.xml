@@ -181,8 +181,8 @@
 
     <string name="hadith_hint">Enter any term</string>
 
-    <string name="string_noa_bn">আল্লাহর ৯৯ টি নাম</string>
-    <string name="string_noa_en">99 Names Of Allah</string>
+    <string name="string_noa_bn">আল্লাহর নাম</string>
+    <string name="string_noa_en">Names Of Allah</string>
     <string name="string_noa_subtitle">99 Names Of Allah - Al Asma ul Husna</string>
 
     <string name="search_ayah_en">Search Ayah</string>
