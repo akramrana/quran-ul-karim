@@ -30,6 +30,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ReciterPlaylistActivity"
+            android:exported="false" />
+        <activity
             android:name=".ReciterActivity"
             android:exported="false" />
         <activity

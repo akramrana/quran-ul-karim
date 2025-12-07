@@ -19,6 +19,7 @@ import com.akramhossain.quranulkarim.LeaderboardActivity;
 import com.akramhossain.quranulkarim.MainActivity;
 import com.akramhossain.quranulkarim.PdfListActivity;
 import com.akramhossain.quranulkarim.R;
+import com.akramhossain.quranulkarim.ReciterPlaylistActivity;
 import com.akramhossain.quranulkarim.TagActivity;
 import com.akramhossain.quranulkarim.app.AppController;
 import com.akramhossain.quranulkarim.util.Utils;
@@ -119,6 +120,9 @@ public class JsonFromUrlTask {
                         editor.putString("TAFSIR_PDF_JSON_DATA_"+sharedPref, response.toString());
                         editor.putString("IS_TAFSIR_PDF_JSON_DATA_STORED_"+sharedPref, "1");
                         editor.apply();
+                    }
+                    else if(TAG.equals("ReciterPlaylistActivity")){
+                        ((ReciterPlaylistActivity) activity).parseJsonResponse(response);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

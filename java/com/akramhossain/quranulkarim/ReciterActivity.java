@@ -1,5 +1,6 @@
 package com.akramhossain.quranulkarim;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -89,7 +90,12 @@ public class ReciterActivity extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(new SectionedAdapter(sectioned, r -> {
             // TODO: handle click (open details, start playback, etc.)
-            Toast.makeText(this, r.name, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, r.name, Toast.LENGTH_SHORT).show();
+            Intent in = new Intent(getApplicationContext(), ReciterPlaylistActivity.class);
+            in.putExtra("reciter_name", r.name);
+            in.putExtra("relative_path", r.relative_path);
+            in.putExtra("qari_id",r.id);
+            startActivity(in);
         }));
     }
 
@@ -119,8 +125,9 @@ public class ReciterActivity extends AppCompatActivity {
                 String name = obj.optString("name", "");
                 String arabic = obj.optString("arabic_name", "");
                 String path = obj.optString("relative_path", "");
+                String id = obj.optString("id", "");
 
-                reciters.add(new Reciter(name, arabic, path));
+                reciters.add(new Reciter(name, arabic, path, id));
             }
         } catch (JSONException e) {
             e.printStackTrace();
