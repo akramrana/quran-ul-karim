@@ -29,6 +29,8 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
     private final Handler handler = new Handler(Looper.getMainLooper());
     private Runnable monitorRunnable;
 
+    private int playingPos = RecyclerView.NO_POSITION;
+
     public AudioAdapter(Context context, List<AudioItem> items) {
         this.context = context;
         this.items = items;
@@ -47,42 +49,56 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
         holder.txtTitle.setText(item.title);
         holder.txtSubtitle.setText(item.artist + " • " + formatDuration(item.duration));
 
+        boolean isThisPlaying = (position == playingPos) && AudioPlay.isAudioPlaying;
+
+        holder.btnPlay.setImageResource(isThisPlaying
+                ? android.R.drawable.ic_media_pause
+                : android.R.drawable.ic_media_play);
+
         holder.btnPlay.setOnClickListener(v -> handlePlayClick(holder, position));
     }
 
     private void handlePlayClick(AudioViewHolder holder, int position) {
-        AudioItem item = items.get(position);
-        try {
-            AudioPlay.stopAudio();
-            holder.btnPlay.setImageResource(android.R.drawable.ic_media_play);
-            AudioPlay.playAudio(context,item.url);
-
-            holder.btnPlay.setImageResource(AudioPlay.isAudioPlaying
-                    ? android.R.drawable.ic_media_pause
-                    : android.R.drawable.ic_media_play);
-
-            startMonitor(holder);
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (position == RecyclerView.NO_POSITION) return;
+        int previous = playingPos;
+        if (position == playingPos) {
+            if (AudioPlay.isAudioPlaying) {
+                AudioPlay.pauseAudio();
+            } else {
+                AudioPlay.resumeAudio();
+            }
+            notifyItemChanged(position);
+            startMonitor();
+            return;
         }
+
+        AudioPlay.stopAudio();
+        playingPos = position;
+
+        AudioItem item = items.get(position);
+        AudioPlay.playAudio(context, item.url);
+
+        if (previous != RecyclerView.NO_POSITION) notifyItemChanged(previous);
+        notifyItemChanged(position);
+
+        startMonitor();
     }
 
-    private void startMonitor(AudioViewHolder holder) {
-        stopMonitor(); // stop old monitor
+    private void startMonitor() {
+        stopMonitor();
         monitorRunnable = new Runnable() {
-            @Override
-            public void run() {
-                boolean stopped = AudioPlay.isStopped();
-                if (stopped) {
-                    holder.btnPlay.setImageResource(android.R.drawable.ic_media_play);
-                    stopMonitor(); // stop checking once audio is done
+            @Override public void run() {
+                if (AudioPlay.isStopped()) {
+                    int prev = playingPos;
+                    playingPos = RecyclerView.NO_POSITION;
+                    if (prev != RecyclerView.NO_POSITION) notifyItemChanged(prev);
+                    stopMonitor();
                 } else {
-                    handler.postDelayed(this, 500); // recheck every 0.5s
+                    handler.postDelayed(this, 400);
                 }
             }
         };
-        handler.postDelayed(monitorRunnable, 500);
+        handler.postDelayed(monitorRunnable, 400);
     }
 
     private void stopMonitor() {
