@@ -108,6 +108,14 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
         }
     }
 
+    public void release() {
+        stopMonitor();
+        AudioPlay.stopAudio();
+        int prev = playingPos;
+        playingPos = RecyclerView.NO_POSITION;
+        if (prev != RecyclerView.NO_POSITION) notifyItemChanged(prev);
+    }
+
     @Override
     public void onViewRecycled(@NonNull AudioViewHolder holder) {
         super.onViewRecycled(holder);

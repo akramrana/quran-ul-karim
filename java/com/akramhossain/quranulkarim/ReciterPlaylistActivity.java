@@ -145,6 +145,11 @@ public class ReciterPlaylistActivity extends AppCompatActivity {
     public void onPause()
     {
         super.onPause();
-        AudioPlay.stopAudio();
+        if (adapter != null) adapter.release();
+    }
+
+    @Override protected void onStop() {
+        super.onStop();
+        if (adapter != null) adapter.release();
     }
 }
