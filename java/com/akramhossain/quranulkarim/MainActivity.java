@@ -820,6 +820,15 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Data refreshed", Toast.LENGTH_LONG).show();
             }
         });
+
+        LinearLayout recitation_link = (LinearLayout) findViewById(R.id.recitation_link);
+        recitation_link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getApplicationContext(), ReciterActivity.class);
+                startActivity(in);
+            }
+        });
     }
 
     private void setHbRecyclerViewAdapter() {

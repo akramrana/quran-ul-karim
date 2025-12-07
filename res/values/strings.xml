@@ -334,4 +334,9 @@
     <string name="string_tafsir_en">Tafsir PDF</string>
     <string name="string_tafsir_bn">তাফসীর পিডিএফ</string>
 
+    <string name="string_recitation">Recitations</string>
+    <string name="string_recitation_subtitle">Reciter Stations</string>
+    <string name="recitations">Recitations</string>
+    <string name="recitations_bn">তেলাওয়াত</string>
+
 </resources>
