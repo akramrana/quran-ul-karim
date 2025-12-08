@@ -1,8 +1,10 @@
 package com.akramhossain.quranulkarim.adapter;
 
+import android.app.DownloadManager;
 import android.content.Context;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
@@ -14,9 +16,12 @@ import android.widget.TextView;
 import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.model.AudioItem;
+import com.akramhossain.quranulkarim.util.AudioStorage;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.io.File;
 import java.util.List;
 
 public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHolder> {
@@ -56,6 +61,32 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
                 : android.R.drawable.ic_media_play);
 
         holder.btnPlay.setOnClickListener(v -> handlePlayClick(holder, position));
+
+        String fileName = item.title.replace(" ", "_") + ".mp3";
+        boolean isDownloaded = AudioStorage.isAudioDownloaded(context, fileName);
+
+        holder.btnDownload.setVisibility(isDownloaded ? View.GONE : View.VISIBLE);
+
+        holder.btnDownload.setOnClickListener(v -> {
+            downloadAudio(item.url, fileName, position);
+        });
+    }
+
+    private void downloadAudio(String url, String fileName, int position) {
+
+        DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+
+        Uri uri = Uri.parse(url);
+
+        DownloadManager.Request request = new DownloadManager.Request(uri);
+        request.setDestinationUri(Uri.fromFile(AudioStorage.getAudioFile(context, fileName)));
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+        request.setAllowedOverMetered(true);
+        request.setTitle(fileName);
+
+        manager.enqueue(request);
+
+        notifyItemChanged(position);
     }
 
     private void handlePlayClick(AudioViewHolder holder, int position) {
@@ -76,7 +107,15 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
         playingPos = position;
 
         AudioItem item = items.get(position);
-        AudioPlay.playAudio(context, item.url);
+
+        String fileName = item.title.replace(" ", "_") + ".mp3";
+        File localFile = AudioStorage.getAudioFile(context, fileName);
+
+        if (localFile.exists()) {
+            AudioPlay.playAudio(context, localFile.getAbsolutePath());
+        }else {
+            AudioPlay.playAudio(context, item.url);
+        }
 
         if (previous != RecyclerView.NO_POSITION) notifyItemChanged(previous);
         notifyItemChanged(position);
@@ -147,13 +186,14 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
 
     static class AudioViewHolder extends RecyclerView.ViewHolder {
         TextView txtTitle, txtSubtitle;
-        ImageButton btnPlay;
+        ImageButton btnPlay, btnDownload;
 
         public AudioViewHolder(@NonNull View itemView) {
             super(itemView);
             txtTitle = itemView.findViewById(R.id.txtTitle);
             txtSubtitle = itemView.findViewById(R.id.txtSubtitle);
             btnPlay = itemView.findViewById(R.id.btnPlay);
+            btnDownload = itemView.findViewById(R.id.btnDownload);
         }
     }
 }
