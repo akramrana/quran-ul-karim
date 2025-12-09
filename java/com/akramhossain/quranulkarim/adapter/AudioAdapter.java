@@ -40,7 +40,6 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
     private Runnable monitorRunnable;
 
     private int playingPos = RecyclerView.NO_POSITION;
-    private AudioViewHolder activeHolder = null;
 
     private Handler seekHandler;
 
