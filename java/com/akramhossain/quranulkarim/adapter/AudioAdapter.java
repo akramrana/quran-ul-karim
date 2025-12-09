@@ -89,11 +89,7 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
         }
 
         holder.btnPlay.setOnClickListener(v -> {
-            if (isInternetPresent) {
-                handlePlayClick(holder, holder.getBindingAdapterPosition());
-            }else{
-                Toast.makeText(context, R.string.text_enable_internet, Toast.LENGTH_SHORT).show();
-            }
+            handlePlayClick(holder, holder.getBindingAdapterPosition());
         });
 
         String fileName = item.qariId+"_"+item.title.replace(" ", "_") + ".mp3";
@@ -189,7 +185,11 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
         if (localFile.exists()) {
             AudioPlay.playAudio(context, localFile.getAbsolutePath());
         }else {
-            AudioPlay.playAudio(context, item.url);
+            if (isInternetPresent) {
+                AudioPlay.playAudio(context, item.url);
+            }else{
+                Toast.makeText(context, R.string.text_enable_internet, Toast.LENGTH_SHORT).show();
+            }
         }
 
         if (previous != RecyclerView.NO_POSITION) notifyItemChanged(previous);
