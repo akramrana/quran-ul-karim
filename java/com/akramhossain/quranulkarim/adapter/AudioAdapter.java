@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.akramhossain.quranulkarim.R;
@@ -25,6 +26,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.io.File;
 import java.util.List;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHolder> {
 
     private final Context context;
@@ -36,10 +40,15 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
     private Runnable monitorRunnable;
 
     private int playingPos = RecyclerView.NO_POSITION;
+    private AudioViewHolder activeHolder = null;
+
+    private Handler seekHandler;
 
     public AudioAdapter(Context context, List<AudioItem> items) {
         this.context = context;
         this.items = items;
+        seekHandler = new Handler();
+        seekHandler.removeCallbacksAndMessages(null);
     }
 
     @NonNull
@@ -61,17 +70,52 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
                 ? android.R.drawable.ic_media_pause
                 : android.R.drawable.ic_media_play);
 
+        holder.seekBar.setVisibility(isThisPlaying ? View.VISIBLE : View.GONE);
+
+        if (isThisPlaying) {
+            int current = AudioPlay.getCurrentPosition();
+            int duration = AudioPlay.getDuration();
+
+            if (duration > 0) {
+                holder.seekBar.setMax(duration);
+                holder.seekBar.setProgress(current);
+            }
+        }
+
         holder.btnPlay.setOnClickListener(v -> handlePlayClick(holder, position));
 
         String fileName = item.qariId+"_"+item.title.replace(" ", "_") + ".mp3";
         Log.d("fileName",fileName);
         boolean isDownloaded = AudioStorage.isAudioDownloaded(context, fileName);
 
-        holder.btnDownload.setVisibility(isDownloaded ? View.GONE : View.VISIBLE);
+        holder.btnDownload.setVisibility(isDownloaded ? GONE : VISIBLE);
 
         holder.btnDownload.setOnClickListener(v -> {
             downloadAudio(item.url, fileName, position);
         });
+
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull AudioViewHolder holder, int position, @NonNull List<Object> payloads) {
+        if (payloads.isEmpty()) {
+            // Full bind (first time or real data change)
+            onBindViewHolder(holder, position);
+        } else {
+            // Partial bind – only update what changed
+            for (Object payload : payloads) {
+                if ("PROGRESS_UPDATE".equals(payload)) {
+                    if (position == playingPos && AudioPlay.isAudioPlaying && AudioPlay.mp != null) {
+                        int current = AudioPlay.getCurrentPosition();
+                        int duration = AudioPlay.getDuration();
+                        if (duration > 0) {
+                            holder.seekBar.setMax(duration);
+                            holder.seekBar.setProgress(current);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private void downloadAudio(String url, String fileName, int position) {
@@ -120,10 +164,33 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
         }
 
         if (previous != RecyclerView.NO_POSITION) notifyItemChanged(previous);
+
         notifyItemChanged(position);
 
         startMonitor();
+
+        seekHandler.postDelayed(seekRunnable, 300);
     }
+
+    private Runnable seekRunnable = new Runnable() {
+        @Override
+        public void run() {
+            boolean isAudioStopped = AudioPlay.isStopped();
+            if(isAudioStopped || AudioPlay.mp == null){
+                seekHandler.removeCallbacks(this);
+            }else {
+                if (playingPos != -1 && AudioPlay.mp != null) {
+                    int pos = AudioPlay.getCurrentPosition();
+                    int dur = AudioPlay.getDuration();
+                    if (playingPos != RecyclerView.NO_POSITION) {
+                        notifyItemChanged(playingPos, "PROGRESS_UPDATE");
+                    }
+                    //Log.d("seek","seek pos"+pos);
+                    seekHandler.postDelayed(this, 300);
+                }
+            }
+        }
+    };
 
     private void startMonitor() {
         stopMonitor();
@@ -152,6 +219,9 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
     public void release() {
         stopMonitor();
         AudioPlay.stopAudio();
+        if (seekRunnable != null) {
+            seekHandler.removeCallbacks(seekRunnable);
+        }
         int prev = playingPos;
         playingPos = RecyclerView.NO_POSITION;
         if (prev != RecyclerView.NO_POSITION) notifyItemChanged(prev);
@@ -189,6 +259,7 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
     static class AudioViewHolder extends RecyclerView.ViewHolder {
         TextView txtTitle, txtSubtitle;
         ImageButton btnPlay, btnDownload;
+        SeekBar seekBar;
 
         public AudioViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -196,6 +267,7 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
             txtSubtitle = itemView.findViewById(R.id.txtSubtitle);
             btnPlay = itemView.findViewById(R.id.btnPlay);
             btnDownload = itemView.findViewById(R.id.btnDownload);
+            seekBar = itemView.findViewById(R.id.seekBar);
         }
     }
 }
