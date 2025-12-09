@@ -130,7 +130,7 @@ public class ReciterPlaylistActivity extends AppCompatActivity {
                 ai.artist = meta != null ? meta.optString("artist", "") : "";
                 ai.duration = fmt != null ? fmt.optString("duration", "") : "";
                 ai.url = "https://download.quranicaudio.com/quran/"+relative_path + ai.fileName;
-                ai.qariId = reciter_name.replace(" ", "_") ;
+                ai.qariId = reciter_name.toLowerCase().replaceAll("[^a-z0-9 ]", "").replaceAll("\\s+", "_") ;
                 list.add(ai);
             }
 
