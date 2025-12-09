@@ -123,6 +123,10 @@ public class JsonFromUrlTask {
                     }
                     else if(TAG.equals("ReciterPlaylistActivity")){
                         ((ReciterPlaylistActivity) activity).parseJsonResponse(response);
+                        SharedPreferences.Editor editor = mPrefs.edit();
+                        editor.putString("playlist_json_data_"+sharedPref, response.toString());
+                        editor.putString("is_playlist_exist_"+sharedPref, "1");
+                        editor.apply();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

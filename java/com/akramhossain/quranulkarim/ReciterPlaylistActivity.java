@@ -1,6 +1,7 @@
 package com.akramhossain.quranulkarim;
 
 import android.app.AlertDialog;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import com.akramhossain.quranulkarim.adapter.AudioAdapter;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.model.AudioItem;
 import com.akramhossain.quranulkarim.task.JsonFromUrlTask;
+import com.akramhossain.quranulkarim.util.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -42,7 +44,8 @@ public class ReciterPlaylistActivity extends AppCompatActivity {
     public static String URL;
     String reciter_name;
     String relative_path;
-    String qari_id;
+    String qari_id, qariId;
+    SharedPreferences mPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,18 +99,25 @@ public class ReciterPlaylistActivity extends AppCompatActivity {
         cd = new ConnectionDetector(getApplicationContext());
         isInternetPresent = cd.isConnectingToInternet();
 
-        String qariId = getIntent().getStringExtra("qari_id");
+        qariId = getIntent().getStringExtra("qari_id");
 
         URL = "https://quranicaudio.com/api/qaris/"+qariId+"/audio_files/mp3";
 
-        getDataFromInternet();
-
+        mPrefs = getApplicationContext().getSharedPreferences(Utils.PREF_NAME, 0);
+        String is_playlist_exist = mPrefs.getString("is_playlist_exist_"+qariId, "0");
+        if(is_playlist_exist.equals("1")){
+            String playlist_json_data = mPrefs.getString("playlist_json_data_"+qariId, "{}");
+            Log.i(TAG, playlist_json_data);
+            parseJsonResponse(playlist_json_data);
+        }else {
+            getDataFromInternet();
+        }
     }
 
     private void getDataFromInternet() {
         Log.i(TAG, URL);
         if (isInternetPresent) {
-            new JsonFromUrlTask(this, URL, TAG, "");
+            new JsonFromUrlTask(this, URL, TAG, qariId);
         }
         else{
             AlertDialog.Builder alert = new AlertDialog.Builder(ReciterPlaylistActivity.this);
