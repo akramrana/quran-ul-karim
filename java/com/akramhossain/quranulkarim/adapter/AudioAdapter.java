@@ -14,7 +14,9 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.akramhossain.quranulkarim.ConnectionDetector;
 import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.model.AudioItem;
@@ -43,11 +45,16 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
 
     private Handler seekHandler;
 
+    ConnectionDetector cd;
+    Boolean isInternetPresent = false;
+
     public AudioAdapter(Context context, List<AudioItem> items) {
         this.context = context;
         this.items = items;
         seekHandler = new Handler();
         seekHandler.removeCallbacksAndMessages(null);
+        cd = new ConnectionDetector(context);
+        isInternetPresent = cd.isConnectingToInternet();
     }
 
     @NonNull
@@ -81,7 +88,13 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
             }
         }
 
-        holder.btnPlay.setOnClickListener(v -> handlePlayClick(holder, holder.getBindingAdapterPosition()));
+        holder.btnPlay.setOnClickListener(v -> {
+            if (isInternetPresent) {
+                handlePlayClick(holder, holder.getBindingAdapterPosition());
+            }else{
+                Toast.makeText(context, R.string.text_enable_internet, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         String fileName = item.qariId+"_"+item.title.replace(" ", "_") + ".mp3";
         Log.d("fileName",fileName);
@@ -89,14 +102,21 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
 
         holder.btnDownload.setVisibility(isDownloaded ? GONE : VISIBLE);
 
+        Log.d("isInternetPresent",isInternetPresent.toString());
+
         holder.btnDownload.setOnClickListener(v -> {
-            downloadAudio(item.url, fileName, holder.getBindingAdapterPosition());
+            if (isInternetPresent) {
+                downloadAudio(item.url, fileName, holder.getBindingAdapterPosition());
+            }else{
+                Toast.makeText(context, R.string.text_enable_internet, Toast.LENGTH_SHORT).show();
+            }
         });
 
         holder.seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser && position == playingPos && AudioPlay.mp != null) {
+                int currentPos = holder.getBindingAdapterPosition();
+                if (fromUser && currentPos != RecyclerView.NO_POSITION && currentPos == playingPos && AudioPlay.mp != null) {
                     AudioPlay.mp.seekTo(progress);
                 }
             }
