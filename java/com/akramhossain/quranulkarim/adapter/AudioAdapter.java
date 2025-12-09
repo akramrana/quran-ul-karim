@@ -180,8 +180,8 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
                 seekHandler.removeCallbacks(this);
             }else {
                 if (playingPos != -1 && AudioPlay.mp != null) {
-                    int pos = AudioPlay.getCurrentPosition();
-                    int dur = AudioPlay.getDuration();
+                    //int pos = AudioPlay.getCurrentPosition();
+                    //int dur = AudioPlay.getDuration();
                     if (playingPos != RecyclerView.NO_POSITION) {
                         notifyItemChanged(playingPos, "PROGRESS_UPDATE");
                     }
