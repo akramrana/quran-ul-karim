@@ -6,5 +6,6 @@ public class AudioItem {
     public String duration;
     public String fileName;
     public String url;
+    public String qariId;
 }
 

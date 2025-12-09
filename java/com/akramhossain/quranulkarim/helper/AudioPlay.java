@@ -6,7 +6,7 @@ import android.util.Log;
 
 public class AudioPlay {
 
-    private static MediaPlayer mp;
+    public static MediaPlayer mp;
     public static boolean isAudioPlaying = false;
     private static boolean isAudioLoaded = false;
     private static boolean isAudioStopped = false;

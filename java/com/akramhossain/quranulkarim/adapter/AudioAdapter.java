@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +63,8 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
 
         holder.btnPlay.setOnClickListener(v -> handlePlayClick(holder, position));
 
-        String fileName = item.title.replace(" ", "_") + ".mp3";
+        String fileName = item.qariId+"_"+item.title.replace(" ", "_") + ".mp3";
+        Log.d("fileName",fileName);
         boolean isDownloaded = AudioStorage.isAudioDownloaded(context, fileName);
 
         holder.btnDownload.setVisibility(isDownloaded ? View.GONE : View.VISIBLE);
@@ -108,7 +110,7 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
 
         AudioItem item = items.get(position);
 
-        String fileName = item.title.replace(" ", "_") + ".mp3";
+        String fileName = item.qariId+"_"+item.title.replace(" ", "_") + ".mp3";
         File localFile = AudioStorage.getAudioFile(context, fileName);
 
         if (localFile.exists()) {
