@@ -81,7 +81,7 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
             }
         }
 
-        holder.btnPlay.setOnClickListener(v -> handlePlayClick(holder, position));
+        holder.btnPlay.setOnClickListener(v -> handlePlayClick(holder, holder.getBindingAdapterPosition()));
 
         String fileName = item.qariId+"_"+item.title.replace(" ", "_") + ".mp3";
         Log.d("fileName",fileName);
@@ -90,9 +90,19 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
         holder.btnDownload.setVisibility(isDownloaded ? GONE : VISIBLE);
 
         holder.btnDownload.setOnClickListener(v -> {
-            downloadAudio(item.url, fileName, position);
+            downloadAudio(item.url, fileName, holder.getBindingAdapterPosition());
         });
 
+        holder.seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser && position == playingPos && AudioPlay.mp != null) {
+                    AudioPlay.mp.seekTo(progress);
+                }
+            }
+            @Override public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
     }
 
     @Override
