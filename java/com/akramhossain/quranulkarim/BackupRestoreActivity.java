@@ -295,26 +295,6 @@ public class BackupRestoreActivity extends AppCompatActivity {
         return builder.toString();
     }
 
-    private boolean checkPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            return true;
-        }
-        int result = ContextCompat.checkSelfPermission(BackupRestoreActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (result == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private void requestPermission() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(BackupRestoreActivity.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            Toast.makeText(BackupRestoreActivity.this, "Write External Storage permission allows us to save files. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
-        } else {
-            ActivityCompat.requestPermissions(BackupRestoreActivity.this, permissions(), PERMISSION_REQUEST_CODE);
-        }
-    }
-
     public static String[] storage_permissions = {
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
             android.Manifest.permission.READ_EXTERNAL_STORAGE

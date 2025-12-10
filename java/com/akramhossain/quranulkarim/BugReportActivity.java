@@ -1,5 +1,8 @@
 package com.akramhossain.quranulkarim;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.PickVisualMediaRequest;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -231,32 +234,30 @@ public class BugReportActivity extends AppCompatActivity {
     }
 
     public void choosePhotoFromGallary() {
-        Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(galleryIntent, GALLERY);
+        pickImageLauncher.launch(
+                new PickVisualMediaRequest.Builder()
+                        .setMediaType(ActivityResultContracts.PickVisualMedia.ImageOnly.INSTANCE)
+                        .build()
+        );
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == this.RESULT_CANCELED) {
-            return;
-        }
-        if (requestCode == GALLERY) {
-            if (data != null) {
-                Uri contentURI = data.getData();
-                try {
-                    FixBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
-                    showSelectedImage.setImageBitmap(FixBitmap);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Toast.makeText(BugReportActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-        }
-    }
+    private ActivityResultLauncher<PickVisualMediaRequest> pickImageLauncher =
+            registerForActivityResult(
+                    new ActivityResultContracts.PickVisualMedia(),
+                    uri -> {
+                        if (uri != null) {
+                            try {
+                                FixBitmap = MediaStore.Images.Media.getBitmap(
+                                        getContentResolver(), uri
+                                );
+                                showSelectedImage.setImageBitmap(FixBitmap);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                                Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+            );
 
     class AsyncTaskUploadClass extends AsyncTask<Void, Void, String> {
         @Override
