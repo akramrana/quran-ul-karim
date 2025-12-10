@@ -103,8 +103,17 @@
                     android:id="@+id/imageSelect"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Attach an image"
+                    android:text="Upload App Screenshot Only"
                     android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/imageSelectHelper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Please attach only a screenshot of the app. Do not upload personal photos."
+                    android:textSize="12sp"
+                    android:paddingTop="4dp"
+                    android:textColor="@android:color/darker_gray"/>
 
                 <ImageView
                     android:id="@+id/imageView"

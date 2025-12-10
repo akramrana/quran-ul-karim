@@ -8,6 +8,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.exifinterface.media.ExifInterface;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -241,12 +242,38 @@ public class BugReportActivity extends AppCompatActivity {
         );
     }
 
+    private boolean isProbablyScreenshot(Uri uri) {
+        try {
+            ExifInterface exif = new ExifInterface(
+                    getContentResolver().openInputStream(uri)
+            );
+
+            String cameraModel = exif.getAttribute(ExifInterface.TAG_MODEL);
+            String make = exif.getAttribute(ExifInterface.TAG_MAKE);
+
+            // ✅ Screenshots usually have NO camera info
+            return cameraModel == null && make == null;
+
+        } catch (Exception e) {
+            return true; // Fail-safe: allow if unsure
+        }
+    }
+
+
     private ActivityResultLauncher<PickVisualMediaRequest> pickImageLauncher =
             registerForActivityResult(
                     new ActivityResultContracts.PickVisualMedia(),
                     uri -> {
                         if (uri != null) {
                             try {
+                                if (!isProbablyScreenshot(uri)) {
+                                    Toast.makeText(
+                                            this,
+                                            "Please upload only an app screenshot. Camera photos are not allowed.",
+                                            Toast.LENGTH_LONG
+                                    ).show();
+                                    return;
+                                }
                                 FixBitmap = MediaStore.Images.Media.getBitmap(
                                         getContentResolver(), uri
                                 );
