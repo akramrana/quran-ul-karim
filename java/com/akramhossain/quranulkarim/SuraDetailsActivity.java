@@ -1247,7 +1247,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         return true;
     }
 
-    public void reportVerse(String ayah_num,String surah_id,String ayah_index,String ayah_key){
+    public void reportVerse(String ayah_num,String surah_id,String ayah_index,String ayah_key, String selectedReason){
         String tag_string_req = "req_report_verse";
         progressBar.setVisibility(View.VISIBLE);
         Log.d(TAG, "Report Verse URL: " + REPORT_URL.toString());
@@ -1290,6 +1290,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                 params.put("ayah_index",ayah_index);
                 params.put("ayah_key",ayah_key);
                 params.put("report_for","V");
+                params.put("selected_reason",selectedReason);
                 Log.e(TAG, "Post param: " + params.toString());
                 return params;
             }

@@ -34,6 +34,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -506,15 +508,69 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 String ayah_key = ayah.getAyah_key();
                 if (isInternetPresent) {
                     AlertDialog.Builder alert = new AlertDialog.Builder(c);
+                    String[] reportOptions = {
+                            "Arabic text",
+                            "Translation",
+                            "Tafsir",
+                            "Spelling / typing",
+                            "Other"
+                    };
+                    final int[] selectedIndex = {-1};
+                    // --- "Other" input ---
+                    EditText otherInput = new EditText(c);
+                    otherInput.setHint("Please describe the issue");
+                    otherInput.setVisibility(View.GONE);
+                    // container to show EditText under radios
+                    LinearLayout container = new LinearLayout(c);
+                    container.setOrientation(LinearLayout.VERTICAL);
+                    int pad = (int) (16 * c.getResources().getDisplayMetrics().density);
+                    container.setPadding(pad, 0, pad, pad);
+                    container.addView(otherInput);
                     alert.setTitle(R.string.text_report_ttl);
-                    alert.setMessage(R.string.text_report_wrong);
-                    alert.setPositiveButton(R.string.text_yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            ((SuraDetailsActivity) activity).reportVerse(ayah_num, surah_id, ayah_index, ayah_key);
+                    alert.setView(container);
+                    alert.setSingleChoiceItems(reportOptions, -1, (dialog, which) -> {
+                        selectedIndex[0] = which;
+                        // toggle "Other" input
+                        boolean isOther = (which == reportOptions.length - 1);
+                        otherInput.setVisibility(isOther ? View.VISIBLE : View.GONE);
+                        if (!isOther) {
+                            otherInput.setText("");
+                            otherInput.setError(null);
                         }
+                        // enable submit once selected (dialog is already shown here)
+                        AlertDialog ad = (AlertDialog) dialog;
+                        ad.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(true);
                     });
-                    alert.setNegativeButton(R.string.text_no, null);
-                    alert.show();
+                    // IMPORTANT: set null, override later so it doesn't auto-dismiss
+                    alert.setPositiveButton(R.string.text_yes, null);
+                    alert.setNegativeButton(R.string.text_no, (d, w) -> d.dismiss());
+                    AlertDialog dialog = alert.create();
+                    dialog.setOnShowListener(d -> {
+                        // disable submit initially
+                        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(false);
+                        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+                            if (selectedIndex[0] == -1) {
+                                Toast.makeText(c, "Please select a reason", Toast.LENGTH_SHORT).show();
+                                return; // keep dialog open
+                            }
+                            String selectedReason = reportOptions[selectedIndex[0]];
+                            if ("Other".equals(selectedReason)) {
+                                String text = otherInput.getText().toString().trim();
+                                if (text.isEmpty()) {
+                                    otherInput.setError("Please enter details");
+                                    otherInput.requestFocus();
+                                    return; // keep dialog open
+                                }
+                                selectedReason = "Other: " + text;
+                            }
+                            Log.d("REPORT", "Reason: " + selectedReason);
+                            // pass selectedReason to your API call (recommended)
+                            ((SuraDetailsActivity) activity).reportVerse(ayah_num, surah_id, ayah_index, ayah_key, selectedReason);
+                            dialog.dismiss();
+                        });
+                    });
+
+                    dialog.show();
                 }else{
                     AlertDialog.Builder alert = new AlertDialog.Builder(c);
                     alert.setTitle(R.string.text_warning);
