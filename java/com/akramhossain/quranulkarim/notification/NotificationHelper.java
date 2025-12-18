@@ -1,12 +1,15 @@
 package com.akramhossain.quranulkarim.notification;
 
 import android.Manifest;
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.AudioAttributes;
+import android.net.Uri;
 import android.os.Build;
 
 import com.akramhossain.quranulkarim.MainActivity;
@@ -19,16 +22,26 @@ import androidx.core.content.ContextCompat;
 
 public class NotificationHelper {
 
-    public static final String CHANNEL_ID = "quran_ul_karim_prayer_channel";
+    public static final String CHANNEL_ID = "quran_ul_karim_prayer_channel_2";
 
     public static void ensureChannel(Context ctx) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            Uri soundUri = Uri.parse("android.resource://" + ctx.getPackageName() + "/" + R.raw.prayer_azan);
+            AudioAttributes attrs = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_NOTIFICATION_RINGTONE)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .build();
+
             NotificationChannel ch = new NotificationChannel(
                     CHANNEL_ID,
                     "Prayer Alerts",
                     NotificationManager.IMPORTANCE_HIGH
             );
             ch.setDescription("Prayer time notifications");
+            ch.setSound(soundUri, attrs);
+            ch.enableVibration(true);
+            ch.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
 
             NotificationManager nm = (NotificationManager) ctx.getSystemService(Context.NOTIFICATION_SERVICE);
             if (nm != null) nm.createNotificationChannel(ch);
