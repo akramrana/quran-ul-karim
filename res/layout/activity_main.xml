@@ -309,6 +309,7 @@
                     </HorizontalScrollView>
 
                     <TextView
+                        android:id="@+id/pr_calc_method"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Based on: Umm al-Qura, Makkah"

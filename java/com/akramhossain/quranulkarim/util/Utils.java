@@ -75,4 +75,17 @@ public class Utils {
         SharedPreferences sp = ctx.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         return sp.getInt("pr_asr_method", 0);
     }
+
+    public static String getCalculationMethodName(int id) {
+        switch (id) {
+            case 0: return "Shia Ithna Ashari";
+            case 1: return "University of Islamic Sciences, Karachi";
+            case 2: return "Islamic Society of North America (ISNA)";
+            case 3: return "Muslim World League (MWL)";
+            case 4: return "Umm al-Qura, Makkah";
+            case 5: return "Egyptian General Authority of Survey";
+            case 6: return "Institute of Geophysics, University of Tehran";
+            default: return "Unknown Calculation Method";
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package com.akramhossain.quranulkarim;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
@@ -52,6 +53,7 @@ public class PrayerTimesActivity extends AppCompatActivity {
     double selectedlongitude = -1;
     int calcMethod = 0;
     int asrJuristicMethod = 0;
+    SharedPreferences mPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,12 +108,18 @@ public class PrayerTimesActivity extends AppCompatActivity {
 
         System.out.println("Timezone: "+hourDiff);
 
+        mPrefs = getApplicationContext().getSharedPreferences(Utils.PREF_NAME, 0);
+
+        PrayTime prayers = new PrayTime();
+        int pr_calc_method = mPrefs.getInt("pr_calc_method", prayers.Makkah);
+        int pr_asr_method = mPrefs.getInt("pr_asr_method", prayers.Hanafi);
+
         ArrayList cmList = this.calculationMethods();
         cm_spinner = (Spinner) findViewById( R.id.calcMtd_spinner);
         ArrayAdapter<CalculationMethod> spinnerAdapter = new ArrayAdapter<CalculationMethod>(this,android.R.layout.simple_spinner_item, cmList);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cm_spinner.setAdapter(spinnerAdapter);
-        cm_spinner.setSelection(4);
+        cm_spinner.setSelection(pr_calc_method);
         cm_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -122,6 +130,9 @@ public class PrayerTimesActivity extends AppCompatActivity {
                     if(selectedLatitude !=-1 && selectedlongitude!=-1) {
                         getPrayerTimes(selectedLatitude, selectedlongitude, hourDiff);
                     }
+                    mPrefs.edit()
+                            .putInt("pr_calc_method", calcMethod)
+                            .apply();
                 }
             }
             @Override
@@ -135,7 +146,7 @@ public class PrayerTimesActivity extends AppCompatActivity {
         ArrayAdapter<JuristicMethod> spinnerJmAdapter = new ArrayAdapter<JuristicMethod>(this,android.R.layout.simple_spinner_item, jmList);
         spinnerJmAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         jm_spinner.setAdapter(spinnerJmAdapter);
-        jm_spinner.setSelection(1);
+        jm_spinner.setSelection(pr_asr_method);
         jm_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -146,6 +157,9 @@ public class PrayerTimesActivity extends AppCompatActivity {
                     if(selectedLatitude !=-1 && selectedlongitude!=-1) {
                         getPrayerTimes(selectedLatitude, selectedlongitude, hourDiff);
                     }
+                    mPrefs.edit()
+                            .putInt("pr_asr_method", asrJuristicMethod)
+                            .apply();
                 }
             }
             @Override
@@ -154,9 +168,8 @@ public class PrayerTimesActivity extends AppCompatActivity {
             }
         });
         //
-        PrayTime prayers = new PrayTime();
-        calcMethod = prayers.Makkah;
-        asrJuristicMethod = prayers.Hanafi;
+        calcMethod = pr_calc_method;
+        asrJuristicMethod = pr_asr_method;
         //
         if (Build.VERSION.SDK_INT >= 23) {
             if (checkPermission()) {

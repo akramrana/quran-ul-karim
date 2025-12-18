@@ -146,6 +146,11 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<TafsirBook> tafsirBook;
     public TafsirBookViewAdapter tafsirRvAdapter;
 
+    private static final int DEFAULT_CALC_METHOD = 4;
+    private static final int DEFAULT_ASR_METHOD  = 1;
+
+    LinearLayout prayer_times_section;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -661,7 +666,7 @@ public class MainActivity extends AppCompatActivity {
         double hourDiff = (rawOffet/ rawOffetDiv)/divBySec;
         System.out.println("Timezone: "+hourDiff);
 
-        LinearLayout prayer_times_section = (LinearLayout) findViewById(R.id.prayer_times_section);
+        prayer_times_section = (LinearLayout) findViewById(R.id.prayer_times_section);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             if (checkPermission()) {
                 LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
@@ -710,6 +715,12 @@ public class MainActivity extends AppCompatActivity {
                     prayer_times_section.setVisibility(View.VISIBLE);
                     //
                     Utils.saveLocation(this, latitude, longitude, timezone);
+                    if (!mPrefs.contains("pr_calc_method") || !mPrefs.contains("pr_asr_method")) {
+                        mPrefs.edit()
+                                .putInt("pr_calc_method", DEFAULT_CALC_METHOD)
+                                .putInt("pr_asr_method", DEFAULT_ASR_METHOD)
+                                .apply();
+                    }
                     maybeSchedulePrayerAlertsFirstTime();
                 }else{
                     prayer_times_section.setVisibility(View.GONE);
@@ -838,9 +849,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ensureNotificationPermission();
-        ensureExactAlarmPermission();
-
         Intent i = getIntent();
         if (i != null && i.getBooleanExtra("from_prayer_notification", false)) {
             String key = i.getStringExtra("prayer_key");
@@ -937,10 +945,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getPrayerTimes(double latitude,double longitude,double timezone){
+        TextView pr_calc_method = findViewById(R.id.pr_calc_method);
+
+        int calcMeth = mPrefs.getInt("pr_calc_method", DEFAULT_CALC_METHOD);
+        int asrMethod  = mPrefs.getInt("pr_asr_method", DEFAULT_ASR_METHOD);
+
+        String calcMethodName = Utils.getCalculationMethodName(calcMeth);
+
+        pr_calc_method.setText("Based on: "+calcMethodName);
+
         PrayTime prayers = new PrayTime();
         prayers.setTimeFormat(prayers.Time12);
-        prayers.setCalcMethod(calcMethod);
-        prayers.setAsrJuristic(asrJuristicMethod);
+        prayers.setCalcMethod(calcMeth);
+        prayers.setAsrJuristic(asrMethod);
         prayers.setAdjustHighLats(prayers.AngleBased);
         int[] offsets = {0, 0, 0, 0, 0, 0, 0}; // {Fajr,Sunrise,Dhuhr,Asr,Sunset,Maghrib,Isha}
         prayers.tune(offsets);
@@ -1156,6 +1173,7 @@ public class MainActivity extends AppCompatActivity {
         getPopularSearchFromLocalDb();
         calculateReportsValue();
         maybeSchedulePrayerAlertsFirstTime();
+        updatePrayerTime();
     }
 
     public void calculateReportsValue(){
@@ -1286,26 +1304,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void ensureNotificationPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)
-                    != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 1001);
-            }
-        }
-    }
-
-    private void ensureExactAlarmPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            if (am != null && !am.canScheduleExactAlarms()) {
-                Intent i = new Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM);
-                startActivity(i);
-            }
-        }
-    }
-
     private void maybeSchedulePrayerAlertsFirstTime(){
+        int calcMeth = mPrefs.getInt("pr_calc_method", DEFAULT_CALC_METHOD);
+        int asrMethod  = mPrefs.getInt("pr_asr_method", DEFAULT_ASR_METHOD);
+
+        Log.d("pr_calc_method",String.valueOf(calcMeth));
+        Log.d("pr_asr_method",String.valueOf(asrMethod));
+
         boolean enabled = mPrefs.getBoolean("pr_alert_enabled", false);
         boolean alreadyScheduled = mPrefs.getBoolean("pr_first_schedule_done", false);
         boolean hasLocation = mPrefs.getBoolean("pr_has_location", false);
@@ -1330,11 +1335,62 @@ public class MainActivity extends AppCompatActivity {
             // Location not ready yet; call this again after you fetch location.
             return;
         }
-        int calcMeth = mPrefs.getInt("pr_calc_method", calcMethod);
-        int asrMethod  = mPrefs.getInt("pr_asr_method", asrJuristicMethod);
+
         PrayerScheduler.cancelAll(this);
         PrayerScheduler.scheduleToday(this, lat, lon, tz, calcMeth, asrMethod);
         mPrefs.edit().putBoolean("pr_first_schedule_done", true).apply();
+    }
+
+    private void updatePrayerTime(){
+        TimeZone tmzone = TimeZone.getDefault();
+        double hourDiff = (tmzone.getRawOffset() / 1000) / 3600;
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            if (checkPermission()) {
+                LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
+                try{
+                    gps_enabled=lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+                }catch(Exception ex){
+                    Log.d(TAG,ex.getMessage());
+                }
+                //
+                try{
+                    network_enabled=lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+                }catch(Exception ex){
+                    Log.d(TAG,ex.getMessage());
+                }
+                //
+                Location networkLoacation = null, gpsLocation = null, location = null;
+                //
+                if(gps_enabled){
+                    gpsLocation = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                }
+                if(network_enabled){
+                    networkLoacation = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                }
+                //
+                if (gpsLocation != null && networkLoacation != null) {
+                    if (gpsLocation.getAccuracy() > networkLoacation.getAccuracy()) {
+                        location = networkLoacation;
+                    }else {
+                        location = gpsLocation;
+                    }
+                } else {
+                    if (gpsLocation != null) {
+                        location = gpsLocation;
+                    } else if (networkLoacation != null) {
+                        location = networkLoacation;
+                    }
+                }
+                if(location!= null) {
+                    double latitude = location.getLatitude();
+                    double longitude = location.getLongitude();
+                    double timezone = hourDiff;
+                    getPrayerTimes(latitude, longitude, timezone);
+                    prayer_times_section.setVisibility(View.VISIBLE);
+                }
+            }
+        }
     }
 
     @Override

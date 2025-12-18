@@ -7,12 +7,19 @@ import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -20,6 +27,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.akramhossain.quranulkarim.model.CalculationMethod;
+import com.akramhossain.quranulkarim.model.JuristicMethod;
 import com.akramhossain.quranulkarim.task.PrayerScheduler;
 import com.akramhossain.quranulkarim.util.Utils;
 
@@ -54,6 +63,10 @@ public class SettingActivity extends AppCompatActivity{
 
     CheckBox chk_ibnkasir, chk_bayaan, chk_zakaria, chk_tafhim, chk_fathul_mazid, chk_fezilalil, chk_jalalayn;
     CheckBox chk_showBnPronunciation, chk_showEnTranslation, chk_showBnTranslation;
+
+    Spinner cm_spinner, jm_spinner;
+    int calcMethod = 0;
+    int asrJuristicMethod = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -341,6 +354,9 @@ public class SettingActivity extends AppCompatActivity{
                         .putBoolean("pr_first_schedule_done", false)
                         .apply();
 
+                ensureNotificationPermission();
+                ensureExactAlarmPermission();
+
             } else {
                 mPrefs.edit()
                         .putBoolean("pr_alert_enabled", false)
@@ -350,5 +366,90 @@ public class SettingActivity extends AppCompatActivity{
             }
         });
 
+        int pr_calc_method = mPrefs.getInt("pr_calc_method", 4);
+        int pr_asr_method = mPrefs.getInt("pr_asr_method", 1);
+
+        ArrayList cmList = this.calculationMethods();
+        cm_spinner = (Spinner) findViewById( R.id.calcMtd_spinner);
+        ArrayAdapter<CalculationMethod> spinnerAdapter = new ArrayAdapter<CalculationMethod>(this,android.R.layout.simple_spinner_item, cmList);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        cm_spinner.setAdapter(spinnerAdapter);
+        cm_spinner.setSelection(pr_calc_method);
+        cm_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+                Log.d("Calculation Method:", String.valueOf(id));
+                calcMethod = (int) id;
+                mPrefs.edit()
+                        .putInt("pr_calc_method", calcMethod)
+                        .apply();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+        });
+        //
+        ArrayList jmList = this.juristicMethods();
+        jm_spinner = (Spinner) findViewById( R.id.jurisMtd_spinner);
+        ArrayAdapter<JuristicMethod> spinnerJmAdapter = new ArrayAdapter<JuristicMethod>(this,android.R.layout.simple_spinner_item, jmList);
+        spinnerJmAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        jm_spinner.setAdapter(spinnerJmAdapter);
+        jm_spinner.setSelection(pr_asr_method);
+        jm_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+                Log.d("Juristic Method:", String.valueOf(id));
+                asrJuristicMethod = (int) id;
+                mPrefs.edit()
+                        .putInt("pr_asr_method", asrJuristicMethod)
+                        .apply();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+        });
+
+    }
+
+    public ArrayList<CalculationMethod> calculationMethods(){
+        ArrayList < CalculationMethod > cm = new ArrayList<>();
+        cm.add(new CalculationMethod(0, "Shia Ithna Ashari"));
+        cm.add(new CalculationMethod(1, "University of Islamic Sciences, Karachi"));
+        cm.add(new CalculationMethod(2, "Islamic Society of North America (ISNA)"));
+        cm.add(new CalculationMethod(3, "Muslim World League (MWL)"));
+        cm.add(new CalculationMethod(4, "Umm al-Qura, Makkah"));
+        cm.add(new CalculationMethod(5, "Egyptian General Authority of Survey"));
+        cm.add(new CalculationMethod(6, "Institute of Geophysics, University of Tehran"));
+        return cm;
+    }
+
+    public ArrayList<JuristicMethod> juristicMethods(){
+        ArrayList < JuristicMethod > jm = new ArrayList<>();
+        jm.add(new JuristicMethod(0, "Shafii (Standard)"));
+        jm.add(new JuristicMethod(1, "Hanafi Juristic"));
+        return jm;
+    }
+
+    private void ensureNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 1001);
+            }
+        }
+    }
+
+    private void ensureExactAlarmPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            if (am != null && !am.canScheduleExactAlarms()) {
+                Intent i = new Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM);
+                startActivity(i);
+            }
+        }
     }
 }
