@@ -35,8 +35,13 @@ public class Utils {
 
     public static void saveLocation(Context ctx, double lat, double lon, double tz) {
         SharedPreferences sp = ctx.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-        sp.edit()
-                .putLong("pr_lat_bits", Double.doubleToLongBits(lat))
+        float oldTz = sp.getFloat("pr_tz", Float.NaN);
+
+        SharedPreferences.Editor editor = sp.edit();
+        if (Float.isNaN(oldTz) || Float.compare(oldTz, (float) tz) != 0) {
+            editor.putBoolean("pr_first_schedule_done", false);
+        }
+        editor.putLong("pr_lat_bits", Double.doubleToLongBits(lat))
                 .putLong("pr_lon_bits", Double.doubleToLongBits(lon))
                 .putFloat("pr_tz", (float) tz)
                 .putBoolean("pr_has_location", true)
