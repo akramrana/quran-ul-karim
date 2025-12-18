@@ -68,12 +68,12 @@ public class Utils {
 
     public static int getCalcMethod(Context ctx) {
         SharedPreferences sp = ctx.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-        return sp.getInt("pr_calc_method", 0);
+        return sp.getInt("pr_calc_method", 4);
     }
 
     public static int getAsrMethod(Context ctx) {
         SharedPreferences sp = ctx.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
-        return sp.getInt("pr_asr_method", 0);
+        return sp.getInt("pr_asr_method", 1);
     }
 
     public static String getCalculationMethodName(int id) {
