@@ -40,7 +40,17 @@ public class Utils {
         SharedPreferences.Editor editor = sp.edit();
         if (Float.isNaN(oldTz) || Float.compare(oldTz, (float) tz) != 0) {
             editor.putBoolean("pr_first_schedule_done", false);
+        }else{
+            Log.d("same old tz",String.valueOf(tz));
         }
+        //
+        // Distance-based reschedule only
+        if (shouldReschedule(ctx, lat, lon)) {
+            editor.putBoolean("pr_first_schedule_done", false);
+        }else{
+            Log.d("same old lat,lon",String.valueOf(lat)+","+String.valueOf(lon));
+        }
+        //
         editor.putLong("pr_lat_bits", Double.doubleToLongBits(lat))
                 .putLong("pr_lon_bits", Double.doubleToLongBits(lon))
                 .putFloat("pr_tz", (float) tz)
@@ -92,5 +102,21 @@ public class Utils {
             case 6: return "Institute of Geophysics, University of Tehran";
             default: return "Unknown Calculation Method";
         }
+    }
+
+    public static boolean shouldReschedule(Context ctx, double newLat, double newLon) {
+        SharedPreferences sp = ctx.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+
+        boolean hasLoc = sp.getBoolean("pr_has_location", false);
+        if (!hasLoc) return true;
+
+        double oldLat = Double.longBitsToDouble(sp.getLong("pr_lat_bits", Double.doubleToLongBits(0)));
+        double oldLon = Double.longBitsToDouble(sp.getLong("pr_lon_bits", Double.doubleToLongBits(0)));
+
+        float[] results = new float[1];
+        android.location.Location.distanceBetween(oldLat, oldLon, newLat, newLon, results);
+
+        float km = results[0] / 1000f;
+        return km >= 20f;
     }
 }
