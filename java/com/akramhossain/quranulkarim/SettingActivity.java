@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.akramhossain.quranulkarim.task.PrayerScheduler;
 import com.akramhossain.quranulkarim.util.Utils;
 
 import java.util.ArrayList;
@@ -326,6 +327,26 @@ public class SettingActivity extends AppCompatActivity{
                 //
                 editor.apply();
                 Toast.makeText(getApplicationContext(),"Settings saved",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        CheckBox cbPrayerAlert = findViewById(R.id.showPrayerAlert);
+        boolean enabled = mPrefs.getBoolean("pr_alert_enabled", false);
+        cbPrayerAlert.setChecked(enabled);
+        cbPrayerAlert.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                // User ENABLED prayer alerts
+                mPrefs.edit()
+                        .putBoolean("pr_alert_enabled", true)
+                        .putBoolean("pr_first_schedule_done", false)
+                        .apply();
+
+            } else {
+                mPrefs.edit()
+                        .putBoolean("pr_alert_enabled", false)
+                        .putBoolean("pr_first_schedule_done", false)
+                        .apply();
+                PrayerScheduler.cancelAll(this);
             }
         });
 

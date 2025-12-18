@@ -11,7 +11,9 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -21,11 +23,13 @@ import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -51,6 +55,7 @@ import com.akramhossain.quranulkarim.model.Sura;
 import com.akramhossain.quranulkarim.model.TafsirBook;
 import com.akramhossain.quranulkarim.task.BannerJsonFromUrlTask;
 import com.akramhossain.quranulkarim.task.JsonFromUrlTask;
+import com.akramhossain.quranulkarim.task.PrayerScheduler;
 import com.akramhossain.quranulkarim.util.ConnectionDetector;
 import com.akramhossain.quranulkarim.util.PrayTime;
 import com.akramhossain.quranulkarim.util.Utils;
@@ -703,6 +708,9 @@ public class MainActivity extends AppCompatActivity {
                     getPrayerTimes(latitude, longitude, timezone);
                     //
                     prayer_times_section.setVisibility(View.VISIBLE);
+                    //
+                    Utils.saveLocation(this, latitude, longitude, timezone);
+                    maybeSchedulePrayerAlertsFirstTime();
                 }else{
                     prayer_times_section.setVisibility(View.GONE);
                     nightlyRecitationWithoutPrayerTimes();
@@ -829,6 +837,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(in);
             }
         });
+
+        ensureNotificationPermission();
+        ensureExactAlarmPermission();
+
+        Intent i = getIntent();
+        if (i != null && i.getBooleanExtra("from_prayer_notification", false)) {
+            String key = i.getStringExtra("prayer_key");
+        }
     }
 
     private void setHbRecyclerViewAdapter() {
@@ -1139,6 +1155,7 @@ public class MainActivity extends AppCompatActivity {
         }
         getPopularSearchFromLocalDb();
         calculateReportsValue();
+        maybeSchedulePrayerAlertsFirstTime();
     }
 
     public void calculateReportsValue(){
@@ -1266,6 +1283,66 @@ public class MainActivity extends AppCompatActivity {
             return true;
         } else {
             return false;
+        }
+    }
+
+    private void ensureNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 1001);
+            }
+        }
+    }
+
+    private void ensureExactAlarmPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            if (am != null && !am.canScheduleExactAlarms()) {
+                Intent i = new Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM);
+                startActivity(i);
+            }
+        }
+    }
+
+    private void maybeSchedulePrayerAlertsFirstTime(){
+        boolean enabled = mPrefs.getBoolean("pr_alert_enabled", false);
+        boolean alreadyScheduled = mPrefs.getBoolean("pr_first_schedule_done", false);
+        boolean hasLocation = mPrefs.getBoolean("pr_has_location", false);
+
+        Log.d("pr_alert_enabled",String.valueOf(enabled));
+        Log.d("pr_first_schedule_done",String.valueOf(alreadyScheduled));
+        Log.d("pr_has_location",String.valueOf(hasLocation));
+
+        if (!enabled) return;
+        if (alreadyScheduled) return;
+        if (!hasLocation) return;
+
+        double lat = Double.longBitsToDouble(mPrefs.getLong("pr_lat_bits", Double.doubleToLongBits(0)));
+        double lon = Double.longBitsToDouble(mPrefs.getLong("pr_lon_bits", Double.doubleToLongBits(0)));
+        double tz  = mPrefs.getFloat("pr_tz", 6.0f);
+
+        Log.d("pr_lat_bits",String.valueOf(lat));
+        Log.d("pr_lon_bits",String.valueOf(lon));
+        Log.d("pr_tz",String.valueOf(tz));
+
+        if (lat == 0 || lon == 0) {
+            // Location not ready yet; call this again after you fetch location.
+            return;
+        }
+        int calcMeth = mPrefs.getInt("pr_calc_method", calcMethod);
+        int asrMethod  = mPrefs.getInt("pr_asr_method", asrJuristicMethod);
+        PrayerScheduler.cancelAll(this);
+        PrayerScheduler.scheduleToday(this, lat, lon, tz, calcMeth, asrMethod);
+        mPrefs.edit().putBoolean("pr_first_schedule_done", true).apply();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        if (intent.getBooleanExtra("from_prayer_notification", false)) {
+            String key = intent.getStringExtra("prayer_key");
         }
     }
 

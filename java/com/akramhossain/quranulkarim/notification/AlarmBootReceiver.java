@@ -4,13 +4,21 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import com.akramhossain.quranulkarim.task.PrayerScheduler;
+import com.akramhossain.quranulkarim.util.Utils;
+
 public class AlarmBootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
-            //only enabling one type of notifications for demo purposes
-            //NotificationHelper.scheduleRepeatingElapsedNotification(context);
-            NotificationHelper.scheduleRepeatingRTCNotification(context,"22","10");
-        }
+
+        double lat = Utils.getLat(context);
+        double lon = Utils.getLon(context);
+        double tz  = Utils.getTz(context);
+
+        int calcMethod = Utils.getCalcMethod(context);
+        int asrMethod  = Utils.getAsrMethod(context);
+
+        // schedule remaining today, and after Isha it will schedule tomorrow automatically
+        PrayerScheduler.scheduleToday(context, lat, lon, tz, calcMethod, asrMethod);
     }
 }

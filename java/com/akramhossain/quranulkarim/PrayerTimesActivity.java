@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.akramhossain.quranulkarim.model.CalculationMethod;
 import com.akramhossain.quranulkarim.model.JuristicMethod;
 import com.akramhossain.quranulkarim.util.PrayTime;
+import com.akramhossain.quranulkarim.util.Utils;
 
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -383,6 +384,7 @@ public class PrayerTimesActivity extends AppCompatActivity {
                             selectedLatitude = latitude;
                             selectedlongitude = longitude;
                             getPrayerTimes(latitude, longitude, timezone);
+                            Utils.saveLocation(this, latitude, longitude, timezone);
                         } else {
                             Toast.makeText(PrayerTimesActivity.this, "Sorry! We could not retrive your current location.", Toast.LENGTH_LONG).show();
                         }

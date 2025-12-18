@@ -30,6 +30,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.akramhossain.quranulkarim.util.Utils;
+
 import org.w3c.dom.Text;
 
 import java.util.TimeZone;
@@ -79,6 +81,9 @@ public class QiblaCompassActivity extends AppCompatActivity implements SensorEve
 
         mSensorManager =  (SensorManager) getApplicationContext().getSystemService(SENSOR_SERVICE);
 
+        TimeZone tmzone = TimeZone.getDefault();
+        double hourDiff = (tmzone.getRawOffset() / 1000) / 3600;
+
         if (checkPermission()) {
             LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
             try{
@@ -114,7 +119,8 @@ public class QiblaCompassActivity extends AppCompatActivity implements SensorEve
                 double longitude = location.getLongitude();
                 double altitude = location.getAltitude();
                 setQiblaPos(longitude, latitude, altitude);
-
+                double timezone = hourDiff;
+                Utils.saveLocation(this, latitude, longitude, timezone);
             }else{
                 Toast.makeText(QiblaCompassActivity.this, "Sorry! We could not retrive your current location.", Toast.LENGTH_LONG).show();
             }

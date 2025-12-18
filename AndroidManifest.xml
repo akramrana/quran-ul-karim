@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:versionCode="93"
-    android:versionName="93.10.12.2025">
+    android:versionCode="94"
+    android:versionName="94.18.12.2025">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Allow to connect with internet -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Network State Permissions -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
@@ -176,14 +178,18 @@
         <activity android:name=".JuzActivity" />
         <activity android:name=".RubActivity" />
         <activity android:name=".HizbActivity" />
-        <activity android:name=".MoreMenuActivity" /> <!-- <receiver android:name=".notification.AlarmReceiver" /> -->
-        <!-- <receiver -->
-        <!-- android:name=".notification.AlarmBootReceiver" -->
-        <!-- android:enabled="false"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.BOOT_COMPLETED" /> -->
-        <!-- </intent-filter> -->
-        <!-- </receiver> -->
+        <activity android:name=".MoreMenuActivity" />
+
+         <receiver android:name=".notification.AlarmReceiver" android:exported="false"/>
+         <receiver android:name=".notification.AlarmBootReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+            </intent-filter>
+         </receiver>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.akramhossain.quranulkarim.provider"

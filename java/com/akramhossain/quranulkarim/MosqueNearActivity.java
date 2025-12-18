@@ -14,6 +14,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import com.akramhossain.quranulkarim.util.Utils;
+
 import java.util.TimeZone;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -79,6 +81,8 @@ public class MosqueNearActivity extends AppCompatActivity {
         });
 
         if (Build.VERSION.SDK_INT >= 23) {
+            TimeZone tmzone = TimeZone.getDefault();
+            double hourDiff = (tmzone.getRawOffset() / 1000) / 3600;
             if (checkPermission()) {
                 LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
                 try{
@@ -116,6 +120,8 @@ public class MosqueNearActivity extends AppCompatActivity {
 
                     Log.d("MAP ULR",mapPath);
                     myWebView.loadUrl(mapPath);
+                    double timezone = hourDiff;
+                    Utils.saveLocation(this, latitude, longitude, timezone);
 
                 }else{
                     Toast.makeText(MosqueNearActivity.this, "Sorry! We could not retrive your current location.", Toast.LENGTH_LONG).show();
