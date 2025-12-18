@@ -10,30 +10,36 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        final PendingResult pr = goAsync();
+        new Thread(() -> {
+            try {
+                String key = intent.getStringExtra("prayer_key");
+                if (key == null) key = "PRAYER";
 
-        String key = intent.getStringExtra("prayer_key");
-        if (key == null) key = "PRAYER";
+                // Show notification
+                String title = key.equals("FAJR") ? "Fajr" :
+                        key.equals("DHUHR") ? "Dhuhr" :
+                                key.equals("ASR") ? "Asr" :
+                                        key.equals("MAGHRIB") ? "Maghrib" :
+                                                key.equals("ISHA") ? "Isha" : "Prayer";
 
-        // Show notification
-        String title = key.equals("FAJR") ? "Fajr" :
-                key.equals("DHUHR") ? "Dhuhr" :
-                        key.equals("ASR") ? "Asr" :
-                                key.equals("MAGHRIB") ? "Maghrib" :
-                                        key.equals("ISHA") ? "Isha" : "Prayer";
+                int notifId = key.hashCode();
+                NotificationHelper.show(context, notifId, key, title, "It's time for prayer");
 
-        int notifId = key.hashCode();
-        NotificationHelper.show(context, notifId, key, title, "It's time for prayer");
+                // After Isha → schedule tomorrow
+                if ("ISHA".equals(key)) {
+                    double lat = Utils.getLat(context);
+                    double lon = Utils.getLon(context);
+                    double tz  = Utils.getTz(context);
 
-        // After Isha → schedule tomorrow
-        if ("ISHA".equals(key)) {
-            double lat = Utils.getLat(context);
-            double lon = Utils.getLon(context);
-            double tz  = Utils.getTz(context);
+                    int calcMethod = Utils.getCalcMethod(context);
+                    int asrMethod  = Utils.getAsrMethod(context);
 
-            int calcMethod = Utils.getCalcMethod(context);
-            int asrMethod  = Utils.getAsrMethod(context);
-
-            PrayerScheduler.scheduleTomorrow(context, lat, lon, tz, calcMethod, asrMethod);
-        }
+                    PrayerScheduler.scheduleTomorrow(context, lat, lon, tz, calcMethod, asrMethod);
+                }
+            } finally {
+                pr.finish();
+            }
+        }).start();
     }
 }
