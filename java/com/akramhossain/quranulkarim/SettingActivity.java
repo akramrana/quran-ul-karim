@@ -368,6 +368,7 @@ public class SettingActivity extends AppCompatActivity{
                         .putBoolean("pr_first_schedule_done", false)
                         .apply();
                 PrayerScheduler.cancelAll(this);
+                Toast.makeText(getApplicationContext(),"Prayer alerts are now disabled",Toast.LENGTH_SHORT).show();
             }
         });
 

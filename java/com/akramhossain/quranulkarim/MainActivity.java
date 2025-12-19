@@ -1425,7 +1425,7 @@ public class MainActivity extends AppCompatActivity {
                     .setNegativeButton("No", (d, which) -> d.dismiss())
                     .setPositiveButton("Yes", (d, which) -> {
                         d.dismiss();
-                        enableAlertPref();
+                        enableAlertFirstTimePref();
                         ensureNotificationPermission();
                         ensureExactAlarmPermission();
                     }).show();
@@ -1434,6 +1434,13 @@ public class MainActivity extends AppCompatActivity {
         enableAlertPref();
         maybeSchedulePrayerAlertsFirstTime();
         updateBellIcon();
+    }
+
+    private void enableAlertFirstTimePref(){
+        mPrefs.edit()
+                .putBoolean("pr_alert_enabled", true)
+                .putBoolean("pr_first_schedule_done", false)
+                .apply();
     }
 
     private void enableAlertPref(){
