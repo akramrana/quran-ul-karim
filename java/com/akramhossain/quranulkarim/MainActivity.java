@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import android.Manifest;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -38,6 +39,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -853,6 +855,21 @@ public class MainActivity extends AppCompatActivity {
         if (i != null && i.getBooleanExtra("from_prayer_notification", false)) {
             String key = i.getStringExtra("prayer_key");
         }
+
+        ImageButton btnPrayerNotif = findViewById(R.id.btnPrayerNotif);
+        btnPrayerNotif.setOnClickListener(v -> {
+
+            boolean userEnabled = mPrefs.getBoolean("pr_alert_enabled", false);
+            boolean systemEnabled = isNotificationEnabled() && isExactAlarmEnabled();
+
+            if (userEnabled && systemEnabled) {
+                showAlreadyEnabledDialog();
+            }else {
+                showPrayerPermissionDialog();
+            }
+        });
+
+        updateBellIcon();
     }
 
     private void setHbRecyclerViewAdapter() {
@@ -1172,8 +1189,12 @@ public class MainActivity extends AppCompatActivity {
         }
         getPopularSearchFromLocalDb();
         calculateReportsValue();
-        maybeSchedulePrayerAlertsFirstTime();
+        boolean systemEnabled = isNotificationEnabled() && isExactAlarmEnabled();
+        if(systemEnabled) {
+            maybeSchedulePrayerAlertsFirstTime();
+        }
         updatePrayerTime();
+        updateBellIcon();
     }
 
     public void calculateReportsValue(){
@@ -1391,6 +1412,95 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    private void showPrayerPermissionDialog() {
+        boolean systemEnabled = isNotificationEnabled() && isExactAlarmEnabled();
+        if(!systemEnabled) {
+            new androidx.appcompat.app.AlertDialog.Builder(this)
+                    .setTitle("Enable prayer alerts")
+                    .setMessage("To alert you exactly at prayer times, please allow:\n\n" +
+                            "• Notifications\n" +
+                            "• Exact alarms")
+                    .setNegativeButton("No", (d, which) -> d.dismiss())
+                    .setPositiveButton("Yes", (d, which) -> {
+                        d.dismiss();
+                        enableAlertPref();
+                        ensureNotificationPermission();
+                        ensureExactAlarmPermission();
+                    }).show();
+            return; //
+        }
+        enableAlertPref();
+        maybeSchedulePrayerAlertsFirstTime();
+        updateBellIcon();
+    }
+
+    private void enableAlertPref(){
+        mPrefs.edit()
+                .putBoolean("pr_alert_enabled", true)
+                .putBoolean("pr_first_schedule_done", false)
+                .apply();
+        Toast.makeText(getApplicationContext(),"Prayer alerts are now enabled",Toast.LENGTH_SHORT).show();
+    }
+
+    private void ensureNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 1001);
+            }
+        }
+    }
+
+    private void ensureExactAlarmPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            if (am != null && !am.canScheduleExactAlarms()) {
+                Intent i = new Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM);
+                startActivity(i);
+            }
+        }
+    }
+
+    private boolean isNotificationEnabled() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)
+                    == PackageManager.PERMISSION_GRANTED;
+        }
+        return true;
+    }
+
+    private boolean isExactAlarmEnabled() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
+            return am != null && am.canScheduleExactAlarms();
+        }
+        return true;
+    }
+
+    private void updateBellIcon() {
+        boolean userEnabled = mPrefs.getBoolean("pr_alert_enabled", false);
+        boolean systemEnabled = isNotificationEnabled() && isExactAlarmEnabled();
+        ImageButton btn = findViewById(R.id.btnPrayerNotif);
+        if (userEnabled && systemEnabled) {
+            btn.setImageResource(R.drawable.ic_notifications_active);
+        } else {
+            btn.setImageResource(R.drawable.ic_notifications_none);
+        }
+    }
+
+    private void showAlreadyEnabledDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Prayer alerts enabled")
+                .setMessage("Prayer alerts are already enabled. You can manage them from app settings.")
+                .setPositiveButton("Settings", (d, w) -> {
+                    d.dismiss();
+                    Intent intent = new Intent(this, SettingActivity.class);
+                    startActivity(intent);
+                })
+                .setNegativeButton("OK", (d, w) -> d.dismiss())
+                .show();
     }
 
     @Override

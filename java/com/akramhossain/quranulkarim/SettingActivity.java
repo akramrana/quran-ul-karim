@@ -6,6 +6,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.content.Context;
@@ -346,6 +347,7 @@ public class SettingActivity extends AppCompatActivity{
         CheckBox cbPrayerAlert = findViewById(R.id.showPrayerAlert);
         boolean enabled = mPrefs.getBoolean("pr_alert_enabled", false);
         cbPrayerAlert.setChecked(enabled);
+        boolean systemEnabled = isNotificationEnabled() && isExactAlarmEnabled();
         cbPrayerAlert.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 // User ENABLED prayer alerts
@@ -354,8 +356,11 @@ public class SettingActivity extends AppCompatActivity{
                         .putBoolean("pr_first_schedule_done", false)
                         .apply();
 
-                ensureNotificationPermission();
-                ensureExactAlarmPermission();
+                if(!systemEnabled) {
+                    ensureNotificationPermission();
+                    ensureExactAlarmPermission();
+                }
+                Toast.makeText(getApplicationContext(),"Prayer alerts are now enabled",Toast.LENGTH_SHORT).show();
 
             } else {
                 mPrefs.edit()
@@ -451,5 +456,21 @@ public class SettingActivity extends AppCompatActivity{
                 startActivity(i);
             }
         }
+    }
+
+    private boolean isNotificationEnabled() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)
+                    == PackageManager.PERMISSION_GRANTED;
+        }
+        return true;
+    }
+
+    private boolean isExactAlarmEnabled() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
+            return am != null && am.canScheduleExactAlarms();
+        }
+        return true;
     }
 }

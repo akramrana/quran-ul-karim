@@ -118,23 +118,53 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:paddingTop="10dp"
+                        android:paddingBottom="6dp">
 
                         <TextView
                             android:id="@+id/prayer_time_ttl"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dip"
-                            android:layout_marginTop="10dip"
-                            android:gravity="center"
+                            android:layout_centerHorizontal="true"
                             android:text="@string/string_prayer_times"
                             android:textColor="@color/transColor"
                             android:textSize="15sp" />
 
-                    </LinearLayout>
+                        <ImageButton
+                            android:id="@+id/btnPrayerNotif"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="12dp"
+                            android:background="@android:color/transparent"
+                            android:contentDescription="Prayer alerts"
+                            android:src="@drawable/ic_notifications_none"
+                            app:tint="@color/transColor" />
+
+                    </RelativeLayout>
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="vertical">-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/prayer_time_ttl"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="15dip"-->
+<!--                            android:layout_marginTop="10dip"-->
+<!--                            android:gravity="center"-->
+<!--                            android:text="@string/string_prayer_times"-->
+<!--                            android:textColor="@color/transColor"-->
+<!--                            android:textSize="15sp" />-->
+
+<!--                    </LinearLayout>-->
+
                     <HorizontalScrollView
                         android:id="@+id/horizontalScrollView1"
                         android:layout_width="match_parent"
