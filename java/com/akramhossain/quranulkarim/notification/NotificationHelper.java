@@ -22,14 +22,14 @@ import androidx.core.content.ContextCompat;
 
 public class NotificationHelper {
 
-    public static final String CHANNEL_ID = "quran_ul_karim_prayer_channel_2";
+    public static final String CHANNEL_ID = "quran_ul_karim_prayer_alarm_channel_v1";
 
     public static void ensureChannel(Context ctx) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             Uri soundUri = Uri.parse("android.resource://" + ctx.getPackageName() + "/" + R.raw.prayer_azan);
             AudioAttributes attrs = new AudioAttributes.Builder()
-                    .setUsage(AudioAttributes.USAGE_NOTIFICATION_RINGTONE)
+                    .setUsage(AudioAttributes.USAGE_ALARM)
                     .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
                     .build();
 
@@ -41,6 +41,7 @@ public class NotificationHelper {
             ch.setDescription("Prayer time notifications");
             ch.setSound(soundUri, attrs);
             ch.enableVibration(true);
+            ch.setBypassDnd(true);
             ch.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
 
             NotificationManager nm = (NotificationManager) ctx.getSystemService(Context.NOTIFICATION_SERVICE);
