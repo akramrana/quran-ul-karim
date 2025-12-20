@@ -1359,6 +1359,9 @@ public class MainActivity extends AppCompatActivity {
 
         PrayerScheduler.cancelAll(this);
         PrayerScheduler.scheduleToday(this, lat, lon, tz, calcMeth, asrMethod);
+        if (!PrayerScheduler.anyScheduled) {
+            PrayerScheduler.scheduleTomorrow(this, lat, lon, tz, calcMeth, asrMethod);
+        }
         mPrefs.edit().putBoolean("pr_first_schedule_done", true).apply();
     }
 

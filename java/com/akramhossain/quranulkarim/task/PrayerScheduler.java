@@ -23,8 +23,11 @@ public class PrayerScheduler {
     public static final int RC_MAGHRIB = 104;
     public static final int RC_ISHA = 105;
 
+    public static volatile boolean anyScheduled = false;
+
     public static void scheduleToday(Context ctx, double lat, double lon, double tz,
                                      int calcMethod, int asrJuristicMethod) {
+        anyScheduled = false;
         Calendar day = Calendar.getInstance();
         scheduleForDay(ctx, day, lat, lon, tz, calcMethod, asrJuristicMethod);
     }
@@ -61,11 +64,26 @@ public class PrayerScheduler {
             // If scheduling for "today", skip past times
             long now = System.currentTimeMillis();
 
-            if (fajr > now) scheduleAlarm(ctx, RC_FAJR, fajr, "FAJR");
-            if (dhuhr > now) scheduleAlarm(ctx, RC_DHUHR, dhuhr, "DHUHR");
-            if (asr > now) scheduleAlarm(ctx, RC_ASR, asr, "ASR");
-            if (maghrib > now) scheduleAlarm(ctx, RC_MAGHRIB, maghrib, "MAGHRIB");
-            if (isha > now) scheduleAlarm(ctx, RC_ISHA, isha, "ISHA");
+            if (fajr > now) {
+                scheduleAlarm(ctx, RC_FAJR, fajr, "FAJR");
+                anyScheduled = true;
+            }
+            if (dhuhr > now) {
+                scheduleAlarm(ctx, RC_DHUHR, dhuhr, "DHUHR");
+                anyScheduled = true;
+            }
+            if (asr > now) {
+                scheduleAlarm(ctx, RC_ASR, asr, "ASR");
+                anyScheduled = true;
+            }
+            if (maghrib > now) {
+                scheduleAlarm(ctx, RC_MAGHRIB, maghrib, "MAGHRIB");
+                anyScheduled = true;
+            }
+            if (isha > now) {
+                scheduleAlarm(ctx, RC_ISHA, isha, "ISHA");
+                anyScheduled = true;
+            }
 
             Log.d("PrayerScheduler", "Scheduled: " + times.toString());
 

@@ -20,5 +20,8 @@ public class AlarmBootReceiver extends BroadcastReceiver {
 
         // schedule remaining today, and after Isha it will schedule tomorrow automatically
         PrayerScheduler.scheduleToday(context, lat, lon, tz, calcMethod, asrMethod);
+        if (!PrayerScheduler.anyScheduled) {
+            PrayerScheduler.scheduleTomorrow(context, lat, lon, tz, calcMethod, asrMethod);
+        }
     }
 }
