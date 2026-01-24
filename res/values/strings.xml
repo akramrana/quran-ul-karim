@@ -339,6 +339,11 @@
     <string name="recitations">Recitations</string>
     <string name="recitations_bn">তেলাওয়াত</string>
 
+    <string name="ksa_quran">KSA Quran</string>
+    <string name="ksa_quran_bn">মাদানি মুসাফ</string>
+
     <string name="string_prayer_alert">Prayer Alerts</string>
+
+    <string name="ksa_quran_subtitle">Al Quran - KSU Electronic Moshaf</string>
 
 </resources>

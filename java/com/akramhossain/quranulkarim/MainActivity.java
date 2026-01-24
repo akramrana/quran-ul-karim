@@ -870,6 +870,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
         updateBellIcon();
+
+        LinearLayout ksa_quran_link = (LinearLayout) findViewById(R.id.ksa_quran_link);
+        ksa_quran_link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getApplicationContext(), QuranReaderActivity.class);
+                startActivity(in);
+            }
+        });
     }
 
     private void setHbRecyclerViewAdapter() {
