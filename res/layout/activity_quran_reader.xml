@@ -47,7 +47,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:padding="12dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
         android:background="#CC000000"
         android:orientation="horizontal"
         android:gravity="center_vertical">
@@ -65,14 +66,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1 / 604"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/colorWhiteDN"
                 android:textSize="14sp"/>
 
             <TextView
                 android:id="@+id/tvMeta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/colorWhiteDN"
                 android:textSize="12sp"
                 android:text="Surah 1 • Juz 1"/>
         </LinearLayout>
@@ -81,7 +82,9 @@
             android:id="@+id/btnJump"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="Jump"/>
+            android:text="Jump"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"/>
 
     </LinearLayout>
 
