@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/etPage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Page (1..604)"
+        android:inputType="number" />
+
+    <AutoCompleteTextView
+        android:id="@+id/ddSurah"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Surah"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp" />
+
+    <EditText
+        android:id="@+id/etJuz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Juz (1..30)"
+        android:inputType="number"
+        android:layout_marginTop="10dp"/>
+
+</LinearLayout>
