@@ -88,6 +88,11 @@ public class QuranReaderActivity extends AppCompatActivity {
         // Right-to-left swipe like a Mushaf (optional)
         pager.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
 
+        pager.setPageTransformer((page, position) -> {
+            float alpha = 1f - Math.min(0.12f, Math.abs(position) * 0.12f);
+            page.setAlpha(alpha);
+        });
+
         int lastReadPage = mPrefs.getInt("last_read_quran_page", 1);
         //Jump to last-read page:
         pager.setCurrentItem(lastReadPage - 1, false);
