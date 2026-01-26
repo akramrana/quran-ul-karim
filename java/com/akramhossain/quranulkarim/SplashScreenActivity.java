@@ -3,6 +3,7 @@ package com.akramhossain.quranulkarim;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -144,5 +145,10 @@ public class SplashScreenActivity extends Activity {
                 });
             }
         }).start();
+
+        if (getResources().getConfiguration().orientation
+                == Configuration.ORIENTATION_LANDSCAPE) {
+            findViewById(R.id.background_image_view).setVisibility(View.GONE);
+        }
     }
 }
