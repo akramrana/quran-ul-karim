@@ -36,10 +36,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.adapter.SuraDetailsViewAdapter;
+import com.akramhossain.quranulkarim.adapter.SurahAutoAdapter;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.Ayah;
 import com.akramhossain.quranulkarim.model.SpinnerObject;
+import com.akramhossain.quranulkarim.model.SurahItem;
 
 import org.w3c.dom.Text;
 
@@ -67,6 +69,8 @@ public class SearchActivity extends AppCompatActivity {
     TextView search_by_term, collapse, expand;
     private static final int PERMISSION_REQUEST_CODE = 100;
 
+    List<SurahItem> surahList;
+    int selectedSurahNo = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,18 +112,48 @@ public class SearchActivity extends AppCompatActivity {
         //dbhelper = new DatabaseHelper(getApplicationContext());
         dbhelper = DatabaseHelper.getInstance(getApplicationContext());
         ayat_number=(EditText) findViewById(R.id.ayat_number);
+
+        surahList = new ArrayList<>();
+        surahList.clear();
+        //
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+        String sql = "SELECT sid,name_simple FROM sura ORDER BY sid ASC";
+        Cursor cursor = db.rawQuery(sql, null);
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+
+                    int iSid = cursor.getInt(cursor.getColumnIndexOrThrow("sid"));
+                    String surahName = cursor.getString(cursor.getColumnIndexOrThrow("name_simple")).toString();
+                    surahList.add(new SurahItem(iSid, surahName));
+
+                }while (cursor.moveToNext());
+            }
+        }catch (Exception e){
+            Log.e(TAG, e.getMessage());
+            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
+        }finally {
+            if (cursor != null && !cursor.isClosed()){
+                cursor.close();
+            }
+            db.close();
+        }
+        //
         ArrayList suras = this.getAllSura();
 
         text=(AutoCompleteTextView)findViewById(R.id.autoCompleteTextView1);
-        ArrayAdapter<SpinnerObject> dataAdapter = new ArrayAdapter<SpinnerObject>(this,android.R.layout.simple_spinner_item, suras);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //ArrayAdapter<SpinnerObject> dataAdapter = new ArrayAdapter<SpinnerObject>(this,android.R.layout.simple_spinner_item, suras);
+        //dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        SurahAutoAdapter dataAdapter = new SurahAutoAdapter(this, surahList);
         text.setAdapter(dataAdapter);
         text.setThreshold(1);
 
-//        spinner = (Spinner) findViewById( R.id.surah_spinner);
-//        ArrayAdapter<SpinnerObject> spinnerAdapter = new ArrayAdapter<SpinnerObject>(this,android.R.layout.simple_spinner_item, suras);
-//        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner.setAdapter(spinnerAdapter);
+        text.setOnItemClickListener((parent, view, position, id) -> {
+            SurahItem item = (SurahItem) parent.getItemAtPosition(position);
+            selectedSurahNo = item.sid;
+            Log.d("selectedSurahNo", "sid=" + item.sid + " label=" + item.name);
+
+        });
 
         recyclerview = (RecyclerView) findViewById(R.id.ayah_list);
         mLayoutManager = new LinearLayoutManager(this);
@@ -133,47 +167,18 @@ public class SearchActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String suraName = text.getText().toString();
-                //SpinnerObject sb = (SpinnerObject) spinner.getSelectedItem();
-                //String suraName = spinner.getSelectedItem().toString();
-                //Integer selectedSuraId = sb.getId();
-                //
-                Integer selectedSuraId = 0;
-                if (suraName != null && !suraName.isEmpty()) {
-                    String[] parts = suraName.split("\\(");
-                    SQLiteDatabase db1 = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-                    String term = parts[0];
-                    term = term.replaceAll("'","''");
-                    String sql1 = "select * from sura where name_simple = '"+term+"'";
-                    //Log.i(TAG, sql1);
-                    Cursor cursor1 = db1.rawQuery(sql1, null);
-                    try {
-                        if (cursor1.moveToFirst()) {
-                            selectedSuraId = cursor1.getInt(cursor1.getColumnIndexOrThrow("surah_id"));
-                            String checksql = "SELECT * FROM quick_link WHERE sura_id = "+selectedSuraId;
-                            Cursor cursor2 = db1.rawQuery(checksql,null);
-                            if (cursor2.moveToFirst()) {
-                                quickLinkBtn.setText("Remove favourites");
-                                quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_delete, 0, 0, 0);
-                            } else {
-                                quickLinkBtn.setText("Add favourites");
-                                quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_upload, 0, 0, 0);
-                            }
-                            quickLinkBtn.setVisibility(View.VISIBLE);
-                        }else{
-                            quickLinkBtn.setVisibility(View.GONE);
-                        }
-                    } catch (Exception e) {
-                        Log.i(TAG, e.getMessage());
-                    } finally {
-                        if (cursor1 != null && !cursor1.isClosed()) {
-                            cursor1.close();
-                        }
-                        db1.close();
-                    }
+                SQLiteDatabase db1 = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+                String checksql = "SELECT * FROM quick_link WHERE sura_id = "+selectedSurahNo;
+                Cursor cursor2 = db1.rawQuery(checksql,null);
+                if (cursor2.moveToFirst()) {
+                    quickLinkBtn.setText("Remove favourites");
+                    quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_delete, 0, 0, 0);
+                } else {
+                    quickLinkBtn.setText("Add favourites");
+                    quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_upload, 0, 0, 0);
                 }
-                Log.i("Q", suraName);
-                Log.i("ID", Integer.toString(selectedSuraId));
+                quickLinkBtn.setVisibility(View.VISIBLE);
+                Log.i("ID", String.valueOf(selectedSurahNo));
                 //
                 String verseNum = ayat_number.getText().toString();
                 String[] parts = verseNum.split(",");
@@ -195,9 +200,9 @@ public class SearchActivity extends AppCompatActivity {
                     ayahNumber = "";
                     Log.w("InputValidation", "Invalid input: " + verseNum);
                 }
-                if (selectedSuraId != null && !selectedSuraId.equals("")) {
+                if (selectedSurahNo != 0) {
                     SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-                    String sql = "select * from sura where surah_id = "+selectedSuraId;
+                    String sql = "select * from sura where surah_id = "+selectedSurahNo;
                     Cursor cursor = db.rawQuery(sql, null);
                     Log.i(TAG, sql);
                     try {

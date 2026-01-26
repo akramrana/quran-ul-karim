@@ -84,18 +84,11 @@
             android:layout_marginBottom="15sp"
             android:textAllCaps="false"/>
 
-        <View
-            android:id="@+id/horizontal_line"
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorWhite"
-            android:layout_below="@id/search_sura_btn"/>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/bookmark_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/horizontal_line"/>
+            android:layout_below="@id/search_sura_btn"/>
 
         <ProgressBar
             android:id="@+id/progressBar"

@@ -130,94 +130,80 @@
             android:background="@drawable/rounded_border"
             android:layout_alignParentRight="true"/>
 
-        <View
-            android:id="@+id/horizon_line"
-            android:layout_width="fill_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/colorWhite"
-            android:layout_below="@id/tafsirs"
-            android:layout_marginTop="5dp"/>
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/button_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@id/horizon_line">
+            android:layout_below="@id/tafsirs"
+            android:layout_marginTop="5dp"
+            android:weightSum="5">
 
             <Button
                 android:id="@+id/playBtn"
-                android:layout_width="48dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="@string/string_play"
-                android:textSize="9sp"
+                android:textSize="6sp"
                 android:drawableTop="@android:drawable/ic_media_play"
-                android:background="@android:color/transparent"
                 android:gravity="center_vertical|center"
                 android:textAllCaps="false"
                 android:layout_margin="4dp"/>
 
             <Button
                 android:id="@+id/bookmarkBtn"
-                android:layout_width="55dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginBottom="4dp"
                 android:layout_toRightOf="@id/playBtn"
-                android:background="@android:color/transparent"
                 android:drawableTop="@android:drawable/btn_star"
                 android:gravity="center_vertical|center"
                 android:text="@string/string_bkmark"
                 android:textAllCaps="false"
-                android:textSize="9sp" />
+                android:textSize="6sp"
+                android:layout_margin="4dp"/>
 
             <Button
                 android:id="@+id/wordMeaningButton"
-                android:layout_width="80dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginBottom="4dp"
                 android:layout_toRightOf="@id/bookmarkBtn"
-                android:background="@android:color/transparent"
                 android:drawableTop="@android:drawable/ic_menu_directions"
                 android:gravity="center_vertical|center"
                 android:text="@string/string_wrd_mni"
                 android:textAllCaps="false"
-                android:textSize="9sp" />
+                android:textSize="6sp"
+                android:layout_margin="4dp"/>
 
             <Button
                 android:id="@+id/copyButton"
-                android:layout_width="48dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginBottom="4dp"
                 android:layout_toRightOf="@id/wordMeaningButton"
-                android:background="@android:color/transparent"
                 android:drawableTop="@android:drawable/ic_menu_set_as"
                 android:gravity="center_vertical|center"
                 android:text="@string/string_cp"
                 android:textAllCaps="false"
-                android:textSize="9sp" />
+                android:textSize="6sp"
+                android:layout_margin="4dp"/>
 
             <Button
                 android:id="@+id/shareButton"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:textSize="9sp"
+                android:textSize="6sp"
                 android:drawableTop="@android:drawable/ic_menu_share"
-                android:background="@android:color/transparent"
                 android:layout_alignParentRight="true"
                 android:layout_margin="4dp"
                 android:textAllCaps="false"
                 android:text="@string/string_share"/>
 
-        </RelativeLayout>
+        </LinearLayout>
 
 
 

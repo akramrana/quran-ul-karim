@@ -68,33 +68,26 @@
             android:contentDescription="Bangla Text"
             android:textIsSelectable="true"/>
 
-        <View
-            android:id="@+id/horizon_line"
-            android:layout_width="fill_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/colorWhite"
-            android:layout_below="@id/word_bangla"
-            android:layout_marginTop="15dp"/>
+
 
         <RelativeLayout
             android:id="@+id/button_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@id/horizon_line">
+            android:layout_below="@id/word_bangla">
 
             <Button
                 android:id="@+id/playWordBtn"
-                android:layout_width="60dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="9sp"
-                android:drawableLeft="@android:drawable/ic_media_play"
-                android:background="@android:color/transparent"
-                android:layout_alignParentLeft="true"
+                android:drawableTop="@android:drawable/ic_media_play"
                 android:text="@string/string_play"
                 android:gravity="center_vertical|center"
                 android:layout_margin="4dp"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false"
+                android:layout_centerInParent="true"/>
 
         </RelativeLayout>
 

@@ -112,13 +112,6 @@
 
                 </LinearLayout>
 
-                <View
-                    android:id="@+id/horizontal_line_00"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorWhite"
-                    android:layout_marginTop="10dp"/>
-
                 <TextView
                     android:id="@+id/fontSettingForArabic"
                     android:layout_width="wrap_content"
@@ -175,13 +168,6 @@
 
 
                 </LinearLayout>
-
-                <View
-                    android:id="@+id/horizontal_line_0"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorWhite"
-                    android:layout_marginTop="10dp"/>
 
                 <TextView
                     android:id="@+id/fontSettingForAyah"
@@ -308,13 +294,6 @@
 
                 </LinearLayout>
 
-                <View
-                    android:id="@+id/horizontal_line"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorWhite"
-                    android:layout_marginTop="10dp"/>
-
 
                 <TextView
                     android:id="@+id/fontSettingForTafsir"
@@ -403,13 +382,6 @@
 
                 </LinearLayout>
 
-                <View
-                    android:id="@+id/horizontal_line_2"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorWhite"
-                    android:layout_marginTop="10dp"/>
-
 
                 <TextView
                     android:id="@+id/settingForTafsirSelection"
@@ -497,12 +469,6 @@
 
                 </LinearLayout>
 
-                <View
-                    android:id="@+id/horizontal_line_3"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorWhite"
-                    android:layout_marginTop="10dp"/>
 
                 <TextView
                     android:id="@+id/settingForTranslation"
@@ -554,13 +520,6 @@
                     </LinearLayout>
 
                 </LinearLayout>
-
-                <View
-                    android:id="@+id/horizontal_line_4"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorWhite"
-                    android:layout_marginTop="10dp"/>
 
 
                 <TextView
@@ -670,12 +629,6 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <View
-                    android:id="@+id/horizontal_line_5"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorWhite"
-                    android:layout_marginTop="10dp"/>
 
                 <LinearLayout
                     android:id="@+id/buttonSection"

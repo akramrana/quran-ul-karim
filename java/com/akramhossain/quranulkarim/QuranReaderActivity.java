@@ -247,6 +247,7 @@ public class QuranReaderActivity extends AppCompatActivity {
         //ArrayAdapter<SurahItem> ad = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, surahList);
         SurahAutoAdapter ad = new SurahAutoAdapter(this, surahList);
         ddSurah.setAdapter(ad);
+        ddSurah.setThreshold(1);
 
         ddSurah.setOnItemClickListener((parent, view, position, id) -> {
             SurahItem item = (SurahItem) parent.getItemAtPosition(position);
