@@ -1,0 +1,861 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="15dp">
+
+            <LinearLayout
+                android:id="@+id/sura_link"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:background="@drawable/linear_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:layout_marginRight="2dp"
+                android:padding="2dp">
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/quran" />
+
+                <TextView
+                    android:id="@id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageView1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2.0dip"
+                    android:text="Surah"
+                    android:textSize="11.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView1"
+                    android:text="সূরা সমূহ"
+                    android:textSize="11.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/juz_link"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:background="@drawable/linear_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:layout_marginRight="2dp"
+                android:padding="2dp">
+
+                <ImageView
+                    android:id="@+id/juzImageView"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/books" />
+
+                <TextView
+                    android:id="@+id/juzTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/juzImageView"
+                    android:layout_marginTop="2.0dip"
+                    android:text="Juz'"
+                    android:textSize="11.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+
+                <TextView
+                    android:id="@+id/juzTextView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/juzTextView"
+                    android:text="পারা"
+                    android:textSize="11.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/hizb_link"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:background="@drawable/linear_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="2dp">
+
+                <ImageView
+                    android:id="@+id/hizbImageView"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/list" />
+
+                <TextView
+                    android:id="@+id/hizbTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/hizbImageView"
+                    android:layout_marginTop="2.0dip"
+                    android:text="Hizb"
+                    android:textSize="11.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/hizbTextView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/hizbTextView"
+                    android:text="অর্ধ-পারা"
+                    android:textSize="11.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rub_link"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:background="@drawable/linear_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:layout_marginRight="2dp"
+                android:padding="2dp">
+
+                <ImageView
+                    android:id="@+id/rubImageView"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/magazine" />
+
+                <TextView
+                    android:id="@+id/rubTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rubImageView"
+                    android:layout_marginTop="2.0dip"
+                    android:ellipsize="marquee"
+                    android:text="Rub'"
+                    android:textSize="11.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/rubTextView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rubImageView"
+                    android:gravity="center"
+                    android:text="রুব উল হিজব"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="11.0sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="15dp">
+
+            <LinearLayout
+                android:id="@+id/search_link"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:background="@drawable/linear_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:layout_marginRight="2dp"
+                android:padding="2dp">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/search_color" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageView3"
+                    android:layout_marginTop="2.0dip"
+                    android:text="Search"
+                    android:textSize="11.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/textView33"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView3"
+                    android:ellipsize="marquee"
+                    android:text="সার্চ"
+                    android:textSize="11.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/bookmark_link"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:background="@drawable/linear_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="2dp">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/mark" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageView2"
+                    android:layout_marginTop="2.0dip"
+                    android:text="Bookmarks"
+                    android:textSize="11.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView2"
+                    android:ellipsize="marquee"
+                    android:text="বুকমার্ক"
+                    android:textSize="11.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/quick_links_link"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:background="@drawable/linear_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:layout_marginRight="2dp"
+                android:padding="2dp">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/lover" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageView4"
+                    android:layout_marginTop="2.0dip"
+                    android:text="Favourites"
+                    android:textSize="11.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/textView44"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView4"
+                    android:text="প্রিয় সূরা"
+                    android:textSize="11.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ksa_quran_link"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:background="@drawable/linear_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:layout_marginRight="2dp"
+                android:padding="2dp">
+
+                <ImageView
+                    android:id="@+id/imageViewKsaQuran"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/quran_ksa" />
+
+                <TextView
+                    android:id="@+id/textViewKsaQuran"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageView8"
+                    android:layout_marginTop="2.0dip"
+                    android:gravity="center"
+                    android:text="@string/ksa_quran"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="11.0sp" />
+
+                <TextView
+                    android:id="@+id/textViewBnKsaQuran"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView8"
+                    android:text="@string/ksa_quran_bn"
+                    android:textSize="11.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="15dp">
+
+            <LinearLayout
+                android:id="@+id/time_link"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:background="@drawable/linear_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="2dp">
+
+                <ImageView
+                    android:id="@+id/timeImageView"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/clock" />
+
+                <TextView
+                    android:id="@+id/timeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/timeImageView"
+                    android:layout_marginTop="2.0dip"
+                    android:text="Prayer Time"
+                    android:textSize="11.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/timeTextView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/timeTextView"
+                    android:text="নামাজের সময়"
+                    android:textSize="11.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/qibla_compass"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:background="@drawable/linear_background"
+                android:layout_marginRight="2dp"
+                android:padding="2dp">
+
+                <ImageView
+                    android:id="@+id/qibla_compass_img"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/compass" />
+
+                <TextView
+                    android:id="@+id/qc_text_view_en"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/qibla_compass_img"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2.0dip"
+                    android:text="@string/string_qc_en"
+                    android:textSize="11.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/qc_text_view_bn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/qc_text_view_en"
+                    android:text="@string/string_qc_bn"
+                    android:textSize="11.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/recitation_link"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:background="@drawable/linear_background"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:layout_marginRight="2dp"
+                android:padding="2dp">
+
+                <ImageView
+                    android:id="@+id/imageViewRecitation"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/volume" />
+
+                <TextView
+                    android:id="@+id/textViewRecitation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageView8"
+                    android:layout_marginTop="2.0dip"
+                    android:gravity="center"
+                    android:text="@string/recitations"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="11.0sp" />
+
+                <TextView
+                    android:id="@+id/textViewBnRecitation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textView8"
+                    android:text="@string/recitations_bn"
+                    android:textSize="11.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/hadith_sec"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:background="@drawable/linear_background"
+                android:padding="2dp">
+
+                <ImageView
+                    android:id="@+id/hadith_img"
+                    android:layout_width="32.0dip"
+                    android:layout_height="32.0dip"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/hadith" />
+
+                <TextView
+                    android:id="@+id/hadith_text_view_en"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/hadith_img"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="2.0dip"
+                    android:text="@string/string_hadith_en"
+                    android:textSize="11.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/hadith_text_view_bn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/hadith_text_view_en"
+                    android:text="@string/string_hadith_bn"
+                    android:textSize="11.0sp"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--                <LinearLayout-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:orientation="horizontal"-->
+        <!--                    android:layout_marginBottom="15dp">-->
+        <!--                    -->
+        <!--                </LinearLayout>-->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ramadan_planner_sec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:background="@drawable/linear_background_red"
+            android:padding="2dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/ramadan_planner_img"
+                android:layout_width="32.0dip"
+                android:layout_height="32.0dip"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/moon" />
+
+            <TextView
+                android:id="@+id/ramadan_planner_text_view_en"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ramadan_planner_img"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2.0dip"
+                android:text="@string/string_rmp_en"
+                android:textSize="13.0sp"
+                android:textColor="@color/colorWhite"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/ramadan_planner_text_view_bn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ramadan_planner_text_view_en"
+                android:text="@string/string_rmp_bn"
+                android:textSize="13.0sp"
+                android:textColor="@color/colorWhite"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/linear_background"
+        android:orientation="horizontal"
+        android:padding="2dp"
+        android:layout_marginBottom="5dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center_horizontal"
+            android:padding="2dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="1dp"
+                app:cardElevation="3dp"
+                app:cardCornerRadius="25dp">
+
+                <TextView
+                    android:id="@+id/txtPer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="75%"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="55dp"
+                    android:textSize="13sp"
+                    android:gravity="center"/>
+
+                <ProgressBar
+                    tools:progress="1"
+                    android:id="@+id/prog"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="160dp"
+                    android:layout_height="140dp"
+                    android:indeterminateOnly="false"
+                    android:layout_gravity="center_horizontal"
+                    android:progressDrawable="@drawable/circle"
+                    android:progress="75">
+                </ProgressBar>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/daily_goal">
+
+            <ImageView
+                android:id="@+id/dg_img"
+                android:layout_width="32.0dip"
+                android:layout_height="32.0dip"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/daily_tasks" />
+
+            <TextView
+                android:id="@+id/dg_text_view_en"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dg_img"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2.0dip"
+                android:text="@string/string_dg_en"
+                android:textSize="13.0sp"
+                android:textColor="@color/colorWhite"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/dg_text_view_bn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dg_text_view_en"
+                android:text="@string/string_dg_bn"
+                android:textSize="13.0sp"
+                android:textColor="@color/colorWhite"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/word_challenge_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="1dp"
+            app:cardElevation="3dp"
+            app:cardCornerRadius="25dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/word_challenge_ttl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dip"
+                            android:text="@string/word_challenge_ttl"
+                            android:textSize="15sp"
+                            android:textColor="@color/transColor"
+                            android:gravity="center"
+                            android:layout_marginLeft="15dip"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/word_challenge_subttl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2.0dip"
+                            android:text="@string/word_challenge_subttl"
+                            android:textSize="13sp"
+                            android:textColor="@color/colorWhite"
+                            android:gravity="center"
+                            android:layout_marginLeft="15dip"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/enter_challenge_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/enter_challenge"
+                    android:textSize="13sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorWhite"
+                    android:background="@drawable/button_border"
+                    android:textAllCaps="false"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/hadith_book_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="15dp">
+
+        <TextView
+            android:id="@+id/hadith_book_list_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="5dp"
+            android:text="@string/string_hadith_en"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/hadith_book_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hadith_book_list_title" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tafsir_book_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="15dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tafsir_book_list_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingRight="5dp"
+                android:text="@string/string_tafsir_en"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
+
+            <ImageView
+                android:id="@+id/reload_button"
+                android:layout_width="16.0dip"
+                android:layout_height="16.0dip"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@android:drawable/ic_popup_sync" />
+
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tafsir_book_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tafsir_book_list_title" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.adapter.QuranPagerAdapter;
+import com.akramhossain.quranulkarim.adapter.SurahAutoAdapter;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.helper.SimpleTextWatcher;
 import com.akramhossain.quranulkarim.model.SurahItem;
@@ -243,7 +244,8 @@ public class QuranReaderActivity extends AppCompatActivity {
         clearOthers(etPage, etJuz, ddSurah);
         clearOthers(etJuz, etPage, ddSurah);
 
-        ArrayAdapter<SurahItem> ad = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, surahList);
+        //ArrayAdapter<SurahItem> ad = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, surahList);
+        SurahAutoAdapter ad = new SurahAutoAdapter(this, surahList);
         ddSurah.setAdapter(ad);
 
         ddSurah.setOnItemClickListener((parent, view, position, id) -> {

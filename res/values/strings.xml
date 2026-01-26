@@ -158,7 +158,7 @@
 
     <string name="spinner_calculation_method">Calculation method</string>
     <string name="spinner_juristic_method">Asr method</string>
-    <string name="string_qc_bn">কিবলা\nকম্পাস</string>
+    <string name="string_qc_bn">কিবলা কম্পাস</string>
     <string name="string_qc_en">Qibla Compass</string>
     <string name="string_qc_subtitle">Get qibla direction</string>
 
@@ -166,7 +166,7 @@
     <string name="string_dg_en">Daily Tasks</string>
     <string name="string_dg_subtitle">Accomplish your daily goals</string>
     <string name="string_subj_en">Topic Wise</string>
-    <string name="string_subj_bn">বিষয় ভিত্তিক\nআয়াত</string>
+    <string name="string_subj_bn">বিষয় ভিত্তিক</string>
     <string name="string_subj_subtitle">Explore by Topic</string>
 
     <string name="string_hint">**কিছু টপিকের বাংলা অর্থ ভুল হতে পারে**</string>
@@ -339,8 +339,8 @@
     <string name="recitations">Recitations</string>
     <string name="recitations_bn">তেলাওয়াত</string>
 
-    <string name="ksa_quran">KSA Quran</string>
-    <string name="ksa_quran_bn">মাদানি মুসাফ</string>
+    <string name="ksa_quran">Madani Mushaf</string>
+    <string name="ksa_quran_bn">মাদানী মুসহাফ</string>
 
     <string name="string_prayer_alert">Prayer Alerts</string>
 
