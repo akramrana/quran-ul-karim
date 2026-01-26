@@ -54,6 +54,8 @@ public class QuranReaderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle extras = getIntent().getExtras();
+
         setContentView(R.layout.activity_quran_reader);
 
         getWindow().setFlags(
@@ -172,6 +174,12 @@ public class QuranReaderActivity extends AppCompatActivity {
         //
         Button btnJump = findViewById(R.id.btnJump);
         btnJump.setOnClickListener(v -> showJumpDialog());
+
+        if (extras != null) {
+            int pageNum = extras.getInt("page_num");
+            Log.d("selected_page_num",String.valueOf(pageNum));
+            jumpToPage(pageNum, true);
+        }
 
     }
 

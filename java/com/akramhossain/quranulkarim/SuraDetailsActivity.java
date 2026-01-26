@@ -115,7 +115,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
 
     private TextView startTime, songTime, ayah_txt;
     private ImageButton forwardbtn, backwardbtn, pausebtn, playbtn;
-    private Button translation_btn, reading_btn;
+    private Button translation_btn, reading_btn, mushaf_btn;
 
     private static int oTime =0, sTime =0, eTime =0, fTime = 5000, bTime = 5000;
     private SeekBar songPrgs;
@@ -135,6 +135,8 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
     ProgressBar progressBar;
     public static String host = "http://quran.codxplore.com/";
     public static String REPORT_URL;
+
+    int pageNum = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -783,9 +785,11 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
 
         translation_btn = (Button) findViewById(R.id.translation_btn);
         reading_btn = (Button) findViewById(R.id.reading_btn);
+        mushaf_btn = (Button) findViewById(R.id.mushaf_btn);
 
         translation_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
         reading_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
+        mushaf_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
 
         appTheme = mPrefs.getString("APP_NIGHT_MODE", "-1");
         if (appTheme.equals("1")) {
@@ -892,6 +896,32 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), SettingActivity.class);
+                startActivity(i);
+            }
+        });
+        //
+        SQLiteDatabase db2 = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+        String sql2 = "SELECT surah_id, MIN(page_num) AS start_page FROM ayah WHERE surah_id = "+suraId;
+        Log.d("SQL",sql2);
+        Cursor c2 = db2.rawQuery(sql2, null);
+        try {
+            int pageCol = c2.getColumnIndexOrThrow("start_page");
+            if (c2.moveToFirst()) {
+                pageNum = c2.getInt(pageCol);
+            }
+        } finally {
+            c2.close();
+            db2.close();
+        }
+        mushaf_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), QuranReaderActivity.class);
+                i.putExtra("sura_id", suraId);
+                i.putExtra("page_num", pageNum);
+
+                Log.d("pageNum",String.valueOf(pageNum));
+
                 startActivity(i);
             }
         });
