@@ -559,7 +559,11 @@
             android:orientation="vertical"
             android:gravity="center_horizontal"
             android:background="@drawable/linear_background_red"
-            android:padding="2dp"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="10dp"
             android:visibility="gone">
 
             <ImageView
