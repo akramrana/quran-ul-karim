@@ -1,11 +1,18 @@
 package com.akramhossain.quranulkarim;
 
+import android.Manifest;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.RectF;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -16,18 +23,36 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
+import com.akramhossain.quranulkarim.task.BackgroundTask;
 import com.akramhossain.quranulkarim.util.AyahAnchors;
 import com.akramhossain.quranulkarim.util.AyahOverlayView;
 import com.akramhossain.quranulkarim.util.Utils;
 import com.bumptech.glide.Glide;
 import com.github.chrisbanes.photoview.PhotoView;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import io.sentry.Sentry;
 
@@ -50,6 +75,11 @@ public class QuranPageFragment extends Fragment {
     SharedPreferences mPrefs;
 
     Typeface font;
+
+    String audioUrl, audioDuration, ayahIndex, textTashkeel, textUthmani, indoPak, contentEn, contentBn, ayahNum, surahId, ayahKey, trans, textUthmaniTajweed;
+
+    ConnectionDetector cd;
+    Boolean isInternetPresent = false;
 
     public static QuranPageFragment newInstance(int page) {
         Bundle b = new Bundle();
@@ -130,6 +160,9 @@ public class QuranPageFragment extends Fragment {
         });
 
         mPrefs = requireContext().getSharedPreferences(Utils.PREF_NAME, 0);
+
+        cd = new ConnectionDetector(requireContext());
+        isInternetPresent = cd.isConnectingToInternet();
 
         font = Typeface.createFromAsset(requireContext().getAssets(),"fonts/Siyamrupali.ttf");
 
@@ -346,6 +379,49 @@ public class QuranPageFragment extends Fragment {
 
     private void playAyah(int surah, int ayah) {
         Log.d("QURAN", "Play " + surah + ":" + ayah);
+        if (isInternetPresent) {
+            if (checkPermission()) {
+                new BackgroundTask(requireActivity()) { // safer than requireActivity()
+                    @Override
+                    public void onPreExecute() {}
+
+                    @Override
+                    public void doInBackground() {
+                        try {
+                            URL url = new URL(audioUrl);
+                            String fileName = url.getFile().replaceAll("/", "_").toLowerCase();
+                            Log.d("File Name:", fileName);
+                            //
+                            String mPath = getActivity().getExternalFilesDir(Environment.DIRECTORY_MUSIC) + "/";
+                            String fullPath = mPath + fileName;
+                            Log.d("File Path:", mPath);
+                            Log.d("Full File Path:", fullPath);
+                            File file = new File(fullPath);
+                            if (file.exists()) {
+                                Log.d("File Path:", "Exist!");
+                                AudioPlay.stopAudio();
+                                AudioPlay.playAudio(getActivity(), fullPath);
+                            } else {
+                                Log.d("File Path:", "Not Exist Downloading!");
+                                downloadFile(audioUrl, fileName, mPath);
+                                AudioPlay.stopAudio();
+                                AudioPlay.playAudio(getActivity(), fullPath);
+                            }
+                            //
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onPostExecute() {
+                        if (!isAdded()) return; // prevent crash
+                    }
+                }.execute();
+            }else {
+                requestPermission(); // Code for permission
+            }
+        }
     }
 
     private void openTranslation(int surah, int ayah) {
@@ -359,6 +435,30 @@ public class QuranPageFragment extends Fragment {
 
     private void openTafsir(int surah, int ayah) {
         Log.d("QURAN", "Tafsir " + surah + ":" + ayah);
+        try {
+            String mushaf = mPrefs.getString("mushaf", "IndoPak");
+            Intent in = new Intent(requireActivity(), TafsirActivity.class);
+            in.putExtra("ayah_index", ayahIndex);
+            if(mushaf.equals("ImlaeiSimple")) {
+                in.putExtra("text_tashkeel", textTashkeel);
+            }
+            else if(mushaf.equals("Uthmanic")) {
+                in.putExtra("text_tashkeel", textUthmani);
+            }
+            else{
+                in.putExtra("text_tashkeel", indoPak);
+            }
+            in.putExtra("content_en", contentEn);
+            in.putExtra("content_bn", contentBn);
+            in.putExtra("ayah_num", ayahNum);
+            in.putExtra("surah_id", surahId);
+            in.putExtra("ayah_key", ayahKey);
+            in.putExtra("trans", trans);
+            in.putExtra("text_tajweed", textUthmaniTajweed);
+            requireActivity().startActivity(in);
+        } catch (Exception e) {
+            Log.e("Tafsirs", e.getMessage());
+        }
     }
 
     private void copyAyah(int surah, int ayah) {
@@ -434,6 +534,20 @@ public class QuranPageFragment extends Fragment {
                 infoTranslationEn.setText(cursor.getString(11));
                 infoTranslationBn.setText(cursor.getString(12));
                 infoAyahKey.setText(cursor.getString(16)+" "+cursor.getString(8));
+                //
+                audioUrl = cursor.getString(cursor.getColumnIndexOrThrow("audio_url"));
+                audioDuration = cursor.getString(cursor.getColumnIndexOrThrow("audio_duration"));
+                ayahIndex = cursor.getString(cursor.getColumnIndexOrThrow("ayah_index"));
+                textTashkeel = cursor.getString(cursor.getColumnIndexOrThrow("text_tashkeel"));
+                textUthmani = cursor.getString(cursor.getColumnIndexOrThrow("text_uthmani"));
+                indoPak = cursor.getString(cursor.getColumnIndexOrThrow("indo_pak"));
+                contentEn = cursor.getString(cursor.getColumnIndexOrThrow("content_en"));
+                contentBn = cursor.getString(cursor.getColumnIndexOrThrow("content_bn"));
+                ayahNum = cursor.getString(cursor.getColumnIndexOrThrow("ayah_num"));
+                surahId = cursor.getString(cursor.getColumnIndexOrThrow("surah_id"));
+                ayahKey = cursor.getString(cursor.getColumnIndexOrThrow("ayah_key"));
+                trans = cursor.getString(cursor.getColumnIndexOrThrow("trans"));
+                textUthmaniTajweed = cursor.getString(cursor.getColumnIndexOrThrow("text_uthmani_tajweed"));
             }
         }catch (Exception e){
             Log.e("QuranPageFragment", e.getMessage());
@@ -445,6 +559,107 @@ public class QuranPageFragment extends Fragment {
                 cursor.close();
             }
             db.close();
+        }
+    }
+
+    private boolean checkPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return true;
+        }
+        return ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private final ActivityResultLauncher<String> permissionLauncher =
+            registerForActivityResult(
+                    new ActivityResultContracts.RequestPermission(),
+                    isGranted -> {
+                        if (isGranted) {
+                            Toast.makeText(requireContext(), "Permission granted", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(requireContext(), "Permission denied", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+            );
+
+    private void requestPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            return;
+        }
+        if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            Toast.makeText(
+                    requireContext(),
+                    "Write External Storage permission allows us to save files. Please allow this permission.",
+                    Toast.LENGTH_LONG
+            ).show();
+        } else {
+            permissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
+    public static String[] storage_permissions_33 = {
+            Manifest.permission.READ_MEDIA_IMAGES,
+            Manifest.permission.READ_MEDIA_AUDIO,
+            Manifest.permission.READ_MEDIA_VIDEO
+    };
+
+    public static String[] storage_permissions = {
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE
+    };
+
+    public static String[] permissions() {
+        String[] p;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            p = storage_permissions_33;
+        } else {
+            p = storage_permissions;
+        }
+        return p;
+    }
+
+    static void downloadFile(String dwnload_file_path, String fileName, String pathToSave) {
+        int downloadedSize = 0;
+        int totalSize = 0;
+        try {
+            URL url = new URL(dwnload_file_path);
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("GET");
+            //urlConnection.setDoOutput(true);
+            // connect
+            urlConnection.connect();
+            File myDir;
+            myDir = new File(pathToSave);
+            myDir.mkdirs();
+            // create a new file, to save the downloaded file
+            String mFileName = fileName;
+            File file = new File(myDir, mFileName);
+            FileOutputStream fileOutput = new FileOutputStream(file);
+            // Stream used for reading the data from the internet
+            InputStream inputStream = urlConnection.getInputStream();
+            // this is the total size of the file which we are downloading
+            totalSize = urlConnection.getContentLength();
+            byte[] buffer = new byte[1024];
+            int bufferLength = 0;
+
+            while ((bufferLength = inputStream.read(buffer)) > 0) {
+                fileOutput.write(buffer, 0, bufferLength);
+                downloadedSize += bufferLength;
+            }
+            // close the output stream when complete //
+            fileOutput.close();
+
+        } catch (final MalformedURLException e) {
+            // showError("Error : MalformedURLException " + e);
+            e.printStackTrace();
+        } catch (final IOException e) {
+            // showError("Error : IOException " + e);
+            e.printStackTrace();
+        } catch (final Exception e) {
+            // showError("Error : Please check your internet connection " + e);
         }
     }
 

@@ -87,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textSize="15sp"
-                    android:textColor="@color/transColor"
+                    android:textColor="@color/transColorV2"
                     android:textIsSelectable="true"/>
 
                 <TextView

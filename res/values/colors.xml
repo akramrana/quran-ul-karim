@@ -106,4 +106,6 @@
     <color name="input_register">#888888</color>
     <color name="input_register_hint">#5e6266</color>
 
+    <color name="transColorV2">#ffcc0000</color>
+
 </resources>
