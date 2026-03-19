@@ -1,6 +1,8 @@
 package com.akramhossain.quranulkarim;
 
 import android.Manifest;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -20,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -76,10 +79,12 @@ public class QuranPageFragment extends Fragment {
 
     Typeface font;
 
-    String audioUrl, audioDuration, ayahIndex, textTashkeel, textUthmani, indoPak, contentEn, contentBn, ayahNum, surahId, ayahKey, trans, textUthmaniTajweed;
+    String audioUrl, audioDuration, ayahIndex, textTashkeel, textUthmani, indoPak, contentEn, contentBn, ayahNum, surahId, ayahKey, trans, textUthmaniTajweed, nameSimple;
 
     ConnectionDetector cd;
     Boolean isInternetPresent = false;
+
+    TextView btnBookmark;
 
     public static QuranPageFragment newInstance(int page) {
         Bundle b = new Bundle();
@@ -283,7 +288,7 @@ public class QuranPageFragment extends Fragment {
         TextView btnTranslation = ayahMenuView.findViewById(R.id.btnTranslation);
         TextView btnTafsir = ayahMenuView.findViewById(R.id.btnTafsir);
         TextView btnCopy = ayahMenuView.findViewById(R.id.btnCopy);
-        TextView btnBookmark = ayahMenuView.findViewById(R.id.btnBookmark);
+        btnBookmark = ayahMenuView.findViewById(R.id.btnBookmark);
         TextView btnDefinition = ayahMenuView.findViewById(R.id.btnDefinition);
         TextView btnShare = ayahMenuView.findViewById(R.id.btnShare);
 
@@ -463,18 +468,109 @@ public class QuranPageFragment extends Fragment {
 
     private void copyAyah(int surah, int ayah) {
         Log.d("QURAN", "Copy " + surah + ":" + ayah);
+        try {
+            String ayahAraTxt = "";
+            String mushaf = mPrefs.getString("mushaf", "IndoPak");
+            if(mushaf.equals("ImlaeiSimple")) {
+                ayahAraTxt = textTashkeel;
+            }
+            else if(mushaf.equals("Uthmanic")) {
+                ayahAraTxt = textUthmani;
+            }
+            else{
+                ayahAraTxt = indoPak;
+            }
+            String fullAyat = ayahAraTxt + "\n\n" + trans + "\n\n" + contentEn + "\n\n" + contentBn + "\n\nSura " + nameSimple + ", Ayah " + ayahNum;
+            String label = nameSimple + ", Ayah " + ayahNum;
+            Log.d(label, fullAyat);
+            android.content.ClipboardManager clipboard = (android.content.ClipboardManager) requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+            android.content.ClipData clip = android.content.ClipData.newPlainText(label, fullAyat);
+            clipboard.setPrimaryClip(clip);
+            Toast.makeText(requireActivity(), "Ayah Copied.", Toast.LENGTH_LONG).show();
+        } catch (Exception e) {
+            Log.e("Copied", e.getMessage());
+        }
     }
 
     private void bookmarkAyah(int surah, int ayah) {
         Log.d("QURAN", "Bookmark " + surah + ":" + ayah);
+        try {
+            SQLiteDatabase db = DatabaseHelper.getInstance(requireActivity()).getWritableDatabase();
+            String sql = "SELECT * FROM bookmark WHERE ayah_id = " + ayahIndex;
+            //Log.i("BOOKMARK_SQL", sql);
+            Cursor cursor = db.rawQuery(sql, null);
+            try {
+                if (cursor.moveToFirst()) {
+                    db.execSQL("DELETE FROM bookmark WHERE ayah_id = " + ayahIndex);
+                    Toast.makeText(requireActivity(), "Deleted from bookmark.", Toast.LENGTH_LONG).show();
+                } else {
+                    ContentValues values = new ContentValues();
+                    values.put("ayah_id", ayahIndex);
+                    DatabaseHelper.getInstance(requireActivity()).getWritableDatabase().insertOrThrow("bookmark", "", values);
+                    Toast.makeText(requireActivity(), "Added to bookmark.", Toast.LENGTH_LONG).show();
+                }
+            } catch (Exception e) {
+                Log.e("Bookmark Button", e.getMessage());
+                //throw new RuntimeException("SQL Query: " + sql, e);
+                Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
+            } finally {
+                if (cursor != null && !cursor.isClosed()) {
+                    cursor.close();
+                }
+                db.close();
+            }
+
+        } catch (Exception e) {
+            Log.e("Favorite", e.getMessage());
+        }
     }
 
     private void openDefinition(int surah, int ayah) {
         Log.d("QURAN", "Definition " + surah + ":" + ayah);
+        String mushaf = mPrefs.getString("mushaf", "IndoPak");
+        try {
+            Intent in = new Intent(requireActivity(), WordMeaningActivity.class);
+            in.putExtra("ayah_index", ayahIndex);
+            if(mushaf.equals("ImlaeiSimple")) {
+                in.putExtra("text_tashkeel", textTashkeel);
+            }
+            else if(mushaf.equals("Uthmanic")) {
+                in.putExtra("text_tashkeel", textUthmani);
+            }
+            else{
+                in.putExtra("text_tashkeel", indoPak);
+            }
+            in.putExtra("content_en", contentEn);
+            in.putExtra("content_bn", contentBn);
+            in.putExtra("text_tajweed", textUthmaniTajweed);
+            requireActivity().startActivity(in);
+        } catch (Exception e) {
+            Log.e("Favorite", e.getMessage());
+        }
     }
 
     private void openShare(int surah, int ayah) {
         Log.d("QURAN", "Share " + surah + ":" + ayah);
+        String mushaf = mPrefs.getString("mushaf", "IndoPak");
+        Intent in = new Intent(requireActivity(), ShareVerseActivity.class);
+        in.putExtra("ayah_index", ayahIndex);
+        if(mushaf.equals("ImlaeiSimple")) {
+            in.putExtra("text_tashkeel", textTashkeel);
+        }
+        else if(mushaf.equals("Uthmanic")) {
+            in.putExtra("text_tashkeel", textUthmani);
+        }
+        else{
+            in.putExtra("text_tashkeel", indoPak);
+        }
+        in.putExtra("content_en", contentEn);
+        in.putExtra("content_bn", contentBn);
+        in.putExtra("ayah_num", ayahNum);
+        in.putExtra("surah_id", surahId);
+        in.putExtra("ayah_key", ayahKey);
+        in.putExtra("trans", trans);
+        in.putExtra("text_tajweed", textUthmaniTajweed);
+        requireActivity().startActivity(in);
     }
 
     private void showInfoPanel(String title, String content) {
@@ -548,6 +644,7 @@ public class QuranPageFragment extends Fragment {
                 ayahKey = cursor.getString(cursor.getColumnIndexOrThrow("ayah_key"));
                 trans = cursor.getString(cursor.getColumnIndexOrThrow("trans"));
                 textUthmaniTajweed = cursor.getString(cursor.getColumnIndexOrThrow("text_uthmani_tajweed"));
+                nameSimple = cursor.getString(cursor.getColumnIndexOrThrow("name_simple"));
             }
         }catch (Exception e){
             Log.e("QuranPageFragment", e.getMessage());
