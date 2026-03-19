@@ -84,8 +84,6 @@ public class QuranPageFragment extends Fragment {
     ConnectionDetector cd;
     Boolean isInternetPresent = false;
 
-    TextView btnBookmark;
-
     public static QuranPageFragment newInstance(int page) {
         Bundle b = new Bundle();
         b.putInt(ARG_PAGE, page);
@@ -288,9 +286,10 @@ public class QuranPageFragment extends Fragment {
         TextView btnTranslation = ayahMenuView.findViewById(R.id.btnTranslation);
         TextView btnTafsir = ayahMenuView.findViewById(R.id.btnTafsir);
         TextView btnCopy = ayahMenuView.findViewById(R.id.btnCopy);
-        btnBookmark = ayahMenuView.findViewById(R.id.btnBookmark);
+        TextView btnBookmark = ayahMenuView.findViewById(R.id.btnBookmark);
         TextView btnDefinition = ayahMenuView.findViewById(R.id.btnDefinition);
         TextView btnShare = ayahMenuView.findViewById(R.id.btnShare);
+        TextView btnClose = ayahMenuView.findViewById(R.id.btnClose);
 
         btnPlay.setOnClickListener(v -> playAyah(surah, ayah));
         btnTranslation.setOnClickListener(v -> openTranslation(surah, ayah));
@@ -299,6 +298,7 @@ public class QuranPageFragment extends Fragment {
         btnBookmark.setOnClickListener(v -> bookmarkAyah(surah, ayah));
         btnDefinition.setOnClickListener(v -> openDefinition(surah, ayah));
         btnShare.setOnClickListener(v -> openShare(surah, ayah));
+        btnClose.setOnClickListener(v -> hideAyahFloatingMenu());
 
         ayahMenuView.post(() -> {
 

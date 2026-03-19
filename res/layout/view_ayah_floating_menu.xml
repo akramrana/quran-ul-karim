@@ -91,6 +91,22 @@
             android:textColor="@android:color/white"
             android:textSize="14sp" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bottom_bg_color"/>
+
+        <TextView
+            android:id="@+id/btnClose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="6dp"
+            android:text="Close"
+            android:textColor="@color/playColor"
+            android:textSize="12sp"
+            android:gravity="center"/>
+
     </LinearLayout>
 
 </HorizontalScrollView>
