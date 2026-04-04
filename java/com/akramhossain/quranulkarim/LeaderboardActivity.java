@@ -58,7 +58,7 @@ public class LeaderboardActivity extends AppCompatActivity {
     LinearLayoutManager mLayoutManager;
     private ArrayList<Leaderboard> leaderboards;
     public LeaderboardViewAdapter rvAdapter;
-    public static String host = "http://quran.codxplore.com/";
+    public static String host = "https://quran.codxplore.com/";
     ProgressBar progressBar;
     private SessionManager session;
     public static String SYNC_URL;

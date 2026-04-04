@@ -40,7 +40,7 @@ public class DuaZikrActivity extends AppCompatActivity {
     private static final int TIME_INTERVAL = 2000;
     private RecyclerView recyclerview;
     LinearLayoutManager mLayoutManager;
-    public static String host = "http://quran.codxplore.com";
+    public static String host = "https://quran.codxplore.com";
     Boolean isInternetPresent = false;
     public static String URL;
     ConnectionDetector cd;

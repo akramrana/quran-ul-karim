@@ -49,7 +49,7 @@ public class ChallengeDashboardActivity extends AppCompatActivity {
     TextView user_name;
     LinearLayout logged_user_sec;
 
-    public static String host = "http://quran.codxplore.com/";
+    public static String host = "https://quran.codxplore.com/";
     ProgressBar progressBar;
     public static String SYNC_URL;
     public String user_id = "";

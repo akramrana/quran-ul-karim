@@ -48,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity implements Spinner.OnIte
     private EditText inputPassword;
     private SessionManager session;
     ProgressBar progressBar;
-    public static String host = "http://quran.codxplore.com/";
+    public static String host = "https://quran.codxplore.com/";
     public static String URL, CountryUrl;
     private Spinner spinner;
     private ArrayList<String> countries;

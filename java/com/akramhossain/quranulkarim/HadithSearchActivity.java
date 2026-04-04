@@ -33,7 +33,7 @@ import java.util.List;
 public class HadithSearchActivity extends AppCompatActivity {
 
     private static final String TAG = HadithSearchActivity.class.getSimpleName();
-    public static String host = "http://quran.codxplore.com/";
+    public static String host = "https://quran.codxplore.com/";
     ConnectionDetector cd;
     Boolean isInternetPresent = false;
     public static String URL;

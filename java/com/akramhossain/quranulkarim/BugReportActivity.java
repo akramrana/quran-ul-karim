@@ -82,7 +82,7 @@ public class BugReportActivity extends AppCompatActivity {
     ConnectionDetector cd;
     Boolean isInternetPresent = false;
 
-    public static String host = "http://websites.codxplore.com/islamicvideo/";
+    public static String host = "https://websites.codxplore.com/islamicvideo/";
     Spinner feedbackSpinner;
     public static int position = 0;
 

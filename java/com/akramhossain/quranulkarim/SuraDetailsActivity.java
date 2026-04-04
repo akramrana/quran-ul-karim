@@ -133,7 +133,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
     String appTheme = "";
 
     ProgressBar progressBar;
-    public static String host = "http://quran.codxplore.com/";
+    public static String host = "https://quran.codxplore.com/";
     public static String REPORT_URL;
 
     int pageNum = 0;
@@ -169,7 +169,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         fontTahaNaskh = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/KFGQPC_Uthman_Taha_Naskh_Regular.ttf");
         fontKitab = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/kitab.ttf");
 
-        url = "http://websites.codxplore.com/islamicvideo/api/patch?sura_id="+suraId;
+        url = "https://websites.codxplore.com/islamicvideo/api/patch?sura_id="+suraId;
         //url = "http://10.0.2.2/islamicvideo/api/patch?sura_id="+suraId;
 
         setTitle(suraNameArabic+"-"+suraName);
@@ -629,7 +629,8 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                 public void onClick(View v) {
                     boolean isLoaded = AudioPlay.isLoadedAudio();
                     String mp3Uri = AudioPlay.getAudioUri();
-                    String audioUri = "https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/" + suraId + ".mp3";
+                    String formatted = String.format("%03d", Integer.parseInt(suraId));
+                    String audioUri = "https://download.quranicaudio.com/quran/sa3d_al-ghaamidi/complete/" + formatted + ".mp3";
 
                     if(isLoaded) {
                         if(mp3Uri.equals(audioUri)) {

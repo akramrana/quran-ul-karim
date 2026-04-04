@@ -234,8 +234,11 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                             @Override
                             public void doInBackground() {
                                 try {
+                                    String originalUrl = ayah.getAudio_url();
+                                    String newReciter = "Shatri";
+                                    String updatedUrl = originalUrl.replace("Alafasy", newReciter);
 
-                                    URL url = new URL(ayah.getAudio_url());
+                                    URL url = new URL(updatedUrl);
                                     String fileName = url.getFile().replaceAll("/", "_").toLowerCase();
                                     Log.d("File Name:", fileName);
                                     //
@@ -250,7 +253,7 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                                         AudioPlay.playAudio(c, fullPath);
                                     } else {
                                         Log.d("File Path:", "Not Exist Downloading!");
-                                        downloadFile(ayah.getAudio_url(), fileName, mPath);
+                                        downloadFile(updatedUrl, fileName, mPath);
                                         AudioPlay.stopAudio();
                                         AudioPlay.playAudio(c, fullPath);
                                     }

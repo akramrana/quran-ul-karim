@@ -39,7 +39,7 @@ public class SigninActivity extends AppCompatActivity {
     private EditText inputPassword;
     private SessionManager session;
     ProgressBar progressBar;
-    public static String host = "http://quran.codxplore.com/";
+    public static String host = "https://quran.codxplore.com/";
     public static String URL;
 
     @Override

@@ -54,7 +54,7 @@ public class HadithChapterActivity extends AppCompatActivity {
     public static String URL;
     public HadithChapterViewAdapter rvAdapter;
 
-    public static String host = "http://quran.codxplore.com/";
+    public static String host = "https://quran.codxplore.com/";
     SharedPreferences mPrefs;
 
     @Override

@@ -35,7 +35,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
     private static final String TAG = ResetPasswordActivity.class.getSimpleName();
     ProgressBar progressBar;
     private SessionManager session;
-    public static String host = "http://quran.codxplore.com/";
+    public static String host = "https://quran.codxplore.com/";
     public static String URL;
     private Button btnUpdatePass;
     private EditText reset_otp_code,new_password,confirm_new_password;

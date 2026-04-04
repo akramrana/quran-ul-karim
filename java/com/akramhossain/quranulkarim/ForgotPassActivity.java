@@ -37,7 +37,7 @@ public class ForgotPassActivity extends AppCompatActivity {
     ProgressBar progressBar;
     private SessionManager session;
     public static String URL;
-    public static String host = "http://quran.codxplore.com/";
+    public static String host = "https://quran.codxplore.com/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

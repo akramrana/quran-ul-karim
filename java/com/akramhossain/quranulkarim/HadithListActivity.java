@@ -36,7 +36,7 @@ public class HadithListActivity extends AppCompatActivity {
     public static String referenceBook;
     TextView info_title,info_sub_title;
     Typeface font;
-    public static String host = "http://quran.codxplore.com/";
+    public static String host = "https://quran.codxplore.com/";
     private RecyclerView recyclerview;
     LinearLayoutManager mLayoutManager;
     private static final String TAG = HadithListActivity.class.getSimpleName();

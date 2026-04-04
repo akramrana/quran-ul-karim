@@ -42,7 +42,7 @@ public class TagActivity extends AppCompatActivity {
     Boolean isInternetPresent = false;
     public static String URL;
 
-    public static String host = "http://quran.codxplore.com/";
+    public static String host = "https://quran.codxplore.com/";
 
     SharedPreferences mPrefs;
     @Override

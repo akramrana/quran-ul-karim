@@ -116,7 +116,7 @@ public class MosqueNearActivity extends AppCompatActivity {
                 if(location!= null) {
                     double latitude = location.getLatitude();
                     double longitude = location.getLongitude();
-                    mapPath = "http://websites.codxplore.com/heremap/index.php?lat="+latitude+"&lng="+longitude;
+                    mapPath = "https://websites.codxplore.com/heremap/index.php?lat="+latitude+"&lng="+longitude;
 
                     Log.d("MAP ULR",mapPath);
                     myWebView.loadUrl(mapPath);
@@ -196,7 +196,7 @@ public class MosqueNearActivity extends AppCompatActivity {
                             double latitude = location.getLatitude();
                             double longitude = location.getLongitude();
 
-                            mapPath = "http://websites.codxplore.com/heremap/index.php?lat=" + latitude + "&lng=" + longitude;
+                            mapPath = "https://websites.codxplore.com/heremap/index.php?lat=" + latitude + "&lng=" + longitude;
 
                             Log.d("MAP ULR", mapPath);
 

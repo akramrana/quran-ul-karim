@@ -85,7 +85,8 @@ public class PopUpClass {
                 public void onClick(View v) {
                     boolean isLoaded = AudioPlay.isLoadedAudio();
                     String mp3Uri = AudioPlay.getAudioUri();
-                    String audioUri = "https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/" + sura.getSurah_id() + ".mp3";
+                    String formatted = String.format("%03d", Integer.parseInt(sura.getSurah_id()));
+                    String audioUri = "https://download.quranicaudio.com/quran/sa3d_al-ghaamidi/complete/" + formatted + ".mp3";
 
                     if(isLoaded) {
                         if(mp3Uri.equals(audioUri)) {

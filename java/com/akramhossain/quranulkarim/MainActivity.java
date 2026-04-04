@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<HadithBook> hadithBook;
     public HadithBookViewAdapter hbRvAdapter;
     public static String HB_URL;
-    public static String hb_host = "http://quran.codxplore.com/";
+    public static String hb_host = "https://quran.codxplore.com/";
 
     LinearLayout ramadan_planner_sec;
 

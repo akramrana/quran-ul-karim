@@ -48,7 +48,7 @@ public class EditProfileActivity extends AppCompatActivity implements Spinner.On
     private ArrayList<String> countries;
     private JSONArray result;
     private SessionManager session;
-    public static String host = "http://quran.codxplore.com/";
+    public static String host = "https://quran.codxplore.com/";
     public String user_id = "";
     public String country_id = "";
     public int position = 0;

@@ -111,7 +111,7 @@ public class AboutActivity extends AppCompatActivity {
         quran_online.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://quran.codxplore.com")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://quran.codxplore.com")));
             }
         });
 
