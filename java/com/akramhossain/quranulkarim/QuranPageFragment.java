@@ -379,7 +379,10 @@ public class QuranPageFragment extends Fragment {
     }
 
     private int dp(int value) {
-        return Math.round(value * requireContext().getResources().getDisplayMetrics().density);
+        Context context = getContext();
+        if (context == null) return 0;
+
+        return Math.round(value * context.getResources().getDisplayMetrics().density);
     }
 
     private void playAyah(int surah, int ayah) {
@@ -393,7 +396,12 @@ public class QuranPageFragment extends Fragment {
                     @Override
                     public void doInBackground() {
                         try {
-                            URL url = new URL(audioUrl);
+
+                            String originalUrl = audioUrl;
+                            String newReciter = "Shatri";
+                            String updatedUrl = originalUrl.replace("Alafasy", newReciter);
+
+                            URL url = new URL(updatedUrl);
                             String fileName = url.getFile().replaceAll("/", "_").toLowerCase();
                             Log.d("File Name:", fileName);
                             //
@@ -408,7 +416,7 @@ public class QuranPageFragment extends Fragment {
                                 AudioPlay.playAudio(getActivity(), fullPath);
                             } else {
                                 Log.d("File Path:", "Not Exist Downloading!");
-                                downloadFile(audioUrl, fileName, mPath);
+                                downloadFile(updatedUrl, fileName, mPath);
                                 AudioPlay.stopAudio();
                                 AudioPlay.playAudio(getActivity(), fullPath);
                             }
