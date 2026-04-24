@@ -107,5 +107,7 @@
     <color name="input_register_hint">#5e6266</color>
 
     <color name="transColorV2">#ffcc0000</color>
+    <color name="bg_color_v2">#FFFFFF</color>
+    <color name="daynight_textColor_v2">#000000</color>
 
 </resources>

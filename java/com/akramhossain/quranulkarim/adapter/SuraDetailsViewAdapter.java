@@ -135,7 +135,8 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         }
         rvHolder.content_en.setText(ayah.getContent_en());
         rvHolder.content_bn.setText(ayah.getContent_bn());
-        rvHolder.ayah_num.setText(ayah.getAyah_key());
+        String ayahDecor = "﴾"+ayah.getAyah_key()+"﴿";
+        rvHolder.ayah_num.setText(ayahDecor);
         String sajdahText = "";
         if (ayah.getSajdah().equals("0")) {
             sajdahText = "No";
