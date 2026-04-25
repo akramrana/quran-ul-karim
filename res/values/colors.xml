@@ -110,4 +110,12 @@
     <color name="bg_color_v2">#FFFFFF</color>
     <color name="daynight_textColor_v2">#000000</color>
 
+
+    <color name="bg_card">#ECFDF5</color>
+    <color name="icon_color">#065F46</color>
+    <color name="text_primary">#065F46</color>
+    <color name="border_card">#FFCCFBF1</color>
+
+    <color name="bg_blue_card">#FFEFF6FF</color>
+
 </resources>

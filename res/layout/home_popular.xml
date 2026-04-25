@@ -9,13 +9,15 @@
         android:id="@+id/popular_searched_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:paddingLeft="8dp"
         android:paddingRight="5dp"
         android:text="@string/ppl_search"
-        android:textSize="15sp"
+        android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_gravity="center"/>
+        android:layout_gravity="left"
+        android:fontFamily="@font/noto_serif"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/popularSearchView"

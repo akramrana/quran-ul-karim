@@ -99,4 +99,9 @@
     <color name="bg_color_v2">#FF424242</color>
     <color name="daynight_textColor_v2">#ff8222</color>
 
+    <color name="bg_card">#064E3B</color>
+    <color name="icon_color">#D1FAE5</color>
+    <color name="text_primary">#ECFDF5</color>
+    <color name="border_card">#065F46</color>
+
 </resources>

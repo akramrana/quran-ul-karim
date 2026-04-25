@@ -346,4 +346,9 @@
 
     <string name="ksa_quran_subtitle">Al Quran - KSU Electronic Moshaf</string>
 
+    <string name="quick_actions">Quick Actions</string>
+    <string name="tools_feat"><![CDATA[Tools & Features]]></string>
+    <string name="system_utilities"><![CDATA[System & Utilities]]></string>
+    <string name="word_challenge_dtl">Unlock the meanings of\nthe sacred text through\ninteractive puzzles.</string>
+
 </resources>
