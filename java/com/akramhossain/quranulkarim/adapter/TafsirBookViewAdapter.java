@@ -38,7 +38,12 @@ public class TafsirBookViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(c).inflate(R.layout.tafsir_book_list, parent, false);
+        View v;
+        if(screen.equals("MA")){
+            v = LayoutInflater.from(c).inflate(R.layout.tafsir_book_list_home, parent, false);
+        }else {
+            v = LayoutInflater.from(c).inflate(R.layout.tafsir_book_list, parent, false);
+        }
         RecyclerViewHolder rvHolder = new RecyclerViewHolder(v);
         rvHolder.name_bangla.setTypeface(font);
         return rvHolder;

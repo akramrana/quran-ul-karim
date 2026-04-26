@@ -118,4 +118,11 @@
 
     <color name="bg_blue_card">#FFEFF6FF</color>
 
+    <color name="redColor">#ffcc0000</color>
+    <color name="teal_bg">#0F4C4E</color>
+    <color name="blue_green">#85BBBD</color>
+    <color name="soft_golden">#FED488</color>
+    <color name="golden_brown">#785A1A</color>
+    <color name="dark_green">#103223</color>
+
 </resources>

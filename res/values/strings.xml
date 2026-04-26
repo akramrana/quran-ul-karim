@@ -162,8 +162,8 @@
     <string name="string_qc_en">Qibla Compass</string>
     <string name="string_qc_subtitle">Get qibla direction</string>
 
-    <string name="string_dg_bn">দৈনন্দিন কাজ</string>
-    <string name="string_dg_en">Daily Tasks</string>
+    <string name="string_dg_bn">প্রতিদিনের কাজ আপডেট করুন</string>
+    <string name="string_dg_en">Update daily tasks</string>
     <string name="string_dg_subtitle">Accomplish your daily goals</string>
     <string name="string_subj_en">Topic Wise</string>
     <string name="string_subj_bn">বিষয় ভিত্তিক</string>

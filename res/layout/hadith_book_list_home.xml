@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
-    android:layout_width="330dp"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="144dp"
     android:layout_margin="5dp"
     android:layout_height="wrap_content"
-    android:foreground="?android:attr/selectableItemBackground">
-
+    android:foreground="@android:color/transparent"
+    app:cardCornerRadius="12dp"
+    app:cardBackgroundColor="@color/bg_card"
+    app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:orientation="vertical">
+        android:layout_height="192dp"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/book_id"
@@ -23,28 +26,34 @@
             android:visibility="gone"/>
 
         <TextView
-            android:id="@+id/name_english"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorWhite"
-            android:textSize="15dip"
-            android:layout_gravity="center"/>
-
-        <TextView
             android:id="@+id/name_arabic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorWhite"
-            android:textSize="25dip"
-            android:layout_gravity="center"/>
+            android:textColor="@color/text_primary"
+            android:textSize="18dip"
+            android:gravity="center"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/book_ribbon_48px"
+            app:tint="@color/icon_color"/>
+
+        <TextView
+            android:id="@+id/name_english"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_primary"
+            android:textSize="11dip"
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/name_bangla"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorWhite"
-            android:textSize="15dip"
-            android:layout_gravity="center"/>
+            android:textColor="@color/text_primary"
+            android:textSize="11dip"
+            android:gravity="center"/>
 
     </LinearLayout>
 
