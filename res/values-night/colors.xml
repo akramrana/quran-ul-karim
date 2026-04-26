@@ -103,5 +103,6 @@
     <color name="icon_color">#D1FAE5</color>
     <color name="text_primary">#ECFDF5</color>
     <color name="border_card">#065F46</color>
+    <color name="dark_gray">#2E2E2E</color>
 
 </resources>

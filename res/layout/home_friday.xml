@@ -6,124 +6,211 @@
     android:orientation="vertical"
     android:visibility="gone">
 
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="15dp"-->
+<!--        android:layout_marginBottom="2dp"-->
+<!--        app:cardElevation="3dp">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="0.5"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/friday_ttl"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="10dip"-->
+<!--                        android:text="@string/string_friday_ttl"-->
+<!--                        android:textSize="15sp"-->
+<!--                        android:textColor="@color/transColor"-->
+<!--                        android:gravity="left"-->
+<!--                        android:layout_marginLeft="15dip"/>-->
+
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="0.5"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/friday_ttl_bn"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="10dip"-->
+<!--                        android:text="@string/friday_ttl_bn"-->
+<!--                        android:textSize="15sp"-->
+<!--                        android:textColor="@color/transColor"-->
+<!--                        android:gravity="right"-->
+<!--                        android:layout_marginRight="15dip"/>-->
+
+<!--                </LinearLayout>-->
+
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="0.5"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/friday_subttl"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="2.0dip"-->
+<!--                        android:text="@string/string_friday_subttl"-->
+<!--                        android:textSize="13sp"-->
+<!--                        android:textColor="@color/colorWhite"-->
+<!--                        android:gravity="left"-->
+<!--                        android:layout_marginLeft="15dip"/>-->
+
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="0.5"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/friday_subttl_bn"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="2dip"-->
+<!--                        android:text="@string/string_friday_subttl_bn"-->
+<!--                        android:textSize="12sp"-->
+<!--                        android:textColor="@color/colorWhite"-->
+<!--                        android:gravity="right"-->
+<!--                        android:layout_marginRight="15dip"/>-->
+
+<!--                </LinearLayout>-->
+
+<!--            </LinearLayout>-->
+
+<!--            <Button-->
+<!--                android:id="@+id/kahf_button"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:paddingStart="10dp"-->
+<!--                android:paddingEnd="10dp"-->
+<!--                android:text="@string/read_surah_kahf"-->
+<!--                android:textSize="13sp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginBottom="15dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:textColor="@color/colorWhite"-->
+<!--                android:background="@drawable/button_border"-->
+<!--                android:textAllCaps="false"/>-->
+
+<!--        </LinearLayout>-->
+
+<!--    </androidx.cardview.widget.CardView>-->
     <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="2dp"
-        app:cardElevation="3dp">
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        card_view:cardCornerRadius="8dp"
+        card_view:cardElevation="2dp"
+        card_view:cardUseCompatPadding="false">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:padding="18dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+            <TextView
+                android:id="@+id/txtBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/bg_friday_badge"
+                android:gravity="center"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="FRIDAY SUNNAH"
+                android:textColor="#FFD24A"
+                android:textSize="10sp"
+                android:textStyle="bold" />
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:orientation="vertical">
+            <TextView
+                android:id="@+id/txtIcon"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_icon_circle"
+                android:gravity="center"
+                android:text="✦"
+                android:textColor="@color/text_primary"
+                android:textSize="28sp" />
 
-                    <TextView
-                        android:id="@+id/friday_ttl"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dip"
-                        android:text="@string/string_friday_ttl"
-                        android:textSize="15sp"
-                        android:textColor="@color/transColor"
-                        android:gravity="left"
-                        android:layout_marginLeft="15dip"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/friday_ttl_bn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dip"
-                        android:text="@string/friday_ttl_bn"
-                        android:textSize="15sp"
-                        android:textColor="@color/transColor"
-                        android:gravity="right"
-                        android:layout_marginRight="15dip"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/friday_subttl"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2.0dip"
-                        android:text="@string/string_friday_subttl"
-                        android:textSize="13sp"
-                        android:textColor="@color/colorWhite"
-                        android:gravity="left"
-                        android:layout_marginLeft="15dip"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/friday_subttl_bn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dip"
-                        android:text="@string/string_friday_subttl_bn"
-                        android:textSize="12sp"
-                        android:textColor="@color/colorWhite"
-                        android:gravity="right"
-                        android:layout_marginRight="15dip"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/kahf_button"
+            <TextView
+                android:id="@+id/txtTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:text="@string/read_surah_kahf"
-                android:textSize="13sp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="15dp"
-                android:layout_gravity="center"
-                android:textColor="@color/colorWhite"
-                android:background="@drawable/button_border"
-                android:textAllCaps="false"/>
+                android:layout_below="@id/txtIcon"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:text="Surah Al-Kahf"
+                android:textColor="@color/text_primary"
+                android:textSize="22sp"
+                android:fontFamily="@font/noto_serif"/>
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/txtSubtitle"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtTitle"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:lineSpacingExtra="3dp"
+                android:text="Illuminating light between the two\nFridays. Recite today for tranquil\nguidance."
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:fontFamily="@font/noto_serif"/>
+
+            <TextView
+                android:id="@+id/kahf_button"
+                android:layout_width="184dp"
+                android:layout_height="44dp"
+                android:layout_below="@id/txtSubtitle"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/bg_card"
+                android:gravity="center"
+                android:text="START RECITATION"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                android:fontFamily="@font/noto_serif"/>
+
+        </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 

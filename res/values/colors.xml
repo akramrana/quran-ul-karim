@@ -124,5 +124,6 @@
     <color name="soft_golden">#FED488</color>
     <color name="golden_brown">#785A1A</color>
     <color name="dark_green">#103223</color>
+    <color name="dark_gray">#ECFDF5</color>
 
 </resources>

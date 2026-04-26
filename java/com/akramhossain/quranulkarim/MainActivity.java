@@ -589,13 +589,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //
-        TextView friday_ttl_bn = (TextView) findViewById(R.id.friday_ttl_bn);
+        /*TextView friday_ttl_bn = (TextView) findViewById(R.id.friday_ttl_bn);
         friday_ttl_bn.setTypeface(font);
 
         TextView friday_subttl_bn = (TextView) findViewById(R.id.friday_subttl_bn);
         friday_subttl_bn.setTypeface(font);
 
-        Button kahf_button = (Button) findViewById(R.id.kahf_button);
+        Button kahf_button = (Button) findViewById(R.id.kahf_button);*/
+        TextView kahf_button = (TextView) findViewById(R.id.kahf_button);
         kahf_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -609,14 +610,14 @@ public class MainActivity extends AppCompatActivity {
         //
         friday_section = (LinearLayout) findViewById(R.id.friday_section);
         //
-        TextView night_ttl_bn = (TextView) findViewById(R.id.night_ttl_bn);
+        /*TextView night_ttl_bn = (TextView) findViewById(R.id.night_ttl_bn);
         night_ttl_bn.setTypeface(font);
 
         TextView night_subttl_bn = (TextView) findViewById(R.id.night_subttl_bn);
         night_subttl_bn.setTypeface(font);
 
         TextView night_subttl_10_verse_bn = (TextView) findViewById(R.id.night_subttl_10_verse_bn);
-        night_subttl_10_verse_bn.setTypeface(font);
+        night_subttl_10_verse_bn.setTypeface(font);*/
         //
         night_recite_section = (LinearLayout) findViewById(R.id.night_recite_section);
         //

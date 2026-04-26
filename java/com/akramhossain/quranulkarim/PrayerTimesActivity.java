@@ -1,14 +1,18 @@
 package com.akramhossain.quranulkarim;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -173,14 +177,47 @@ public class PrayerTimesActivity extends AppCompatActivity {
         //
         if (Build.VERSION.SDK_INT >= 23) {
             if (checkPermission()) {
-                LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
+                LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                //
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this, new String[]{
+                            Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION
+                    }, 100);
+                    return;
+                }
+
+                LocationListener listener = new LocationListener() {
+                    @Override
+                    public void onLocationChanged(@NonNull Location location) {
+                        double latitude = location.getLatitude();
+                        double longitude = location.getLongitude();
+
+                        selectedLatitude = latitude;
+                        selectedlongitude = longitude;
+
+                        getPrayerTimes(latitude, longitude, hourDiff);
+
+                        lm.removeUpdates(this);
+                    }
+                };
+
+                lm.requestLocationUpdates(
+                        LocationManager.GPS_PROVIDER,
+                        0,
+                        0,
+                        listener
+                );
+                //
                 try{
                     gps_enabled=lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
                 }catch(Exception ex){
+                    Log.e("gps_enabled", ex.getMessage());
                 }
                 try{
                     network_enabled=lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
                 }catch(Exception ex){
+                    Log.e("network_enabled", ex.getMessage());
                 }
                 Location networkLoacation = null, gpsLocation = null, location = null;
                 if(gps_enabled){
@@ -230,10 +267,12 @@ public class PrayerTimesActivity extends AppCompatActivity {
             try{
                 gps_enabled=lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
             }catch(Exception ex){
+                Log.e("gps_enabled", ex.getMessage());
             }
             try{
                 network_enabled=lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
             }catch(Exception ex){
+                Log.e("network_enabled", ex.getMessage());
             }
             Location networkLoacation = null, gpsLocation = null, location = null;
             if(gps_enabled){
@@ -360,15 +399,46 @@ public class PrayerTimesActivity extends AppCompatActivity {
                     double hourDiff = (tmzone.getRawOffset() / 1000) / 3600;
 
                     if (checkPermission()) {
-                        LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
+                        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(this, new String[]{
+                                    Manifest.permission.ACCESS_FINE_LOCATION,
+                                    Manifest.permission.ACCESS_COARSE_LOCATION
+                            }, 100);
+                            return;
+                        }
+
+                        LocationListener listener = new LocationListener() {
+                            @Override
+                            public void onLocationChanged(@NonNull Location location) {
+                                double latitude = location.getLatitude();
+                                double longitude = location.getLongitude();
+
+                                selectedLatitude = latitude;
+                                selectedlongitude = longitude;
+
+                                getPrayerTimes(latitude, longitude, hourDiff);
+
+                                lm.removeUpdates(this);
+                            }
+                        };
+
+                        lm.requestLocationUpdates(
+                                LocationManager.GPS_PROVIDER,
+                                0,
+                                0,
+                                listener
+                        );
                         //Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                         try {
                             gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
                         } catch (Exception ex) {
+                            Log.e("gps_enabled", ex.getMessage());
                         }
                         try {
                             network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
                         } catch (Exception ex) {
+                            Log.e("network_enabled", ex.getMessage());
                         }
                         Location networkLoacation = null, gpsLocation = null, location = null;
                         if (gps_enabled) {
