@@ -1274,7 +1274,7 @@ public class MainActivity extends AppCompatActivity {
                 if(show_ramadan_planner==1){
                     ramadan_planner_sec.setVisibility(View.VISIBLE);
                 }else{
-                    ramadan_planner_sec.setVisibility(View.GONE);
+                    ramadan_planner_sec.setVisibility(View.INVISIBLE);
                 }
                 //
                 Integer currentAppVersion = json.getInt("current_app_version");

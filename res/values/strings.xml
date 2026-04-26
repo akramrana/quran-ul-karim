@@ -172,7 +172,7 @@
     <string name="string_hint">**কিছু টপিকের বাংলা অর্থ ভুল হতে পারে**</string>
 
     <string name="string_hadith_en">Hadith Books</string>
-    <string name="string_hadith_bn">হাদিসের\nবই</string>
+    <string name="string_hadith_bn">হাদিসের বই</string>
     <string name="string_hadith_subtitle">The Hadith of the Prophet Muhammad PBUH</string>
 
     <string name="search_hadith"><u>Search Hadith</u></string>
