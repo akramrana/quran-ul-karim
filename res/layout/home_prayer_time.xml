@@ -30,8 +30,9 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:text="@string/string_prayer_times"
-                    android:textColor="@color/transColor"
-                    android:textSize="15sp" />
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/noto_serif"/>
 
                 <ImageButton
                     android:id="@+id/btnPrayerNotif"
@@ -76,7 +77,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_gravity="center"
-                    android:paddingBottom="10dp"
+                    android:gravity="center"
                     android:layout_margin="10dp">
 
                     <LinearLayout
@@ -84,7 +85,12 @@
                         android:layout_weight="0.20"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_margin="5dp">
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bg_card"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp">
 
                         <TextView
                             android:id="@+id/fajr_time_ttl"
@@ -92,10 +98,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2.0dip"
                             android:text="@string/string_fajr"
-                            android:textSize="13sp"
-                            android:textColor="@color/colorWhite"
-                            android:gravity="center"
-                            android:layout_marginLeft="15dip"/>
+                            android:textSize="11sp"
+                            android:textColor="@color/text_primary"
+                            android:gravity="center"/>
 
                         <TextView
                             android:id="@+id/ftime"
@@ -103,10 +108,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2.0dip"
                             android:text="--:-- --"
-                            android:textSize="13sp"
-                            android:textColor="@color/colorWhite"
-                            android:gravity="center"
-                            android:layout_marginLeft="15dip"/>
+                            android:textSize="11sp"
+                            android:textColor="@color/text_primary"
+                            android:gravity="center"/>
 
                     </LinearLayout>
 
@@ -115,7 +119,12 @@
                         android:layout_weight="0.20"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_margin="5dp">
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bg_card"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp">
 
                         <TextView
                             android:id="@+id/ztime_ttl"
@@ -123,10 +132,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2.0dip"
                             android:text="@string/string_dhuhr"
-                            android:textSize="13sp"
-                            android:textColor="@color/colorWhite"
-                            android:gravity="center"
-                            android:layout_marginLeft="15dip"/>
+                            android:textSize="11sp"
+                            android:textColor="@color/text_primary"
+                            android:gravity="center"/>
 
                         <TextView
                             android:id="@+id/ztime"
@@ -134,10 +142,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2.0dip"
                             android:text="--:-- --"
-                            android:textSize="13sp"
-                            android:textColor="@color/colorWhite"
-                            android:gravity="center"
-                            android:layout_marginLeft="15dip"/>
+                            android:textSize="11sp"
+                            android:textColor="@color/text_primary"
+                            android:gravity="center"/>
 
                     </LinearLayout>
 
@@ -146,7 +153,12 @@
                         android:layout_weight="0.20"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_margin="5dp">
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bg_card"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp">
 
                         <TextView
                             android:id="@+id/atime_ttl"
@@ -154,10 +166,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2.0dip"
                             android:text="@string/string_asr"
-                            android:textSize="13sp"
-                            android:textColor="@color/colorWhite"
-                            android:gravity="center"
-                            android:layout_marginLeft="15dip"/>
+                            android:textSize="11sp"
+                            android:textColor="@color/text_primary"
+                            android:gravity="center"/>
 
                         <TextView
                             android:id="@+id/atime"
@@ -165,10 +176,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2.0dip"
                             android:text="--:-- --"
-                            android:textSize="13sp"
-                            android:textColor="@color/colorWhite"
-                            android:gravity="center"
-                            android:layout_marginLeft="15dip"/>
+                            android:textSize="11sp"
+                            android:textColor="@color/text_primary"
+                            android:gravity="center"/>
 
                     </LinearLayout>
 
@@ -177,7 +187,12 @@
                         android:layout_weight="0.20"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_margin="5dp">
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bg_card"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp">
 
                         <TextView
                             android:id="@+id/mtime_ttl"
@@ -185,10 +200,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2.0dip"
                             android:text="@string/string_magrib"
-                            android:textSize="13sp"
-                            android:textColor="@color/colorWhite"
-                            android:gravity="center"
-                            android:layout_marginLeft="15dip"/>
+                            android:textSize="11sp"
+                            android:textColor="@color/text_primary"
+                            android:gravity="center"/>
 
                         <TextView
                             android:id="@+id/mtime"
@@ -196,10 +210,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2.0dip"
                             android:text="--:-- --"
-                            android:textSize="13sp"
-                            android:textColor="@color/colorWhite"
-                            android:gravity="center"
-                            android:layout_marginLeft="15dip"/>
+                            android:textSize="11sp"
+                            android:textColor="@color/text_primary"
+                            android:gravity="center"/>
 
                     </LinearLayout>
 
@@ -208,7 +221,12 @@
                         android:layout_weight="0.20"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_margin="5dp">
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bg_card"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp">
 
                         <TextView
                             android:id="@+id/itime_ttl"
@@ -216,10 +234,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2.0dip"
                             android:text="@string/string_isha"
-                            android:textSize="13sp"
-                            android:textColor="@color/colorWhite"
-                            android:gravity="center"
-                            android:layout_marginLeft="15dip"/>
+                            android:textSize="11sp"
+                            android:textColor="@color/text_primary"
+                            android:gravity="center"/>
 
                         <TextView
                             android:id="@+id/itime"
@@ -227,10 +244,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2.0dip"
                             android:text="--:-- --"
-                            android:textSize="13sp"
-                            android:textColor="@color/colorWhite"
-                            android:gravity="center"
-                            android:layout_marginLeft="15dip"/>
+                            android:textSize="11sp"
+                            android:textColor="@color/text_primary"
+                            android:gravity="center"/>
 
                     </LinearLayout>
 
