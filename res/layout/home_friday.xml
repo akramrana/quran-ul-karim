@@ -131,7 +131,7 @@
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="2dp"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="7dp"
@@ -179,7 +179,7 @@
                 android:layout_marginTop="12dp"
                 android:text="Surah Al-Kahf"
                 android:textColor="@color/text_primary"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:fontFamily="@font/noto_serif"/>
 
             <TextView
@@ -193,7 +193,7 @@
                 android:lineSpacingExtra="3dp"
                 android:text="Illuminating light between the two\nFridays. Recite today for tranquil\nguidance."
                 android:textColor="@color/colorWhite"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 android:fontFamily="@font/noto_serif"/>
 
             <TextView

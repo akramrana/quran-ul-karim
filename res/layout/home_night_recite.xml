@@ -234,7 +234,7 @@
                 android:layout_marginTop="8dp"
                 android:text="Al-Mulk"
                 android:textColor="@color/text_primary"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:textStyle="normal" />
 
             <TextView
@@ -246,7 +246,7 @@
                 android:lineSpacingExtra="3dp"
                 android:text="Protector against the punishment of the grave."
                 android:textColor="@color/colorWhite"
-                android:textSize="15sp" />
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/txtVerseInfo"
@@ -254,7 +254,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:text="30 Verses"
-                android:textColor="#777777"
+                android:textColor="@color/text_primary"
                 android:textSize="13sp" />
 
             <Button
@@ -317,7 +317,7 @@
                 android:layout_marginTop="8dp"
                 android:text="Al-Baqarah"
                 android:textColor="@color/text_primary"
-                android:textSize="22sp"
+                android:textSize="18sp"
                 android:textStyle="normal" />
 
             <TextView
@@ -329,7 +329,7 @@
                 android:lineSpacingExtra="3dp"
                 android:text="The last two verses provide protection for the night."
                 android:textColor="@color/colorWhite"
-                android:textSize="15sp" />
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/txtVerseInfo1"
@@ -337,7 +337,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:text="Verses 277-286"
-                android:textColor="#777777"
+                android:textColor="@color/text_primary"
                 android:textSize="13sp" />
 
             <Button
