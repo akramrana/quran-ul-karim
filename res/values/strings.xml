@@ -175,7 +175,7 @@
     <string name="string_hadith_bn">হাদিসের বই</string>
     <string name="string_hadith_subtitle">The Hadith of the Prophet Muhammad PBUH</string>
 
-    <string name="search_hadith"><u>Search Hadith</u></string>
+    <string name="search_hadith">Search Hadith</string>
     <string name="search_hadith_ttl">Search Hadith</string>
     <string name="search_hadith_sbttl">Search Hadith by Term</string>
 

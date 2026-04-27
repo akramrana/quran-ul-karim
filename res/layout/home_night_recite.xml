@@ -269,17 +269,7 @@
                 android:textColor="@color/text_primary"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/txtBgIcon"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:alpha="0.08"
-                android:gravity="center"
-                android:text="☰"
-                android:textColor="#FFD12E"
-                android:textSize="70sp" />
+
 
         </RelativeLayout>
 
@@ -353,17 +343,7 @@
                 android:textSize="14sp"
                 android:fontFamily="@font/noto_serif"/>
 
-            <TextView
-                android:id="@+id/txtBgIcon1"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:alpha="0.08"
-                android:gravity="center"
-                android:text="☰"
-                android:textColor="#FFD12E"
-                android:textSize="70sp" />
+
 
         </RelativeLayout>
 

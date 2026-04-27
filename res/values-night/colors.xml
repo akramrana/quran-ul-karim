@@ -26,7 +26,7 @@
     <item name="darkgreen" type="color">#FF669900</item>
     <item name="darkorange" type="color">#FFFF8800</item>
     <item name="darkred" type="color">#FFCC0000</item>
-    <color name="transColor">#ffffbb33</color>
+    <color name="transColor">#ECFDF5</color>
     <color name="color1">#003771</color>
     <color name="color2">#FB6107</color>
     <color name="color3">#7CB518</color>
