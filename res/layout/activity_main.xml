@@ -93,6 +93,7 @@
                     android:textColor="@color/text_primary"
                     android:background="@drawable/rounded_bg"
                     android:padding="5dp"
+                    android:textSize="12sp"
                     android:fontFamily="@font/noto_serif"/>
             </LinearLayout>
 
