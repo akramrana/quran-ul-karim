@@ -90,7 +90,8 @@
                 android:layout_centerInParent="true"
                 android:paddingTop="3dp"
                 android:background="@drawable/bg_card"
-                android:textColor="@color/text_primary"/>
+                android:textColor="@color/text_primary"
+                android:drawableTint="@color/icon_color"/>
 
         </RelativeLayout>
 
