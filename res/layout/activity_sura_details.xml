@@ -43,11 +43,12 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:background="@android:color/transparent"
-                    android:drawableLeft="@android:drawable/ic_media_previous"
+                    android:drawableLeft="@drawable/arrow_back_ios_24px"
                     android:text="Prev"
                     android:textColor="@color/colorWhiteDN"
                     android:textSize="10sp"
-                    android:textAllCaps="false"/>
+                    android:textAllCaps="false"
+                    android:drawableTint="@color/bg_icon"/>
 
             </LinearLayout>
 
@@ -97,11 +98,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
-                        android:drawableLeft="@android:drawable/ic_menu_upload"
+                        android:drawableLeft="@drawable/star_24px"
                         android:text="Add favourites"
                         android:textColor="@color/colorWhiteDN"
                         android:textSize="10sp"
-                        android:textAllCaps="false"/>
+                        android:textAllCaps="false"
+                        android:drawableTint="@color/bg_icon"/>
 
                     <View
                         android:layout_width="0dp"
@@ -113,9 +115,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
-                        android:drawableLeft="@android:drawable/ic_menu_manage"
+                        android:drawableLeft="@drawable/settings_24px"
                         android:text="Settings"
                         android:textColor="@color/colorWhiteDN"
+                        android:drawableTint="@color/bg_icon"
                         android:textSize="10sp"
                         android:textAllCaps="false"/>
 
@@ -147,11 +150,12 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:background="@android:color/transparent"
-                    android:drawableRight="@android:drawable/ic_media_next"
+                    android:drawableRight="@drawable/arrow_forward_ios_24px"
                     android:text="Next"
                     android:textColor="@color/colorWhiteDN"
                     android:textSize="10sp"
-                    android:textAllCaps="false"/>
+                    android:textAllCaps="false"
+                    android:drawableTint="@color/bg_icon"/>
 
             </LinearLayout>
 

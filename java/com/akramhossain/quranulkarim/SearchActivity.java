@@ -172,10 +172,10 @@ public class SearchActivity extends AppCompatActivity {
                 Cursor cursor2 = db1.rawQuery(checksql,null);
                 if (cursor2.moveToFirst()) {
                     quickLinkBtn.setText("Remove favourites");
-                    quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_delete, 0, 0, 0);
+                    quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.delete_24px, 0, 0, 0);
                 } else {
                     quickLinkBtn.setText("Add favourites");
-                    quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_upload, 0, 0, 0);
+                    quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.star_fill_24px, 0, 0, 0);
                 }
                 quickLinkBtn.setVisibility(View.VISIBLE);
                 Log.i("ID", String.valueOf(selectedSurahNo));
@@ -280,7 +280,7 @@ public class SearchActivity extends AppCompatActivity {
                     if (cursor.moveToFirst()) {
                         db.execSQL("DELETE FROM quick_link WHERE sura_id = " + suraId);
                         Toast.makeText(getApplicationContext(), "Deleted from favourites.", Toast.LENGTH_LONG).show();
-                        quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_upload, 0, 0, 0);
+                        quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.star_fill_24px, 0, 0, 0);
                         quickLinkBtn.setText("Add favourites");
                     }
                     else {
@@ -288,7 +288,7 @@ public class SearchActivity extends AppCompatActivity {
                         values.put("sura_id", suraId);
                         DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase().insertOrThrow("quick_link", "", values);
                         Toast.makeText(getApplicationContext(), "Added to favourites.", Toast.LENGTH_LONG).show();
-                        quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_delete, 0, 0, 0);
+                        quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.delete_24px, 0, 0, 0);
                         quickLinkBtn.setText("Remove favourites");
                     }
                 }catch (Exception e){

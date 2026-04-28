@@ -447,8 +447,12 @@
                         android:text="@string/string_cp"
                         android:textSize="12sp"
                         android:textAllCaps="false"
-                        android:drawableTop="@android:drawable/ic_menu_set_as"
-                        android:layout_marginBottom="5dp"/>
+                        android:drawableTop="@drawable/copy_all_24px"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/bg_card"
+                        android:paddingTop="3dp"
+                        android:textColor="@color/text_primary"
+                        android:drawableTint="@color/icon_color"/>
 
                 </RelativeLayout>
 

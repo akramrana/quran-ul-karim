@@ -151,10 +151,14 @@
                 android:layout_height="wrap_content"
                 android:text="@string/string_play"
                 android:textSize="6sp"
-                android:drawableTop="@android:drawable/ic_media_play"
+                android:drawableTop="@drawable/play_circle_24px"
                 android:gravity="center_vertical|center"
                 android:textAllCaps="false"
-                android:layout_margin="4dp"/>
+                android:layout_margin="4dp"
+                android:paddingTop="3dp"
+                android:background="@drawable/bg_card"
+                android:textColor="@color/text_primary"
+                android:drawableTint="@color/icon_color"/>
 
             <Button
                 android:id="@+id/bookmarkBtn"
@@ -164,10 +168,14 @@
                 android:text="@string/string_bkmark"
                 android:layout_toRightOf="@id/playBtn"
                 android:textSize="6sp"
-                android:drawableTop="@android:drawable/btn_star"
+                android:drawableTop="@drawable/bookmarks_24px"
                 android:gravity="center_vertical|center"
                 android:textAllCaps="false"
-                android:layout_margin="4dp"/>
+                android:layout_margin="4dp"
+                android:paddingTop="3dp"
+                android:background="@drawable/bg_card"
+                android:textColor="@color/text_primary"
+                android:drawableTint="@color/icon_color"/>
 
             <Button
                 android:id="@+id/wordMeaningButton"
@@ -177,10 +185,14 @@
                 android:text="@string/string_wrd_mni"
                 android:layout_toRightOf="@id/bookmarkBtn"
                 android:textSize="6sp"
-                android:drawableTop="@android:drawable/ic_menu_directions"
+                android:drawableTop="@drawable/developer_guide_24px"
                 android:gravity="center_vertical|center"
                 android:textAllCaps="false"
-                android:layout_margin="4dp"/>
+                android:layout_margin="4dp"
+                android:paddingTop="3dp"
+                android:background="@drawable/bg_card"
+                android:textColor="@color/text_primary"
+                android:drawableTint="@color/icon_color"/>
 
             <Button
                 android:id="@+id/copyButton"
@@ -190,10 +202,14 @@
                 android:text="@string/string_cp"
                 android:layout_toRightOf="@id/wordMeaningButton"
                 android:textSize="6sp"
-                android:drawableTop="@android:drawable/ic_menu_set_as"
+                android:drawableTop="@drawable/copy_all_24px"
                 android:gravity="center_vertical|center"
                 android:textAllCaps="false"
-                android:layout_margin="4dp"/>
+                android:layout_margin="4dp"
+                android:paddingTop="3dp"
+                android:background="@drawable/bg_card"
+                android:textColor="@color/text_primary"
+                android:drawableTint="@color/icon_color"/>
 
 
             <Button
@@ -203,10 +219,14 @@
                 android:layout_height="wrap_content"
                 android:text="@string/string_share"
                 android:textSize="6sp"
-                android:drawableTop="@android:drawable/ic_menu_share"
+                android:drawableTop="@drawable/share_24px"
                 android:layout_alignParentRight="true"
                 android:textAllCaps="false"
-                android:layout_margin="4dp"/>
+                android:layout_margin="4dp"
+                android:paddingTop="3dp"
+                android:background="@drawable/bg_card"
+                android:textColor="@color/text_primary"
+                android:drawableTint="@color/icon_color"/>
 
         </LinearLayout>
 

@@ -126,4 +126,6 @@
     <color name="dark_green">#103223</color>
     <color name="dark_gray">#ECFDF5</color>
 
+    <color name="bg_icon">#ECFDF5</color>
+
 </resources>

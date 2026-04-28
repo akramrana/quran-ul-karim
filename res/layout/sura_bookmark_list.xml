@@ -145,10 +145,14 @@
                 android:layout_height="wrap_content"
                 android:text="@string/string_play"
                 android:textSize="6sp"
-                android:drawableTop="@android:drawable/ic_media_play"
+                android:drawableTop="@drawable/play_circle_24px"
                 android:gravity="center_vertical|center"
                 android:textAllCaps="false"
-                android:layout_margin="4dp"/>
+                android:layout_margin="4dp"
+                android:background="@drawable/bg_card"
+                android:textColor="@color/text_primary"
+                android:paddingTop="3dp"
+                android:drawableTint="@color/icon_color"/>
 
             <Button
                 android:id="@+id/wordMeaningButton"
@@ -158,10 +162,14 @@
                 android:text="@string/string_wrd_mni"
                 android:layout_toRightOf="@id/playBtn"
                 android:textSize="6sp"
-                android:drawableTop="@android:drawable/ic_menu_directions"
+                android:drawableTop="@drawable/developer_guide_24px"
                 android:gravity="center_vertical|center"
                 android:textAllCaps="false"
-                android:layout_margin="4dp"/>
+                android:layout_margin="4dp"
+                android:background="@drawable/bg_card"
+                android:textColor="@color/text_primary"
+                android:paddingTop="3dp"
+                android:drawableTint="@color/icon_color"/>
 
             <Button
                 android:id="@+id/removeBookmarkButton"
@@ -171,10 +179,14 @@
                 android:text="@string/string_del"
                 android:layout_toRightOf="@id/wordMeaningButton"
                 android:textSize="6sp"
-                android:drawableTop="@android:drawable/ic_menu_delete"
+                android:drawableTop="@drawable/delete_24px"
                 android:gravity="center_vertical|center"
                 android:textAllCaps="false"
-                android:layout_margin="4dp"/>
+                android:layout_margin="4dp"
+                android:background="@drawable/bg_card"
+                android:textColor="@color/text_primary"
+                android:paddingTop="3dp"
+                android:drawableTint="@color/icon_color"/>
 
 
             <Button
@@ -185,10 +197,14 @@
                 android:text="@string/string_cp"
                 android:layout_toRightOf="@id/removeBookmarkButton"
                 android:textSize="6sp"
-                android:drawableTop="@android:drawable/ic_menu_set_as"
+                android:drawableTop="@drawable/copy_all_24px"
                 android:gravity="center_vertical|center"
                 android:textAllCaps="false"
-                android:layout_margin="4dp"/>
+                android:layout_margin="4dp"
+                android:background="@drawable/bg_card"
+                android:textColor="@color/text_primary"
+                android:paddingTop="3dp"
+                android:drawableTint="@color/icon_color"/>
 
             <Button
                 android:id="@+id/shareButton"
@@ -197,10 +213,14 @@
                 android:layout_height="wrap_content"
                 android:textSize="6sp"
                 android:text="@string/string_share"
-                android:drawableTop="@android:drawable/ic_menu_share"
+                android:drawableTop="@drawable/share_24px"
                 android:layout_alignParentRight="true"
                 android:layout_margin="4dp"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false"
+                android:background="@drawable/bg_card"
+                android:textColor="@color/text_primary"
+                android:paddingTop="3dp"
+                android:drawableTint="@color/icon_color"/>
 
         </LinearLayout>
 

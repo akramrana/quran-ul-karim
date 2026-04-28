@@ -82,12 +82,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="9sp"
-                android:drawableTop="@android:drawable/ic_media_play"
+                android:drawableTop="@drawable/play_circle_24px"
                 android:text="@string/string_play"
                 android:gravity="center_vertical|center"
                 android:layout_margin="4dp"
                 android:textAllCaps="false"
-                android:layout_centerInParent="true"/>
+                android:layout_centerInParent="true"
+                android:paddingTop="3dp"
+                android:background="@drawable/bg_card"
+                android:textColor="@color/text_primary"/>
 
         </RelativeLayout>
 
