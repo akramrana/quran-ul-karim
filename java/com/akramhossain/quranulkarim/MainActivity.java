@@ -1584,7 +1584,7 @@ public class MainActivity extends AppCompatActivity {
 
             JSONObject ayah = filtered.get(index);
 
-            name_title_ar.setText(ayah.getString("arabic_excerpt"));
+            name_title_ar.setText(ayah.getString("arabic"));
             name_title_en.setText(ayah.getString("english_meaning"));
 
             String ref = ayah.getString("surah_name") + " (" + ayah.getString("reference") + ")";

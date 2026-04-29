@@ -1,6 +1,21 @@
 {
-  "version": 1,
+  "version": 2,
+  "name": "category_based_daily_ayahs_short",
   "total": 124,
+  "important_note": "Arabic field contains short display excerpts. Full Arabic is preserved in arabic_full. Review before production release because excerpts are shortened from the uploaded source.",
+  "arabic_text_sources": [
+    {
+      "name": "Tanzil Quran Text",
+      "type": "download",
+      "text_type": "Uthmani",
+      "license_note": "Tanzil allows use in apps with attribution and no changes to the Quran text."
+    },
+    {
+      "name": "AlQuran Cloud API",
+      "type": "api",
+      "edition": "quran-uthmani"
+    }
+  ],
   "categories": [
     "anxiety",
     "forgiveness",
@@ -14,1365 +29,2361 @@
       "id": 1,
       "category": "motivation",
       "reference": "94:5-6",
-      "surah_name": "Ash-Sharh",
       "surah_no": 94,
       "ayah": "5-6",
-      "arabic_excerpt": "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا",
+      "surah_name": "Ash-Sharh",
+      "arabic_verified": null,
       "english_meaning": "With hardship, Allah brings ease.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/94:5-6/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "فَإِنَّ مَعَ ٱلْعُسْرِ يُسْرًا",
+      "arabic_full": "فَإِنَّ مَعَ ٱلْعُسْرِ يُسْرًا",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 2,
       "category": "motivation",
       "reference": "29:69",
-      "surah_name": "Al-Ankabut",
       "surah_no": 29,
       "ayah": "69",
-      "arabic_excerpt": "وَالَّذِينَ جَاهَدُوا فِينَا",
+      "surah_name": "Al-Ankabut",
+      "arabic_verified": null,
       "english_meaning": "Those who strive for Allah are guided to His ways.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/29:69/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَٱلَّذِينَ جَٰهَدُوا۟ فِينَا لَنَهْدِيَنَّهُمْ سُبُلَنَا",
+      "arabic_full": "وَٱلَّذِينَ جَٰهَدُوا۟ فِينَا لَنَهْدِيَنَّهُمْ سُبُلَنَا ۚ وَإِنَّ ٱللَّهَ لَمَعَ ٱلْمُحْسِنِينَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 3,
       "category": "motivation",
       "reference": "3:139",
-      "surah_name": "Al-Imran",
       "surah_no": 3,
       "ayah": "139",
-      "arabic_excerpt": "وَلَا تَهِنُوا وَلَا تَحْزَنُوا",
+      "surah_name": "Aal-Imran",
+      "arabic_verified": null,
       "english_meaning": "Do not weaken or grieve; faith gives strength.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/3:139/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَلَا تَهِنُوا",
+      "arabic_full": "وَلَا تَهِنُوا۟ وَلَا تَحْزَنُوا۟ وَأَنتُمُ ٱلْأَعْلَوْنَ إِن كُنتُم مُّؤْمِنِينَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 4,
       "category": "motivation",
       "reference": "2:286",
-      "surah_name": "Al-Baqarah",
       "surah_no": 2,
       "ayah": "286",
-      "arabic_excerpt": "لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا",
+      "surah_name": "Al-Baqarah",
+      "arabic_verified": null,
       "english_meaning": "Allah does not place on a soul more than it can bear.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/2:286/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "لَا يُكَلِّفُ ٱللَّهُ نَفْسًا إِلَّا وُسْعَهَا",
+      "arabic_full": "لَا يُكَلِّفُ ٱللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا ٱكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَآ إِن نَّسِينَآ أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَآ إِصْرًۭا كَمَا حَمَلْتَهُۥ عَلَى ٱلَّذِينَ مِن قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِۦ ۖ وَٱعْفُ عَنَّا وَٱغْفِرْ لَنَا وَٱرْحَمْنَآ ۚ أَنتَ مَوْلَىٰنَا فَٱنصُرْنَا عَلَى ٱلْقَوْمِ ٱلْكَٰفِرِينَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 5,
       "category": "motivation",
       "reference": "65:3",
-      "surah_name": "At-Talaq",
       "surah_no": 65,
       "ayah": "3",
-      "arabic_excerpt": "وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ",
+      "surah_name": "At-Talaq",
+      "arabic_verified": null,
       "english_meaning": "Whoever relies on Allah will find Him sufficient.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/65:3/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَمَن يَتَوَكَّلْ عَلَى ٱللَّهِ فَهُوَ حَسْبُهُۥٓ",
+      "arabic_full": "وَيَرْزُقْهُ مِنْ حَيْثُ لَا يَحْتَسِبُ ۚ وَمَن يَتَوَكَّلْ عَلَى ٱللَّهِ فَهُوَ حَسْبُهُۥٓ ۚ إِنَّ ٱللَّهَ بَٰلِغُ أَمْرِهِۦ ۚ قَدْ جَعَلَ ٱللَّهُ لِكُلِّ شَىْءٍۢ قَدْرًۭا",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 6,
       "category": "motivation",
       "reference": "39:53",
-      "surah_name": "Az-Zumar",
       "surah_no": 39,
       "ayah": "53",
-      "arabic_excerpt": "لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ",
+      "surah_name": "Az-Zumar",
+      "arabic_verified": null,
       "english_meaning": "Do not lose hope in Allah’s mercy.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/39:53/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "لَا تَقْنَطُوا۟ مِن رَّحْمَةِ ٱللَّهِ",
+      "arabic_full": "۞ قُلْ يَٰعِبَادِىَ ٱلَّذِينَ أَسْرَفُوا۟ عَلَىٰٓ أَنفُسِهِمْ لَا تَقْنَطُوا۟ مِن رَّحْمَةِ ٱللَّهِ ۚ إِنَّ ٱللَّهَ يَغْفِرُ ٱلذُّنُوبَ جَمِيعًا ۚ إِنَّهُۥ هُوَ ٱلْغَفُورُ ٱلرَّحِيمُ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 7,
       "category": "motivation",
       "reference": "12:87",
-      "surah_name": "Yusuf",
       "surah_no": 12,
       "ayah": "87",
-      "arabic_excerpt": "لَا يَيْأَسُ مِن رَّوْحِ اللَّهِ",
+      "surah_name": "Yusuf",
+      "arabic_verified": null,
       "english_meaning": "Do not despair of relief from Allah.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/12:87/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَلَا تَا۟يْـَٔسُوا۟ مِن رَّوْحِ ٱللَّهِ",
+      "arabic_full": "يَٰبَنِىَّ ٱذْهَبُوا۟ فَتَحَسَّسُوا۟ مِن يُوسُفَ وَأَخِيهِ وَلَا تَا۟يْـَٔسُوا۟ مِن رَّوْحِ ٱللَّهِ ۖ إِنَّهُۥ لَا يَا۟يْـَٔسُ مِن رَّوْحِ ٱللَّهِ إِلَّا ٱلْقَوْمُ ٱلْكَٰفِرُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 8,
       "category": "motivation",
       "reference": "9:40",
-      "surah_name": "At-Tawbah",
       "surah_no": 9,
       "ayah": "40",
-      "arabic_excerpt": "لَا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا",
+      "surah_name": "At-Tawbah",
+      "arabic_verified": null,
       "english_meaning": "Do not grieve; Allah is with us.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/9:40/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "لَا تَحْزَنْ إِنَّ ٱللَّهَ مَعَنَا",
+      "arabic_full": "إِلَّا تَنصُرُوهُ فَقَدْ نَصَرَهُ ٱللَّهُ إِذْ أَخْرَجَهُ ٱلَّذِينَ كَفَرُوا۟ ثَانِىَ ٱثْنَيْنِ إِذْ هُمَا فِى ٱلْغَارِ إِذْ يَقُولُ لِصَٰحِبِهِۦ لَا تَحْزَنْ إِنَّ ٱللَّهَ مَعَنَا ۖ فَأَنزَلَ ٱللَّهُ سَكِينَتَهُۥ عَلَيْهِ وَأَيَّدَهُۥ بِجُنُودٍۢ لَّمْ تَرَوْهَا وَجَعَلَ كَلِمَةَ ٱلَّذِينَ كَفَرُوا۟ ٱلسُّفْلَىٰ ۗ وَكَلِمَةُ ٱللَّهِ هِىَ ٱلْعُلْيَا ۗ وَٱللَّهُ عَزِيزٌ حَكِيمٌ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 9,
       "category": "motivation",
       "reference": "47:7",
-      "surah_name": "Muhammad",
       "surah_no": 47,
       "ayah": "7",
-      "arabic_excerpt": "إِن تَنصُرُوا اللَّهَ يَنصُرْكُمْ",
+      "surah_name": "Muhammad",
+      "arabic_verified": null,
       "english_meaning": "Support Allah’s cause and He will support you.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/47:7/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓا",
+      "arabic_full": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓا۟ إِن تَنصُرُوا۟ ٱللَّهَ يَنصُرْكُمْ وَيُثَبِّتْ أَقْدَامَكُمْ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 10,
       "category": "motivation",
       "reference": "8:46",
-      "surah_name": "Al-Anfal",
       "surah_no": 8,
       "ayah": "46",
-      "arabic_excerpt": "وَاصْبِرُوا إِنَّ اللَّهَ مَعَ الصَّابِرِينَ",
+      "surah_name": "Al-Anfal",
+      "arabic_verified": null,
       "english_meaning": "Be patient; Allah is with the patient.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/8:46/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَٱصْبِرُوٓا۟ ۚ إِنَّ ٱللَّهَ مَعَ ٱلصَّٰبِرِينَ",
+      "arabic_full": "وَأَطِيعُوا۟ ٱللَّهَ وَرَسُولَهُۥ وَلَا تَنَٰزَعُوا۟ فَتَفْشَلُوا۟ وَتَذْهَبَ رِيحُكُمْ ۖ وَٱصْبِرُوٓا۟ ۚ إِنَّ ٱللَّهَ مَعَ ٱلصَّٰبِرِينَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 11,
       "category": "motivation",
       "reference": "14:7",
-      "surah_name": "Ibrahim",
       "surah_no": 14,
       "ayah": "7",
-      "arabic_excerpt": "لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ",
+      "surah_name": "Ibrahim",
+      "arabic_verified": null,
       "english_meaning": "Gratitude brings increase from Allah.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/14:7/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ",
+      "arabic_full": "وَإِذْ تَأَذَّنَ رَبُّكُمْ لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ ۖ وَلَئِن كَفَرْتُمْ إِنَّ عَذَابِى لَشَدِيدٌۭ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 12,
       "category": "motivation",
       "reference": "93:4",
-      "surah_name": "Ad-Duha",
       "surah_no": 93,
       "ayah": "4",
-      "arabic_excerpt": "وَلَلْآخِرَةُ خَيْرٌ لَّكَ مِنَ الْأُولَى",
+      "surah_name": "Ad-Duha",
+      "arabic_verified": null,
       "english_meaning": "What is ahead can be better than what has passed.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/93:4/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَلَلْءَاخِرَةُ خَيْرٌۭ لَّكَ مِنَ ٱلْأُولَىٰ",
+      "arabic_full": "وَلَلْءَاخِرَةُ خَيْرٌۭ لَّكَ مِنَ ٱلْأُولَىٰ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 13,
       "category": "motivation",
       "reference": "93:5",
-      "surah_name": "Ad-Duha",
       "surah_no": 93,
       "ayah": "5",
-      "arabic_excerpt": "وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَى",
+      "surah_name": "Ad-Duha",
+      "arabic_verified": null,
       "english_meaning": "Your Lord will give until you are pleased.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/93:5/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَىٰٓ",
+      "arabic_full": "وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَىٰٓ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 14,
       "category": "motivation",
       "reference": "20:46",
-      "surah_name": "Taha",
       "surah_no": 20,
       "ayah": "46",
-      "arabic_excerpt": "إِنَّنِي مَعَكُمَا أَسْمَعُ وَأَرَى",
+      "surah_name": "Taha",
+      "arabic_verified": null,
       "english_meaning": "Allah sees and hears; you are not alone.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/20:46/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "لَا تَخَافَآ ۖ إِنَّنِى مَعَكُمَآ",
+      "arabic_full": "قَالَ لَا تَخَافَآ ۖ إِنَّنِى مَعَكُمَآ أَسْمَعُ وَأَرَىٰ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 15,
       "category": "motivation",
       "reference": "21:87",
-      "surah_name": "Al-Anbiya",
       "surah_no": 21,
       "ayah": "87",
-      "arabic_excerpt": "لَا إِلَٰهَ إِلَّا أَنتَ سُبْحَانَكَ",
+      "surah_name": "Al-Anbiya",
+      "arabic_verified": null,
       "english_meaning": "Turning to Allah opens the door to rescue.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/21:87/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "لَّآ إِلَٰهَ إِلَّآ أَنتَ سُبْحَٰنَكَ",
+      "arabic_full": "وَذَا ٱلنُّونِ إِذ ذَّهَبَ مُغَٰضِبًۭا فَظَنَّ أَن لَّن نَّقْدِرَ عَلَيْهِ فَنَادَىٰ فِى ٱلظُّلُمَٰتِ أَن لَّآ إِلَٰهَ إِلَّآ أَنتَ سُبْحَٰنَكَ إِنِّى كُنتُ مِنَ ٱلظَّٰلِمِينَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 16,
       "category": "motivation",
       "reference": "40:60",
-      "surah_name": "Ghafir",
       "surah_no": 40,
       "ayah": "60",
-      "arabic_excerpt": "ادْعُونِي أَسْتَجِبْ لَكُمْ",
+      "surah_name": "Ghafir",
+      "arabic_verified": null,
       "english_meaning": "Call upon Allah; He answers.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/40:60/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "ٱدْعُونِىٓ أَسْتَجِبْ لَكُمْ",
+      "arabic_full": "وَقَالَ رَبُّكُمُ ٱدْعُونِىٓ أَسْتَجِبْ لَكُمْ ۚ إِنَّ ٱلَّذِينَ يَسْتَكْبِرُونَ عَنْ عِبَادَتِى سَيَدْخُلُونَ جَهَنَّمَ دَاخِرِينَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 17,
       "category": "motivation",
       "reference": "57:4",
-      "surah_name": "Al-Hadid",
       "surah_no": 57,
       "ayah": "4",
-      "arabic_excerpt": "وَهُوَ مَعَكُمْ أَيْنَ مَا كُنتُمْ",
+      "surah_name": "Al-Hadid",
+      "arabic_verified": null,
       "english_meaning": "Allah is with you wherever you are.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/57:4/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَهُوَ مَعَكُمْ أَيْنَ مَا كُنتُمْ",
+      "arabic_full": "هُوَ ٱلَّذِى خَلَقَ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضَ فِى سِتَّةِ أَيَّامٍۢ ثُمَّ ٱسْتَوَىٰ عَلَى ٱلْعَرْشِ ۚ يَعْلَمُ مَا يَلِجُ فِى ٱلْأَرْضِ وَمَا يَخْرُجُ مِنْهَا وَمَا يَنزِلُ مِنَ ٱلسَّمَآءِ وَمَا يَعْرُجُ فِيهَا ۖ وَهُوَ مَعَكُمْ أَيْنَ مَا كُنتُمْ ۚ وَٱللَّهُ بِمَا تَعْمَلُونَ بَصِيرٌۭ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 18,
       "category": "motivation",
       "reference": "16:97",
-      "surah_name": "An-Nahl",
       "surah_no": 16,
       "ayah": "97",
-      "arabic_excerpt": "فَلَنُحْيِيَنَّهُ حَيَاةً طَيِّبَةً",
+      "surah_name": "An-Nahl",
+      "arabic_verified": null,
       "english_meaning": "Faith and good deeds lead to a good life.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/16:97/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "مَنْ عَمِلَ صَٰلِحًۭا مِّن ذَكَرٍ أَوْ أُنثَىٰ وَهُوَ مُؤْمِنٌۭ فَلَنُحْيِيَنَّهُۥ حَيَوٰةًۭ",
+      "arabic_full": "مَنْ عَمِلَ صَٰلِحًۭا مِّن ذَكَرٍ أَوْ أُنثَىٰ وَهُوَ مُؤْمِنٌۭ فَلَنُحْيِيَنَّهُۥ حَيَوٰةًۭ طَيِّبَةًۭ ۖ وَلَنَجْزِيَنَّهُمْ أَجْرَهُم بِأَحْسَنِ مَا كَانُوا۟ يَعْمَلُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 19,
       "category": "motivation",
       "reference": "41:30",
-      "surah_name": "Fussilat",
       "surah_no": 41,
       "ayah": "30",
-      "arabic_excerpt": "أَلَّا تَخَافُوا وَلَا تَحْزَنُوا",
+      "surah_name": "Fussilat",
+      "arabic_verified": null,
       "english_meaning": "Do not fear or grieve; receive glad tidings.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/41:30/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "أَلَّا تَخَافُوا۟ وَلَا تَحْزَنُوا۟",
+      "arabic_full": "إِنَّ ٱلَّذِينَ قَالُوا۟ رَبُّنَا ٱللَّهُ ثُمَّ ٱسْتَقَٰمُوا۟ تَتَنَزَّلُ عَلَيْهِمُ ٱلْمَلَٰٓئِكَةُ أَلَّا تَخَافُوا۟ وَلَا تَحْزَنُوا۟ وَأَبْشِرُوا۟ بِٱلْجَنَّةِ ٱلَّتِى كُنتُمْ تُوعَدُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 20,
       "category": "motivation",
       "reference": "5:23",
-      "surah_name": "Al-Ma'idah",
       "surah_no": 5,
       "ayah": "23",
-      "arabic_excerpt": "فَعَلَى اللَّهِ فَتَوَكَّلُوا",
+      "surah_name": "Al-Ma'idah",
+      "arabic_verified": null,
       "english_meaning": "Put your trust in Allah.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/5:23/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "قَالَ رَجُلَانِ مِنَ ٱلَّذِينَ يَخَافُونَ أَنْعَمَ ٱللَّهُ عَلَيْهِمَا ٱدْخُلُوا",
+      "arabic_full": "قَالَ رَجُلَانِ مِنَ ٱلَّذِينَ يَخَافُونَ أَنْعَمَ ٱللَّهُ عَلَيْهِمَا ٱدْخُلُوا۟ عَلَيْهِمُ ٱلْبَابَ فَإِذَا دَخَلْتُمُوهُ فَإِنَّكُمْ غَٰلِبُونَ ۚ وَعَلَى ٱللَّهِ فَتَوَكَّلُوٓا۟ إِن كُنتُم مُّؤْمِنِينَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 21,
       "category": "motivation",
       "reference": "3:160",
-      "surah_name": "Al-Imran",
       "surah_no": 3,
       "ayah": "160",
-      "arabic_excerpt": "إِن يَنصُرْكُمُ اللَّهُ فَلَا غَالِبَ لَكُمْ",
+      "surah_name": "Aal-Imran",
+      "arabic_verified": null,
       "english_meaning": "If Allah supports you, none can overcome you.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/3:160/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "إِن يَنصُرْكُمُ ٱللَّهُ فَلَا غَالِبَ لَكُمْ",
+      "arabic_full": "إِن يَنصُرْكُمُ ٱللَّهُ فَلَا غَالِبَ لَكُمْ ۖ وَإِن يَخْذُلْكُمْ فَمَن ذَا ٱلَّذِى يَنصُرُكُم مِّنۢ بَعْدِهِۦ ۗ وَعَلَى ٱللَّهِ فَلْيَتَوَكَّلِ ٱلْمُؤْمِنُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 22,
       "category": "motivation",
       "reference": "64:11",
-      "surah_name": "At-Taghabun",
       "surah_no": 64,
       "ayah": "11",
-      "arabic_excerpt": "وَمَن يُؤْمِن بِاللَّهِ يَهْدِ قَلْبَهُ",
+      "surah_name": "At-Taghabun",
+      "arabic_verified": null,
       "english_meaning": "Faith in Allah guides the heart.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/64:11/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَمَن يُؤْمِنۢ بِٱللَّهِ يَهْدِ قَلْبَهُۥ",
+      "arabic_full": "مَآ أَصَابَ مِن مُّصِيبَةٍ إِلَّا بِإِذْنِ ٱللَّهِ ۗ وَمَن يُؤْمِنۢ بِٱللَّهِ يَهْدِ قَلْبَهُۥ ۚ وَٱللَّهُ بِكُلِّ شَىْءٍ عَلِيمٌۭ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 23,
       "category": "motivation",
       "reference": "22:78",
-      "surah_name": "Al-Hajj",
       "surah_no": 22,
       "ayah": "78",
-      "arabic_excerpt": "هُوَ اجْتَبَاكُمْ",
+      "surah_name": "Al-Hajj",
+      "arabic_verified": null,
       "english_meaning": "Allah has chosen you for a meaningful path.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/22:78/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَجَٰهِدُوا۟ فِى ٱللَّهِ حَقَّ جِهَادِهِۦ",
+      "arabic_full": "وَجَٰهِدُوا۟ فِى ٱللَّهِ حَقَّ جِهَادِهِۦ ۚ هُوَ ٱجْتَبَىٰكُمْ وَمَا جَعَلَ عَلَيْكُمْ فِى ٱلدِّينِ مِنْ حَرَجٍۢ ۚ مِّلَّةَ أَبِيكُمْ إِبْرَٰهِيمَ ۚ هُوَ سَمَّىٰكُمُ ٱلْمُسْلِمِينَ مِن قَبْلُ وَفِى هَٰذَا لِيَكُونَ ٱلرَّسُولُ شَهِيدًا عَلَيْكُمْ وَتَكُونُوا۟ شُهَدَآءَ عَلَى ٱلنَّاسِ ۚ فَأَقِيمُوا۟ ٱلصَّلَوٰةَ وَءَاتُوا۟ ٱلزَّكَوٰةَ وَٱعْتَصِمُوا۟ بِٱللَّهِ هُوَ مَوْلَىٰكُمْ ۖ فَنِعْمَ ٱلْمَوْلَىٰ وَنِعْمَ ٱلنَّصِيرُ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 24,
       "category": "motivation",
       "reference": "6:17",
-      "surah_name": "Al-An'am",
       "surah_no": 6,
       "ayah": "17",
-      "arabic_excerpt": "فَلَا كَاشِفَ لَهُ إِلَّا هُوَ",
+      "surah_name": "Al-An'am",
+      "arabic_verified": null,
       "english_meaning": "Only Allah removes hardship.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/6:17/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "فَلَا كَاشِفَ لَهُۥٓ إِلَّا هُوَ",
+      "arabic_full": "وَإِن يَمْسَسْكَ ٱللَّهُ بِضُرٍّۢ فَلَا كَاشِفَ لَهُۥٓ إِلَّا هُوَ ۖ وَإِن يَمْسَسْكَ بِخَيْرٍۢ فَهُوَ عَلَىٰ كُلِّ شَىْءٍۢ قَدِيرٌۭ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 25,
       "category": "motivation",
       "reference": "10:58",
-      "surah_name": "Yunus",
       "surah_no": 10,
       "ayah": "58",
-      "arabic_excerpt": "فَبِذَٰلِكَ فَلْيَفْرَحُوا",
+      "surah_name": "Yunus",
+      "arabic_verified": null,
       "english_meaning": "Rejoice in Allah’s grace and mercy.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/10:58/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "قُلْ بِفَضْلِ ٱللَّهِ وَبِرَحْمَتِهِۦ فَبِذَٰلِكَ فَلْيَفْرَحُوا",
+      "arabic_full": "قُلْ بِفَضْلِ ٱللَّهِ وَبِرَحْمَتِهِۦ فَبِذَٰلِكَ فَلْيَفْرَحُوا۟ هُوَ خَيْرٌۭ مِّمَّا يَجْمَعُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 26,
       "category": "motivation",
       "reference": "76:22",
-      "surah_name": "Al-Insan",
       "surah_no": 76,
       "ayah": "22",
-      "arabic_excerpt": "إِنَّ هَٰذَا كَانَ لَكُمْ جَزَاءً",
+      "surah_name": "Al-Insan",
+      "arabic_verified": null,
       "english_meaning": "Your effort with Allah is never wasted.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/76:22/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "إِنَّ هَٰذَا كَانَ لَكُمْ جَزَآءًۭ وَكَانَ سَعْيُكُم مَّشْكُورًا",
+      "arabic_full": "إِنَّ هَٰذَا كَانَ لَكُمْ جَزَآءًۭ وَكَانَ سَعْيُكُم مَّشْكُورًا",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 27,
       "category": "anxiety",
       "reference": "13:28",
-      "surah_name": "Ar-Ra'd",
       "surah_no": 13,
       "ayah": "28",
-      "arabic_excerpt": "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ",
+      "surah_name": "Ar-Ra'd",
+      "arabic_verified": null,
       "english_meaning": "Hearts find calm through the remembrance of Allah.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/13:28/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "أَلَا بِذِكْرِ ٱللَّهِ تَطْمَئِنُّ ٱلْقُلُوبُ",
+      "arabic_full": "ٱلَّذِينَ ءَامَنُوا۟ وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ ٱللَّهِ ۗ أَلَا بِذِكْرِ ٱللَّهِ تَطْمَئِنُّ ٱلْقُلُوبُ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 28,
       "category": "anxiety",
       "reference": "9:51",
-      "surah_name": "At-Tawbah",
       "surah_no": 9,
       "ayah": "51",
-      "arabic_excerpt": "لَّن يُصِيبَنَا إِلَّا مَا كَتَبَ اللَّهُ لَنَا",
+      "surah_name": "At-Tawbah",
+      "arabic_verified": null,
       "english_meaning": "Nothing reaches us except what Allah has written.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/9:51/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "لَّن يُصِيبَنَآ إِلَّا مَا كَتَبَ ٱللَّهُ لَنَا",
+      "arabic_full": "قُل لَّن يُصِيبَنَآ إِلَّا مَا كَتَبَ ٱللَّهُ لَنَا هُوَ مَوْلَىٰنَا ۚ وَعَلَى ٱللَّهِ فَلْيَتَوَكَّلِ ٱلْمُؤْمِنُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 29,
       "category": "anxiety",
       "reference": "2:152",
-      "surah_name": "Al-Baqarah",
       "surah_no": 2,
       "ayah": "152",
-      "arabic_excerpt": "فَاذْكُرُونِي أَذْكُرْكُمْ",
+      "surah_name": "Al-Baqarah",
+      "arabic_verified": null,
       "english_meaning": "Remember Allah, and He will remember you.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/2:152/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "فَٱذْكُرُونِىٓ أَذْكُرْكُمْ",
+      "arabic_full": "فَٱذْكُرُونِىٓ أَذْكُرْكُمْ وَٱشْكُرُوا۟ لِى وَلَا تَكْفُرُونِ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 30,
       "category": "anxiety",
       "reference": "2:45",
-      "surah_name": "Al-Baqarah",
       "surah_no": 2,
       "ayah": "45",
-      "arabic_excerpt": "اسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ",
+      "surah_name": "Al-Baqarah",
+      "arabic_verified": null,
       "english_meaning": "Seek help through patience and prayer.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/2:45/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَٱسْتَعِينُوا۟ بِٱلصَّبْرِ وَٱلصَّلَوٰةِ",
+      "arabic_full": "وَٱسْتَعِينُوا۟ بِٱلصَّبْرِ وَٱلصَّلَوٰةِ ۚ وَإِنَّهَا لَكَبِيرَةٌ إِلَّا عَلَى ٱلْخَٰشِعِينَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 31,
       "category": "anxiety",
       "reference": "2:186",
-      "surah_name": "Al-Baqarah",
       "surah_no": 2,
       "ayah": "186",
-      "arabic_excerpt": "فَإِنِّي قَرِيبٌ",
+      "surah_name": "Al-Baqarah",
+      "arabic_verified": null,
       "english_meaning": "Allah is near and responds to sincere prayer.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/2:186/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "فَإِنِّى قَرِيبٌ",
+      "arabic_full": "وَإِذَا سَأَلَكَ عِبَادِى عَنِّى فَإِنِّى قَرِيبٌ ۖ أُجِيبُ دَعْوَةَ ٱلدَّاعِ إِذَا دَعَانِ ۖ فَلْيَسْتَجِيبُوا۟ لِى وَلْيُؤْمِنُوا۟ بِى لَعَلَّهُمْ يَرْشُدُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 32,
       "category": "anxiety",
       "reference": "3:173",
-      "surah_name": "Al-Imran",
       "surah_no": 3,
       "ayah": "173",
-      "arabic_excerpt": "حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ",
+      "surah_name": "Aal-Imran",
+      "arabic_verified": null,
       "english_meaning": "Allah is enough for us and the best disposer of affairs.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/3:173/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "حَسْبُنَا ٱللَّهُ وَنِعْمَ ٱلْوَكِيلُ",
+      "arabic_full": "ٱلَّذِينَ قَالَ لَهُمُ ٱلنَّاسُ إِنَّ ٱلنَّاسَ قَدْ جَمَعُوا۟ لَكُمْ فَٱخْشَوْهُمْ فَزَادَهُمْ إِيمَٰنًۭا وَقَالُوا۟ حَسْبُنَا ٱللَّهُ وَنِعْمَ ٱلْوَكِيلُ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 33,
       "category": "anxiety",
       "reference": "10:62",
-      "surah_name": "Yunus",
       "surah_no": 10,
       "ayah": "62",
-      "arabic_excerpt": "لَا خَوْفٌ عَلَيْهِمْ وَلَا هُمْ يَحْزَنُونَ",
+      "surah_name": "Yunus",
+      "arabic_verified": null,
       "english_meaning": "Allah’s close servants need not fear or grieve.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/10:62/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "لَا خَوْفٌ عَلَيْهِمْ وَلَا هُمْ يَحْزَنُونَ",
+      "arabic_full": "أَلَآ إِنَّ أَوْلِيَآءَ ٱللَّهِ لَا خَوْفٌ عَلَيْهِمْ وَلَا هُمْ يَحْزَنُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 34,
       "category": "anxiety",
       "reference": "10:57",
-      "surah_name": "Yunus",
       "surah_no": 10,
       "ayah": "57",
-      "arabic_excerpt": "شِفَاءٌ لِّمَا فِي الصُّدُورِ",
+      "surah_name": "Yunus",
+      "arabic_verified": null,
       "english_meaning": "The Qur’an is healing for what is in the hearts.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/10:57/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَشِفَآءٌۭ لِّمَا فِى ٱلصُّدُورِ",
+      "arabic_full": "يَٰٓأَيُّهَا ٱلنَّاسُ قَدْ جَآءَتْكُم مَّوْعِظَةٌۭ مِّن رَّبِّكُمْ وَشِفَآءٌۭ لِّمَا فِى ٱلصُّدُورِ وَهُدًۭى وَرَحْمَةٌۭ لِّلْمُؤْمِنِينَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 35,
       "category": "anxiety",
       "reference": "20:25-26",
-      "surah_name": "Taha",
       "surah_no": 20,
       "ayah": "25-26",
-      "arabic_excerpt": "رَبِّ اشْرَحْ لِي صَدْرِي",
+      "surah_name": "Taha",
+      "arabic_verified": null,
       "english_meaning": "Ask Allah to expand your chest and ease your task.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/20:25-26/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "رَبِّ ٱشْرَحْ لِى صَدْرِى",
+      "arabic_full": "قَالَ رَبِّ ٱشْرَحْ لِى صَدْرِى",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 36,
       "category": "anxiety",
       "reference": "20:46",
-      "surah_name": "Taha",
       "surah_no": 20,
       "ayah": "46",
-      "arabic_excerpt": "لَا تَخَافَا إِنَّنِي مَعَكُمَا",
+      "surah_name": "Taha",
+      "arabic_verified": null,
       "english_meaning": "Do not fear; Allah is with you.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/20:46/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "لَا تَخَافَآ ۖ إِنَّنِى مَعَكُمَآ",
+      "arabic_full": "قَالَ لَا تَخَافَآ ۖ إِنَّنِى مَعَكُمَآ أَسْمَعُ وَأَرَىٰ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 37,
       "category": "anxiety",
       "reference": "26:62",
-      "surah_name": "Ash-Shu'ara",
       "surah_no": 26,
       "ayah": "62",
-      "arabic_excerpt": "إِنَّ مَعِيَ رَبِّي سَيَهْدِينِ",
+      "surah_name": "Ash-Shu'ara",
+      "arabic_verified": null,
       "english_meaning": "My Lord is with me; He will guide me.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/26:62/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "إِنَّ مَعِىَ رَبِّى سَيَهْدِينِ",
+      "arabic_full": "قَالَ كَلَّآ ۖ إِنَّ مَعِىَ رَبِّى سَيَهْدِينِ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 38,
       "category": "anxiety",
       "reference": "33:3",
-      "surah_name": "Al-Ahzab",
       "surah_no": 33,
       "ayah": "3",
-      "arabic_excerpt": "وَتَوَكَّلْ عَلَى اللَّهِ",
+      "surah_name": "Al-Ahzab",
+      "arabic_verified": null,
       "english_meaning": "Rely on Allah; He is enough as a guardian.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/33:3/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَتَوَكَّلْ عَلَى ٱللَّهِ",
+      "arabic_full": "وَتَوَكَّلْ عَلَى ٱللَّهِ ۚ وَكَفَىٰ بِٱللَّهِ وَكِيلًۭا",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 39,
       "category": "anxiety",
       "reference": "33:41-42",
-      "surah_name": "Al-Ahzab",
       "surah_no": 33,
       "ayah": "41-42",
-      "arabic_excerpt": "اذْكُرُوا اللَّهَ ذِكْرًا كَثِيرًا",
+      "surah_name": "Al-Ahzab",
+      "arabic_verified": null,
       "english_meaning": "Remember Allah often, morning and evening.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/33:41-42/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "ٱذْكُرُوا۟ ٱللَّهَ ذِكْرًۭا كَثِيرًۭا",
+      "arabic_full": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱذْكُرُوا۟ ٱللَّهَ ذِكْرًۭا كَثِيرًۭا",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 40,
       "category": "anxiety",
       "reference": "39:36",
-      "surah_name": "Az-Zumar",
       "surah_no": 39,
       "ayah": "36",
-      "arabic_excerpt": "أَلَيْسَ اللَّهُ بِكَافٍ عَبْدَهُ",
+      "surah_name": "Az-Zumar",
+      "arabic_verified": null,
       "english_meaning": "Is Allah not sufficient for His servant?",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/39:36/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "أَلَيْسَ ٱللَّهُ بِكَافٍ عَبْدَهُۥ",
+      "arabic_full": "أَلَيْسَ ٱللَّهُ بِكَافٍ عَبْدَهُۥ ۖ وَيُخَوِّفُونَكَ بِٱلَّذِينَ مِن دُونِهِۦ ۚ وَمَن يُضْلِلِ ٱللَّهُ فَمَا لَهُۥ مِنْ هَادٍۢ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 41,
       "category": "anxiety",
       "reference": "48:4",
-      "surah_name": "Al-Fath",
       "surah_no": 48,
       "ayah": "4",
-      "arabic_excerpt": "هُوَ الَّذِي أَنزَلَ السَّكِينَةَ",
+      "surah_name": "Al-Fath",
+      "arabic_verified": null,
       "english_meaning": "Allah sends tranquility into the hearts of believers.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/48:4/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "هُوَ ٱلَّذِىٓ أَنزَلَ ٱلسَّكِينَةَ",
+      "arabic_full": "هُوَ ٱلَّذِىٓ أَنزَلَ ٱلسَّكِينَةَ فِى قُلُوبِ ٱلْمُؤْمِنِينَ لِيَزْدَادُوٓا۟ إِيمَٰنًۭا مَّعَ إِيمَٰنِهِمْ ۗ وَلِلَّهِ جُنُودُ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضِ ۚ وَكَانَ ٱللَّهُ عَلِيمًا حَكِيمًۭا",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 42,
       "category": "anxiety",
       "reference": "57:22-23",
-      "surah_name": "Al-Hadid",
       "surah_no": 57,
       "ayah": "22-23",
-      "arabic_excerpt": "لِّكَيْلَا تَأْسَوْا",
+      "surah_name": "Al-Hadid",
+      "arabic_verified": null,
       "english_meaning": "Do not be crushed by what passes or overly attached to what comes.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/57:22-23/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "مَآ أَصَابَ مِن مُّصِيبَةٍۢ فِى ٱلْأَرْضِ وَلَا فِىٓ أَنفُسِكُمْ إِلَّا فِى كِتَٰبٍۢ مِّن",
+      "arabic_full": "مَآ أَصَابَ مِن مُّصِيبَةٍۢ فِى ٱلْأَرْضِ وَلَا فِىٓ أَنفُسِكُمْ إِلَّا فِى كِتَٰبٍۢ مِّن قَبْلِ أَن نَّبْرَأَهَآ ۚ إِنَّ ذَٰلِكَ عَلَى ٱللَّهِ يَسِيرٌۭ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 43,
       "category": "anxiety",
       "reference": "64:13",
-      "surah_name": "At-Taghabun",
       "surah_no": 64,
       "ayah": "13",
-      "arabic_excerpt": "وَعَلَى اللَّهِ فَلْيَتَوَكَّلِ الْمُؤْمِنُونَ",
+      "surah_name": "At-Taghabun",
+      "arabic_verified": null,
       "english_meaning": "Believers should place their trust in Allah.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/64:13/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَعَلَى ٱللَّهِ فَلْيَتَوَكَّلِ ٱلْمُؤْمِنُونَ",
+      "arabic_full": "ٱللَّهُ لَآ إِلَٰهَ إِلَّا هُوَ ۚ وَعَلَى ٱللَّهِ فَلْيَتَوَكَّلِ ٱلْمُؤْمِنُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 44,
       "category": "anxiety",
       "reference": "73:9",
-      "surah_name": "Al-Muzzammil",
       "surah_no": 73,
       "ayah": "9",
-      "arabic_excerpt": "فَاتَّخِذْهُ وَكِيلًا",
+      "surah_name": "Al-Muzzammil",
+      "arabic_verified": null,
       "english_meaning": "Take Allah as your protector and disposer of affairs.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/73:9/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "فَٱتَّخِذْهُ وَكِيلًۭا",
+      "arabic_full": "رَّبُّ ٱلْمَشْرِقِ وَٱلْمَغْرِبِ لَآ إِلَٰهَ إِلَّا هُوَ فَٱتَّخِذْهُ وَكِيلًۭا",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 45,
       "category": "anxiety",
       "reference": "94:1",
-      "surah_name": "Ash-Sharh",
       "surah_no": 94,
       "ayah": "1",
-      "arabic_excerpt": "أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ",
+      "surah_name": "Ash-Sharh",
+      "arabic_verified": null,
       "english_meaning": "Allah can open and relieve the chest.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/94:1/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ",
+      "arabic_full": "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 46,
       "category": "anxiety",
       "reference": "94:2-3",
-      "surah_name": "Ash-Sharh",
       "surah_no": 94,
       "ayah": "2-3",
-      "arabic_excerpt": "وَوَضَعْنَا عَنكَ وِزْرَكَ",
+      "surah_name": "Ash-Sharh",
+      "arabic_verified": null,
       "english_meaning": "Allah can remove heavy burdens.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/94:2-3/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَوَضَعْنَا عَنكَ وِزْرَكَ",
+      "arabic_full": "وَوَضَعْنَا عَنكَ وِزْرَكَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 47,
       "category": "anxiety",
       "reference": "113:1",
-      "surah_name": "Al-Falaq",
       "surah_no": 113,
       "ayah": "1",
-      "arabic_excerpt": "قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ",
+      "surah_name": "Al-Falaq",
+      "arabic_verified": null,
       "english_meaning": "Seek protection in the Lord of daybreak.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/113:1/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "قُلْ أَعُوذُ بِرَبِّ ٱلْفَلَقِ",
+      "arabic_full": "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ قُلْ أَعُوذُ بِرَبِّ ٱلْفَلَقِ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 48,
       "category": "anxiety",
       "reference": "114:1",
-      "surah_name": "An-Nas",
       "surah_no": 114,
       "ayah": "1",
-      "arabic_excerpt": "قُلْ أَعُوذُ بِرَبِّ النَّاسِ",
+      "surah_name": "An-Nas",
+      "arabic_verified": null,
       "english_meaning": "Seek protection in the Lord of mankind.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/114:1/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ",
+      "arabic_full": "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 49,
       "category": "anxiety",
       "reference": "59:23",
-      "surah_name": "Al-Hashr",
       "surah_no": 59,
       "ayah": "23",
-      "arabic_excerpt": "الْمَلِكُ الْقُدُّوسُ السَّلَامُ",
+      "surah_name": "Al-Hashr",
+      "arabic_verified": null,
       "english_meaning": "Allah is the King, the Holy, the Source of peace.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/59:23/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "هُوَ ٱللَّهُ ٱلَّذِى لَآ إِلَٰهَ إِلَّا هُوَ ٱلْمَلِكُ ٱلْقُدُّوسُ ٱلسَّلَٰمُ ٱلْمُؤْمِنُ",
+      "arabic_full": "هُوَ ٱللَّهُ ٱلَّذِى لَآ إِلَٰهَ إِلَّا هُوَ ٱلْمَلِكُ ٱلْقُدُّوسُ ٱلسَّلَٰمُ ٱلْمُؤْمِنُ ٱلْمُهَيْمِنُ ٱلْعَزِيزُ ٱلْجَبَّارُ ٱلْمُتَكَبِّرُ ۚ سُبْحَٰنَ ٱللَّهِ عَمَّا يُشْرِكُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 50,
       "category": "anxiety",
       "reference": "6:13",
-      "surah_name": "Al-An'am",
       "surah_no": 6,
       "ayah": "13",
-      "arabic_excerpt": "وَهُوَ السَّمِيعُ الْعَلِيمُ",
+      "surah_name": "Al-An'am",
+      "arabic_verified": null,
       "english_meaning": "Allah hears and knows all things.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/6:13/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "۞ وَلَهُۥ مَا سَكَنَ فِى ٱلَّيْلِ وَٱلنَّهَارِ",
+      "arabic_full": "۞ وَلَهُۥ مَا سَكَنَ فِى ٱلَّيْلِ وَٱلنَّهَارِ ۚ وَهُوَ ٱلسَّمِيعُ ٱلْعَلِيمُ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 51,
       "category": "anxiety",
       "reference": "11:56",
-      "surah_name": "Hud",
       "surah_no": 11,
       "ayah": "56",
-      "arabic_excerpt": "إِنَّ رَبِّي عَلَىٰ صِرَاطٍ مُّسْتَقِيمٍ",
+      "surah_name": "Hud",
+      "arabic_verified": null,
       "english_meaning": "Allah is just and in full control.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/11:56/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "إِنِّى تَوَكَّلْتُ عَلَى ٱللَّهِ رَبِّى وَرَبِّكُم",
+      "arabic_full": "إِنِّى تَوَكَّلْتُ عَلَى ٱللَّهِ رَبِّى وَرَبِّكُم ۚ مَّا مِن دَآبَّةٍ إِلَّا هُوَ ءَاخِذٌۢ بِنَاصِيَتِهَآ ۚ إِنَّ رَبِّى عَلَىٰ صِرَٰطٍۢ مُّسْتَقِيمٍۢ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 52,
       "category": "anxiety",
       "reference": "27:62",
-      "surah_name": "An-Naml",
       "surah_no": 27,
       "ayah": "62",
-      "arabic_excerpt": "أَمَّن يُجِيبُ الْمُضْطَرَّ",
+      "surah_name": "An-Naml",
+      "arabic_verified": null,
       "english_meaning": "Allah answers the distressed when they call Him.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/27:62/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "أَمَّن يُجِيبُ ٱلْمُضْطَرَّ إِذَا دَعَاهُ",
+      "arabic_full": "أَمَّن يُجِيبُ ٱلْمُضْطَرَّ إِذَا دَعَاهُ وَيَكْشِفُ ٱلسُّوٓءَ وَيَجْعَلُكُمْ خُلَفَآءَ ٱلْأَرْضِ ۗ أَءِلَٰهٌۭ مَّعَ ٱللَّهِ ۚ قَلِيلًۭا مَّا تَذَكَّرُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 53,
       "category": "rizq",
       "reference": "65:2-3",
-      "surah_name": "At-Talaq",
       "surah_no": 65,
       "ayah": "2-3",
-      "arabic_excerpt": "وَيَرْزُقْهُ مِنْ حَيْثُ لَا يَحْتَسِبُ",
+      "surah_name": "At-Talaq",
+      "arabic_verified": null,
       "english_meaning": "Allah provides from places a person does not expect.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/65:2-3/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَمَن يَتَّقِ ٱللَّهَ يَجْعَل لَّهُۥ مَخْرَجًۭا",
+      "arabic_full": "فَإِذَا بَلَغْنَ أَجَلَهُنَّ فَأَمْسِكُوهُنَّ بِمَعْرُوفٍ أَوْ فَارِقُوهُنَّ بِمَعْرُوفٍۢ وَأَشْهِدُوا۟ ذَوَىْ عَدْلٍۢ مِّنكُمْ وَأَقِيمُوا۟ ٱلشَّهَٰدَةَ لِلَّهِ ۚ ذَٰلِكُمْ يُوعَظُ بِهِۦ مَن كَانَ يُؤْمِنُ بِٱللَّهِ وَٱلْيَوْمِ ٱلْءَاخِرِ ۚ وَمَن يَتَّقِ ٱللَّهَ يَجْعَل لَّهُۥ مَخْرَجًۭا",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 54,
       "category": "rizq",
       "reference": "11:6",
-      "surah_name": "Hud",
       "surah_no": 11,
       "ayah": "6",
-      "arabic_excerpt": "إِلَّا عَلَى اللَّهِ رِزْقُهَا",
+      "surah_name": "Hud",
+      "arabic_verified": null,
       "english_meaning": "Every creature’s provision is with Allah.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/11:6/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "إِلَّا عَلَى ٱللَّهِ رِزْقُهَا",
+      "arabic_full": "۞ وَمَا مِن دَآبَّةٍۢ فِى ٱلْأَرْضِ إِلَّا عَلَى ٱللَّهِ رِزْقُهَا وَيَعْلَمُ مُسْتَقَرَّهَا وَمُسْتَوْدَعَهَا ۚ كُلٌّۭ فِى كِتَٰبٍۢ مُّبِينٍۢ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 55,
       "category": "rizq",
       "reference": "51:22",
-      "surah_name": "Adh-Dhariyat",
       "surah_no": 51,
       "ayah": "22",
-      "arabic_excerpt": "وَفِي السَّمَاءِ رِزْقُكُمْ",
+      "surah_name": "Adh-Dhariyat",
+      "arabic_verified": null,
       "english_meaning": "Your provision and what you are promised are with Allah.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/51:22/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَفِى ٱلسَّمَآءِ رِزْقُكُمْ",
+      "arabic_full": "وَفِى ٱلسَّمَآءِ رِزْقُكُمْ وَمَا تُوعَدُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 56,
       "category": "rizq",
       "reference": "51:58",
-      "surah_name": "Adh-Dhariyat",
       "surah_no": 51,
       "ayah": "58",
-      "arabic_excerpt": "إِنَّ اللَّهَ هُوَ الرَّزَّاقُ",
+      "surah_name": "Adh-Dhariyat",
+      "arabic_verified": null,
       "english_meaning": "Allah is the Provider, the Possessor of strength.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/51:58/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "إِنَّ ٱللَّهَ هُوَ ٱلرَّزَّاقُ",
+      "arabic_full": "إِنَّ ٱللَّهَ هُوَ ٱلرَّزَّاقُ ذُو ٱلْقُوَّةِ ٱلْمَتِينُ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 57,
       "category": "rizq",
       "reference": "29:60",
-      "surah_name": "Al-Ankabut",
       "surah_no": 29,
       "ayah": "60",
-      "arabic_excerpt": "اللَّهُ يَرْزُقُهَا وَإِيَّاكُمْ",
+      "surah_name": "Al-Ankabut",
+      "arabic_verified": null,
       "english_meaning": "Allah provides for creatures and for you.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/29:60/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "ٱللَّهُ يَرْزُقُهَا وَإِيَّاكُمْ",
+      "arabic_full": "وَكَأَيِّن مِّن دَآبَّةٍۢ لَّا تَحْمِلُ رِزْقَهَا ٱللَّهُ يَرْزُقُهَا وَإِيَّاكُمْ ۚ وَهُوَ ٱلسَّمِيعُ ٱلْعَلِيمُ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 58,
       "category": "rizq",
       "reference": "34:39",
-      "surah_name": "Saba",
       "surah_no": 34,
       "ayah": "39",
-      "arabic_excerpt": "وَهُوَ خَيْرُ الرَّازِقِينَ",
+      "surah_name": "Saba",
+      "arabic_verified": null,
       "english_meaning": "Whatever you spend for good, Allah replaces it.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/34:39/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَمَآ أَنفَقْتُم مِّن شَىْءٍۢ فَهُوَ يُخْلِفُهُۥ",
+      "arabic_full": "قُلْ إِنَّ رَبِّى يَبْسُطُ ٱلرِّزْقَ لِمَن يَشَآءُ مِنْ عِبَادِهِۦ وَيَقْدِرُ لَهُۥ ۚ وَمَآ أَنفَقْتُم مِّن شَىْءٍۢ فَهُوَ يُخْلِفُهُۥ ۖ وَهُوَ خَيْرُ ٱلرَّٰزِقِينَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 59,
       "category": "rizq",
       "reference": "2:261",
-      "surah_name": "Al-Baqarah",
       "surah_no": 2,
       "ayah": "261",
-      "arabic_excerpt": "مَثَلُ الَّذِينَ يُنفِقُونَ",
+      "surah_name": "Al-Baqarah",
+      "arabic_verified": null,
       "english_meaning": "Giving for Allah is multiplied greatly.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/2:261/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "مَّثَلُ ٱلَّذِينَ يُنفِقُونَ أَمْوَٰلَهُمْ فِى سَبِيلِ ٱللَّهِ كَمَثَلِ حَبَّةٍ أَنۢبَتَتْ",
+      "arabic_full": "مَّثَلُ ٱلَّذِينَ يُنفِقُونَ أَمْوَٰلَهُمْ فِى سَبِيلِ ٱللَّهِ كَمَثَلِ حَبَّةٍ أَنۢبَتَتْ سَبْعَ سَنَابِلَ فِى كُلِّ سُنۢبُلَةٍۢ مِّا۟ئَةُ حَبَّةٍۢ ۗ وَٱللَّهُ يُضَٰعِفُ لِمَن يَشَآءُ ۗ وَٱللَّهُ وَٰسِعٌ عَلِيمٌ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 60,
       "category": "rizq",
       "reference": "2:268",
-      "surah_name": "Al-Baqarah",
       "surah_no": 2,
       "ayah": "268",
-      "arabic_excerpt": "وَاللَّهُ يَعِدُكُم مَّغْفِرَةً",
+      "surah_name": "Al-Baqarah",
+      "arabic_verified": null,
       "english_meaning": "Allah promises forgiveness and bounty.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/2:268/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "ٱلشَّيْطَٰنُ يَعِدُكُمُ ٱلْفَقْرَ وَيَأْمُرُكُم بِٱلْفَحْشَآءِ",
+      "arabic_full": "ٱلشَّيْطَٰنُ يَعِدُكُمُ ٱلْفَقْرَ وَيَأْمُرُكُم بِٱلْفَحْشَآءِ ۖ وَٱللَّهُ يَعِدُكُم مَّغْفِرَةًۭ مِّنْهُ وَفَضْلًۭا ۗ وَٱللَّهُ وَٰسِعٌ عَلِيمٌۭ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 61,
       "category": "rizq",
       "reference": "7:96",
-      "surah_name": "Al-A'raf",
       "surah_no": 7,
       "ayah": "96",
-      "arabic_excerpt": "لَفَتَحْنَا عَلَيْهِم بَرَكَاتٍ",
+      "surah_name": "Al-A'raf",
+      "arabic_verified": null,
       "english_meaning": "Faith and taqwa open blessings from heaven and earth.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/7:96/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "لَفَتَحْنَا عَلَيْهِم بَرَكَٰتٍۢ",
+      "arabic_full": "وَلَوْ أَنَّ أَهْلَ ٱلْقُرَىٰٓ ءَامَنُوا۟ وَٱتَّقَوْا۟ لَفَتَحْنَا عَلَيْهِم بَرَكَٰتٍۢ مِّنَ ٱلسَّمَآءِ وَٱلْأَرْضِ وَلَٰكِن كَذَّبُوا۟ فَأَخَذْنَٰهُم بِمَا كَانُوا۟ يَكْسِبُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 62,
       "category": "rizq",
       "reference": "14:7",
-      "surah_name": "Ibrahim",
       "surah_no": 14,
       "ayah": "7",
-      "arabic_excerpt": "لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ",
+      "surah_name": "Ibrahim",
+      "arabic_verified": null,
       "english_meaning": "Gratitude brings increase.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/14:7/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ",
+      "arabic_full": "وَإِذْ تَأَذَّنَ رَبُّكُمْ لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ ۖ وَلَئِن كَفَرْتُمْ إِنَّ عَذَابِى لَشَدِيدٌۭ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 63,
       "category": "rizq",
       "reference": "16:18",
-      "surah_name": "An-Nahl",
       "surah_no": 16,
       "ayah": "18",
-      "arabic_excerpt": "لَا تُحْصُوهَا",
+      "surah_name": "An-Nahl",
+      "arabic_verified": null,
       "english_meaning": "Allah’s blessings cannot be fully counted.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/16:18/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "لَا تُحْصُوهَآ",
+      "arabic_full": "وَإِن تَعُدُّوا۟ نِعْمَةَ ٱللَّهِ لَا تُحْصُوهَآ ۗ إِنَّ ٱللَّهَ لَغَفُورٌۭ رَّحِيمٌۭ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 64,
       "category": "rizq",
       "reference": "16:114",
-      "surah_name": "An-Nahl",
       "surah_no": 16,
       "ayah": "114",
-      "arabic_excerpt": "فَكُلُوا مِمَّا رَزَقَكُمُ اللَّهُ",
+      "surah_name": "An-Nahl",
+      "arabic_verified": null,
       "english_meaning": "Eat from Allah’s lawful and good provision.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/16:114/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "فَكُلُوا۟ مِمَّا رَزَقَكُمُ ٱللَّهُ حَلَٰلًۭا طَيِّبًۭا وَٱشْكُرُوا۟ نِعْمَتَ ٱللَّهِ إِن",
+      "arabic_full": "فَكُلُوا۟ مِمَّا رَزَقَكُمُ ٱللَّهُ حَلَٰلًۭا طَيِّبًۭا وَٱشْكُرُوا۟ نِعْمَتَ ٱللَّهِ إِن كُنتُمْ إِيَّاهُ تَعْبُدُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 65,
       "category": "rizq",
       "reference": "17:30",
-      "surah_name": "Al-Isra",
       "surah_no": 17,
       "ayah": "30",
-      "arabic_excerpt": "إِنَّ رَبَّكَ يَبْسُطُ الرِّزْقَ",
+      "surah_name": "Al-Isra",
+      "arabic_verified": null,
       "english_meaning": "Allah expands and restricts provision with wisdom.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/17:30/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "إِنَّ رَبَّكَ يَبْسُطُ ٱلرِّزْقَ",
+      "arabic_full": "إِنَّ رَبَّكَ يَبْسُطُ ٱلرِّزْقَ لِمَن يَشَآءُ وَيَقْدِرُ ۚ إِنَّهُۥ كَانَ بِعِبَادِهِۦ خَبِيرًۢا بَصِيرًۭا",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 66,
       "category": "rizq",
       "reference": "17:31",
-      "surah_name": "Al-Isra",
       "surah_no": 17,
       "ayah": "31",
-      "arabic_excerpt": "نَّحْنُ نَرْزُقُهُمْ وَإِيَّاكُمْ",
+      "surah_name": "Al-Isra",
+      "arabic_verified": null,
       "english_meaning": "Allah provides for children and parents.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/17:31/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَلَا تَقْتُلُوٓا۟ أَوْلَٰدَكُمْ خَشْيَةَ إِمْلَٰقٍۢ ۖ نَّحْنُ نَرْزُقُهُمْ وَإِيَّاكُمْ",
+      "arabic_full": "وَلَا تَقْتُلُوٓا۟ أَوْلَٰدَكُمْ خَشْيَةَ إِمْلَٰقٍۢ ۖ نَّحْنُ نَرْزُقُهُمْ وَإِيَّاكُمْ ۚ إِنَّ قَتْلَهُمْ كَانَ خِطْـًۭٔا كَبِيرًۭا",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 67,
       "category": "rizq",
       "reference": "22:58",
-      "surah_name": "Al-Hajj",
       "surah_no": 22,
       "ayah": "58",
-      "arabic_excerpt": "وَإِنَّ اللَّهَ لَهُوَ خَيْرُ الرَّازِقِينَ",
+      "surah_name": "Al-Hajj",
+      "arabic_verified": null,
       "english_meaning": "Allah is the best of providers.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/22:58/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَٱلَّذِينَ هَاجَرُوا",
+      "arabic_full": "وَٱلَّذِينَ هَاجَرُوا۟ فِى سَبِيلِ ٱللَّهِ ثُمَّ قُتِلُوٓا۟ أَوْ مَاتُوا۟ لَيَرْزُقَنَّهُمُ ٱللَّهُ رِزْقًا حَسَنًۭا ۚ وَإِنَّ ٱللَّهَ لَهُوَ خَيْرُ ٱلرَّٰزِقِينَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 68,
       "category": "rizq",
       "reference": "24:38",
-      "surah_name": "An-Nur",
       "surah_no": 24,
       "ayah": "38",
-      "arabic_excerpt": "وَاللَّهُ يَرْزُقُ مَن يَشَاءُ",
+      "surah_name": "An-Nur",
+      "arabic_verified": null,
       "english_meaning": "Allah provides for whom He wills without measure.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/24:38/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَٱللَّهُ يَرْزُقُ مَن يَشَآءُ",
+      "arabic_full": "لِيَجْزِيَهُمُ ٱللَّهُ أَحْسَنَ مَا عَمِلُوا۟ وَيَزِيدَهُم مِّن فَضْلِهِۦ ۗ وَٱللَّهُ يَرْزُقُ مَن يَشَآءُ بِغَيْرِ حِسَابٍۢ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 69,
       "category": "rizq",
       "reference": "28:24",
-      "surah_name": "Al-Qasas",
       "surah_no": 28,
       "ayah": "24",
-      "arabic_excerpt": "رَبِّ إِنِّي لِمَا أَنزَلْتَ إِلَيَّ",
+      "surah_name": "Al-Qasas",
+      "arabic_verified": null,
       "english_meaning": "Ask Allah humbly for any good He sends down.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/28:24/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "رَبِّ إِنِّى لِمَآ أَنزَلْتَ إِلَىَّ مِنْ خَيْرٍۢ فَقِيرٌۭ",
+      "arabic_full": "فَسَقَىٰ لَهُمَا ثُمَّ تَوَلَّىٰٓ إِلَى ٱلظِّلِّ فَقَالَ رَبِّ إِنِّى لِمَآ أَنزَلْتَ إِلَىَّ مِنْ خَيْرٍۢ فَقِيرٌۭ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 70,
       "category": "rizq",
       "reference": "28:82",
-      "surah_name": "Al-Qasas",
       "surah_no": 28,
       "ayah": "82",
-      "arabic_excerpt": "يَبْسُطُ الرِّزْقَ لِمَن يَشَاءُ",
+      "surah_name": "Al-Qasas",
+      "arabic_verified": null,
       "english_meaning": "Allah expands and limits provision as He wills.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/28:82/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَأَصْبَحَ ٱلَّذِينَ تَمَنَّوْا",
+      "arabic_full": "وَأَصْبَحَ ٱلَّذِينَ تَمَنَّوْا۟ مَكَانَهُۥ بِٱلْأَمْسِ يَقُولُونَ وَيْكَأَنَّ ٱللَّهَ يَبْسُطُ ٱلرِّزْقَ لِمَن يَشَآءُ مِنْ عِبَادِهِۦ وَيَقْدِرُ ۖ لَوْلَآ أَن مَّنَّ ٱللَّهُ عَلَيْنَا لَخَسَفَ بِنَا ۖ وَيْكَأَنَّهُۥ لَا يُفْلِحُ ٱلْكَٰفِرُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 71,
       "category": "rizq",
       "reference": "30:40",
-      "surah_name": "Ar-Rum",
       "surah_no": 30,
       "ayah": "40",
-      "arabic_excerpt": "اللَّهُ الَّذِي خَلَقَكُمْ ثُمَّ رَزَقَكُمْ",
+      "surah_name": "Ar-Rum",
+      "arabic_verified": null,
       "english_meaning": "Allah created you, then provided for you.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/30:40/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "ٱللَّهُ ٱلَّذِى خَلَقَكُمْ ثُمَّ رَزَقَكُمْ ثُمَّ يُمِيتُكُمْ ثُمَّ يُحْيِيكُمْ",
+      "arabic_full": "ٱللَّهُ ٱلَّذِى خَلَقَكُمْ ثُمَّ رَزَقَكُمْ ثُمَّ يُمِيتُكُمْ ثُمَّ يُحْيِيكُمْ ۖ هَلْ مِن شُرَكَآئِكُم مَّن يَفْعَلُ مِن ذَٰلِكُم مِّن شَىْءٍۢ ۚ سُبْحَٰنَهُۥ وَتَعَٰلَىٰ عَمَّا يُشْرِكُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 72,
       "category": "rizq",
       "reference": "35:3",
-      "surah_name": "Fatir",
       "surah_no": 35,
       "ayah": "3",
-      "arabic_excerpt": "هَلْ مِنْ خَالِقٍ غَيْرُ اللَّهِ",
+      "surah_name": "Fatir",
+      "arabic_verified": null,
       "english_meaning": "There is no creator providing from heaven and earth except Allah.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/35:3/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "يَٰٓأَيُّهَا ٱلنَّاسُ ٱذْكُرُوا۟ نِعْمَتَ ٱللَّهِ عَلَيْكُمْ",
+      "arabic_full": "يَٰٓأَيُّهَا ٱلنَّاسُ ٱذْكُرُوا۟ نِعْمَتَ ٱللَّهِ عَلَيْكُمْ ۚ هَلْ مِنْ خَٰلِقٍ غَيْرُ ٱللَّهِ يَرْزُقُكُم مِّنَ ٱلسَّمَآءِ وَٱلْأَرْضِ ۚ لَآ إِلَٰهَ إِلَّا هُوَ ۖ فَأَنَّىٰ تُؤْفَكُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 73,
       "category": "rizq",
       "reference": "39:52",
-      "surah_name": "Az-Zumar",
       "surah_no": 39,
       "ayah": "52",
-      "arabic_excerpt": "اللَّهَ يَبْسُطُ الرِّزْقَ",
+      "surah_name": "Az-Zumar",
+      "arabic_verified": null,
       "english_meaning": "Allah expands and restricts provision knowingly.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/39:52/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "أَوَلَمْ يَعْلَمُوٓا۟ أَنَّ ٱللَّهَ يَبْسُطُ ٱلرِّزْقَ لِمَن يَشَآءُ وَيَقْدِرُ",
+      "arabic_full": "أَوَلَمْ يَعْلَمُوٓا۟ أَنَّ ٱللَّهَ يَبْسُطُ ٱلرِّزْقَ لِمَن يَشَآءُ وَيَقْدِرُ ۚ إِنَّ فِى ذَٰلِكَ لَءَايَٰتٍۢ لِّقَوْمٍۢ يُؤْمِنُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 74,
       "category": "rizq",
       "reference": "42:19",
-      "surah_name": "Ash-Shura",
       "surah_no": 42,
       "ayah": "19",
-      "arabic_excerpt": "اللَّهُ لَطِيفٌ بِعِبَادِهِ",
+      "surah_name": "Ash-Shura",
+      "arabic_verified": null,
       "english_meaning": "Allah is gentle with His servants and provides for whom He wills.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/42:19/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "ٱللَّهُ لَطِيفٌۢ بِعِبَادِهِۦ يَرْزُقُ مَن يَشَآءُ",
+      "arabic_full": "ٱللَّهُ لَطِيفٌۢ بِعِبَادِهِۦ يَرْزُقُ مَن يَشَآءُ ۖ وَهُوَ ٱلْقَوِىُّ ٱلْعَزِيزُ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 75,
       "category": "rizq",
       "reference": "42:27",
-      "surah_name": "Ash-Shura",
       "surah_no": 42,
       "ayah": "27",
-      "arabic_excerpt": "وَلَوْ بَسَطَ اللَّهُ الرِّزْقَ",
+      "surah_name": "Ash-Shura",
+      "arabic_verified": null,
       "english_meaning": "Allah gives provision in measured wisdom.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/42:27/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "۞ وَلَوْ بَسَطَ ٱللَّهُ ٱلرِّزْقَ لِعِبَادِهِۦ لَبَغَوْا",
+      "arabic_full": "۞ وَلَوْ بَسَطَ ٱللَّهُ ٱلرِّزْقَ لِعِبَادِهِۦ لَبَغَوْا۟ فِى ٱلْأَرْضِ وَلَٰكِن يُنَزِّلُ بِقَدَرٍۢ مَّا يَشَآءُ ۚ إِنَّهُۥ بِعِبَادِهِۦ خَبِيرٌۢ بَصِيرٌۭ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 76,
       "category": "rizq",
       "reference": "62:10",
-      "surah_name": "Al-Jumu'ah",
       "surah_no": 62,
       "ayah": "10",
-      "arabic_excerpt": "وَابْتَغُوا مِن فَضْلِ اللَّهِ",
+      "surah_name": "Al-Jumu'ah",
+      "arabic_verified": null,
       "english_meaning": "Seek Allah’s bounty and remember Him often.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/62:10/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَٱبْتَغُوا۟ مِن فَضْلِ ٱللَّهِ",
+      "arabic_full": "فَإِذَا قُضِيَتِ ٱلصَّلَوٰةُ فَٱنتَشِرُوا۟ فِى ٱلْأَرْضِ وَٱبْتَغُوا۟ مِن فَضْلِ ٱللَّهِ وَٱذْكُرُوا۟ ٱللَّهَ كَثِيرًۭا لَّعَلَّكُمْ تُفْلِحُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 77,
       "category": "rizq",
       "reference": "67:15",
-      "surah_name": "Al-Mulk",
       "surah_no": 67,
       "ayah": "15",
-      "arabic_excerpt": "فَامْشُوا فِي مَنَاكِبِهَا",
+      "surah_name": "Al-Mulk",
+      "arabic_verified": null,
       "english_meaning": "Work through the earth and eat from Allah’s provision.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/67:15/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "فَٱمْشُوا۟ فِى مَنَاكِبِهَا",
+      "arabic_full": "هُوَ ٱلَّذِى جَعَلَ لَكُمُ ٱلْأَرْضَ ذَلُولًۭا فَٱمْشُوا۟ فِى مَنَاكِبِهَا وَكُلُوا۟ مِن رِّزْقِهِۦ ۖ وَإِلَيْهِ ٱلنُّشُورُ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 78,
       "category": "rizq",
       "reference": "71:10-12",
-      "surah_name": "Nuh",
       "surah_no": 71,
       "ayah": "10-12",
-      "arabic_excerpt": "يُرْسِلِ السَّمَاءَ عَلَيْكُم مِّدْرَارًا",
+      "surah_name": "Nuh",
+      "arabic_verified": null,
       "english_meaning": "Seeking forgiveness brings blessings and provision.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/71:10-12/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "ٱسْتَغْفِرُوا۟ رَبَّكُمْ",
+      "arabic_full": "فَقُلْتُ ٱسْتَغْفِرُوا۟ رَبَّكُمْ إِنَّهُۥ كَانَ غَفَّارًۭا",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 79,
       "category": "sabr",
       "reference": "2:153",
-      "surah_name": "Al-Baqarah",
       "surah_no": 2,
       "ayah": "153",
-      "arabic_excerpt": "اسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ",
+      "surah_name": "Al-Baqarah",
+      "arabic_verified": null,
       "english_meaning": "Seek help through patience and prayer.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/2:153/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "ٱسْتَعِينُوا۟ بِٱلصَّبْرِ وَٱلصَّلَوٰةِ",
+      "arabic_full": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱسْتَعِينُوا۟ بِٱلصَّبْرِ وَٱلصَّلَوٰةِ ۚ إِنَّ ٱللَّهَ مَعَ ٱلصَّٰبِرِينَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 80,
       "category": "sabr",
       "reference": "2:155",
-      "surah_name": "Al-Baqarah",
       "surah_no": 2,
       "ayah": "155",
-      "arabic_excerpt": "وَلَنَبْلُوَنَّكُم",
+      "surah_name": "Al-Baqarah",
+      "arabic_verified": null,
       "english_meaning": "Tests come through fear, hunger, loss, and hardship.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/2:155/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَلَنَبْلُوَنَّكُم بِشَىْءٍۢ مِّنَ ٱلْخَوْفِ وَٱلْجُوعِ وَنَقْصٍۢ مِّنَ ٱلْأَمْوَٰلِ",
+      "arabic_full": "وَلَنَبْلُوَنَّكُم بِشَىْءٍۢ مِّنَ ٱلْخَوْفِ وَٱلْجُوعِ وَنَقْصٍۢ مِّنَ ٱلْأَمْوَٰلِ وَٱلْأَنفُسِ وَٱلثَّمَرَٰتِ ۗ وَبَشِّرِ ٱلصَّٰبِرِينَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 81,
       "category": "sabr",
       "reference": "2:156",
-      "surah_name": "Al-Baqarah",
       "surah_no": 2,
       "ayah": "156",
-      "arabic_excerpt": "إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ",
+      "surah_name": "Al-Baqarah",
+      "arabic_verified": null,
       "english_meaning": "In hardship, remember we belong to Allah and return to Him.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/2:156/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "إِنَّا لِلَّهِ وَإِنَّآ إِلَيْهِ رَٰجِعُونَ",
+      "arabic_full": "ٱلَّذِينَ إِذَآ أَصَٰبَتْهُم مُّصِيبَةٌۭ قَالُوٓا۟ إِنَّا لِلَّهِ وَإِنَّآ إِلَيْهِ رَٰجِعُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 82,
       "category": "sabr",
       "reference": "2:157",
-      "surah_name": "Al-Baqarah",
       "surah_no": 2,
       "ayah": "157",
-      "arabic_excerpt": "أُولَٰئِكَ عَلَيْهِمْ صَلَوَاتٌ",
+      "surah_name": "Al-Baqarah",
+      "arabic_verified": null,
       "english_meaning": "The patient receive blessings, mercy, and guidance.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/2:157/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "أُو۟لَٰٓئِكَ عَلَيْهِمْ صَلَوَٰتٌۭ مِّن رَّبِّهِمْ وَرَحْمَةٌۭ",
+      "arabic_full": "أُو۟لَٰٓئِكَ عَلَيْهِمْ صَلَوَٰتٌۭ مِّن رَّبِّهِمْ وَرَحْمَةٌۭ ۖ وَأُو۟لَٰٓئِكَ هُمُ ٱلْمُهْتَدُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 83,
       "category": "sabr",
       "reference": "3:200",
-      "surah_name": "Al-Imran",
       "surah_no": 3,
       "ayah": "200",
-      "arabic_excerpt": "اصْبِرُوا وَصَابِرُوا",
+      "surah_name": "Aal-Imran",
+      "arabic_verified": null,
       "english_meaning": "Be patient, remain firm, and be mindful of Allah.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/3:200/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "ٱصْبِرُوا۟ وَصَابِرُوا۟",
+      "arabic_full": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱصْبِرُوا۟ وَصَابِرُوا۟ وَرَابِطُوا۟ وَٱتَّقُوا۟ ٱللَّهَ لَعَلَّكُمْ تُفْلِحُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 84,
       "category": "sabr",
       "reference": "8:46",
-      "surah_name": "Al-Anfal",
       "surah_no": 8,
       "ayah": "46",
-      "arabic_excerpt": "وَاصْبِرُوا",
+      "surah_name": "Al-Anfal",
+      "arabic_verified": null,
       "english_meaning": "Be patient; Allah is with the patient.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/8:46/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَٱصْبِرُوٓا۟ ۚ إِنَّ ٱللَّهَ مَعَ ٱلصَّٰبِرِينَ",
+      "arabic_full": "وَأَطِيعُوا۟ ٱللَّهَ وَرَسُولَهُۥ وَلَا تَنَٰزَعُوا۟ فَتَفْشَلُوا۟ وَتَذْهَبَ رِيحُكُمْ ۖ وَٱصْبِرُوٓا۟ ۚ إِنَّ ٱللَّهَ مَعَ ٱلصَّٰبِرِينَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 85,
       "category": "sabr",
       "reference": "11:115",
-      "surah_name": "Hud",
       "surah_no": 11,
       "ayah": "115",
-      "arabic_excerpt": "وَاصْبِرْ",
+      "surah_name": "Hud",
+      "arabic_verified": null,
       "english_meaning": "Be patient; Allah does not waste the reward of good-doers.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/11:115/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَٱصْبِرْ",
+      "arabic_full": "وَٱصْبِرْ فَإِنَّ ٱللَّهَ لَا يُضِيعُ أَجْرَ ٱلْمُحْسِنِينَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 86,
       "category": "sabr",
       "reference": "12:18",
-      "surah_name": "Yusuf",
       "surah_no": 12,
       "ayah": "18",
-      "arabic_excerpt": "فَصَبْرٌ جَمِيلٌ",
+      "surah_name": "Yusuf",
+      "arabic_verified": null,
       "english_meaning": "Beautiful patience is the best response.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/12:18/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "فَصَبْرٌۭ جَمِيلٌۭ",
+      "arabic_full": "وَجَآءُو عَلَىٰ قَمِيصِهِۦ بِدَمٍۢ كَذِبٍۢ ۚ قَالَ بَلْ سَوَّلَتْ لَكُمْ أَنفُسُكُمْ أَمْرًۭا ۖ فَصَبْرٌۭ جَمِيلٌۭ ۖ وَٱللَّهُ ٱلْمُسْتَعَانُ عَلَىٰ مَا تَصِفُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 87,
       "category": "sabr",
       "reference": "12:83",
-      "surah_name": "Yusuf",
       "surah_no": 12,
       "ayah": "83",
-      "arabic_excerpt": "فَصَبْرٌ جَمِيلٌ",
+      "surah_name": "Yusuf",
+      "arabic_verified": null,
       "english_meaning": "Beautiful patience and trust in Allah bring relief.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/12:83/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "فَصَبْرٌۭ جَمِيلٌ",
+      "arabic_full": "قَالَ بَلْ سَوَّلَتْ لَكُمْ أَنفُسُكُمْ أَمْرًۭا ۖ فَصَبْرٌۭ جَمِيلٌ ۖ عَسَى ٱللَّهُ أَن يَأْتِيَنِى بِهِمْ جَمِيعًا ۚ إِنَّهُۥ هُوَ ٱلْعَلِيمُ ٱلْحَكِيمُ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 88,
       "category": "sabr",
       "reference": "13:22",
-      "surah_name": "Ar-Ra'd",
       "surah_no": 13,
       "ayah": "22",
-      "arabic_excerpt": "صَبَرُوا ابْتِغَاءَ وَجْهِ رَبِّهِمْ",
+      "surah_name": "Ar-Ra'd",
+      "arabic_verified": null,
       "english_meaning": "The righteous are patient seeking Allah’s pleasure.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/13:22/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَٱلَّذِينَ صَبَرُوا",
+      "arabic_full": "وَٱلَّذِينَ صَبَرُوا۟ ٱبْتِغَآءَ وَجْهِ رَبِّهِمْ وَأَقَامُوا۟ ٱلصَّلَوٰةَ وَأَنفَقُوا۟ مِمَّا رَزَقْنَٰهُمْ سِرًّۭا وَعَلَانِيَةًۭ وَيَدْرَءُونَ بِٱلْحَسَنَةِ ٱلسَّيِّئَةَ أُو۟لَٰٓئِكَ لَهُمْ عُقْبَى ٱلدَّارِ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 89,
       "category": "sabr",
       "reference": "14:12",
-      "surah_name": "Ibrahim",
       "surah_no": 14,
       "ayah": "12",
-      "arabic_excerpt": "وَلَنَصْبِرَنَّ عَلَىٰ مَا آذَيْتُمُونَا",
+      "surah_name": "Ibrahim",
+      "arabic_verified": null,
       "english_meaning": "Remain patient through harm and rely upon Allah.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/14:12/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَمَا لَنَآ أَلَّا نَتَوَكَّلَ عَلَى ٱللَّهِ وَقَدْ هَدَىٰنَا سُبُلَنَا",
+      "arabic_full": "وَمَا لَنَآ أَلَّا نَتَوَكَّلَ عَلَى ٱللَّهِ وَقَدْ هَدَىٰنَا سُبُلَنَا ۚ وَلَنَصْبِرَنَّ عَلَىٰ مَآ ءَاذَيْتُمُونَا ۚ وَعَلَى ٱللَّهِ فَلْيَتَوَكَّلِ ٱلْمُتَوَكِّلُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 90,
       "category": "sabr",
       "reference": "16:126",
-      "surah_name": "An-Nahl",
       "surah_no": 16,
       "ayah": "126",
-      "arabic_excerpt": "وَلَئِن صَبَرْتُمْ",
+      "surah_name": "An-Nahl",
+      "arabic_verified": null,
       "english_meaning": "Patience is better for those who endure.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/16:126/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَإِنْ عَاقَبْتُمْ فَعَاقِبُوا۟ بِمِثْلِ مَا عُوقِبْتُم بِهِۦ",
+      "arabic_full": "وَإِنْ عَاقَبْتُمْ فَعَاقِبُوا۟ بِمِثْلِ مَا عُوقِبْتُم بِهِۦ ۖ وَلَئِن صَبَرْتُمْ لَهُوَ خَيْرٌۭ لِّلصَّٰبِرِينَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 91,
       "category": "sabr",
       "reference": "16:127",
-      "surah_name": "An-Nahl",
       "surah_no": 16,
       "ayah": "127",
-      "arabic_excerpt": "وَاصْبِرْ وَمَا صَبْرُكَ إِلَّا بِاللَّهِ",
+      "surah_name": "An-Nahl",
+      "arabic_verified": null,
       "english_meaning": "Your patience comes only through Allah’s help.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/16:127/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَمَا صَبْرُكَ إِلَّا بِٱللَّهِ",
+      "arabic_full": "وَٱصْبِرْ وَمَا صَبْرُكَ إِلَّا بِٱللَّهِ ۚ وَلَا تَحْزَنْ عَلَيْهِمْ وَلَا تَكُ فِى ضَيْقٍۢ مِّمَّا يَمْكُرُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 92,
       "category": "sabr",
       "reference": "18:28",
-      "surah_name": "Al-Kahf",
       "surah_no": 18,
       "ayah": "28",
-      "arabic_excerpt": "وَاصْبِرْ نَفْسَكَ",
+      "surah_name": "Al-Kahf",
+      "arabic_verified": null,
       "english_meaning": "Keep yourself patient with those who call upon Allah.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/18:28/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَٱصْبِرْ نَفْسَكَ مَعَ ٱلَّذِينَ يَدْعُونَ رَبَّهُم بِٱلْغَدَوٰةِ وَٱلْعَشِىِّ يُرِيدُونَ",
+      "arabic_full": "وَٱصْبِرْ نَفْسَكَ مَعَ ٱلَّذِينَ يَدْعُونَ رَبَّهُم بِٱلْغَدَوٰةِ وَٱلْعَشِىِّ يُرِيدُونَ وَجْهَهُۥ ۖ وَلَا تَعْدُ عَيْنَاكَ عَنْهُمْ تُرِيدُ زِينَةَ ٱلْحَيَوٰةِ ٱلدُّنْيَا ۖ وَلَا تُطِعْ مَنْ أَغْفَلْنَا قَلْبَهُۥ عَن ذِكْرِنَا وَٱتَّبَعَ هَوَىٰهُ وَكَانَ أَمْرُهُۥ فُرُطًۭا",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 93,
       "category": "sabr",
       "reference": "20:132",
-      "surah_name": "Taha",
       "surah_no": 20,
       "ayah": "132",
-      "arabic_excerpt": "وَاصْطَبِرْ عَلَيْهَا",
+      "surah_name": "Taha",
+      "arabic_verified": null,
       "english_meaning": "Command prayer and remain patient upon it.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/20:132/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَأْمُرْ أَهْلَكَ بِٱلصَّلَوٰةِ وَٱصْطَبِرْ عَلَيْهَا",
+      "arabic_full": "وَأْمُرْ أَهْلَكَ بِٱلصَّلَوٰةِ وَٱصْطَبِرْ عَلَيْهَا ۖ لَا نَسْـَٔلُكَ رِزْقًۭا ۖ نَّحْنُ نَرْزُقُكَ ۗ وَٱلْعَٰقِبَةُ لِلتَّقْوَىٰ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 94,
       "category": "sabr",
       "reference": "23:111",
-      "surah_name": "Al-Mu'minun",
       "surah_no": 23,
       "ayah": "111",
-      "arabic_excerpt": "جَزَيْتُهُمُ الْيَوْمَ بِمَا صَبَرُوا",
+      "surah_name": "Al-Mu'minun",
+      "arabic_verified": null,
       "english_meaning": "The patient are rewarded for their endurance.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/23:111/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "إِنِّى جَزَيْتُهُمُ ٱلْيَوْمَ بِمَا صَبَرُوٓا",
+      "arabic_full": "إِنِّى جَزَيْتُهُمُ ٱلْيَوْمَ بِمَا صَبَرُوٓا۟ أَنَّهُمْ هُمُ ٱلْفَآئِزُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 95,
       "category": "sabr",
       "reference": "25:75",
-      "surah_name": "Al-Furqan",
       "surah_no": 25,
       "ayah": "75",
-      "arabic_excerpt": "بِمَا صَبَرُوا",
+      "surah_name": "Al-Furqan",
+      "arabic_verified": null,
       "english_meaning": "The patient are rewarded with high stations.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/25:75/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "أُو۟لَٰٓئِكَ يُجْزَوْنَ ٱلْغُرْفَةَ بِمَا صَبَرُوا۟ وَيُلَقَّوْنَ فِيهَا تَحِيَّةًۭ وَسَلَٰمًا",
+      "arabic_full": "أُو۟لَٰٓئِكَ يُجْزَوْنَ ٱلْغُرْفَةَ بِمَا صَبَرُوا۟ وَيُلَقَّوْنَ فِيهَا تَحِيَّةًۭ وَسَلَٰمًا",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 96,
       "category": "sabr",
       "reference": "28:54",
-      "surah_name": "Al-Qasas",
       "surah_no": 28,
       "ayah": "54",
-      "arabic_excerpt": "بِمَا صَبَرُوا",
+      "surah_name": "Al-Qasas",
+      "arabic_verified": null,
       "english_meaning": "Those who are patient receive their reward twice.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/28:54/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "أُو۟لَٰٓئِكَ يُؤْتَوْنَ أَجْرَهُم مَّرَّتَيْنِ بِمَا صَبَرُوا۟ وَيَدْرَءُونَ بِٱلْحَسَنَةِ",
+      "arabic_full": "أُو۟لَٰٓئِكَ يُؤْتَوْنَ أَجْرَهُم مَّرَّتَيْنِ بِمَا صَبَرُوا۟ وَيَدْرَءُونَ بِٱلْحَسَنَةِ ٱلسَّيِّئَةَ وَمِمَّا رَزَقْنَٰهُمْ يُنفِقُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 97,
       "category": "sabr",
       "reference": "30:60",
-      "surah_name": "Ar-Rum",
       "surah_no": 30,
       "ayah": "60",
-      "arabic_excerpt": "فَاصْبِرْ إِنَّ وَعْدَ اللَّهِ حَقٌّ",
+      "surah_name": "Ar-Rum",
+      "arabic_verified": null,
       "english_meaning": "Be patient; Allah’s promise is true.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/30:60/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "فَٱصْبِرْ إِنَّ وَعْدَ ٱللَّهِ حَقٌّۭ",
+      "arabic_full": "فَٱصْبِرْ إِنَّ وَعْدَ ٱللَّهِ حَقٌّۭ ۖ وَلَا يَسْتَخِفَّنَّكَ ٱلَّذِينَ لَا يُوقِنُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 98,
       "category": "sabr",
       "reference": "31:17",
-      "surah_name": "Luqman",
       "surah_no": 31,
       "ayah": "17",
-      "arabic_excerpt": "وَاصْبِرْ عَلَىٰ مَا أَصَابَكَ",
+      "surah_name": "Luqman",
+      "arabic_verified": null,
       "english_meaning": "Be patient over what happens to you.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/31:17/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَٱصْبِرْ عَلَىٰ مَآ أَصَابَكَ",
+      "arabic_full": "يَٰبُنَىَّ أَقِمِ ٱلصَّلَوٰةَ وَأْمُرْ بِٱلْمَعْرُوفِ وَٱنْهَ عَنِ ٱلْمُنكَرِ وَٱصْبِرْ عَلَىٰ مَآ أَصَابَكَ ۖ إِنَّ ذَٰلِكَ مِنْ عَزْمِ ٱلْأُمُورِ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 99,
       "category": "sabr",
       "reference": "32:24",
-      "surah_name": "As-Sajdah",
       "surah_no": 32,
       "ayah": "24",
-      "arabic_excerpt": "لَمَّا صَبَرُوا",
+      "surah_name": "As-Sajdah",
+      "arabic_verified": null,
       "english_meaning": "Leadership and guidance come through patience and certainty.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/32:24/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَجَعَلْنَا مِنْهُمْ أَئِمَّةًۭ يَهْدُونَ بِأَمْرِنَا لَمَّا صَبَرُوا۟",
+      "arabic_full": "وَجَعَلْنَا مِنْهُمْ أَئِمَّةًۭ يَهْدُونَ بِأَمْرِنَا لَمَّا صَبَرُوا۟ ۖ وَكَانُوا۟ بِـَٔايَٰتِنَا يُوقِنُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 100,
       "category": "sabr",
       "reference": "39:10",
-      "surah_name": "Az-Zumar",
       "surah_no": 39,
       "ayah": "10",
-      "arabic_excerpt": "إِنَّمَا يُوَفَّى الصَّابِرُونَ",
+      "surah_name": "Az-Zumar",
+      "arabic_verified": null,
       "english_meaning": "The patient are rewarded without measure.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/39:10/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "إِنَّمَا يُوَفَّى ٱلصَّٰبِرُونَ",
+      "arabic_full": "قُلْ يَٰعِبَادِ ٱلَّذِينَ ءَامَنُوا۟ ٱتَّقُوا۟ رَبَّكُمْ ۚ لِلَّذِينَ أَحْسَنُوا۟ فِى هَٰذِهِ ٱلدُّنْيَا حَسَنَةٌۭ ۗ وَأَرْضُ ٱللَّهِ وَٰسِعَةٌ ۗ إِنَّمَا يُوَفَّى ٱلصَّٰبِرُونَ أَجْرَهُم بِغَيْرِ حِسَابٍۢ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 101,
       "category": "sabr",
       "reference": "41:34-35",
-      "surah_name": "Fussilat",
       "surah_no": 41,
       "ayah": "34-35",
-      "arabic_excerpt": "وَمَا يُلَقَّاهَا إِلَّا الَّذِينَ صَبَرُوا",
+      "surah_name": "Fussilat",
+      "arabic_verified": null,
       "english_meaning": "Responding with good requires great patience.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/41:34-35/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَلَا تَسْتَوِى ٱلْحَسَنَةُ وَلَا ٱلسَّيِّئَةُ",
+      "arabic_full": "وَلَا تَسْتَوِى ٱلْحَسَنَةُ وَلَا ٱلسَّيِّئَةُ ۚ ٱدْفَعْ بِٱلَّتِى هِىَ أَحْسَنُ فَإِذَا ٱلَّذِى بَيْنَكَ وَبَيْنَهُۥ عَدَٰوَةٌۭ كَأَنَّهُۥ وَلِىٌّ حَمِيمٌۭ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 102,
       "category": "sabr",
       "reference": "46:35",
-      "surah_name": "Al-Ahqaf",
       "surah_no": 46,
       "ayah": "35",
-      "arabic_excerpt": "فَاصْبِرْ",
+      "surah_name": "Al-Ahqaf",
+      "arabic_verified": null,
       "english_meaning": "Be patient like the strong messengers were patient.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/46:35/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "فَٱصْبِرْ كَمَا صَبَرَ أُو۟لُوا۟ ٱلْعَزْمِ مِنَ ٱلرُّسُلِ وَلَا تَسْتَعْجِل لَّهُمْ",
+      "arabic_full": "فَٱصْبِرْ كَمَا صَبَرَ أُو۟لُوا۟ ٱلْعَزْمِ مِنَ ٱلرُّسُلِ وَلَا تَسْتَعْجِل لَّهُمْ ۚ كَأَنَّهُمْ يَوْمَ يَرَوْنَ مَا يُوعَدُونَ لَمْ يَلْبَثُوٓا۟ إِلَّا سَاعَةًۭ مِّن نَّهَارٍۭ ۚ بَلَٰغٌۭ ۚ فَهَلْ يُهْلَكُ إِلَّا ٱلْقَوْمُ ٱلْفَٰسِقُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 103,
       "category": "sabr",
       "reference": "70:5",
-      "surah_name": "Al-Ma'arij",
       "surah_no": 70,
       "ayah": "5",
-      "arabic_excerpt": "فَاصْبِرْ صَبْرًا جَمِيلًا",
+      "surah_name": "Al-Ma'arij",
+      "arabic_verified": null,
       "english_meaning": "Practice beautiful patience.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/70:5/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "فَٱصْبِرْ صَبْرًۭا جَمِيلًا",
+      "arabic_full": "فَٱصْبِرْ صَبْرًۭا جَمِيلًا",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 104,
       "category": "sabr",
       "reference": "76:24",
-      "surah_name": "Al-Insan",
       "surah_no": 76,
       "ayah": "24",
-      "arabic_excerpt": "وَاصْبِرْ لِحُكْمِ رَبِّكَ",
+      "surah_name": "Al-Insan",
+      "arabic_verified": null,
       "english_meaning": "Be patient with the decree of your Lord.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/76:24/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "فَٱصْبِرْ لِحُكْمِ رَبِّكَ وَلَا تُطِعْ مِنْهُمْ ءَاثِمًا أَوْ كَفُورًۭا",
+      "arabic_full": "فَٱصْبِرْ لِحُكْمِ رَبِّكَ وَلَا تُطِعْ مِنْهُمْ ءَاثِمًا أَوْ كَفُورًۭا",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 105,
       "category": "forgiveness",
       "reference": "39:53",
-      "surah_name": "Az-Zumar",
       "surah_no": 39,
       "ayah": "53",
-      "arabic_excerpt": "إِنَّ اللَّهَ يَغْفِرُ الذُّنُوبَ جَمِيعًا",
+      "surah_name": "Az-Zumar",
+      "arabic_verified": null,
       "english_meaning": "Allah forgives all sins for those who turn back to Him.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/39:53/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "لَا تَقْنَطُوا۟ مِن رَّحْمَةِ ٱللَّهِ",
+      "arabic_full": "۞ قُلْ يَٰعِبَادِىَ ٱلَّذِينَ أَسْرَفُوا۟ عَلَىٰٓ أَنفُسِهِمْ لَا تَقْنَطُوا۟ مِن رَّحْمَةِ ٱللَّهِ ۚ إِنَّ ٱللَّهَ يَغْفِرُ ٱلذُّنُوبَ جَمِيعًا ۚ إِنَّهُۥ هُوَ ٱلْغَفُورُ ٱلرَّحِيمُ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 106,
       "category": "forgiveness",
       "reference": "25:70",
-      "surah_name": "Al-Furqan",
       "surah_no": 25,
       "ayah": "70",
-      "arabic_excerpt": "يُبَدِّلُ اللَّهُ سَيِّئَاتِهِمْ حَسَنَاتٍ",
+      "surah_name": "Al-Furqan",
+      "arabic_verified": null,
       "english_meaning": "Allah can replace bad deeds with good deeds.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/25:70/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "يُبَدِّلُ ٱللَّهُ سَيِّـَٔاتِهِمْ حَسَنَٰتٍۢ",
+      "arabic_full": "إِلَّا مَن تَابَ وَءَامَنَ وَعَمِلَ عَمَلًۭا صَٰلِحًۭا فَأُو۟لَٰٓئِكَ يُبَدِّلُ ٱللَّهُ سَيِّـَٔاتِهِمْ حَسَنَٰتٍۢ ۗ وَكَانَ ٱللَّهُ غَفُورًۭا رَّحِيمًۭا",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 107,
       "category": "forgiveness",
       "reference": "3:135",
-      "surah_name": "Al-Imran",
       "surah_no": 3,
       "ayah": "135",
-      "arabic_excerpt": "وَمَن يَغْفِرُ الذُّنُوبَ إِلَّا اللَّهُ",
+      "surah_name": "Aal-Imran",
+      "arabic_verified": null,
       "english_meaning": "When believers slip, they remember Allah and seek forgiveness.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/3:135/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَٱلَّذِينَ إِذَا فَعَلُوا",
+      "arabic_full": "وَٱلَّذِينَ إِذَا فَعَلُوا۟ فَٰحِشَةً أَوْ ظَلَمُوٓا۟ أَنفُسَهُمْ ذَكَرُوا۟ ٱللَّهَ فَٱسْتَغْفَرُوا۟ لِذُنُوبِهِمْ وَمَن يَغْفِرُ ٱلذُّنُوبَ إِلَّا ٱللَّهُ وَلَمْ يُصِرُّوا۟ عَلَىٰ مَا فَعَلُوا۟ وَهُمْ يَعْلَمُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 108,
       "category": "forgiveness",
       "reference": "4:110",
-      "surah_name": "An-Nisa",
       "surah_no": 4,
       "ayah": "110",
-      "arabic_excerpt": "يَجِدِ اللَّهَ غَفُورًا رَّحِيمًا",
+      "surah_name": "An-Nisa",
+      "arabic_verified": null,
       "english_meaning": "Whoever seeks forgiveness finds Allah Forgiving and Merciful.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/4:110/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "يَجِدِ ٱللَّهَ غَفُورًۭا رَّحِيمًۭا",
+      "arabic_full": "وَمَن يَعْمَلْ سُوٓءًا أَوْ يَظْلِمْ نَفْسَهُۥ ثُمَّ يَسْتَغْفِرِ ٱللَّهَ يَجِدِ ٱللَّهَ غَفُورًۭا رَّحِيمًۭا",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 109,
       "category": "forgiveness",
       "reference": "11:90",
-      "surah_name": "Hud",
       "surah_no": 11,
       "ayah": "90",
-      "arabic_excerpt": "اسْتَغْفِرُوا رَبَّكُمْ ثُمَّ تُوبُوا إِلَيْهِ",
+      "surah_name": "Hud",
+      "arabic_verified": null,
       "english_meaning": "Seek forgiveness and return to Allah.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/11:90/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَٱسْتَغْفِرُوا۟ رَبَّكُمْ ثُمَّ تُوبُوٓا۟ إِلَيْهِ",
+      "arabic_full": "وَٱسْتَغْفِرُوا۟ رَبَّكُمْ ثُمَّ تُوبُوٓا۟ إِلَيْهِ ۚ إِنَّ رَبِّى رَحِيمٌۭ وَدُودٌۭ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 110,
       "category": "forgiveness",
       "reference": "66:8",
-      "surah_name": "At-Tahrim",
       "surah_no": 66,
       "ayah": "8",
-      "arabic_excerpt": "تُوبُوا إِلَى اللَّهِ تَوْبَةً نَّصُوحًا",
+      "surah_name": "At-Tahrim",
+      "arabic_verified": null,
       "english_meaning": "Turn to Allah with sincere repentance.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/66:8/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "تُوبُوٓا۟ إِلَى ٱللَّهِ تَوْبَةًۭ نَّصُوحًا",
+      "arabic_full": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ تُوبُوٓا۟ إِلَى ٱللَّهِ تَوْبَةًۭ نَّصُوحًا عَسَىٰ رَبُّكُمْ أَن يُكَفِّرَ عَنكُمْ سَيِّـَٔاتِكُمْ وَيُدْخِلَكُمْ جَنَّٰتٍۢ تَجْرِى مِن تَحْتِهَا ٱلْأَنْهَٰرُ يَوْمَ لَا يُخْزِى ٱللَّهُ ٱلنَّبِىَّ وَٱلَّذِينَ ءَامَنُوا۟ مَعَهُۥ ۖ نُورُهُمْ يَسْعَىٰ بَيْنَ أَيْدِيهِمْ وَبِأَيْمَٰنِهِمْ يَقُولُونَ رَبَّنَآ أَتْمِمْ لَنَا نُورَنَا وَٱغْفِرْ لَنَآ ۖ إِنَّكَ عَلَىٰ كُلِّ شَىْءٍۢ قَدِيرٌۭ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 111,
       "category": "forgiveness",
       "reference": "71:10",
-      "surah_name": "Nuh",
       "surah_no": 71,
       "ayah": "10",
-      "arabic_excerpt": "اسْتَغْفِرُوا رَبَّكُمْ",
+      "surah_name": "Nuh",
+      "arabic_verified": null,
       "english_meaning": "Seek forgiveness from your Lord.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/71:10/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "فَقُلْتُ ٱسْتَغْفِرُوا",
+      "arabic_full": "فَقُلْتُ ٱسْتَغْفِرُوا۟ رَبَّكُمْ إِنَّهُۥ كَانَ غَفَّارًۭا",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 112,
       "category": "forgiveness",
       "reference": "2:222",
-      "surah_name": "Al-Baqarah",
       "surah_no": 2,
       "ayah": "222",
-      "arabic_excerpt": "إِنَّ اللَّهَ يُحِبُّ التَّوَّابِينَ",
+      "surah_name": "Al-Baqarah",
+      "arabic_verified": null,
       "english_meaning": "Allah loves those who repent and purify themselves.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/2:222/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "إِنَّ ٱللَّهَ يُحِبُّ ٱلتَّوَّٰبِينَ",
+      "arabic_full": "وَيَسْـَٔلُونَكَ عَنِ ٱلْمَحِيضِ ۖ قُلْ هُوَ أَذًۭى فَٱعْتَزِلُوا۟ ٱلنِّسَآءَ فِى ٱلْمَحِيضِ ۖ وَلَا تَقْرَبُوهُنَّ حَتَّىٰ يَطْهُرْنَ ۖ فَإِذَا تَطَهَّرْنَ فَأْتُوهُنَّ مِنْ حَيْثُ أَمَرَكُمُ ٱللَّهُ ۚ إِنَّ ٱللَّهَ يُحِبُّ ٱلتَّوَّٰبِينَ وَيُحِبُّ ٱلْمُتَطَهِّرِينَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 113,
       "category": "forgiveness",
       "reference": "7:23",
-      "surah_name": "Al-A'raf",
       "surah_no": 7,
       "ayah": "23",
-      "arabic_excerpt": "رَبَّنَا ظَلَمْنَا أَنفُسَنَا",
+      "surah_name": "Al-A'raf",
+      "arabic_verified": null,
       "english_meaning": "Ask Allah for mercy and forgiveness after mistakes.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/7:23/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "قَالَا رَبَّنَا ظَلَمْنَآ أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ",
+      "arabic_full": "قَالَا رَبَّنَا ظَلَمْنَآ أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ ٱلْخَٰسِرِينَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 114,
       "category": "forgiveness",
       "reference": "20:82",
-      "surah_name": "Taha",
       "surah_no": 20,
       "ayah": "82",
-      "arabic_excerpt": "وَإِنِّي لَغَفَّارٌ",
+      "surah_name": "Taha",
+      "arabic_verified": null,
       "english_meaning": "Allah is greatly forgiving to those who repent and believe.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/20:82/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَإِنِّى لَغَفَّارٌۭ",
+      "arabic_full": "وَإِنِّى لَغَفَّارٌۭ لِّمَن تَابَ وَءَامَنَ وَعَمِلَ صَٰلِحًۭا ثُمَّ ٱهْتَدَىٰ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 115,
       "category": "gratitude",
       "reference": "14:7",
-      "surah_name": "Ibrahim",
       "surah_no": 14,
       "ayah": "7",
-      "arabic_excerpt": "لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ",
+      "surah_name": "Ibrahim",
+      "arabic_verified": null,
       "english_meaning": "If you are grateful, Allah increases you.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/14:7/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ",
+      "arabic_full": "وَإِذْ تَأَذَّنَ رَبُّكُمْ لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ ۖ وَلَئِن كَفَرْتُمْ إِنَّ عَذَابِى لَشَدِيدٌۭ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 116,
       "category": "gratitude",
       "reference": "2:152",
-      "surah_name": "Al-Baqarah",
       "surah_no": 2,
       "ayah": "152",
-      "arabic_excerpt": "وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ",
+      "surah_name": "Al-Baqarah",
+      "arabic_verified": null,
       "english_meaning": "Be grateful to Allah and do not deny His blessings.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/2:152/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "فَٱذْكُرُونِىٓ أَذْكُرْكُمْ",
+      "arabic_full": "فَٱذْكُرُونِىٓ أَذْكُرْكُمْ وَٱشْكُرُوا۟ لِى وَلَا تَكْفُرُونِ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 117,
       "category": "gratitude",
       "reference": "16:18",
-      "surah_name": "An-Nahl",
       "surah_no": 16,
       "ayah": "18",
-      "arabic_excerpt": "وَإِن تَعُدُّوا نِعْمَةَ اللَّهِ",
+      "surah_name": "An-Nahl",
+      "arabic_verified": null,
       "english_meaning": "Allah’s blessings are too many to count.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/16:18/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "لَا تُحْصُوهَآ",
+      "arabic_full": "وَإِن تَعُدُّوا۟ نِعْمَةَ ٱللَّهِ لَا تُحْصُوهَآ ۗ إِنَّ ٱللَّهَ لَغَفُورٌۭ رَّحِيمٌۭ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 118,
       "category": "gratitude",
       "reference": "31:12",
-      "surah_name": "Luqman",
       "surah_no": 31,
       "ayah": "12",
-      "arabic_excerpt": "وَمَن يَشْكُرْ فَإِنَّمَا يَشْكُرُ لِنَفْسِهِ",
+      "surah_name": "Luqman",
+      "arabic_verified": null,
       "english_meaning": "Gratitude benefits the grateful person.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/31:12/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَمَن يَشْكُرْ فَإِنَّمَا يَشْكُرُ لِنَفْسِهِۦ",
+      "arabic_full": "وَلَقَدْ ءَاتَيْنَا لُقْمَٰنَ ٱلْحِكْمَةَ أَنِ ٱشْكُرْ لِلَّهِ ۚ وَمَن يَشْكُرْ فَإِنَّمَا يَشْكُرُ لِنَفْسِهِۦ ۖ وَمَن كَفَرَ فَإِنَّ ٱللَّهَ غَنِىٌّ حَمِيدٌۭ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 119,
       "category": "gratitude",
       "reference": "34:13",
-      "surah_name": "Saba",
       "surah_no": 34,
       "ayah": "13",
-      "arabic_excerpt": "اعْمَلُوا آلَ دَاوُودَ شُكْرًا",
+      "surah_name": "Saba",
+      "arabic_verified": null,
       "english_meaning": "True gratitude is shown through action.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/34:13/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "يَعْمَلُونَ لَهُۥ مَا يَشَآءُ مِن مَّحَٰرِيبَ وَتَمَٰثِيلَ وَجِفَانٍۢ كَٱلْجَوَابِ وَقُدُورٍۢ",
+      "arabic_full": "يَعْمَلُونَ لَهُۥ مَا يَشَآءُ مِن مَّحَٰرِيبَ وَتَمَٰثِيلَ وَجِفَانٍۢ كَٱلْجَوَابِ وَقُدُورٍۢ رَّاسِيَٰتٍ ۚ ٱعْمَلُوٓا۟ ءَالَ دَاوُۥدَ شُكْرًۭا ۚ وَقَلِيلٌۭ مِّنْ عِبَادِىَ ٱلشَّكُورُ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 120,
       "category": "gratitude",
       "reference": "27:40",
-      "surah_name": "An-Naml",
       "surah_no": 27,
       "ayah": "40",
-      "arabic_excerpt": "هَٰذَا مِن فَضْلِ رَبِّي",
+      "surah_name": "An-Naml",
+      "arabic_verified": null,
       "english_meaning": "Recognize blessings as the favor of Allah.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/27:40/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "هَٰذَا مِن فَضْلِ رَبِّى",
+      "arabic_full": "قَالَ ٱلَّذِى عِندَهُۥ عِلْمٌۭ مِّنَ ٱلْكِتَٰبِ أَنَا۠ ءَاتِيكَ بِهِۦ قَبْلَ أَن يَرْتَدَّ إِلَيْكَ طَرْفُكَ ۚ فَلَمَّا رَءَاهُ مُسْتَقِرًّا عِندَهُۥ قَالَ هَٰذَا مِن فَضْلِ رَبِّى لِيَبْلُوَنِىٓ ءَأَشْكُرُ أَمْ أَكْفُرُ ۖ وَمَن شَكَرَ فَإِنَّمَا يَشْكُرُ لِنَفْسِهِۦ ۖ وَمَن كَفَرَ فَإِنَّ رَبِّى غَنِىٌّۭ كَرِيمٌۭ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 121,
       "category": "gratitude",
       "reference": "76:3",
-      "surah_name": "Al-Insan",
       "surah_no": 76,
       "ayah": "3",
-      "arabic_excerpt": "إِمَّا شَاكِرًا وَإِمَّا كَفُورًا",
+      "surah_name": "Al-Insan",
+      "arabic_verified": null,
       "english_meaning": "People choose either gratitude or ingratitude.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/76:3/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "إِنَّا هَدَيْنَٰهُ ٱلسَّبِيلَ إِمَّا شَاكِرًۭا وَإِمَّا كَفُورًا",
+      "arabic_full": "إِنَّا هَدَيْنَٰهُ ٱلسَّبِيلَ إِمَّا شَاكِرًۭا وَإِمَّا كَفُورًا",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 122,
       "category": "gratitude",
       "reference": "93:11",
-      "surah_name": "Ad-Duha",
       "surah_no": 93,
       "ayah": "11",
-      "arabic_excerpt": "وَأَمَّا بِنِعْمَةِ رَبِّكَ فَحَدِّثْ",
+      "surah_name": "Ad-Duha",
+      "arabic_verified": null,
       "english_meaning": "Speak of your Lord’s blessings with gratitude.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/93:11/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَأَمَّا بِنِعْمَةِ رَبِّكَ فَحَدِّثْ",
+      "arabic_full": "وَأَمَّا بِنِعْمَةِ رَبِّكَ فَحَدِّثْ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 123,
       "category": "gratitude",
       "reference": "45:12",
-      "surah_name": "Al-Jathiyah",
       "surah_no": 45,
       "ayah": "12",
-      "arabic_excerpt": "لَعَلَّكُمْ تَشْكُرُونَ",
+      "surah_name": "Al-Jathiyah",
+      "arabic_verified": null,
       "english_meaning": "Allah made blessings available so you may be grateful.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/45:12/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "۞ ٱللَّهُ ٱلَّذِى سَخَّرَ لَكُمُ ٱلْبَحْرَ لِتَجْرِىَ ٱلْفُلْكُ فِيهِ بِأَمْرِهِۦ",
+      "arabic_full": "۞ ٱللَّهُ ٱلَّذِى سَخَّرَ لَكُمُ ٱلْبَحْرَ لِتَجْرِىَ ٱلْفُلْكُ فِيهِ بِأَمْرِهِۦ وَلِتَبْتَغُوا۟ مِن فَضْلِهِۦ وَلَعَلَّكُمْ تَشْكُرُونَ",
+      "arabic_display_type": "short_excerpt"
     },
     {
       "id": 124,
       "category": "gratitude",
       "reference": "7:10",
-      "surah_name": "Al-A'raf",
       "surah_no": 7,
       "ayah": "10",
-      "arabic_excerpt": "قَلِيلًا مَّا تَشْكُرُونَ",
+      "surah_name": "Al-A'raf",
+      "arabic_verified": null,
       "english_meaning": "Remember to be among the grateful.",
-      "source_note": "English is a concise meaning/paraphrase, not a copyrighted word-for-word translation."
+      "verification": {
+        "arabic_source": "Tanzil / quran-uthmani compatible source",
+        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/7:10/quran-uthmani",
+        "status": "reference_verified_source_required",
+        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
+      },
+      "arabic": "وَلَقَدْ مَكَّنَّٰكُمْ فِى ٱلْأَرْضِ وَجَعَلْنَا لَكُمْ فِيهَا مَعَٰيِشَ",
+      "arabic_full": "وَلَقَدْ مَكَّنَّٰكُمْ فِى ٱلْأَرْضِ وَجَعَلْنَا لَكُمْ فِيهَا مَعَٰيِشَ ۗ قَلِيلًۭا مَّا تَشْكُرُونَ",
+      "arabic_display_type": "short_excerpt"
     }
-  ]
+  ],
+  "source": {
+    "arabic": "quran-uthmani (AlQuran.cloud)",
+    "note": "Verified Quran text. Do not modify."
+  }
 }
