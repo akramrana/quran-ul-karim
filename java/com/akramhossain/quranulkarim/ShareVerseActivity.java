@@ -376,22 +376,41 @@ public class ShareVerseActivity extends AppCompatActivity {
             }
         });
 
+        float radius = getResources().getDisplayMetrics().density * 12;
+
         colorBtn = (Button) findViewById(R.id.colorBtn);
 
         androidColors = getResources().getIntArray(R.array.androidcolors);
         int randomAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
-        colorBtn.setBackgroundColor(randomAndroidColor);
+
+        GradientDrawable drawable = new GradientDrawable();
+        drawable.setColor(randomAndroidColor);
+
+        drawable.setCornerRadius(radius);
+
+        colorBtn.setBackground(drawable);
+
+        colorBtn.setTag(randomAndroidColor);
+
         colorBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 RelativeLayout layout = (RelativeLayout)findViewById(R.id.shareSection);
 
-                int color = ((ColorDrawable)colorBtn.getBackground()).getColor();
+                //int color = ((ColorDrawable)colorBtn.getBackground()).getColor();
+
+                int color = (int) colorBtn.getTag();
 
                 layout.setBackgroundColor(color);
 
                 int nextAndroidColor = androidColors[new Random().nextInt(androidColors.length)];
                 //
-                colorBtn.setBackgroundColor(nextAndroidColor);
+                GradientDrawable drawable1 = new GradientDrawable();
+                drawable1.setColor(nextAndroidColor);
+
+                drawable1.setCornerRadius(radius);
+
+                colorBtn.setBackground(drawable1);
+                colorBtn.setTag(nextAndroidColor);
                 //
                 String hexColor = Integer.toHexString(color).substring(2);
                 Log.d("color",hexColor);
@@ -412,7 +431,8 @@ public class ShareVerseActivity extends AppCompatActivity {
         //Log.d("Color",androidStringColors[randomNumber]);
         int[] colors = {Color.parseColor(androidStringColors[randomNumber]),Color.parseColor(androidStringColors[randomNumber1])};
         GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,colors);
-        gd.setCornerRadius(0f);
+
+        gd.setCornerRadius(radius);
         imgBtn.setBackground(gd);
 
         imgBtn.setOnClickListener(new View.OnClickListener() {
@@ -424,7 +444,7 @@ public class ShareVerseActivity extends AppCompatActivity {
                 //
                 int[] colors = {Color.parseColor(androidStringColors[randomNumber]),Color.parseColor(androidStringColors[randomNumber1])};
                 GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,colors);
-                gd.setCornerRadius(0f);
+                gd.setCornerRadius(radius);
                 //
                 RelativeLayout layout = (RelativeLayout)findViewById(R.id.shareSection);
                 layout.setBackground(gd);

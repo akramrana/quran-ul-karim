@@ -295,22 +295,28 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Share Image"
-                        android:background="@color/blue"
-                        android:textColor="@color/cardview_light_background"
+                        android:background="@drawable/bg_card"
+                        android:textColor="@color/text_primary"
                         android:gravity="center"
                         android:textAllCaps="false"
                         android:textSize="9sp"
-                        android:layout_marginRight="20dp"/>
+                        android:drawableLeft="@drawable/share_24px"
+                        android:layout_marginRight="20dp"
+                        android:paddingLeft="5dp"
+                        android:drawableTint="@color/icon_color"/>
 
                     <Button
                         android:id="@+id/dowlBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Download"
-                        android:background="@color/color8"
-                        android:textColor="@color/cardview_light_background"
+                        android:background="@drawable/bg_card"
+                        android:textColor="@color/text_primary"
                         android:gravity="center"
                         android:textSize="9sp"
+                        android:drawableLeft="@drawable/download_for_offline_24px"
+                        android:paddingLeft="5dp"
+                        android:drawableTint="@color/icon_color"
                         android:textAllCaps="false"/>
 
                 </LinearLayout>

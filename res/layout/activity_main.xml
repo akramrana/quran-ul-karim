@@ -138,10 +138,12 @@
             android:paddingTop="13dp"
             android:paddingBottom="13dp"
             android:text="@string/start_from_last"
-            android:textColor="@color/colorWhite"
-            android:background="@color/bg_color_v2"
+            android:textColor="@color/text_primary"
+            android:background="@drawable/bg_card"
             android:textSize="13sp"
             android:visibility="gone"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
             android:elevation="1dp"/>
 
         <ProgressBar
