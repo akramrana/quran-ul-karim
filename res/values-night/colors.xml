@@ -104,5 +104,6 @@
     <color name="text_primary">#ECFDF5</color>
     <color name="border_card">#065F46</color>
     <color name="dark_gray">#2E2E2E</color>
+    <color name="bgColorDN">#000000</color>
 
 </resources>
