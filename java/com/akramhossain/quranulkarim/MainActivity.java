@@ -1,5 +1,6 @@
 package com.akramhossain.quranulkarim;
 
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
@@ -8,7 +9,9 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.TimeZone;
 
 import android.Manifest;
@@ -95,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
     TextView start_from_last;
     TextView txtNightMode;
     TextView name_title_ar;
+    TextView name_title_en;
+    TextView daily_ayah_ref;
 
     View horizontal_line;
     DatabaseHelper dbhelper;
@@ -227,6 +232,8 @@ public class MainActivity extends AppCompatActivity {
         start_from_last = (TextView) findViewById(R.id.start_from_last);
         horizontal_line = (View) findViewById(R.id.horizontal_line);
         name_title_ar = (TextView) findViewById(R.id.name_title_ar);
+        name_title_en = (TextView) findViewById(R.id.name_title_en);
+        daily_ayah_ref = (TextView) findViewById(R.id.daily_ayah_ref);
 
         sura_link = (LinearLayout) findViewById(R.id.sura_link);
         sura_link.setOnClickListener(new View.OnClickListener() {
@@ -880,6 +887,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(in);
             }
         });
+
+        showDailyAyah();
+
     }
 
     private void setHbRecyclerViewAdapter() {
@@ -1521,6 +1531,97 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("OK", (d, w) -> d.dismiss())
                 .show();
+    }
+
+    private void showDailyAyah() {
+        try {
+            String category = getTodayCategory();
+
+            String jsonString = loadJSONFromAssets("daily_ayahs.json");
+
+            JSONObject root = new JSONObject(jsonString);
+            JSONArray allAyahs = root.getJSONArray("items");
+
+            List<JSONObject> filtered = new ArrayList<>();
+
+            for (int i = 0; i < allAyahs.length(); i++) {
+                JSONObject obj = allAyahs.getJSONObject(i);
+
+                if (obj.getString("category").equals(category)) {
+                    filtered.add(obj);
+                }
+            }
+
+            if (filtered.size() == 0) {
+                return;
+            }
+
+            Calendar cal = Calendar.getInstance();
+            int dayOfYear = cal.get(Calendar.DAY_OF_YEAR);
+            int year = cal.get(Calendar.YEAR);
+
+            SharedPreferences prefs = getSharedPreferences("daily_ayah", MODE_PRIVATE);
+
+            int savedDay = prefs.getInt("day", -1);
+            int savedYear = prefs.getInt("year", -1);
+            int index;
+
+            if (savedDay == dayOfYear && savedYear == year) {
+                index = prefs.getInt("index", 0);
+
+                if (index >= filtered.size()) {
+                    index = 0;
+                }
+            } else {
+                index = dayOfYear % filtered.size();
+
+                prefs.edit()
+                        .putInt("day", dayOfYear)
+                        .putInt("year", year)
+                        .putInt("index", index)
+                        .apply();
+            }
+
+            JSONObject ayah = filtered.get(index);
+
+            name_title_ar.setText(ayah.getString("arabic_excerpt"));
+            name_title_en.setText(ayah.getString("english_meaning"));
+
+            String ref = ayah.getString("surah_name") + " (" + ayah.getString("reference") + ")";
+            daily_ayah_ref.setText(ref);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getTodayCategory() {
+        String[] categories = {"motivation", "anxiety", "rizq", "sabr"};
+
+        Calendar cal = Calendar.getInstance();
+        int dayOfYear = cal.get(Calendar.DAY_OF_YEAR);
+        int year = cal.get(Calendar.YEAR);
+
+        // Create a stable seed
+        long seed = (long) dayOfYear + year * 1000L;
+
+        Random random = new Random(seed);
+
+        int index = random.nextInt(categories.length);
+
+        return categories[index];
+    }
+
+    private String loadJSONFromAssets(String fileName) throws Exception {
+        InputStream is = getAssets().open(fileName);
+
+        int size = is.available();
+        byte[] buffer = new byte[size];
+
+        is.read(buffer);
+        is.close();
+
+        return new String(buffer, "UTF-8");
     }
 
     @Override
