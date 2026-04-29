@@ -6,5 +6,5 @@
     android:padding="8dp"
     android:textStyle="bold"
     android:textSize="18sp"
-    android:background="@color/bg_color"
-    android:textColor="@color/colorWhiteDN"/>
+    android:background="@color/bg_card"
+    android:textColor="@color/text_primary"/>

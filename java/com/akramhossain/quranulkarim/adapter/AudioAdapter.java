@@ -73,8 +73,8 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
         boolean isThisPlaying = (position == playingPos) && AudioPlay.isAudioPlaying;
 
         holder.btnPlay.setImageResource(isThisPlaying
-                ? android.R.drawable.ic_media_pause
-                : android.R.drawable.ic_media_play);
+                ? R.drawable.pause_circle_24px
+                : R.drawable.play_circle_24px);
 
         holder.seekBar.setVisibility(isThisPlaying ? View.VISIBLE : View.GONE);
 

@@ -15,10 +15,10 @@
             android:id="@+id/btnPlay"
             android:layout_width="42dp"
             android:layout_height="42dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@android:drawable/ic_media_play"
+            android:background="?android:selectableItemBackground"
+            android:src="@drawable/play_circle_24px"
             android:contentDescription="@string/app_name"
-            app:tint="@color/colorWhite"/>
+            app:tint="@color/icon_color"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -55,8 +55,8 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@android:drawable/stat_sys_download"
-            app:tint="@color/colorWhite"/>
+            android:src="@drawable/download_for_offline_24px"
+            app:tint="@color/icon_color"/>
     </LinearLayout>
 
     <SeekBar

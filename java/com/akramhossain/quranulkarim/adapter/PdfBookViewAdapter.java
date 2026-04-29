@@ -80,9 +80,9 @@ public class PdfBookViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         //
         File localFile = new File(c.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), tb.getFile_name());
         if (localFile.exists()) {
-            rvHolder.actionIcon.setImageResource(android.R.drawable.ic_menu_view); // Open icon
+            rvHolder.actionIcon.setImageResource(R.drawable.visibility_24px); // Open icon
         } else {
-            rvHolder.actionIcon.setImageResource(android.R.drawable.stat_sys_download); // Download icon
+            rvHolder.actionIcon.setImageResource(R.drawable.download_for_offline_24px); // Download icon
         }
         holder.itemView.setOnClickListener(v -> {
             if (localFile.exists()) {
