@@ -1261,7 +1261,7 @@
                     android:layout_marginTop="10.0dip"
                     android:text="@string/word_challenge_dtl"
                     android:textSize="13sp"
-                    android:textColor="@color/blue_green"
+                    android:textColor="@color/text_primary"
                     android:gravity="left"/>
 
                 <Button

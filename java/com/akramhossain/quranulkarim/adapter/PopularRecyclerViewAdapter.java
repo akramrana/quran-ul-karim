@@ -57,6 +57,7 @@ public class PopularRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         RecyclerViewHolder rvHolder= (RecyclerViewHolder) holder;
         Sura sura = suras.get(position);
+        String numerDecor = "﴾"+sura.getId()+"﴿";
         rvHolder.suraId.setText(sura.getSurah_id());
         rvHolder.nameArabicTxt.setText(sura.getName_arabic());
         rvHolder.nameSimpleTxt.setText(sura.getName_simple());
@@ -64,7 +65,7 @@ public class PopularRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
         rvHolder.revelationPlaceTxt.setText("Revelation place: "+sura.getRevelation_place());
         rvHolder.ayatTxt.setText("Ayah: "+sura.getAyat());
         rvHolder.revelationOrderTxt.setText("Revelation order: "+sura.getRevelation_order());
-        rvHolder.sid.setText(sura.getId());
+        rvHolder.sid.setText(numerDecor);
         rvHolder.nameBangla.setText(sura.getName_bangla());
 
         rvHolder.playBtn.setOnClickListener(new View.OnClickListener() {

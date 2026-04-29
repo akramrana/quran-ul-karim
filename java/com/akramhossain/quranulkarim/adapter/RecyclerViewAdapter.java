@@ -71,7 +71,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         rvHolder.revelationPlaceTxt.setText("Revelation place: " + sura.getRevelation_place());
         rvHolder.ayatTxt.setText("Ayah: " + sura.getAyat());
         rvHolder.revelationOrderTxt.setText("Revelation order: " + sura.getRevelation_order());
-        rvHolder.sid.setText(sura.getId());
+        String numerDecor = "﴾"+sura.getId()+"﴿";
+        rvHolder.sid.setText(numerDecor);
         rvHolder.nameBangla.setText(sura.getName_bangla());
 
         rvHolder.playBtn.setOnClickListener(new View.OnClickListener() {
