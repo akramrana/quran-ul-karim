@@ -32,10 +32,11 @@
                     android:text="Prev"
                     android:textSize="12sp"
                     android:textColor="@color/colorWhiteDN"
-                    android:drawableLeft="@android:drawable/ic_media_previous"
+                    android:drawableLeft="@drawable/arrow_back_ios_24px"
                     android:layout_alignParentLeft="true"
                     android:background="@android:color/transparent"
-                    android:textAllCaps="false"/>
+                    android:textAllCaps="false"
+                    android:drawableTint="@color/bg_icon"/>
 
             </LinearLayout>
 
@@ -87,10 +88,11 @@
                     android:text="Next"
                     android:textSize="12sp"
                     android:textColor="@color/colorWhiteDN"
-                    android:drawableRight="@android:drawable/ic_media_next"
+                    android:drawableRight="@drawable/arrow_forward_ios_24px"
                     android:layout_alignParentRight="true"
                     android:background="@android:color/transparent"
-                    android:textAllCaps="false"/>
+                    android:textAllCaps="false"
+                    android:drawableTint="@color/bg_icon"/>
 
             </LinearLayout>
 

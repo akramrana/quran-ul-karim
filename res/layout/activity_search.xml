@@ -131,14 +131,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tvAdCH"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:layout_below="@+id/searchInput">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center">
+                android:gravity="center"
+                android:layout_gravity="center">
 
                 <TextView
                     android:id="@+id/search_by_term"
@@ -146,7 +147,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:text="@string/string_search_by_term"
-                    android:textColor="@color/color10"
+                    android:textColor="@color/transColor"
                     android:layout_marginBottom="10dp">
                 </TextView>
 
@@ -166,7 +167,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/string_expand"
                     android:textColor="@color/darkblue"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
                     android:visibility="gone">
                 </TextView>

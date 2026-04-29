@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -36,7 +37,8 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="?android:selectableItemBackground"
-                android:src="@android:drawable/ic_media_play" />
+                android:src="@drawable/play_circle_24px"
+                app:tint="@color/icon_color"/>
 
 
         </LinearLayout>
