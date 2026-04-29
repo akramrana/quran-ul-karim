@@ -58,7 +58,7 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:text="@string/name_title_ar"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/text_primary"
                 android:textSize="20sp"
                 android:layout_marginTop="20dp"/>
 
@@ -71,7 +71,7 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:text="@string/name_title_en"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/text_primary"
                 android:textSize="15sp" />
 
             <TextView
@@ -83,7 +83,7 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:text="@string/daily_ayah_ref"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/text_primary"
                 android:textSize="11sp" />
 
             <LinearLayout
