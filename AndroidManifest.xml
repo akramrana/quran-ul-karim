@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:versionCode="99"
-    android:versionName="99.30.04.2026">
+    android:versionCode="100"
+    android:versionName="100.30.04.2026">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Allow to connect with internet -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Network State Permissions -->
