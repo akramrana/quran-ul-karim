@@ -125,8 +125,8 @@
                         android:layout_margin="5dp"
                         android:paddingLeft="6dp"
                         android:paddingRight="6dp"
-                        android:textColor="@color/colorWhiteDN"
-                        android:background="@color/bg_color"/>
+                        android:textColor="@color/text_primary"
+                        android:background="@drawable/bg_card"/>
 
                     <Button
                         android:id="@+id/bayaan"
@@ -137,8 +137,8 @@
                         android:layout_margin="5dp"
                         android:paddingLeft="6dp"
                         android:paddingRight="6dp"
-                        android:textColor="@color/colorWhiteDN"
-                        android:background="@color/colorBlack"/>
+                        android:textColor="@color/text_primary"
+                        android:background="@drawable/bg_card"/>
 
                     <Button
                         android:id="@+id/zakaria"
@@ -149,8 +149,8 @@
                         android:layout_margin="5dp"
                         android:paddingLeft="6dp"
                         android:paddingRight="6dp"
-                        android:textColor="@color/colorWhiteDN"
-                        android:background="@color/colorBlack"/>
+                        android:textColor="@color/text_primary"
+                        android:background="@drawable/bg_card"/>
 
                     <Button
                         android:id="@+id/tafhim"
@@ -161,8 +161,8 @@
                         android:layout_margin="5dp"
                         android:paddingLeft="6dp"
                         android:paddingRight="6dp"
-                        android:textColor="@color/colorWhiteDN"
-                        android:background="@color/colorBlack"/>
+                        android:textColor="@color/text_primary"
+                        android:background="@drawable/bg_card"/>
 
                     <Button
                         android:id="@+id/fathul_mazid"
@@ -173,8 +173,8 @@
                         android:layout_margin="5dp"
                         android:paddingLeft="6dp"
                         android:paddingRight="6dp"
-                        android:textColor="@color/colorWhiteDN"
-                        android:background="@color/colorBlack"/>
+                        android:textColor="@color/text_primary"
+                        android:background="@drawable/bg_card"/>
 
                     <Button
                         android:id="@+id/fezilalil_quran"
@@ -185,8 +185,8 @@
                         android:layout_margin="5dp"
                         android:paddingLeft="6dp"
                         android:paddingRight="6dp"
-                        android:textColor="@color/colorWhiteDN"
-                        android:background="@color/colorBlack"/>
+                        android:textColor="@color/text_primary"
+                        android:background="@drawable/bg_card"/>
 
                     <Button
                         android:id="@+id/jalalayn"
@@ -198,8 +198,8 @@
                         android:paddingLeft="6dp"
                         android:paddingRight="6dp"
                         android:textAllCaps="false"
-                        android:textColor="@color/colorWhiteDN"
-                        android:background="@color/colorBlack"/>
+                        android:textColor="@color/text_primary"
+                        android:background="@drawable/bg_card"/>
 
                 </LinearLayout>
 
