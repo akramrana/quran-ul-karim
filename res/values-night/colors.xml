@@ -106,4 +106,8 @@
     <color name="dark_gray">#2E2E2E</color>
     <color name="bgColorDN">#000000</color>
 
+    <color name="bg_card_v2">#ECFDF5</color>
+    <color name="border_card_v2">#FFCCFBF1</color>
+    <color name="text_primary_v2">#065F46</color>
+
 </resources>

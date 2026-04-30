@@ -788,9 +788,20 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         reading_btn = (Button) findViewById(R.id.reading_btn);
         mushaf_btn = (Button) findViewById(R.id.mushaf_btn);
 
-        translation_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-        reading_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
-        mushaf_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
+        //translation_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
+        translation_btn.setBackground(
+                ContextCompat.getDrawable(this, R.drawable.bg_card)
+        );
+
+        //reading_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
+        reading_btn.setBackground(
+                ContextCompat.getDrawable(this, R.drawable.bg_card)
+        );
+
+        //mushaf_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
+        mushaf_btn.setBackground(
+                ContextCompat.getDrawable(this, R.drawable.bg_card)
+        );
 
         appTheme = mPrefs.getString("APP_NIGHT_MODE", "-1");
         if (appTheme.equals("1")) {
@@ -814,8 +825,21 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                 ayah_list_section.setVisibility(View.VISIBLE);
                 ayah_read_section.setVisibility(View.GONE);
 
-                translation_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                reading_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
+                //translation_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
+                translation_btn.setBackground(
+                        ContextCompat.getDrawable(SuraDetailsActivity.this, R.drawable.bg_card_v2)
+                );
+                translation_btn.setTextColor(
+                        ContextCompat.getColor(SuraDetailsActivity.this, R.color.text_primary_v2)
+                );
+
+                //reading_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
+                reading_btn.setBackground(
+                        ContextCompat.getDrawable(SuraDetailsActivity.this, R.drawable.bg_card)
+                );
+                reading_btn.setTextColor(
+                        ContextCompat.getColor(SuraDetailsActivity.this, R.color.text_primary)
+                );
 
                 if(suraId.equals("1") || suraId.equals("9")){
                     rl.setVisibility(View.GONE);
@@ -830,8 +854,21 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                 ayah_list_section.setVisibility(View.GONE);
                 ayah_read_section.setVisibility(View.VISIBLE);
 
-                reading_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                translation_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
+                //reading_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
+                reading_btn.setBackground(
+                        ContextCompat.getDrawable(SuraDetailsActivity.this, R.drawable.bg_card_v2)
+                );
+                reading_btn.setTextColor(
+                        ContextCompat.getColor(SuraDetailsActivity.this, R.color.text_primary_v2)
+                );
+
+                //translation_btn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
+                translation_btn.setBackground(
+                        ContextCompat.getDrawable(SuraDetailsActivity.this, R.drawable.bg_card)
+                );
+                translation_btn.setTextColor(
+                        ContextCompat.getColor(SuraDetailsActivity.this, R.color.text_primary)
+                );
 
                 if(suraId.equals("1") || suraId.equals("9")){
                     rl.setVisibility(View.GONE);

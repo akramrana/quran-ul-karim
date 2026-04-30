@@ -129,4 +129,8 @@
     <color name="bg_icon">#ECFDF5</color>
     <color name="bgColorDN">#ffffff</color>
 
+    <color name="bg_card_v2">#064E3B</color>
+    <color name="border_card_v2">#065F46</color>
+    <color name="text_primary_v2">#ECFDF5</color>
+
 </resources>

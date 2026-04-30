@@ -391,7 +391,9 @@ public class QuranPageFragment extends Fragment {
             if (checkPermission()) {
                 new BackgroundTask(requireActivity()) { // safer than requireActivity()
                     @Override
-                    public void onPreExecute() {}
+                    public void onPreExecute() {
+                        Toast.makeText(requireActivity(), "Playing Audio.", Toast.LENGTH_LONG).show();
+                    }
 
                     @Override
                     public void doInBackground() {
@@ -423,6 +425,7 @@ public class QuranPageFragment extends Fragment {
                             //
                         } catch (MalformedURLException e) {
                             e.printStackTrace();
+                            Toast.makeText(requireActivity(), "Failed to download audio file, please try again.", Toast.LENGTH_LONG).show();
                         }
                     }
 
@@ -434,6 +437,8 @@ public class QuranPageFragment extends Fragment {
             }else {
                 requestPermission(); // Code for permission
             }
+        }else{
+            Toast.makeText(requireActivity(), "No internet connection.", Toast.LENGTH_LONG).show();
         }
     }
 

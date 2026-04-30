@@ -287,9 +287,9 @@
                     android:layout_width="wrap_content"
                     android:text="Translation"
                     android:textSize="9sp"
-                    android:textColor="@color/colorWhiteDN"
+                    android:textColor="@color/text_primary"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
+                    android:background="@drawable/bg_card"
                     android:textAllCaps="false"/>
 
                 <Button
@@ -297,21 +297,21 @@
                     android:layout_width="wrap_content"
                     android:text="Reading"
                     android:textSize="9sp"
-                    android:textColor="@color/colorWhiteDN"
+                    android:textColor="@color/text_primary"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
+                    android:background="@drawable/bg_card"
                     android:textAllCaps="false"
-                    android:layout_marginRight="1dp"
-                    android:layout_marginLeft="1dp"/>
+                    android:layout_marginRight="3dp"
+                    android:layout_marginLeft="3dp"/>
 
                 <Button
                     android:id="@+id/mushaf_btn"
                     android:layout_width="wrap_content"
                     android:text="Mushaf (KSA)"
                     android:textSize="9sp"
-                    android:textColor="@color/colorWhiteDN"
+                    android:textColor="@color/text_primary"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
+                    android:background="@drawable/bg_card"
                     android:textAllCaps="false"/>
 
             </LinearLayout>
