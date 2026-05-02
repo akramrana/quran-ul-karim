@@ -145,10 +145,14 @@ public class PrayerScheduler {
         AlarmManager am = (AlarmManager) ctx.getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(ctx, AlarmReceiver.class);
         PendingIntent pi = PendingIntent.getBroadcast(
-                ctx, requestCode, i,
-                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+                ctx,
+                requestCode,
+                i,
+                PendingIntent.FLAG_NO_CREATE | PendingIntent.FLAG_IMMUTABLE
         );
-        if (am != null) am.cancel(pi);
+        if (pi != null) {
+            if (am != null) am.cancel(pi);
+        }
     }
 
 }
