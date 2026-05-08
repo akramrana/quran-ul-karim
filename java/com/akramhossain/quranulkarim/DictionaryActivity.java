@@ -22,17 +22,26 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import io.sentry.Sentry;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.akramhossain.quranulkarim.adapter.SurahAutoAdapter;
 import com.akramhossain.quranulkarim.adapter.WordListViewAdapter;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
+import com.akramhossain.quranulkarim.model.SurahItem;
 import com.akramhossain.quranulkarim.model.Word;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DictionaryActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
@@ -47,10 +56,18 @@ public class DictionaryActivity extends AppCompatActivity implements SearchView.
     Integer offset = 0;
     Integer limit = 100;
     Integer counter = 0;
-    SearchView editsearch;
+    //SearchView editsearch;
     String searchTxt = "";
     Handler mHandler = new Handler();
     private static final int PERMISSION_REQUEST_CODE = 100;
+    List<SurahItem> surahList;
+    List<String> ayahList;
+    int selectedSurahNo = 0;
+    AutoCompleteTextView text;
+    AutoCompleteTextView ayahDropdown;
+    int selectedAyah = 0;
+    SurahAutoAdapter dataAdapter;
+    ArrayAdapter<String> ayahAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,11 +135,18 @@ public class DictionaryActivity extends AppCompatActivity implements SearchView.
                                 countHistory.moveToFirst();
                                 int maxHistoryCount = countHistory.getInt(0);
                                 countHistory.close();
-                                int maxPageCount = (int) Math.ceil(maxHistoryCount / limit);
+                                //int maxPageCount = (int) Math.ceil(maxHistoryCount / limit);
+                                int maxPageCount = (int) Math.ceil((double) maxHistoryCount / limit);
                                 if (counter < maxPageCount) {
                                     counter = (counter + 1);
                                     offset = offset + limit;
-                                    getDataFromLocalDb();
+                                    //getDataFromLocalDb();
+                                    recyclerView.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            getDataFromLocalDb();
+                                        }
+                                    });
                                 }
                             }catch (Exception e){
                                 Log.e("On Scroll Count Check", e.getMessage());
@@ -143,31 +167,156 @@ public class DictionaryActivity extends AppCompatActivity implements SearchView.
 
         getDataFromLocalDb();
 
-        editsearch = (SearchView) findViewById(R.id.search);
-        editsearch.setOnQueryTextListener(this);
+        //editsearch = (SearchView) findViewById(R.id.search);
+        //editsearch.setOnQueryTextListener(this);
 
         if (checkPermission()) {
 
         }else{
             requestPermission();
         }
+
+        surahList = new ArrayList<>();
+        surahList.clear();
+        //
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+        String sql = "SELECT sid,name_simple,ayat FROM sura ORDER BY sid ASC";
+        Cursor cursor = db.rawQuery(sql, null);
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+
+                    int iSid = cursor.getInt(cursor.getColumnIndexOrThrow("sid"));
+                    String surahName = cursor.getString(cursor.getColumnIndexOrThrow("name_simple")).toString();
+                    String ayat = cursor.getString(cursor.getColumnIndexOrThrow("ayat")).toString();
+                    surahList.add(new SurahItem(iSid, surahName, ayat));
+
+                }while (cursor.moveToNext());
+            }
+        }catch (Exception e){
+            Log.e(TAG, e.getMessage());
+            Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
+        }finally {
+            if (cursor != null && !cursor.isClosed()){
+                cursor.close();
+            }
+            db.close();
+        }
+        text=(AutoCompleteTextView)findViewById(R.id.autoCompleteTextView1);
+        dataAdapter = new SurahAutoAdapter(this, surahList);
+        text.setAdapter(dataAdapter);
+        text.setThreshold(1);
+
+        ayahDropdown = findViewById(R.id.autoCompleteTextView3);
+
+        text.setOnItemClickListener((parent, view, position, id) -> {
+            SurahItem item = (SurahItem) parent.getItemAtPosition(position);
+            selectedSurahNo = item.sid;
+            Log.d("selectedSurahNo", "sid=" + item.sid + " label=" + item.name+ " ayat=" + item.ayat);
+            words = new ArrayList<Word>();
+            rvAdapter = new WordListViewAdapter(DictionaryActivity.this, words, DictionaryActivity.this);
+            recyclerview.setAdapter(rvAdapter);
+            offset = 0;
+            getDataFromLocalDb();
+            //
+            ayahList = new ArrayList<>();
+            ayahList.clear();
+            for(int i = 1; i <= Integer.parseInt(item.ayat); i++) {
+                ayahList.add(String.valueOf(i));
+            }
+            ayahAdapter = new ArrayAdapter<>(DictionaryActivity.this,android.R.layout.simple_dropdown_item_1line,ayahList);
+            ayahDropdown.setAdapter(ayahAdapter);
+            ayahDropdown.setThreshold(1);
+            ayahDropdown.setText("", false);
+        });
+
+        ayahDropdown.setOnItemClickListener((parent, view, position, id) -> {
+            String selectedAyahString = parent.getItemAtPosition(position).toString();
+            selectedAyah = Integer.parseInt(selectedAyahString);
+            Log.d("AYAH", selectedAyahString);
+            if(selectedAyah!=0) {
+                words = new ArrayList<Word>();
+                rvAdapter = new WordListViewAdapter(DictionaryActivity.this, words, DictionaryActivity.this);
+                recyclerview.setAdapter(rvAdapter);
+                offset = 0;
+                getDataFromLocalDb();
+            }
+        });
+
+        TextInputEditText search = findViewById(R.id.search);
+
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                searchTxt = s.toString();
+
+                mHandler.removeCallbacksAndMessages(null);
+                mHandler.postDelayed(() -> {
+                    words = new ArrayList<>();
+                    rvAdapter = new WordListViewAdapter(DictionaryActivity.this, words, DictionaryActivity.this);
+                    recyclerview.setAdapter(rvAdapter);
+
+                    offset = 0;
+                    getDataFromLocalDb();
+                }, 300);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+
+        TextView clear_filter = findViewById(R.id.clear_filter);
+        clear_filter.setOnClickListener(v -> {
+            words.clear();
+            rvAdapter.notifyDataSetChanged();
+
+
+            text.setText("", false);
+
+            ayahList.clear();
+            ayahAdapter.notifyDataSetChanged();
+            ayahDropdown.setText("", false);
+
+            search.setText("");
+
+            offset = 0;
+            selectedAyah = 0;
+            selectedSurahNo = 0;
+
+            getDataFromLocalDb();
+        });
+
     }
 
     private void getDataFromLocalDb() {
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
         String sql = "";
         searchTxt = searchTxt.replaceAll("\'","");
+
+        String whereSid = "";
+        String whereSid2 = "";
+        if(selectedSurahNo !=0 && selectedAyah == 0){
+            whereSid = " WHERE b.surah_id = "+selectedSurahNo+" ";
+            whereSid2 = " AND b.surah_id = "+selectedSurahNo+" ";
+        }
+        if(selectedSurahNo !=0 && selectedAyah != 0){
+            whereSid = " WHERE b.surah_id = "+selectedSurahNo+" AND b.verse_id = "+selectedAyah+" ";
+            whereSid2 = " AND b.surah_id = "+selectedSurahNo+"  AND b.verse_id = "+selectedAyah+" ";
+        }
         if(searchTxt.equals("")) {
              sql = "SELECT words.*, b.translate_bn as bangla,b.words_id " +
                      "FROM words " +
-                     "inner join bywords b on words.word_id = b._id " +
+                     "inner join bywords b on words.word_id = b._id " +whereSid+
                      //"group by arabic  " +
                      "order by word_id ASC limit " + offset + "," + limit;
         }else{
              sql = "SELECT words.*, b.translate_bn as bangla,b.words_id " +
                      "FROM words " +
                      "inner join bywords b on words.word_id = b._id " +
-                     "WHERE translation LIKE '%"+searchTxt+"%' OR transliteration LIKE '%"+searchTxt+"%' OR arabic LIKE '%"+searchTxt+"%' " +
+                     "WHERE (translation LIKE '%"+searchTxt+"%' OR transliteration LIKE '%"+searchTxt+"%' OR arabic LIKE '%"+searchTxt+"%') " +whereSid2+
                      //"group by arabic  " +
                      "Order by word_id ASC " +
                      "limit " + offset + "," + limit;

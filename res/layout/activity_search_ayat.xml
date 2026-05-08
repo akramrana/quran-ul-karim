@@ -67,8 +67,7 @@
                 android:layout_height="wrap_content"
                 android:minHeight="48dp"
                 android:textSize="14sp"
-                android:hint="@string/spinner_ayat_term"
-                android:textStyle="italic"/>
+                android:hint="@string/spinner_ayat_term"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

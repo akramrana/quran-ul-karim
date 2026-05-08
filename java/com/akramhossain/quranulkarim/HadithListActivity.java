@@ -134,7 +134,13 @@ public class HadithListActivity extends AppCompatActivity {
                                 counter = (counter + 1);
                                 page = Integer.toString(counter);
                                 URL = host+"/api/v1/app-hadith-list.php?kitab_id="+kitabId+"&book_id="+referenceBook+"&bookInfo=1&page="+page+"&perPage=10";
-                                getDataFromInternet();
+                                //getDataFromInternet();
+                                recyclerView.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        getDataFromInternet();
+                                    }
+                                });
                             }
                         }
                     }

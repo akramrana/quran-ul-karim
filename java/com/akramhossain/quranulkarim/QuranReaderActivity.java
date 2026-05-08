@@ -118,7 +118,7 @@ public class QuranReaderActivity extends AppCompatActivity {
         surahList.clear();
         //
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-        String sql = "SELECT sid,name_simple FROM sura ORDER BY sid ASC";
+        String sql = "SELECT sid,name_simple,ayat FROM sura ORDER BY sid ASC";
         Cursor cursor = db.rawQuery(sql, null);
         try {
             if (cursor.moveToFirst()) {
@@ -126,7 +126,8 @@ public class QuranReaderActivity extends AppCompatActivity {
 
                     int iSid = cursor.getInt(cursor.getColumnIndexOrThrow("sid"));
                     String surahName = cursor.getString(cursor.getColumnIndexOrThrow("name_simple")).toString();
-                    surahList.add(new SurahItem(iSid, surahName));
+                    String ayat = cursor.getString(cursor.getColumnIndexOrThrow("ayat")).toString();
+                    surahList.add(new SurahItem(iSid, surahName, ayat));
 
                 }while (cursor.moveToNext());
             }

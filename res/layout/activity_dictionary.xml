@@ -52,22 +52,102 @@
 
         </RelativeLayout>
 
-        <android.widget.SearchView
-            android:id="@+id/search"
-            android:layout_width="fill_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:iconifiedByDefault="false"
-            android:layout_marginBottom="15dp"
-            android:queryHint="Enter keyword to search..."
-            android:layout_below="@+id/topBarDictionary">
-        </android.widget.SearchView>
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_below="@+id/topBarDictionary"
+            android:id="@+id/searchSec">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dip"
+                android:layout_marginRight="8dip"
+                app:hintTextAppearance="@style/suraLabel"
+                android:id="@+id/textLabel1">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteTextView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:hint="@string/spinner_title"
+                    android:textSize="14sp">
+                </AutoCompleteTextView>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+<!--            <android.widget.SearchView-->
+<!--                android:id="@+id/search"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:iconifiedByDefault="false"-->
+<!--                android:layout_marginBottom="15dp"-->
+<!--                android:queryHint="Enter keyword to search...">-->
+<!--            </android.widget.SearchView>-->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dip"
+                android:layout_marginRight="8dip"
+                app:hintTextAppearance="@style/suraLabel"
+                android:id="@+id/textLabel3">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteTextView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:hint="@string/spinner_title_ayah"
+                    android:textSize="14sp">
+                </AutoCompleteTextView>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dip"
+                android:layout_marginRight="8dip"
+                app:hintTextAppearance="@style/ayatLabel"
+                android:id="@+id/textLabel2">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:textSize="14sp"
+                    android:hint="Enter keyword to search..."
+                    android:imeOptions="actionSearch"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/clear_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="15sp"
+                android:layout_gravity="left"
+                android:text="@string/clear_filter"
+                android:background="@drawable/rounded_bg"
+                android:layout_marginBottom="10dp"
+                android:padding="5dp"
+                android:layout_marginLeft="11dip"/>
+
+        </LinearLayout>
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/dictionary_word_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/search"/>
+            android:layout_below="@id/searchSec"/>
 
         <ProgressBar
             android:id="@+id/progressBar"

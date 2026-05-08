@@ -160,11 +160,18 @@ public class JuzHizbRubDetailsActivity extends AppCompatActivity {
                                 countHistory.moveToFirst();
                                 int maxHistoryCount = countHistory.getInt(0);
                                 countHistory.close();
-                                int maxPageCount = (int) Math.ceil(maxHistoryCount / limit);
+                                //int maxPageCount = (int) Math.ceil(maxHistoryCount / limit);
+                                int maxPageCount = (int) Math.ceil((double) maxHistoryCount / limit);
                                 if (counter < maxPageCount) {
                                     counter = (counter + 1);
                                     offset = offset + limit;
-                                    getDataFromLocalDb();
+                                    //getDataFromLocalDb();
+                                    recyclerView.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            getDataFromLocalDb();
+                                        }
+                                    });
                                 }
                             }catch (Exception e){
                                 Log.e("On Scroll Count Check", e.getMessage());

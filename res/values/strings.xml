@@ -351,5 +351,7 @@
     <string name="system_utilities"><![CDATA[System & Utilities]]></string>
     <string name="word_challenge_dtl">Unlock the meanings of\nthe sacred text through\ninteractive puzzles.</string>
     <string name="daily_ayah_ref">Al-Qamar (54:40)</string>
+    <string name="spinner_title_ayah">Enter ayah number</string>
+    <string name="clear_filter">Clear Filter</string>
 
 </resources>

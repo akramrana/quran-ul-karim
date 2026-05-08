@@ -146,7 +146,13 @@ public class HadithSearchActivity extends AppCompatActivity {
                                 counter = (counter + 1);
                                 page = Integer.toString(counter);
                                 SEARCH_URL = host+"/api/v1/app-search-hadith.php?q="+search_term+"&kitab_id="+kitabId+"&page="+page+"&perPage=20";
-                                getDataSearchDataFromInternet();
+                                //getDataSearchDataFromInternet();
+                                recyclerView.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        getDataSearchDataFromInternet();
+                                    }
+                                });
                             }
                         }
                     }
