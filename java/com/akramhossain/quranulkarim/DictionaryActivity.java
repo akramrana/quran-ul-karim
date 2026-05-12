@@ -28,6 +28,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,7 @@ import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.SurahItem;
 import com.akramhossain.quranulkarim.model.Word;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -209,6 +211,8 @@ public class DictionaryActivity extends AppCompatActivity implements SearchView.
 
         ayahDropdown = findViewById(R.id.autoCompleteTextView3);
 
+        ayahList = new ArrayList<>();
+
         text.setOnItemClickListener((parent, view, position, id) -> {
             SurahItem item = (SurahItem) parent.getItemAtPosition(position);
             selectedSurahNo = item.sid;
@@ -219,7 +223,6 @@ public class DictionaryActivity extends AppCompatActivity implements SearchView.
             offset = 0;
             getDataFromLocalDb();
             //
-            ayahList = new ArrayList<>();
             ayahList.clear();
             for(int i = 1; i <= Integer.parseInt(item.ayat); i++) {
                 ayahList.add(String.valueOf(i));
@@ -276,8 +279,10 @@ public class DictionaryActivity extends AppCompatActivity implements SearchView.
 
             text.setText("", false);
 
-            ayahList.clear();
-            ayahAdapter.notifyDataSetChanged();
+            if (ayahList != null && ayahAdapter != null) {
+                ayahList.clear();
+                ayahAdapter.notifyDataSetChanged();
+            }
             ayahDropdown.setText("", false);
 
             search.setText("");
@@ -289,6 +294,36 @@ public class DictionaryActivity extends AppCompatActivity implements SearchView.
             getDataFromLocalDb();
         });
 
+        TextView collapse = findViewById(R.id.collapse);
+        TextView expand = findViewById(R.id.expand);
+
+        TextInputLayout textLabel1 = findViewById(R.id.textLabel1);
+        TextInputLayout textLabel2 = findViewById(R.id.textLabel2);
+        TextInputLayout textLabel3 = findViewById(R.id.textLabel3);
+
+        LinearLayout layout = findViewById(R.id.filter_sec);
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) layout.getLayoutParams();
+
+        collapse.setOnClickListener(v -> {
+            textLabel1.setVisibility(View.GONE);
+            textLabel2.setVisibility(View.GONE);
+            textLabel3.setVisibility(View.GONE);
+            expand.setVisibility(View.VISIBLE);
+            collapse.setVisibility(View.GONE);
+
+            params.topMargin = 25;
+            layout.setLayoutParams(params);
+        });
+        expand.setOnClickListener(v -> {
+            textLabel1.setVisibility(View.VISIBLE);
+            textLabel2.setVisibility(View.VISIBLE);
+            textLabel3.setVisibility(View.VISIBLE);
+            expand.setVisibility(View.GONE);
+            collapse.setVisibility(View.VISIBLE);
+
+            params.topMargin = 0;
+            layout.setLayoutParams(params);
+        });
     }
 
     private void getDataFromLocalDb() {

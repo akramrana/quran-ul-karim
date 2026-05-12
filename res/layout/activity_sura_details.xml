@@ -44,6 +44,7 @@
                     android:layout_alignParentLeft="true"
                     android:background="@android:color/transparent"
                     android:drawableLeft="@drawable/arrow_back_ios_24px"
+                    android:layout_marginLeft="5dp"
                     android:text="Prev"
                     android:textColor="@color/colorWhiteDN"
                     android:textSize="10sp"

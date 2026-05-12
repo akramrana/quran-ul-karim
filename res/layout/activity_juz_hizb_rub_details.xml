@@ -36,6 +36,7 @@
                     android:textColor="@color/colorWhiteDN"
                     android:background="@android:color/transparent"
                     android:textAllCaps="false"
+                    android:layout_marginLeft="5dp"
                     android:drawableTint="@color/bg_icon"/>
 
             </LinearLayout>

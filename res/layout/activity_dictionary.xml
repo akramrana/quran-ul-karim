@@ -56,7 +56,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
             android:layout_below="@+id/topBarDictionary"
             android:id="@+id/searchSec">
 
@@ -127,18 +126,64 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/clear_filter"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/text_primary"
-                android:textSize="15sp"
-                android:layout_gravity="left"
-                android:text="@string/clear_filter"
-                android:background="@drawable/rounded_bg"
-                android:layout_marginBottom="10dp"
-                android:padding="5dp"
-                android:layout_marginLeft="11dip"/>
+                android:orientation="horizontal"
+                android:id="@+id/filter_sec">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="left">
+
+                    <TextView
+                        android:id="@+id/clear_filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_primary"
+                        android:textSize="15sp"
+                        android:text="@string/clear_filter"
+                        android:background="@drawable/rounded_bg"
+                        android:layout_marginBottom="10dp"
+                        android:padding="5dp"
+                        android:layout_marginLeft="11dip"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="right">
+
+                    <TextView
+                        android:id="@+id/collapse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/string_collapse"
+                        android:textColor="@color/darkblue"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp">
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/expand"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/string_expand"
+                        android:textColor="@color/darkblue"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        android:visibility="gone">
+                    </TextView>
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 
