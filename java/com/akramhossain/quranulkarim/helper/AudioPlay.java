@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import androidx.media3.common.MediaItem;
+import androidx.media3.common.Player;
 import androidx.media3.exoplayer.ExoPlayer;
 
 public class AudioPlay {
@@ -160,12 +161,33 @@ public class AudioPlay {
         }
     }
 
-    public static void playExoAudio(Context context, String audioUri) {
+    public static synchronized void playExoAudio(Context context, String audioUri) {
+        if (audioUri != null &&  audioUri.equals(mp3Uri) && isAudioPlaying) return;
+
         runOnMain(() -> {
             try {
                 stopAudio();
 
                 player = new ExoPlayer.Builder(context.getApplicationContext()).build();
+
+                player.addListener(new Player.Listener() {
+
+                    @Override
+                    public void onPlaybackStateChanged(int playbackState) {
+
+                        if (playbackState == Player.STATE_ENDED) {
+
+                            isAudioPlaying = false;
+                            isAudioStopped = true;
+                        }
+                    }
+
+                    @Override
+                    public void onIsPlayingChanged(boolean isPlaying) {
+                        isAudioPlaying = isPlaying;
+                    }
+                });
+
                 player.setMediaItem(MediaItem.fromUri(Uri.parse(audioUri)));
                 player.prepare();
                 player.play();
@@ -181,7 +203,7 @@ public class AudioPlay {
         });
     }
 
-    private static void stopExoAudio() {
+    private static synchronized void stopExoAudio() {
         if (player == null) return;
 
         ExoPlayer temp = player;
