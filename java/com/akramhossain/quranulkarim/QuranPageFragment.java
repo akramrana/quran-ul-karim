@@ -414,13 +414,24 @@ public class QuranPageFragment extends Fragment {
                             File file = new File(fullPath);
                             if (file.exists()) {
                                 Log.d("File Path:", "Exist!");
-                                AudioPlay.stopAudio();
-                                AudioPlay.playAudio(getActivity(), fullPath);
+                                if (!AudioPlay.isPlayableAudio(file.getAbsolutePath())) {
+                                    Log.d("AUDIO_ERROR", "ERROR - Could not play audio file with MediaPlayer");
+                                    AudioPlay.playExoAudio(getActivity(), fullPath);
+                                } else {
+                                    AudioPlay.stopAudio();
+                                    AudioPlay.playAudio(getActivity(), fullPath);
+                                }
                             } else {
                                 Log.d("File Path:", "Not Exist Downloading!");
                                 downloadFile(updatedUrl, fileName, mPath);
-                                AudioPlay.stopAudio();
-                                AudioPlay.playAudio(getActivity(), fullPath);
+
+                                if (!AudioPlay.isPlayableAudio(file.getAbsolutePath())) {
+                                    Log.d("AUDIO_ERROR", "ERROR - Could not play audio file with MediaPlayer");
+                                    AudioPlay.playExoAudio(getActivity(), fullPath);
+                                } else {
+                                    AudioPlay.stopAudio();
+                                    AudioPlay.playAudio(getActivity(), fullPath);
+                                }
                             }
                             //
                         } catch (MalformedURLException e) {

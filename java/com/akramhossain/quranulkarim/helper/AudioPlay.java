@@ -2,7 +2,14 @@ package com.akramhossain.quranulkarim.helper;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.util.Log;
+
+import android.os.Handler;
+import android.os.Looper;
+
+import androidx.media3.common.MediaItem;
+import androidx.media3.exoplayer.ExoPlayer;
 
 public class AudioPlay {
 
@@ -11,6 +18,8 @@ public class AudioPlay {
     private static boolean isAudioLoaded = false;
     private static boolean isAudioStopped = false;
     private static String mp3Uri;
+
+    private static ExoPlayer player;
 
     private AudioPlay() {
         // Private constructor to prevent instantiation
@@ -46,6 +55,10 @@ public class AudioPlay {
             mp.release();
             mp = null;
         }
+
+        // ExoPlayer
+        stopExoAudio();
+
         resetAudioFlags();
     }
 
@@ -118,5 +131,69 @@ public class AudioPlay {
         isAudioLoaded = false;
         isAudioStopped = true;
         mp3Uri = null;
+    }
+
+    public static boolean isPlayableAudio(String path) {
+        MediaPlayer mp = new MediaPlayer();
+
+        try {
+            mp.setDataSource(path);
+            mp.prepare();
+
+            int duration = mp.getDuration();
+            Log.d("AUDIO", "MediaPlayer duration = " + duration);
+
+            return true; // playable even if duration is 0
+        } catch (Exception e) {
+            Log.e("AUDIO", "Not playable", e);
+            return false;
+        } finally {
+            mp.release();
+        }
+    }
+
+    private static void runOnMain(Runnable runnable) {
+        if (Looper.myLooper() == Looper.getMainLooper()) {
+            runnable.run();
+        } else {
+            new Handler(Looper.getMainLooper()).post(runnable);
+        }
+    }
+
+    public static void playExoAudio(Context context, String audioUri) {
+        runOnMain(() -> {
+            try {
+                stopAudio();
+
+                player = new ExoPlayer.Builder(context.getApplicationContext()).build();
+                player.setMediaItem(MediaItem.fromUri(Uri.parse(audioUri)));
+                player.prepare();
+                player.play();
+
+                isAudioPlaying = true;
+                isAudioLoaded = true;
+                isAudioStopped = false;
+                mp3Uri = audioUri;
+
+            } catch (Exception e) {
+                Log.e("PLAYER", "ExoPlayer error", e);
+            }
+        });
+    }
+
+    private static void stopExoAudio() {
+        if (player == null) return;
+
+        ExoPlayer temp = player;
+        player = null;
+
+        runOnMain(() -> {
+            try {
+                temp.stop();
+                temp.release();
+            } catch (Exception e) {
+                Log.e("EXO", "Release error", e);
+            }
+        });
     }
 }

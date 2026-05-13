@@ -150,13 +150,24 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                 File file = new File(fullPath);
                                 if (file.exists()) {
                                     Log.d("File Path:", "Exist!");
-                                    AudioPlay.stopAudio();
-                                    AudioPlay.playAudio(c, fullPath);
+                                    if (!AudioPlay.isPlayableAudio(file.getAbsolutePath())) {
+                                        Log.d("AUDIO_ERROR", "ERROR - Could not play audio file with MediaPlayer");
+                                        AudioPlay.playExoAudio(c, fullPath);
+                                    } else {
+                                        AudioPlay.stopAudio();
+                                        AudioPlay.playAudio(c, fullPath);
+                                    }
                                 } else {
                                     Log.d("File Path:", "Not Exist Downloading!");
                                     downloadFile(mp3Url, mp3name, mPath);
-                                    AudioPlay.stopAudio();
-                                    AudioPlay.playAudio(c, fullPath);
+
+                                    if (!AudioPlay.isPlayableAudio(file.getAbsolutePath())) {
+                                        Log.d("AUDIO_ERROR", "ERROR - Could not play audio file with MediaPlayer");
+                                        AudioPlay.playExoAudio(c, fullPath);
+                                    } else {
+                                        AudioPlay.stopAudio();
+                                        AudioPlay.playAudio(c, fullPath);
+                                    }
                                 }
                                 //AudioPlay.stopAudio();
                                 //AudioPlay.playAudio(c, mp3Url);
@@ -169,72 +180,6 @@ public class WordListViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                 }
                             }
                         }.execute();
-                        /*new AsyncTask<Void, Void, Void>() {
-                            protected void onPreExecute() {
-                                pd = new ProgressDialog(c);
-                                pd.setTitle("Processing...");
-                                pd.setMessage("Please wait.");
-                                pd.setCancelable(true);
-                                pd.setIndeterminate(true);
-                                pd.show();
-                            }
-
-                            protected Void doInBackground(Void... params) {
-                                String[] data = word.getAyah_key().split(":", 2);
-                                String sura = data[0];
-                                String ayat = data[1];
-                                String position = word.getPosition();
-                                int slen = sura.length();
-                                int alen = ayat.length();
-                                int plen = position.length();
-                                //
-                                if (slen == 2) {
-                                    sura = "0" + sura;
-                                } else if (slen == 1) {
-                                    sura = "00" + sura;
-                                }
-
-                                if (alen == 2) {
-                                    ayat = "0" + ayat;
-                                } else if (alen == 1) {
-                                    ayat = "00" + ayat;
-                                }
-
-                                if (plen == 2) {
-                                    position = "0" + position;
-                                } else if (plen == 1) {
-                                    position = "00" + position;
-                                }
-                                String mp3name = sura + "_" + ayat + "_" + position + ".mp3";
-                                Log.d("MP3 Name", mp3name);
-                                String mp3Url = "https://verses.quran.com/wbw/" + mp3name;
-                                //
-                                String mPath = c.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) + "/";
-                                String fullPath = mPath + mp3name;
-                                Log.d("File Path:", mPath);
-                                Log.d("Full File Path:", fullPath);
-                                File file = new File(fullPath);
-                                if (file.exists()) {
-                                    Log.d("File Path:", "Exist!");
-                                    AudioPlay.stopAudio();
-                                    AudioPlay.playAudio(c, fullPath);
-                                } else {
-                                    Log.d("File Path:", "Not Exist Downloading!");
-                                    downloadFile(mp3Url, mp3name, mPath);
-                                    AudioPlay.stopAudio();
-                                    AudioPlay.playAudio(c, fullPath);
-                                }
-                                //AudioPlay.stopAudio();
-                                //AudioPlay.playAudio(c, mp3Url);
-                                return null;
-                            }
-
-                            protected void onPostExecute(Void result) {
-                                if (pd != null && pd.isShowing()) {
-                                    pd.dismiss();
-                                }
-                            }
-                        }.execute();*/
                     }else{
                         requestPermission(); // Code for permission
                     }

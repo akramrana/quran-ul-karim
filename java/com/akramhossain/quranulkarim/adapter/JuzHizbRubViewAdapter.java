@@ -217,13 +217,24 @@ public class JuzHizbRubViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                                     File file = new File(fullPath);
                                     if (file.exists()) {
                                         Log.d("File Path:", "Exist!");
-                                        AudioPlay.stopAudio();
-                                        AudioPlay.playAudio(c, fullPath);
+                                        if (!AudioPlay.isPlayableAudio(file.getAbsolutePath())) {
+                                            Log.d("AUDIO_ERROR", "ERROR - Could not play audio file with MediaPlayer");
+                                            AudioPlay.playExoAudio(c, fullPath);
+                                        } else {
+                                            AudioPlay.stopAudio();
+                                            AudioPlay.playAudio(c, fullPath);
+                                        }
                                     } else {
                                         Log.d("File Path:", "Not Exist Downloading!");
                                         downloadFile(updatedUrl, fileName, mPath);
-                                        AudioPlay.stopAudio();
-                                        AudioPlay.playAudio(c, fullPath);
+
+                                        if (!AudioPlay.isPlayableAudio(file.getAbsolutePath())) {
+                                            Log.d("AUDIO_ERROR", "ERROR - Could not play audio file with MediaPlayer");
+                                            AudioPlay.playExoAudio(c, fullPath);
+                                        } else {
+                                            AudioPlay.stopAudio();
+                                            AudioPlay.playAudio(c, fullPath);
+                                        }
                                     }
                                     //
                                 } catch (MalformedURLException e) {
@@ -238,50 +249,6 @@ public class JuzHizbRubViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                                 }
                             }
                         }.execute();
-                        /*new AsyncTask<Void, Void, Void>() {
-                            protected void onPreExecute() {
-                                pd = new ProgressDialog(c);
-                                pd.setTitle("Processing...");
-                                pd.setMessage("Please wait.");
-                                pd.setCancelable(false);
-                                pd.setIndeterminate(true);
-                                pd.show();
-                            }
-
-                            protected Void doInBackground(Void... params) {
-                                try {
-                                    URL url = new URL(ayah.getAudio_url());
-                                    String fileName = url.getFile().replaceAll("/", "_").toLowerCase();
-                                    Log.d("File Name:", fileName);
-                                    //
-                                    String mPath = c.getExternalFilesDir(Environment.DIRECTORY_MUSIC) + "/";
-                                    String fullPath = mPath + fileName;
-                                    Log.d("File Path:", mPath);
-                                    Log.d("Full File Path:", fullPath);
-                                    File file = new File(fullPath);
-                                    if (file.exists()) {
-                                        Log.d("File Path:", "Exist!");
-                                        AudioPlay.stopAudio();
-                                        AudioPlay.playAudio(c, fullPath);
-                                    } else {
-                                        Log.d("File Path:", "Not Exist Downloading!");
-                                        downloadFile(ayah.getAudio_url(), fileName, mPath);
-                                        AudioPlay.stopAudio();
-                                        AudioPlay.playAudio(c, fullPath);
-                                    }
-                                    //
-                                } catch (MalformedURLException e) {
-                                    e.printStackTrace();
-                                }
-                                return null;
-                            }
-
-                            protected void onPostExecute(Void result) {
-                                if (pd!=null && pd.isShowing()) {
-                                    pd.dismiss();
-                                }
-                            }
-                        }.execute();*/
                     } else {
                         requestPermission(); // Code for permission
                     }
