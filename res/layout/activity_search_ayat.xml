@@ -52,42 +52,61 @@
 
         </RelativeLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="fill_parent"
+        <LinearLayout
+            android:id="@+id/search_sec"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dip"
-            android:layout_marginRight="8dip"
-            android:layout_below="@+id/topSearchBar"
-            app:hintTextAppearance="@style/ayatLabel"
-            android:id="@+id/textLabel2">
+            android:orientation="vertical"
+            android:layout_below="@+id/topSearchBar">
 
-            <EditText
-                android:id="@+id/ayat_term"
-                android:layout_width="fill_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textLabel2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:textSize="14sp"
-                android:hint="@string/spinner_ayat_term"/>
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:layout_below="@+id/topSearchBar"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxStrokeWidth="1dp"
+                app:hintTextColor="@color/text_primary"
+                android:layout_marginBottom="10sp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ayat_term"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:textSize="14sp"
+                    android:background="@null"
+                    android:hint="@string/spinner_ayat_term"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_primary"
+                    android:gravity="center"/>
 
-        <Button
-            android:id="@+id/search_sura_btn"
-            android:layout_width="104dp"
-            android:layout_height="44dp"
-            android:layout_below="@+id/textLabel2"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/bg_card"
-            android:textColor="@color/text_primary"
-            android:text="Search"
-            android:layout_marginBottom="15sp"
-            android:textAllCaps="false"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/search_sura_btn"
+                android:layout_width="104dp"
+                android:layout_height="44dp"
+                android:layout_below="@+id/textLabel2"
+                android:background="@drawable/bg_card"
+                android:textColor="@color/text_primary"
+                android:text="Search"
+                android:textAllCaps="false"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/bookmark_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/search_sura_btn"/>
+            android:layout_below="@id/search_sec"/>
 
         <ProgressBar
             android:id="@+id/progressBar"

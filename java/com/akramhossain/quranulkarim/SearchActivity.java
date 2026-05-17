@@ -178,7 +178,6 @@ public class SearchActivity extends AppCompatActivity {
                     quickLinkBtn.setText("Add favourites");
                     quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.star_fill_24px, 0, 0, 0);
                 }
-                quickLinkBtn.setVisibility(View.VISIBLE);
                 Log.i("ID", String.valueOf(selectedSurahNo));
                 //
                 String verseNum = ayat_number.getText().toString();
@@ -211,6 +210,7 @@ public class SearchActivity extends AppCompatActivity {
                             suraId = cursor.getString(cursor.getColumnIndexOrThrow("surah_id")).toString();
                             setRecyclerViewAdapter();
                             getDataFromLocalDb();
+                            quickLinkBtn.setVisibility(View.VISIBLE);
                         }
                     } catch (Exception e) {
                         Log.e(TAG, e.getMessage());
@@ -328,28 +328,6 @@ public class SearchActivity extends AppCompatActivity {
         }else{
             requestPermission();
         }
-
-        collapse = (TextView) findViewById(R.id.collapse);
-        expand = (TextView) findViewById(R.id.expand);
-
-        RelativeLayout searchInput = (RelativeLayout) findViewById(R.id.searchInput);
-        collapse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchInput.setVisibility(View.GONE);
-                expand.setVisibility(View.VISIBLE);
-                collapse.setVisibility(View.GONE);
-            }
-        });
-
-        expand.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchInput.setVisibility(View.VISIBLE);
-                collapse.setVisibility(View.VISIBLE);
-                expand.setVisibility(View.GONE);
-            }
-        });
 
     }
 

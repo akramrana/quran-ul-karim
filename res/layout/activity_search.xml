@@ -61,115 +61,115 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:orientation="horizontal">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="fill_parent"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dip"
-                    android:layout_marginRight="8dip"
-                    app:hintTextAppearance="@style/suraLabel"
-                    android:id="@+id/textLabel1">
+                    android:layout_weight="0.4"
+                    android:orientation="vertical">
 
-                    <!--            <Spinner-->
-                    <!--                android:id="@+id/surah_spinner"-->
-                    <!--                android:layout_width="match_parent"-->
-                    <!--                android:layout_height="60dp"-->
-                    <!--                android:prompt="@string/spinner_title_v1"-->
-                    <!--                android:textStyle="italic"-->
-                    <!--                style="@android:style/Widget.Holo.Light.Spinner"/>-->
-
-                    <AutoCompleteTextView
-                        android:id="@+id/autoCompleteTextView1"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:minHeight="48dp"
-                        android:hint="@string/spinner_title"
-                        android:textSize="14sp">
-                    </AutoCompleteTextView>
+                        android:id="@+id/textLabel1"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        app:boxBackgroundMode="outline"
+                        app:boxCornerRadiusTopStart="8dp"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        app:boxStrokeWidth="1dp"
+                        app:hintTextColor="@color/text_primary">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <AutoCompleteTextView
+                            android:id="@+id/autoCompleteTextView1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp"
+                            android:hint="@string/spinner_title"
+                            android:textSize="14sp"
+                            android:background="@null"
+                            android:paddingLeft="5dp"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_primary"
+                            android:gravity="center">
+                        </AutoCompleteTextView>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dip"
-                    android:layout_marginRight="8dip"
-                    app:hintTextAppearance="@style/ayatLabel"
-                    android:id="@+id/textLabel2">
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/ayat_number"
-                        android:layout_width="fill_parent"
+                    <TextView
+                        android:id="@+id/search_by_term"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/string_search_by_term"
+                        android:textColor="@color/transColor"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="10dp">
+                    </TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textLabel2"
+                        android:layout_marginRight="5dp"
+                        app:boxBackgroundMode="outline"
+                        app:boxCornerRadiusTopStart="8dp"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        app:boxStrokeWidth="1dp"
+                        app:hintTextColor="@color/text_primary">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ayat_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:minHeight="48dp"
+                            android:hint="@string/spinner_ayat_title"
+                            android:background="@null"
+                            android:paddingLeft="5dp"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_primary"
+                            android:gravity="center"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:orientation="vertical"
+                    android:gravity="right"
+                    android:paddingTop="2dp">
+
+                    <Button
+                        android:id="@+id/search_sura_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/bg_card"
+                        android:textColor="@color/text_primary"
+                        android:text="Search"
                         android:textSize="14sp"
-                        android:minHeight="48dp"
-                        android:hint="@string/spinner_ayat_title"/>
+                        android:textAllCaps="false"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="3dp"/>
 
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <Button
-                    android:id="@+id/search_sura_btn"
-                    android:layout_width="104dp"
-                    android:layout_height="44dp"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/bg_card"
-                    android:textColor="@color/text_primary"
-                    android:text="Search"
-                    android:textSize="14sp"
-                    android:textAllCaps="false"/>
-
-            </LinearLayout>
-
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvAdCH"
-            android:layout_marginTop="15dp"
-            android:layout_below="@+id/searchInput">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_gravity="center">
-
-                <TextView
-                    android:id="@+id/search_by_term"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/string_search_by_term"
-                    android:textColor="@color/transColor"
-                    android:layout_marginBottom="10dp">
-                </TextView>
-
-                <TextView
-                    android:id="@+id/collapse"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/string_collapse"
-                    android:textColor="@color/darkblue"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="20dp">
-                </TextView>
-
-                <TextView
-                    android:id="@+id/expand"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/string_expand"
-                    android:textColor="@color/darkblue"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="20dp"
-                    android:visibility="gone">
-                </TextView>
-
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -182,14 +182,14 @@
             android:text="Add favourites"
             android:textSize="12dp"
             android:drawableLeft="@drawable/star_fill_24px"
-            android:layout_centerHorizontal="true"
             android:background="@drawable/bg_card"
-            android:paddingTop="3dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:drawableTint="@color/icon_color"
-            android:layout_below="@id/tvAdCH"
+            android:drawableTint="@color/text_primary"
+            android:layout_below="@id/searchInput"
+            android:layout_centerHorizontal="true"
             android:visibility="gone"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
             android:textAllCaps="false"/>
 
         <androidx.recyclerview.widget.RecyclerView

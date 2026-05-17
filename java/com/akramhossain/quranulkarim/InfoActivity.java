@@ -96,14 +96,23 @@ public class InfoActivity extends AppCompatActivity {
         //
         fezilalil_quran = (Button) findViewById(R.id.fezilalil_quran);
         fezilalil_quran.setTypeface(font);
-        fezilalil_quran.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
+        //fezilalil_quran.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
+        fezilalil_quran.setBackground(ContextCompat.getDrawable(InfoActivity.this, R.drawable.bg_card_v2));
+        fezilalil_quran.setTextColor(ContextCompat.getColor(InfoActivity.this, R.color.text_primary_v2));
+
         tafhim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 info_content_tafhim.setVisibility(View.VISIBLE);
                 info_content.setVisibility(View.GONE);
-                tafhim.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
-                fezilalil_quran.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
+
+                //tafhim.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
+                tafhim.setBackground(ContextCompat.getDrawable(InfoActivity.this, R.drawable.bg_card_v2));
+                tafhim.setTextColor(ContextCompat.getColor(InfoActivity.this, R.color.text_primary_v2));
+
+                //fezilalil_quran.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
+                fezilalil_quran.setBackground(ContextCompat.getDrawable(InfoActivity.this, R.drawable.bg_card));
+                fezilalil_quran.setTextColor(ContextCompat.getColor(InfoActivity.this, R.color.text_primary));
             }
         });
         fezilalil_quran.setOnClickListener(new View.OnClickListener() {
@@ -111,8 +120,15 @@ public class InfoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 info_content_tafhim.setVisibility(View.GONE);
                 info_content.setVisibility(View.VISIBLE);
-                tafhim.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                fezilalil_quran.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
+
+                //tafhim.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
+                tafhim.setBackground(ContextCompat.getDrawable(InfoActivity.this, R.drawable.bg_card));
+                tafhim.setTextColor(ContextCompat.getColor(InfoActivity.this, R.color.text_primary));
+
+
+                //fezilalil_quran.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
+                fezilalil_quran.setBackground(ContextCompat.getDrawable(InfoActivity.this, R.drawable.bg_card_v2));
+                fezilalil_quran.setTextColor(ContextCompat.getColor(InfoActivity.this, R.color.text_primary_v2));
             }
         });
 

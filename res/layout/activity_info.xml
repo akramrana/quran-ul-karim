@@ -68,8 +68,8 @@
                 android:layout_margin="5dp"
                 android:paddingLeft="6dp"
                 android:paddingRight="6dp"
-                android:textColor="@color/colorWhiteDN"
-                android:background="@color/colorBlack"/>
+                android:textColor="@color/text_primary"
+                android:background="@drawable/bg_card"/>
 
             <Button
                 android:id="@+id/tafhim"
@@ -80,8 +80,8 @@
                 android:layout_margin="5dp"
                 android:paddingLeft="6dp"
                 android:paddingRight="6dp"
-                android:textColor="@color/colorWhiteDN"
-                android:background="@color/colorBlack"/>
+                android:textColor="@color/text_primary"
+                android:background="@drawable/bg_card"/>
 
         </LinearLayout>
 
