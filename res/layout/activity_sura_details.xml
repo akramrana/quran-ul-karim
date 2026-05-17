@@ -517,7 +517,18 @@
                     android:contentDescription="Stop"
                     app:tint="@color/icon_color"
                     android:src="@drawable/fast_forward_24px"
-                    android:background="@drawable/bg_card"/>
+                    android:background="@drawable/bg_card"
+                    android:layout_marginRight="3dp"/>
+
+                <ImageButton
+                    android:id="@+id/btnWatchVideo"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:contentDescription="Stop"
+                    app:tint="@color/icon_color"
+                    android:src="@drawable/video_camera_back_24px"
+                    android:background="@drawable/bg_card"
+                    android:visibility="gone"/>
 
             </LinearLayout>
 

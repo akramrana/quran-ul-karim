@@ -2,6 +2,7 @@ package com.akramhossain.quranulkarim;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +11,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.text.LineBreaker;
 import android.os.Build;
 import android.os.Bundle;
@@ -40,8 +42,13 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -58,6 +65,7 @@ import com.akramhossain.quranulkarim.app.AppController;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.Ayah;
+import com.akramhossain.quranulkarim.task.JsonFromUrlTask;
 import com.akramhossain.quranulkarim.util.ConnectionDetector;
 import com.akramhossain.quranulkarim.task.GetJsonFromUrlTask;
 import com.akramhossain.quranulkarim.util.Utils;
@@ -65,6 +73,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -135,8 +144,15 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
     ProgressBar progressBar;
     public static String host = "https://quran.codxplore.com/";
     public static String REPORT_URL;
+    public static String VIDEO_URL;
 
     int pageNum = 0;
+
+    WebView mWebView;
+    Integer height = 300;
+    public String youtubeVideoId;
+    ImageButton btnWatchVideo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -470,6 +486,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                     setRecyclerViewAdapter();
                     getDataFromLocalDb();
                     getSuraAsText();
+                    getVideoFromUrl();
 
                     if(suraId.equals("1") || suraId.equals("9")){
                         rl.setVisibility(View.GONE);
@@ -556,6 +573,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                     setRecyclerViewAdapter();
                     getDataFromLocalDb();
                     getSuraAsText();
+                    getVideoFromUrl();
 
                     if(suraId.equals("1") || suraId.equals("9")){
                         rl.setVisibility(View.GONE);
@@ -971,6 +989,58 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
             }
         });
 
+        btnWatchVideo = findViewById(R.id.btnWatchVideo);
+
+        getVideoFromUrl();
+
+        btnWatchVideo.setOnClickListener(v -> {
+            String baseUrl = "https://www.youtube-nocookie.com/";
+
+            String iframeStr = "https://www.youtube.com/embed/"+youtubeVideoId+"?rel=0&autoplay=1";
+
+            Log.d("Youtube Url:", iframeStr);
+
+            String videoStr =
+                    "<html><head><meta name=\"referrer\" content=\"origin\" /></head><body style=\"margin:0;padding:0;\">" +
+                            "<iframe style=\"width:100%;height:" + height + "px;border:0;\" " +
+                            "src=\"" + iframeStr + "\" " +
+                            "allow=\"autoplay; encrypted-media\" " +
+                            "referrerpolicy=\"strict-origin-when-cross-origin\" " + // safe policy
+                            "allowfullscreen></iframe>" +
+                            "</body></html>";
+
+            Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.bottom_video_options);
+
+            WebView webView = dialog.findViewById(R.id.videoview);
+
+            webView.setWebViewClient(new WebViewClient());
+
+            WebSettings ws = webView.getSettings();
+            ws.setJavaScriptEnabled(true);
+            ws.setDomStorageEnabled(true);
+            ws.setMediaPlaybackRequiresUserGesture(false);
+
+            webView.loadDataWithBaseURL(
+                    baseUrl,
+                    videoStr,
+                    "text/html",
+                    "utf-8",
+                    null
+            );
+
+            Window window = dialog.getWindow();
+            if (window != null) {
+                window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                window.setLayout(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
+                );
+                window.setGravity(Gravity.CENTER);
+            }
+
+            dialog.show();
+        });
     }
 
     private String convertoArabic(String str){
@@ -994,6 +1064,42 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
     private void getPatchFromInternet() {
         if (isInternetPresent) {
             new GetJsonFromUrlTask(this, url).execute();
+        }
+    }
+
+    private void getVideoFromUrl(){
+        VIDEO_URL = host+"api/v1/app-surah-video.php?surah_id="+suraId;
+        Log.i(TAG, VIDEO_URL);
+        if (isInternetPresent) {
+            new JsonFromUrlTask(this, VIDEO_URL, TAG, "");
+        }
+        else{
+            android.app.AlertDialog.Builder alert = new android.app.AlertDialog.Builder(SuraDetailsActivity.this);
+            alert.setTitle(R.string.text_warning);
+            alert.setMessage(R.string.text_enable_internet);
+            alert.setPositiveButton(R.string.text_ok,null);
+            alert.show();
+        }
+    }
+
+    public void parseJsonVideoResponse(String result){
+        Log.i(TAG, result);
+        try {
+            JSONObject response = new JSONObject(result);
+            JSONObject json = response.getJSONObject("data");
+
+            Log.i(TAG, json.toString());
+
+            if (json.length() > 0) {
+                youtubeVideoId = json.getString("youtube_video_id");
+                Log.i(TAG, youtubeVideoId);
+                btnWatchVideo.setVisibility(View.VISIBLE);
+            }else{
+                btnWatchVideo.setVisibility(View.GONE);
+            }
+
+        }catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 

@@ -20,6 +20,7 @@ import com.akramhossain.quranulkarim.MainActivity;
 import com.akramhossain.quranulkarim.PdfListActivity;
 import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.ReciterPlaylistActivity;
+import com.akramhossain.quranulkarim.SuraDetailsActivity;
 import com.akramhossain.quranulkarim.TagActivity;
 import com.akramhossain.quranulkarim.app.AppController;
 import com.akramhossain.quranulkarim.util.Utils;
@@ -127,6 +128,9 @@ public class JsonFromUrlTask {
                         editor.putString("playlist_json_data_"+sharedPref, response.toString());
                         editor.putString("is_playlist_exist_"+sharedPref, "1");
                         editor.apply();
+                    }
+                    else if(TAG.equals("SuraDetailsActivity")){
+                        ((SuraDetailsActivity) activity).parseJsonVideoResponse(response);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
