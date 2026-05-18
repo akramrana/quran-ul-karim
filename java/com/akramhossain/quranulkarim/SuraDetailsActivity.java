@@ -152,6 +152,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
     Integer height = 300;
     public String youtubeVideoId;
     ImageButton btnWatchVideo;
+    public String qariName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -1014,6 +1015,39 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
 
             WebView webView = dialog.findViewById(R.id.videoview);
 
+            TextView infoTitleArabic = dialog.findViewById(R.id.infoTitleArabic);
+            if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
+                infoTitleArabic.setTypeface(fontAlmajeed);
+            }
+            if(mp_arabicFontFamily.equals("Al Qalam Quran")){
+                infoTitleArabic.setTypeface(fontAlQalam);
+            }
+            if(mp_arabicFontFamily.equals("Noore Huda")){
+                infoTitleArabic.setTypeface(fontUthmani);
+            }
+            if(mp_arabicFontFamily.equals("Noore Hidayat")){
+                infoTitleArabic.setTypeface(fontNooreHidayat);
+            }
+            if(mp_arabicFontFamily.equals("Saleem Quran")){
+                infoTitleArabic.setTypeface(fontSaleem);
+            }
+            if(mp_arabicFontFamily.equals("KFGQPC Uthman Taha Naskh")){
+                infoTitleArabic.setTypeface(fontTahaNaskh);
+            }
+            if(mp_arabicFontFamily.equals("Arabic Regular")){
+                infoTitleArabic.setTypeface(fontKitab);
+            }
+
+            TextView infoTitle = dialog.findViewById(R.id.infoTitle);
+
+            TextView infoSubtitle = dialog.findViewById(R.id.infoSubtitle);
+
+            infoTitleArabic.setText(suraNameArabic);
+
+            infoTitle.setText(suraName);
+
+            infoSubtitle.setText("Recitation by " +qariName);
+
             webView.setWebViewClient(new WebViewClient());
 
             WebSettings ws = webView.getSettings();
@@ -1092,8 +1126,11 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
 
             if (json.length() > 0) {
                 youtubeVideoId = json.getString("youtube_video_id");
+                qariName = json.getString("qari_name");
+                Log.i(TAG, qariName);
                 Log.i(TAG, youtubeVideoId);
                 btnWatchVideo.setVisibility(View.VISIBLE);
+
             }else{
                 btnWatchVideo.setVisibility(View.GONE);
             }

@@ -2,13 +2,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
-    android:background="@color/bgColorDN">
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="10dp"
+    android:background="@drawable/bg_dialog_rounded">
+
+    <TextView
+        android:id="@+id/infoTitleArabic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/infoTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:textSize="14sp"
+        android:textColor="@color/text_primary"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/infoSubtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Subtitle"
+        android:textSize="12sp"
+        android:textColor="@color/text_primary"
+        android:gravity="center"/>
 
     <WebView
         android:id="@+id/videoview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:gravity="center"
+        android:layout_marginTop="8dp"/>
 
 </LinearLayout>
