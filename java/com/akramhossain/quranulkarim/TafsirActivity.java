@@ -869,6 +869,8 @@ public class TafsirActivity extends AppCompatActivity {
 
             infoTxt.setText("\uD83E\uDD16 Analyzing Tafsir...");
 
+            Log.d("payload",json.toString());
+
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, json,
                     response -> {
                         progressBar.setVisibility(View.GONE);
@@ -894,6 +896,8 @@ public class TafsirActivity extends AppCompatActivity {
                                         infoTxt.setText(currentText.toString());
                                     },i*80); // speed
                                 }
+                            }else{
+                                infoTxt.setText("\uD83E\uDD16 Unable to prepare AI summary at the moment. Please try again later.");
                             }
 
                         } catch (Exception e) {
