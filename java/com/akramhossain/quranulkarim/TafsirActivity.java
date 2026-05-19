@@ -1,6 +1,7 @@
 package com.akramhossain.quranulkarim;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -8,20 +9,32 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.akramhossain.quranulkarim.app.AppController;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.Ayah;
 import com.akramhossain.quranulkarim.util.Utils;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import org.json.JSONObject;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -48,13 +61,13 @@ public class TafsirActivity extends AppCompatActivity {
     Typeface font, fontUthmani, fontAlmajeed, fontAlQalam, fontNooreHidayat, fontSaleem, fontTahaNaskh, fontKitab;
     SharedPreferences mPrefs;
 
-    TextView bayaan_content,zakaria_content,jalalayn_content, ibn_kathir_content, tafhim_content, fathul_mazid_content, fezilalil_quran_content, trans;
+    TextView bayaan_content, zakaria_content, jalalayn_content, ibn_kathir_content, tafhim_content, fathul_mazid_content, fezilalil_quran_content, trans;
 
     String bayaan_text, zakaria_text, jalalayn_text, ibn_kasir_text, tafhim_text, fathul_mazid_text, fezilalil_quran_text;
 
-    TextView tv_surah_name,tv_ayah_arabic,tv_ayah_english,tv_ayah_bangla,tv_ayah_num;
+    TextView tv_surah_name, tv_ayah_arabic, tv_ayah_english, tv_ayah_bangla, tv_ayah_num;
 
-    Button btn_bayaan, btn_zakaria, btn_jalalayn, btn_ibnkathir, btn_tafhim, btn_fathul_mazid, btn_fezilalil_quran, copyButton;
+    Button btn_bayaan, btn_zakaria, btn_jalalayn, btn_ibnkathir, btn_tafhim, btn_fathul_mazid, btn_fezilalil_quran, copyButton, aiSummaryButton;
 
     WebView wv_text_tajweed;
 
@@ -74,6 +87,9 @@ public class TafsirActivity extends AppCompatActivity {
     String bodyBgColor = "#303030";
     String bodyTxtColor = "#ffffff";
     String appTheme = "";
+
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,14 +111,14 @@ public class TafsirActivity extends AppCompatActivity {
 
         mPrefs = getApplicationContext().getSharedPreferences(Utils.PREF_NAME, 0);
 
-        font = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/Siyamrupali.ttf");
-        fontUthmani = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf");
-        fontAlmajeed = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/AlMajeedQuranicFont_shiped.ttf");
-        fontAlQalam = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/AlQalamQuran.ttf");
-        fontNooreHidayat = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/noorehidayat.ttf");
-        fontSaleem = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/PDMS_Saleem_QuranFont.ttf");
-        fontTahaNaskh = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/KFGQPC_Uthman_Taha_Naskh_Regular.ttf");
-        fontKitab = Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/kitab.ttf");
+        font = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/Siyamrupali.ttf");
+        fontUthmani = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/KFGQPC_Uthmanic_Script_HAFS_Regular.ttf");
+        fontAlmajeed = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/AlMajeedQuranicFont_shiped.ttf");
+        fontAlQalam = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/AlQalamQuran.ttf");
+        fontNooreHidayat = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/noorehidayat.ttf");
+        fontSaleem = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/PDMS_Saleem_QuranFont.ttf");
+        fontTahaNaskh = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/KFGQPC_Uthman_Taha_Naskh_Regular.ttf");
+        fontKitab = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/kitab.ttf");
 
         //dbhelper = new DatabaseHelper(getApplicationContext());
         dbhelper = DatabaseHelper.getInstance(getApplicationContext());
@@ -117,12 +133,7 @@ public class TafsirActivity extends AppCompatActivity {
         ViewCompat.setOnApplyWindowInsetsListener(rootView, (view, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             // Apply padding to avoid overlap with status/navigation bars
-            view.setPadding(
-                    systemBars.left,
-                    systemBars.top,
-                    systemBars.right,
-                    view.getPaddingBottom()
-            );
+            view.setPadding(systemBars.left, systemBars.top, systemBars.right, view.getPaddingBottom());
             return insets;
         });
 
@@ -185,6 +196,8 @@ public class TafsirActivity extends AppCompatActivity {
         btn_fezilalil_quran = (Button) findViewById(R.id.fezilalil_quran);
 
         copyButton = (Button) findViewById(R.id.copyButton);
+
+        aiSummaryButton = (Button) findViewById(R.id.aiSummaryButton);
 
         btn_ibnkathir.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -494,7 +507,6 @@ public class TafsirActivity extends AppCompatActivity {
         });
 
 
-
         Button previousBtn = (Button) findViewById(R.id.previousBtn);
         Button nextBtn = (Button) findViewById(R.id.nextBtn);
 
@@ -502,28 +514,17 @@ public class TafsirActivity extends AppCompatActivity {
         previousBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-                String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans,ayah_indo.text as indo_pak,ut.text_uthmani_tajweed,u.text_uthmani " +
-                        "FROM ayah " +
-                        "LEFT join sura ON ayah.surah_id = sura.surah_id " +
-                        "LEFT join transliteration ON ayah.ayah_num = transliteration.ayat_id and transliteration.sura_id = ayah.surah_id " +
-                        "LEFT join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id "+
-                        "LEFT JOIN uthmani_tajweed ut ON ayah.ayah_key = ut.verse_key " +
-                        "LEFT JOIN uthmani u ON ayah.ayah_key = u.verse_key "+
-                        "WHERE ayah.surah_id = "+surah_id+" and ayah.ayah_num < "+ayah_num+" " +
-                        "order by ayah.ayah_index DESC " +
-                        "limit 1";
+                String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans,ayah_indo.text as indo_pak,ut.text_uthmani_tajweed,u.text_uthmani " + "FROM ayah " + "LEFT join sura ON ayah.surah_id = sura.surah_id " + "LEFT join transliteration ON ayah.ayah_num = transliteration.ayat_id and transliteration.sura_id = ayah.surah_id " + "LEFT join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id " + "LEFT JOIN uthmani_tajweed ut ON ayah.ayah_key = ut.verse_key " + "LEFT JOIN uthmani u ON ayah.ayah_key = u.verse_key " + "WHERE ayah.surah_id = " + surah_id + " and ayah.ayah_num < " + ayah_num + " " + "order by ayah.ayah_index DESC " + "limit 1";
                 //Log.i(TAG, sql);
                 Cursor cursor = db.rawQuery(sql, null);
                 try {
                     if (cursor.moveToFirst()) {
                         ayah_index = cursor.getString(0);
-                        if(mushaf.equals("ImlaeiSimple")) {
+                        if (mushaf.equals("ImlaeiSimple")) {
                             text_tashkeel = cursor.getString(10);
-                        }
-                        else if(mushaf.equals("Uthmanic")) {
+                        } else if (mushaf.equals("Uthmanic")) {
                             text_tashkeel = cursor.getString(22);
-                        }
-                        else{
+                        } else {
                             text_tashkeel = cursor.getString(20);
                         }
                         content_en = cursor.getString(11);
@@ -539,13 +540,12 @@ public class TafsirActivity extends AppCompatActivity {
                         getFathulMazidTafsirFromLocalDB();
                         getFezilalilTafsirFromLocalDB();
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     Log.e(TAG, e.getMessage());
                     //throw new RuntimeException("SQL Query: " + sql, e);
                     Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
-                }
-                finally {
-                    if (cursor != null && !cursor.isClosed()){
+                } finally {
+                    if (cursor != null && !cursor.isClosed()) {
                         cursor.close();
                     }
                     db.close();
@@ -556,28 +556,17 @@ public class TafsirActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-                String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans,ayah_indo.text as indo_pak,ut.text_uthmani_tajweed,u.text_uthmani " +
-                        "FROM ayah " +
-                        "LEFT join sura ON ayah.surah_id = sura.surah_id " +
-                        "LEFT join transliteration ON ayah.ayah_num = transliteration.ayat_id and transliteration.sura_id = ayah.surah_id " +
-                        "LEFT join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id "+
-                        "LEFT JOIN uthmani_tajweed ut ON ayah.ayah_key = ut.verse_key " +
-                        "LEFT JOIN uthmani u ON ayah.ayah_key = u.verse_key "+
-                        "WHERE ayah.surah_id = "+surah_id+" and ayah.ayah_num > "+ayah_num+" " +
-                        "order by ayah.ayah_index ASC " +
-                        "limit 1";
+                String sql = "SELECT ayah.*,sura.name_arabic,sura.name_complex,sura.name_english,sura.name_simple,transliteration.trans,ayah_indo.text as indo_pak,ut.text_uthmani_tajweed,u.text_uthmani " + "FROM ayah " + "LEFT join sura ON ayah.surah_id = sura.surah_id " + "LEFT join transliteration ON ayah.ayah_num = transliteration.ayat_id and transliteration.sura_id = ayah.surah_id " + "LEFT join ayah_indo ON ayah.ayah_num = ayah_indo.ayah and ayah_indo.sura = ayah.surah_id " + "LEFT JOIN uthmani_tajweed ut ON ayah.ayah_key = ut.verse_key " + "LEFT JOIN uthmani u ON ayah.ayah_key = u.verse_key " + "WHERE ayah.surah_id = " + surah_id + " and ayah.ayah_num > " + ayah_num + " " + "order by ayah.ayah_index ASC " + "limit 1";
                 //Log.i(TAG, sql);
                 Cursor cursor = db.rawQuery(sql, null);
                 try {
                     if (cursor.moveToFirst()) {
                         ayah_index = cursor.getString(0);
-                        if(mushaf.equals("ImlaeiSimple")) {
+                        if (mushaf.equals("ImlaeiSimple")) {
                             text_tashkeel = cursor.getString(10);
-                        }
-                        else if(mushaf.equals("Uthmanic")) {
+                        } else if (mushaf.equals("Uthmanic")) {
                             text_tashkeel = cursor.getString(22);
-                        }
-                        else{
+                        } else {
                             text_tashkeel = cursor.getString(20);
                         }
                         content_en = cursor.getString(11);
@@ -593,13 +582,12 @@ public class TafsirActivity extends AppCompatActivity {
                         getFathulMazidTafsirFromLocalDB();
                         getFezilalilTafsirFromLocalDB();
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     Log.e(TAG, e.getMessage());
                     //throw new RuntimeException("SQL Query: " + sql, e);
                     Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
-                }
-                finally {
-                    if (cursor != null && !cursor.isClosed()){
+                } finally {
+                    if (cursor != null && !cursor.isClosed()) {
                         cursor.close();
                     }
                     db.close();
@@ -612,69 +600,69 @@ public class TafsirActivity extends AppCompatActivity {
         String mp_enFz = mPrefs.getString("enFontSize", "15");
         String mp_bnFz = mPrefs.getString("bnFontSize", "15");
 
-        if(mp_arabicFontFamily.equals("Al Majeed Quranic Font")){
+        if (mp_arabicFontFamily.equals("Al Majeed Quranic Font")) {
             tv_ayah_arabic.setTypeface(fontAlmajeed);
             fontFamily = "fontAlmajeed";
         }
-        if(mp_arabicFontFamily.equals("Al Qalam Quran")){
+        if (mp_arabicFontFamily.equals("Al Qalam Quran")) {
             tv_ayah_arabic.setTypeface(fontAlQalam);
             fontFamily = "fontAlQalam";
         }
-        if(mp_arabicFontFamily.equals("Noore Huda")){
+        if (mp_arabicFontFamily.equals("Noore Huda")) {
             tv_ayah_arabic.setTypeface(fontUthmani);
             fontFamily = "fontUthmani";
         }
-        if(mp_arabicFontFamily.equals("Noore Hidayat")){
+        if (mp_arabicFontFamily.equals("Noore Hidayat")) {
             tv_ayah_arabic.setTypeface(fontNooreHidayat);
             fontFamily = "fontNooreHidayat";
         }
-        if(mp_arabicFontFamily.equals("Saleem Quran")){
+        if (mp_arabicFontFamily.equals("Saleem Quran")) {
             tv_ayah_arabic.setTypeface(fontSaleem);
             fontFamily = "fontSaleem";
         }
-        if(mp_arabicFontFamily.equals("KFGQPC Uthman Taha Naskh")){
+        if (mp_arabicFontFamily.equals("KFGQPC Uthman Taha Naskh")) {
             tv_ayah_arabic.setTypeface(fontTahaNaskh);
             fontFamily = "fontTahaNaskh";
         }
-        if(mp_arabicFontFamily.equals("Arabic Regular")){
+        if (mp_arabicFontFamily.equals("Arabic Regular")) {
             tv_ayah_arabic.setTypeface(fontKitab);
             fontFamily = "fontKitab";
         }
-        if(!mp_arFz.equals("") && mp_arFz !=null){
+        if (!mp_arFz.equals("") && mp_arFz != null) {
             try {
                 tv_ayah_arabic.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_arFz));
                 fontSize = mp_arFz + "px";
-            }catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
             }
         }
-        if(!mp_enFz.equals("") && mp_enFz !=null){
+        if (!mp_enFz.equals("") && mp_enFz != null) {
             try {
                 tv_ayah_english.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFz));
-            }catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
             }
         }
-        if(!mp_bnFz.equals("") && mp_bnFz !=null){
+        if (!mp_bnFz.equals("") && mp_bnFz != null) {
             try {
                 tv_ayah_bangla.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
                 trans.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFz));
-            }catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
             }
         }
 
         String mp_enFzTs = mPrefs.getString("enFontSizeTafsir", "15");
-        if(!mp_enFzTs.equals("") && mp_enFzTs !=null){
+        if (!mp_enFzTs.equals("") && mp_enFzTs != null) {
             try {
                 jalalayn_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_enFzTs));
-            }catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
             }
         }
 
         String mp_bnFzTs = mPrefs.getString("bnFontSizeTafsir", "15");
-        if(!mp_bnFzTs.equals("") && mp_bnFzTs !=null){
+        if (!mp_bnFzTs.equals("") && mp_bnFzTs != null) {
             try {
                 bayaan_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
                 zakaria_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
@@ -683,38 +671,38 @@ public class TafsirActivity extends AppCompatActivity {
                 tafhim_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
                 fathul_mazid_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
                 fezilalil_quran_content.setTextSize(TypedValue.COMPLEX_UNIT_DIP, Integer.parseInt(mp_bnFzTs));
-            }catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 Log.e("WRONG_FONT_SIZE", "Error parsing number: ", e);
             }
         }
 
         String is_ibn_kasir = mPrefs.getString(is_tafsir_ibn_kasir_selected, "2");
-        if(is_ibn_kasir.equals("-1")){
+        if (is_ibn_kasir.equals("-1")) {
             btn_ibnkathir.setVisibility(View.GONE);
             ibn_kathir_content.setVisibility(View.GONE);
         }
         String is_bayaan = mPrefs.getString(is_tafsir_bayaan_selected, "2");
-        if(is_bayaan.equals("-1")){
+        if (is_bayaan.equals("-1")) {
             btn_bayaan.setVisibility(View.GONE);
         }
         String is_zakaria = mPrefs.getString(is_tafsir_zakaria_selected, "2");
-        if(is_zakaria.equals("-1")){
+        if (is_zakaria.equals("-1")) {
             btn_zakaria.setVisibility(View.GONE);
         }
         String is_tafhim = mPrefs.getString(is_tafsir_tafhim_selected, "2");
-        if(is_tafhim.equals("-1")){
+        if (is_tafhim.equals("-1")) {
             btn_tafhim.setVisibility(View.GONE);
         }
         String is_fathul = mPrefs.getString(is_tafsir_fathul_mazid_selected, "2");
-        if(is_fathul.equals("-1")){
+        if (is_fathul.equals("-1")) {
             btn_fathul_mazid.setVisibility(View.GONE);
         }
         String is_fezilalil = mPrefs.getString(is_tafsir_fezilalil_selected, "2");
-        if(is_fezilalil.equals("-1")){
+        if (is_fezilalil.equals("-1")) {
             btn_fezilalil_quran.setVisibility(View.GONE);
         }
         String is_jalalayn = mPrefs.getString(is_tafsir_jalalayn_selected, "2");
-        if(is_jalalayn.equals("-1")){
+        if (is_jalalayn.equals("-1")) {
             btn_jalalayn.setVisibility(View.GONE);
         }
 
@@ -722,35 +710,29 @@ public class TafsirActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.i(TAG, active_tafsir);
 
-                String label = surah_name+" "+ayah_key;
-                String copyTxt =  "Surah "+surah_name+" "+ayah_key +"\n"+ text_tashkeel +"\n"+ ayah_trans +"\n"+ content_en +"\n"+ content_bn+"\n\n";
+                String label = surah_name + " " + ayah_key;
+                String copyTxt = "Surah " + surah_name + " " + ayah_key + "\n" + text_tashkeel + "\n" + ayah_trans + "\n" + content_en + "\n" + content_bn + "\n\n";
                 String tafsirTxt = "";
 
-                if(active_tafsir.equals("ibn_kasir")){
+                if (active_tafsir.equals("ibn_kasir")) {
                     tafsirTxt = ibn_kathir_content.getText().toString();
-                }
-                else if(active_tafsir.equals("bayaan")){
+                } else if (active_tafsir.equals("bayaan")) {
                     tafsirTxt = bayaan_content.getText().toString();
-                }
-                else if(active_tafsir.equals("zakaria")){
+                } else if (active_tafsir.equals("zakaria")) {
                     tafsirTxt = zakaria_content.getText().toString();
-                }
-                else if(active_tafsir.equals("jalalayn")){
+                } else if (active_tafsir.equals("jalalayn")) {
                     tafsirTxt = jalalayn_content.getText().toString();
-                }
-                else if(active_tafsir.equals("tafhim")){
+                } else if (active_tafsir.equals("tafhim")) {
                     tafsirTxt = tafhim_content.getText().toString();
-                }
-                else if(active_tafsir.equals("fathul")){
+                } else if (active_tafsir.equals("fathul")) {
                     tafsirTxt = fathul_mazid_content.getText().toString();
-                }
-                else if(active_tafsir.equals("fezilalil")){
+                } else if (active_tafsir.equals("fezilalil")) {
                     tafsirTxt = fezilalil_quran_content.getText().toString();
                 }
 
-                Log.d(label,copyTxt+tafsirTxt);
+                Log.d(label, copyTxt + tafsirTxt);
                 android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getApplicationContext().getSystemService(Context.CLIPBOARD_SERVICE);
-                android.content.ClipData clip = android.content.ClipData.newPlainText(label,copyTxt+tafsirTxt);
+                android.content.ClipData clip = android.content.ClipData.newPlainText(label, copyTxt + tafsirTxt);
                 clipboard.setPrimaryClip(clip);
                 Toast.makeText(getApplicationContext(), "Tafsir Copied.", Toast.LENGTH_LONG).show();
             }
@@ -773,38 +755,197 @@ public class TafsirActivity extends AppCompatActivity {
         if (appTheme.equals("1")) {
             bodyBgColor = "#303030";
             bodyTxtColor = "#ffffff";
-        }else if (appTheme.equals("0")) {
+        } else if (appTheme.equals("0")) {
             bodyBgColor = "#FAFAFA";
             bodyTxtColor = "#000000";
-        }else {
+        } else {
             bodyBgColor = "#303030";
             bodyTxtColor = "#ffffff";
         }
-        String style = Utils.tajweedCss(fontFamily,fontSize,bodyBgColor,bodyTxtColor,appTheme);
-        String html = "<html><head>"+style+"</head><body>"+text_tajweed+"</body></html>";
-        wv_text_tajweed.loadDataWithBaseURL(null,html, "text/html; charset=utf-8", "UTF-8",null);
-        if(mushaf.equals("Tajweed")) {
+        String style = Utils.tajweedCss(fontFamily, fontSize, bodyBgColor, bodyTxtColor, appTheme);
+        String html = "<html><head>" + style + "</head><body>" + text_tajweed + "</body></html>";
+        wv_text_tajweed.loadDataWithBaseURL(null, html, "text/html; charset=utf-8", "UTF-8", null);
+        if (mushaf.equals("Tajweed")) {
             wv_text_tajweed.setVisibility(View.VISIBLE);
             tv_ayah_arabic.setVisibility(View.GONE);
-        }else{
+        } else {
             wv_text_tajweed.setVisibility(View.GONE);
             tv_ayah_arabic.setVisibility(View.VISIBLE);
         }
 
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        aiSummaryButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.i(TAG, active_tafsir);
+
+                String label = surah_name + " " + ayah_key;
+                String copyTxt = "Surah " + surah_name + " " + ayah_key + "\n" + text_tashkeel + "\n" + ayah_trans + "\n" + content_en + "\n" + content_bn + "\n\n";
+                String tafsirTxt = "";
+
+                if (active_tafsir.equals("ibn_kasir")) {
+                    tafsirTxt = ibn_kathir_content.getText().toString();
+                } else if (active_tafsir.equals("bayaan")) {
+                    tafsirTxt = bayaan_content.getText().toString();
+                } else if (active_tafsir.equals("zakaria")) {
+                    tafsirTxt = zakaria_content.getText().toString();
+                } else if (active_tafsir.equals("jalalayn")) {
+                    tafsirTxt = jalalayn_content.getText().toString();
+                } else if (active_tafsir.equals("tafhim")) {
+                    tafsirTxt = tafhim_content.getText().toString();
+                } else if (active_tafsir.equals("fathul")) {
+                    tafsirTxt = fathul_mazid_content.getText().toString();
+                } else if (active_tafsir.equals("fezilalil")) {
+                    tafsirTxt = fezilalil_quran_content.getText().toString();
+                }
+
+                if(canUseAiSummary(tafsirTxt)) {
+                    Log.d(label, tafsirTxt);
+                    requestAiSummary("tafsir",surah_id,active_tafsir,ayah_num,"Bangla",tafsirTxt);
+                }
+            }
+        });
+
     }
+
+    private boolean canUseAiSummary(String tafsirTxt) {
+
+        if (tafsirTxt == null)
+            return false;
+
+        String text = tafsirTxt.toLowerCase().trim();
+
+        String[] blockedTexts = {
+                "please check ayah",
+                "for complete tafsir",
+                "complete tafsir",
+                "tafsir not available"
+        };
+
+        for(String blocked : blockedTexts){
+
+            if(text.contains(blocked.toLowerCase())){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private void requestAiSummary(String type, String surahId, String tafsirId, String ayahId, String lang, String originalTxt) {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.bottom_ai_text);
+
+        TextView infoTitle = dialog.findViewById(R.id.infoTitle);
+        infoTitle.setText("✨ AI Summary");
+
+        TextView infoTxt = dialog.findViewById(R.id.infoTxt);
+        infoTxt.setTypeface(font);
+
+        dialog.show();
+
+        Window window = dialog.getWindow();
+
+        if(window != null){
+            window.setLayout(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+            );
+        }
+
+        String url = "https://quran.codxplore.com/api/v1/app-ai-summarize.php";
+        try {
+            JSONObject json = new JSONObject();
+            json.put("type", type);               // tafsir / brief
+            json.put("surah_id", surahId);
+            json.put("tafsir_id", tafsirId);
+            json.put("lang", lang);               // Bangla, English etc
+            json.put("original_txt", originalTxt);
+
+            if (ayahId != null) json.put("ayah_id", ayahId);
+            else json.put("ayah_id", JSONObject.NULL);
+
+            progressBar.setVisibility(View.VISIBLE);
+
+            infoTxt.setText("\uD83E\uDD16 Analyzing Tafsir...");
+
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, json,
+                    response -> {
+                        progressBar.setVisibility(View.GONE);
+                        try {
+                            boolean success = response.getBoolean("success");
+                            if (success) {
+                                JSONObject data = response.getJSONObject("data");
+                                String summary = data.getString("ai_txt");
+                                boolean cached = response.getBoolean("cached");
+                                Log.d("AI", summary);
+                                if (cached) {
+                                    Log.d("AI", "loaded from DB");
+                                }
+                                // show in bottom sheet
+                                String[] words = summary.split("\\s+");
+
+                                Handler handler = new Handler(Looper.getMainLooper());
+                                StringBuilder currentText = new StringBuilder();
+                                for(int i=0;i<words.length;i++){
+                                    int index=i;
+                                    handler.postDelayed(() -> {
+                                        currentText.append(words[index]).append(" ");
+                                        infoTxt.setText(currentText.toString());
+                                    },i*80); // speed
+                                }
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    },
+                    error -> {
+                        progressBar.setVisibility(View.GONE);
+                        Log.e("AI_ERROR", error.toString());
+                        Toast.makeText(getApplicationContext(), "AI failed", Toast.LENGTH_LONG).show();
+                    });
+
+            request.setRetryPolicy(new DefaultRetryPolicy(60000,0,1f));
+            request.setShouldCache(false);
+            AppController.getInstance().addToRequestQueue(request, "req_ai_summary");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*private void typeWords(String summaryText){
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.bottom_ai_text);
+
+        TextView infoTitle = dialog.findViewById(R.id.infoTitle);
+        infoTitle.setText("✨ AI Summary");
+
+        TextView infoTxt = dialog.findViewById(R.id.infoTxt);
+        infoTxt.setText(summaryText);
+        infoTxt.setTypeface(font);
+
+        dialog.show();
+
+        String[] words = summaryText.split("\\s+");
+
+        Handler handler = new Handler(Looper.getMainLooper());
+        StringBuilder currentText = new StringBuilder();
+        for(int i=0;i<words.length;i++){
+            int index=i;
+            handler.postDelayed(() -> {
+                currentText.append(words[index]).append(" ");
+                infoTxt.setText(currentText.toString());
+            },i*80); // speed
+        }
+    }*/
+
 
     private void getDataFromLocalDb() {
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
 
-        String bayaanSql = "select ayah.surah_id,ayah.ayah_num,\n" +
-                "(select c2text from verses_content_tafsir_bayaan where verses_content_tafsir_bayaan.c0sura = ayah.surah_id and verses_content_tafsir_bayaan.c1ayah = ayah.ayah_num) tafsir_bayaan,\n" +
-                "(select c2text from verses_content_tafsir_zakaria where verses_content_tafsir_zakaria.c0sura = ayah.surah_id and verses_content_tafsir_zakaria.c1ayah = ayah.ayah_num) tafsir_zakaria,\n" +
-                "(select c2text from verses_content_tafsir_jalalayn where verses_content_tafsir_jalalayn.c0sura = ayah.surah_id and verses_content_tafsir_jalalayn.c1ayah = ayah.ayah_num) tafsir_jalalayn,\n" +
-                "(select c2text from verses_content_tafsir_ibn_kasir where verses_content_tafsir_ibn_kasir.c0sura = ayah.surah_id and verses_content_tafsir_ibn_kasir.c1ayah = ayah.ayah_num) tafsir_ibn_kasir,\n" +
-                "(select name_simple from sura where surah_id = ayah.surah_id) surah_name\n" +
-                "from ayah\n" +
-                "where ayah.surah_id = "+surah_id+" and ayah.ayah_num = "+ayah_num;
-        Cursor cursor = db.rawQuery(bayaanSql,null);
+        String bayaanSql = "select ayah.surah_id,ayah.ayah_num,\n" + "(select c2text from verses_content_tafsir_bayaan where verses_content_tafsir_bayaan.c0sura = ayah.surah_id and verses_content_tafsir_bayaan.c1ayah = ayah.ayah_num) tafsir_bayaan,\n" + "(select c2text from verses_content_tafsir_zakaria where verses_content_tafsir_zakaria.c0sura = ayah.surah_id and verses_content_tafsir_zakaria.c1ayah = ayah.ayah_num) tafsir_zakaria,\n" + "(select c2text from verses_content_tafsir_jalalayn where verses_content_tafsir_jalalayn.c0sura = ayah.surah_id and verses_content_tafsir_jalalayn.c1ayah = ayah.ayah_num) tafsir_jalalayn,\n" + "(select c2text from verses_content_tafsir_ibn_kasir where verses_content_tafsir_ibn_kasir.c0sura = ayah.surah_id and verses_content_tafsir_ibn_kasir.c1ayah = ayah.ayah_num) tafsir_ibn_kasir,\n" + "(select name_simple from sura where surah_id = ayah.surah_id) surah_name\n" + "from ayah\n" + "where ayah.surah_id = " + surah_id + " and ayah.ayah_num = " + ayah_num;
+        Cursor cursor = db.rawQuery(bayaanSql, null);
 
         try {
             if (cursor.moveToFirst()) {
@@ -818,122 +959,112 @@ public class TafsirActivity extends AppCompatActivity {
                 Log.d("Tafsir Jalalayn", jalalayn_text);
                 Log.d("Tafsir IBN Kathir", ibn_kasir_text);*/
 
-                bayaan_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/>"+bayaan_text));
-                zakaria_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/>"+zakaria_text));
-                jalalayn_content.setText(Html.fromHtml("<b>Tafsir:</b><br/><br/>"+jalalayn_text));
-                ibn_kathir_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/>"+ibn_kasir_text));
+                bayaan_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/>" + bayaan_text));
+                zakaria_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/>" + zakaria_text));
+                jalalayn_content.setText(Html.fromHtml("<b>Tafsir:</b><br/><br/>" + jalalayn_text));
+                ibn_kathir_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/>" + ibn_kasir_text));
 
-                tv_surah_name.setText(surah_name+" "+ayah_key);
+                tv_surah_name.setText(surah_name + " " + ayah_key);
                 tv_ayah_arabic.setText(text_tashkeel);
                 tv_ayah_english.setText(content_en);
                 tv_ayah_bangla.setText(content_bn);
-                tv_ayah_num.setText(surah_name+" "+ayah_key);
+                tv_ayah_num.setText(surah_name + " " + ayah_key);
                 trans.setText(ayah_trans);
                 //
-                String style = Utils.tajweedCss(fontFamily,fontSize,bodyBgColor,bodyTxtColor,appTheme);
-                String html = "<html><head>"+style+"</head><body>"+text_tajweed+"</body></html>";
-                wv_text_tajweed.loadDataWithBaseURL(null,html, "text/html; charset=utf-8", "UTF-8",null);
+                String style = Utils.tajweedCss(fontFamily, fontSize, bodyBgColor, bodyTxtColor, appTheme);
+                String html = "<html><head>" + style + "</head><body>" + text_tajweed + "</body></html>";
+                wv_text_tajweed.loadDataWithBaseURL(null, html, "text/html; charset=utf-8", "UTF-8", null);
                 String mushaf = mPrefs.getString("mushaf", "IndoPak");
-                if(mushaf.equals("Tajweed")) {
+                if (mushaf.equals("Tajweed")) {
                     wv_text_tajweed.setVisibility(View.VISIBLE);
                     tv_ayah_arabic.setVisibility(View.GONE);
-                }else{
+                } else {
                     wv_text_tajweed.setVisibility(View.GONE);
                     tv_ayah_arabic.setVisibility(View.VISIBLE);
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.e("Tafsir", e.getMessage());
             //throw new RuntimeException("SQL Query: " + bayaanSql, e);
             Sentry.captureException(new RuntimeException("SQL Query: " + bayaanSql, e));
-        }finally {
-            if (cursor != null && !cursor.isClosed()){
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
             }
             db.close();
         }
     }
 
-    private void getTafhimTafsirFromLocalDB(){
+    private void getTafhimTafsirFromLocalDB() {
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-        String sql = "select case when gloss_expl = 'NULL' THEN trans_text when gloss_expl IS NULL THEN trans_text else group_concat(gloss_expl,'') end tafsir_text\n" +
-                "from tafsir_tafhimul_quran \n" +
-                "where verse_id = "+ayah_index+"\n" +
-                "group by verse_id";
+        String sql = "select case when gloss_expl = 'NULL' THEN trans_text when gloss_expl IS NULL THEN trans_text else group_concat(gloss_expl,'') end tafsir_text\n" + "from tafsir_tafhimul_quran \n" + "where verse_id = " + ayah_index + "\n" + "group by verse_id";
 
         //Log.i("SQL", sql);
-        Cursor cursor = db.rawQuery(sql,null);
+        Cursor cursor = db.rawQuery(sql, null);
         try {
             if (cursor.moveToFirst()) {
                 tafhim_text = cursor.getString(0);
                 tafhim_text = tafhim_text.replaceAll("NULL", "");
-                tafhim_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/>"+tafhim_text));
+                tafhim_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/>" + tafhim_text));
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             Log.e("Tafsir", e.getMessage());
             //throw new RuntimeException("SQL Query: " + sql, e);
             Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
-        }finally {
-            if (cursor != null && !cursor.isClosed()){
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
             }
             db.close();
         }
     }
 
-    private void getFathulMazidTafsirFromLocalDB(){
+    private void getFathulMazidTafsirFromLocalDB() {
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-        String sql = "select expl_text tafsir_text\n" +
-                "from tafsir_fathul_mazid \n" +
-                "where surah_id = "+surah_id+" and ayah_id = "+ayah_num;
+        String sql = "select expl_text tafsir_text\n" + "from tafsir_fathul_mazid \n" + "where surah_id = " + surah_id + " and ayah_id = " + ayah_num;
 
         //Log.i("SQL", sql);
-        Cursor cursor = db.rawQuery(sql,null);
+        Cursor cursor = db.rawQuery(sql, null);
         try {
             if (cursor.moveToFirst()) {
                 fathul_mazid_text = cursor.getString(0);
-                fathul_mazid_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/>"+fathul_mazid_text));
-            }else{
+                fathul_mazid_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/>" + fathul_mazid_text));
+            } else {
                 fathul_mazid_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/> দুঃখিত! এই আয়াতের তাফসীর পাওয়া যায় নি।"));
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             Log.e("Tafsir", e.getMessage());
             //throw new RuntimeException("SQL Query: " + sql, e);
             Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
-        }finally {
-            if (cursor != null && !cursor.isClosed()){
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
             }
             db.close();
         }
     }
 
-    private void getFezilalilTafsirFromLocalDB(){
+    private void getFezilalilTafsirFromLocalDB() {
         SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
         String banglaSuraId = getDigitBanglaFromEnglish(surah_id);
         String banglaVerseId = getDigitBanglaFromEnglish(ayah_num);
-        String sql = "select tafsir_text\n" +
-                "from tafsir_fezilalil_quran\n" +
-                "where sura_id = '"+banglaSuraId+"' and verse_id = '"+banglaVerseId+"'";
+        String sql = "select tafsir_text\n" + "from tafsir_fezilalil_quran\n" + "where sura_id = '" + banglaSuraId + "' and verse_id = '" + banglaVerseId + "'";
 
         //Log.i("SQL", sql);
-        Cursor cursor = db.rawQuery(sql,null);
+        Cursor cursor = db.rawQuery(sql, null);
         try {
             if (cursor.moveToFirst()) {
                 fezilalil_quran_text = cursor.getString(0);
-                fezilalil_quran_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/>"+fezilalil_quran_text));
-            }else{
+                fezilalil_quran_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/>" + fezilalil_quran_text));
+            } else {
                 fathul_mazid_content.setText(Html.fromHtml("<b>তাফসির:</b><br/><br/> দুঃখিত! এই আয়াতের তাফসীর পাওয়া যায় নি।"));
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             Log.e("Tafsir", e.getMessage());
             //throw new RuntimeException("SQL Query: " + sql, e);
             Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
-        }finally {
-            if (cursor != null && !cursor.isClosed()){
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
             }
             db.close();
@@ -941,9 +1072,8 @@ public class TafsirActivity extends AppCompatActivity {
     }
 
     public static final String getDigitBanglaFromEnglish(String number) {
-        char[] banglaDigits = { '০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯' };
-        if (number == null)
-            return new String("");
+        char[] banglaDigits = {'০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'};
+        if (number == null) return new String("");
         StringBuilder builder = new StringBuilder();
         try {
             for (int i = 0; i < number.length(); i++) {
