@@ -52,7 +52,9 @@ public class JsonFromUrlTask {
     private void getData(){
         // Tag used to cancel the request
         String tag_string_req = "book_list_api";
-        progressBar.setVisibility(View.VISIBLE);
+        if(!TAG.equals("SuraDetailsActivity")) {
+            progressBar.setVisibility(View.VISIBLE);
+        }
         StringRequest strReq = new StringRequest(Request.Method.GET,url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
