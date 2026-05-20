@@ -873,7 +873,16 @@ public class TafsirActivity extends AppCompatActivity {
 
             infoTxt.setText("\uD83E\uDD16 Analyzing Tafsir...");
 
-            Log.d("payload",json.toString());
+            String payload = json.toString();
+
+            Log.d("payload",payload);
+
+            Log.d("PAYLOAD_SIZE", "Length = " + payload.length());
+
+            for (int i = 0; i < payload.length(); i += 1000) {
+                int end = Math.min(payload.length(), i + 1000);
+                Log.d("PAYLOAD", payload.substring(i, end));
+            }
 
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, json,
                     response -> {
