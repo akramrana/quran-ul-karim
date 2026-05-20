@@ -789,6 +789,7 @@ public class TafsirActivity extends AppCompatActivity {
 
         String label = surah_name + " " + ayah_key;
         String tafsirTxt = "";
+        String lang = "Bangla";
 
         if (active_tafsir.equals("ibn_kasir")) {
             tafsirTxt = ibn_kathir_content.getText().toString();
@@ -798,6 +799,7 @@ public class TafsirActivity extends AppCompatActivity {
             tafsirTxt = zakaria_content.getText().toString();
         } else if (active_tafsir.equals("jalalayn")) {
             tafsirTxt = jalalayn_content.getText().toString();
+            lang = "English";
         } else if (active_tafsir.equals("tafhim")) {
             tafsirTxt = tafhim_content.getText().toString();
         } else if (active_tafsir.equals("fathul")) {
@@ -808,7 +810,7 @@ public class TafsirActivity extends AppCompatActivity {
 
         if(canUseAiSummary(tafsirTxt)) {
             Log.d(label, tafsirTxt);
-            requestAiSummary("tafsir",surah_id,active_tafsir,ayah_num,"Bangla",tafsirTxt);
+            requestAiSummary("tafsir",surah_id,active_tafsir,ayah_num,lang,tafsirTxt);
         }
     }
 
