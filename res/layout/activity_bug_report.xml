@@ -71,7 +71,9 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/feedbackname"
                     android:minHeight="48dp"
-                    android:inputType="textPersonName"></EditText>
+                    android:inputType="textPersonName"
+                    android:background="@drawable/edittext_border"
+                    android:layout_marginBottom="10dp"></EditText>
 
                 <EditText
                     android:id="@+id/EditTextEmail"
@@ -79,7 +81,9 @@
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:hint="@string/feedbackemail"
-                    android:inputType="textEmailAddress"></EditText>
+                    android:inputType="textEmailAddress"
+                    android:background="@drawable/edittext_border"
+                    android:layout_marginBottom="10dp"></EditText>
 
                 <Spinner
                     android:id="@+id/SpinnerFeedbackType"
@@ -87,7 +91,9 @@
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:entries="@array/feedbacktypelist"
-                    android:prompt="@string/feedbacktype"></Spinner>
+                    android:prompt="@string/feedbacktype"
+                    android:background="@drawable/edittext_border"
+                    android:layout_marginBottom="10dp"></Spinner>
 
                 <EditText
                     android:id="@+id/EditTextFeedbackBody"
@@ -96,7 +102,9 @@
                     android:hint="@string/feedbackbody"
                     android:inputType="textMultiLine"
                     android:minHeight="48dp"
-                    android:lines="5"></EditText>
+                    android:lines="5"
+                    android:background="@drawable/edittext_border"
+                    android:layout_marginBottom="10dp"></EditText>
 
 
                 <TextView
@@ -104,7 +112,9 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Upload App Screenshot Only"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:background="@drawable/edittext_border"
+                    android:layout_marginBottom="10dp"/>
 
                 <TextView
                     android:id="@+id/imageSelectHelper"
@@ -113,12 +123,14 @@
                     android:text="Please attach only a screenshot of the app. Do not upload personal photos."
                     android:textSize="12sp"
                     android:paddingTop="4dp"
-                    android:textColor="@android:color/darker_gray"/>
+                    android:textColor="@android:color/darker_gray"
+                    android:layout_marginBottom="10dp"/>
 
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="fill_parent"
-                    android:layout_height="256dp" />
+                    android:layout_height="256dp"
+                    android:background="@drawable/edittext_border"/>
 
                 <CheckBox
                     android:id="@+id/CheckBoxResponse"

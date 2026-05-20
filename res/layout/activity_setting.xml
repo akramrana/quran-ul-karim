@@ -102,11 +102,13 @@
                         android:orientation="vertical">
                         <Spinner
                             android:id="@+id/mushaf_spinner"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:minHeight="48dp"
                             android:layout_gravity="right"
-                            android:prompt="@string/spinner_prompt" />
+                            android:prompt="@string/spinner_prompt"
+                            android:background="@drawable/edittext_border"
+                            android:layout_marginBottom="10dp"/>
                     </LinearLayout>
 
 
@@ -148,13 +150,16 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
                         android:orientation="vertical">
+
                         <Spinner
                             android:id="@+id/arabic_font_spinner"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
                             android:minHeight="48dp"
-                            android:prompt="@string/spinner_prompt" />
+                            android:prompt="@string/spinner_prompt"
+                            android:background="@drawable/edittext_border"
+                            android:layout_marginBottom="10dp"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -205,15 +210,19 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
                         android:orientation="vertical">
+
                         <EditText
                             android:id="@+id/arFontSize"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
                             android:minHeight="48dp"
                             android:layout_gravity="right"
                             android:inputType="number"
-                            android:hint="Arabic font size"/>
+                            android:hint="Arabic font size"
+                            android:background="@drawable/edittext_border"
+                            android:layout_marginBottom="10dp"/>
+
                     </LinearLayout>
 
                 </LinearLayout>
@@ -243,15 +252,19 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
                         android:orientation="vertical">
+
                         <EditText
                             android:id="@+id/enFontSize"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
                             android:minHeight="48dp"
                             android:layout_gravity="right"
                             android:inputType="number"
-                            android:hint="English font size"/>
+                            android:hint="English font size"
+                            android:background="@drawable/edittext_border"
+                            android:layout_marginBottom="10dp"/>
+
                     </LinearLayout>
 
                 </LinearLayout>
@@ -281,15 +294,19 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
                         android:orientation="vertical">
+
                         <EditText
                             android:id="@+id/bnFontSize"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
                             android:minHeight="48dp"
                             android:layout_gravity="right"
                             android:inputType="number"
-                            android:hint="Bangla font size"/>
+                            android:hint="Bangla font size"
+                            android:background="@drawable/edittext_border"
+                            android:layout_marginBottom="10dp"/>
+
                     </LinearLayout>
 
                 </LinearLayout>
@@ -331,15 +348,19 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
                         android:orientation="vertical">
+
                         <EditText
                             android:id="@+id/enFontSizeTafsir"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
                             android:minHeight="48dp"
                             android:layout_gravity="right"
                             android:inputType="number"
-                            android:hint="English font size"/>
+                            android:hint="English font size"
+                            android:background="@drawable/edittext_border"
+                            android:layout_marginBottom="10dp"/>
+
                     </LinearLayout>
 
                 </LinearLayout>
@@ -369,15 +390,19 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
                         android:orientation="vertical">
+
                         <EditText
                             android:id="@+id/bnFontSizeTafsir"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:minHeight="48dp"
                             android:ems="10"
                             android:layout_gravity="right"
                             android:inputType="number"
-                            android:hint="Font Size of Bangla"/>
+                            android:hint="Font Size of Bangla"
+                            android:background="@drawable/edittext_border"
+                            android:layout_marginBottom="10dp"/>
+
                     </LinearLayout>
 
                 </LinearLayout>
@@ -583,14 +608,19 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
                         android:orientation="vertical">
+
                         <Spinner
                             android:id="@+id/calcMtd_spinner"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:minHeight="48dp"
                             android:layout_gravity="right"
-                            android:prompt="@string/spinner_calculation_method"/>
+                            android:prompt="@string/spinner_calculation_method"
+                            android:background="@drawable/edittext_border"
+                            android:layout_marginBottom="10dp"/>
+
                     </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -619,14 +649,19 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
                         android:orientation="vertical">
+
                         <Spinner
                             android:id="@+id/jurisMtd_spinner"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:minHeight="48dp"
                             android:layout_gravity="right"
-                            android:prompt="@string/spinner_juristic_method"/>
+                            android:prompt="@string/spinner_juristic_method"
+                            android:background="@drawable/edittext_border"
+                            android:layout_marginBottom="10dp"/>
+
                     </LinearLayout>
+
                 </LinearLayout>
 
 

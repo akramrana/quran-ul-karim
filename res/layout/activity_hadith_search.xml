@@ -58,7 +58,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/topAboutBar"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
 
             <Spinner
                 android:id="@+id/kitab_spinner"
@@ -66,7 +68,9 @@
                 android:layout_height="48dp"
                 android:layout_gravity="left"
                 android:textSize="14sp"
-                android:prompt="@string/spinner_prompt" />
+                android:prompt="@string/spinner_prompt"
+                android:background="@drawable/edittext_border"
+                android:layout_marginBottom="10dp"/>
 
             <EditText
                 android:id="@+id/hint"
@@ -76,8 +80,8 @@
                 android:textSize="14sp"
                 android:hint="@string/hadith_hint"
                 android:layout_below="@+id/kitab_spinner"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"/>
+                android:background="@drawable/edittext_border"
+                android:layout_marginBottom="10dp"/>
 
             <Button
                 android:id="@+id/search_hadith_btn"
@@ -89,7 +93,8 @@
                 android:text="Search"
                 android:textSize="14sp"
                 android:textAllCaps="false"
-                android:layout_below="@+id/hint"/>
+                android:layout_below="@+id/hint"
+                android:layout_marginBottom="3dp"/>
 
         </RelativeLayout>
 

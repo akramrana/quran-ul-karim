@@ -68,9 +68,9 @@
                 android:layout_width="fill_parent"
                 android:layout_height="48dp"
                 android:layout_marginBottom="10dp"
+                android:background="@drawable/edittext_border"
                 android:hint="E-mail"
                 android:inputType="textEmailAddress"
-                android:padding="10dp"
                 android:singleLine="true"/>
 
             <EditText
@@ -80,7 +80,7 @@
                 android:layout_marginBottom="10dp"
                 android:hint="password"
                 android:inputType="textPassword"
-                android:padding="10dp"
+                android:background="@drawable/edittext_border"
                 android:singleLine="true"/>
 
             <!-- Login Button -->
@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dip"
                 android:textColor="@color/contrast_black"
-                android:background="@color/orange"
+                android:background="@drawable/orange_border"
                 android:text="@string/sign_in_ttl"
                 android:textAllCaps="false"/>
 
