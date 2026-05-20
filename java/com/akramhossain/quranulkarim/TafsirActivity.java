@@ -21,6 +21,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -777,35 +778,38 @@ public class TafsirActivity extends AppCompatActivity {
 
         aiSummaryButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i(TAG, active_tafsir);
-
-                String label = surah_name + " " + ayah_key;
-                String copyTxt = "Surah " + surah_name + " " + ayah_key + "\n" + text_tashkeel + "\n" + ayah_trans + "\n" + content_en + "\n" + content_bn + "\n\n";
-                String tafsirTxt = "";
-
-                if (active_tafsir.equals("ibn_kasir")) {
-                    tafsirTxt = ibn_kathir_content.getText().toString();
-                } else if (active_tafsir.equals("bayaan")) {
-                    tafsirTxt = bayaan_content.getText().toString();
-                } else if (active_tafsir.equals("zakaria")) {
-                    tafsirTxt = zakaria_content.getText().toString();
-                } else if (active_tafsir.equals("jalalayn")) {
-                    tafsirTxt = jalalayn_content.getText().toString();
-                } else if (active_tafsir.equals("tafhim")) {
-                    tafsirTxt = tafhim_content.getText().toString();
-                } else if (active_tafsir.equals("fathul")) {
-                    tafsirTxt = fathul_mazid_content.getText().toString();
-                } else if (active_tafsir.equals("fezilalil")) {
-                    tafsirTxt = fezilalil_quran_content.getText().toString();
-                }
-
-                if(canUseAiSummary(tafsirTxt)) {
-                    Log.d(label, tafsirTxt);
-                    requestAiSummary("tafsir",surah_id,active_tafsir,ayah_num,"Bangla",tafsirTxt);
-                }
+                askAi();
             }
         });
 
+    }
+
+    private void askAi(){
+        Log.i(TAG, active_tafsir);
+
+        String label = surah_name + " " + ayah_key;
+        String tafsirTxt = "";
+
+        if (active_tafsir.equals("ibn_kasir")) {
+            tafsirTxt = ibn_kathir_content.getText().toString();
+        } else if (active_tafsir.equals("bayaan")) {
+            tafsirTxt = bayaan_content.getText().toString();
+        } else if (active_tafsir.equals("zakaria")) {
+            tafsirTxt = zakaria_content.getText().toString();
+        } else if (active_tafsir.equals("jalalayn")) {
+            tafsirTxt = jalalayn_content.getText().toString();
+        } else if (active_tafsir.equals("tafhim")) {
+            tafsirTxt = tafhim_content.getText().toString();
+        } else if (active_tafsir.equals("fathul")) {
+            tafsirTxt = fathul_mazid_content.getText().toString();
+        } else if (active_tafsir.equals("fezilalil")) {
+            tafsirTxt = fezilalil_quran_content.getText().toString();
+        }
+
+        if(canUseAiSummary(tafsirTxt)) {
+            Log.d(label, tafsirTxt);
+            requestAiSummary("tafsir",surah_id,active_tafsir,ayah_num,"Bangla",tafsirTxt);
+        }
     }
 
     private boolean canUseAiSummary(String tafsirTxt) {

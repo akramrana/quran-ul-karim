@@ -353,6 +353,6 @@
     <string name="daily_ayah_ref">Al-Qamar (54:40)</string>
     <string name="spinner_title_ayah">Enter ayah number</string>
     <string name="clear_filter">Clear Filter</string>
-    <string name="string_ai_summary">Ask AI to summarize this</string>
+    <string name="string_ai_summary">Ask AI to summarize this tafsir</string>
 
 </resources>

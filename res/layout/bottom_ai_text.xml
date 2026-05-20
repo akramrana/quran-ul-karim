@@ -15,12 +15,21 @@
         android:textSize="18sp"
         android:textColor="@color/text_primary"/>
 
-    <TextView
-        android:id="@+id/infoTxt"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Text"
-        android:textSize="13sp"
-        android:textColor="@color/text_primary"/>
+        android:layout_height="350dp"
+        android:fillViewport="true"
+        android:scrollbars="vertical">
+
+        <TextView
+            android:id="@+id/infoTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Text"
+            android:textSize="13sp"
+            android:textColor="@color/text_primary"
+            android:lineSpacingExtra="2dp"/>
+
+    </ScrollView>
 
 </LinearLayout>
