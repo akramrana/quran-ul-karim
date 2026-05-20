@@ -9,6 +9,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -904,7 +905,9 @@ public class MainActivity extends AppCompatActivity {
 
     boolean isDbHealthy() {
 
-        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+        SQLiteDatabase db = DatabaseHelper
+                .getInstance(getApplicationContext())
+                .getReadableDatabase();
 
         String[] requiredTables = {
                 "ayah",
@@ -930,19 +933,25 @@ public class MainActivity extends AppCompatActivity {
                 "verses_content_tafsir_jalalayn",
                 "verses_content_tafsir_zakaria",
                 "word_answers",
-                "words",
+                "words"
         };
 
-        for (String table : requiredTables) {
-            Cursor c = db.rawQuery(
-                    "SELECT name FROM sqlite_master WHERE type='table' AND name=?",
-                    new String[]{table}
-            );
+        HashSet<String> existingTables = new HashSet<>();
 
-            boolean exists = c.moveToFirst();
-            c.close();
+        Cursor c = db.rawQuery(
+                "SELECT name FROM sqlite_master WHERE type='table'",
+                null
+        );
 
-            if (!exists) return false;
+        while (c.moveToNext()) {
+            existingTables.add(c.getString(0));
+        }
+        c.close();
+
+        for(String table : requiredTables){
+            if(!existingTables.contains(table)){
+                return false;
+            }
         }
 
         return true;
