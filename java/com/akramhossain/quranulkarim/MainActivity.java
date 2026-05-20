@@ -890,6 +890,62 @@ public class MainActivity extends AppCompatActivity {
 
         showDailyAyah();
 
+        if(isDbHealthy()){
+            Log.d("DB","Is Healthy");
+        }else{
+            AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+            alert.setTitle(R.string.text_warning);
+            alert.setMessage(R.string.text_db_corrupted);
+            alert.setPositiveButton(R.string.text_ok,null);
+            alert.show();
+        }
+
+    }
+
+    boolean isDbHealthy() {
+
+        SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+
+        String[] requiredTables = {
+                "ayah",
+                "ayah_indo",
+                "bangla_name",
+                "bookmark",
+                "bywords",
+                "hadith_bookmark",
+                "introduction",
+                "last_position",
+                "quick_link",
+                "quran_index",
+                "reports",
+                "sura",
+                "tafsir_fathul_mazid",
+                "tafsir_fezilalil_quran",
+                "tafsir_tafhimul_quran",
+                "transliteration",
+                "uthmani",
+                "uthmani_tajweed",
+                "verses_content_tafsir_bayaan",
+                "verses_content_tafsir_ibn_kasir",
+                "verses_content_tafsir_jalalayn",
+                "verses_content_tafsir_zakaria",
+                "word_answers",
+                "words",
+        };
+
+        for (String table : requiredTables) {
+            Cursor c = db.rawQuery(
+                    "SELECT name FROM sqlite_master WHERE type='table' AND name=?",
+                    new String[]{table}
+            );
+
+            boolean exists = c.moveToFirst();
+            c.close();
+
+            if (!exists) return false;
+        }
+
+        return true;
     }
 
     private void setHbRecyclerViewAdapter() {
@@ -1289,7 +1345,7 @@ public class MainActivity extends AppCompatActivity {
                 //
                 Integer currentAppVersion = json.getInt("current_app_version");
                 //Integer appVersion = mPrefs.getInt("app_version", -1);
-                Integer appVersion = 102;
+                Integer appVersion = 104;
                 Log.d("app_version",appVersion.toString());
                 LinearLayout version_upgrade_warning = (LinearLayout) findViewById(R.id.version_upgrade_warning);
                 if(appVersion < currentAppVersion){

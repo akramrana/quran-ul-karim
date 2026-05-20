@@ -354,5 +354,6 @@
     <string name="spinner_title_ayah">Enter ayah number</string>
     <string name="clear_filter">Clear Filter</string>
     <string name="string_ai_summary">Ask AI to summarize this tafsir</string>
+    <string name="text_db_corrupted">Some app data appears corrupted or incomplete. Please clear app data or reinstall the app to restore Quran content.</string>
 
 </resources>
