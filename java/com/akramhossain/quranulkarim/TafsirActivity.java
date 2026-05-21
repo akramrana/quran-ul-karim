@@ -89,8 +89,6 @@ public class TafsirActivity extends AppCompatActivity {
     String bodyTxtColor = "#ffffff";
     String appTheme = "";
 
-    ProgressBar progressBar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -774,8 +772,6 @@ public class TafsirActivity extends AppCompatActivity {
             tv_ayah_arabic.setVisibility(View.VISIBLE);
         }
 
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
         aiSummaryButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 askAi();
@@ -848,6 +844,10 @@ public class TafsirActivity extends AppCompatActivity {
         TextView infoTxt = dialog.findViewById(R.id.infoTxt);
         infoTxt.setTypeface(font);
 
+        ProgressBar progressBar = dialog.findViewById(R.id.progressBar);
+
+        TextView disclaimerTxt = dialog.findViewById(R.id.disclaimerTxt);
+
         dialog.show();
 
         Window window = dialog.getWindow();
@@ -873,6 +873,8 @@ public class TafsirActivity extends AppCompatActivity {
 
             progressBar.setVisibility(View.VISIBLE);
 
+            disclaimerTxt.setVisibility(View.VISIBLE);
+
             infoTxt.setText("\uD83E\uDD16 Analyzing Tafsir...");
 
             String payload = json.toString();
@@ -889,7 +891,10 @@ public class TafsirActivity extends AppCompatActivity {
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, json,
                     response -> {
                         progressBar.setVisibility(View.GONE);
+                        disclaimerTxt.setVisibility(View.GONE);
+
                         try {
+                            Log.d("AI_RESPONSE", response.toString());
                             boolean success = response.getBoolean("success");
                             if (success) {
                                 JSONObject data = response.getJSONObject("data");
@@ -911,6 +916,7 @@ public class TafsirActivity extends AppCompatActivity {
                                         infoTxt.setText(currentText.toString());
                                     },i*80); // speed
                                 }
+
                             }else{
                                 infoTxt.setText("\uD83E\uDD16 Unable to prepare AI summary at the moment. Please try again later.");
                             }
@@ -921,6 +927,7 @@ public class TafsirActivity extends AppCompatActivity {
                     },
                     error -> {
                         progressBar.setVisibility(View.GONE);
+                        disclaimerTxt.setVisibility(View.GONE);
                         Log.e("AI_ERROR", error.toString());
                         Toast.makeText(getApplicationContext(), "AI failed", Toast.LENGTH_LONG).show();
                     });

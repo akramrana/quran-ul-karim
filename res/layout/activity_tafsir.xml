@@ -332,38 +332,12 @@
 
                 </RelativeLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:id="@+id/askAiSec"
-                    android:layout_below="@id/ayahSection">
-
-                    <Button
-                        android:id="@+id/aiSummaryButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/string_ai_summary"
-                        android:textSize="12sp"
-                        android:textAllCaps="false"
-                        android:drawableLeft="@drawable/robot_2_24px"
-                        android:layout_marginBottom="5dp"
-                        android:background="@drawable/bg_card"
-                        android:paddingTop="3dp"
-                        android:paddingLeft="6dp"
-                        android:paddingRight="6dp"
-                        android:textColor="@color/text_primary"
-                        android:drawableTint="@color/icon_color"/>
-
-                </LinearLayout>
-
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:id="@+id/tafsirTextSection"
-                    android:layout_below="@id/askAiSec"
+                    android:layout_below="@id/ayahSection"
                     android:padding="10dp">
 
                     <TextView
@@ -483,20 +457,29 @@
                         android:textColor="@color/text_primary"
                         android:drawableTint="@color/icon_color"/>
 
+                    <Button
+                        android:id="@+id/aiSummaryButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/string_ai_summary"
+                        android:textSize="12sp"
+                        android:textAllCaps="false"
+                        android:drawableLeft="@drawable/robot_2_24px"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/bg_card"
+                        android:paddingTop="3dp"
+                        android:paddingLeft="6dp"
+                        android:paddingRight="6dp"
+                        android:textColor="@color/text_primary"
+                        android:drawableTint="@color/icon_color"
+                        android:layout_toRightOf="@+id/copyButton"
+                        android:layout_marginLeft="5dp"/>
+
                 </RelativeLayout>
 
             </RelativeLayout>
 
         </ScrollView>
-
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center|center_horizontal"
-            android:visibility="gone" />
 
     </RelativeLayout>
 
