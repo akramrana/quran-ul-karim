@@ -28,12 +28,12 @@
     {
       "id": 1,
       "category": "motivation",
-      "reference": "94:5-6",
+      "reference": "94:5",
       "surah_no": 94,
       "ayah": "5-6",
       "surah_name": "Ash-Sharh",
       "arabic_verified": null,
-      "english_meaning": "With hardship, Allah brings ease.",
+      "english_meaning": "For indeed, with hardship [will be] ease.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/94:5-6/quran-uthmani",
@@ -52,7 +52,7 @@
       "ayah": "69",
       "surah_name": "Al-Ankabut",
       "arabic_verified": null,
-      "english_meaning": "Those who strive for Allah are guided to His ways.",
+      "english_meaning": "And those who strive for Us - We will surely guide them to Our ways.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/29:69/quran-uthmani",
@@ -71,14 +71,14 @@
       "ayah": "139",
       "surah_name": "Aal-Imran",
       "arabic_verified": null,
-      "english_meaning": "Do not weaken or grieve; faith gives strength.",
+      "english_meaning": "So do not weaken and do not grieve.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/3:139/quran-uthmani",
         "status": "reference_verified_source_required",
         "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
       },
-      "arabic": "وَلَا تَهِنُوا",
+      "arabic": "وَلَا تَهِنُوا۟ وَلَا تَحْزَنُوا۟ ",
       "arabic_full": "وَلَا تَهِنُوا۟ وَلَا تَحْزَنُوا۟ وَأَنتُمُ ٱلْأَعْلَوْنَ إِن كُنتُم مُّؤْمِنِينَ",
       "arabic_display_type": "short_excerpt"
     },
@@ -90,7 +90,7 @@
       "ayah": "286",
       "surah_name": "Al-Baqarah",
       "arabic_verified": null,
-      "english_meaning": "Allah does not place on a soul more than it can bear.",
+      "english_meaning": "Allah does not charge a soul except [with that within] its capacity.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/2:286/quran-uthmani",
@@ -109,7 +109,7 @@
       "ayah": "3",
       "surah_name": "At-Talaq",
       "arabic_verified": null,
-      "english_meaning": "Whoever relies on Allah will find Him sufficient.",
+      "english_meaning": "And whoever relies upon Allah - then He is sufficient for him.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/65:3/quran-uthmani",
@@ -128,7 +128,7 @@
       "ayah": "53",
       "surah_name": "Az-Zumar",
       "arabic_verified": null,
-      "english_meaning": "Do not lose hope in Allah’s mercy.",
+      "english_meaning": "Do not despair of the mercy of Allah.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/39:53/quran-uthmani",
@@ -147,7 +147,7 @@
       "ayah": "87",
       "surah_name": "Yusuf",
       "arabic_verified": null,
-      "english_meaning": "Do not despair of relief from Allah.",
+      "english_meaning": "Despair not of relief from Allah.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/12:87/quran-uthmani",
@@ -166,7 +166,7 @@
       "ayah": "40",
       "surah_name": "At-Tawbah",
       "arabic_verified": null,
-      "english_meaning": "Do not grieve; Allah is with us.",
+      "english_meaning": "Do not grieve; indeed Allah is with us.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/9:40/quran-uthmani",
@@ -185,14 +185,14 @@
       "ayah": "7",
       "surah_name": "Muhammad",
       "arabic_verified": null,
-      "english_meaning": "Support Allah’s cause and He will support you.",
+      "english_meaning": "O you who have believed, if you support Allah, He will support you and plant firmly your feet.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/47:7/quran-uthmani",
         "status": "reference_verified_source_required",
         "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
       },
-      "arabic": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓا",
+      "arabic": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓا۟ إِن تَنصُرُوا۟ ٱللَّهَ يَنصُرْكُمْ وَيُثَبِّتْ أَقْدَامَكُم",
       "arabic_full": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوٓا۟ إِن تَنصُرُوا۟ ٱللَّهَ يَنصُرْكُمْ وَيُثَبِّتْ أَقْدَامَكُمْ",
       "arabic_display_type": "short_excerpt"
     },
@@ -204,7 +204,7 @@
       "ayah": "46",
       "surah_name": "Al-Anfal",
       "arabic_verified": null,
-      "english_meaning": "Be patient; Allah is with the patient.",
+      "english_meaning": "And be patient. Indeed, Allah is with the patient.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/8:46/quran-uthmani",
@@ -223,7 +223,7 @@
       "ayah": "7",
       "surah_name": "Ibrahim",
       "arabic_verified": null,
-      "english_meaning": "Gratitude brings increase from Allah.",
+      "english_meaning": "If you are grateful, I will surely increase you [in favor];",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/14:7/quran-uthmani",
@@ -242,7 +242,7 @@
       "ayah": "4",
       "surah_name": "Ad-Duha",
       "arabic_verified": null,
-      "english_meaning": "What is ahead can be better than what has passed.",
+      "english_meaning": "And the Hereafter is better for you than the first [life].",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/93:4/quran-uthmani",
@@ -261,7 +261,7 @@
       "ayah": "5",
       "surah_name": "Ad-Duha",
       "arabic_verified": null,
-      "english_meaning": "Your Lord will give until you are pleased.",
+      "english_meaning": "And your Lord is going to give you, and you will be satisfied.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/93:5/quran-uthmani",
@@ -280,7 +280,7 @@
       "ayah": "46",
       "surah_name": "Taha",
       "arabic_verified": null,
-      "english_meaning": "Allah sees and hears; you are not alone.",
+      "english_meaning": "Fear not. Indeed, I am with you both; I hear and I see.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/20:46/quran-uthmani",
@@ -299,7 +299,7 @@
       "ayah": "87",
       "surah_name": "Al-Anbiya",
       "arabic_verified": null,
-      "english_meaning": "Turning to Allah opens the door to rescue.",
+      "english_meaning": "There is no deity except You; exalted are You.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/21:87/quran-uthmani",
@@ -318,7 +318,7 @@
       "ayah": "60",
       "surah_name": "Ghafir",
       "arabic_verified": null,
-      "english_meaning": "Call upon Allah; He answers.",
+      "english_meaning": "Call upon Me; I will respond to you.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/40:60/quran-uthmani",
@@ -337,7 +337,7 @@
       "ayah": "4",
       "surah_name": "Al-Hadid",
       "arabic_verified": null,
-      "english_meaning": "Allah is with you wherever you are.",
+      "english_meaning": "And He is with you wherever you are.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/57:4/quran-uthmani",
@@ -356,7 +356,7 @@
       "ayah": "97",
       "surah_name": "An-Nahl",
       "arabic_verified": null,
-      "english_meaning": "Faith and good deeds lead to a good life.",
+      "english_meaning": "Whoever does righteousness, whether male or female, while he is a believer - We will surely cause him to live a good life.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/16:97/quran-uthmani",
@@ -375,7 +375,7 @@
       "ayah": "30",
       "surah_name": "Fussilat",
       "arabic_verified": null,
-      "english_meaning": "Do not fear or grieve; receive glad tidings.",
+      "english_meaning": "Do not fear and do not grieve.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/41:30/quran-uthmani",
@@ -387,25 +387,6 @@
       "arabic_display_type": "short_excerpt"
     },
     {
-      "id": 20,
-      "category": "motivation",
-      "reference": "5:23",
-      "surah_no": 5,
-      "ayah": "23",
-      "surah_name": "Al-Ma'idah",
-      "arabic_verified": null,
-      "english_meaning": "Put your trust in Allah.",
-      "verification": {
-        "arabic_source": "Tanzil / quran-uthmani compatible source",
-        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/5:23/quran-uthmani",
-        "status": "reference_verified_source_required",
-        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
-      },
-      "arabic": "قَالَ رَجُلَانِ مِنَ ٱلَّذِينَ يَخَافُونَ أَنْعَمَ ٱللَّهُ عَلَيْهِمَا ٱدْخُلُوا",
-      "arabic_full": "قَالَ رَجُلَانِ مِنَ ٱلَّذِينَ يَخَافُونَ أَنْعَمَ ٱللَّهُ عَلَيْهِمَا ٱدْخُلُوا۟ عَلَيْهِمُ ٱلْبَابَ فَإِذَا دَخَلْتُمُوهُ فَإِنَّكُمْ غَٰلِبُونَ ۚ وَعَلَى ٱللَّهِ فَتَوَكَّلُوٓا۟ إِن كُنتُم مُّؤْمِنِينَ",
-      "arabic_display_type": "short_excerpt"
-    },
-    {
       "id": 21,
       "category": "motivation",
       "reference": "3:160",
@@ -413,7 +394,7 @@
       "ayah": "160",
       "surah_name": "Aal-Imran",
       "arabic_verified": null,
-      "english_meaning": "If Allah supports you, none can overcome you.",
+      "english_meaning": "If Allah should aid you, no one can overcome you;",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/3:160/quran-uthmani",
@@ -432,7 +413,7 @@
       "ayah": "11",
       "surah_name": "At-Taghabun",
       "arabic_verified": null,
-      "english_meaning": "Faith in Allah guides the heart.",
+      "english_meaning": "And whoever believes in Allah - He will guide his heart.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/64:11/quran-uthmani",
@@ -451,7 +432,7 @@
       "ayah": "78",
       "surah_name": "Al-Hajj",
       "arabic_verified": null,
-      "english_meaning": "Allah has chosen you for a meaningful path.",
+      "english_meaning": "And strive for Allah with the striving due to Him.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/22:78/quran-uthmani",
@@ -470,7 +451,7 @@
       "ayah": "17",
       "surah_name": "Al-An'am",
       "arabic_verified": null,
-      "english_meaning": "Only Allah removes hardship.",
+      "english_meaning": "there is no remover of it except Him.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/6:17/quran-uthmani",
@@ -489,7 +470,7 @@
       "ayah": "58",
       "surah_name": "Yunus",
       "arabic_verified": null,
-      "english_meaning": "Rejoice in Allah’s grace and mercy.",
+      "english_meaning": "Say, In the bounty of Allah and in His mercy - in that let them rejoice;",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/10:58/quran-uthmani",
@@ -508,7 +489,7 @@
       "ayah": "22",
       "surah_name": "Al-Insan",
       "arabic_verified": null,
-      "english_meaning": "Your effort with Allah is never wasted.",
+      "english_meaning": "Indeed, this is for you a reward, and your effort has been appreciated.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/76:22/quran-uthmani",
@@ -527,7 +508,7 @@
       "ayah": "28",
       "surah_name": "Ar-Ra'd",
       "arabic_verified": null,
-      "english_meaning": "Hearts find calm through the remembrance of Allah.",
+      "english_meaning": "Unquestionably, by the remembrance of Allah hearts are assured.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/13:28/quran-uthmani",
@@ -546,7 +527,7 @@
       "ayah": "51",
       "surah_name": "At-Tawbah",
       "arabic_verified": null,
-      "english_meaning": "Nothing reaches us except what Allah has written.",
+      "english_meaning": "Never will we be struck except by what Allah has decreed for us;",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/9:51/quran-uthmani",
@@ -565,7 +546,7 @@
       "ayah": "152",
       "surah_name": "Al-Baqarah",
       "arabic_verified": null,
-      "english_meaning": "Remember Allah, and He will remember you.",
+      "english_meaning": "So remember Me; I will remember you.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/2:152/quran-uthmani",
@@ -584,7 +565,7 @@
       "ayah": "45",
       "surah_name": "Al-Baqarah",
       "arabic_verified": null,
-      "english_meaning": "Seek help through patience and prayer.",
+      "english_meaning": "And seek help through patience and prayer",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/2:45/quran-uthmani",
@@ -603,7 +584,7 @@
       "ayah": "186",
       "surah_name": "Al-Baqarah",
       "arabic_verified": null,
-      "english_meaning": "Allah is near and responds to sincere prayer.",
+      "english_meaning": "Indeed I am near.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/2:186/quran-uthmani",
@@ -622,7 +603,7 @@
       "ayah": "173",
       "surah_name": "Aal-Imran",
       "arabic_verified": null,
-      "english_meaning": "Allah is enough for us and the best disposer of affairs.",
+      "english_meaning": "Sufficient for us is Allah, and [He is] the best Disposer of affairs.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/3:173/quran-uthmani",
@@ -641,14 +622,14 @@
       "ayah": "62",
       "surah_name": "Yunus",
       "arabic_verified": null,
-      "english_meaning": "Allah’s close servants need not fear or grieve.",
+      "english_meaning": "Unquestionably, [for] the allies of Allah there will be no fear concerning them, nor will they grieve",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/10:62/quran-uthmani",
         "status": "reference_verified_source_required",
         "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
       },
-      "arabic": "لَا خَوْفٌ عَلَيْهِمْ وَلَا هُمْ يَحْزَنُونَ",
+      "arabic": "أَلَآ إِنَّ أَوْلِيَآءَ ٱللَّهِ لَا خَوْفٌ عَلَيْهِمْ وَلَا هُمْ يَحْزَنُونَ",
       "arabic_full": "أَلَآ إِنَّ أَوْلِيَآءَ ٱللَّهِ لَا خَوْفٌ عَلَيْهِمْ وَلَا هُمْ يَحْزَنُونَ",
       "arabic_display_type": "short_excerpt"
     },
@@ -660,26 +641,26 @@
       "ayah": "57",
       "surah_name": "Yunus",
       "arabic_verified": null,
-      "english_meaning": "The Qur’an is healing for what is in the hearts.",
+      "english_meaning": "O mankind, there has to come to you instruction from your Lord and healing for what is in the breasts.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/10:57/quran-uthmani",
         "status": "reference_verified_source_required",
         "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
       },
-      "arabic": "وَشِفَآءٌۭ لِّمَا فِى ٱلصُّدُورِ",
+      "arabic": "يَٰٓأَيُّهَا ٱلنَّاسُ قَدْ جَآءَتْكُم مَّوْعِظَةٌۭ مِّن رَّبِّكُمْ وَشِفَآءٌۭ لِّمَا فِى ٱلصُّدُورِ",
       "arabic_full": "يَٰٓأَيُّهَا ٱلنَّاسُ قَدْ جَآءَتْكُم مَّوْعِظَةٌۭ مِّن رَّبِّكُمْ وَشِفَآءٌۭ لِّمَا فِى ٱلصُّدُورِ وَهُدًۭى وَرَحْمَةٌۭ لِّلْمُؤْمِنِينَ",
       "arabic_display_type": "short_excerpt"
     },
     {
       "id": 35,
       "category": "anxiety",
-      "reference": "20:25-26",
+      "reference": "20:25",
       "surah_no": 20,
       "ayah": "25-26",
       "surah_name": "Taha",
       "arabic_verified": null,
-      "english_meaning": "Ask Allah to expand your chest and ease your task.",
+      "english_meaning": "My Lord, expand for me my breast [with assurance]",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/20:25-26/quran-uthmani",
@@ -698,7 +679,7 @@
       "ayah": "46",
       "surah_name": "Taha",
       "arabic_verified": null,
-      "english_meaning": "Do not fear; Allah is with you.",
+      "english_meaning": "Fear not. Indeed, I am with you both; I hear and I see.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/20:46/quran-uthmani",
@@ -717,7 +698,7 @@
       "ayah": "62",
       "surah_name": "Ash-Shu'ara",
       "arabic_verified": null,
-      "english_meaning": "My Lord is with me; He will guide me.",
+      "english_meaning": "Indeed, with me is my Lord; He will guide me.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/26:62/quran-uthmani",
@@ -736,33 +717,33 @@
       "ayah": "3",
       "surah_name": "Al-Ahzab",
       "arabic_verified": null,
-      "english_meaning": "Rely on Allah; He is enough as a guardian.",
+      "english_meaning": "And rely upon Allah; and sufficient is Allah as Disposer of affairs.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/33:3/quran-uthmani",
         "status": "reference_verified_source_required",
         "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
       },
-      "arabic": "وَتَوَكَّلْ عَلَى ٱللَّهِ",
+      "arabic": "وَتَوَكَّلْ عَلَى ٱللَّهِ ۚ وَكَفَىٰ بِٱللَّهِ وَكِيلًۭا",
       "arabic_full": "وَتَوَكَّلْ عَلَى ٱللَّهِ ۚ وَكَفَىٰ بِٱللَّهِ وَكِيلًۭا",
       "arabic_display_type": "short_excerpt"
     },
     {
       "id": 39,
       "category": "anxiety",
-      "reference": "33:41-42",
+      "reference": "33:41",
       "surah_no": 33,
       "ayah": "41-42",
       "surah_name": "Al-Ahzab",
       "arabic_verified": null,
-      "english_meaning": "Remember Allah often, morning and evening.",
+      "english_meaning": "O you who have believed, remember Allah with much remembrance",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/33:41-42/quran-uthmani",
         "status": "reference_verified_source_required",
         "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
       },
-      "arabic": "ٱذْكُرُوا۟ ٱللَّهَ ذِكْرًۭا كَثِيرًۭا",
+      "arabic": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱذْكُرُوا۟ ٱللَّهَ ذِكْرًۭا كَثِيرًۭا",
       "arabic_full": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱذْكُرُوا۟ ٱللَّهَ ذِكْرًۭا كَثِيرًۭا",
       "arabic_display_type": "short_excerpt"
     },
@@ -774,7 +755,7 @@
       "ayah": "36",
       "surah_name": "Az-Zumar",
       "arabic_verified": null,
-      "english_meaning": "Is Allah not sufficient for His servant?",
+      "english_meaning": "Is not Allah sufficient for His Servant.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/39:36/quran-uthmani",
@@ -793,7 +774,7 @@
       "ayah": "4",
       "surah_name": "Al-Fath",
       "arabic_verified": null,
-      "english_meaning": "Allah sends tranquility into the hearts of believers.",
+      "english_meaning": "It is He who sent down tranquillity.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/48:4/quran-uthmani",
@@ -807,12 +788,12 @@
     {
       "id": 42,
       "category": "anxiety",
-      "reference": "57:22-23",
+      "reference": "57:22",
       "surah_no": 57,
       "ayah": "22-23",
       "surah_name": "Al-Hadid",
       "arabic_verified": null,
-      "english_meaning": "Do not be crushed by what passes or overly attached to what comes.",
+      "english_meaning": "No disaster strikes upon the earth or among yourselves except that it is in a register before",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/57:22-23/quran-uthmani",
@@ -831,14 +812,14 @@
       "ayah": "13",
       "surah_name": "At-Taghabun",
       "arabic_verified": null,
-      "english_meaning": "Believers should place their trust in Allah.",
+      "english_meaning": "Allah - there is no deity except Him. And upon Allah let the believers rely.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/64:13/quran-uthmani",
         "status": "reference_verified_source_required",
         "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
       },
-      "arabic": "وَعَلَى ٱللَّهِ فَلْيَتَوَكَّلِ ٱلْمُؤْمِنُونَ",
+      "arabic": "ٱللَّهُ لَآ إِلَٰهَ إِلَّا هُوَ ۚ وَعَلَى ٱللَّهِ فَلْيَتَوَكَّلِ ٱلْمُؤْمِنُون",
       "arabic_full": "ٱللَّهُ لَآ إِلَٰهَ إِلَّا هُوَ ۚ وَعَلَى ٱللَّهِ فَلْيَتَوَكَّلِ ٱلْمُؤْمِنُونَ",
       "arabic_display_type": "short_excerpt"
     },
@@ -850,7 +831,7 @@
       "ayah": "9",
       "surah_name": "Al-Muzzammil",
       "arabic_verified": null,
-      "english_meaning": "Take Allah as your protector and disposer of affairs.",
+      "english_meaning": "So take Him as Disposer of [your] affairs.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/73:9/quran-uthmani",
@@ -869,7 +850,7 @@
       "ayah": "1",
       "surah_name": "Ash-Sharh",
       "arabic_verified": null,
-      "english_meaning": "Allah can open and relieve the chest.",
+      "english_meaning": "Did We not expand for you, [O Muhammad], your breast?",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/94:1/quran-uthmani",
@@ -883,12 +864,12 @@
     {
       "id": 46,
       "category": "anxiety",
-      "reference": "94:2-3",
+      "reference": "94:2",
       "surah_no": 94,
       "ayah": "2-3",
       "surah_name": "Ash-Sharh",
       "arabic_verified": null,
-      "english_meaning": "Allah can remove heavy burdens.",
+      "english_meaning": "And We removed from you your burden",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/94:2-3/quran-uthmani",
@@ -907,7 +888,7 @@
       "ayah": "1",
       "surah_name": "Al-Falaq",
       "arabic_verified": null,
-      "english_meaning": "Seek protection in the Lord of daybreak.",
+      "english_meaning": "Say, I seek refuge in the Lord of daybreak.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/113:1/quran-uthmani",
@@ -926,7 +907,7 @@
       "ayah": "1",
       "surah_name": "An-Nas",
       "arabic_verified": null,
-      "english_meaning": "Seek protection in the Lord of mankind.",
+      "english_meaning": "Say, I seek refuge in the Lord of mankind.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/114:1/quran-uthmani",
@@ -945,7 +926,7 @@
       "ayah": "23",
       "surah_name": "Al-Hashr",
       "arabic_verified": null,
-      "english_meaning": "Allah is the King, the Holy, the Source of peace.",
+      "english_meaning": "He is Allah, other than whom there is no deity, the Sovereign, the Pure, the Perfection, the Bestower of Faith.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/59:23/quran-uthmani",
@@ -964,7 +945,7 @@
       "ayah": "13",
       "surah_name": "Al-An'am",
       "arabic_verified": null,
-      "english_meaning": "Allah hears and knows all things.",
+      "english_meaning": "And to Him belongs that which reposes by night and by day.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/6:13/quran-uthmani",
@@ -983,7 +964,7 @@
       "ayah": "56",
       "surah_name": "Hud",
       "arabic_verified": null,
-      "english_meaning": "Allah is just and in full control.",
+      "english_meaning": "Indeed, I have relied upon Allah, my Lord and your Lord.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/11:56/quran-uthmani",
@@ -1002,7 +983,7 @@
       "ayah": "62",
       "surah_name": "An-Naml",
       "arabic_verified": null,
-      "english_meaning": "Allah answers the distressed when they call Him.",
+      "english_meaning": "Is He [not best] who responds to the desperate one when he calls upon Him.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/27:62/quran-uthmani",
@@ -1016,12 +997,12 @@
     {
       "id": 53,
       "category": "rizq",
-      "reference": "65:2-3",
+      "reference": "65:2",
       "surah_no": 65,
       "ayah": "2-3",
       "surah_name": "At-Talaq",
       "arabic_verified": null,
-      "english_meaning": "Allah provides from places a person does not expect.",
+      "english_meaning": "And whoever fears Allah - He will make for him a way out",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/65:2-3/quran-uthmani",
@@ -1040,14 +1021,14 @@
       "ayah": "6",
       "surah_name": "Hud",
       "arabic_verified": null,
-      "english_meaning": "Every creature’s provision is with Allah.",
+      "english_meaning": "And there is no creature on earth but that upon Allah is its provision.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/11:6/quran-uthmani",
         "status": "reference_verified_source_required",
         "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
       },
-      "arabic": "إِلَّا عَلَى ٱللَّهِ رِزْقُهَا",
+      "arabic": "وَمَا مِن دَآبَّةٍۢ فِى ٱلْأَرْضِ إِلَّا عَلَى ٱللَّهِ رِزْقُهَا",
       "arabic_full": "۞ وَمَا مِن دَآبَّةٍۢ فِى ٱلْأَرْضِ إِلَّا عَلَى ٱللَّهِ رِزْقُهَا وَيَعْلَمُ مُسْتَقَرَّهَا وَمُسْتَوْدَعَهَا ۚ كُلٌّۭ فِى كِتَٰبٍۢ مُّبِينٍۢ",
       "arabic_display_type": "short_excerpt"
     },
@@ -1059,7 +1040,7 @@
       "ayah": "22",
       "surah_name": "Adh-Dhariyat",
       "arabic_verified": null,
-      "english_meaning": "Your provision and what you are promised are with Allah.",
+      "english_meaning": "And in the heaven is your provision.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/51:22/quran-uthmani",
@@ -1078,7 +1059,7 @@
       "ayah": "58",
       "surah_name": "Adh-Dhariyat",
       "arabic_verified": null,
-      "english_meaning": "Allah is the Provider, the Possessor of strength.",
+      "english_meaning": "Indeed, it is Allah who is the [continual] Provider.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/51:58/quran-uthmani",
@@ -1097,7 +1078,7 @@
       "ayah": "60",
       "surah_name": "Al-Ankabut",
       "arabic_verified": null,
-      "english_meaning": "Allah provides for creatures and for you.",
+      "english_meaning": "Allah provides for it and for you.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/29:60/quran-uthmani",
@@ -1116,7 +1097,7 @@
       "ayah": "39",
       "surah_name": "Saba",
       "arabic_verified": null,
-      "english_meaning": "Whatever you spend for good, Allah replaces it.",
+      "english_meaning": "But whatever thing you spend [in His cause] - He will compensate it;",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/34:39/quran-uthmani",
@@ -1135,7 +1116,7 @@
       "ayah": "261",
       "surah_name": "Al-Baqarah",
       "arabic_verified": null,
-      "english_meaning": "Giving for Allah is multiplied greatly.",
+      "english_meaning": "The example of those who spend their wealth in the way of Allah is like a seed [of grain] which grows seven spikes;",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/2:261/quran-uthmani",
@@ -1154,7 +1135,7 @@
       "ayah": "268",
       "surah_name": "Al-Baqarah",
       "arabic_verified": null,
-      "english_meaning": "Allah promises forgiveness and bounty.",
+      "english_meaning": "Satan threatens you with poverty and orders you to immorality.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/2:268/quran-uthmani",
@@ -1166,25 +1147,6 @@
       "arabic_display_type": "short_excerpt"
     },
     {
-      "id": 61,
-      "category": "rizq",
-      "reference": "7:96",
-      "surah_no": 7,
-      "ayah": "96",
-      "surah_name": "Al-A'raf",
-      "arabic_verified": null,
-      "english_meaning": "Faith and taqwa open blessings from heaven and earth.",
-      "verification": {
-        "arabic_source": "Tanzil / quran-uthmani compatible source",
-        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/7:96/quran-uthmani",
-        "status": "reference_verified_source_required",
-        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
-      },
-      "arabic": "لَفَتَحْنَا عَلَيْهِم بَرَكَٰتٍۢ",
-      "arabic_full": "وَلَوْ أَنَّ أَهْلَ ٱلْقُرَىٰٓ ءَامَنُوا۟ وَٱتَّقَوْا۟ لَفَتَحْنَا عَلَيْهِم بَرَكَٰتٍۢ مِّنَ ٱلسَّمَآءِ وَٱلْأَرْضِ وَلَٰكِن كَذَّبُوا۟ فَأَخَذْنَٰهُم بِمَا كَانُوا۟ يَكْسِبُونَ",
-      "arabic_display_type": "short_excerpt"
-    },
-    {
       "id": 62,
       "category": "rizq",
       "reference": "14:7",
@@ -1192,7 +1154,7 @@
       "ayah": "7",
       "surah_name": "Ibrahim",
       "arabic_verified": null,
-      "english_meaning": "Gratitude brings increase.",
+      "english_meaning": "If you are grateful, I will surely increase you [in favor];",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/14:7/quran-uthmani",
@@ -1211,14 +1173,14 @@
       "ayah": "18",
       "surah_name": "An-Nahl",
       "arabic_verified": null,
-      "english_meaning": "Allah’s blessings cannot be fully counted.",
+      "english_meaning": "And if you should count the favors of Allah, you could not enumerate them.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/16:18/quran-uthmani",
         "status": "reference_verified_source_required",
         "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
       },
-      "arabic": "لَا تُحْصُوهَآ",
+      "arabic": "وَإِن تَعُدُّوا۟ نِعْمَةَ ٱللَّهِ لَا تُحْصُوهَآ",
       "arabic_full": "وَإِن تَعُدُّوا۟ نِعْمَةَ ٱللَّهِ لَا تُحْصُوهَآ ۗ إِنَّ ٱللَّهَ لَغَفُورٌۭ رَّحِيمٌۭ",
       "arabic_display_type": "short_excerpt"
     },
@@ -1230,14 +1192,14 @@
       "ayah": "114",
       "surah_name": "An-Nahl",
       "arabic_verified": null,
-      "english_meaning": "Eat from Allah’s lawful and good provision.",
+      "english_meaning": "Then eat of what Allah has provided for you [which is] lawful and good. And be grateful for the favor of Allah.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/16:114/quran-uthmani",
         "status": "reference_verified_source_required",
         "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
       },
-      "arabic": "فَكُلُوا۟ مِمَّا رَزَقَكُمُ ٱللَّهُ حَلَٰلًۭا طَيِّبًۭا وَٱشْكُرُوا۟ نِعْمَتَ ٱللَّهِ إِن",
+      "arabic": "فَكُلُوا۟ مِمَّا رَزَقَكُمُ ٱللَّهُ حَلَٰلًۭا طَيِّبًۭا وَٱشْكُرُوا۟ نِعْمَتَ ٱللَّهِ ",
       "arabic_full": "فَكُلُوا۟ مِمَّا رَزَقَكُمُ ٱللَّهُ حَلَٰلًۭا طَيِّبًۭا وَٱشْكُرُوا۟ نِعْمَتَ ٱللَّهِ إِن كُنتُمْ إِيَّاهُ تَعْبُدُونَ",
       "arabic_display_type": "short_excerpt"
     },
@@ -1249,14 +1211,14 @@
       "ayah": "30",
       "surah_name": "Al-Isra",
       "arabic_verified": null,
-      "english_meaning": "Allah expands and restricts provision with wisdom.",
+      "english_meaning": "Indeed, your Lord extends provision for whom He wills.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/17:30/quran-uthmani",
         "status": "reference_verified_source_required",
         "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
       },
-      "arabic": "إِنَّ رَبَّكَ يَبْسُطُ ٱلرِّزْقَ",
+      "arabic": "إِنَّ رَبَّكَ يَبْسُطُ ٱلرِّزْقَ لِمَن يَشَآءُ",
       "arabic_full": "إِنَّ رَبَّكَ يَبْسُطُ ٱلرِّزْقَ لِمَن يَشَآءُ وَيَقْدِرُ ۚ إِنَّهُۥ كَانَ بِعِبَادِهِۦ خَبِيرًۢا بَصِيرًۭا",
       "arabic_display_type": "short_excerpt"
     },
@@ -1268,7 +1230,7 @@
       "ayah": "31",
       "surah_name": "Al-Isra",
       "arabic_verified": null,
-      "english_meaning": "Allah provides for children and parents.",
+      "english_meaning": "And do not kill your children for fear of poverty. We provide for them and for you.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/17:31/quran-uthmani",
@@ -1280,25 +1242,6 @@
       "arabic_display_type": "short_excerpt"
     },
     {
-      "id": 67,
-      "category": "rizq",
-      "reference": "22:58",
-      "surah_no": 22,
-      "ayah": "58",
-      "surah_name": "Al-Hajj",
-      "arabic_verified": null,
-      "english_meaning": "Allah is the best of providers.",
-      "verification": {
-        "arabic_source": "Tanzil / quran-uthmani compatible source",
-        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/22:58/quran-uthmani",
-        "status": "reference_verified_source_required",
-        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
-      },
-      "arabic": "وَٱلَّذِينَ هَاجَرُوا",
-      "arabic_full": "وَٱلَّذِينَ هَاجَرُوا۟ فِى سَبِيلِ ٱللَّهِ ثُمَّ قُتِلُوٓا۟ أَوْ مَاتُوا۟ لَيَرْزُقَنَّهُمُ ٱللَّهُ رِزْقًا حَسَنًۭا ۚ وَإِنَّ ٱللَّهَ لَهُوَ خَيْرُ ٱلرَّٰزِقِينَ",
-      "arabic_display_type": "short_excerpt"
-    },
-    {
       "id": 68,
       "category": "rizq",
       "reference": "24:38",
@@ -1306,14 +1249,14 @@
       "ayah": "38",
       "surah_name": "An-Nur",
       "arabic_verified": null,
-      "english_meaning": "Allah provides for whom He wills without measure.",
+      "english_meaning": "Allah gives provision to whom He wills without account.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/24:38/quran-uthmani",
         "status": "reference_verified_source_required",
         "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
       },
-      "arabic": "وَٱللَّهُ يَرْزُقُ مَن يَشَآءُ",
+      "arabic": "وَٱللَّهُ يَرْزُقُ مَن يَشَآءُ بِغَيْرِ حِسَاب",
       "arabic_full": "لِيَجْزِيَهُمُ ٱللَّهُ أَحْسَنَ مَا عَمِلُوا۟ وَيَزِيدَهُم مِّن فَضْلِهِۦ ۗ وَٱللَّهُ يَرْزُقُ مَن يَشَآءُ بِغَيْرِ حِسَابٍۢ",
       "arabic_display_type": "short_excerpt"
     },
@@ -1325,7 +1268,7 @@
       "ayah": "24",
       "surah_name": "Al-Qasas",
       "arabic_verified": null,
-      "english_meaning": "Ask Allah humbly for any good He sends down.",
+      "english_meaning": "My Lord, indeed I am, for whatever good You would send down to me, in need.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/28:24/quran-uthmani",
@@ -1337,25 +1280,6 @@
       "arabic_display_type": "short_excerpt"
     },
     {
-      "id": 70,
-      "category": "rizq",
-      "reference": "28:82",
-      "surah_no": 28,
-      "ayah": "82",
-      "surah_name": "Al-Qasas",
-      "arabic_verified": null,
-      "english_meaning": "Allah expands and limits provision as He wills.",
-      "verification": {
-        "arabic_source": "Tanzil / quran-uthmani compatible source",
-        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/28:82/quran-uthmani",
-        "status": "reference_verified_source_required",
-        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
-      },
-      "arabic": "وَأَصْبَحَ ٱلَّذِينَ تَمَنَّوْا",
-      "arabic_full": "وَأَصْبَحَ ٱلَّذِينَ تَمَنَّوْا۟ مَكَانَهُۥ بِٱلْأَمْسِ يَقُولُونَ وَيْكَأَنَّ ٱللَّهَ يَبْسُطُ ٱلرِّزْقَ لِمَن يَشَآءُ مِنْ عِبَادِهِۦ وَيَقْدِرُ ۖ لَوْلَآ أَن مَّنَّ ٱللَّهُ عَلَيْنَا لَخَسَفَ بِنَا ۖ وَيْكَأَنَّهُۥ لَا يُفْلِحُ ٱلْكَٰفِرُونَ",
-      "arabic_display_type": "short_excerpt"
-    },
-    {
       "id": 71,
       "category": "rizq",
       "reference": "30:40",
@@ -1363,7 +1287,7 @@
       "ayah": "40",
       "surah_name": "Ar-Rum",
       "arabic_verified": null,
-      "english_meaning": "Allah created you, then provided for you.",
+      "english_meaning": "Allah is the one who created you, then provided for you, then will cause you to die, and then will give you life.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/30:40/quran-uthmani",
@@ -1382,7 +1306,7 @@
       "ayah": "3",
       "surah_name": "Fatir",
       "arabic_verified": null,
-      "english_meaning": "There is no creator providing from heaven and earth except Allah.",
+      "english_meaning": "O mankind, remember the favor of Allah upon you.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/35:3/quran-uthmani",
@@ -1401,7 +1325,7 @@
       "ayah": "52",
       "surah_name": "Az-Zumar",
       "arabic_verified": null,
-      "english_meaning": "Allah expands and restricts provision knowingly.",
+      "english_meaning": "Do they not know that Allah extends provision for whom He wills and restricts [it]",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/39:52/quran-uthmani",
@@ -1420,7 +1344,7 @@
       "ayah": "19",
       "surah_name": "Ash-Shura",
       "arabic_verified": null,
-      "english_meaning": "Allah is gentle with His servants and provides for whom He wills.",
+      "english_meaning": "Allah is Subtle with His servants; He gives provisions to whom He wills.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/42:19/quran-uthmani",
@@ -1439,7 +1363,7 @@
       "ayah": "27",
       "surah_name": "Ash-Shura",
       "arabic_verified": null,
-      "english_meaning": "Allah gives provision in measured wisdom.",
+      "english_meaning": "And if Allah had extended [excessively] provision for His servants, they would have committed tyranny.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/42:27/quran-uthmani",
@@ -1458,7 +1382,7 @@
       "ayah": "10",
       "surah_name": "Al-Jumu'ah",
       "arabic_verified": null,
-      "english_meaning": "Seek Allah’s bounty and remember Him often.",
+      "english_meaning": "Seek from the bounty of Allah.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/62:10/quran-uthmani",
@@ -1470,40 +1394,21 @@
       "arabic_display_type": "short_excerpt"
     },
     {
-      "id": 77,
-      "category": "rizq",
-      "reference": "67:15",
-      "surah_no": 67,
-      "ayah": "15",
-      "surah_name": "Al-Mulk",
-      "arabic_verified": null,
-      "english_meaning": "Work through the earth and eat from Allah’s provision.",
-      "verification": {
-        "arabic_source": "Tanzil / quran-uthmani compatible source",
-        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/67:15/quran-uthmani",
-        "status": "reference_verified_source_required",
-        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
-      },
-      "arabic": "فَٱمْشُوا۟ فِى مَنَاكِبِهَا",
-      "arabic_full": "هُوَ ٱلَّذِى جَعَلَ لَكُمُ ٱلْأَرْضَ ذَلُولًۭا فَٱمْشُوا۟ فِى مَنَاكِبِهَا وَكُلُوا۟ مِن رِّزْقِهِۦ ۖ وَإِلَيْهِ ٱلنُّشُورُ",
-      "arabic_display_type": "short_excerpt"
-    },
-    {
       "id": 78,
       "category": "rizq",
-      "reference": "71:10-12",
+      "reference": "71:10",
       "surah_no": 71,
       "ayah": "10-12",
       "surah_name": "Nuh",
       "arabic_verified": null,
-      "english_meaning": "Seeking forgiveness brings blessings and provision.",
+      "english_meaning": "Ask forgiveness of your Lord. Indeed, He is ever a Perpetual Forgiver.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/71:10-12/quran-uthmani",
         "status": "reference_verified_source_required",
         "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
       },
-      "arabic": "ٱسْتَغْفِرُوا۟ رَبَّكُمْ",
+      "arabic": "ٱسْتَغْفِرُوا۟ رَبَّكُمْ إِنَّهُۥ كَانَ غَفَّارًۭا",
       "arabic_full": "فَقُلْتُ ٱسْتَغْفِرُوا۟ رَبَّكُمْ إِنَّهُۥ كَانَ غَفَّارًۭا",
       "arabic_display_type": "short_excerpt"
     },
@@ -1534,7 +1439,7 @@
       "ayah": "155",
       "surah_name": "Al-Baqarah",
       "arabic_verified": null,
-      "english_meaning": "Tests come through fear, hunger, loss, and hardship.",
+      "english_meaning": "And We will surely test you with something of fear and hunger and a loss of wealth",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/2:155/quran-uthmani",
@@ -1553,7 +1458,7 @@
       "ayah": "156",
       "surah_name": "Al-Baqarah",
       "arabic_verified": null,
-      "english_meaning": "In hardship, remember we belong to Allah and return to Him.",
+      "english_meaning": "Indeed we belong to Allah, and indeed to Him we will return.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/2:156/quran-uthmani",
@@ -1572,7 +1477,7 @@
       "ayah": "157",
       "surah_name": "Al-Baqarah",
       "arabic_verified": null,
-      "english_meaning": "The patient receive blessings, mercy, and guidance.",
+      "english_meaning": "Those are the ones upon whom are blessings from their Lord and mercy.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/2:157/quran-uthmani",
@@ -1591,14 +1496,14 @@
       "ayah": "200",
       "surah_name": "Aal-Imran",
       "arabic_verified": null,
-      "english_meaning": "Be patient, remain firm, and be mindful of Allah.",
+      "english_meaning": "O you who have believed, persevere and endure and remain stationed and fear Allah that you may be successful.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/3:200/quran-uthmani",
         "status": "reference_verified_source_required",
         "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
       },
-      "arabic": "ٱصْبِرُوا۟ وَصَابِرُوا۟",
+      "arabic": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱصْبِرُوا۟ وَصَابِرُوا۟ وَرَابِطُوا۟ وَٱتَّقُوا۟ ٱللَّهَ لَعَلَّكُمْ تُفْلِحُونَ",
       "arabic_full": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱصْبِرُوا۟ وَصَابِرُوا۟ وَرَابِطُوا۟ وَٱتَّقُوا۟ ٱللَّهَ لَعَلَّكُمْ تُفْلِحُونَ",
       "arabic_display_type": "short_excerpt"
     },
@@ -1610,7 +1515,7 @@
       "ayah": "46",
       "surah_name": "Al-Anfal",
       "arabic_verified": null,
-      "english_meaning": "Be patient; Allah is with the patient.",
+      "english_meaning": "And be patient. Indeed, Allah is with the patient.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/8:46/quran-uthmani",
@@ -1629,7 +1534,7 @@
       "ayah": "115",
       "surah_name": "Hud",
       "arabic_verified": null,
-      "english_meaning": "Be patient; Allah does not waste the reward of good-doers.",
+      "english_meaning": "And be patient.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/11:115/quran-uthmani",
@@ -1648,7 +1553,7 @@
       "ayah": "18",
       "surah_name": "Yusuf",
       "arabic_verified": null,
-      "english_meaning": "Beautiful patience is the best response.",
+      "english_meaning": "So patience is most fitting.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/12:18/quran-uthmani",
@@ -1660,44 +1565,6 @@
       "arabic_display_type": "short_excerpt"
     },
     {
-      "id": 87,
-      "category": "sabr",
-      "reference": "12:83",
-      "surah_no": 12,
-      "ayah": "83",
-      "surah_name": "Yusuf",
-      "arabic_verified": null,
-      "english_meaning": "Beautiful patience and trust in Allah bring relief.",
-      "verification": {
-        "arabic_source": "Tanzil / quran-uthmani compatible source",
-        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/12:83/quran-uthmani",
-        "status": "reference_verified_source_required",
-        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
-      },
-      "arabic": "فَصَبْرٌۭ جَمِيلٌ",
-      "arabic_full": "قَالَ بَلْ سَوَّلَتْ لَكُمْ أَنفُسُكُمْ أَمْرًۭا ۖ فَصَبْرٌۭ جَمِيلٌ ۖ عَسَى ٱللَّهُ أَن يَأْتِيَنِى بِهِمْ جَمِيعًا ۚ إِنَّهُۥ هُوَ ٱلْعَلِيمُ ٱلْحَكِيمُ",
-      "arabic_display_type": "short_excerpt"
-    },
-    {
-      "id": 88,
-      "category": "sabr",
-      "reference": "13:22",
-      "surah_no": 13,
-      "ayah": "22",
-      "surah_name": "Ar-Ra'd",
-      "arabic_verified": null,
-      "english_meaning": "The righteous are patient seeking Allah’s pleasure.",
-      "verification": {
-        "arabic_source": "Tanzil / quran-uthmani compatible source",
-        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/13:22/quran-uthmani",
-        "status": "reference_verified_source_required",
-        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
-      },
-      "arabic": "وَٱلَّذِينَ صَبَرُوا",
-      "arabic_full": "وَٱلَّذِينَ صَبَرُوا۟ ٱبْتِغَآءَ وَجْهِ رَبِّهِمْ وَأَقَامُوا۟ ٱلصَّلَوٰةَ وَأَنفَقُوا۟ مِمَّا رَزَقْنَٰهُمْ سِرًّۭا وَعَلَانِيَةًۭ وَيَدْرَءُونَ بِٱلْحَسَنَةِ ٱلسَّيِّئَةَ أُو۟لَٰٓئِكَ لَهُمْ عُقْبَى ٱلدَّارِ",
-      "arabic_display_type": "short_excerpt"
-    },
-    {
       "id": 89,
       "category": "sabr",
       "reference": "14:12",
@@ -1705,7 +1572,7 @@
       "ayah": "12",
       "surah_name": "Ibrahim",
       "arabic_verified": null,
-      "english_meaning": "Remain patient through harm and rely upon Allah.",
+      "english_meaning": "And why should we not rely upon Allah while He has guided us to our [good] ways.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/14:12/quran-uthmani",
@@ -1717,25 +1584,6 @@
       "arabic_display_type": "short_excerpt"
     },
     {
-      "id": 90,
-      "category": "sabr",
-      "reference": "16:126",
-      "surah_no": 16,
-      "ayah": "126",
-      "surah_name": "An-Nahl",
-      "arabic_verified": null,
-      "english_meaning": "Patience is better for those who endure.",
-      "verification": {
-        "arabic_source": "Tanzil / quran-uthmani compatible source",
-        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/16:126/quran-uthmani",
-        "status": "reference_verified_source_required",
-        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
-      },
-      "arabic": "وَإِنْ عَاقَبْتُمْ فَعَاقِبُوا۟ بِمِثْلِ مَا عُوقِبْتُم بِهِۦ",
-      "arabic_full": "وَإِنْ عَاقَبْتُمْ فَعَاقِبُوا۟ بِمِثْلِ مَا عُوقِبْتُم بِهِۦ ۖ وَلَئِن صَبَرْتُمْ لَهُوَ خَيْرٌۭ لِّلصَّٰبِرِينَ",
-      "arabic_display_type": "short_excerpt"
-    },
-    {
       "id": 91,
       "category": "sabr",
       "reference": "16:127",
@@ -1743,7 +1591,7 @@
       "ayah": "127",
       "surah_name": "An-Nahl",
       "arabic_verified": null,
-      "english_meaning": "Your patience comes only through Allah’s help.",
+      "english_meaning": "And your patience is not but through Allah.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/16:127/quran-uthmani",
@@ -1762,7 +1610,7 @@
       "ayah": "28",
       "surah_name": "Al-Kahf",
       "arabic_verified": null,
-      "english_meaning": "Keep yourself patient with those who call upon Allah.",
+      "english_meaning": "And keep yourself patient [by being] with those who call upon their Lord in the morning and the evening.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/18:28/quran-uthmani",
@@ -1781,7 +1629,7 @@
       "ayah": "132",
       "surah_name": "Taha",
       "arabic_verified": null,
-      "english_meaning": "Command prayer and remain patient upon it.",
+      "english_meaning": "And enjoin prayer upon your family [and people] and be steadfast therein.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/20:132/quran-uthmani",
@@ -1800,7 +1648,7 @@
       "ayah": "111",
       "surah_name": "Al-Mu'minun",
       "arabic_verified": null,
-      "english_meaning": "The patient are rewarded for their endurance.",
+      "english_meaning": "Indeed, I have rewarded them this Day for their patient endurance.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/23:111/quran-uthmani",
@@ -1819,7 +1667,7 @@
       "ayah": "75",
       "surah_name": "Al-Furqan",
       "arabic_verified": null,
-      "english_meaning": "The patient are rewarded with high stations.",
+      "english_meaning": "Those will be awarded the Chamber for what they patiently endured, and they will be received therein with greetings and [words of] peace.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/25:75/quran-uthmani",
@@ -1838,7 +1686,7 @@
       "ayah": "54",
       "surah_name": "Al-Qasas",
       "arabic_verified": null,
-      "english_meaning": "Those who are patient receive their reward twice.",
+      "english_meaning": "Those will be given their reward twice for what they patiently endured and [because] they avert evil through good.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/28:54/quran-uthmani",
@@ -1857,7 +1705,7 @@
       "ayah": "60",
       "surah_name": "Ar-Rum",
       "arabic_verified": null,
-      "english_meaning": "Be patient; Allah’s promise is true.",
+      "english_meaning": "So be patient. Indeed, the promise of Allah is truth.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/30:60/quran-uthmani",
@@ -1876,7 +1724,7 @@
       "ayah": "17",
       "surah_name": "Luqman",
       "arabic_verified": null,
-      "english_meaning": "Be patient over what happens to you.",
+      "english_meaning": "Be patient over what befalls you.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/31:17/quran-uthmani",
@@ -1895,7 +1743,7 @@
       "ayah": "24",
       "surah_name": "As-Sajdah",
       "arabic_verified": null,
-      "english_meaning": "Leadership and guidance come through patience and certainty.",
+      "english_meaning": "And We made from among them leaders guiding by Our command when they were patient.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/32:24/quran-uthmani",
@@ -1914,26 +1762,26 @@
       "ayah": "10",
       "surah_name": "Az-Zumar",
       "arabic_verified": null,
-      "english_meaning": "The patient are rewarded without measure.",
+      "english_meaning": "Indeed, the patient will be given their reward without account.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/39:10/quran-uthmani",
         "status": "reference_verified_source_required",
         "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
       },
-      "arabic": "إِنَّمَا يُوَفَّى ٱلصَّٰبِرُونَ",
+      "arabic": "إِنَّمَا يُوَفَّى ٱلصَّٰبِرُونَ أَجْرَهُم بِغَيْرِ حِسَاب",
       "arabic_full": "قُلْ يَٰعِبَادِ ٱلَّذِينَ ءَامَنُوا۟ ٱتَّقُوا۟ رَبَّكُمْ ۚ لِلَّذِينَ أَحْسَنُوا۟ فِى هَٰذِهِ ٱلدُّنْيَا حَسَنَةٌۭ ۗ وَأَرْضُ ٱللَّهِ وَٰسِعَةٌ ۗ إِنَّمَا يُوَفَّى ٱلصَّٰبِرُونَ أَجْرَهُم بِغَيْرِ حِسَابٍۢ",
       "arabic_display_type": "short_excerpt"
     },
     {
       "id": 101,
       "category": "sabr",
-      "reference": "41:34-35",
+      "reference": "41:34",
       "surah_no": 41,
       "ayah": "34-35",
       "surah_name": "Fussilat",
       "arabic_verified": null,
-      "english_meaning": "Responding with good requires great patience.",
+      "english_meaning": "And not equal are the good deed and the bad.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/41:34-35/quran-uthmani",
@@ -1952,7 +1800,7 @@
       "ayah": "35",
       "surah_name": "Al-Ahqaf",
       "arabic_verified": null,
-      "english_meaning": "Be patient like the strong messengers were patient.",
+      "english_meaning": "So be patient, as were those of determination among the messengers and do not be impatient for them.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/46:35/quran-uthmani",
@@ -1971,7 +1819,7 @@
       "ayah": "5",
       "surah_name": "Al-Ma'arij",
       "arabic_verified": null,
-      "english_meaning": "Practice beautiful patience.",
+      "english_meaning": "So be patient with gracious patience.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/70:5/quran-uthmani",
@@ -1990,7 +1838,7 @@
       "ayah": "24",
       "surah_name": "Al-Insan",
       "arabic_verified": null,
-      "english_meaning": "Be patient with the decree of your Lord.",
+      "english_meaning": "So be patient for the decision of your Lord and do not obey from among them a sinner or ungrateful [disbeliever].",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/76:24/quran-uthmani",
@@ -2009,7 +1857,7 @@
       "ayah": "53",
       "surah_name": "Az-Zumar",
       "arabic_verified": null,
-      "english_meaning": "Allah forgives all sins for those who turn back to Him.",
+      "english_meaning": "Do not despair of the mercy of Allah.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/39:53/quran-uthmani",
@@ -2028,7 +1876,7 @@
       "ayah": "70",
       "surah_name": "Al-Furqan",
       "arabic_verified": null,
-      "english_meaning": "Allah can replace bad deeds with good deeds.",
+      "english_meaning": "Allah will replace their evil deeds with good.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/25:70/quran-uthmani",
@@ -2040,25 +1888,6 @@
       "arabic_display_type": "short_excerpt"
     },
     {
-      "id": 107,
-      "category": "forgiveness",
-      "reference": "3:135",
-      "surah_no": 3,
-      "ayah": "135",
-      "surah_name": "Aal-Imran",
-      "arabic_verified": null,
-      "english_meaning": "When believers slip, they remember Allah and seek forgiveness.",
-      "verification": {
-        "arabic_source": "Tanzil / quran-uthmani compatible source",
-        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/3:135/quran-uthmani",
-        "status": "reference_verified_source_required",
-        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
-      },
-      "arabic": "وَٱلَّذِينَ إِذَا فَعَلُوا",
-      "arabic_full": "وَٱلَّذِينَ إِذَا فَعَلُوا۟ فَٰحِشَةً أَوْ ظَلَمُوٓا۟ أَنفُسَهُمْ ذَكَرُوا۟ ٱللَّهَ فَٱسْتَغْفَرُوا۟ لِذُنُوبِهِمْ وَمَن يَغْفِرُ ٱلذُّنُوبَ إِلَّا ٱللَّهُ وَلَمْ يُصِرُّوا۟ عَلَىٰ مَا فَعَلُوا۟ وَهُمْ يَعْلَمُونَ",
-      "arabic_display_type": "short_excerpt"
-    },
-    {
       "id": 108,
       "category": "forgiveness",
       "reference": "4:110",
@@ -2066,7 +1895,7 @@
       "ayah": "110",
       "surah_name": "An-Nisa",
       "arabic_verified": null,
-      "english_meaning": "Whoever seeks forgiveness finds Allah Forgiving and Merciful.",
+      "english_meaning": "They will find Allah Forgiving and Merciful.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/4:110/quran-uthmani",
@@ -2085,7 +1914,7 @@
       "ayah": "90",
       "surah_name": "Hud",
       "arabic_verified": null,
-      "english_meaning": "Seek forgiveness and return to Allah.",
+      "english_meaning": "And ask forgiveness of your Lord and then repent to Him",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/11:90/quran-uthmani",
@@ -2104,7 +1933,7 @@
       "ayah": "8",
       "surah_name": "At-Tahrim",
       "arabic_verified": null,
-      "english_meaning": "Turn to Allah with sincere repentance.",
+      "english_meaning": "Repent to Allah with sincere repentance.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/66:8/quran-uthmani",
@@ -2123,14 +1952,14 @@
       "ayah": "10",
       "surah_name": "Nuh",
       "arabic_verified": null,
-      "english_meaning": "Seek forgiveness from your Lord.",
+      "english_meaning": "And said, Ask forgiveness of your Lord. Indeed, He is ever a Perpetual Forgiver.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/71:10/quran-uthmani",
         "status": "reference_verified_source_required",
         "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
       },
-      "arabic": "فَقُلْتُ ٱسْتَغْفِرُوا",
+      "arabic": "فَقُلْتُ ٱسْتَغْفِرُوا۟ رَبَّكُمْ إِنَّهُۥ كَانَ غَفَّارًۭا",
       "arabic_full": "فَقُلْتُ ٱسْتَغْفِرُوا۟ رَبَّكُمْ إِنَّهُۥ كَانَ غَفَّارًۭا",
       "arabic_display_type": "short_excerpt"
     },
@@ -2142,7 +1971,7 @@
       "ayah": "222",
       "surah_name": "Al-Baqarah",
       "arabic_verified": null,
-      "english_meaning": "Allah loves those who repent and purify themselves.",
+      "english_meaning": "Indeed, Allah loves those who are constantly repentant",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/2:222/quran-uthmani",
@@ -2161,14 +1990,14 @@
       "ayah": "23",
       "surah_name": "Al-A'raf",
       "arabic_verified": null,
-      "english_meaning": "Ask Allah for mercy and forgiveness after mistakes.",
+      "english_meaning": "They said, Our Lord, we have wronged ourselves, and if You do not forgive us and have mercy upon us, we will surely be among the losers.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/7:23/quran-uthmani",
         "status": "reference_verified_source_required",
         "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
       },
-      "arabic": "قَالَا رَبَّنَا ظَلَمْنَآ أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ",
+      "arabic": "قَالَا رَبَّنَا ظَلَمْنَآ أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ ٱلْخَٰسِرِينَ",
       "arabic_full": "قَالَا رَبَّنَا ظَلَمْنَآ أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ ٱلْخَٰسِرِينَ",
       "arabic_display_type": "short_excerpt"
     },
@@ -2180,14 +2009,14 @@
       "ayah": "82",
       "surah_name": "Taha",
       "arabic_verified": null,
-      "english_meaning": "Allah is greatly forgiving to those who repent and believe.",
+      "english_meaning": "But indeed, I am the Perpetual Forgiver of whoever repents.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/20:82/quran-uthmani",
         "status": "reference_verified_source_required",
         "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
       },
-      "arabic": "وَإِنِّى لَغَفَّارٌۭ",
+      "arabic": "وَإِنِّى لَغَفَّارٌۭ لِّمَن تَاب",
       "arabic_full": "وَإِنِّى لَغَفَّارٌۭ لِّمَن تَابَ وَءَامَنَ وَعَمِلَ صَٰلِحًۭا ثُمَّ ٱهْتَدَىٰ",
       "arabic_display_type": "short_excerpt"
     },
@@ -2199,7 +2028,7 @@
       "ayah": "7",
       "surah_name": "Ibrahim",
       "arabic_verified": null,
-      "english_meaning": "If you are grateful, Allah increases you.",
+      "english_meaning": "If you are grateful, I will surely increase you [in favor];",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/14:7/quran-uthmani",
@@ -2218,7 +2047,7 @@
       "ayah": "152",
       "surah_name": "Al-Baqarah",
       "arabic_verified": null,
-      "english_meaning": "Be grateful to Allah and do not deny His blessings.",
+      "english_meaning": "So remember Me; I will remember you.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/2:152/quran-uthmani",
@@ -2237,14 +2066,14 @@
       "ayah": "18",
       "surah_name": "An-Nahl",
       "arabic_verified": null,
-      "english_meaning": "Allah’s blessings are too many to count.",
+      "english_meaning": "And if you should count the favors of Allah, you could not enumerate them.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/16:18/quran-uthmani",
         "status": "reference_verified_source_required",
         "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
       },
-      "arabic": "لَا تُحْصُوهَآ",
+      "arabic": "وَإِن تَعُدُّوا۟ نِعْمَةَ ٱللَّهِ لَا تُحْصُوهَآ",
       "arabic_full": "وَإِن تَعُدُّوا۟ نِعْمَةَ ٱللَّهِ لَا تُحْصُوهَآ ۗ إِنَّ ٱللَّهَ لَغَفُورٌۭ رَّحِيمٌۭ",
       "arabic_display_type": "short_excerpt"
     },
@@ -2256,7 +2085,7 @@
       "ayah": "12",
       "surah_name": "Luqman",
       "arabic_verified": null,
-      "english_meaning": "Gratitude benefits the grateful person.",
+      "english_meaning": "And whoever is grateful is grateful for [the benefit of] himself.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/31:12/quran-uthmani",
@@ -2268,25 +2097,6 @@
       "arabic_display_type": "short_excerpt"
     },
     {
-      "id": 119,
-      "category": "gratitude",
-      "reference": "34:13",
-      "surah_no": 34,
-      "ayah": "13",
-      "surah_name": "Saba",
-      "arabic_verified": null,
-      "english_meaning": "True gratitude is shown through action.",
-      "verification": {
-        "arabic_source": "Tanzil / quran-uthmani compatible source",
-        "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/34:13/quran-uthmani",
-        "status": "reference_verified_source_required",
-        "note": "Fetch Arabic from the source endpoint or Tanzil download during build time, then cache locally. Do not treat manually typed excerpts as verified Quran text."
-      },
-      "arabic": "يَعْمَلُونَ لَهُۥ مَا يَشَآءُ مِن مَّحَٰرِيبَ وَتَمَٰثِيلَ وَجِفَانٍۢ كَٱلْجَوَابِ وَقُدُورٍۢ",
-      "arabic_full": "يَعْمَلُونَ لَهُۥ مَا يَشَآءُ مِن مَّحَٰرِيبَ وَتَمَٰثِيلَ وَجِفَانٍۢ كَٱلْجَوَابِ وَقُدُورٍۢ رَّاسِيَٰتٍ ۚ ٱعْمَلُوٓا۟ ءَالَ دَاوُۥدَ شُكْرًۭا ۚ وَقَلِيلٌۭ مِّنْ عِبَادِىَ ٱلشَّكُورُ",
-      "arabic_display_type": "short_excerpt"
-    },
-    {
       "id": 120,
       "category": "gratitude",
       "reference": "27:40",
@@ -2294,7 +2104,7 @@
       "ayah": "40",
       "surah_name": "An-Naml",
       "arabic_verified": null,
-      "english_meaning": "Recognize blessings as the favor of Allah.",
+      "english_meaning": "This is from the favor of my Lord.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/27:40/quran-uthmani",
@@ -2313,7 +2123,7 @@
       "ayah": "3",
       "surah_name": "Al-Insan",
       "arabic_verified": null,
-      "english_meaning": "People choose either gratitude or ingratitude.",
+      "english_meaning": "Indeed, We guided him to the way, be he grateful or be he ungrateful.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/76:3/quran-uthmani",
@@ -2332,7 +2142,7 @@
       "ayah": "11",
       "surah_name": "Ad-Duha",
       "arabic_verified": null,
-      "english_meaning": "Speak of your Lord’s blessings with gratitude.",
+      "english_meaning": "But as for the favor of your Lord, report [it].",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/93:11/quran-uthmani",
@@ -2351,7 +2161,7 @@
       "ayah": "12",
       "surah_name": "Al-Jathiyah",
       "arabic_verified": null,
-      "english_meaning": "Allah made blessings available so you may be grateful.",
+      "english_meaning": "It is Allah who subjected to you the sea so that ships may sail upon it by His command.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/45:12/quran-uthmani",
@@ -2370,7 +2180,7 @@
       "ayah": "10",
       "surah_name": "Al-A'raf",
       "arabic_verified": null,
-      "english_meaning": "Remember to be among the grateful.",
+      "english_meaning": "And We have certainly established you upon the earth and made for you therein ways of livelihood.",
       "verification": {
         "arabic_source": "Tanzil / quran-uthmani compatible source",
         "online_endpoint_example": "https://api.alquran.cloud/v1/ayah/7:10/quran-uthmani",
