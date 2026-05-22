@@ -74,7 +74,6 @@
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:hint="@string/spinner_title"
-                    android:textSize="14sp"
                     android:background="@drawable/edittext_border">
                 </AutoCompleteTextView>
 
@@ -104,7 +103,6 @@
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
                     android:hint="@string/spinner_title_ayah"
-                    android:textSize="14sp"
                     android:background="@drawable/edittext_border">
                 </AutoCompleteTextView>
 
@@ -124,7 +122,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:minHeight="48dp"
-                    android:textSize="14sp"
                     android:hint="Enter keyword to search..."
                     android:imeOptions="actionSearch"
                     android:inputType="text"
