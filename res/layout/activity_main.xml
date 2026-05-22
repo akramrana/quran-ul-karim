@@ -59,8 +59,8 @@
                 android:paddingRight="5dp"
                 android:text="@string/name_title_ar"
                 android:textColor="@color/text_primary"
-                android:textSize="20sp"
-                android:layout_marginTop="20dp"/>
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"/>
 
             <TextView
                 android:id="@+id/name_title_en"
@@ -72,7 +72,7 @@
                 android:paddingRight="5dp"
                 android:text="@string/name_title_en"
                 android:textColor="@color/text_primary"
-                android:textSize="15sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/daily_ayah_ref"
