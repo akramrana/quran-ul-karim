@@ -75,25 +75,15 @@
                         android:id="@+id/textLabel1"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        app:boxBackgroundMode="outline"
-                        app:boxCornerRadiusTopStart="8dp"
-                        app:boxCornerRadiusTopEnd="8dp"
-                        app:boxCornerRadiusBottomStart="8dp"
-                        app:boxCornerRadiusBottomEnd="8dp"
-                        app:boxStrokeWidth="1dp"
+                        app:hintTextAppearance="@style/suraLabel"
                         app:hintTextColor="@color/text_primary">
 
                         <AutoCompleteTextView
                             android:id="@+id/autoCompleteTextView1"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:minHeight="48dp"
+                            android:layout_height="48dp"
                             android:hint="@string/spinner_title"
-                            android:textSize="14sp"
-                            android:background="@null"
-                            android:paddingLeft="5dp"
-                            android:textColor="@color/text_primary"
-                            android:textColorHint="@color/text_primary"
+                            android:background="@drawable/edittext_border"
                             android:gravity="center">
                         </AutoCompleteTextView>
 
@@ -123,25 +113,15 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/textLabel2"
                         android:layout_marginRight="5dp"
-                        app:boxBackgroundMode="outline"
-                        app:boxCornerRadiusTopStart="8dp"
-                        app:boxCornerRadiusTopEnd="8dp"
-                        app:boxCornerRadiusBottomStart="8dp"
-                        app:boxCornerRadiusBottomEnd="8dp"
-                        app:boxStrokeWidth="1dp"
+                        app:hintTextAppearance="@style/suraLabel"
                         app:hintTextColor="@color/text_primary">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ayat_number"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:minHeight="48dp"
+                            android:layout_height="48dp"
                             android:hint="@string/spinner_ayat_title"
-                            android:background="@null"
-                            android:paddingLeft="5dp"
-                            android:textColor="@color/text_primary"
-                            android:textColorHint="@color/text_primary"
+                            android:background="@drawable/edittext_border"
                             android:gravity="center"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -154,20 +134,19 @@
                     android:layout_weight="0.2"
                     android:orientation="vertical"
                     android:gravity="right"
-                    android:paddingTop="2dp">
+                    android:paddingTop="17dp">
 
                     <Button
                         android:id="@+id/search_sura_btn"
                         android:layout_width="wrap_content"
-                        android:layout_height="48dp"
+                        android:layout_height="44dp"
                         android:layout_centerHorizontal="true"
                         android:background="@drawable/bg_card"
                         android:textColor="@color/text_primary"
                         android:text="Search"
                         android:textSize="14sp"
                         android:textAllCaps="false"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="3dp"/>
+                        android:layout_marginRight="5dp"/>
 
                 </LinearLayout>
 
