@@ -19,11 +19,14 @@ import android.widget.Toast;
 import com.akramhossain.quranulkarim.app.AppController;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.helper.SessionManager;
+import com.akramhossain.quranulkarim.task.JsonFromUrlTask;
+import com.akramhossain.quranulkarim.util.ConnectionDetector;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -54,6 +57,10 @@ public class ChallengeDashboardActivity extends AppCompatActivity {
     public static String SYNC_URL;
     public String user_id = "";
     public static String DEL_ACC_URL;
+    public static String PULL_URL;
+
+    ConnectionDetector cd;
+    Boolean isInternetPresent = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,9 +93,13 @@ public class ChallengeDashboardActivity extends AppCompatActivity {
             return insets;
         });
 
+        cd = new ConnectionDetector(getApplicationContext());
+        isInternetPresent = cd.isConnectingToInternet();
+
         SYNC_URL = host+"api/v1/sync.php";
         DEL_ACC_URL = host+"api/v1/delete-account.php";
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        PULL_URL = host+"api/v1/pull-answer.php";
 
         Button enter_challenge_button = (Button) findViewById(R.id.start_button);
         enter_challenge_button.setOnClickListener(new View.OnClickListener() {
@@ -219,6 +230,16 @@ public class ChallengeDashboardActivity extends AppCompatActivity {
                         }
                         db.close();
                     }
+                }
+            }
+        });
+
+        Button btn_pull_data = (Button) findViewById(R.id.btn_pull_data);
+        btn_pull_data.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (session.isLoggedIn()) {
+                    pullUserAnswers(user_id);
                 }
             }
         });
@@ -425,6 +446,57 @@ public class ChallengeDashboardActivity extends AppCompatActivity {
         strReq.setShouldCache(false);
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+    }
+
+    public void pullUserAnswers(String user_id){
+        String url = PULL_URL+"?user_id="+user_id;
+        Log.d("PULL_ANSWERS_URL",url);
+        if (isInternetPresent) {
+            new JsonFromUrlTask(this, url, TAG, "");
+        }
+    }
+
+    public void parseJsonResponse(String result) {
+        try {
+            JSONObject res = new JSONObject(result);
+            Log.d("ANSWERS",res.toString());
+
+            JSONArray list = res.getJSONArray("data");
+
+            SQLiteDatabase db = DatabaseHelper
+                    .getInstance(getApplicationContext())
+                    .getWritableDatabase();
+
+            for (int i = 0; i < list.length(); i++) {
+
+                JSONObject item = list.getJSONObject(i);
+                int wordId = item.getInt("word_id");
+                int isRight = item.optInt("is_right_answer", 0);
+                // check if word already exists
+                Cursor c = db.rawQuery(
+                        "SELECT 1 FROM word_answers WHERE word_id=?",
+                        new String[]{String.valueOf(wordId)}
+                );
+                boolean exists = c.moveToFirst();
+                c.close();
+                if (!exists) {
+                    ContentValues cv = new ContentValues();
+                    cv.put("word_id", wordId);
+                    cv.put("is_right_answer", isRight);
+                    cv.put("datetime", System.currentTimeMillis());
+                    cv.put("is_sync", 1);
+                    db.insert("word_answers", null, cv);
+                    Log.d("ANSWER", "Inserted: " + wordId);
+                }
+            }
+
+            countTotalScore();
+            countWrongTotal();
+            countTotal();
+
+        }catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -357,4 +357,6 @@
     <string name="text_db_corrupted">Some app data appears corrupted or incomplete. Please clear app data or reinstall the app to restore Quran content.</string>
     <string name="ai_disclaimer">AI summaries depend on service availability and may contain mistakes. Please verify the Tafsir yourself for accuracy</string>
 
+    <string name="btn_pull_data">Restore Answers</string>
+
 </resources>

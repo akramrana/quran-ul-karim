@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.AboutActivity;
+import com.akramhossain.quranulkarim.ChallengeDashboardActivity;
 import com.akramhossain.quranulkarim.DuaZikrActivity;
 import com.akramhossain.quranulkarim.HadithBookActivity;
 import com.akramhossain.quranulkarim.HadithChapterActivity;
@@ -133,6 +134,9 @@ public class JsonFromUrlTask {
                     }
                     else if(TAG.equals("SuraDetailsActivity")){
                         ((SuraDetailsActivity) activity).parseJsonVideoResponse(response);
+                    }
+                    else if(TAG.equals("ChallengeDashboardActivity")){
+                        ((ChallengeDashboardActivity) activity).parseJsonResponse(response);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

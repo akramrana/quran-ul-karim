@@ -208,6 +208,17 @@
                                 android:layout_marginRight="15dp"/>
 
                             <Button
+                                android:id="@+id/btn_pull_data"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/btn_pull_data"
+                                android:textSize="15sp"
+                                android:gravity="center|left"
+                                android:background="@null"
+                                android:textColor="@color/transColor"
+                                android:textAllCaps="false"/>
+
+                            <Button
                                 android:id="@+id/btn_publish_data"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
