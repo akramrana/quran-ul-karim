@@ -680,7 +680,7 @@ public class MainActivity extends AppCompatActivity {
         prayer_times_section = (LinearLayout) findViewById(R.id.prayer_times_section);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             if (checkPermission()) {
-                LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
+                LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                 try{
                     gps_enabled=lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
                 }catch(Exception ex){
@@ -1456,7 +1456,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             if (checkPermission()) {
-                LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
+                LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                 try{
                     gps_enabled=lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
                 }catch(Exception ex){

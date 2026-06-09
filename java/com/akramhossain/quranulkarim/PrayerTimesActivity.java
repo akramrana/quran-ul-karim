@@ -175,95 +175,54 @@ public class PrayerTimesActivity extends AppCompatActivity {
         calcMethod = pr_calc_method;
         asrJuristicMethod = pr_asr_method;
         //
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (checkPermission()) {
-                LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                //
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(this, new String[]{
-                            Manifest.permission.ACCESS_FINE_LOCATION,
-                            Manifest.permission.ACCESS_COARSE_LOCATION
-                    }, 100);
-                    return;
-                }
+        if (checkPermission()) {
+            LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            //
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                }, 100);
+                return;
+            }
 
-                LocationListener listener = new LocationListener() {
-                    @Override
-                    public void onLocationChanged(@NonNull Location location) {
-                        double latitude = location.getLatitude();
-                        double longitude = location.getLongitude();
-
-                        selectedLatitude = latitude;
-                        selectedlongitude = longitude;
-
-                        getPrayerTimes(latitude, longitude, hourDiff);
-
-                        lm.removeUpdates(this);
-                    }
-                };
-
-                lm.requestLocationUpdates(
-                        LocationManager.GPS_PROVIDER,
-                        0,
-                        0,
-                        listener
-                );
-                //
-                try{
-                    gps_enabled=lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
-                }catch(Exception ex){
-                    Log.e("gps_enabled", ex.getMessage());
-                }
-                try{
-                    network_enabled=lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-                }catch(Exception ex){
-                    Log.e("network_enabled", ex.getMessage());
-                }
-                Location networkLoacation = null, gpsLocation = null, location = null;
-                if(gps_enabled){
-                    gpsLocation = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                }
-                if(network_enabled){
-                    networkLoacation = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                }
-                if (gpsLocation != null && networkLoacation != null) {
-                    if (gpsLocation.getAccuracy() > networkLoacation.getAccuracy()) {
-                        location = networkLoacation;
-                    }else {
-                        location = gpsLocation;
-                    }
-                } else {
-                    if (gpsLocation != null) {
-                        location = gpsLocation;
-                    } else if (networkLoacation != null) {
-                        location = networkLoacation;
-                    }
-                }
-                if(location!= null) {
+            LocationListener listener = new LocationListener() {
+                @Override
+                public void onLocationChanged(@NonNull Location location) {
                     double latitude = location.getLatitude();
                     double longitude = location.getLongitude();
-                    double timezone = hourDiff;
-                    //double latitude = 23.810331;
-                    //double longitude = 90.412521;
+
                     selectedLatitude = latitude;
                     selectedlongitude = longitude;
-                    getPrayerTimes(latitude, longitude, timezone);
-                }else{
-                    Toast.makeText(PrayerTimesActivity.this, "Sorry! We could not retrive your current location.", Toast.LENGTH_LONG).show();
-//                    double latitude = 22.978624;
-//                    double longitude = 87.747803;
-//                    double timezone = hourDiff;
-//                    selectedLatitude = latitude;
-//                    selectedlongitude = longitude;
-//                    getPrayerTimes(latitude, longitude, timezone);
+
+                    getPrayerTimes(latitude, longitude, hourDiff);
+
+                    lm.removeUpdates(this);
                 }
 
-            }else{
-                requestPermission();
-            }
-        }else{
-            LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
-            //Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                @Override
+                public void onProviderDisabled(@NonNull String provider) {
+                    Log.d("Location", "Provider disabled: " + provider);
+                }
+
+                @Override
+                public void onProviderEnabled(@NonNull String provider) {
+                    Log.d("Location", "Provider enabled: " + provider);
+                }
+
+                @Override
+                public void onStatusChanged(String provider, int status, Bundle extras) {
+                    Log.d("Location", "Status changed: " + provider);
+                }
+            };
+
+            lm.requestLocationUpdates(
+                    LocationManager.GPS_PROVIDER,
+                    0,
+                    0,
+                    listener
+            );
+            //
             try{
                 gps_enabled=lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
             }catch(Exception ex){
@@ -298,12 +257,17 @@ public class PrayerTimesActivity extends AppCompatActivity {
                 double latitude = location.getLatitude();
                 double longitude = location.getLongitude();
                 double timezone = hourDiff;
+                //double latitude = 23.810331;
+                //double longitude = 90.412521;
                 selectedLatitude = latitude;
                 selectedlongitude = longitude;
                 getPrayerTimes(latitude, longitude, timezone);
             }else{
                 Toast.makeText(PrayerTimesActivity.this, "Sorry! We could not retrive your current location.", Toast.LENGTH_LONG).show();
             }
+
+        }else{
+            requestPermission();
         }
     }
 
