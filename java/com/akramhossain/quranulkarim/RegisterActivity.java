@@ -262,16 +262,22 @@ public class RegisterActivity extends AppCompatActivity implements Spinner.OnIte
     }
 
     private String getCountryId(int position){
-        String id="";
-        try {
-            //Getting object of given index
-            JSONObject json = result.getJSONObject(position);
-            //Fetching name from that object
-            id = json.getString("country_id");
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if (result == null) {
+            Log.e("Country", "result JSONArray is null");
+            return "";
         }
-        //Returning the id
-        return id;
+
+        if (position < 0 || position >= result.length()) {
+            Log.e("Country", "Invalid position: " + position);
+            return "";
+        }
+
+        try {
+            JSONObject json = result.getJSONObject(position);
+            return json.optString("country_id", "");
+        } catch (JSONException e) {
+            Log.e("Country", "JSON error", e);
+            return "";
+        }
     }
 }

@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,6 +14,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.text.LineBreaker;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -192,6 +194,15 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         setTitle(suraNameArabic+"-"+suraName);
 
         setContentView(R.layout.activity_sura_details);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            PackageInfo pkg = WebView.getCurrentWebViewPackage();
+
+            if (pkg == null) {
+                showWebViewUpdateDialog();
+                return;
+            }
+        }
 
         View rootView = findViewById(R.id.topBar);
         ViewCompat.setOnApplyWindowInsetsListener(rootView, (view, insets) -> {
@@ -1516,5 +1527,47 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         strReq.setShouldCache(false);
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+    }
+
+    private void showWebViewUpdateDialog() {
+        if(isHuaweiDevice()){
+            new AlertDialog.Builder(this)
+                    .setTitle("WebView Update Required")
+                    .setMessage(
+                            "Your device WebView component is missing or outdated.\n\n" +
+                                    "Please update:\n" +
+                                    "• Android System WebView\n" +
+                                    "• Google Chrome (if installed)\n" +
+                                    "• Huawei System WebView (on some Huawei devices)"
+                    )
+                    .setPositiveButton("OK", null)
+                    .show();
+        }else {
+            new AlertDialog.Builder(this)
+                    .setTitle("WebView Update Required")
+                    .setMessage("Your Android System WebView appears to be missing, disabled, or outdated. Please update Android System WebView and Google Chrome from the Play Store.")
+                    .setPositiveButton("Open Play Store", (d, w) -> {
+                        try {
+                            startActivity(new Intent(
+                                    Intent.ACTION_VIEW,
+                                    Uri.parse("market://details?id=com.google.android.webview")
+                            ));
+                        } catch (Exception e) {
+                            startActivity(new Intent(
+                                    Intent.ACTION_VIEW,
+                                    Uri.parse("https://play.google.com/store/apps/details?id=com.google.android.webview")
+                            ));
+                        }
+                    })
+                    .setNegativeButton("Close", null)
+                    .show();
+        }
+    }
+
+    private boolean isHuaweiDevice(){
+        String manufacturer = android.os.Build.MANUFACTURER;
+        String brand =  android.os.Build.BRAND;
+        Log.d("Brand",brand.toString());
+        return  manufacturer.toLowerCase().contains("huawei") ||  brand.toLowerCase().contains("huawei");
     }
 }
