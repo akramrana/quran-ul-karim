@@ -115,7 +115,8 @@
                 android:layout_marginRight="8dip"
                 app:hintTextAppearance="@style/ayatLabel"
                 android:id="@+id/textLabel2"
-                app:hintTextColor="@color/text_primary">
+                app:hintTextColor="@color/text_primary"
+                android:layout_marginBottom="3dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/search"

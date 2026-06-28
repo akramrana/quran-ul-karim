@@ -261,12 +261,22 @@
             </HorizontalScrollView>
 
             <TextView
+                android:id="@+id/doha_ishrak_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/doha_ishrak_txt"
+                android:gravity="center"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/text_primary"
+                android:textSize="11sp"/>
+
+            <TextView
                 android:id="@+id/pr_calc_method"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Based on: Umm al-Qura, Makkah"
                 android:gravity="center"
-                android:layout_marginBottom="5dp"/>
+                android:layout_marginBottom="8dp"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

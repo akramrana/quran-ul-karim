@@ -83,7 +83,7 @@
                             android:layout_height="wrap_content"
                             android:text="Task for Today"
                             android:gravity="center"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textColor="@color/colorWhite"/>
 
                     </LinearLayout>
@@ -100,7 +100,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/string_ms_underline"
                             android:gravity="center"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textColor="@color/color10"/>
 
                     </LinearLayout>
@@ -143,7 +143,7 @@
                             android:layout_height="match_parent"
                             android:text="Perform Tahajjud"
                             android:textColor="@color/darkblue"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -152,7 +152,7 @@
                             android:layout_height="match_parent"
                             android:text="তাহাজ্জুদের নামাজ আদায়"
                             android:textColor="@color/darkblue"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="3dp"/>
 
@@ -206,7 +206,7 @@
                             android:layout_height="match_parent"
                             android:text="Perform Fajr Prayer"
                             android:textColor="@color/color10"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -215,7 +215,7 @@
                             android:layout_height="match_parent"
                             android:text="ফজরের নামাজ আদায়"
                             android:textColor="@color/color10"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="3dp"/>
 
@@ -269,7 +269,7 @@
                             android:layout_height="match_parent"
                             android:text="Morning Adhkar"
                             android:textColor="@color/darkpurple"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -278,7 +278,7 @@
                             android:layout_height="match_parent"
                             android:text="সকালের জিকির"
                             android:textColor="@color/darkpurple"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="3dp"/>
 
@@ -332,7 +332,7 @@
                             android:layout_height="match_parent"
                             android:text="Quran Recitation"
                             android:textColor="@color/darkpurple"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -341,7 +341,7 @@
                             android:layout_height="match_parent"
                             android:text="কুরআন তেলাওয়াত"
                             android:textColor="@color/darkpurple"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="3dp"/>
 
@@ -396,7 +396,7 @@
                             android:layout_height="match_parent"
                             android:text="Study Hadith"
                             android:textColor="@color/darkpurple"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -405,7 +405,7 @@
                             android:layout_height="match_parent"
                             android:text="হাদিস অধ্যায়ন"
                             android:textColor="@color/darkpurple"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="3dp"/>
 
@@ -459,7 +459,7 @@
                             android:layout_height="match_parent"
                             android:text="Perform Salat Ud Doha"
                             android:textColor="@color/darkblue"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -468,7 +468,7 @@
                             android:layout_height="match_parent"
                             android:text="দোহার নামাজ আদায়"
                             android:textColor="@color/darkblue"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="3dp"/>
 
@@ -522,7 +522,7 @@
                             android:layout_height="match_parent"
                             android:text="Perform Dhuhr Prayer"
                             android:textColor="@color/color10"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -531,7 +531,7 @@
                             android:layout_height="match_parent"
                             android:text="যোহর নামাজ আদায়"
                             android:textColor="@color/color10"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="3dp"/>
 
@@ -585,7 +585,7 @@
                             android:layout_height="match_parent"
                             android:text="Perform Asr Prayer"
                             android:textColor="@color/color10"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -594,7 +594,7 @@
                             android:layout_height="match_parent"
                             android:text="আসর নামাজ আদায়"
                             android:textColor="@color/color10"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="3dp"/>
 
@@ -648,7 +648,7 @@
                             android:layout_height="match_parent"
                             android:text="Perform Maghrib Prayer"
                             android:textColor="@color/color10"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -657,7 +657,7 @@
                             android:layout_height="match_parent"
                             android:text="মাগরিব নামাজ আদায়"
                             android:textColor="@color/color10"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="3dp"/>
 
@@ -714,7 +714,7 @@
                             android:layout_height="match_parent"
                             android:text="Perform Isha Prayer"
                             android:textColor="@color/color10"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -723,7 +723,7 @@
                             android:layout_height="match_parent"
                             android:text="এশার নামাজ আদায়"
                             android:textColor="@color/color10"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="3dp"/>
 
@@ -777,7 +777,7 @@
                             android:layout_height="match_parent"
                             android:text="Give Charity"
                             android:textColor="@color/darkorange"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -786,7 +786,7 @@
                             android:layout_height="match_parent"
                             android:text="দান-সাদকা"
                             android:textColor="@color/darkorange"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="3dp"/>
 
@@ -840,7 +840,7 @@
                             android:layout_height="match_parent"
                             android:text="Studies in Islamic Literature"
                             android:textColor="@color/darkpurple"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -849,7 +849,7 @@
                             android:layout_height="match_parent"
                             android:text="ইসলামী সাহিত্য অধ্যায়ন"
                             android:textColor="@color/darkpurple"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="3dp"/>
 
@@ -903,7 +903,7 @@
                             android:layout_height="match_parent"
                             android:text="Surah Mulk Recitation"
                             android:textColor="@color/darkpurple"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -912,7 +912,7 @@
                             android:layout_height="match_parent"
                             android:text="সুরা মূলক তেলাওয়াত"
                             android:textColor="@color/darkpurple"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="3dp"/>
 
@@ -966,7 +966,7 @@
                             android:layout_height="match_parent"
                             android:text="Recitation of Last 2 Verse of Surah Baqarah"
                             android:textColor="@color/darkpurple"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -975,7 +975,7 @@
                             android:layout_height="match_parent"
                             android:text="সুরা বাকারার শেষের ২ আয়াত তেলাওয়াত"
                             android:textColor="@color/darkpurple"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="3dp"/>
 
@@ -1029,7 +1029,7 @@
                             android:layout_height="match_parent"
                             android:text="Recitation of Ayatul Kursi"
                             android:textColor="@color/darkpurple"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -1038,7 +1038,7 @@
                             android:layout_height="match_parent"
                             android:text="আয়াতুল কুরসী তেলাওয়াত"
                             android:textColor="@color/darkpurple"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="3dp"/>
 
@@ -1092,7 +1092,7 @@
                             android:layout_height="match_parent"
                             android:text="Recitation of First/Last 10 Verse of Surah Al Kahf"
                             android:textColor="@color/darkpurple"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -1101,7 +1101,7 @@
                             android:layout_height="match_parent"
                             android:text="সুরা কাহাফের প্রথম/শেষ ১০ আয়াত তেলাওয়াত"
                             android:textColor="@color/darkpurple"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="3dp"/>
 
@@ -1155,7 +1155,7 @@
                             android:layout_height="match_parent"
                             android:text="Dhikr and Tasbeeh Before Sleep"
                             android:textColor="@color/darkpurple"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -1164,7 +1164,7 @@
                             android:layout_height="match_parent"
                             android:text="ঘুমানোর পূর্বে জিকির এবং তাসবীহ"
                             android:textColor="@color/darkpurple"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="3dp"/>
 
@@ -1218,7 +1218,7 @@
                             android:layout_height="match_parent"
                             android:text="Restrain from Smoking"
                             android:textColor="@color/color2"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -1227,7 +1227,7 @@
                             android:layout_height="match_parent"
                             android:text="ধূমপান থেকে বিরত থাকা"
                             android:textColor="@color/color2"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="3dp"/>
 
@@ -1281,7 +1281,7 @@
                             android:layout_height="match_parent"
                             android:text="Restrain from Alcohol"
                             android:textColor="@color/color2"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -1290,7 +1290,7 @@
                             android:layout_height="match_parent"
                             android:text="মদ বা অ্যালকোহল জাতীয় বস্তু থেকে বিরত থাকা"
                             android:textColor="@color/color2"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="3dp"/>
 
@@ -1344,7 +1344,7 @@
                             android:layout_height="match_parent"
                             android:text="Avoid Watching Haram Things"
                             android:textColor="@color/color2"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -1353,7 +1353,7 @@
                             android:layout_height="match_parent"
                             android:text="অশ্লীলতা ও পর্নোগ্রাফি থেকে বিরত থাকা"
                             android:textColor="@color/color2"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="3dp"/>
 
@@ -1407,7 +1407,7 @@
                             android:layout_height="match_parent"
                             android:text="Avoid Gossiping and Backbiting Others"
                             android:textColor="@color/color2"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -1416,7 +1416,7 @@
                             android:layout_height="match_parent"
                             android:text="গীবত থেকে বিরত থাকা"
                             android:textColor="@color/color2"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="3dp"/>
 
@@ -1470,7 +1470,7 @@
                             android:layout_height="match_parent"
                             android:text="Avoid Slandering Others"
                             android:textColor="@color/color2"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"/>
 
                         <TextView
@@ -1479,7 +1479,7 @@
                             android:layout_height="match_parent"
                             android:text="পরনিন্দা থেকে বিরত থাকা"
                             android:textColor="@color/color2"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:textStyle="bold"
                             android:layout_marginTop="3dp"/>
 
