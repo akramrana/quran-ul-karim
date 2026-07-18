@@ -59,18 +59,22 @@ import com.akramhossain.quranulkarim.listener.RecyclerTouchListener;
 import com.akramhossain.quranulkarim.model.HadithBook;
 import com.akramhossain.quranulkarim.model.Sura;
 import com.akramhossain.quranulkarim.model.TafsirBook;
+import com.akramhossain.quranulkarim.service.PushTokenManager;
 import com.akramhossain.quranulkarim.task.BannerJsonFromUrlTask;
 import com.akramhossain.quranulkarim.task.JsonFromUrlTask;
 import com.akramhossain.quranulkarim.task.PrayerScheduler;
 import com.akramhossain.quranulkarim.util.ConnectionDetector;
 import com.akramhossain.quranulkarim.util.PrayTime;
 import com.akramhossain.quranulkarim.util.Utils;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
@@ -891,6 +895,16 @@ public class MainActivity extends AppCompatActivity {
 
         showDailyAyah();
 
+        requestNotificationPermission();
+
+        if (Utils.isGooglePlayServicesAvailable(this)) {
+            getCurrentFCMToken();
+        }else if (Utils.isHuaweiDevice()) {
+            //call huawei device methods
+        } else {
+            Log.e("Push", "No supported push service available.");
+        }
+
         if(isDbHealthy()){
             Log.d("DB","Is Healthy");
         }else{
@@ -1696,6 +1710,58 @@ public class MainActivity extends AppCompatActivity {
         if (intent.getBooleanExtra("from_prayer_notification", false)) {
             String key = intent.getStringExtra("prayer_key");
         }
+    }
+
+    private final ActivityResultLauncher<String>
+            notificationPermissionLauncher =
+            registerForActivityResult(
+                    new ActivityResultContracts.RequestPermission(),
+                    isGranted -> {
+                        if (isGranted) {
+                            Log.d("FirebasePush", "Notification permission granted");
+                        } else {
+                            Log.d("FirebasePush", "Notification permission denied");
+                        }
+                    }
+            );
+
+    private void requestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.POST_NOTIFICATIONS
+            ) != PackageManager.PERMISSION_GRANTED) {
+
+                notificationPermissionLauncher.launch(
+                        Manifest.permission.POST_NOTIFICATIONS
+                );
+            }
+        }
+    }
+
+    private void getCurrentFCMToken(){
+        FirebaseMessaging.getInstance()
+                .getToken()
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        Log.e(
+                                "FirebasePush",
+                                "Fetching FCM token failed",
+                                task.getException()
+                        );
+                        return;
+                    }
+
+                    String token = task.getResult();
+
+                    Log.d("FirebasePush", "FCM token: " + token);
+
+                    PushTokenManager.sendTokenToServer(
+                            getApplicationContext(),
+                            token,
+                            "fcm"
+                    );
+                });
     }
 
     public void onPause()

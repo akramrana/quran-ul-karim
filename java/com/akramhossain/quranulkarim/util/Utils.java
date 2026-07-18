@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+
 public class Utils {
 
     public static final String PREF_NAME = "quran_ul_karim_pref";
@@ -119,4 +122,21 @@ public class Utils {
         float km = results[0] / 1000f;
         return km >= 20f;
     }
+
+    public static boolean isHuaweiDevice(){
+        String manufacturer = android.os.Build.MANUFACTURER;
+        String brand =  android.os.Build.BRAND;
+        Log.d("Brand",brand.toString());
+        return  manufacturer.toLowerCase().contains("huawei") ||  brand.toLowerCase().contains("huawei");
+    }
+
+    public static boolean isGooglePlayServicesAvailable(Context context) {
+        GoogleApiAvailability googleApiAvailability = GoogleApiAvailability.getInstance();
+
+        int resultCode = googleApiAvailability.isGooglePlayServicesAvailable(context);
+
+        return resultCode == ConnectionResult.SUCCESS;
+    }
+
+
 }

@@ -15,6 +15,7 @@ import com.akramhossain.quranulkarim.adapter.MobileAppViewAdapter;
 import com.akramhossain.quranulkarim.listener.RecyclerTouchListener;
 import com.akramhossain.quranulkarim.model.MobileApp;
 import com.akramhossain.quranulkarim.task.JsonFromUrlTask;
+import com.akramhossain.quranulkarim.util.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -89,7 +90,7 @@ public class AboutActivity extends AppCompatActivity {
             public void onClick(View view, int position) {
                 MobileApp ma = mobileApps.get(position);
                 Toast.makeText(getApplicationContext(), ma.getName(), Toast.LENGTH_SHORT).show();
-                if(isHuaweiDevice()){
+                if(Utils.isHuaweiDevice()){
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(ma.getHuawei_url())));
                 }else {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(ma.getUrl())));
@@ -164,13 +165,6 @@ public class AboutActivity extends AppCompatActivity {
         mobileApps = new ArrayList<MobileApp>();
         rvAdapter = new MobileAppViewAdapter(AboutActivity.this, mobileApps, this);
         recyclerview.setAdapter(rvAdapter);
-    }
-
-    private boolean isHuaweiDevice(){
-        String manufacturer = android.os.Build.MANUFACTURER;
-        String brand =  android.os.Build.BRAND;
-        Log.d("Brand",brand.toString());
-        return  manufacturer.toLowerCase().contains("huawei") ||  brand.toLowerCase().contains("huawei");
     }
 
 }

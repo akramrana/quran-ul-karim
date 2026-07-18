@@ -1530,7 +1530,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
     }
 
     private void showWebViewUpdateDialog() {
-        if(isHuaweiDevice()){
+        if(Utils.isHuaweiDevice()){
             new AlertDialog.Builder(this)
                     .setTitle("WebView Update Required")
                     .setMessage(
@@ -1564,10 +1564,5 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         }
     }
 
-    private boolean isHuaweiDevice(){
-        String manufacturer = android.os.Build.MANUFACTURER;
-        String brand =  android.os.Build.BRAND;
-        Log.d("Brand",brand.toString());
-        return  manufacturer.toLowerCase().contains("huawei") ||  brand.toLowerCase().contains("huawei");
-    }
+
 }

@@ -35,6 +35,7 @@ import com.akramhossain.quranulkarim.adapter.JuzHizbRubViewAdapter;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.Ayah;
+import com.akramhossain.quranulkarim.util.Utils;
 
 import java.util.ArrayList;
 
@@ -277,7 +278,7 @@ public class SubjectDetailsActivity extends AppCompatActivity {
     }
 
     private void showWebViewUpdateDialog() {
-        if(isHuaweiDevice()){
+        if(Utils.isHuaweiDevice()){
             new AlertDialog.Builder(this)
                     .setTitle("WebView Update Required")
                     .setMessage(
@@ -311,10 +312,5 @@ public class SubjectDetailsActivity extends AppCompatActivity {
         }
     }
 
-    private boolean isHuaweiDevice(){
-        String manufacturer = android.os.Build.MANUFACTURER;
-        String brand =  android.os.Build.BRAND;
-        Log.d("Brand",brand.toString());
-        return  manufacturer.toLowerCase().contains("huawei") ||  brand.toLowerCase().contains("huawei");
-    }
+
 }
