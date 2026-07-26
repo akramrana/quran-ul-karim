@@ -11,8 +11,10 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
+import com.akramhossain.quranulkarim.DuaZikrActivity;
 import com.akramhossain.quranulkarim.MainActivity;
 import com.akramhossain.quranulkarim.R;
+import com.akramhossain.quranulkarim.SuraDetailsActivity;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -48,16 +50,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         String title = getApplicationContext().getString(R.string.app_name);
         String body = "";
 
-        if (remoteMessage.getNotification() != null) {
-            if (remoteMessage.getNotification().getTitle() != null) {
-                title = remoteMessage.getNotification().getTitle();
-            }
-
-            if (remoteMessage.getNotification().getBody() != null) {
-                body = remoteMessage.getNotification().getBody();
-            }
-        }
-
         Map<String, String> data = remoteMessage.getData();
 
         if (!data.isEmpty()) {
@@ -82,19 +74,40 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     ) {
         createNotificationChannel();
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent;
 
-        intent.addFlags(
-                Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_SINGLE_TOP
-        );
+        String target = data.get("target");
 
-        if (data.containsKey("target")) {
-            intent.putExtra("target", data.get("target"));
-        }
+        if ("surah".equals(target)) {
+            intent = new Intent(this, SuraDetailsActivity.class);
 
-        if (data.containsKey("page")) {
-            intent.putExtra("page", data.get("page"));
+            String suraIdValue = data.get("sura_id");
+            String suraName = data.get("sura_name");
+            String suraNameArabic = data.get("sura_name_arabic");
+
+            Log.d(TAG,"ID:" + suraIdValue);
+            Log.d(TAG,"Name:" + suraName);
+            Log.d(TAG,"Arabic:" + suraNameArabic);
+
+            intent.putExtra("sura_id", suraIdValue);
+            intent.putExtra("sura_name", suraName);
+            intent.putExtra("sura_name_arabic", suraNameArabic);
+
+
+        } else if ("dua".equals(target)) {
+            intent = new Intent(this, DuaZikrActivity.class);
+
+            String tagEn = data.get("tag_en");
+            String tagBn = data.get("tag_bn");
+
+            Log.d(TAG,"tag En:" + tagEn);
+            Log.d(TAG,"tag Bn:" + tagBn);
+
+            intent.putExtra("tag_en", tagEn);
+            intent.putExtra("tag_bn", tagBn);
+
+        } else {
+            intent = new Intent(this, MainActivity.class);
         }
 
         PendingIntent pendingIntent = PendingIntent.getActivity(

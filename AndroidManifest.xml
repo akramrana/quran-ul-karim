@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:versionCode="105"
-    android:versionName="105.28.06.2026">
+    android:versionCode="106"
+    android:versionName="106.26.07.2026">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Allow to connect with internet -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- Network State Permissions -->
@@ -177,7 +177,9 @@
         <activity
             android:name=".SuraListV2Activity"
             android:label="@string/title_activity_sura_list_v2" />
-        <activity android:name=".SuraDetailsActivity" />
+        <activity
+            android:name=".SuraDetailsActivity"
+            android:exported="false" />
         <activity android:name=".ShareVerseActivity" />
         <activity android:name=".PrayerTimesActivity" />
         <activity android:name=".JuzActivity" />
@@ -227,6 +229,12 @@
         <meta-data
             android:name="io.sentry.auto-init"
             android:value="true" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="general_notifications" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_launcher_round" />
 
         <service
             android:name=".service.MyFirebaseMessagingService"
