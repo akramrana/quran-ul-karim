@@ -245,6 +245,14 @@
             </intent-filter>
         </service>
 
+        <service
+            android:name=".service.HuaweiMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

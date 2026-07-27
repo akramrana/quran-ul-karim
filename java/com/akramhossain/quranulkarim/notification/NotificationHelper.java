@@ -73,7 +73,7 @@ public class NotificationHelper {
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
         );
         NotificationCompat.Builder b = new NotificationCompat.Builder(ctx, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setContentTitle(title)
                 .setContentText(body)
                 .setAutoCancel(true)

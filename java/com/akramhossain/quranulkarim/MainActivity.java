@@ -59,6 +59,7 @@ import com.akramhossain.quranulkarim.listener.RecyclerTouchListener;
 import com.akramhossain.quranulkarim.model.HadithBook;
 import com.akramhossain.quranulkarim.model.Sura;
 import com.akramhossain.quranulkarim.model.TafsirBook;
+import com.akramhossain.quranulkarim.service.HuaweiTokenManager;
 import com.akramhossain.quranulkarim.service.PushTokenManager;
 import com.akramhossain.quranulkarim.task.BannerJsonFromUrlTask;
 import com.akramhossain.quranulkarim.task.JsonFromUrlTask;
@@ -901,6 +902,7 @@ public class MainActivity extends AppCompatActivity {
             getCurrentFCMToken();
         }else if (Utils.isHuaweiDevice()) {
             //call huawei device methods
+            HuaweiTokenManager.getToken(this);
         } else {
             Log.e("Push", "No supported push service available.");
         }
