@@ -4,6 +4,7 @@ import android.content.Context;
 import android.provider.Settings;
 import android.util.Log;
 
+import com.akramhossain.quranulkarim.helper.SessionManager;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -27,12 +28,27 @@ public class PushTokenManager {
                 Settings.Secure.ANDROID_ID
         );
 
+        SessionManager session = new SessionManager(context.getApplicationContext());
+        String userId = null;
+        if (session.isLoggedIn()) {
+            try {
+                JSONObject response = new JSONObject(session.getLoginData());
+                userId = response.optString("user_id", null);
+            } catch (JSONException e) {
+                Log.e(TAG, "Failed to parse login data", e);
+            }
+        }
+
         try {
             JSONObject body = new JSONObject();
 
             body.put("deviceId", androidId);
             body.put("pushType", pushType);
             body.put("pushToken", token);
+
+            if (userId != null) {
+                body.put("userId", userId);
+            }
 
             JsonObjectRequest request = new JsonObjectRequest(
                     Request.Method.POST,
