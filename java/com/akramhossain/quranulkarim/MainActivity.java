@@ -899,8 +899,10 @@ public class MainActivity extends AppCompatActivity {
         requestNotificationPermission();
 
         if (Utils.isGooglePlayServicesAvailable(this)) {
+            Log.d("PushCheck", "Using FCM");
             getCurrentFCMToken();
         }else if (Utils.isHuaweiDevice()) {
+            Log.d("PushCheck", "Using HMS");
             //call huawei device methods
             HuaweiTokenManager.getToken(this);
         } else {
