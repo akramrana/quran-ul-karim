@@ -9,6 +9,10 @@ import com.huawei.hms.aaid.HmsInstanceId;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import android.os.Handler;
+import android.os.Looper;
+import android.widget.Toast;
+
 public final class HuaweiTokenManager {
 
     private static final String TAG = "HuaweiPush";
@@ -36,6 +40,14 @@ public final class HuaweiTokenManager {
 
                 if (token != null && !token.isEmpty()) {
                     // Upload token to your backend with provider = HMS
+                    new Handler(Looper.getMainLooper()).post(() ->
+                            Toast.makeText(
+                                    appContext,
+                                    "Huawei token received",
+                                    Toast.LENGTH_LONG
+                            ).show()
+                    );
+
                     PushTokenManager.sendTokenToServer(
                             appContext,
                             token,
