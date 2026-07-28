@@ -20,6 +20,7 @@ import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -28,6 +29,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.content.Intent;
@@ -39,6 +41,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.WindowManager;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -919,6 +922,15 @@ public class MainActivity extends AppCompatActivity {
             alert.show();
         }
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            PackageInfo pkg = WebView.getCurrentWebViewPackage();
+
+            if (pkg == null) {
+                showWebViewUpdateDialog();
+                return;
+            }
+        }
+
     }
 
     boolean isDbHealthy() {
@@ -1780,6 +1792,41 @@ public class MainActivity extends AppCompatActivity {
                             "fcm"
                     );
                 });
+    }
+
+    private void showWebViewUpdateDialog() {
+        if(Utils.isHuaweiDevice()){
+            new androidx.appcompat.app.AlertDialog.Builder(this)
+                    .setTitle("WebView Update Required")
+                    .setMessage(
+                            "Your device WebView component is missing or outdated.\n\n" +
+                                    "Please update:\n" +
+                                    "• Android System WebView\n" +
+                                    "• Google Chrome (if installed)\n" +
+                                    "• Huawei System WebView (on some Huawei devices)"
+                    )
+                    .setPositiveButton("OK", null)
+                    .show();
+        }else {
+            new androidx.appcompat.app.AlertDialog.Builder(this)
+                    .setTitle("WebView Update Required")
+                    .setMessage("Your Android System WebView appears to be missing, disabled, or outdated. Please update Android System WebView and Google Chrome from the Play Store.")
+                    .setPositiveButton("Open Play Store", (d, w) -> {
+                        try {
+                            startActivity(new Intent(
+                                    Intent.ACTION_VIEW,
+                                    Uri.parse("market://details?id=com.google.android.webview")
+                            ));
+                        } catch (Exception e) {
+                            startActivity(new Intent(
+                                    Intent.ACTION_VIEW,
+                                    Uri.parse("https://play.google.com/store/apps/details?id=com.google.android.webview")
+                            ));
+                        }
+                    })
+                    .setNegativeButton("Close", null)
+                    .show();
+        }
     }
 
     public void onPause()

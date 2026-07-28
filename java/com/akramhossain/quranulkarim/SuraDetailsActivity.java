@@ -241,6 +241,12 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         mLayoutManager = new LinearLayoutManager(this);
         recyclerview.setLayoutManager(mLayoutManager);
 
+        if (suraId == null || suraId.trim().isEmpty()) {
+            Log.e("SuraDetails", "sura_id is missing");
+            finish();
+            return;
+        }
+
         setRecyclerViewAdapter();
 
         suraId = suraId.trim();
