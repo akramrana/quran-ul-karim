@@ -29,6 +29,7 @@ import com.akramhossain.quranulkarim.WordAnswerActivity;
 import java.util.Map;
 
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.TaskStackBuilder;
 
 public class PushNotificationHelper {
 
@@ -139,17 +140,46 @@ public class PushNotificationHelper {
             intent = new Intent(context, MainActivity.class);
         }
 
-        int requestCode =
-                (int) (System.currentTimeMillis() % Integer.MAX_VALUE);
+        int requestCode = (int) (System.currentTimeMillis() % Integer.MAX_VALUE);
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(
+        /*PendingIntent pendingIntent = PendingIntent.getActivity(
                 context,
                 requestCode,
                 intent,
                 PendingIntent.FLAG_UPDATE_CURRENT |
                         PendingIntent.FLAG_IMMUTABLE
+        );*/
+        intent.addFlags(
+                Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_SINGLE_TOP
         );
-
+        PendingIntent pendingIntent;
+        if (intent.getComponent() != null
+                && MainActivity.class.getName().equals(
+                intent.getComponent().getClassName()
+        )) {
+            pendingIntent = PendingIntent.getActivity(
+                    context,
+                    requestCode,
+                    intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT |
+                            PendingIntent.FLAG_IMMUTABLE
+            );
+        } else {
+            Intent mainIntent = new Intent(context, MainActivity.class);
+            mainIntent.setFlags(
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                            Intent.FLAG_ACTIVITY_SINGLE_TOP
+            );
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+            stackBuilder.addNextIntent(mainIntent);
+            stackBuilder.addNextIntent(intent);
+            pendingIntent = stackBuilder.getPendingIntent(
+                    requestCode,
+                    PendingIntent.FLAG_UPDATE_CURRENT |
+                            PendingIntent.FLAG_IMMUTABLE
+            );
+        }
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(context, CHANNEL_ID)
                         .setSmallIcon(R.drawable.ic_notification)
