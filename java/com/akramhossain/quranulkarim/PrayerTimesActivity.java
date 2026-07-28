@@ -385,6 +385,26 @@ public class PrayerTimesActivity extends AppCompatActivity {
 
                                 lm.removeUpdates(this);
                             }
+
+                            @Override
+                            public void onProviderEnabled(@NonNull String provider) {
+                                // Required for older Android versions
+                            }
+
+                            @Override
+                            public void onProviderDisabled(@NonNull String provider) {
+                                // Required for older Android versions
+                            }
+
+                            @Override
+                            @SuppressWarnings("deprecation")
+                            public void onStatusChanged(
+                                    String provider,
+                                    int status,
+                                    Bundle extras
+                            ) {
+                                // Required for older Android versions
+                            }
                         };
 
                         lm.requestLocationUpdates(

@@ -183,8 +183,12 @@ public class RegisterActivity extends AppCompatActivity implements Spinner.OnIte
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Country Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_LONG).show();
+                String message = error.getMessage();
+                if (message == null || message.trim().isEmpty()) {
+                    message = "Error: Please try again.";
+                }
+                Log.e(TAG, "Country Error: " + message);
+                Toast.makeText(getApplicationContext(),message, Toast.LENGTH_LONG).show();
                 progressBar.setVisibility(View.GONE);
             }
         });
@@ -227,8 +231,12 @@ public class RegisterActivity extends AppCompatActivity implements Spinner.OnIte
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Registration Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_LONG).show();
+                String message = error.getMessage();
+                if (message == null || message.trim().isEmpty()) {
+                    message = "Error: Please try again.";
+                }
+                Log.e(TAG, "Registration Error: " + message);
+                Toast.makeText(getApplicationContext(),message, Toast.LENGTH_LONG).show();
                 progressBar.setVisibility(View.GONE);
             }
         }) {

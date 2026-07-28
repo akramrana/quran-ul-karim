@@ -362,8 +362,12 @@ public class ChallengeDashboardActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Delete Account Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_LONG).show();
+                String message = error.getMessage();
+                if (message == null || message.trim().isEmpty()) {
+                    message = "Error: Please try again.";
+                }
+                Log.e(TAG, "Delete Account Error: " + message);
+                Toast.makeText(getApplicationContext(),message, Toast.LENGTH_LONG).show();
                 progressBar.setVisibility(View.GONE);
             }
         }) {
@@ -427,8 +431,12 @@ public class ChallengeDashboardActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Sync Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_LONG).show();
+                String message = error.getMessage();
+                if (message == null || message.trim().isEmpty()) {
+                    message = "Error: Please try again.";
+                }
+                Log.e(TAG, "Sync Error: " + message);
+                Toast.makeText(getApplicationContext(),message, Toast.LENGTH_LONG).show();
                 progressBar.setVisibility(View.GONE);
             }
         }) {
