@@ -1760,6 +1760,20 @@ public class MainActivity extends AppCompatActivity {
 
                     Log.d("FirebasePush", "FCM token: " + token);
 
+                    FirebaseMessaging.getInstance()
+                            .subscribeToTopic("all")
+                            .addOnCompleteListener(topicTask -> {
+                                if (topicTask.isSuccessful()) {
+                                    Log.d("FirebasePush", "Subscribed to topic: all");
+                                } else {
+                                    Log.e(
+                                            "FirebasePush",
+                                            "Topic subscription failed",
+                                            topicTask.getException()
+                                    );
+                                }
+                            });
+
                     PushTokenManager.sendTokenToServer(
                             getApplicationContext(),
                             token,
