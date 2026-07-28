@@ -8,10 +8,23 @@ import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 
+import com.akramhossain.quranulkarim.DailyGoalsActivity;
+import com.akramhossain.quranulkarim.DictionaryActivity;
 import com.akramhossain.quranulkarim.DuaZikrActivity;
+import com.akramhossain.quranulkarim.HadithBookActivity;
 import com.akramhossain.quranulkarim.MainActivity;
+import com.akramhossain.quranulkarim.MosqueNearActivity;
+import com.akramhossain.quranulkarim.NameOfAllahActivity;
+import com.akramhossain.quranulkarim.PdfListActivity;
+import com.akramhossain.quranulkarim.PrayerTimesActivity;
+import com.akramhossain.quranulkarim.QiblaCompassActivity;
+import com.akramhossain.quranulkarim.QuranReaderActivity;
 import com.akramhossain.quranulkarim.R;
+import com.akramhossain.quranulkarim.RamadanPlannerActivity;
+import com.akramhossain.quranulkarim.ReciterActivity;
+import com.akramhossain.quranulkarim.SubjectWiseActivity;
 import com.akramhossain.quranulkarim.SuraDetailsActivity;
+import com.akramhossain.quranulkarim.WordAnswerActivity;
 
 import java.util.Map;
 
@@ -62,8 +75,67 @@ public class PushNotificationHelper {
             intent.putExtra("tag_en", tagEn);
             intent.putExtra("tag_bn", tagBn);
 
-        } else {
+        }else if ("name_of_allah".equals(target)) {
+            intent = new Intent(context, NameOfAllahActivity.class);
+        }
+        else if ("daily_activity".equals(target)) {
+            intent = new Intent(context, DailyGoalsActivity.class);
+        }
+        else if ("topic".equals(target)) {
+            intent = new Intent(context, SubjectWiseActivity.class);
+        }
+        else if ("word".equals(target)) {
+            intent = new Intent(context, DictionaryActivity.class);
+        }
+        else if ("madani_mushaf".equals(target)) {
+            intent = new Intent(context, QuranReaderActivity.class);
+        }
+        else if ("prayer_time".equals(target)) {
+            intent = new Intent(context, PrayerTimesActivity.class);
+        }
+        else if ("find_qibla".equals(target)) {
+            intent = new Intent(context, QiblaCompassActivity.class);
+        }
+        else if ("recitation".equals(target)) {
+            intent = new Intent(context, ReciterActivity.class);
+        }
+        else if ("masjid".equals(target)) {
+            intent = new Intent(context, MosqueNearActivity.class);
+        }
+        else if ("hadith".equals(target)) {
+            intent = new Intent(context, HadithBookActivity.class);
+        }
+        else if ("tafsir".equals(target)) {
+            intent = new Intent(context, PdfListActivity.class);
 
+            String tafsir_book_id = data.get("tafsir_book_id");
+            String name_en = data.get("name_en");
+            String name_ar = data.get("name_ar");
+            String name_bn = data.get("name_bn");
+            String thumb = data.get("thumb");
+            String pdf_list_url = data.get("pdf_list_url");
+
+            Log.d(TAG, "tafsir_book_id:" + tafsir_book_id);
+            Log.d(TAG, "name_en:" + name_en);
+            Log.d(TAG, "name_ar:" + name_ar);
+            Log.d(TAG, "name_bn:" + name_bn);
+            Log.d(TAG, "thumb:" + thumb);
+            Log.d(TAG, "pdf_list_url:" + pdf_list_url);
+
+            intent.putExtra("tafsir_book_id", tafsir_book_id);
+            intent.putExtra("name_en", name_en);
+            intent.putExtra("name_ar", name_ar);
+            intent.putExtra("name_bn", name_bn);
+            intent.putExtra("thumb", thumb);
+            intent.putExtra("pdf_list_url", pdf_list_url);
+        }
+        else if ("word_challenge".equals(target)) {
+            intent = new Intent(context, WordAnswerActivity.class);
+        }
+        else if ("ramadan_planner".equals(target)) {
+            intent = new Intent(context, RamadanPlannerActivity.class);
+        }
+        else {
             intent = new Intent(context, MainActivity.class);
         }
 
