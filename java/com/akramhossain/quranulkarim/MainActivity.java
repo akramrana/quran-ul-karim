@@ -927,7 +927,6 @@ public class MainActivity extends AppCompatActivity {
 
             if (pkg == null) {
                 showWebViewUpdateDialog();
-                return;
             }
         }
 
