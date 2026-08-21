@@ -133,4 +133,7 @@
     <color name="border_card_v2">#065F46</color>
     <color name="text_primary_v2">#ECFDF5</color>
 
+    <color name="dialog_card_bg">#F4F6F8</color>
+    <color name="dialog_card_border">#D6DADF</color>
+
 </resources>

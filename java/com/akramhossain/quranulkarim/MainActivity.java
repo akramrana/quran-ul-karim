@@ -56,6 +56,7 @@ import android.widget.Toast;
 import com.akramhossain.quranulkarim.adapter.HadithBookViewAdapter;
 import com.akramhossain.quranulkarim.adapter.PopularRecyclerViewAdapter;
 import com.akramhossain.quranulkarim.adapter.TafsirBookViewAdapter;
+import com.akramhossain.quranulkarim.dialog.PrayerBackgroundGuideDialog;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.listener.RecyclerTouchListener;
@@ -930,6 +931,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        maybeShowBackgroundPermissionGuide();
+
     }
 
     boolean isDbHealthy() {
@@ -1309,6 +1312,7 @@ public class MainActivity extends AppCompatActivity {
         }
         updatePrayerTime();
         updateBellIcon();
+        maybeShowBackgroundPermissionGuide();
     }
 
     public void calculateReportsValue(){
@@ -1834,4 +1838,25 @@ public class MainActivity extends AppCompatActivity {
         AudioPlay.stopAudio();
     }
 
+    private void maybeShowBackgroundPermissionGuide() {
+        SharedPreferences prefs = getSharedPreferences(Utils.PREF_NAME, MODE_PRIVATE);
+        // Prayer alerts must be enabled
+        if (!prefs.getBoolean("pr_alert_enabled", false)) {
+            return;
+        }
+        // Only show once
+        if (prefs.getBoolean("pr_background_guide_shown", false)) {
+            return;
+        }
+        // Wait a little so permission dialogs finish first
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            PrayerBackgroundGuideDialog dialog = new PrayerBackgroundGuideDialog(this);
+            dialog.setOnDismissListener(d -> {
+                prefs.edit()
+                        .putBoolean("pr_background_guide_shown", true)
+                        .apply();
+            });
+            dialog.show();
+        }, 800);
+    }
 }

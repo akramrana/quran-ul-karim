@@ -110,4 +110,7 @@
     <color name="border_card_v2">#FFCCFBF1</color>
     <color name="text_primary_v2">#065F46</color>
 
+    <color name="dialog_card_bg">#1EFFFFFF</color>
+    <color name="dialog_card_border">#33FFFFFF</color>
+
 </resources>
