@@ -50,6 +50,18 @@
 
             </LinearLayout>
 
+            <ImageButton
+                android:id="@+id/btnRefresh"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="6dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Refresh"
+                android:padding="12dp"
+                android:src="@drawable/ic_refresh"
+                app:tint="@color/colorWhiteDN"/>
 
         </RelativeLayout>
 

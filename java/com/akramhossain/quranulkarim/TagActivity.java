@@ -17,6 +17,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.adapter.TagViewAdapter;
 import com.akramhossain.quranulkarim.listener.RecyclerTouchListener;
@@ -117,6 +119,23 @@ public class TagActivity extends AppCompatActivity {
             //FETCH DATA FROM REMOTE SERVER
             getDataFromInternet();
         }
+
+        ImageButton btnRefresh = findViewById(R.id.btnRefresh);
+        btnRefresh.setOnClickListener(v -> {
+            // reload your data here
+            SharedPreferences.Editor editor = mPrefs.edit();
+            editor.putString("DUA_TAG_JSON_DATA", "{}");
+            editor.putString("IS_DUA_TAG_JSON_DATA_STORED", "0");
+            editor.apply();
+
+            getDataFromInternet();
+
+            Toast.makeText(
+                    getApplicationContext(),
+                    "Refreshing data...",
+                    Toast.LENGTH_SHORT
+            ).show();
+        });
     }
 
     private void setRecyclerViewAdapter() {
@@ -144,6 +163,8 @@ public class TagActivity extends AppCompatActivity {
         try {
             JSONObject response = new JSONObject(result);
             JSONArray jArray = new JSONArray(response.getString("list"));
+
+            tags.clear();
 
             for (int i = 0; i < jArray.length(); i++) {
                 JSONObject jObject = jArray.getJSONObject(i);

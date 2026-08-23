@@ -17,7 +17,9 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.adapter.DuaZikrViewAdapter;
 import com.akramhossain.quranulkarim.model.DuaZikr;
@@ -104,7 +106,7 @@ public class DuaZikrActivity extends AppCompatActivity {
         cd = new ConnectionDetector(getApplicationContext());
         isInternetPresent = cd.isConnectingToInternet();
 
-        mPrefs = getApplicationContext().getSharedPreferences(Utils.PREF_NAME, 0);;
+        mPrefs = getApplicationContext().getSharedPreferences(Utils.PREF_NAME, 0);
         String IS_DUA_ZIKR_JSON_DATA_STORED = mPrefs.getString("IS_DUA_ZIKR_JSON_DATA_STORED_"+tagEn, "0");
         if(IS_DUA_ZIKR_JSON_DATA_STORED.equals("1")){
             String DUA_ZIKR_JSON_DATA = mPrefs.getString("DUA_ZIKR_JSON_DATA_"+tagEn, "{}");
@@ -113,6 +115,23 @@ public class DuaZikrActivity extends AppCompatActivity {
         }else {
             getDataFromInternet();
         }
+
+        ImageButton btnRefresh = findViewById(R.id.btnRefresh);
+        btnRefresh.setOnClickListener(v -> {
+            // reload your data here
+            SharedPreferences.Editor editor = mPrefs.edit();
+            editor.putString("IS_DUA_ZIKR_JSON_DATA_STORED_"+tagEn, "0");
+            editor.putString("DUA_ZIKR_JSON_DATA_"+tagEn, "{}");
+            editor.apply();
+
+            getDataFromInternet();
+
+            Toast.makeText(
+                    getApplicationContext(),
+                    "Refreshing data...",
+                    Toast.LENGTH_SHORT
+            ).show();
+        });
     }
 
     private void setRecyclerViewAdapter() {
@@ -140,6 +159,8 @@ public class DuaZikrActivity extends AppCompatActivity {
         try {
             JSONObject response = new JSONObject(result);
             JSONArray jArray = new JSONArray(response.getString("list"));
+
+            duaZikr.clear();
 
             for (int i = 0; i < jArray.length(); i++) {
                 JSONObject jObject = jArray.getJSONObject(i);
