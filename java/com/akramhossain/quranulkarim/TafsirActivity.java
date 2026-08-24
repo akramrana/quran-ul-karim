@@ -21,6 +21,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -89,6 +90,9 @@ public class TafsirActivity extends AppCompatActivity {
     String bodyTxtColor = "#ffffff";
     String appTheme = "";
 
+    public static final String DEFAULT_TAFSIR = "defaultTafsir";
+    HorizontalScrollView horizontalScrollView1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -146,6 +150,8 @@ public class TafsirActivity extends AppCompatActivity {
 
         setTitle("Tafsir");
 
+        horizontalScrollView1 = findViewById(R.id.horizontalScrollView1);
+
         bayaan_content = (TextView) findViewById(R.id.bayaan_content);
         bayaan_content.setTypeface(font);
 
@@ -198,312 +204,13 @@ public class TafsirActivity extends AppCompatActivity {
 
         aiSummaryButton = (Button) findViewById(R.id.aiSummaryButton);
 
-        btn_ibnkathir.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                ibn_kathir_content.setVisibility(View.VISIBLE);
-                bayaan_content.setVisibility(View.GONE);
-                zakaria_content.setVisibility(View.GONE);
-                jalalayn_content.setVisibility(View.GONE);
-                //
-                tafhim_content.setVisibility(View.GONE);
-                fathul_mazid_content.setVisibility(View.GONE);
-                fezilalil_quran_content.setVisibility(View.GONE);
-                //
-                //btn_ibnkathir.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
-                btn_ibnkathir.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card_v2));
-                btn_ibnkathir.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary_v2));
-
-                btn_bayaan.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_bayaan.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_zakaria.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_zakaria.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_zakaria.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_jalalayn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_jalalayn.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_jalalayn.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //
-                //btn_tafhim.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_tafhim.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_tafhim.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_fathul_mazid.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_fathul_mazid.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_fathul_mazid.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_fezilalil_quran.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_fezilalil_quran.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_fezilalil_quran.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                active_tafsir = "ibn_kasir";
-            }
-        });
-
-        btn_bayaan.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                bayaan_content.setVisibility(View.VISIBLE);
-                zakaria_content.setVisibility(View.GONE);
-                jalalayn_content.setVisibility(View.GONE);
-                ibn_kathir_content.setVisibility(View.GONE);
-                //
-                tafhim_content.setVisibility(View.GONE);
-                fathul_mazid_content.setVisibility(View.GONE);
-                fezilalil_quran_content.setVisibility(View.GONE);
-                //
-                //btn_bayaan.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
-                btn_bayaan.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card_v2));
-                btn_bayaan.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary_v2));
-                //
-                //btn_zakaria.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_zakaria.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_zakaria.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_jalalayn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_jalalayn.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_jalalayn.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_ibnkathir.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_ibnkathir.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_ibnkathir.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-                //
-                //btn_tafhim.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_tafhim.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_tafhim.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_fathul_mazid.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_fathul_mazid.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_fathul_mazid.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_fezilalil_quran.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_fezilalil_quran.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_fezilalil_quran.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                active_tafsir = "bayaan";
-            }
-        });
-
-        btn_zakaria.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                bayaan_content.setVisibility(View.GONE);
-                zakaria_content.setVisibility(View.VISIBLE);
-                jalalayn_content.setVisibility(View.GONE);
-                ibn_kathir_content.setVisibility(View.GONE);
-                //
-                tafhim_content.setVisibility(View.GONE);
-                fathul_mazid_content.setVisibility(View.GONE);
-                fezilalil_quran_content.setVisibility(View.GONE);
-                //
-                //btn_zakaria.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
-                btn_zakaria.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card_v2));
-                btn_zakaria.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary_v2));
-                //
-                //btn_bayaan.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_bayaan.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_bayaan.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_jalalayn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_jalalayn.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_jalalayn.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_ibnkathir.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_ibnkathir.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_ibnkathir.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-                //
-                //btn_tafhim.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_tafhim.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_tafhim.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_fathul_mazid.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_fathul_mazid.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_fathul_mazid.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_fezilalil_quran.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_fezilalil_quran.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_fezilalil_quran.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                active_tafsir = "zakaria";
-            }
-        });
-
-        btn_jalalayn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                bayaan_content.setVisibility(View.GONE);
-                zakaria_content.setVisibility(View.GONE);
-                jalalayn_content.setVisibility(View.VISIBLE);
-                ibn_kathir_content.setVisibility(View.GONE);
-                //
-                tafhim_content.setVisibility(View.GONE);
-                fathul_mazid_content.setVisibility(View.GONE);
-                fezilalil_quran_content.setVisibility(View.GONE);
-                //
-                //btn_jalalayn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
-                btn_jalalayn.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card_v2));
-                btn_jalalayn.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary_v2));
-                //
-                //btn_zakaria.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_zakaria.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_zakaria.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_bayaan.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_bayaan.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_bayaan.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_ibnkathir.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_ibnkathir.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_ibnkathir.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-                //
-                //btn_tafhim.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_tafhim.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_tafhim.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_fathul_mazid.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_fathul_mazid.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_fathul_mazid.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_fezilalil_quran.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_fezilalil_quran.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_fezilalil_quran.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                active_tafsir = "jalalayn";
-            }
-        });
-
-        btn_tafhim.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                bayaan_content.setVisibility(View.GONE);
-                zakaria_content.setVisibility(View.GONE);
-                jalalayn_content.setVisibility(View.GONE);
-                ibn_kathir_content.setVisibility(View.GONE);
-                //
-                tafhim_content.setVisibility(View.VISIBLE);
-                fathul_mazid_content.setVisibility(View.GONE);
-                fezilalil_quran_content.setVisibility(View.GONE);
-                //
-                //btn_jalalayn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_jalalayn.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_jalalayn.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_zakaria.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_zakaria.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_zakaria.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_bayaan.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_bayaan.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_bayaan.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_ibnkathir.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_ibnkathir.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_ibnkathir.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-                //
-                //btn_tafhim.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
-                btn_tafhim.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card_v2));
-                btn_tafhim.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary_v2));
-                //
-                //btn_fathul_mazid.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_fathul_mazid.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_fathul_mazid.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_fezilalil_quran.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_fezilalil_quran.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_fezilalil_quran.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                getTafhimTafsirFromLocalDB();
-
-                active_tafsir = "tafhim";
-            }
-        });
-
-        btn_fathul_mazid.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                bayaan_content.setVisibility(View.GONE);
-                zakaria_content.setVisibility(View.GONE);
-                jalalayn_content.setVisibility(View.GONE);
-                ibn_kathir_content.setVisibility(View.GONE);
-                //
-                tafhim_content.setVisibility(View.GONE);
-                fathul_mazid_content.setVisibility(View.VISIBLE);
-                fezilalil_quran_content.setVisibility(View.GONE);
-                //
-                //btn_jalalayn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_jalalayn.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_jalalayn.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_zakaria.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_zakaria.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_zakaria.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_bayaan.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_bayaan.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_bayaan.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_ibnkathir.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_ibnkathir.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_ibnkathir.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-                //
-                //btn_tafhim.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_tafhim.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_tafhim.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_fathul_mazid.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
-                btn_fathul_mazid.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card_v2));
-                btn_fathul_mazid.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary_v2));
-
-                //btn_fezilalil_quran.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_fezilalil_quran.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_fezilalil_quran.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                getFathulMazidTafsirFromLocalDB();
-
-                active_tafsir = "fathul";
-            }
-        });
-
-        btn_fezilalil_quran.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                bayaan_content.setVisibility(View.GONE);
-                zakaria_content.setVisibility(View.GONE);
-                jalalayn_content.setVisibility(View.GONE);
-                ibn_kathir_content.setVisibility(View.GONE);
-                //
-                tafhim_content.setVisibility(View.GONE);
-                fathul_mazid_content.setVisibility(View.GONE);
-                fezilalil_quran_content.setVisibility(View.VISIBLE);
-                //
-                //btn_jalalayn.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_jalalayn.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_jalalayn.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_zakaria.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_zakaria.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_zakaria.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_bayaan.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_bayaan.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_bayaan.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_ibnkathir.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_ibnkathir.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_ibnkathir.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-                //
-                //btn_tafhim.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_tafhim.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_tafhim.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-
-                //btn_fathul_mazid.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.colorBlack));
-                btn_fathul_mazid.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card));
-                btn_fathul_mazid.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary));
-                //
-                //btn_fezilalil_quran.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.bg_color));
-                btn_fezilalil_quran.setBackground(ContextCompat.getDrawable(TafsirActivity.this, R.drawable.bg_card_v2));
-                btn_fezilalil_quran.setTextColor(ContextCompat.getColor(TafsirActivity.this, R.color.text_primary_v2));
-
-                getFezilalilTafsirFromLocalDB();
-
-                active_tafsir = "fezilalil";
-            }
-        });
+        btn_ibnkathir.setOnClickListener(v -> selectTafsir("ibn_kasir"));
+        btn_bayaan.setOnClickListener(v -> selectTafsir("bayaan"));
+        btn_zakaria.setOnClickListener(v -> selectTafsir("zakaria"));
+        btn_jalalayn.setOnClickListener(v -> selectTafsir("jalalayn"));
+        btn_tafhim.setOnClickListener(v -> selectTafsir("tafhim"));
+        btn_fathul_mazid.setOnClickListener(v -> selectTafsir("fathul"));
+        btn_fezilalil_quran.setOnClickListener(v -> selectTafsir("fezilalil"));
 
 
         Button previousBtn = (Button) findViewById(R.id.previousBtn);
@@ -778,6 +485,154 @@ public class TafsirActivity extends AppCompatActivity {
             }
         });
 
+        String defaultTafsir = mPrefs.getString(DEFAULT_TAFSIR, "ibn_kasir");
+
+        switch (defaultTafsir) {
+
+            case "bayaan":
+                if (btn_bayaan.getVisibility() == View.VISIBLE) {
+                    btn_bayaan.performClick();
+                } else {
+                    btn_ibnkathir.performClick();
+                }
+                break;
+
+            case "zakaria":
+                if (btn_zakaria.getVisibility() == View.VISIBLE) {
+                    btn_zakaria.performClick();
+                } else {
+                    btn_ibnkathir.performClick();
+                }
+                break;
+
+            case "jalalayn":
+                if (btn_jalalayn.getVisibility() == View.VISIBLE) {
+                    btn_jalalayn.performClick();
+                } else {
+                    btn_ibnkathir.performClick();
+                }
+                break;
+
+            case "tafhim":
+                if (btn_tafhim.getVisibility() == View.VISIBLE) {
+                    btn_tafhim.performClick();
+                } else {
+                    btn_ibnkathir.performClick();
+                }
+                break;
+
+            case "fathul":
+                if (btn_fathul_mazid.getVisibility() == View.VISIBLE) {
+                    btn_fathul_mazid.performClick();
+                } else {
+                    btn_ibnkathir.performClick();
+                }
+                break;
+
+            case "fezilalil":
+                if (btn_fezilalil_quran.getVisibility() == View.VISIBLE) {
+                    btn_fezilalil_quran.performClick();
+                } else {
+                    btn_ibnkathir.performClick();
+                }
+                break;
+
+            case "ibn_kasir":
+            default:
+                btn_ibnkathir.performClick();
+                break;
+        }
+
+    }
+
+    private void selectTafsir(String tafsir) {
+        // Hide all tafsir contents
+        ibn_kathir_content.setVisibility(View.GONE);
+        bayaan_content.setVisibility(View.GONE);
+        zakaria_content.setVisibility(View.GONE);
+        jalalayn_content.setVisibility(View.GONE);
+        tafhim_content.setVisibility(View.GONE);
+        fathul_mazid_content.setVisibility(View.GONE);
+        fezilalil_quran_content.setVisibility(View.GONE);
+        // Reset all button colors
+        Button[] buttons = {
+                btn_ibnkathir,
+                btn_bayaan,
+                btn_zakaria,
+                btn_jalalayn,
+                btn_tafhim,
+                btn_fathul_mazid,
+                btn_fezilalil_quran
+        };
+        for (Button button : buttons) {
+            button.setBackground(ContextCompat.getDrawable(this, R.drawable.bg_card));
+            button.setTextColor(ContextCompat.getColor(this, R.color.text_primary));
+        }
+
+        Button activeButton;
+
+        switch (tafsir) {
+
+            case "bayaan":
+                bayaan_content.setVisibility(View.VISIBLE);
+                activeButton = btn_bayaan;
+                break;
+
+            case "zakaria":
+                zakaria_content.setVisibility(View.VISIBLE);
+                activeButton = btn_zakaria;
+                break;
+
+            case "jalalayn":
+                jalalayn_content.setVisibility(View.VISIBLE);
+                activeButton = btn_jalalayn;
+                break;
+
+            case "tafhim":
+                tafhim_content.setVisibility(View.VISIBLE);
+                activeButton = btn_tafhim;
+                getTafhimTafsirFromLocalDB();
+                break;
+
+            case "fathul":
+                fathul_mazid_content.setVisibility(View.VISIBLE);
+                activeButton = btn_fathul_mazid;
+                getFathulMazidTafsirFromLocalDB();
+                break;
+
+            case "fezilalil":
+                fezilalil_quran_content.setVisibility(View.VISIBLE);
+                activeButton = btn_fezilalil_quran;
+                getFezilalilTafsirFromLocalDB();
+                break;
+
+            case "ibn_kasir":
+            default:
+                tafsir = "ibn_kasir";
+                ibn_kathir_content.setVisibility(View.VISIBLE);
+                activeButton = btn_ibnkathir;
+                break;
+        }
+        // Selected button color
+        activeButton.setBackground(ContextCompat.getDrawable(this, R.drawable.bg_card_v2));
+        activeButton.setTextColor(ContextCompat.getColor(this, R.color.text_primary_v2));
+        active_tafsir = tafsir;
+        // Save as default
+        mPrefs.edit().putString(DEFAULT_TAFSIR, tafsir).apply();
+
+        Button finalActiveButton = activeButton;
+
+        horizontalScrollView1.post(() -> {
+
+            int scrollX = finalActiveButton.getLeft()
+                    - (horizontalScrollView1.getWidth() / 2)
+                    + (finalActiveButton.getWidth() / 2);
+
+            horizontalScrollView1.smoothScrollTo(
+                    Math.max(scrollX, 0),
+                    0
+            );
+        });
     }
 
     private void askAi(){
