@@ -16,6 +16,8 @@ import java.util.Random;
 import java.util.TimeZone;
 
 import android.Manifest;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -27,6 +29,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.GradientDrawable;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -796,6 +799,8 @@ public class MainActivity extends AppCompatActivity {
         TextView ramadan_planner_text_view_bn = (TextView) findViewById(R.id.ramadan_planner_text_view_bn);
         ramadan_planner_text_view_bn.setTypeface(font);
 
+        ramadan_planner_main_sec = (LinearLayout) findViewById(R.id.ramadan_planner_main_sec);
+
         ramadan_planner_sec = (LinearLayout) findViewById(R.id.ramadan_planner_sec);
         ramadan_planner_sec.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -943,6 +948,53 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        View dhikrIconBg = findViewById(R.id.dhikrIconBg);
+
+        if (dhikrIconBg != null) {
+
+            GradientDrawable drawable =
+                    (GradientDrawable) dhikrIconBg.getBackground().mutate();
+
+            int[] colors = {
+                    Color.parseColor("#00A67E"), // emerald
+                    Color.parseColor("#00B8D4"), // cyan
+                    Color.parseColor("#7C4DFF"), // purple
+                    Color.parseColor("#FF4081"), // pink
+                    Color.parseColor("#00A67E")  // emerald
+            };
+
+            ValueAnimator colorAnimator = ValueAnimator.ofArgb(colors);
+
+            colorAnimator.setDuration(5000);
+            colorAnimator.setRepeatCount(ValueAnimator.INFINITE);
+            colorAnimator.setRepeatMode(ValueAnimator.RESTART);
+
+            colorAnimator.addUpdateListener(animation ->
+                    drawable.setColor((int) animation.getAnimatedValue())
+            );
+
+            colorAnimator.start();
+
+            // Gentle breathing animation
+            ObjectAnimator scaleX = ObjectAnimator.ofFloat(
+                    dhikrIconBg, "scaleX",
+                    1f, 1.10f, 1f
+            );
+
+            ObjectAnimator scaleY = ObjectAnimator.ofFloat(
+                    dhikrIconBg, "scaleY",
+                    1f, 1.10f, 1f
+            );
+
+            scaleX.setDuration(1800);
+            scaleY.setDuration(1800);
+
+            scaleX.setRepeatCount(ValueAnimator.INFINITE);
+            scaleY.setRepeatCount(ValueAnimator.INFINITE);
+
+            scaleX.start();
+            scaleY.start();
+        }
     }
 
     boolean isDbHealthy() {
@@ -1399,7 +1451,7 @@ public class MainActivity extends AppCompatActivity {
                 //
                 Integer currentAppVersion = json.getInt("current_app_version");
                 //Integer appVersion = mPrefs.getInt("app_version", -1);
-                Integer appVersion = 109;
+                Integer appVersion = 110;
                 Log.d("app_version",appVersion.toString());
                 LinearLayout version_upgrade_warning = (LinearLayout) findViewById(R.id.version_upgrade_warning);
                 if(appVersion < currentAppVersion){
