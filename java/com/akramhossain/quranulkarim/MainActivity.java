@@ -933,6 +933,15 @@ public class MainActivity extends AppCompatActivity {
 
         maybeShowBackgroundPermissionGuide();
 
+        LinearLayout game_sec = (LinearLayout) findViewById(R.id.game_sec);
+        game_sec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getApplicationContext(), DhikrGameActivity.class);
+                startActivity(in);
+            }
+        });
+
     }
 
     boolean isDbHealthy() {

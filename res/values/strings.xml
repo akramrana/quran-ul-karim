@@ -360,4 +360,7 @@
     <string name="btn_pull_data">Restore Answers</string>
     <string name="doha_ishrak_txt">Ishraq: 15–20 min after sunrise.\nDuha (Chasht): 45–60 min after sunrise until before Dhuhr.</string>
 
+    <string name="dhikr_bubble_en">Dhikr Bubbles</string>
+    <string name="dhikr_bubble_bn">প্লে-জিকির</string>
+
 </resources>

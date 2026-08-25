@@ -29,8 +29,8 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:theme="@style/AppTheme"
-        android:supportsRtl="true">
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
         <activity
             android:name=".QuranReaderActivity"
             android:exported="false" />
@@ -239,12 +239,10 @@
         <service
             android:name=".service.MyFirebaseMessagingService"
             android:exported="false">
-
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
         <service
             android:name=".service.HuaweiMessagingService"
             android:exported="false">
@@ -253,6 +251,10 @@
             </intent-filter>
         </service>
 
+        <activity
+            android:name=".DhikrGameActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
