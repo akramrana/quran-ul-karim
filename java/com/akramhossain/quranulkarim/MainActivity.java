@@ -157,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
     public static String hb_host = "https://quran.codxplore.com/";
 
     LinearLayout ramadan_planner_sec;
+    LinearLayout ramadan_planner_main_sec;
 
     private RecyclerView tafsirRecyclerview;
     LinearLayoutManager tafsirLayoutManager;
@@ -1390,8 +1391,10 @@ public class MainActivity extends AppCompatActivity {
                 Integer show_ramadan_planner = json.getInt("show_ramadan_planner");
                 if(show_ramadan_planner==1){
                     ramadan_planner_sec.setVisibility(View.VISIBLE);
+                    ramadan_planner_main_sec.setVisibility(View.VISIBLE);
                 }else{
                     ramadan_planner_sec.setVisibility(View.INVISIBLE);
+                    ramadan_planner_main_sec.setVisibility(View.GONE);
                 }
                 //
                 Integer currentAppVersion = json.getInt("current_app_version");

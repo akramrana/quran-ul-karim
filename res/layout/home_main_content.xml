@@ -1211,10 +1211,12 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ramadan_planner_main_sec"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="15dp">
+            android:layout_marginBottom="15dp"
+            android:visibility="gone">
 
             <LinearLayout
                 android:id="@+id/ramadan_planner_sec"
@@ -1224,7 +1226,7 @@
                 android:orientation="horizontal"
                 android:gravity="center_horizontal"
                 android:paddingLeft="12dp"
-                android:visibility="gone">
+                android:visibility="invisible">
 
                 <LinearLayout
                     android:layout_width="40dp"
@@ -1289,9 +1291,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
+            app:cardCornerRadius="12dp"
             app:cardElevation="3dp"
-            app:cardUseCompatPadding="true"
-            app:cardCornerRadius="12dp">
+            app:cardUseCompatPadding="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -1304,45 +1306,45 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dip"
-                    android:text="@string/word_challenge_ttl"
-                    android:textSize="15sp"
-                    android:textColor="@color/text_primary"
-                    android:gravity="left"
                     android:background="@drawable/rounded_bg"
-                    android:padding="5dp"/>
+                    android:gravity="left"
+                    android:padding="5dp"
+                    android:text="@string/word_challenge_ttl"
+                    android:textColor="@color/text_primary"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/word_challenge_subttl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10.0dip"
+                    android:gravity="left"
                     android:text="@string/word_challenge_subttl"
-                    android:textSize="13sp"
                     android:textColor="@color/colorWhite"
-                    android:gravity="left"/>
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/word_challenge_dtl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10.0dip"
+                    android:gravity="left"
                     android:text="@string/word_challenge_dtl"
-                    android:textSize="13sp"
                     android:textColor="@color/text_primary"
-                    android:gravity="left"/>
+                    android:textSize="13sp" />
 
                 <Button
                     android:id="@+id/enter_challenge_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/enter_challenge"
-                    android:textSize="13sp"
+                    android:layout_gravity="left"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="15dp"
-                    android:layout_gravity="left"
-                    android:textColor="@color/golden_brown"
                     android:background="@drawable/border_round_corner"
-                    android:textAllCaps="false"/>
+                    android:text="@string/enter_challenge"
+                    android:textAllCaps="false"
+                    android:textColor="@color/golden_brown"
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
