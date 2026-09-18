@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import io.sentry.Sentry;
 
 import android.os.Handler;
+import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.text.Html;
 import android.text.SpannableString;
@@ -65,6 +66,7 @@ import android.widget.Toast;
 import com.akramhossain.quranulkarim.adapter.SuraDetailsViewAdapter;
 import com.akramhossain.quranulkarim.app.AppController;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
+import com.akramhossain.quranulkarim.helper.ExoAudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.Ayah;
 import com.akramhossain.quranulkarim.task.JsonFromUrlTask;
@@ -130,10 +132,10 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
 
     private static int oTime =0, sTime =0, eTime =0, fTime = 5000, bTime = 5000;
     private SeekBar songPrgs;
-    private Handler hdlr = new Handler();
+    private Handler hdlr = new Handler(Looper.getMainLooper());
 
     String searchTxt = "";
-    Handler mHandler = new Handler();
+    Handler mHandler = new Handler(Looper.getMainLooper());
     SearchView searchAyah;
 
     WebView webview;
@@ -155,6 +157,8 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
     public String youtubeVideoId;
     ImageButton btnWatchVideo;
     public String qariName;
+
+    private boolean isSeeking = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -421,10 +425,51 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
             chkdb.close();
         }
 
-        /*play_audio = (TextView) findViewById(R.id.play_audio);
-        pause_audio = (TextView) findViewById(R.id.pause_audio);
-        resume_audio = (TextView) findViewById(R.id.resume_audio);
-        stop_audio = (TextView) findViewById(R.id.stop_audio);*/
+        quickLinkBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
+                String sql = "SELECT * FROM quick_link WHERE sura_id = "+suraId;
+                Log.i(TAG, sql);
+                Cursor cursor = db.rawQuery(sql, null);
+                try {
+                    if (cursor.moveToFirst()) {
+                        db.execSQL("DELETE FROM quick_link WHERE sura_id = " + suraId);
+                        Toast.makeText(getApplicationContext(), "Deleted from favourites.", Toast.LENGTH_LONG).show();
+                        quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.star_fill_24px, 0, 0, 0);
+                        quickLinkBtn.setText("Add favourites");
+                    }
+                    else {
+                        ContentValues values = new ContentValues();
+                        values.put("sura_id", suraId);
+                        DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase().insertOrThrow("quick_link", "", values);
+                        Toast.makeText(getApplicationContext(), "Added to favourites.", Toast.LENGTH_LONG).show();
+                        quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.delete_24px, 0, 0, 0);
+                        quickLinkBtn.setText("Remove favourites");
+                    }
+                }catch (Exception e){
+                    Log.e(TAG, e.getMessage());
+                    //throw new RuntimeException("SQL Query: " + sql, e);
+                    Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
+                }
+                finally {
+                    if (cursor != null && !cursor.isClosed()){
+                        cursor.close();
+                    }
+                    db.close();
+                }
+
+            }
+        });
+
+        cd = new ConnectionDetector(getApplicationContext());
+        isInternetPresent = cd.isConnectingToInternet();
+        //FETCH DATA FROM REMOTE SERVER
+        //getPatchFromInternet();
+        if (checkPermission()) {
+
+        }else{
+            requestPermission();
+        }
 
         startTime = (TextView)findViewById(R.id.txtStartTime);
         songTime = (TextView)findViewById(R.id.txtSongTime);
@@ -432,6 +477,8 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         previousBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 AudioPlay.stopAudio();
+                ExoAudioPlay.release();
+
                 songTime.setText(String.format("%d min, %d sec", 0, 0));
                 startTime.setText(String.format("%d min, %d sec", 0, 0));
                 hdlr.removeCallbacksAndMessages(null);
@@ -519,6 +566,8 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         nextBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 AudioPlay.stopAudio();
+                ExoAudioPlay.release();
+
                 songTime.setText(String.format("%d min, %d sec", 0, 0));
                 startTime.setText(String.format("%d min, %d sec", 0, 0));
                 hdlr.removeCallbacksAndMessages(null);
@@ -603,54 +652,6 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
             }
         });
 
-        quickLinkBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                SQLiteDatabase db = DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase();
-                String sql = "SELECT * FROM quick_link WHERE sura_id = "+suraId;
-                Log.i(TAG, sql);
-                Cursor cursor = db.rawQuery(sql, null);
-                try {
-                    if (cursor.moveToFirst()) {
-                        db.execSQL("DELETE FROM quick_link WHERE sura_id = " + suraId);
-                        Toast.makeText(getApplicationContext(), "Deleted from favourites.", Toast.LENGTH_LONG).show();
-                        quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.star_fill_24px, 0, 0, 0);
-                        quickLinkBtn.setText("Add favourites");
-                    }
-                    else {
-                        ContentValues values = new ContentValues();
-                        values.put("sura_id", suraId);
-                        DatabaseHelper.getInstance(getApplicationContext()).getWritableDatabase().insertOrThrow("quick_link", "", values);
-                        Toast.makeText(getApplicationContext(), "Added to favourites.", Toast.LENGTH_LONG).show();
-                        quickLinkBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.delete_24px, 0, 0, 0);
-                        quickLinkBtn.setText("Remove favourites");
-                    }
-                }catch (Exception e){
-                    Log.e(TAG, e.getMessage());
-                    //throw new RuntimeException("SQL Query: " + sql, e);
-                    Sentry.captureException(new RuntimeException("SQL Query: " + sql, e));
-                }
-                finally {
-                    if (cursor != null && !cursor.isClosed()){
-                        cursor.close();
-                    }
-                    db.close();
-                }
-
-            }
-        });
-
-        cd = new ConnectionDetector(getApplicationContext());
-        isInternetPresent = cd.isConnectingToInternet();
-        //FETCH DATA FROM REMOTE SERVER
-        //getPatchFromInternet();
-        if (checkPermission()) {
-
-        }else{
-            requestPermission();
-        }
-
-
-
         playbtn = (ImageButton)findViewById(R.id.btnPlay);
         pausebtn = (ImageButton)findViewById(R.id.btnPause);
         backwardbtn = (ImageButton)findViewById(R.id.btnBackward);
@@ -661,6 +662,8 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         pausebtn.setEnabled(false);
 
         AudioPlay.stopAudio();
+        ExoAudioPlay.release();
+
         songTime.setText(String.format("%d min, %d sec", 0, 0));
         startTime.setText(String.format("%d min, %d sec", 0, 0));
         songPrgs.setProgress(0);
@@ -670,53 +673,93 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
             playbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    boolean isLoaded = AudioPlay.isLoadedAudio();
-                    String mp3Uri = AudioPlay.getAudioUri();
-                    String formatted = String.format("%03d", Integer.parseInt(suraId));
-                    String audioUri = "https://download.quranicaudio.com/quran/sa3d_al-ghaamidi/complete/" + formatted + ".mp3";
 
-                    if(isLoaded) {
-                        if(mp3Uri.equals(audioUri)) {
-                            AudioPlay.resumeAudio();
-                            eTime = AudioPlay.getDuration();
-                            sTime = AudioPlay.getCurrentPosition();
-                        }else{
-                            AudioPlay.stopAudio();
-                            AudioPlay.playAudio(getApplicationContext(), audioUri);
-                            eTime = AudioPlay.getDuration();
-                            sTime = AudioPlay.getCurrentPosition();
-                            oTime = 0;
-                        }
-                    }else{
-                        AudioPlay.stopAudio();
-                        AudioPlay.playAudio(getApplicationContext(), audioUri);
-                        eTime = AudioPlay.getDuration();
-                        sTime = AudioPlay.getCurrentPosition();
-                        oTime = 0;
-                    }
-                    Log.d("audioUri",audioUri);
-                    Log.d("eTime",String.valueOf(eTime));
+                    String formatted = String.format(
+                            "%03d",
+                            Integer.parseInt(suraId)
+                    );
 
-                    if (oTime == 0) {
-                        songPrgs.setMax(eTime);
-                        oTime = 1;
+                    String audioUri =
+                            "https://download.quranicaudio.com/quran/sa3d_al-ghaamidi/complete/"
+                                    + formatted + ".mp3";
+
+                    // Same Surah already loaded -> resume
+                    if (ExoAudioPlay.isLoaded()
+                            && audioUri.equals(ExoAudioPlay.getAudioUri())) {
+
+                        ExoAudioPlay.resume();
+
+                        sTime = (int) ExoAudioPlay.getCurrentPosition();
+                        eTime = (int) ExoAudioPlay.getDuration();
+
+                        pausebtn.setEnabled(true);
+                        playbtn.setEnabled(false);
+
+                        hdlr.removeCallbacks(UpdateSongTime);
+                        hdlr.postDelayed(UpdateSongTime, 1000);
+
+                        return;
                     }
-                    songTime.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes(eTime), TimeUnit.MILLISECONDS.toSeconds(eTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(eTime))));
-                    startTime.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes(sTime), TimeUnit.MILLISECONDS.toSeconds(sTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(sTime))));
-                    //songPrgs.setProgress(sTime);
-                    hdlr.postDelayed(UpdateSongTime, 1000);
-                    pausebtn.setEnabled(true);
+
+                    // Stop old MediaPlayer audio first
+                    AudioPlay.stopAudio();
+
                     playbtn.setEnabled(false);
-                    Toast.makeText(getApplicationContext(), "Playing Audio", Toast.LENGTH_SHORT).show();
+                    pausebtn.setEnabled(false);
+
+                    ExoAudioPlay.play(
+                            getApplicationContext(),
+                            audioUri,
+                            duration -> {
+
+                                eTime = (int) duration;
+                                sTime = (int) ExoAudioPlay.getCurrentPosition();
+                                oTime = 0;
+
+                                songPrgs.setMax(eTime);
+                                songPrgs.setProgress(sTime);
+                                oTime = 1;
+
+                                songTime.setText(String.format(
+                                        "%d min, %d sec",
+                                        TimeUnit.MILLISECONDS.toMinutes(eTime),
+                                        TimeUnit.MILLISECONDS.toSeconds(eTime)
+                                                - TimeUnit.MINUTES.toSeconds(
+                                                TimeUnit.MILLISECONDS.toMinutes(eTime))
+                                ));
+
+                                startTime.setText(String.format(
+                                        "%d min, %d sec",
+                                        TimeUnit.MILLISECONDS.toMinutes(sTime),
+                                        TimeUnit.MILLISECONDS.toSeconds(sTime)
+                                                - TimeUnit.MINUTES.toSeconds(
+                                                TimeUnit.MILLISECONDS.toMinutes(sTime))
+                                ));
+
+                                pausebtn.setEnabled(true);
+                                playbtn.setEnabled(false);
+
+                                hdlr.removeCallbacks(UpdateSongTime);
+                                hdlr.postDelayed(UpdateSongTime, 1000);
+
+                                Toast.makeText(
+                                        getApplicationContext(),
+                                        "Playing Audio",
+                                        Toast.LENGTH_SHORT
+                                ).show();
+                            }
+                    );
                 }
             });
 
             pausebtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    AudioPlay.pauseAudio();
+                    ExoAudioPlay.pause();
+
                     pausebtn.setEnabled(false);
                     playbtn.setEnabled(true);
+
                     Toast.makeText(getApplicationContext(), "Pausing Audio", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -724,35 +767,50 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
             forwardbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (isSeeking) {
+                        return;
+                    }
+
                     if((sTime + fTime) <= eTime)
                     {
+                        isSeeking = true;
+
                         sTime = sTime + fTime;
-                        AudioPlay.seekTo(sTime);
+                        ExoAudioPlay.seekTo(sTime);
+
+                        hdlr.postDelayed(() -> {
+                            isSeeking = false;
+                        }, 700);
                     }
                     else
                     {
                         Toast.makeText(getApplicationContext(), "Cannot jump forward 5 seconds", Toast.LENGTH_SHORT).show();
                     }
-                    if(!playbtn.isEnabled()){
-                        playbtn.setEnabled(true);
-                    }
+
                 }
             });
 
             backwardbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (isSeeking) {
+                        return;
+                    }
+
                     if((sTime - bTime) > 0)
                     {
+                        isSeeking = true;
+
                         sTime = sTime - bTime;
-                        AudioPlay.seekTo(sTime);
+                        ExoAudioPlay.seekTo(sTime);
+
+                        hdlr.postDelayed(() -> {
+                            isSeeking = false;
+                        }, 700);
                     }
                     else
                     {
                         Toast.makeText(getApplicationContext(), "Cannot jump backward 5 seconds", Toast.LENGTH_SHORT).show();
-                    }
-                    if(!playbtn.isEnabled()){
-                        playbtn.setEnabled(true);
                     }
                 }
             });
@@ -1012,6 +1070,15 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         getVideoFromUrl();
 
         btnWatchVideo.setOnClickListener(v -> {
+
+            hdlr.removeCallbacks(UpdateSongTime);
+
+            ExoAudioPlay.release();
+            AudioPlay.stopAudio();
+
+            pausebtn.setEnabled(false);
+            playbtn.setEnabled(true);
+
             String baseUrl = "https://www.youtube-nocookie.com/";
 
             String iframeStr = "https://www.youtube.com/embed/"+youtubeVideoId+"?rel=0&autoplay=1";
@@ -1324,7 +1391,14 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
     public void onPause()
     {
         super.onPause();
+
+        hdlr.removeCallbacks(UpdateSongTime);
+
+        ExoAudioPlay.release();
         AudioPlay.stopAudio();
+
+        pausebtn.setEnabled(false);
+        playbtn.setEnabled(true);
     }
 
     public void parseJsonResponse(String result) {
@@ -1439,19 +1513,41 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
     private Runnable UpdateSongTime = new Runnable() {
         @Override
         public void run() {
-            boolean isAudioStopped = AudioPlay.isStopped();
-            if(isAudioStopped){
+            Log.d(
+                    "EXO_DEBUG",
+                    "POSITION=" + ExoAudioPlay.getCurrentPosition()
+                            + " playing=" + ExoAudioPlay.isPlaying()
+            );
+
+            if (ExoAudioPlay.isStopped()) {
+
                 hdlr.removeCallbacks(this);
+
+                sTime = 0;
+                eTime = 0;
+                oTime = 0;
+
+                songPrgs.setProgress(0);
+
                 pausebtn.setEnabled(false);
                 playbtn.setEnabled(true);
 
-            }else {
-                sTime = AudioPlay.getCurrentPosition();
-                Log.d("stopped", String.valueOf(isAudioStopped));
-                startTime.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes(sTime), TimeUnit.MILLISECONDS.toSeconds(sTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(sTime))));
-                songPrgs.setProgress(sTime);
-                hdlr.postDelayed(this, 1000);
+                return;
             }
+
+            sTime = (int) ExoAudioPlay.getCurrentPosition();
+
+            startTime.setText(String.format(
+                    "%d min, %d sec",
+                    TimeUnit.MILLISECONDS.toMinutes(sTime),
+                    TimeUnit.MILLISECONDS.toSeconds(sTime)
+                            - TimeUnit.MINUTES.toSeconds(
+                            TimeUnit.MILLISECONDS.toMinutes(sTime))
+            ));
+
+            songPrgs.setProgress(sTime);
+
+            hdlr.postDelayed(this, 1000);
         }
     };
 
@@ -1573,6 +1669,7 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
                     .show();
         }
     }
+
 
 
 }

@@ -1,7 +1,9 @@
 package com.akramhossain.quranulkarim;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,7 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.helper.AudioPlay;
+import com.akramhossain.quranulkarim.helper.ExoAudioPlay;
 import com.akramhossain.quranulkarim.model.Sura;
+import com.akramhossain.quranulkarim.task.BackgroundTask;
 import com.akramhossain.quranulkarim.util.ConnectionDetector;
 
 import java.util.concurrent.TimeUnit;
@@ -34,12 +38,13 @@ public class PopUpClass {
     ImageButton playbtn,pausebtn,backwardbtn,forwardbtn;
     TextView startTime,songTime, txtSuraName, cancelTxt;
     SeekBar songPrgs;
+    private boolean isSeeking = false;
 
     public PopUpClass(){
 
     }
 
-    public void showPopupWindow(final View view, Sura sura, Context c) {
+    public void showPopupWindow(final View view, Sura sura, Context c, Activity activity) {
 
         LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(view.getContext().LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.pop_up_window, null);
@@ -66,68 +71,72 @@ public class PopUpClass {
 
         txtSuraName.setText(sura.getName_simple());
 
-        hdlr = new Handler();
+        hdlr = new Handler(Looper.getMainLooper());
 
         songPrgs = popupView.findViewById(R.id.sBar);
         songPrgs.setClickable(false);
         pausebtn.setEnabled(false);
 
         AudioPlay.stopAudio();
+        ExoAudioPlay.release();
+
+        oTime = 0;
+        sTime = 0;
+        eTime = 0;
+
         songTime.setText(String.format("%d min, %d sec", 0, 0));
         startTime.setText(String.format("%d min, %d sec", 0, 0));
         songPrgs.setProgress(0);
+
         hdlr.removeCallbacksAndMessages(null);
 
         if (isInternetPresent) {
 
-            playbtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    boolean isLoaded = AudioPlay.isLoadedAudio();
-                    String mp3Uri = AudioPlay.getAudioUri();
-                    String formatted = String.format("%03d", Integer.parseInt(sura.getSurah_id()));
-                    String audioUri = "https://download.quranicaudio.com/quran/sa3d_al-ghaamidi/complete/" + formatted + ".mp3";
+            playbtn.setOnClickListener(v -> {
 
-                    if(isLoaded) {
-                        if(mp3Uri.equals(audioUri)) {
-                            AudioPlay.resumeAudio();
-                            eTime = AudioPlay.getDuration();
-                            sTime = AudioPlay.getCurrentPosition();
-                        }else{
-                            AudioPlay.stopAudio();
-                            AudioPlay.playAudio(c, audioUri);
-                            eTime = AudioPlay.getDuration();
-                            sTime = AudioPlay.getCurrentPosition();
-                            oTime = 0;
-                        }
-                    }else{
-                        AudioPlay.stopAudio();
-                        AudioPlay.playAudio(c, audioUri);
-                        eTime = AudioPlay.getDuration();
-                        sTime = AudioPlay.getCurrentPosition();
-                        oTime = 0;
-                    }
-                    Log.d("audioUri",audioUri);
-                    Log.d("eTime",String.valueOf(eTime));
+                String formatted = String.format(
+                        "%03d",
+                        Integer.parseInt(sura.getSurah_id())
+                );
 
-                    if (oTime == 0) {
-                        songPrgs.setMax(eTime);
-                        oTime = 1;
-                    }
-                    songTime.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes(eTime), TimeUnit.MILLISECONDS.toSeconds(eTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(eTime))));
-                    startTime.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes(sTime), TimeUnit.MILLISECONDS.toSeconds(sTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(sTime))));
-                    //songPrgs.setProgress(sTime);
-                    hdlr.postDelayed(UpdateSongTime, 1000);
+                String audioUri =
+                        "https://download.quranicaudio.com/quran/sa3d_al-ghaamidi/complete/"
+                                + formatted + ".mp3";
+
+                if (ExoAudioPlay.isLoaded()
+                        && audioUri.equals(ExoAudioPlay.getAudioUri())) {
+
+                    ExoAudioPlay.resume();
+
+                    sTime = (int) ExoAudioPlay.getCurrentPosition();
+                    eTime = (int) ExoAudioPlay.getDuration();
+
                     pausebtn.setEnabled(true);
                     playbtn.setEnabled(false);
-                    Toast.makeText(c, "Playing Audio", Toast.LENGTH_SHORT).show();
+
+                    hdlr.removeCallbacks(UpdateSongTime);
+                    hdlr.postDelayed(UpdateSongTime, 1000);
+
+                    return;
                 }
+
+                playbtn.setEnabled(false);
+                pausebtn.setEnabled(false);
+
+                ExoAudioPlay.play(c, audioUri, duration -> {
+
+                    eTime = (int) duration;
+                    sTime = (int) ExoAudioPlay.getCurrentPosition();
+                    oTime = 0;
+
+                    updatePlayerUI(c);
+                });
             });
 
             pausebtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    AudioPlay.pauseAudio();
+                    ExoAudioPlay.pause();
                     pausebtn.setEnabled(false);
                     playbtn.setEnabled(true);
                     Toast.makeText(c, "Pausing Audio", Toast.LENGTH_SHORT).show();
@@ -137,17 +146,28 @@ public class PopUpClass {
             forwardbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if((sTime + fTime) <= eTime)
-                    {
+                    if (isSeeking) {
+                        return;
+                    }
+
+                    if ((sTime + fTime) <= eTime) {
+
+                        isSeeking = true;
+
                         sTime = sTime + fTime;
-                        AudioPlay.seekTo(sTime);
-                    }
-                    else
-                    {
-                        Toast.makeText(c, "Cannot jump forward 5 seconds", Toast.LENGTH_SHORT).show();
-                    }
-                    if(!playbtn.isEnabled()){
-                        playbtn.setEnabled(true);
+                        ExoAudioPlay.seekTo(sTime);
+
+                        hdlr.postDelayed(() -> {
+                            isSeeking = false;
+                        }, 700);
+
+                    } else {
+
+                        Toast.makeText(
+                                c,
+                                "Cannot jump forward 5 seconds",
+                                Toast.LENGTH_SHORT
+                        ).show();
                     }
                 }
             });
@@ -155,17 +175,28 @@ public class PopUpClass {
             backwardbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if((sTime - bTime) > 0)
-                    {
+                    if (isSeeking) {
+                        return;
+                    }
+
+                    if ((sTime - bTime) > 0) {
+
+                        isSeeking = true;
+
                         sTime = sTime - bTime;
-                        AudioPlay.seekTo(sTime);
-                    }
-                    else
-                    {
-                        Toast.makeText(c, "Cannot jump backward 5 seconds", Toast.LENGTH_SHORT).show();
-                    }
-                    if(!playbtn.isEnabled()){
-                        playbtn.setEnabled(true);
+                        ExoAudioPlay.seekTo(sTime);
+
+                        hdlr.postDelayed(() -> {
+                            isSeeking = false;
+                        }, 700);
+
+                    } else {
+
+                        Toast.makeText(
+                                c,
+                                "Cannot jump backward 5 seconds",
+                                Toast.LENGTH_SHORT
+                        ).show();
                     }
                 }
             });
@@ -174,38 +205,88 @@ public class PopUpClass {
         cancelTxt.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               AudioPlay.stopAudio();
                popupWindow.dismiss();
            }
         });
 
-        /*popupView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                //Close the window when clicked
-                AudioPlay.stopAudio();
-                popupWindow.dismiss();
-                return true;
-            }
-        });*/
+        popupWindow.setOnDismissListener(() -> {
+            hdlr.removeCallbacks(UpdateSongTime);
+            ExoAudioPlay.release();
+        });
     }
+
 
     private Runnable UpdateSongTime = new Runnable() {
         @Override
         public void run() {
-            boolean isAudioStopped = AudioPlay.isStopped();
-            if(isAudioStopped){
+
+            Log.d(
+                    "EXO_DEBUG",
+                    "POSITION=" + ExoAudioPlay.getCurrentPosition()
+                            + " playing=" + ExoAudioPlay.isPlaying()
+            );
+
+            if (ExoAudioPlay.isStopped()) {
+
                 hdlr.removeCallbacks(this);
+
+                sTime = 0;
+                eTime = 0;
+                oTime = 0;
+
+                songPrgs.setProgress(0);
+
                 pausebtn.setEnabled(false);
                 playbtn.setEnabled(true);
 
-            }else {
-                sTime = AudioPlay.getCurrentPosition();
-                Log.d("stopped", String.valueOf(isAudioStopped));
-                startTime.setText(String.format("%d min, %d sec", TimeUnit.MILLISECONDS.toMinutes(sTime), TimeUnit.MILLISECONDS.toSeconds(sTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(sTime))));
-                songPrgs.setProgress(sTime);
-                hdlr.postDelayed(this, 1000);
+                return;
             }
+
+            sTime = (int) ExoAudioPlay.getCurrentPosition();
+
+            startTime.setText(String.format(
+                    "%d min, %d sec",
+                    TimeUnit.MILLISECONDS.toMinutes(sTime),
+                    TimeUnit.MILLISECONDS.toSeconds(sTime)
+                            - TimeUnit.MINUTES.toSeconds(
+                            TimeUnit.MILLISECONDS.toMinutes(sTime))
+            ));
+
+            songPrgs.setProgress(sTime);
+
+            hdlr.postDelayed(this, 1000);
         }
     };
+
+    private void updatePlayerUI(Context c) {
+
+        if (oTime == 0) {
+            songPrgs.setMax(eTime);
+            oTime = 1;
+        }
+
+        songTime.setText(String.format(
+                "%d min, %d sec",
+                TimeUnit.MILLISECONDS.toMinutes(eTime),
+                TimeUnit.MILLISECONDS.toSeconds(eTime)
+                        - TimeUnit.MINUTES.toSeconds(
+                        TimeUnit.MILLISECONDS.toMinutes(eTime))
+        ));
+
+        startTime.setText(String.format(
+                "%d min, %d sec",
+                TimeUnit.MILLISECONDS.toMinutes(sTime),
+                TimeUnit.MILLISECONDS.toSeconds(sTime)
+                        - TimeUnit.MINUTES.toSeconds(
+                        TimeUnit.MILLISECONDS.toMinutes(sTime))
+        ));
+
+        hdlr.removeCallbacks(UpdateSongTime);
+        hdlr.postDelayed(UpdateSongTime, 1000);
+
+        pausebtn.setEnabled(true);
+        playbtn.setEnabled(false);
+
+        Toast.makeText(c, "Playing Audio", Toast.LENGTH_SHORT).show();
+    }
 }

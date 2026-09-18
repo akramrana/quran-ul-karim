@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.akramhossain.quranulkarim.ConnectionDetector;
 import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
+import com.akramhossain.quranulkarim.helper.ExoAudioPlay;
 import com.akramhossain.quranulkarim.model.AudioItem;
 import com.akramhossain.quranulkarim.util.AudioStorage;
 
@@ -35,15 +36,13 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
 
     private final Context context;
     private final List<AudioItem> items;
-    private MediaPlayer player;
-    private int currentPos = -1;
 
     private final Handler handler = new Handler(Looper.getMainLooper());
     private Runnable monitorRunnable;
 
     private int playingPos = RecyclerView.NO_POSITION;
 
-    private Handler seekHandler;
+    private final Handler seekHandler = new Handler(Looper.getMainLooper());
 
     ConnectionDetector cd;
     Boolean isInternetPresent = false;
@@ -51,8 +50,7 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
     public AudioAdapter(Context context, List<AudioItem> items) {
         this.context = context;
         this.items = items;
-        seekHandler = new Handler();
-        seekHandler.removeCallbacksAndMessages(null);
+
         cd = new ConnectionDetector(context);
         isInternetPresent = cd.isConnectingToInternet();
     }
@@ -70,7 +68,7 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
         holder.txtTitle.setText(item.title);
         holder.txtSubtitle.setText(item.artist + " • " + formatDuration(item.duration));
 
-        boolean isThisPlaying = (position == playingPos) && AudioPlay.isAudioPlaying;
+        boolean isThisPlaying = position == playingPos && ExoAudioPlay.isPlaying();
 
         holder.btnPlay.setImageResource(isThisPlaying
                 ? R.drawable.pause_circle_24px
@@ -79,8 +77,8 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
         holder.seekBar.setVisibility(isThisPlaying ? View.VISIBLE : View.GONE);
 
         if (isThisPlaying) {
-            int current = AudioPlay.getCurrentPosition();
-            int duration = AudioPlay.getDuration();
+            int current = (int) ExoAudioPlay.getCurrentPosition();
+            int duration = (int) ExoAudioPlay.getDuration();
 
             if (duration > 0) {
                 holder.seekBar.setMax(duration);
@@ -112,8 +110,9 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 int currentPos = holder.getBindingAdapterPosition();
-                if (fromUser && currentPos != RecyclerView.NO_POSITION && currentPos == playingPos && AudioPlay.mp != null) {
-                    AudioPlay.mp.seekTo(progress);
+                if (fromUser && currentPos != RecyclerView.NO_POSITION && currentPos == playingPos && ExoAudioPlay.isLoaded()) {
+
+                    ExoAudioPlay.seekTo(progress);
                 }
             }
             @Override public void onStartTrackingTouch(SeekBar seekBar) {}
@@ -130,9 +129,11 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
             // Partial bind – only update what changed
             for (Object payload : payloads) {
                 if ("PROGRESS_UPDATE".equals(payload)) {
-                    if (position == playingPos && AudioPlay.isAudioPlaying && AudioPlay.mp != null) {
-                        int current = AudioPlay.getCurrentPosition();
-                        int duration = AudioPlay.getDuration();
+                    if (position == playingPos && ExoAudioPlay.isLoaded()) {
+
+                        int current = (int) ExoAudioPlay.getCurrentPosition();
+                        int duration = (int) ExoAudioPlay.getDuration();
+
                         if (duration > 0) {
                             holder.seekBar.setMax(duration);
                             holder.seekBar.setProgress(current);
@@ -161,80 +162,148 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
     }
 
     private void handlePlayClick(AudioViewHolder holder, int position) {
+
         if (position == RecyclerView.NO_POSITION) return;
+
         int previous = playingPos;
-        if (position == playingPos) {
-            if (AudioPlay.isAudioPlaying) {
-                AudioPlay.pauseAudio();
+
+        // Same audio -> pause/resume
+        if (position == playingPos && ExoAudioPlay.isLoaded()) {
+
+            if (ExoAudioPlay.isPlaying()) {
+                ExoAudioPlay.pause();
+                stopMonitor();
+
+                if (seekRunnable != null) {
+                    seekHandler.removeCallbacks(seekRunnable);
+                }
             } else {
-                AudioPlay.resumeAudio();
+                ExoAudioPlay.resume();
+                startMonitor();
+
+                seekHandler.removeCallbacks(seekRunnable);
+                seekHandler.post(seekRunnable);
             }
+
             notifyItemChanged(position);
-            startMonitor();
             return;
         }
 
+        // Prevent old Ayah/MediaPlayer audio from overlapping
         AudioPlay.stopAudio();
+
+        // Stop previous Exo audio
+        ExoAudioPlay.release();
+
         playingPos = position;
 
         AudioItem item = items.get(position);
 
-        String fileName = item.qariId+"_"+item.title.replace(" ", "_") + ".mp3";
-        File localFile = AudioStorage.getAudioFile(context, fileName);
+        String fileName =
+                item.qariId + "_" +
+                        item.title.replace(" ", "_") +
+                        ".mp3";
+
+        File localFile =
+                AudioStorage.getAudioFile(context, fileName);
+
+        String audioUri;
 
         if (localFile.exists()) {
-            AudioPlay.playAudio(context, localFile.getAbsolutePath());
-        }else {
-            if (isInternetPresent) {
-                AudioPlay.playAudio(context, item.url);
-            }else{
-                Toast.makeText(context, R.string.text_enable_internet, Toast.LENGTH_SHORT).show();
+
+            audioUri = localFile.getAbsolutePath();
+
+        } else {
+
+            if (!isInternetPresent) {
+                Toast.makeText(
+                        context,
+                        R.string.text_enable_internet,
+                        Toast.LENGTH_SHORT
+                ).show();
+
+                playingPos = RecyclerView.NO_POSITION;
+                return;
             }
+
+            audioUri = item.url;
         }
 
-        if (previous != RecyclerView.NO_POSITION) notifyItemChanged(previous);
+        if (previous != RecyclerView.NO_POSITION) {
+            notifyItemChanged(previous);
+        }
 
         notifyItemChanged(position);
 
-        startMonitor();
+        ExoAudioPlay.play(
+                context,
+                audioUri,
+                duration -> {
 
-        seekHandler.postDelayed(seekRunnable, 300);
+                    if (playingPos != position) return;
+
+                    notifyItemChanged(position);
+
+                    startMonitor();
+
+                    seekHandler.removeCallbacks(seekRunnable);
+                    seekHandler.post(seekRunnable);
+                }
+        );
     }
 
-    private Runnable seekRunnable = new Runnable() {
+    private final Runnable seekRunnable = new Runnable() {
         @Override
         public void run() {
-            boolean isAudioStopped = AudioPlay.isStopped();
-            if(isAudioStopped || AudioPlay.mp == null){
+
+            if (ExoAudioPlay.isStopped()) {
                 seekHandler.removeCallbacks(this);
-            }else {
-                if (playingPos != -1 && AudioPlay.mp != null) {
-                    //int pos = AudioPlay.getCurrentPosition();
-                    //int dur = AudioPlay.getDuration();
-                    if (playingPos != RecyclerView.NO_POSITION) {
-                        notifyItemChanged(playingPos, "PROGRESS_UPDATE");
-                    }
-                    //Log.d("seek","seek pos"+pos);
-                    seekHandler.postDelayed(this, 300);
-                }
+                return;
+            }
+
+            if (playingPos != RecyclerView.NO_POSITION
+                    && ExoAudioPlay.isLoaded()) {
+
+                notifyItemChanged(
+                        playingPos,
+                        "PROGRESS_UPDATE"
+                );
+
+                seekHandler.postDelayed(this, 300);
             }
         }
     };
 
     private void startMonitor() {
+
         stopMonitor();
+
         monitorRunnable = new Runnable() {
-            @Override public void run() {
-                if (AudioPlay.isStopped()) {
+
+            @Override
+            public void run() {
+
+                if (ExoAudioPlay.isStopped()) {
+
                     int prev = playingPos;
+
                     playingPos = RecyclerView.NO_POSITION;
-                    if (prev != RecyclerView.NO_POSITION) notifyItemChanged(prev);
+
+                    if (prev != RecyclerView.NO_POSITION) {
+                        notifyItemChanged(prev);
+                    }
+
+                    seekHandler.removeCallbacks(seekRunnable);
+
                     stopMonitor();
+
                 } else {
+
                     handler.postDelayed(this, 400);
                 }
             }
         };
+
         handler.postDelayed(monitorRunnable, 400);
     }
 
@@ -247,19 +316,23 @@ public class AudioAdapter extends RecyclerView.Adapter<AudioAdapter.AudioViewHol
 
     public void release() {
         stopMonitor();
-        AudioPlay.stopAudio();
-        if (seekRunnable != null) {
-            seekHandler.removeCallbacks(seekRunnable);
-        }
+
+        handler.removeCallbacksAndMessages(null);
+        seekHandler.removeCallbacks(seekRunnable);
+
+        ExoAudioPlay.release();
+
         int prev = playingPos;
         playingPos = RecyclerView.NO_POSITION;
-        if (prev != RecyclerView.NO_POSITION) notifyItemChanged(prev);
+
+        if (prev != RecyclerView.NO_POSITION) {
+            notifyItemChanged(prev);
+        }
     }
 
     @Override
     public void onViewRecycled(@NonNull AudioViewHolder holder) {
         super.onViewRecycled(holder);
-        stopMonitor();
     }
 
     @Override

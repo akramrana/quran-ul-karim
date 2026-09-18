@@ -48,6 +48,7 @@ import com.akramhossain.quranulkarim.TafsirActivity;
 import com.akramhossain.quranulkarim.WordMeaningActivity;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
+import com.akramhossain.quranulkarim.helper.ExoAudioPlay;
 import com.akramhossain.quranulkarim.model.Ayah;
 import com.akramhossain.quranulkarim.task.BackgroundTask;
 import com.akramhossain.quranulkarim.util.Utils;
@@ -204,6 +205,8 @@ public class SuraDetailsViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         rvHolder.playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ExoAudioPlay.release();
+
                 Double secD = Double.parseDouble(ayah.getAudio_duration());
                 long sec = secD.longValue();
                 long millisecond = TimeUnit.SECONDS.toMillis(sec);

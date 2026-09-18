@@ -72,7 +72,7 @@ public class PopularRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
             @Override
             public void onClick(View view) {
                 PopUpClass popUpClass = new PopUpClass();
-                popUpClass.showPopupWindow(view, sura, c);
+                popUpClass.showPopupWindow(view, sura, c, activity);
             }
         });
 

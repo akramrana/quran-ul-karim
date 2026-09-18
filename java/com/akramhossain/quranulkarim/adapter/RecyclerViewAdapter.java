@@ -79,7 +79,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             @Override
             public void onClick(View view) {
                 PopUpClass popUpClass = new PopUpClass();
-                popUpClass.showPopupWindow(view, sura, c);
+                popUpClass.showPopupWindow(view, sura, c, activity);
             }
         });
 
