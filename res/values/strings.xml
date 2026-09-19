@@ -363,4 +363,6 @@
     <string name="dhikr_bubble_en">Play Dhikr</string>
     <string name="dhikr_bubble_bn">প্লে-জিকির</string>
 
+    <string name="string_ai_summary_v2">Ask AI to summarize this</string>
+
 </resources>
