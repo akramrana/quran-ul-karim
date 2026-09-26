@@ -369,4 +369,7 @@
     <string name="app_widget_description">Daily Quran ayah with Bangla translation</string>
     <string name="daily_ayah_bn_widget_name">Daily Ayah</string>
 
+    <string name="allah_name_widget_description">A daily Name of Allah in Arabic, English and Bangla</string>
+    <string name="allah_name_widget_title">Names of Allah</string>
+
 </resources>

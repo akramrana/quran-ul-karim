@@ -67,7 +67,7 @@
             android:textSize="20sp"
             android:maxLines="2"
             android:ellipsize="end"
-            android:fontFamily="@font/kfgqpc_uthmanic_script_hafs_regular"/>
+            android:fontFamily="@font/arabic_regular"/>
 
         <TextView
             android:id="@+id/ayah_translation"
@@ -78,7 +78,7 @@
             android:textSize="15sp"
             android:maxLines="2"
             android:ellipsize="end"
-            android:fontFamily="@font/siyamrupali"/>
+            android:fontFamily="@font/siyamrupali_regular"/>
 
         <TextView
             android:id="@+id/ayah_english"

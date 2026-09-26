@@ -258,8 +258,8 @@
 
         <receiver
             android:name=".DailyAyahBnWidget"
-            android:label="@string/daily_ayah_bn_widget_name"
-            android:exported="false">
+            android:exported="false"
+            android:label="@string/daily_ayah_bn_widget_name">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -267,6 +267,18 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/daily_ayah_bn_widget_info" />
+        </receiver>
+        <receiver
+            android:name=".AllahNameWidget"
+            android:exported="false"
+            android:label="@string/allah_name_widget_title">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/allah_name_widget_info" />
         </receiver>
     </application>
 

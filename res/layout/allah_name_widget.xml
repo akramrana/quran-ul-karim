@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/allah_name_widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingStart="18dp"
+    android:paddingEnd="18dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="12dp"
+    android:background="@drawable/widget_card">
+
+    <TextView
+        android:id="@+id/allah_name_arabic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textDirection="rtl"
+        android:textColor="#FFFFFF"
+        android:textSize="52sp"
+        android:maxLines="1"
+        android:includeFontPadding="false" />
+
+    <TextView
+        android:id="@+id/allah_name_english"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:textSize="21sp"
+        android:letterSpacing="0.04"
+        android:maxLines="1"/>
+
+    <TextView
+        android:id="@+id/allah_name_meaning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        android:textColor="#E1EAE4"
+        android:textSize="13sp"
+        android:maxLines="1"
+        android:ellipsize="end" />
+
+    <TextView
+        android:id="@+id/allah_name_bangla"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:textColor="#D6E4DC"
+        android:textSize="17sp"
+        android:maxLines="1"/>
+</LinearLayout>
