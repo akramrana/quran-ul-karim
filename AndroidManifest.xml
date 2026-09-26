@@ -255,6 +255,19 @@
             android:name=".DhikrGameActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <receiver
+            android:name=".DailyAyahBnWidget"
+            android:label="@string/daily_ayah_bn_widget_name"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/daily_ayah_bn_widget_info" />
+        </receiver>
     </application>
 
 </manifest>
