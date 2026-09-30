@@ -25,7 +25,8 @@
             android:textColor="#FFFFFF"
             android:textSize="25sp"
             android:maxLines="2"
-            android:ellipsize="end"/>
+            android:ellipsize="end"
+            android:text="فَإِنَّ مَعَ الْعُسْرِ يُسْرًا"/>
 
         <TextView
             android:id="@+id/ayah_english"
@@ -36,7 +37,8 @@
             android:textColor="#FFFFFF"
             android:textSize="13sp"
             android:maxLines="2"
-            android:ellipsize="end" />
+            android:ellipsize="end"
+            android:text="For indeed, with hardship comes ease."/>
 
         <TextView
             android:id="@+id/ayah_translation"
@@ -47,7 +49,8 @@
             android:textColor="#FFFFFF"
             android:textSize="14sp"
             android:maxLines="2"
-            android:ellipsize="end"/>
+            android:ellipsize="end"
+            android:text="নিশ্চয়ই কষ্টের সাথে স্বস্তি রয়েছে।"/>
     </LinearLayout>
 
     <LinearLayout
@@ -66,7 +69,8 @@
             android:textColor="#FFFFFF"
             android:textSize="13sp"
             android:maxLines="1"
-            android:ellipsize="end" />
+            android:ellipsize="end"
+            android:text="Ash-Sharh 94:5"/>
 
         <TextView
             android:id="@+id/ayah_refresh"

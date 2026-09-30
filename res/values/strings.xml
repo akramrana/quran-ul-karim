@@ -366,10 +366,12 @@
     <string name="string_ai_summary_v2">Ask AI to summarize this</string>
     <string name="appwidget_text">Quran Tafsir English Bangla</string>
     <string name="add_widget">Add widget</string>
-    <string name="app_widget_description">Daily Quran ayah with Bangla translation</string>
+
     <string name="daily_ayah_bn_widget_name">Daily Ayah</string>
 
     <string name="allah_name_widget_description">A daily Name of Allah in Arabic, English and Bangla</string>
     <string name="allah_name_widget_title">Names of Allah</string>
+
+    <string name="app_widget_description">Quran ayah in Arabic, English and Bangla</string>
 
 </resources>

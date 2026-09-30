@@ -21,7 +21,8 @@
         android:textSize="45sp"
         android:maxLines="1"
         android:includeFontPadding="false"
-        android:fontFamily="@font/arabic_regular"/>
+        android:fontFamily="@font/arabic_regular"
+        android:text="الرَّحْمَٰنُ"/>
 
     <TextView
         android:id="@+id/allah_name_english"
@@ -32,6 +33,7 @@
         android:textColor="#FFFFFF"
         android:textSize="21sp"
         android:letterSpacing="0.04"
+        android:text="AR RAHMAAN"
         android:maxLines="1"/>
 
     <TextView
@@ -40,9 +42,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:gravity="center"
-        android:textColor="#E1EAE4"
+        android:textColor="#FFFFFF"
         android:textSize="15sp"
         android:maxLines="1"
+        android:text="The Beneficent"
         android:ellipsize="end" />
 
     <TextView
@@ -51,9 +54,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:gravity="center"
-        android:textColor="#D6E4DC"
+        android:textColor="#FFFFFF"
         android:textSize="17sp"
         android:maxLines="1"
+        android:text="আর রাহমান"
         android:fontFamily="@font/siyamrupali_regular"/>
 
 </LinearLayout>

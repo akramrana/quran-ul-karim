@@ -9,6 +9,8 @@ import androidx.core.view.WindowInsetsCompat;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -419,6 +421,51 @@ public class SettingActivity extends AppCompatActivity{
             }
         });
 
+        Button add_ayah_widget = findViewById(R.id.add_ayah_widget);
+        add_ayah_widget.setOnClickListener(v -> {
+            Context context = v.getContext();
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                AppWidgetManager manager = AppWidgetManager.getInstance(context);
+
+                if (manager.isRequestPinAppWidgetSupported()) {
+                    ComponentName provider = new ComponentName(context, DailyAyahBnWidget.class);
+
+                    if (manager.requestPinAppWidget(provider, null, null)) {
+                        return;
+                    }
+                }
+            }
+
+            Toast.makeText(
+                    context,
+                    "Long-press your Home screen, tap Widgets, then choose Daily Ayah",
+                    Toast.LENGTH_LONG
+            ).show();
+        });
+
+        Button add_allah_name_widget = findViewById(R.id.add_allah_name_widget);
+        add_allah_name_widget.setOnClickListener(v -> {
+            Context context = v.getContext();
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                AppWidgetManager manager = AppWidgetManager.getInstance(context);
+
+                if (manager.isRequestPinAppWidgetSupported()) {
+                    ComponentName provider = new ComponentName(context, AllahNameWidget.class);
+
+                    if (manager.requestPinAppWidget(provider, null, null)) {
+                        return;
+                    }
+                }
+            }
+
+            Toast.makeText(
+                    context,
+                    "Long-press your Home screen, tap Widgets, then choose Names of Allah",
+                    Toast.LENGTH_LONG
+            ).show();
+        });
     }
 
     public ArrayList<CalculationMethod> calculationMethods(){
