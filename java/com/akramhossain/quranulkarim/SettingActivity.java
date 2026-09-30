@@ -27,6 +27,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RemoteViews;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -431,7 +432,18 @@ public class SettingActivity extends AppCompatActivity{
                 if (manager.isRequestPinAppWidgetSupported()) {
                     ComponentName provider = new ComponentName(context, DailyAyahBnWidget.class);
 
-                    if (manager.requestPinAppWidget(provider, null, null)) {
+                    RemoteViews preview = new RemoteViews(
+                            context.getPackageName(),
+                            R.layout.daily_ayah_bn_widget
+                    );
+
+                    Bundle extras = new Bundle();
+                    extras.putParcelable(
+                            AppWidgetManager.EXTRA_APPWIDGET_PREVIEW,
+                            preview
+                    );
+
+                    if (manager.requestPinAppWidget(provider, extras, null)) {
                         return;
                     }
                 }
@@ -454,7 +466,18 @@ public class SettingActivity extends AppCompatActivity{
                 if (manager.isRequestPinAppWidgetSupported()) {
                     ComponentName provider = new ComponentName(context, AllahNameWidget.class);
 
-                    if (manager.requestPinAppWidget(provider, null, null)) {
+                    RemoteViews preview = new RemoteViews(
+                            context.getPackageName(),
+                            R.layout.daily_ayah_bn_widget
+                    );
+
+                    Bundle extras = new Bundle();
+                    extras.putParcelable(
+                            AppWidgetManager.EXTRA_APPWIDGET_PREVIEW,
+                            preview
+                    );
+
+                    if (manager.requestPinAppWidget(provider, extras, null)) {
                         return;
                     }
                 }
