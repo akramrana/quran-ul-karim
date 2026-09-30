@@ -14,7 +14,6 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.util.Calendar;
 import java.util.Locale;
 
 public class AllahNameWidget extends AppWidgetProvider {
@@ -135,16 +134,13 @@ public class AllahNameWidget extends AppWidgetProvider {
             return null;
         }
 
-        Calendar today = Calendar.getInstance();
-        int year = today.get(Calendar.YEAR);
+        long hourNumber = System.currentTimeMillis()
+                / (60L * 60L * 1000L);
 
-        int dayNumber = (year - 1) * 365
-                + (year - 1) / 4
-                - (year - 1) / 100
-                + (year - 1) / 400
-                + today.get(Calendar.DAY_OF_YEAR);
-
-        int index = Math.floorMod(dayNumber, names.length());
+        int index = (int) Math.floorMod(
+                hourNumber,
+                (long) names.length()
+        );
 
         return names.getJSONObject(index);
     }

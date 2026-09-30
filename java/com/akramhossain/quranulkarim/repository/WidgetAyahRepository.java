@@ -61,13 +61,10 @@ public class WidgetAyahRepository {
                             "FROM ayah " +
                             "LEFT JOIN sura ON sura.surah_id = ayah.surah_id " +
                             "WHERE " + condition + " " +
-                            "ORDER BY ayah.ayah_index ASC " +
-                            "LIMIT 1 OFFSET ?";
+                            "ORDER BY RANDOM()  " +
+                            "LIMIT 1";
 
-            try (Cursor cursor = db.rawQuery(
-                    sql,
-                    new String[]{String.valueOf(offset)}
-            )) {
+            try (Cursor cursor = db.rawQuery(sql,null)) {
                 if (!cursor.moveToFirst()) {
                     return null;
                 }

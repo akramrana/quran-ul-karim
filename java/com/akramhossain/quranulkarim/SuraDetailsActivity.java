@@ -1191,13 +1191,6 @@ public class SuraDetailsActivity extends AppCompatActivity implements SearchView
         if (isInternetPresent) {
             new JsonFromUrlTask(this, VIDEO_URL, TAG, "");
         }
-        else{
-            android.app.AlertDialog.Builder alert = new android.app.AlertDialog.Builder(SuraDetailsActivity.this);
-            alert.setTitle(R.string.text_warning);
-            alert.setMessage(R.string.text_enable_internet);
-            alert.setPositiveButton(R.string.text_ok,null);
-            alert.show();
-        }
     }
 
     public void parseJsonVideoResponse(String result){
