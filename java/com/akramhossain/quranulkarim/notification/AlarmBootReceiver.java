@@ -6,10 +6,17 @@ import android.content.Intent;
 
 import com.akramhossain.quranulkarim.task.PrayerScheduler;
 import com.akramhossain.quranulkarim.util.Utils;
+import android.content.SharedPreferences;
 
 public class AlarmBootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
+
+        SharedPreferences prefs = context.getSharedPreferences(Utils.PREF_NAME,Context.MODE_PRIVATE);
+
+        if (!prefs.getBoolean("pr_alert_enabled", false)) {
+            return;
+        }
 
         double lat = Utils.getLat(context);
         double lon = Utils.getLon(context);
