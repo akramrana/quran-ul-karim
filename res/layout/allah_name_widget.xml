@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:gravity="center"
-        android:textColor="#E1EAE4"
+        android:textColor="#FFFFFF"
         android:textSize="13sp"
         android:maxLines="1"
         android:ellipsize="end" />
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:gravity="center"
-        android:textColor="#D6E4DC"
+        android:textColor="#FFFFFF"
         android:textSize="17sp"
         android:maxLines="1"/>
 </LinearLayout>
