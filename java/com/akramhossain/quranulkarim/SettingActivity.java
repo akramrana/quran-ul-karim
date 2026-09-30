@@ -468,7 +468,7 @@ public class SettingActivity extends AppCompatActivity{
 
                     RemoteViews preview = new RemoteViews(
                             context.getPackageName(),
-                            R.layout.daily_ayah_bn_widget
+                            R.layout.allah_name_widget
                     );
 
                     Bundle extras = new Bundle();
