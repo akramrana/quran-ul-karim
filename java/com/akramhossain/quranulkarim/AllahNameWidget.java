@@ -64,6 +64,12 @@ public class AllahNameWidget extends AppWidgetProvider {
                                 name.getJSONObject("en").getString("meaning")
                         );
 
+                        views.setTextViewText(
+                                R.id.allah_name_bangla_meaning,
+                                name.getJSONObject("bn")
+                                        .getString("meaning")
+                        );
+
                     } else {
                         views.setTextViewText(
                                 R.id.allah_name_arabic,
@@ -75,6 +81,7 @@ public class AllahNameWidget extends AppWidgetProvider {
                         );
                         views.setTextViewText(R.id.allah_name_bangla, "");
                         views.setTextViewText(R.id.allah_name_meaning, "");
+                        views.setTextViewText(R.id.allah_name_bangla_meaning, "");
                     }
 
                     Intent openIntent = appContext.getPackageManager()
