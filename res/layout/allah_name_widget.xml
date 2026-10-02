@@ -18,7 +18,7 @@
         android:gravity="center"
         android:textDirection="rtl"
         android:textColor="#FFFFFF"
-        android:textSize="45sp"
+        android:textSize="42sp"
         android:maxLines="1"
         android:includeFontPadding="false"
         android:text="الرَّحْمَٰنُ"/>
@@ -50,7 +50,7 @@
         android:id="@+id/allah_name_bangla"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
         android:gravity="center"
         android:textColor="#FFFFFF"
         android:textSize="17sp"

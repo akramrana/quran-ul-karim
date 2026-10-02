@@ -13,6 +13,9 @@ import android.content.Intent;
 import com.akramhossain.quranulkarim.model.Ayah;
 import com.akramhossain.quranulkarim.repository.WidgetAyahRepository;
 
+import android.os.Bundle;
+import android.util.TypedValue;
+
 public class DailyAyahBnWidget extends AppWidgetProvider {
 
     private static final String ACTION_NEXT_AYAH = "com.akramhossain.quranulkarim.NEXT_WIDGET_AYAH";
@@ -102,6 +105,11 @@ public class DailyAyahBnWidget extends AppWidgetProvider {
                         );
                     }
 
+                    applyFontSizes(
+                            views,
+                            appWidgetManager.getAppWidgetOptions(widgetId)
+                    );
+
                     appWidgetManager.updateAppWidget(widgetId, views);
                 }
             } catch (Exception e) {
@@ -127,5 +135,53 @@ public class DailyAyahBnWidget extends AppWidgetProvider {
         }
 
         super.onReceive(context, intent);
+    }
+
+    private static void applyFontSizes(RemoteViews views, Bundle options) {
+        int width = options.getInt(
+                AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 250
+        );
+        int height = options.getInt(
+                AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT, 180
+        );
+
+        boolean compact = width < 200 || height < 150;
+
+        views.setTextViewTextSize(
+                R.id.ayah_arabic,
+                TypedValue.COMPLEX_UNIT_SP,
+                compact ? 20 : 25
+        );
+        views.setTextViewTextSize(
+                R.id.ayah_english,
+                TypedValue.COMPLEX_UNIT_SP,
+                compact ? 11 : 13
+        );
+        views.setTextViewTextSize(
+                R.id.ayah_translation,
+                TypedValue.COMPLEX_UNIT_SP,
+                compact ? 12 : 14
+        );
+        views.setTextViewTextSize(
+                R.id.ayah_reference,
+                TypedValue.COMPLEX_UNIT_SP,
+                compact ? 10 : 13
+        );
+    }
+
+    @Override
+    public void onAppWidgetOptionsChanged(
+            Context context,
+            AppWidgetManager manager,
+            int widgetId,
+            Bundle newOptions
+    ) {
+        RemoteViews views = new RemoteViews(
+                context.getPackageName(),
+                R.layout.daily_ayah_bn_widget
+        );
+
+        applyFontSizes(views, newOptions);
+        manager.partiallyUpdateAppWidget(widgetId, views);
     }
 }

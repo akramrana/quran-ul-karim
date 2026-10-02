@@ -750,7 +750,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
-                                android:text="A different name in Arabic, English and Bangla each day."
+                                android:text="A different name in Arabic, English and Bangla."
                                 android:textSize="12sp"
                                 android:textColor="@color/colorWhite"/>
 

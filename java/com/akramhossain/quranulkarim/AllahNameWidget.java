@@ -16,6 +16,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.Locale;
 
+import android.os.Bundle;
+import android.util.TypedValue;
+
 public class AllahNameWidget extends AppWidgetProvider {
 
     private static final String TAG = "AllahNameWidget";
@@ -105,6 +108,11 @@ public class AllahNameWidget extends AppWidgetProvider {
                         );
                     }
 
+                    applyFontSizes(
+                            views,
+                            appWidgetManager.getAppWidgetOptions(widgetId)
+                    );
+
                     appWidgetManager.updateAppWidget(widgetId, views);
                 }
             } catch (Exception e) {
@@ -150,5 +158,53 @@ public class AllahNameWidget extends AppWidgetProvider {
         );
 
         return names.getJSONObject(index);
+    }
+
+    private static void applyFontSizes(RemoteViews views, Bundle options) {
+        int width = options.getInt(
+                AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, 250
+        );
+        int height = options.getInt(
+                AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT, 180
+        );
+
+        boolean compact = width < 200 || height < 150;
+
+        views.setTextViewTextSize(
+                R.id.allah_name_arabic,
+                TypedValue.COMPLEX_UNIT_SP,
+                compact ? 32 : 45
+        );
+        views.setTextViewTextSize(
+                R.id.allah_name_english,
+                TypedValue.COMPLEX_UNIT_SP,
+                compact ? 16 : 21
+        );
+        views.setTextViewTextSize(
+                R.id.allah_name_meaning,
+                TypedValue.COMPLEX_UNIT_SP,
+                compact ? 12 : 15
+        );
+        views.setTextViewTextSize(
+                R.id.allah_name_bangla,
+                TypedValue.COMPLEX_UNIT_SP,
+                compact ? 13 : 17
+        );
+    }
+
+    @Override
+    public void onAppWidgetOptionsChanged(
+            Context context,
+            AppWidgetManager manager,
+            int widgetId,
+            Bundle newOptions
+    ) {
+        RemoteViews views = new RemoteViews(
+                context.getPackageName(),
+                R.layout.allah_name_widget
+        );
+
+        applyFontSizes(views, newOptions);
+        manager.partiallyUpdateAppWidget(widgetId, views);
     }
 }
