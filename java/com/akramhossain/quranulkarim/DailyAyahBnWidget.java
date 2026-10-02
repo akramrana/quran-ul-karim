@@ -83,27 +83,26 @@ public class DailyAyahBnWidget extends AppWidgetProvider {
                             nextPendingIntent
                     );
 
-                    Intent openIntent = appContext.getPackageManager()
-                            .getLaunchIntentForPackage(appContext.getPackageName());
+                    Intent openIntent = new Intent(appContext, MainActivity.class);
 
-                    if (openIntent != null) {
-                        openIntent.addFlags(
-                                Intent.FLAG_ACTIVITY_NEW_TASK |
-                                        Intent.FLAG_ACTIVITY_CLEAR_TOP
-                        );
+                    openIntent.setFlags(
+                            Intent.FLAG_ACTIVITY_NEW_TASK
+                                    | Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                    | Intent.FLAG_ACTIVITY_SINGLE_TOP
+                    );
 
-                        PendingIntent openPendingIntent = PendingIntent.getActivity(
-                                appContext,
-                                0,
-                                openIntent,
-                                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
-                        );
+                    PendingIntent openPendingIntent = PendingIntent.getActivity(
+                            appContext,
+                            widgetId,
+                            openIntent,
+                            PendingIntent.FLAG_CANCEL_CURRENT
+                                    | PendingIntent.FLAG_IMMUTABLE
+                    );
 
-                        views.setOnClickPendingIntent(
-                                R.id.ayah_widget_root,
-                                openPendingIntent
-                        );
-                    }
+                    views.setOnClickPendingIntent(
+                            R.id.ayah_widget_root,
+                            openPendingIntent
+                    );
 
                     applyFontSizes(
                             views,

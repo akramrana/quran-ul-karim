@@ -8,8 +8,8 @@
     android:minHeight="180dp"
     android:minResizeWidth="110dp"
     android:minResizeHeight="110dp"
-    android:targetCellWidth="2"
-    android:targetCellHeight="3"
+    android:targetCellWidth="3"
+    android:targetCellHeight="2"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="1800000"
     android:widgetCategory="home_screen" />

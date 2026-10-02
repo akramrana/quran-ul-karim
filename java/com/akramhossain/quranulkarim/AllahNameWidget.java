@@ -87,26 +87,26 @@ public class AllahNameWidget extends AppWidgetProvider {
                         views.setTextViewText(R.id.allah_name_bangla_meaning, "");
                     }
 
-                    Intent openIntent = appContext.getPackageManager()
-                            .getLaunchIntentForPackage(
-                                    appContext.getPackageName()
-                            );
+                    Intent openIntent = new Intent(appContext, MainActivity.class);
 
-                    if (openIntent != null) {
-                        PendingIntent openPendingIntent =
-                                PendingIntent.getActivity(
-                                        appContext,
-                                        0,
-                                        openIntent,
-                                        PendingIntent.FLAG_UPDATE_CURRENT
-                                                | PendingIntent.FLAG_IMMUTABLE
-                                );
+                    openIntent.setFlags(
+                            Intent.FLAG_ACTIVITY_NEW_TASK
+                                    | Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                    | Intent.FLAG_ACTIVITY_SINGLE_TOP
+                    );
 
-                        views.setOnClickPendingIntent(
-                                R.id.allah_name_widget_root,
-                                openPendingIntent
-                        );
-                    }
+                    PendingIntent openPendingIntent = PendingIntent.getActivity(
+                            appContext,
+                            widgetId,
+                            openIntent,
+                            PendingIntent.FLAG_CANCEL_CURRENT
+                                    | PendingIntent.FLAG_IMMUTABLE
+                    );
+
+                    views.setOnClickPendingIntent(
+                            R.id.allah_name_widget_root,
+                            openPendingIntent
+                    );
 
                     applyFontSizes(
                             views,
