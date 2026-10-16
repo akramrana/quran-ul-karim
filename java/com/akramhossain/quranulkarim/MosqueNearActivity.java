@@ -82,7 +82,8 @@ public class MosqueNearActivity extends AppCompatActivity {
 
         if (Build.VERSION.SDK_INT >= 23) {
             TimeZone tmzone = TimeZone.getDefault();
-            double hourDiff = (tmzone.getRawOffset() / 1000) / 3600;
+            //double hourDiff = (tmzone.getRawOffset() / 1000) / 3600;
+            double hourDiff = tmzone.getRawOffset() / 3600000.0;
             if (checkPermission()) {
                 LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
                 try{
@@ -159,7 +160,8 @@ public class MosqueNearActivity extends AppCompatActivity {
                     //Log.e("value", "Permission Granted.");
                     TimeZone tmzone = TimeZone.getDefault();
 
-                    double hourDiff = (tmzone.getRawOffset() / 1000) / 3600;
+                    //double hourDiff = (tmzone.getRawOffset() / 1000) / 3600;
+                    double hourDiff = tmzone.getRawOffset() / 3600000.0;
 
                     if (checkPermission()) {
                         LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);

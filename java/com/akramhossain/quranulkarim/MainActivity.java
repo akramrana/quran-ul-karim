@@ -687,7 +687,8 @@ public class MainActivity extends AppCompatActivity {
         //double rawOffet = 19800000;
         double rawOffetDiv = 1000;
         double divBySec = 3600;
-        double hourDiff = (rawOffet/ rawOffetDiv)/divBySec;
+        //double hourDiff = (rawOffet/ rawOffetDiv)/divBySec;
+        double hourDiff = tmzone.getRawOffset() / 3600000.0;
         System.out.println("Timezone: "+hourDiff);
 
         prayer_times_section = (LinearLayout) findViewById(R.id.prayer_times_section);
@@ -1451,7 +1452,7 @@ public class MainActivity extends AppCompatActivity {
                 //
                 Integer currentAppVersion = json.getInt("current_app_version");
                 //Integer appVersion = mPrefs.getInt("app_version", -1);
-                Integer appVersion = 112;
+                Integer appVersion = 113;
                 Log.d("app_version",appVersion.toString());
                 LinearLayout version_upgrade_warning = (LinearLayout) findViewById(R.id.version_upgrade_warning);
                 if(appVersion < currentAppVersion){
@@ -1549,7 +1550,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void updatePrayerTime(){
         TimeZone tmzone = TimeZone.getDefault();
-        double hourDiff = (tmzone.getRawOffset() / 1000) / 3600;
+        //double hourDiff = (tmzone.getRawOffset() / 1000) / 3600;
+        double hourDiff = tmzone.getRawOffset() / 3600000.0;
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             if (checkPermission()) {

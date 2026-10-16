@@ -108,7 +108,8 @@ public class PrayerTimesActivity extends AppCompatActivity {
         double rawOffetDiv = 1000;
         double divBySec = 3600;
 
-        double hourDiff = (rawOffet/ rawOffetDiv)/divBySec;
+        //double hourDiff = (rawOffet/ rawOffetDiv)/divBySec;
+        double hourDiff = tmzone.getRawOffset() / 3600000.0;
 
         System.out.println("Timezone: "+hourDiff);
 
@@ -360,7 +361,8 @@ public class PrayerTimesActivity extends AppCompatActivity {
                     //Log.e("value", "Permission Granted.");
                     TimeZone tmzone = TimeZone.getDefault();
 
-                    double hourDiff = (tmzone.getRawOffset() / 1000) / 3600;
+                    //double hourDiff = (tmzone.getRawOffset() / 1000) / 3600;
+                    double hourDiff = tmzone.getRawOffset() / 3600000.0;
 
                     if (checkPermission()) {
                         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);

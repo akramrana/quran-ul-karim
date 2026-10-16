@@ -82,7 +82,8 @@ public class QiblaCompassActivity extends AppCompatActivity implements SensorEve
         mSensorManager =  (SensorManager) getApplicationContext().getSystemService(SENSOR_SERVICE);
 
         TimeZone tmzone = TimeZone.getDefault();
-        double hourDiff = (tmzone.getRawOffset() / 1000) / 3600;
+        //double hourDiff = (tmzone.getRawOffset() / 1000) / 3600;
+        double hourDiff = tmzone.getRawOffset() / 3600000.0;
 
         if (checkPermission()) {
             LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
@@ -225,7 +226,8 @@ public class QiblaCompassActivity extends AppCompatActivity implements SensorEve
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     //Log.e("value", "Permission Granted.");
                     TimeZone tmzone = TimeZone.getDefault();
-                    double hourDiff = (tmzone.getRawOffset() / 1000) / 3600;
+                    //double hourDiff = (tmzone.getRawOffset() / 1000) / 3600;
+                    double hourDiff = tmzone.getRawOffset() / 3600000.0;
                     if (checkPermission()) {
                         LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
                         //Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
