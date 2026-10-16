@@ -85,6 +85,8 @@ public class QiblaCompassActivity extends AppCompatActivity implements SensorEve
         //double hourDiff = (tmzone.getRawOffset() / 1000) / 3600;
         double hourDiff = tmzone.getRawOffset() / 3600000.0;
 
+        System.out.println("Timezone: "+hourDiff);
+
         if (checkPermission()) {
             LocationManager lm = (LocationManager) getSystemService(getApplicationContext().LOCATION_SERVICE);
             try{

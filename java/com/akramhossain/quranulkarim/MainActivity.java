@@ -1142,6 +1142,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getPrayerTimes(double latitude,double longitude,double timezone){
+        Log.d("latlon_timezone", latitude+" "+longitude+" "+timezone);
+
         TextView pr_calc_method = findViewById(R.id.pr_calc_method);
 
         int calcMeth = mPrefs.getInt("pr_calc_method", DEFAULT_CALC_METHOD);
