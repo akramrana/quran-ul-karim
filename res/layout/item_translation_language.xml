@@ -3,9 +3,8 @@
     android:id="@android:id/text1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="48dp"
     android:gravity="center_vertical"
     android:padding="12dp"
     android:textColor="@color/text_primary"
     android:textSize="15sp"
-    android:background="@drawable/bg_card" />
+    android:background="@drawable/bg_translation_sheet" />

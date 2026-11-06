@@ -118,11 +118,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/surah_name"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="18dp"
             android:layout_marginBottom="5dp"
             android:paddingEnd="3dp"
             android:orientation="horizontal"
-            android:gravity="end|center_vertical">
+            android:gravity="center_horizontal">
 
             <TextView
                 android:id="@+id/ayahTranslations"
@@ -130,6 +130,8 @@
                 android:layout_height="wrap_content"
                 android:text="🌐 Translations"
                 android:textColor="@color/colorWhiteDN"
+                android:layout_marginTop="10dip"
+                android:layout_marginBottom="10dip"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:gravity="center"
@@ -143,7 +145,6 @@
                 android:id="@+id/tafsirs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/surah_name"
                 android:layout_marginTop="10dip"
                 android:layout_marginBottom="10dip"
                 android:textColor="@color/colorWhiteDN"

@@ -117,11 +117,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/report"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="18dp"
             android:layout_marginBottom="5dp"
             android:paddingEnd="3dp"
             android:orientation="horizontal"
-            android:gravity="end|center_vertical">
+            android:gravity="center_horizontal">
 
             <TextView
                 android:id="@+id/ayahTranslations"
@@ -142,7 +142,6 @@
                 android:id="@+id/tafsirs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/sajdah"
                 android:textColor="@color/colorWhiteDN"
                 android:textSize="12sp"
                 android:textStyle="bold"
