@@ -38,6 +38,7 @@ import com.akramhossain.quranulkarim.ShareVerseActivity;
 import com.akramhossain.quranulkarim.TafsirActivity;
 import com.akramhossain.quranulkarim.WordMeaningActivity;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
+import com.akramhossain.quranulkarim.helper.AyahTranslationHelper;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.Ayah;
 import com.akramhossain.quranulkarim.task.BackgroundTask;
@@ -396,6 +397,17 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 }
             }
         });
+
+        rvHolder.ayahTranslations.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                //Toast.makeText(c, "ayahTranslations", Toast.LENGTH_LONG).show();
+                String surahNumber = ayah.getSurah_id();
+                String ayahNumber = ayah.getAyah_num();
+                String ayahKey = ayah.getAyah_key();
+
+                AyahTranslationHelper.show(holder.itemView.getContext(),surahNumber, ayahNumber);
+            }
+        });
     }
 
     @Override
@@ -502,6 +514,7 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         Button copyButton;
         TextView trans;
         WebView text_tajweed;
+        TextView ayahTranslations;
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
@@ -521,6 +534,7 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             tafsirs = (TextView) itemView.findViewById(R.id.tafsirs);
             trans = (TextView) itemView.findViewById(R.id.trans);
             text_tajweed = (WebView) itemView.findViewById(R.id.text_tajweed);
+            ayahTranslations = (TextView) itemView.findViewById(R.id.ayahTranslations);
             //
             String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
             String mp_arFz = mPrefs.getString("arFontSize", "30");

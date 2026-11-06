@@ -113,20 +113,48 @@
             android:layout_alignParentRight="true"
             android:textColor="@color/colorWhite"/>
 
-
-        <TextView
-            android:id="@+id/tafsirs"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/ayah_extra_actions"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/surah_name"
-            android:layout_marginTop="10dip"
-            android:layout_marginBottom="10dip"
-            android:textColor="@color/colorWhiteDN"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:text="@string/text_tafsirs"
-            android:background="@drawable/rounded_border"
-            android:layout_alignParentRight="true"/>
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="5dp"
+            android:paddingEnd="3dp"
+            android:orientation="horizontal"
+            android:gravity="end|center_vertical">
+
+            <TextView
+                android:id="@+id/ayahTranslations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🌐 Translations"
+                android:textColor="@color/colorWhiteDN"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:background="@drawable/rounded_border"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginEnd="5dp"
+                android:contentDescription="View Ayah translations" />
+
+            <TextView
+                android:id="@+id/tafsirs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/surah_name"
+                android:layout_marginTop="10dip"
+                android:layout_marginBottom="10dip"
+                android:textColor="@color/colorWhiteDN"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:text="@string/text_tafsirs"
+                android:background="@drawable/rounded_border"
+                android:layout_alignParentRight="true"/>
+
+
+        </LinearLayout>
 
 
         <LinearLayout
@@ -134,7 +162,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@id/tafsirs"
+            android:layout_below="@id/ayah_extra_actions"
             android:layout_marginTop="5dp"
             android:weightSum="5">
 
