@@ -1454,7 +1454,7 @@ public class MainActivity extends AppCompatActivity {
                 //
                 Integer currentAppVersion = json.getInt("current_app_version");
                 //Integer appVersion = mPrefs.getInt("app_version", -1);
-                Integer appVersion = 113;
+                Integer appVersion = 114;
                 Log.d("app_version",appVersion.toString());
                 LinearLayout version_upgrade_warning = (LinearLayout) findViewById(R.id.version_upgrade_warning);
                 if(appVersion < currentAppVersion){
