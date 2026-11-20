@@ -36,6 +36,7 @@ import android.widget.Toast;
 import com.akramhossain.quranulkarim.ConnectionDetector;
 import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.ShareVerseActivity;
+import com.akramhossain.quranulkarim.SuraDetailsActivity;
 import com.akramhossain.quranulkarim.TafsirActivity;
 import com.akramhossain.quranulkarim.WordMeaningActivity;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
@@ -440,6 +441,22 @@ public class JuzHizbRubViewAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 String ayahKey = ayah.getAyah_key();
 
                 AyahTranslationHelper.show(holder.itemView.getContext(),surahNumber, ayahNumber);
+            }
+        });
+
+        rvHolder.surah_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    Intent in = new Intent(c, SuraDetailsActivity.class);
+                    in.putExtra("sura_id", ayah.getSurah_id());
+                    in.putExtra("sura_name", ayah.getName_english());
+                    in.putExtra("sura_name_arabic", ayah.getName_arabic());
+                    c.startActivity(in);
+                }
+                catch (Exception e) {
+
+                }
             }
         });
     }

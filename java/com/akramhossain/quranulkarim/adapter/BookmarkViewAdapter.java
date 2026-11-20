@@ -33,8 +33,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.ConnectionDetector;
+import com.akramhossain.quranulkarim.JuzHizbRubDetailsActivity;
 import com.akramhossain.quranulkarim.R;
 import com.akramhossain.quranulkarim.ShareVerseActivity;
+import com.akramhossain.quranulkarim.SuraDetailsActivity;
 import com.akramhossain.quranulkarim.TafsirActivity;
 import com.akramhossain.quranulkarim.WordMeaningActivity;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
@@ -408,6 +410,85 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 AyahTranslationHelper.show(holder.itemView.getContext(),surahNumber, ayahNumber);
             }
         });
+
+        rvHolder.hizb_num.setText("Hizb: "+ayah.getHizb_num());
+        rvHolder.hizb_num.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    Intent in = new Intent(c, JuzHizbRubDetailsActivity.class);
+                    in.putExtra("juz_num", "");
+                    in.putExtra("hizb_num", ayah.getHizb_num());
+                    in.putExtra("rub_num", "");
+                    in.putExtra("sura_id", ayah.getSurah_id());
+                    in.putExtra("sura_name", ayah.getName_english());
+                    in.putExtra("sura_name_arabic", ayah.getName_arabic());
+                    in.putExtra("activity_title", "Hizb "+ayah.getHizb_num());
+                    c.startActivity(in);
+                }
+                catch (Exception e) {
+
+                }
+            }
+        });
+
+        rvHolder.rub_num.setText("Rub: "+ayah.getRub_num());
+        rvHolder.rub_num.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    Intent in = new Intent(c, JuzHizbRubDetailsActivity.class);
+                    in.putExtra("juz_num", "");
+                    in.putExtra("hizb_num", "");
+                    in.putExtra("rub_num", ayah.getRub_num());
+                    in.putExtra("sura_id", ayah.getSurah_id());
+                    in.putExtra("sura_name", ayah.getName_english());
+                    in.putExtra("sura_name_arabic", ayah.getName_arabic());
+                    in.putExtra("activity_title", "Rub\'  "+ayah.getRub_num());
+                    c.startActivity(in);
+                }
+                catch (Exception e) {
+
+                }
+            }
+        });
+
+        rvHolder.juz_num.setText("Juz: "+ayah.getJuz_num());
+        rvHolder.juz_num.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    Intent in = new Intent(c, JuzHizbRubDetailsActivity.class);
+                    in.putExtra("juz_num", ayah.getJuz_num());
+                    in.putExtra("hizb_num", "");
+                    in.putExtra("rub_num", "");
+                    in.putExtra("sura_id", ayah.getSurah_id());
+                    in.putExtra("sura_name", ayah.getName_english());
+                    in.putExtra("sura_name_arabic", ayah.getName_arabic());
+                    in.putExtra("activity_title", "Juz\' "+ayah.getJuz_num());
+                    c.startActivity(in);
+                }
+                catch (Exception e) {
+
+                }
+            }
+        });
+
+        rvHolder.surah_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    Intent in = new Intent(c, SuraDetailsActivity.class);
+                    in.putExtra("sura_id", ayah.getSurah_id());
+                    in.putExtra("sura_name", ayah.getName_english());
+                    in.putExtra("sura_name_arabic", ayah.getName_arabic());
+                    c.startActivity(in);
+                }
+                catch (Exception e) {
+
+                }
+            }
+        });
     }
 
     @Override
@@ -516,6 +597,8 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         WebView text_tajweed;
         TextView ayahTranslations;
 
+        TextView juz_num, hizb_num, rub_num;
+
         public RecyclerViewHolder(View itemView) {
             super(itemView);
             ayah_index = (TextView) itemView.findViewById(R.id.ayah_index);
@@ -535,6 +618,10 @@ public class BookmarkViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             trans = (TextView) itemView.findViewById(R.id.trans);
             text_tajweed = (WebView) itemView.findViewById(R.id.text_tajweed);
             ayahTranslations = (TextView) itemView.findViewById(R.id.ayahTranslations);
+
+            juz_num = (TextView) itemView.findViewById(R.id.juz_num);
+            hizb_num = (TextView) itemView.findViewById(R.id.hizb_num);
+            rub_num = (TextView) itemView.findViewById(R.id.rub_num);
             //
             String mp_arabicFontFamily = mPrefs.getString("arabicFontFamily", "Noore Huda");
             String mp_arFz = mPrefs.getString("arFontSize", "30");

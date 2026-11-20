@@ -42,6 +42,16 @@
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/btnAllTranslation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="6dp"
+            android:text="All Translations"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
+
+        <TextView
             android:id="@+id/btnTafsir"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

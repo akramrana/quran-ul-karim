@@ -104,7 +104,12 @@
             android:layout_below="@id/content_bn"
             android:layout_marginTop="5dip"
             android:layout_alignParentLeft="true"
-            android:textColor="@color/colorWhite"/>
+            android:textColor="@color/text_primary"
+            android:background="@drawable/bg_card"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"/>
 
         <TextView
             android:id="@+id/surah_name"
@@ -113,7 +118,12 @@
             android:layout_below="@id/content_bn"
             android:layout_marginTop="5dip"
             android:layout_alignParentRight="true"
-            android:textColor="@color/colorWhite"/>
+            android:textColor="@color/text_primary"
+            android:background="@drawable/bg_card"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"/>
 
         <LinearLayout
             android:id="@+id/ayah_extra_actions"

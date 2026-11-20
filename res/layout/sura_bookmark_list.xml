@@ -40,6 +40,54 @@
                 android:layout_alignParentRight="true"
                 android:visibility="gone"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="right"
+                android:id="@+id/juz_hiz_rub_sec"
+                android:layout_toLeftOf="@+id/ayah_num">
+
+                <TextView
+                    android:id="@+id/juz_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_primary"
+                    android:layout_marginRight="15dp"
+                    android:textSize="9sp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:background="@drawable/bg_card"/>
+
+                <TextView
+                    android:id="@+id/hizb_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_primary"
+                    android:layout_marginRight="15dp"
+                    android:textSize="9sp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:background="@drawable/bg_card"/>
+
+                <TextView
+                    android:id="@+id/rub_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_primary"
+                    android:textSize="9sp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:background="@drawable/bg_card"/>
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/text_tashkeel"
                 android:layout_width="match_parent"
@@ -50,7 +98,7 @@
                 android:gravity="right"
                 android:textIsSelectable="true"
                 android:contentDescription="Arabic Text"
-                android:layout_toLeftOf="@+id/ayah_num"/>
+                android:layout_below="@+id/juz_hiz_rub_sec"/>
 
             <WebView
                 android:id="@+id/text_tajweed"
@@ -97,12 +145,17 @@
 
         <TextView
             android:id="@+id/sajdah"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/content_bn"
             android:layout_marginTop="5dip"
             android:layout_alignParentLeft="true"
-            android:textColor="@color/colorWhite"/>
+            android:textColor="@color/text_primary"
+            android:background="@drawable/bg_card"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"/>
 
         <TextView
             android:id="@+id/surah_name"
@@ -110,8 +163,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/content_bn"
             android:layout_marginTop="5dip"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
             android:layout_alignParentRight="true"
-            android:textColor="@color/colorWhite"/>
+            android:background="@drawable/bg_card"
+            android:textColor="@color/text_primary"/>
 
         <LinearLayout
             android:id="@+id/ayah_extra_actions"

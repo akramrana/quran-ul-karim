@@ -26,14 +26,71 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/ayah_num"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/transColor"
-                android:textSize="10dp"
-                android:textStyle="bold"
-                android:contentDescription="Ayah Num"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:id="@+id/ayah_top_sec">
+
+                <TextView
+                    android:id="@+id/ayah_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/transColor"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:contentDescription="Ayah Num"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="end|center_vertical"
+                    android:id="@+id/juz_hiz_rub_sec">
+
+                    <TextView
+                        android:id="@+id/juz_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_primary"
+                        android:layout_marginRight="15dp"
+                        android:textSize="9sp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:background="@drawable/bg_card"/>
+
+                    <TextView
+                        android:id="@+id/hizb_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_primary"
+                        android:layout_marginRight="15dp"
+                        android:textSize="9sp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:background="@drawable/bg_card"/>
+
+                    <TextView
+                        android:id="@+id/rub_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_primary"
+                        android:textSize="9sp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:background="@drawable/bg_card"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/text_tashkeel"
@@ -42,7 +99,7 @@
                 android:textColor="@color/colorWhite"
                 android:textStyle="normal"
                 android:textSize="30dp"
-                android:layout_below="@+id/ayah_num"
+                android:layout_below="@+id/ayah_top_sec"
                 android:contentDescription="Arabic Text"
                 android:textIsSelectable="true"
                 android:minHeight="48dp"

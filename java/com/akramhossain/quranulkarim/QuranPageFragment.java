@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akramhossain.quranulkarim.helper.AudioPlay;
+import com.akramhossain.quranulkarim.helper.AyahTranslationHelper;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.task.BackgroundTask;
 import com.akramhossain.quranulkarim.util.AyahAnchors;
@@ -291,6 +292,8 @@ public class QuranPageFragment extends Fragment {
         TextView btnShare = ayahMenuView.findViewById(R.id.btnShare);
         TextView btnClose = ayahMenuView.findViewById(R.id.btnClose);
 
+        TextView btnAllTranslation = ayahMenuView.findViewById(R.id.btnAllTranslation);
+
         btnPlay.setOnClickListener(v -> playAyah(surah, ayah));
         btnTranslation.setOnClickListener(v -> openTranslation(surah, ayah));
         btnTafsir.setOnClickListener(v -> openTafsir(surah, ayah));
@@ -299,6 +302,7 @@ public class QuranPageFragment extends Fragment {
         btnDefinition.setOnClickListener(v -> openDefinition(surah, ayah));
         btnShare.setOnClickListener(v -> openShare(surah, ayah));
         btnClose.setOnClickListener(v -> hideAyahFloatingMenu());
+        btnAllTranslation.setOnClickListener(v -> openAllTranslation(surah, ayah));
 
         ayahMenuView.post(() -> {
 
@@ -595,6 +599,13 @@ public class QuranPageFragment extends Fragment {
         in.putExtra("trans", trans);
         in.putExtra("text_tajweed", textUthmaniTajweed);
         requireActivity().startActivity(in);
+    }
+
+    private void openAllTranslation(int surah, int ayah) {
+        String surahNumber = String.valueOf(surah);
+        String ayahNumber = String.valueOf(ayah);
+
+        AyahTranslationHelper.show(requireContext(),surahNumber,ayahNumber);
     }
 
     private void showInfoPanel(String title, String content) {
