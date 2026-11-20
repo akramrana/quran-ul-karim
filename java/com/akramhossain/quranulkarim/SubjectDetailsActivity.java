@@ -31,7 +31,7 @@ import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.akramhossain.quranulkarim.adapter.JuzHizbRubViewAdapter;
+import com.akramhossain.quranulkarim.adapter.SubjectDetailsViewAdapter;
 import com.akramhossain.quranulkarim.helper.AudioPlay;
 import com.akramhossain.quranulkarim.helper.DatabaseHelper;
 import com.akramhossain.quranulkarim.model.Ayah;
@@ -54,7 +54,7 @@ public class SubjectDetailsActivity extends AppCompatActivity {
 
     DatabaseHelper dbhelper;
 
-    private JuzHizbRubViewAdapter rvAdapter;
+    private SubjectDetailsViewAdapter rvAdapter;
 
     private boolean itShouldLoadMore = true;
 
@@ -156,7 +156,7 @@ public class SubjectDetailsActivity extends AppCompatActivity {
 
     private void setRecyclerViewAdapter() {
         ayahs = new ArrayList<Ayah>();
-        rvAdapter = new JuzHizbRubViewAdapter(SubjectDetailsActivity.this, ayahs, this);
+        rvAdapter = new SubjectDetailsViewAdapter(SubjectDetailsActivity.this, ayahs, this);
         recyclerview.setAdapter(rvAdapter);
     }
 

@@ -122,7 +122,7 @@ public class MosqueNearActivity extends AppCompatActivity {
                     double longitude = location.getLongitude();
                     mapPath = "https://websites.codxplore.com/heremap/index.php?lat="+latitude+"&lng="+longitude;
 
-                    Log.d("MAP ULR",mapPath);
+                    Log.d("MAP URL",mapPath);
                     myWebView.loadUrl(mapPath);
                     double timezone = hourDiff;
                     Utils.saveLocation(this, latitude, longitude, timezone);
