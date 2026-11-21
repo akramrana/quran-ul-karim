@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
+import androidx.core.text.HtmlCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -91,7 +93,16 @@ public class AboutActivity extends AppCompatActivity {
             return insets;
         });
 
-        setTitle("About");
+        setTitle("About This App");
+
+        TextView dataSource = findViewById(R.id.data_source);
+
+        dataSource.setText(HtmlCompat.fromHtml(
+                getString(R.string.about_data_source),
+                HtmlCompat.FROM_HTML_MODE_LEGACY
+        ));
+
+        dataSource.setMovementMethod(LinkMovementMethod.getInstance());
         //
         recyclerview = (RecyclerView) findViewById(R.id.mobile_app_list);
         mLayoutManager = new LinearLayoutManager(this);
