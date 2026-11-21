@@ -386,7 +386,11 @@
     <string name="about_more_apps_title">More Apps to Try</string>
 
     <!-- Data source information -->
-    <string name="about_data_source">Quran data was obtained from https://github.com/quran/. If you notice any discrepancies, please report them.</string>
+    <string name="about_data_source">Quran data was obtained from https://github.com/quran/.
+
+Translations are sourced from fawazahmed0-quran-api-v1.
+
+If you notice any discrepancies in the Quran text or translations, please report them.</string>
 
         <!-- Recitation information -->
     <string name="about_recitation">Verse-by-verse recitations require an internet connection to download audio files.</string>

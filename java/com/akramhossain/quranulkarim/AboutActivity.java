@@ -208,11 +208,14 @@ public class AboutActivity extends AppCompatActivity {
     }
 
 
+
     private void openRateApp() {
         String packageName = getPackageName();
 
         if (Utils.isHuaweiDevice()) {
-            // Huawei AppGallery
+            String appGalleryUrl =
+                    "https://appgallery.huawei.com/app/C104645935";
+
             try {
                 Intent intent = new Intent(
                         Intent.ACTION_VIEW,
@@ -224,14 +227,10 @@ public class AboutActivity extends AppCompatActivity {
                 return;
 
             } catch (ActivityNotFoundException e) {
-                // AppGallery unavailable, try its website
-                openStoreWebsite(
-                        "https://appgallery.huawei.com/#/app/"
-                );
+                openStoreWebsite(appGalleryUrl);
                 return;
             }
         }
-
         // Google Play Store
         try {
             Intent intent = new Intent(
@@ -243,7 +242,6 @@ public class AboutActivity extends AppCompatActivity {
             startActivity(intent);
 
         } catch (ActivityNotFoundException e) {
-            // Google Play unavailable, open website
             openStoreWebsite(
                     "https://play.google.com/store/apps/details?id="
                             + packageName
@@ -264,11 +262,10 @@ public class AboutActivity extends AppCompatActivity {
         } catch (ActivityNotFoundException e) {
             Toast.makeText(
                     this,
-                    "No browser available to open the store.",
+                    "Unable to open app store.",
                     Toast.LENGTH_SHORT
             ).show();
         }
     }
-
 
 }

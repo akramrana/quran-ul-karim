@@ -96,6 +96,7 @@
         android:textColor="@color/text_primary"
         android:textSize="11sp"
         android:clickable="true"
-        android:focusable="true" />
+        android:focusable="true"
+        android:visibility="gone"/>
 
 </LinearLayout>
