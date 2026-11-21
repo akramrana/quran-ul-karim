@@ -907,7 +907,7 @@ public class MainActivity extends AppCompatActivity {
 
         showDailyAyah();
 
-        requestNotificationPermission();
+        checkNotificationPermissionTiming();
 
         if (Utils.isGooglePlayServicesAvailable(this)) {
             Log.d("PushCheck", "Using FCM");
@@ -1926,5 +1926,56 @@ public class MainActivity extends AppCompatActivity {
             });
             dialog.show();
         }, 800);
+    }
+
+    private void checkNotificationPermissionTiming() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            return;
+        }
+
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.POST_NOTIFICATIONS
+        ) == PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+
+        SharedPreferences prefs = getSharedPreferences(
+                "app_preferences", MODE_PRIVATE
+        );
+
+        long now = System.currentTimeMillis();
+
+        long firstLaunch = prefs.getLong("first_launch", 0);
+        int launchCount = prefs.getInt("launch_count", 0);
+        boolean alreadyRequested = prefs.getBoolean(
+                "notification_permission_requested", false
+        );
+
+        if (firstLaunch == 0) {
+            firstLaunch = now;
+        }
+
+        launchCount++;
+
+        prefs.edit()
+                .putLong("first_launch", firstLaunch)
+                .putInt("launch_count", launchCount)
+                .apply();
+
+        long daysPassed = (now - firstLaunch)
+                / (1000L * 60 * 60 * 24);
+
+        if (!alreadyRequested &&
+                (launchCount >= 10 || daysPassed >= 5)) {
+
+            prefs.edit()
+                    .putBoolean(
+                            "notification_permission_requested", true
+                    )
+                    .apply();
+
+            requestNotificationPermission();
+        }
     }
 }

@@ -2,6 +2,7 @@ package com.akramhossain.quranulkarim;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -54,28 +55,39 @@ public class AboutActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_about);
 
-        View rootView = findViewById(R.id.topAboutBar);
-        ViewCompat.setOnApplyWindowInsetsListener(rootView, (view, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            // Apply padding to avoid overlap with status/navigation bars
+        View topBar = findViewById(R.id.topAboutBar);
+        View scrollView = findViewById(R.id.about_scroll);
+
+        int headerTopPadding = topBar.getPaddingTop();
+        int scrollBottomPadding = scrollView.getPaddingBottom();
+
+        ViewCompat.setOnApplyWindowInsetsListener(topBar, (view, insets) -> {
+            Insets bars = insets.getInsets(
+                    WindowInsetsCompat.Type.systemBars()
+            );
+
             view.setPadding(
-                    systemBars.left,
-                    systemBars.top,
-                    systemBars.right,
+                    view.getPaddingLeft(),
+                    headerTopPadding + bars.top,
+                    view.getPaddingRight(),
                     view.getPaddingBottom()
             );
+
             return insets;
         });
 
-        View bottomBar = findViewById(R.id.mobile_app_list);
-        ViewCompat.setOnApplyWindowInsetsListener(bottomBar, (v, insets) -> {
-            int bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
-            v.setPadding(
-                    v.getPaddingLeft(),
-                    v.getPaddingTop(),
-                    v.getPaddingRight(),
-                    bottomInset
+        ViewCompat.setOnApplyWindowInsetsListener(scrollView, (view, insets) -> {
+            Insets bars = insets.getInsets(
+                    WindowInsetsCompat.Type.systemBars()
             );
+
+            view.setPadding(
+                    view.getPaddingLeft(),
+                    view.getPaddingTop(),
+                    view.getPaddingRight(),
+                    scrollBottomPadding + bars.bottom
+            );
+
             return insets;
         });
 
@@ -84,7 +96,10 @@ public class AboutActivity extends AppCompatActivity {
         recyclerview = (RecyclerView) findViewById(R.id.mobile_app_list);
         mLayoutManager = new LinearLayoutManager(this);
         recyclerview.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerview.setNestedScrollingEnabled(false);
+        recyclerview.setHasFixedSize(false);
         setRecyclerViewAdapter();
+
         recyclerview.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerview, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
@@ -123,6 +138,50 @@ public class AboutActivity extends AppCompatActivity {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://alquran.cloud/tajweed-guide")));
             }
         });
+
+
+        findViewById(R.id.share_app).setOnClickListener(v -> {
+            String appUrl = "https://play.google.com/store/apps/details?id="
+                    + getPackageName();
+
+            String message = getString(
+                    R.string.about_share_message,
+                    appUrl
+            );
+
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_TEXT, message);
+
+            startActivity(Intent.createChooser(
+                    shareIntent,
+                    getString(R.string.about_share_app)
+            ));
+        });
+
+        findViewById(R.id.rate_app).setOnClickListener(v -> {
+            String packageName = getPackageName();
+
+            Intent intent = new Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("market://details?id=" + packageName)
+            );
+
+            try {
+                startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                Intent browserIntent = new Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse(
+                                "https://play.google.com/store/apps/details?id="
+                                        + packageName
+                        )
+                );
+
+                startActivity(browserIntent);
+            }
+        });
+
     }
 
     private void getDataFromInternet() {

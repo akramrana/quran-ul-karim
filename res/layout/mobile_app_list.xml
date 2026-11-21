@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="5dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:foreground="?android:attr/selectableItemBackground">
-
+    android:layout_margin="4dp"
+    card_view:cardCornerRadius="9dp"
+    card_view:cardElevation="2dp"
+    card_view:cardBackgroundColor="#FFFFFF">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <TextView
             android:id="@+id/id"
@@ -21,26 +22,29 @@
             android:visibility="gone"/>
 
         <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15dip"
-            android:layout_gravity="center"
-            android:visibility="gone"/>
-
-        <TextView
             android:id="@+id/url"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dip"
             android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/img"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="@null"/>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter" />
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:textColor="#073D39"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:visibility="gone"/>
 
     </LinearLayout>
 

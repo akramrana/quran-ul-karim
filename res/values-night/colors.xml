@@ -113,4 +113,8 @@
     <color name="dialog_card_bg">#1EFFFFFF</color>
     <color name="dialog_card_border">#33FFFFFF</color>
 
+    <color name="about_card_bg">#252525</color>
+    <color name="about_link_bg">#333333</color>
+    <color name="about_card_border">#404040</color>
+
 </resources>

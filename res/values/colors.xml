@@ -140,4 +140,8 @@
     <color name="light_blue_600">#FF039BE5</color>
     <color name="light_blue_900">#FF01579B</color>
 
+    <color name="about_card_bg">#EDF3F4</color>
+    <color name="about_link_bg">#FFFFFF</color>
+    <color name="about_card_border">#DCE7E8</color>
+
 </resources>

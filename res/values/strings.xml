@@ -36,7 +36,9 @@
     <string name="title_activity_about">AboutActivity</string>
     <string name="string_about">Quran Tafsir English Bangla</string>
     <string name="string_about_subtitle">About App</string>
-    <string name="string_about_description">Quran Tafsir English Bangla is the free App provided to you by Akram Hossain.If you like this app, please make dua for me and my family — that Allah (SWT) blesses us and grants us peace and barakah.Thank you.\n\nQuran data was obtained from https://github.com/quran/.If you see any discrepancies then please report them.\n\n**Verse by Verse recitations uses the internet to download audio files.</string>
+    <string name="string_about_description">Quran Tafsir English Bangla is a free app developed by Akram Hossain.
+    If you like this app, please make dua for me and my family — that Allah (SWT)
+    blesses us and grants us peace and barakah. Thank you.</string>
     <string name="text_warning">Warning</string>
     <string name="text_enable_internet">Please enable internet connection</string>
     <string name="text_ok">OK</string>
@@ -374,5 +376,30 @@
     <string name="app_widget_description">Quran ayah in Arabic, English and Bangla</string>
 
     <string name="allah_name_widget_description">Names of Allah in Arabic, English and Bangla, with English meaning</string>
+
+
+    <!-- About page section titles -->
+    <string name="about_section_title">About This App</string>
+    <string name="about_data_source_title">Data Source</string>
+    <string name="about_recitation_title">Recitation</string>
+    <string name="about_useful_links_title">Useful Links</string>
+    <string name="about_more_apps_title">More Apps to Try</string>
+
+    <!-- Data source information -->
+    <string name="about_data_source">Quran data was obtained from https://github.com/quran/. If you notice any discrepancies, please report them.</string>
+
+        <!-- Recitation information -->
+    <string name="about_recitation">Verse-by-verse recitations require an internet connection to download audio files.</string>
+
+
+    <string name="about_support_title">Support This App</string>
+
+    <string name="about_support_description">If you find this app beneficial, please consider sharing it with your family and friends. Your support helps more people benefit from the Quran. A positive review on Google Play would also mean a lot. JazakAllahu Khairan!</string>
+
+    <string name="about_share_app">Share This App</string>
+    <string name="about_rate_app">Rate Us on Google Play</string>
+    <string name="about_share_message">Assalamu Alaikum! I found this Quran Tafsir English Bangla app useful and thought you might benefit from it too.\n\n%s</string>
+
+
 
 </resources>

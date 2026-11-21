@@ -43,7 +43,7 @@ public class MobileAppViewAdapter extends RecyclerView.Adapter<RecyclerView.View
         rvHolder.name.setText(ma.getName());
         rvHolder.url.setText(ma.getUrl());
         //rvHolder.img.setText(ma.getImg());
-        Picasso.get().load(ma.getImg()).into(rvHolder.img);
+        Picasso.get().load(ma.getImg()).fit().centerInside().into(rvHolder.img);
     }
 
     @Override
