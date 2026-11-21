@@ -159,28 +159,9 @@ public class AboutActivity extends AppCompatActivity {
             ));
         });
 
-        findViewById(R.id.rate_app).setOnClickListener(v -> {
-            String packageName = getPackageName();
-
-            Intent intent = new Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("market://details?id=" + packageName)
-            );
-
-            try {
-                startActivity(intent);
-            } catch (ActivityNotFoundException e) {
-                Intent browserIntent = new Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse(
-                                "https://play.google.com/store/apps/details?id="
-                                        + packageName
-                        )
-                );
-
-                startActivity(browserIntent);
-            }
-        });
+        findViewById(R.id.rate_app).setOnClickListener(
+            v -> openRateApp()
+        );
 
     }
 
@@ -225,5 +206,69 @@ public class AboutActivity extends AppCompatActivity {
         rvAdapter = new MobileAppViewAdapter(AboutActivity.this, mobileApps, this);
         recyclerview.setAdapter(rvAdapter);
     }
+
+
+    private void openRateApp() {
+        String packageName = getPackageName();
+
+        if (Utils.isHuaweiDevice()) {
+            // Huawei AppGallery
+            try {
+                Intent intent = new Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("appmarket://details?id=" + packageName)
+                );
+
+                intent.setPackage("com.huawei.appmarket");
+                startActivity(intent);
+                return;
+
+            } catch (ActivityNotFoundException e) {
+                // AppGallery unavailable, try its website
+                openStoreWebsite(
+                        "https://appgallery.huawei.com/#/app/"
+                );
+                return;
+            }
+        }
+
+        // Google Play Store
+        try {
+            Intent intent = new Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("market://details?id=" + packageName)
+            );
+
+            intent.setPackage("com.android.vending");
+            startActivity(intent);
+
+        } catch (ActivityNotFoundException e) {
+            // Google Play unavailable, open website
+            openStoreWebsite(
+                    "https://play.google.com/store/apps/details?id="
+                            + packageName
+            );
+        }
+    }
+
+    private void openStoreWebsite(String url) {
+        try {
+            Intent intent = new Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(url)
+            );
+
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            startActivity(intent);
+
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(
+                    this,
+                    "No browser available to open the store.",
+                    Toast.LENGTH_SHORT
+            ).show();
+        }
+    }
+
 
 }
