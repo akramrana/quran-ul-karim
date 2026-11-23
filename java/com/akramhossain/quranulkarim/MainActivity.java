@@ -1378,6 +1378,19 @@ public class MainActivity extends AppCompatActivity {
         updatePrayerTime();
         updateBellIcon();
         maybeShowBackgroundPermissionGuide();
+
+        LinearLayout seerahCard = findViewById(R.id.seerahCard);
+
+        TextView seerha_subttl_bn= (TextView) findViewById(R.id.seerha_subttl_bn);
+        seerha_subttl_bn.setTypeface(font);
+
+        seerahCard.setOnClickListener(v -> {
+            Intent intent = new Intent(
+                    MainActivity.this,
+                    SeerahActivity.class
+            );
+            startActivity(intent);
+        });
     }
 
     public void calculateReportsValue(){

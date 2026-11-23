@@ -280,6 +280,11 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/allah_name_widget_info" />
         </receiver>
+
+        <activity
+            android:name=".SeerahActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

@@ -396,7 +396,7 @@ Translations are sourced from
 If you notice any discrepancies in the Quran text or translations, please report them.
 ]]></string>
 
-        <!-- Recitation information -->
+    <!-- Recitation information -->
     <string name="about_recitation">Verse-by-verse recitations require an internet connection to download audio files.</string>
 
 
@@ -407,7 +407,6 @@ If you notice any discrepancies in the Quran text or translations, please report
     <string name="about_share_app">Share This App</string>
     <string name="about_rate_app">Rate Us on Google Play</string>
     <string name="about_share_message">Assalamu Alaikum! I found this Quran Tafsir English Bangla app useful and thought you might benefit from it too.\n\n%s</string>
-
 
 
 </resources>

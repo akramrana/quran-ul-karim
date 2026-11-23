@@ -117,4 +117,18 @@
     <color name="about_link_bg">#333333</color>
     <color name="about_card_border">#404040</color>
 
+
+    <!-- Seerah Night Theme -->
+    <color name="seerah_card_background">#FF424242</color>
+    <color name="seerah_card_border">#3A3A3A</color>
+    <color name="seerah_primary">#81C9A9</color>
+    <color name="seerah_icon_background">#263D34</color>
+    <color name="seerah_text_primary">#F1F1F1</color>
+    <color name="seerah_text_secondary">#B0B0B0</color>
+
+
+    <color name="seerah_page_background">#171C19</color>
+    <color name="seerah_continue_background">#263D34</color>
+
+
 </resources>

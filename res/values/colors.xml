@@ -144,4 +144,15 @@
     <color name="about_link_bg">#FFFFFF</color>
     <color name="about_card_border">#DCE7E8</color>
 
+    <color name="seerah_card_background">#FFFFFF</color>
+    <color name="seerah_card_border">#E2E5E3</color>
+    <color name="seerah_primary">#167454</color>
+    <color name="seerah_icon_background">#EAF5EF</color>
+    <color name="seerah_text_primary">#212121</color>
+    <color name="seerah_text_secondary">#757575</color>
+
+    <color name="seerah_page_background">#F5F7F3</color>
+    <color name="seerah_continue_background">#E4F0E8</color>
+
+
 </resources>
