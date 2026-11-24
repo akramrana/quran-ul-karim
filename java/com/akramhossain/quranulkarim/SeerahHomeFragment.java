@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.akramhossain.quranulkarim.util.SeerahPreferences;
+
 import org.w3c.dom.Text;
 
 import androidx.annotation.NonNull;
@@ -36,25 +38,20 @@ public class SeerahHomeFragment extends Fragment {
         LinearLayout container =
                 view.findViewById(R.id.seerahSectionsContainer);
 
-        addSection(container,
-                "Before His Birth",
-                "জন্মের পূর্বকথা");
+        addSection(container, "before_birth",
+                "Before His Birth", "জন্মের পূর্বকথা");
 
-        addSection(container,
-                "63-Year Timeline",
-                "৬৩ বছরের জীবনপঞ্জি");
+        addSection(container, "timeline",
+                "63-Year Timeline", "৬৩ বছরের জীবনপঞ্জি");
 
-        addSection(container,
-                "After His Passing",
-                "ইন্তেকালের পরবর্তী ঘটনা");
+        addSection(container, "after_passing",
+                "After His Passing", "ইন্তেকালের পরবর্তী ঘটনা");
 
-        addSection(container,
-                "Family & Ahl al-Bayt",
-                "পরিবার ও আহলে বাইত");
+        addSection(container, "family",
+                "Family & Ahl al-Bayt", "পরিবার ও আহলে বাইত");
 
-        addSection(container,
-                "Character & Legacy",
-                "চরিত্র ও আদর্শ");
+        addSection(container, "character",
+                "Character & Legacy", "চরিত্র ও আদর্শ");
 
         TextView bn_title = view.findViewById(R.id.bn_title);
         bn_title.setTypeface(font);
@@ -64,6 +61,7 @@ public class SeerahHomeFragment extends Fragment {
     }
 
     private void addSection(LinearLayout container,
+                            String section,
                             String title,
                             String subtitle) {
 
@@ -85,10 +83,71 @@ public class SeerahHomeFragment extends Fragment {
         subtitleView.setText(subtitle);
 
         item.setOnClickListener(v -> {
-            // Navigation to SeerahListFragment
-            // will be implemented next.
+            getParentFragmentManager()
+                    .beginTransaction()
+                    .setReorderingAllowed(true)
+                    .replace(
+                            R.id.seerahFragmentContainer,
+                            SeerahListFragment.newInstance(section)
+                    )
+                    .addToBackStack(null)
+                    .commit();
         });
 
         container.addView(item);
+    }
+
+    private void updateContinueReading() {
+
+        View view = getView();
+        if (view == null) return;
+
+        SeerahPreferences preferences =
+                new SeerahPreferences(requireContext());
+
+        View continueCard =
+                view.findViewById(R.id.seerahContinueCard);
+
+        TextView continueTitle =
+                view.findViewById(R.id.seerahContinueTitle);
+
+        if (!preferences.hasLastRead()) {
+            continueCard.setVisibility(View.GONE);
+            return;
+        }
+
+        continueCard.setVisibility(View.VISIBLE);
+
+        boolean isBangla =
+                preferences.getLanguage().equals("bn");
+
+        continueTitle.setText(isBangla
+                ? preferences.getLastTitleBn()
+                : preferences.getLastTitleEn());
+
+        continueTitle.setTypeface(isBangla
+                ? font : Typeface.DEFAULT);
+
+        continueCard.setOnClickListener(v -> {
+
+            getParentFragmentManager()
+                    .beginTransaction()
+                    .setReorderingAllowed(true)
+                    .replace(
+                            R.id.seerahFragmentContainer,
+                            SeerahListFragment.newInstance(
+                                    preferences.getLastSection(),
+                                    preferences.getLastChapterId()
+                            )
+                    )
+                    .addToBackStack(null)
+                    .commit();
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateContinueReading();
     }
 }

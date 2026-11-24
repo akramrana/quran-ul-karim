@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/seerah_page_background">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+
+        <TextView
+            android:id="@+id/readerBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:text="‹"
+            android:textSize="32sp"
+            android:contentDescription="Back"
+            android:textColor="@color/seerah_primary" />
+
+        <TextView
+            android:id="@+id/readerChapterInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/seerah_text_primary" />
+
+        <TextView
+            android:id="@+id/readerBookmark"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:text="☆"
+            android:textSize="28sp"
+            android:contentDescription="Bookmark"
+            android:textColor="@color/seerah_primary" />
+
+    </LinearLayout>
+
+    <!-- Reading controls -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="8dp"
+        android:paddingBottom="12dp">
+
+        <TextView
+            android:id="@+id/readerBangla"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:paddingHorizontal="16dp"
+            android:text="বাংলা"
+            android:textSize="16sp"
+            android:textColor="@color/seerah_primary" />
+
+        <TextView
+            android:id="@+id/readerEnglish"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:paddingHorizontal="16dp"
+            android:text="English"
+            android:textSize="14sp"
+            android:textColor="@color/seerah_primary" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/readerFontDecrease"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:text="A−"
+            android:textSize="18sp"
+            android:textColor="@color/seerah_primary" />
+
+        <TextView
+            android:id="@+id/readerFontIncrease"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:text="A+"
+            android:textSize="18sp"
+            android:textColor="@color/seerah_primary" />
+
+    </LinearLayout>
+
+    <!-- Scrollable story -->
+    <ScrollView
+        android:id="@+id/readerScroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/readerDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/seerah_primary"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/readerTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="@color/seerah_text_primary" />
+
+            <TextView
+                android:id="@+id/readerSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="14sp"
+                android:textColor="@color/seerah_text_secondary" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/seerah_card_border" />
+
+            <TextView
+                android:id="@+id/readerContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="19sp"
+                android:lineSpacingExtra="5dp"
+                android:textIsSelectable="true"
+                android:textColor="@color/seerah_text_primary" />
+
+            <!-- References -->
+            <LinearLayout
+                android:id="@+id/readerReferencesCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:background="@drawable/bg_seerah_continue">
+
+                <TextView
+                    android:id="@+id/readerReferencesToggle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="References · তথ্যসূত্র  ▾"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/seerah_primary"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+                <TextView
+                    android:id="@+id/readerReferences"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="4dp"
+                    android:textColor="@color/seerah_text_secondary"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom navigation -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/readerPrevious"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="‹ Previous"
+            android:textSize="14sp"
+            android:textColor="@color/seerah_primary" />
+
+        <TextView
+            android:id="@+id/readerPosition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:textSize="13sp"
+            android:textColor="@color/seerah_text_secondary" />
+
+        <TextView
+            android:id="@+id/readerNext"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/bg_seerah_continue"
+            android:text="Next ›"
+            android:textSize="14sp"
+            android:textColor="@color/seerah_primary" />
+
+    </LinearLayout>
+
+</LinearLayout>
